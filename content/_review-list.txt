@@ -1,0 +1,62 @@
+about|adverb|khoảng
+act|noun|hành động; đạo luật
+affair|noun|việc; vấn đề
+all|adverb|hoàn toàn
+along|adverb|cùng; tiến lên
+as|conjunction|khi; vì; như
+assistant|adjective|phụ tá; trợ lý
+bank|verb|gửi tiền vào ngân hàng
+base|noun|cơ sở; đáy; căn cứ
+bat|noun|con dơi; gậy đánh bóng
+being|noun|sinh vật; sự tồn tại
+case|noun|trường hợp
+coke|noun|cô-ca (nước ngọt có ga)
+cricket|noun|môn crikê; con dế
+crisp|noun|khoai tây chiên giòn
+cross|noun|dấu chéo; cây thánh giá
+dig|noun|cuộc đào; sự đào
+draw|noun|trận hòa
+express|noun|tàu tốc hành; chuyển phát nhanh
+feed|noun|thức ăn cho gia súc
+figure|noun|con số; hình dáng
+figure|verb|nghĩ ra; hiểu ra
+fix|noun|giải pháp tạm thời
+float|noun|cái phao
+fry|noun|món chiên; khoai tây chiên
+given|adjective|đã định; đã cho
+grace|noun|sự duyên dáng; lời cầu nguyện
+hold|noun|sự nắm giữ; khoang hàng
+latter|adverb|sau cùng
+lead|noun|sự dẫn đầu; vị trí dẫn đầu
+load|noun|gánh nặng, tải trọng
+lyric|adjective|thuộc về lời bài hát, trữ tình
+move|noun|nước đi, bước di chuyển
+off|adverb|đi khỏi, tắt
+on|adverb|tiếp tục, đang bật
+operate|verb|vận hành; phẫu thuật
+pass|noun|thẻ, vé (đi qua)
+passage|noun|đoạn văn, lối đi
+post|noun|bưu điện; cột (trụ)
+pro|noun|người chuyên nghiệp
+rate|noun|tốc độ; tỷ lệ
+refer|verb|nhắc đến; tham khảo
+reflect|verb|phản chiếu; suy nghĩ
+roll|noun|ổ bánh mì; cuộn
+'s|be-verb|là (dạng rút gọn của is); của (sở hữu)
+sake|noun|vì lợi ích của
+second|pronoun|người thứ hai; cái thứ hai
+senior|noun|người lớn tuổi; học sinh cuối cấp
+short|adverb|đột ngột; thiếu
+shot|noun|phát bắn; mũi tiêm
+sight|noun|thị lực; cảnh tượng
+smith|noun|thợ rèn
+spell|noun|câu thần chú; đợt
+split|adjective|bị chia; bị tách
+spot|noun|đốm; địa điểm
+spread|noun|món phết; sự lan rộng
+stand|noun|quầy; sạp
+surf|noun|môn lướt sóng
+track|noun|đường ray; đường mòn
+tube|noun|ống
+wake|noun|lễ viếng
+weep|noun|tiếng khóc
