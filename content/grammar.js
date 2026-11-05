@@ -74,4 +74,173 @@ OEL.grammar = [
     form: "trạng từ phủ định + trợ động từ + chủ ngữ + động từ",
     examples: ["Never have I seen such a beautiful sunset.", "Not only did she win, but she also broke the record.", "Hardly had we arrived when it started to rain."],
     wrong: "Never I have seen such a sunset.", right: "Never have I seen such a sunset." }
+
+  {
+    title: "Thì hiện tại đơn (Present simple)",
+    level: "A1",
+    category: "Thì",
+    rule: "Dùng thì hiện tại đơn cho thói quen, việc lặp đi lặp lại, sự thật hiển nhiên và lịch trình. Với he, she, it, thêm **-s hoặc -es** vào sau động từ.",
+    form: "chủ ngữ + động từ nguyên mẫu (+s với he/she/it)",
+    examples: [
+      "She walks to work every day.",
+      "Water boils at 100 degrees Celsius.",
+      "The train leaves at 7:15."
+    ],
+    wrong: "He go to school by bus.",
+    right: "He goes to school by bus."
+  },
+  {
+    title: "Thì hiện tại tiếp diễn (Present continuous)",
+    level: "A1",
+    category: "Thì",
+    rule: "Dùng để diễn tả hành động đang diễn ra ngay tại thời điểm nói hoặc một hành động sắp xảy ra trong tương lai gần theo kế hoạch.",
+    form: "chủ ngữ + am/is/are + động từ thêm -ing",
+    examples: [
+      "They are playing football in the yard right now.",
+      "Look! The baby is sleeping.",
+      "We are visiting our grandparents this weekend."
+    ],
+    wrong: "She is write a letter now.",
+    right: "She is writing a letter now."
+  },
+  {
+    title: "Thì hiện tại hoàn thành (Present perfect)",
+    level: "A2",
+    category: "Thì",
+    rule: "Dùng để diễn tả hành động đã xảy ra trong quá khứ nhưng kết quả hoặc ảnh hưởng còn kéo dài đến hiện tại, hoặc kinh nghiệm tính đến thời điểm hiện tại.",
+    form: "chủ ngữ + have/has + quá khứ phân từ (V3/ed)",
+    examples: [
+      "I have lived in this city for five years.",
+      "She has already finished her homework.",
+      "Have you ever been to Japan?"
+    ],
+    wrong: "He has went to the supermarket.",
+    right: "He has gone to the supermarket."
+  },
+  {
+    title: "Thì hiện tại hoàn thành tiếp diễn (Present perfect continuous)",
+    level: "B1",
+    category: "Thì",
+    rule: "Dùng để nhấn mạnh khoảng thời gian của một hành động bắt đầu trong quá khứ và vẫn đang tiếp tục diễn ra ở hiện tại.",
+    form: "chủ ngữ + have/has + been + động từ thêm -ing",
+    examples: [
+      "It has been raining since this morning.",
+      "They have been working here for three hours.",
+      "How long have you been waiting?"
+    ],
+    wrong: "She has learning English for two years.",
+    right: "She has been learning English for two years."
+  },
+  {
+    title: "Thì quá khứ đơn (Past simple)",
+    level: "A2",
+    category: "Thì",
+    rule: "Dùng để diễn tả hành động đã xảy ra và kết thúc hoàn toàn trong quá khứ tại một thời điểm xác định.",
+    form: "chủ ngữ + động từ ở dạng quá khứ (V2/ed)",
+    examples: [
+      "I visited my grandparents last weekend.",
+      "She bought a new car yesterday.",
+      "They went to Paris in 2020."
+    ],
+    wrong: "He didn't went to school yesterday.",
+    right: "He didn't go to school yesterday."
+  },
+  {
+    title: "Thì quá khứ tiếp diễn (Past continuous)",
+    level: "A2",
+    category: "Thì",
+    rule: "Dùng để diễn tả một hành động đang diễn ra tại một thời điểm cụ thể trong quá khứ, hoặc một hành động đang xảy ra thì có hành động khác xen vào.",
+    form: "chủ ngữ + was/were + động từ thêm -ing",
+    examples: [
+      "I was reading a book at 8 PM last night.",
+      "They were playing tennis when it started to rain.",
+      "What were you doing at this time yesterday?"
+    ],
+    wrong: "She was cook dinner when I arrived.",
+    right: "She was cooking dinner when I arrived."
+  },
+  {
+    title: "Thì quá khứ hoàn thành (Past perfect)",
+    level: "B1",
+    category: "Thì",
+    rule: "Dùng để diễn tả một hành động đã xảy ra và hoàn thành trước một hành động khác trong quá khứ (hoặc trước một mốc thời gian trong quá khứ).",
+    form: "chủ ngữ + had + quá khứ phân từ (V3/ed)",
+    examples: [
+      "By the time we arrived, the train had left.",
+      "She had already eaten before her friends came.",
+      "He passed the exam because he had studied hard."
+    ],
+    wrong: "They had finish the project before the deadline.",
+    right: "They had finished the project before the deadline."
+  },
+  {
+    title: "Thì quá khứ hoàn thành tiếp diễn (Past perfect continuous)",
+    level: "B2",
+    category: "Thì",
+    rule: "Dùng để nhấn mạnh quá trình diễn ra liên tục của một hành động trước một hành động khác trong quá khứ.",
+    form: "chủ ngữ + had + been + động từ thêm -ing",
+    examples: [
+      "They had been playing football for two hours before it started to rain.",
+      "She was tired because she had been working all night.",
+      "He had been living in Hanoi for five years before moving to Da Nang."
+    ],
+    wrong: "We had playing games when the lights went out.",
+    right: "We had been playing games when the lights went out."
+  },
+  {
+    title: "Thì tương lai đơn (Future simple)",
+    level: "A2",
+    category: "Thì",
+    rule: "Dùng để diễn tả một quyết định đưa ra ngay tại thời điểm nói, một lời hứa, một lời đe dọa hoặc một dự đoán không có căn cứ chắc chắn.",
+    form: "chủ ngữ + will + động từ nguyên mẫu",
+    examples: [
+      "I will help you with your heavy bag.",
+      "I think it will rain tomorrow.",
+      "Don't worry, I will call you later."
+    ],
+    wrong: "She will goes to the party.",
+    right: "She will go to the party."
+  },
+  {
+    title: "Thì tương lai tiếp diễn (Future continuous)",
+    level: "B1",
+    category: "Thì",
+    rule: "Dùng để diễn tả một hành động sẽ đang diễn ra tại một thời điểm cụ thể trong tương lai.",
+    form: "chủ ngữ + will + be + động từ thêm -ing",
+    examples: [
+      "At this time tomorrow, I will be flying to Tokyo.",
+      "Don't call me at 8 PM because I will be having dinner.",
+      "Will you be using your computer this afternoon?"
+    ],
+    wrong: "They will be study at the library tomorrow morning.",
+    right: "They will be studying at the library tomorrow morning."
+  },
+  {
+    title: "Thì tương lai hoàn thành (Future perfect)",
+    level: "B2",
+    category: "Thì",
+    rule: "Dùng để diễn tả một hành động sẽ hoàn thành trước một thời điểm hoặc một hành động khác trong tương lai.",
+    form: "chủ ngữ + will + have + quá khứ phân từ (V3/ed)",
+    examples: [
+      "By next month, I will have finished this book.",
+      "They will have built the bridge by the end of this year.",
+      "Will you have completed the report by 5 PM?"
+    ],
+    wrong: "She will have wrote the letter by tomorrow.",
+    right: "She will have written the letter by tomorrow."
+  },
+  {
+    title: "Thì tương lai hoàn thành tiếp diễn (Future perfect continuous)",
+    level: "C1",
+    category: "Thì",
+    rule: "Dùng để nhấn mạnh khoảng thời gian kéo dài của một hành động tính đến một thời điểm xác định trong tương lai.",
+    form: "chủ ngữ + will + have + been + động từ thêm -ing",
+    examples: [
+      "By next year, I will have been living here for ten years.",
+      "By the time you arrive, we will have been waiting for two hours.",
+      "She will have been working at this company for five years next month."
+    ],
+    wrong: "By next week, he will have been work here for a year.",
+    right: "By next week, he will have been working here for a year."
+  }
 ];
