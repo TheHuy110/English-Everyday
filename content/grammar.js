@@ -613,7 +613,7 @@ OEL.grammar = [
     rule: "Dùng để nhấn mạnh rằng kết quả không thay đổi dù điều kiện có như thế nào đi nữa.",
     form: "No matter + Wh- / Wh-ever + mệnh đề, mệnh đề chính",
     examples: ["No matter how hard he tried, he couldn't open the lock.", "Whatever happens, we must remain calm."],
-    wrong: "No matter how he tried hard, he failed.", right: "No matter how hard he tried, he failed." }
+    wrong: "No matter how he tried hard, he failed.", right: "No matter how hard he tried, he failed." },
 
   { title: "Đảo ngữ với mạo từ/tính từ (Inversion with 'So / Such... that')", level: "C1", category: "Đảo ngữ",
     rule: "Đưa **So + tính từ** hoặc **Such + be** lên đầu câu để tạo ấn tượng mạnh mẽ trong văn phong trang trọng.",
