@@ -113,7 +113,7 @@ OEL.grammar = [
     rule: "Dùng để nhấn mạnh khoảng thời gian kéo dài của một hành động tính đến một thời điểm xác định trong tương lai.",
     form: "will + have + been + động từ-ing",
     examples: ["By next year, I will have been living here for ten years.", "By the time you arrive, we will have been waiting for two hours.", "She will have been working at this company for five years by June."],
-    wrong: "By next week, he will have been work here for a year.", right: "By next week, he will have been working here for a year." }
+    wrong: "By next week, he will have been work here for a year.", right: "By next week, he will have been working here for a year." },
 
   { title: "Câu điều kiện loại 0 (Zero conditional)", level: "A2", category: "Câu điều kiện",
     rule: "Dùng để diễn tả một sự thật hiển nhiên, quy luật tự nhiên hoặc một kết quả luôn xảy ra khi có điều kiện nhất định.",
