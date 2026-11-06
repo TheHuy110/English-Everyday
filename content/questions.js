@@ -98,7 +98,7 @@ OEL.questions = [
   { level: "A1", topic: "Mạo từ", question: "She speaks ___ English fluently.", options: ["a", "an", "the", "no article"], answer: "no article", explanation: "Tên các ngôn ngữ không đi kèm mạo từ." },
   { level: "A1", topic: "Mạo từ", question: "We stayed at ___ Hilton hotel.", options: ["a", "an", "the", "no article"], answer: "the", explanation: "Tên khách sạn thường đi với mạo từ 'the'." },
   { level: "A1", topic: "Mạo từ", question: "I found ___ umbrella on the floor.", options: ["a", "an", "the", "no article"], answer: "an", explanation: "Umbrella bắt đầu bằng âm nguyên âm /ʌ/, dùng 'an'." },
-  { level: "A1", topic: "Mạo từ", question: "He goes to ___ bed early.", options: ["a", "an", "the", "no article"], answer: "no article", explanation: "Cụm thành ngữ 'go to bed' không dùng mạo từ." }
+  { level: "A1", topic: "Mạo từ", question: "He goes to ___ bed early.", options: ["a", "an", "the", "no article"], answer: "no article", explanation: "Cụm thành ngữ 'go to bed' không dùng mạo từ." },
 
   /* ---------- Ngân hàng câu hỏi: Tiếp tục từ điểm số 4 đến 10 (210 câu hỏi) ---------- */
 
@@ -324,7 +324,7 @@ OEL.questions = [
   { level: "B1", topic: "Động từ", question: "The email was ___ to all staff members.", options: ["send", "sent", "sending", "sends"], answer: "sent", explanation: "V3 của 'send' là 'sent'." },
   { level: "B1", topic: "Động từ", question: "The house has been ___ for two months.", options: ["sell", "sold", "selling", "sells"], answer: "sold", explanation: "Bị động hiện tại hoàn thành 'has been sold'." },
   { level: "B1", topic: "Động từ", question: "Breakfast is ___ from 7 AM to 10 AM.", options: ["serve", "served", "serving", "serves"], answer: "served", explanation: "Bị động hiện tại đơn 'is served'." },
-  { level: "B1", topic: "Động từ", question: "The car was ___ washed by my brother.", options: ["careful", "carefully", "care", "caring"], answer: "carefully", explanation: "Trạng từ đứng trước quá khứ phân từ 'carefully washed'." }
+  { level: "B1", topic: "Động từ", question: "The car was ___ washed by my brother.", options: ["careful", "carefully", "care", "caring"], answer: "carefully", explanation: "Trạng từ đứng trước quá khứ phân từ 'carefully washed'." },
 
 
 
