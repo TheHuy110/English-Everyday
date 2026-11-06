@@ -95,8 +95,24 @@
   var cLevels = [], cTopics = [], cLen = 10;
   var journal = LS.get('oel.journal', []);
   if (!Array.isArray(journal)) journal = [];
-  var best = LS.get('oel.best2', {});
-  if (!best || typeof best !== 'object') best = {};
+  /* Test statistics: per practice set (best of today, running average) and overall average. */
+  var stats = LS.get('oel.stats', {});
+  if (!stats || typeof stats !== 'object') stats = {};
+  if (!stats.sets || typeof stats.sets !== 'object') stats.sets = {};
+  if (!stats.all || typeof stats.all !== 'object') stats.all = { sum: 0, cnt: 0 };
+  function setStat(id) { return Object.prototype.hasOwnProperty.call(stats.sets, id) ? stats.sets[id] : null; }
+  function pctOf(sum, cnt) { return cnt ? Math.round(sum / cnt * 100) : 0; }
+  function recordResult() {
+    var total = quiz.kind === 'placement' ? quiz.qs.length : quiz.total, frac = total ? quiz.score / total : 0;
+    stats.all.sum = (+stats.all.sum || 0) + frac; stats.all.cnt = (+stats.all.cnt || 0) + 1;
+    if (quiz.kind === 'set') {
+      var s = setStat(quiz.setId) || (stats.sets[quiz.setId] = { day: '', bs: 0, bn: 0, sum: 0, cnt: 0 });
+      if (s.day !== today()) { s.day = today(); s.bs = 0; s.bn = 0; }
+      if (!s.bn || frac > s.bs / s.bn) { s.bs = quiz.score; s.bn = total; }
+      s.sum = (+s.sum || 0) + frac; s.cnt = (+s.cnt || 0) + 1;
+    }
+    LS.set('oel.stats', stats);
+  }
   var delId = null, exportText = null, jOpen = false;
 
   var view = document.getElementById('view');
@@ -146,9 +162,19 @@
   var XPR = { minute: 1, learned: 3, reviewed: 1, grammar: 2, test: 5 };
   Object.keys(XPR).forEach(function (k) { if (PROG.xp && typeof PROG.xp[k] === 'number' && PROG.xp[k] >= 0) XPR[k] = PROG.xp[k]; });
   var IDLE = typeof PROG.idleSeconds === 'number' && PROG.idleSeconds > 0 ? PROG.idleSeconds : 60;
-  var PLEVELS = list(PROG.levels).filter(function (l) { return l && str(l.name) && typeof l.xp === 'number'; })
-    .map(function (l) { return { name: str(l.name), xp: l.xp, img: str(l.img) }; }).sort(function (x, y) { return x.xp - y.xp; });
-  if (!PLEVELS.length) PLEVELS = [{ name: 'Hạt giống', xp: 0, img: '' }];
+  /* Levels are computed: XP from level k to k+1 = base * k ^ power. Stages (names and pictures) cover several levels each. */
+  var CURVE = { base: 10, power: 1.8 };
+  if (PROG.curve && +PROG.curve.base > 0) CURVE.base = +PROG.curve.base;
+  if (PROG.curve && +PROG.curve.power > 0) CURVE.power = +PROG.curve.power;
+  var PER_STAGE = Math.max(1, Math.floor(+PROG.levelsPerStage) || 1);
+  var STAGES = list(PROG.stages).filter(function (s) { return s && str(s.name); }).map(function (s) { return { name: str(s.name), img: str(s.img) }; });
+  if (!STAGES.length) STAGES = [{ name: 'Hạt giống', img: '' }];
+  var PLEVELS = [], cumXp = 0;
+  for (var lv = 1; lv <= STAGES.length * PER_STAGE; lv++) {
+    var stg = STAGES[Math.floor((lv - 1) / PER_STAGE)];
+    PLEVELS.push({ name: stg.name, img: stg.img, xp: cumXp });
+    cumXp += Math.round(CURVE.base * Math.pow(lv, CURVE.power));
+  }
   var ACHS = list(PROG.achievements).filter(function (x) { return x && str(x.id) && str(x.name) && str(x.stat) && typeof x.goal === 'number'; });
 
   function cleanActivity(raw) {
@@ -244,7 +270,7 @@
     ].map(function (s) {
       return '<a class="card" href="' + s[0] + '"><h3>' + s[1] + '</h3><p>' + s[2] + '</p><span class="meta">' + s[3] + '</span></a>';
     }).join('');
-    var bestKeys = Object.keys(best);
+    var bestKeys = Object.keys(stats.sets).filter(function (k) { return stats.sets[k] && stats.sets[k].cnt > 0; });
     var lastPl = LS.get('oel.placement', null);
     var plLine = lastPl && lastPl.level ? '<p style="margin-top:1rem">Trình độ ước lượng gần nhất: <mark>' + esc(lastPl.level) + '</mark></p>' : '';
     var ps = pStats();
@@ -327,6 +353,13 @@
       return (!cLevels.length || cLevels.indexOf(q.lv) > -1) && (!cTopics.length || cTopics.indexOf(q.topic) > -1);
     });
   }
+  /* Shuffle the answer options each time a question is used. "Of the above" options stay last. */
+  function shufQ(q) {
+    var idx = q.o.map(function (_, i) { return i; }), tail = [], head = [];
+    idx.forEach(function (i) { (/of the above|^both\b/i.test(q.o[i]) ? tail : head).push(i); });
+    var order = shuffle(head).concat(tail);
+    return { lv: q.lv, topic: q.topic, q: q.q, o: order.map(function (i) { return q.o[i]; }), a: order.indexOf(q.a), why: q.why, gid: q.gid };
+  }
   function newQuiz(o) {
     o.i = 0; o.score = 0; o.picked = null; o.missed = []; o.done = false; o.tally = {};
     return o;
@@ -349,14 +382,14 @@
   function startSet(id) {
     var s = QSETS.filter(function (x) { return x.id === id; })[0];
     if (!s) return;
-    var qs = pickBalanced(s.qs, PRACTICE_N);
+    var qs = pickBalanced(s.qs, PRACTICE_N).map(shufQ);
     quiz = newQuiz({ kind: 'set', setId: s.id, title: s.title, lvLabel: s.lv, qs: qs, total: qs.length, open: {} });
   }
   function startCustom() {
     var pool = shuffle(customPool());
     if (!pool.length) return;
-    var take = pool.slice(0, Math.min(cLen, pool.length));
-    quiz = newQuiz({ kind: 'custom', title: 'Bài kiểm tra tự tạo', lvLabel: take.length + ' câu', qs: take, total: take.length, open: {} });
+    var take = pool.slice(0, Math.min(cLen, pool.length)).map(shufQ);
+    quiz = newQuiz({ kind: 'custom', title: 'Ôn tập theo chủ đề', lvLabel: take.length + ' câu', qs: take, total: take.length, open: {} });
   }
   /* Kiểm tra trình độ: bắt đầu ở B1, đúng thì lên một cấp, sai thì xuống một cấp. */
   function startPlacement(n) {
@@ -376,7 +409,7 @@
         var pool = BANK.filter(function (q) { return q.lv === quiz.lvs[j] && quiz.used.indexOf(q) < 0; });
         if (pool.length) {
           var q = pool[Math.floor(Math.random() * pool.length)];
-          quiz.used.push(q); quiz.qs.push(q);
+          quiz.used.push(q); quiz.qs.push(shufQ(q));
           return true;
         }
       }
@@ -385,7 +418,7 @@
   }
   /* Mức ước lượng có hai cách tính (sẽ tinh chỉnh sau):
      - Bài dài (25 câu): cấp độ cao nhất mà bạn trả lời đúng ít nhất một nửa số câu ở cấp đó.
-     - Bài ngắn (10 câu): cấp độ có tỉ lệ đúng cao nhất, vì mỗi cấp chỉ có vài câu nên một câu đúng may mắn
+     - Bài ngắn (10 câu): cấp độ có tỉ lệ đúng cao nhất (nếu đúng quá nửa thì lên một cấp), vì mỗi cấp chỉ có vài câu nên một câu đúng may mắn
        ở cấp cao không đủ để kết luận. Cấp chỉ có 1 câu bị bỏ qua nếu còn cấp khác có từ 2 câu trở lên.
        Nếu hai cấp bằng nhau thì chọn cấp cao hơn (trừ khi cùng bằng 0). */
   function estimateLevel() {
@@ -398,6 +431,8 @@
         var rate = quiz.tally[l].right / quiz.tally[l].asked;
         if (rate > bestRate || (rate === bestRate && rate > 0)) { bestRate = rate; est = l; }
       });
+      /* Đúng quá nửa ở cấp tốt nhất thì được xếp lên cấp kế tiếp để thử sức. */
+      if (bestRate > 0.5 && lvs.indexOf(est) < lvs.length - 1) est = lvs[lvs.indexOf(est) + 1];
       return est;
     }
     lvs.forEach(function (l) {
@@ -407,10 +442,9 @@
     return est;
   }
   function finishQuiz() {
-    quiz.done = true; Act.test();
+    quiz.done = true; Act.test(); recordResult();
     if (quiz.kind === 'set') {
-      var pb = best[quiz.setId];
-      if (!pb || !pb.n || quiz.score / quiz.total > pb.s / pb.n) { best[quiz.setId] = { s: quiz.score, n: quiz.total }; LS.set('oel.best2', best); }
+      /* điểm được ghi ở recordResult() bên dưới */
     } else if (quiz.kind === 'placement') {
       quiz.est = estimateLevel();
       LS.set('oel.placement', { level: quiz.est, date: today(), n: quiz.qs.length });
@@ -432,18 +466,19 @@
     var note = !pool.length ? 'Không có câu hỏi nào phù hợp. Hãy bỏ bớt một bộ lọc.'
       : pool.length < cLen ? 'Ít câu phù hợp nên bài sẽ ngắn hơn.' : '';
     var cards = QSETS.map(function (s) {
-      var b = best[s.id];
+      var b = setStat(s.id), todayBest = b && b.day === today() && b.bn ? 'Điểm cao nhất hôm nay: ' + b.bs + '/' + b.bn : 'Hôm nay chưa làm';
       return '<div class="card"><span class="call">' + esc(s.lv) + '</span><h3>' + esc(s.title) + '</h3><p>' + esc(s.blurb) + '</p>' +
-        '<span class="meta">' + (b ? 'Điểm cao nhất ' + b.s + '/' + b.n : 'Chưa làm') + '</span>' +
+        '<span class="meta">' + todayBest + (b && b.cnt ? ' · Trung bình: ' + pctOf(b.sum, b.cnt) + '%' : '') + '</span>' +
         '<div style="margin-top:0.6rem"><button class="btn" type="button" data-action="start" data-set="' + esc(s.id) + '">Bắt đầu</button></div></div>';
     }).join('');
-    return head('Bài kiểm tra', 'Kiểm tra trình độ, tự tạo bài theo cấp độ và chủ đề, hoặc luyện theo bài có sẵn. Sau mỗi câu bạn sẽ thấy lời giải thích.') +
+    return head('Bài kiểm tra', 'Kiểm tra trình độ, ôn tập theo chủ đề, hoặc luyện theo cấp độ. Sau mỗi câu bạn sẽ thấy lời giải thích.') +
+      (stats.all.cnt ? '<p class="muted" style="margin-bottom:1rem">Điểm trung bình của tất cả bài đã làm: <strong>' + pctOf(stats.all.sum, stats.all.cnt) + '%</strong> (' + stats.all.cnt + ' bài)</p>' : '') +
       '<div class="stack">' +
-      '<section class="panel stack" style="gap:1rem"><div><h2>Kiểm tra trình độ</h2></div>' +
+      '<section class="panel stack placement" style="gap:1rem"><div><h2>Kiểm tra trình độ</h2></div>' +
       '<p class="muted">Độ khó tự điều chỉnh: trả lời đúng thì câu sau khó hơn, trả lời sai thì dễ hơn. Kết quả chỉ là mức ước lượng, không phải chứng chỉ.</p>' + lastTxt +
       '<div class="row"><button class="btn" type="button" data-action="start-placement" data-n="10">Kiểm tra nhanh: 10 câu</button>' +
       '<button class="btn ghost" type="button" data-action="start-placement" data-n="25">Kiểm tra dài: 25 câu</button></div></section>' +
-      '<section class="panel stack" style="gap:1rem"><div><h2>Tự tạo bài kiểm tra</h2></div>' +
+      '<section class="panel stack" style="gap:1rem"><div><h2>Ôn tập theo chủ đề</h2></div>' +
       '<p class="muted">Chọn cấp độ và chủ đề. Không chọn gì nghĩa là lấy tất cả.</p>' +
       '<div><p class="lab" style="margin-bottom:0.4rem">Cấp độ</p><div class="chips" role="group" aria-label="Cấp độ">' + lvChips + '</div></div>' +
       '<div><p class="lab" style="margin-bottom:0.4rem">Chủ đề</p><div class="chips" role="group" aria-label="Chủ đề">' + tpChips + '</div></div>' +
@@ -489,14 +524,14 @@
       msg = 'Hãy bắt đầu từ ngữ pháp ở cấp ' + quiz.est + ' và luyện thêm ở cấp đó.';
       extra = '<div class="table-wrap"><table style="min-width:0"><thead><tr><th>Cấp độ</th><th>Đúng / Đã hỏi</th></tr></thead><tbody>' + rows + '</tbody></table></div>' +
         '<p class="muted">Đây là ước lượng dựa trên ' + n + ' câu. ' + (quiz.total <= 10
-          ? 'Bài ngắn chọn cấp độ bạn trả lời đúng tỉ lệ cao nhất. Làm bài dài (25 câu) sẽ chính xác hơn.'
+          ? 'Bài ngắn lấy cấp độ bạn trả lời đúng tỉ lệ cao nhất. Nếu bạn đúng quá nửa ở cấp đó, bạn được xếp lên cấp kế tiếp để thử sức. Làm bài dài (25 câu) sẽ chính xác hơn.'
           : 'Bài dài chọn cấp độ cao nhất mà bạn trả lời đúng từ một nửa số câu trở lên.') + '</p>';
       nextBtn = '<button class="btn" type="button" data-action="level" data-level="' + esc(quiz.est) + '">Xem ngữ pháp cấp ' + esc(quiz.est) + '</button>';
       retry = '<button class="btn ghost" type="button" data-action="start-placement" data-n="' + quiz.total + '">Làm lại</button>';
     } else {
       msg = pct >= 0.85 ? 'Kết quả rất tốt. Hãy thử bài ở cấp độ cao hơn.' : pct >= 0.6 ? 'Tiến bộ tốt. Hãy xem lại các câu bên dưới rồi làm lại.' : 'Cố lên. Đọc lại ngữ pháp cho những câu bạn làm sai rồi thử lại.';
       top = '<div class="score">' + quiz.score + ' / ' + n + '</div>';
-      if (quiz.kind === 'set') extra = '<p class="muted">Điểm cao nhất trên thiết bị này: ' + best[quiz.setId].s + '/' + best[quiz.setId].n + '. Mỗi lần làm lại bạn sẽ nhận một bộ câu hỏi mới.</p>';
+      if (quiz.kind === 'set') { var sb = setStat(quiz.setId); extra = '<p class="muted">Điểm cao nhất hôm nay: ' + sb.bs + '/' + sb.bn + '. Điểm trung bình của bài này: ' + pctOf(sb.sum, sb.cnt) + '%. Mỗi lần làm lại bạn sẽ nhận một bộ câu hỏi mới.</p>'; }
       nextBtn = '<a class="btn" href="#grammar">Ôn lại ngữ pháp</a>';
       retry = quiz.kind === 'set'
         ? '<button class="btn ghost" type="button" data-action="start" data-set="' + esc(quiz.setId) + '">Làm lại</button>'
