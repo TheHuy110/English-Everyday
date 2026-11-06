@@ -59,6 +59,13 @@
 
   var LINKS = Object.create(null);   /* grammarId -> number of questions pointing at it */
   BANK.forEach(function (q) { if (q.gid) LINKS[q.gid] = (LINKS[q.gid] || 0) + 1; });
+  var IPA_CFG = (OEL.ipa && OEL.ipa.audio) || {};
+  var IPA = list(OEL.ipa && OEL.ipa.sounds).map(function (s) {
+    s = s || {};
+    return { id: str(s.id), sym: str(s.symbol), type: str(s.type) || 'consonant', group: str(s.group), voice: str(s.voice), tip: str(s.tip), bad: str(s.mistake),
+      ex: list(s.examples).map(function (e) { e = e || {}; return { w: str(e.word), ipa: str(e.ipa) }; }).filter(function (e) { return e.w; }),
+      pairs: list(s.pairs).map(function (p) { p = p || {}; return { a: str(p.a), ai: str(p.aIpa), b: str(p.b), bi: str(p.bIpa) }; }).filter(function (p) { return p.a && p.b; }) };
+  }).filter(function (s) { var ok = s.id && s.sym; if (!ok) warn('âm IPA (cần id và symbol)', s); return ok; });
   var seenSets = {};
   var QSETS = list(OEL.tests).map(function (s) {
     s = s || {};
@@ -118,7 +125,7 @@
   var delId = null, exportText = null, jOpen = false;
 
   var view = document.getElementById('view');
-  var ROUTES = ['home', 'grammar', 'vocab', 'tests', 'resources', 'tips', 'journal'];
+  var ROUTES = ['home', 'grammar', 'vocab', 'ipa', 'tests', 'resources', 'tips', 'journal'];
 
   /* ---------- Hàm trợ giúp ---------- */
   function pad(n) { return String(n).padStart(2, '0'); }
@@ -372,6 +379,7 @@
     var shelf = [
       ['#grammar', 'Ngữ pháp', 'Giải thích dễ hiểu, ví dụ và một lỗi thường gặp cho mỗi quy tắc.', GRAMMAR.length + ' quy tắc'],
       ['#vocab', 'Từ vựng', 'Thẻ từ vựng CEFR-J cấp A1 đến A2. Đánh dấu từ cần học và ôn theo lịch lặp lại.', VOCAB.length + ' từ'],
+      ['#ipa', 'Phát âm', 'Bảng âm IPA tiếng Anh Mỹ: nghe âm, xem ví dụ, mẹo phát âm và các cặp âm dễ nhầm.', IPA.length + ' âm'],
       ['#tests', 'Bài kiểm tra', 'Các bài trắc nghiệm ngắn, có giải thích cho từng đáp án.', BANK.length + ' câu hỏi'],
       ['#resources', 'Tài nguyên', 'Các trang miễn phí để luyện nghe, đọc, viết và từ vựng.', RESOURCES.length + ' trang'],
       ['#tips', 'Mẹo học', 'Thói quen cho từng kỹ năng và các cặp từ ai cũng hay nhầm.', TIPS_FLAT.length + ' mẹo'],
@@ -943,6 +951,65 @@
     saveV(); vMsg = 'Đã thêm “' + w + '” vào danh sách học.'; render();
   }
 
+  /* ---------- Phát âm (bảng IPA) ---------- */
+  var ipaSel = '', ipaFilter = 'all';
+  function ipaFile(kind, name) {
+    var base = kind === 's' ? IPA_CFG.sounds : IPA_CFG.words;
+    return base ? base + name + '.' + (IPA_CFG.ext || 'mp3') : '';
+  }
+  function wordSlug(w) { return String(w).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
+  function playFile(src, word) {
+    var fallback = function () { if (word) speak(word); };
+    if (!src) { fallback(); return; }
+    try {
+      var au = new Audio(src); au.onerror = fallback;
+      var p = au.play(); if (p && p.catch) p.catch(fallback);
+    } catch (e) { fallback(); }
+  }
+  function ipaWordBtn(w) {
+    if (!CAN_SPEAK && !IPA_CFG.words) return '';
+    return '<button type="button" class="btn ghost small" data-action="ipa-play" data-src="' + esc(ipaFile('w', wordSlug(w))) + '" data-w="' + esc(w) + '" aria-label="Nghe từ ' + esc(w) + '">Nghe</button>';
+  }
+  function ipaDetail() {
+    var s = IPA.filter(function (x) { return x.id === ipaSel; })[0];
+    if (!s) return '<section class="panel ipa-detail" id="ipa-detail"><p class="muted">Bấm vào một âm bên dưới để nghe, xem ví dụ và mẹo phát âm.</p></section>';
+    var kind = { vowel: 'Nguyên âm', diphthong: 'Nguyên âm đôi', consonant: 'Phụ âm' }[s.type] || '';
+    var label = [kind, s.type === 'consonant' ? s.group : '', s.voice].filter(Boolean).join(' · ');
+    var soundBtn = IPA_CFG.sounds ? '<button type="button" class="btn small" data-action="ipa-play" data-src="' + esc(ipaFile('s', s.id)) + '" data-w="">Nghe âm /' + esc(s.sym) + '/</button>' : '';
+    var words = s.ex.map(function (e) {
+      return '<li><b>' + esc(e.w) + '</b> <span class="muted ipa-t">/' + esc(e.ipa) + '/</span> ' + ipaWordBtn(e.w) + '</li>';
+    }).join('');
+    var pairs = s.pairs.map(function (p) {
+      return '<li><b>' + esc(p.a) + '</b> <span class="muted ipa-t">/' + esc(p.ai) + '/</span> ' + ipaWordBtn(p.a) + ' <span class="muted">≠</span> <b>' + esc(p.b) + '</b> <span class="muted ipa-t">/' + esc(p.bi) + '/</span> ' + ipaWordBtn(p.b) + '</li>';
+    }).join('');
+    return '<section class="panel ipa-detail stack" id="ipa-detail" style="gap:1rem"><div class="ipa-head"><span class="ipa-big">/' + esc(s.sym) + '/</span><div class="stack" style="gap:0.5rem"><p class="call" style="margin:0">' + esc(label) + '</p>' + soundBtn + '</div></div>' +
+      (words ? '<div><p class="lab">Ví dụ</p><ul class="ipa-list">' + words + '</ul></div>' : '') +
+      (s.tip ? '<div><p class="lab">Cách phát âm</p><p>' + esc(s.tip) + '</p></div>' : '') +
+      (s.bad ? '<div><p class="lab">Lỗi thường gặp của người Việt</p><p>' + esc(s.bad) + '</p></div>' : '') +
+      (pairs ? '<div><p class="lab">Cặp từ dễ nhầm</p><ul class="ipa-list">' + pairs + '</ul></div>' : '') + '</section>';
+  }
+  function viewIpa() {
+    if (!IPA.length) return head('Phát âm', 'Bảng âm IPA tiếng Anh.') + '<div class="empty">Chưa có dữ liệu âm nào.</div>';
+    var filters = [['all', 'Tất cả'], ['vowel', 'Nguyên âm'], ['diphthong', 'Nguyên âm đôi'], ['consonant', 'Phụ âm']].map(function (f) {
+      return chipBtn('ipa-filter', f[0], f[1], ipaFilter === f[0]);
+    }).join('');
+    var groups = [], map = {};
+    IPA.forEach(function (s) {
+      if (ipaFilter !== 'all' && s.type !== ipaFilter) return;
+      var k = s.group || s.type;
+      if (!map[k]) { map[k] = []; groups.push(k); }
+      map[k].push(s);
+    });
+    var grid = groups.map(function (k) {
+      return '<section><h3 style="margin-bottom:0.6rem">' + esc(k) + '</h3><div class="ipa-grid">' + map[k].map(function (s) {
+        return '<button type="button" class="ipa-tile" data-action="ipa-pick" data-v="' + esc(s.id) + '" aria-pressed="' + (ipaSel === s.id) + '"><b>' + esc(s.sym) + '</b><span>' + esc(s.ex[0] ? s.ex[0].w : '') + '</span></button>';
+      }).join('') + '</div></section>';
+    }).join('');
+    return head('Phát âm', 'Bảng âm IPA tiếng Anh Mỹ. Bấm vào một âm để nghe, xem ví dụ, mẹo phát âm và các cặp từ dễ nhầm.') +
+      '<div class="stack" style="gap:1.25rem">' + ipaDetail() + '<div class="chips" role="group" aria-label="Lọc loại âm">' + filters + '</div>' + grid +
+      '<p class="muted" style="font-size:0.9rem">Phần giải thích đang được rà soát. Âm /ɚ/ trong ví dụ là /ɝ/ ở âm tiết không nhấn.</p></div>';
+  }
+
   /* ---------- Nhật ký ---------- */
   function entryHtml(e) {
     var words = (e.words || []).map(function (w) { return '<span class="word">' + esc(w) + '</span>'; }).join('');
@@ -1059,7 +1126,7 @@
   }
   function render() {
     var r = current();
-    var html = r === 'home' ? viewHome() : r === 'grammar' ? viewGrammar() : r === 'vocab' ? viewVocab() : r === 'tests' ? viewTests() :
+    var html = r === 'home' ? viewHome() : r === 'grammar' ? viewGrammar() : r === 'vocab' ? viewVocab() : r === 'ipa' ? viewIpa() : r === 'tests' ? viewTests() :
       r === 'resources' ? viewResources() : r === 'tips' ? viewTips() : r === 'admin' ? viewAdmin() : viewJournal();
     view.innerHTML = html;
     var links = document.querySelectorAll('#tabs a');
@@ -1108,6 +1175,13 @@
       if (p > -1) arr.splice(p, 1); else arr.push(v);
       render();
       refocus(a, v);
+    } else if (a === 'ipa-filter') {
+      ipaFilter = t.getAttribute('data-v'); render(); refocus(a, ipaFilter);
+    } else if (a === 'ipa-pick') {
+      ipaSel = t.getAttribute('data-v'); render(); refocus(a, ipaSel);
+      var dp = document.getElementById('ipa-detail'); if (dp && dp.scrollIntoView) dp.scrollIntoView({ block: 'start' });
+    } else if (a === 'ipa-play') {
+      playFile(t.getAttribute('data-src'), t.getAttribute('data-w'));
     } else if (a === 'q-rule') {
       var qi = parseInt(t.getAttribute('data-v'), 10), qsy = window.scrollY;
       if (quiz && quiz.open) { quiz.open[qi] = !quiz.open[qi]; render(); window.scrollTo(0, qsy); refocus(a, String(qi)); }
