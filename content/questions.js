@@ -3352,4 +3352,390 @@ OEL.questions = [
   { level: "C1", topic: "Cấu trúc câu", question: "It was the storm ___ caused extensive damage to the power grid.", options: ["that", "which", "who", "whom"], answer: "that", explanation: "Nhấn mạnh chủ ngữ vật 'that'." },
   { level: "C1", topic: "Cấu trúc câu", question: "What she enjoys most ___ reading historical biographies.", options: ["is", "are", "was", "were"], answer: "is", explanation: "Chủ ngữ mệnh đề 'What' chỉ sở thích đơn -> 'is'." },
 
+  /* ---------- Ngân hàng câu hỏi nâng cao (C2): 7 điểm ngữ pháp/văn phong chuyên sâu (210 câu hỏi) ---------- */
+
+  // 1. Đảo ngữ câu điều kiện không dùng 'If' (Inversion in conditionals) - 30 câu
+  { level: "C2", topic: "Đảo ngữ", question: "___ any further technical problems arise, please contact our support team immediately.", options: ["Should", "Were", "Had", "Did"], answer: "Should", explanation: "Đảo ngữ câu điều kiện loại 1: 'Should + S + V-nguyên mẫu'." },
+  { level: "C2", topic: "Đảo ngữ", question: "___ I in your position, I would renegotiate the contract terms.", options: ["Were", "Should", "Had", "If"], answer: "Were", explanation: "Đảo ngữ câu điều kiện loại 2: 'Were + S + (to-V)'." },
+  { level: "C2", topic: "Đảo ngữ", question: "___ known about the strict regulations beforehand, we wouldn't have broken the law.", options: ["Had we", "We had", "Should we", "If we had"], answer: "Had we", explanation: "Đảo ngữ câu điều kiện loại 3: 'Had + S + V3/ed'." },
+  { level: "C2", topic: "Đảo ngữ", question: "___ you require any additional documentation, do not hesitate to reach out.", options: ["Should", "Were", "Had", "Unless"], answer: "Should", explanation: "Đảo ngữ điều kiện loại 1 trang trọng với 'Should'." },
+  { level: "C2", topic: "Đảo ngữ", question: "___ the board to reject the proposal, the CEO would be forced to resign.", options: ["Were", "Should", "Had", "Provided"], answer: "Were", explanation: "Đảo ngữ điều kiện loại 2 dạng 'Were + S + to-V'." },
+  { level: "C2", topic: "Đảo ngữ", question: "___ the rain stopped earlier, the outdoor ceremony would have proceeded.", options: ["Had", "Were", "Should", "If"], answer: "Had", explanation: "Đảo ngữ điều kiện loại 3 với 'Had + S + V3/ed'." },
+  { level: "C2", topic: "Đảo ngữ", question: "___ there be any doubt about the safety protocols, suspend operations at once.", options: ["Should", "Were", "Had", "Supposing"], answer: "Should", explanation: "Đảo ngữ điều kiện loại 1 'Should + S + V'." },
+  { level: "C2", topic: "Đảo ngữ", question: "___ he to accept the managerial position, he would have to relocate.", options: ["Were", "Should", "Had", "Unless"], answer: "Were", explanation: "Đảo ngữ điều kiện loại 2 với 'Were + S + to-V'." },
+  { level: "C2", topic: "Đảo ngữ", question: "___ we anticipated the economic downturn, we would have cut expenditure.", options: ["Had", "Were", "Should", "Providing"], answer: "Had", explanation: "Đảo ngữ điều kiện loại 3 với 'Had + S + V3/ed'." },
+  { level: "C2", topic: "Đảo ngữ", question: "___ you wish to cancel your reservation, a full refund will be issued.", options: ["Should", "Were", "Had", "If only"], answer: "Should", explanation: "Đảo ngữ điều kiện loại 1 'Should + S + V'." },
+  { level: "C2", topic: "Đảo ngữ", question: "___ it not for your timely assistance, we would be in severe distress.", options: ["Were", "Had", "Should", "But"], answer: "Were", explanation: "Cấu trúc đảo ngữ 'Were it not for + N' (Nếu không vì...)." },
+  { level: "C2", topic: "Đảo ngữ", question: "___ it not been for the prompt response of the firefighters, the entire venue would have burned.", options: ["Had", "Were", "Should", "Without"], answer: "Had", explanation: "Cấu trúc đảo ngữ 'Had it not been for + N' (Nếu không nhờ vào...)." },
+  { level: "C2", topic: "Đảo ngữ", question: "___ any errors be discovered during the audit, correct them immediately.", options: ["Should", "Were", "Had", "Conditioned"], answer: "Should", explanation: "Đảo ngữ điều kiện loại 1 với 'Should'." },
+  { level: "C2", topic: "Đảo ngữ", question: "___ the company to expand internationally, new investors would be required.", options: ["Were", "Should", "Had", "Assuming"], answer: "Were", explanation: "Đảo ngữ điều kiện loại 2 'Were + S + to-V'." },
+  { level: "C2", topic: "Đảo ngữ", question: "___ I realized the true intentions of the foreign delegation, I would have been more cautious.", options: ["Had", "Were", "Should", "Unless"], answer: "Had", explanation: "Đảo ngữ điều kiện loại 3 với 'Had'." },
+  { level: "C2", topic: "Đảo ngữ", question: "___ you experience any flight delays, inform the travel desk promptly.", options: ["Should", "Were", "Had", "As long as"], answer: "Should", explanation: "Đảo ngữ điều kiện loại 1 với 'Should'." },
+  { level: "C2", topic: "Đảo ngữ", question: "___ I to inherit a vast fortune, I would establish a global charity foundation.", options: ["Were", "Should", "Had", "Provided"], answer: "Were", explanation: "Đảo ngữ điều kiện loại 2 'Were + S + to-V'." },
+  { level: "C2", topic: "Đảo ngữ", question: "___ the security system functioned properly, the intruder could not have entered.", options: ["Had", "Were", "Should", "If"], answer: "Had", explanation: "Đảo ngữ điều kiện loại 3 với 'Had + S + V3/ed'." },
+  { level: "C2", topic: "Đảo ngữ", question: "___ a crisis occur, the emergency response unit will be deployed immediately.", options: ["Should", "Were", "Had", "In case"], answer: "Should", explanation: "Đảo ngữ điều kiện loại 1 với 'Should'." },
+  { level: "C2", topic: "Đảo ngữ", question: "___ she to resign from her post, it would trigger a restructuring of the department.", options: ["Were", "Should", "Had", "Supposing"], answer: "Were", explanation: "Đảo ngữ điều kiện loại 2 'Were + S + to-V'." },
+  { level: "C2", topic: "Đảo ngữ", question: "___ the pilot not made a forced landing, the aircraft would have crashed.", options: ["Had", "Were", "Should", "Unless"], answer: "Had", explanation: "Đảo ngữ điều kiện loại 3 phủ định 'Had + S + not + V3/ed'." },
+  { level: "C2", topic: "Đảo ngữ", question: "___ any client express dissatisfaction, escalate the ticket to the manager.", options: ["Should", "Were", "Had", "Assuming"], answer: "Should", explanation: "Đảo ngữ điều kiện loại 1 với 'Should'." },
+  { level: "C2", topic: "Đảo ngữ", question: "___ I in charge of the department, I would reform the recruitment process.", options: ["Were", "Should", "Had", "If"], answer: "Were", explanation: "Đảo ngữ điều kiện loại 2 'Were + S + Adj/N'." },
+  { level: "C2", topic: "Đảo ngữ", question: "___ the weather been more merciful, the rescue operation would have succeeded earlier.", options: ["Had", "Were", "Should", "Provided"], answer: "Had", explanation: "Đảo ngữ điều kiện loại 3 'Had + S + V3/ed'." },
+  { level: "C2", topic: "Đảo ngữ", question: "___ the flight be canceled due to fog, passengers will receive full compensation.", options: ["Should", "Were", "Had", "When"], answer: "Should", explanation: "Đảo ngữ điều kiện loại 1 với 'Should'." },
+  { level: "C2", topic: "Đảo ngữ", question: "___ you to decide to sell the property, please give me first refusal.", options: ["Were", "Should", "Had", "If"], answer: "Were", explanation: "Đảo ngữ điều kiện loại 2 'Were + S + to-V'." },
+  { level: "C2", topic: "Đảo ngữ", question: "___ we known about the hidden costs, we would never have signed the contract.", options: ["Had", "Were", "Should", "Unless"], answer: "Had", explanation: "Đảo ngữ điều kiện loại 3 'Had + S + V3/ed'." },
+  { level: "C2", topic: "Đảo ngữ", question: "___ you need clarification on any clause, feel free to contact our legal advisor.", options: ["Should", "Were", "Had", "Supposing"], answer: "Should", explanation: "Đảo ngữ điều kiện loại 1 với 'Should'." },
+  { level: "C2", topic: "Đảo ngữ", question: "___ it not for his perseverance, the project would have been abandoned.", options: ["Were", "Had", "Should", "Without"], answer: "Were", explanation: "Cấu trúc 'Were it not for + N'." },
+  { level: "C2", topic: "Đảo ngữ", question: "___ the evidence been presented earlier, the verdict might have been different.", options: ["Had", "Were", "Should", "Assuming"], answer: "Had", explanation: "Đảo ngữ điều kiện loại 3 'Had + S + V3/ed'." },
+
+  // 2. Lược bỏ cụm từ và đồng tính từ (Ellipsis and Substitution) - 30 câu
+  { level: "C2", topic: "Văn phong", question: "Do you think the government will lower taxes next year? - I hope ___.", options: ["not", "so", "to", "that"], answer: "not", explanation: "Lược bỏ mệnh đề phủ định bằng từ 'not' ('I hope they won't')." },
+  { level: "C2", topic: "Văn phong", question: "She was reluctant to sign the confidential agreement, but eventually she agreed ___.", options: ["to", "so", "not", "to do"], answer: "to", explanation: "Dùng 'to' độc lập thay cho cụm động từ 'to sign the agreement' (Ellipsis of verb phrase)." },
+  { level: "C2", topic: "Văn phong", question: "He promised to submit the financial report by Friday, and he did ___ promptly.", options: ["so", "not", "to", "it"], answer: "so", explanation: "Dùng 'do so' thay thế cho hành động 'submit the financial report'." },
+  { level: "C2", topic: "Văn phong", question: "Will the outdoor gala be canceled due to the storm? - I fear ___.", options: ["so", "not", "to", "it"], answer: "so", explanation: "Dùng 'so' thay cho mệnh đề khẳng định phía trước ('I fear it will')." },
+  { level: "C2", topic: "Văn phong", question: "His parents advised him to apply for the prestigious scholarship, but he refused ___.", options: ["to", "so", "not", "it"], answer: "to", explanation: "Lược bỏ cụm động từ sau 'to' ('refused to apply...')." },
+  { level: "C2", topic: "Văn phong", question: "The management urged all staff to complete the safety training, and most employees did ___.", options: ["so", "to", "not", "such"], answer: "so", explanation: "Thay thế hành động đã đề cập bằng 'did so'." },
+  { level: "C2", topic: "Văn phong", question: "Is there any chance of the flight being delayed? - I certainly hope ___.", options: ["not", "so", "to", "that"], answer: "not", explanation: "Thay cho mệnh đề phủ định 'I hope it won't be delayed' bằng 'not'." },
+  { level: "C2", topic: "Văn phong", question: "She told him to locked all the filing cabinets before leaving, but he forgot ___.", options: ["to", "so", "not", "doing"], answer: "to", explanation: "Rút gọn cụm V-infinitive phía sau bằng 'to'." },
+  { level: "C2", topic: "Văn phong", question: "If you wish to appeal against the decision, you are legally entitled to ___.", options: ["do so", "do it", "doing so", "so"], answer: "do so", explanation: "Thay thế cho cụm hành động 'appeal against the decision' bằng 'do so'." },
+  { level: "C2", topic: "Văn phong", question: "Did the board approve the proposed merger? - It appears ___.", options: ["so", "not", "to", "that"], answer: "so", explanation: "Dùng 'so' thay thế cho mệnh đề khẳng định 'It appears that they approved it'." },
+  { level: "C2", topic: "Văn phong", question: "He wanted to attend the international summit, but his supervisor wouldn't allow him ___.", options: ["to", "so", "not", "doing"], answer: "to", explanation: "Lược bỏ động từ sau 'to'." },
+  { level: "C2", topic: "Văn phong", question: "The architect was asked to modify the blueprints, and she graciously agreed to ___.", options: ["do so", "do it", "doing so", "so"], answer: "do so", explanation: "Thay thế bằng cấu trúc 'agree to do so'." },
+  { level: "C2", topic: "Văn phong", question: "Will we lose our investment if the market crashes? - I am afraid ___.", options: ["so", "not", "to", "that"], answer: "so", explanation: "Dùng 'so' thay cho mệnh đề khẳng định sau 'afraid'." },
+  { level: "C2", topic: "Văn phong", question: "She urged her brother to apologize for his rude remarks, but he obstinately declined ___.", options: ["to", "so", "not", "it"], answer: "to", explanation: "Lược bỏ cụm V-infinitive phía sau dùng 'to'." },
+  { level: "C2", topic: "Văn phong", question: "He promised to double-check all statistical calculations, and he did ___ meticulous care.", options: ["so with", "it with", "doing so", "so by"], answer: "so with", explanation: "Thay thế bằng 'did so' kết hợp trạng ngữ cách thức." },
+  { level: "C2", topic: "Văn phong", question: "Has the new security system been activated? - I believe ___.", options: ["so", "not", "to", "that"], answer: "so", explanation: "Thay mệnh đề khẳng định bằng 'so' ('I believe so')." },
+  { level: "C2", topic: "Văn phong", question: "They asked her to present the keynote speech, but she simply lacked the confidence ___.", options: ["to", "so", "not", "doing"], answer: "to", explanation: "Lược bỏ mệnh đề sau 'confidence to [present]' dùng 'to'." },
+  { level: "C2", topic: "Văn phong", question: "Anyone wishing to submit an abstract for the conference is invited to ___.", options: ["do so", "do it", "doing so", "so"], answer: "do so", explanation: "Cấu trúc 'invited to do so'." },
+  { level: "C2", topic: "Văn phong", question: "Does the contract expire at the end of this month? - I think ___.", options: ["so", "not", "to", "that"], answer: "so", explanation: "Thay mệnh đề khẳng định bằng 'so'." },
+  { level: "C2", topic: "Văn phong", question: "He was instructed to wipe all data from the hard drive, but he failed ___.", options: ["to", "so", "not", "it"], answer: "to", explanation: "Rút gọn cụm động từ bằng 'to'." },
+  { level: "C2", topic: "Văn phong", question: "If the company decides to restructure its debt, it will ___ with the approval of shareholders.", options: ["do so", "do it", "doing so", "so"], answer: "do so", explanation: "Thay thế hành động 'restructure its debt' bằng 'do so'." },
+  { level: "C2", topic: "Văn phong", question: "Will we need to show our passports at the border? - I assume ___.", options: ["so", "not", "to", "that"], answer: "so", explanation: "Dùng 'so' thay thế mệnh đề khẳng định." },
+  { level: "C2", topic: "Văn phong", question: "She wanted to visit the historical archives, but she wasn't permitted ___.", options: ["to", "so", "not", "doing"], answer: "to", explanation: "Lược bỏ phần vị ngữ trùng lặp sau 'to'." },
+  { level: "C2", topic: "Văn phong", question: "The director asked him to revise the script, and he promised to ___.", options: ["do so", "do it", "doing so", "so"], answer: "do so", explanation: "Cụm 'promised to do so'." },
+  { level: "C2", topic: "Văn phong", question: "Is the road still closed due to the landslide? - I expect ___.", options: ["so", "not", "to", "that"], answer: "so", explanation: "Mệnh đề thay thế khẳng định 'I expect so'." },
+  { level: "C2", topic: "Văn phong", question: "They begged him not to reveal the confidential source, and he swore ___.", options: ["not to", "to not", "not so", "not doing"], answer: "not to", explanation: "Lược bỏ cụm động từ dạng phủ định bằng 'not to'." },
+  { level: "C2", topic: "Văn phong", question: "Clients who wish to upgrade their membership plan may ___ at any time.", options: ["do so", "do it", "doing so", "so"], answer: "do so", explanation: "Dùng 'do so' thay cho cụm 'upgrade their membership plan'." },
+  { level: "C2", topic: "Văn phong", question: "Did the research team publish their findings? - I don't suppose ___.", options: ["so", "not", "to", "that"], answer: "so", explanation: "Cụm 'I don't suppose so'." },
+  { level: "C2", topic: "Văn phong", question: "She was asked to lead the international relief effort, but she felt unable ___.", options: ["to", "so", "not", "doing"], answer: "to", explanation: "Rút gọn cụm động từ bằng 'to'." },
+  { level: "C2", topic: "Văn phong", question: "If you decide to modify the contract terms, you must ___ in writing.", options: ["do so", "do it", "doing so", "so"], answer: "do so", explanation: "Thay thế hành động bằng 'do so'." },
+
+  // 3. Cấu trúc đảo ngữ nhấn mạnh vị trí / chuyển động (Fronting & Locative Inversion) - 30 câu
+  { level: "C2", topic: "Đảo ngữ", question: "On the top of the snow-capped mountain ___ an ancient monastery.", options: ["stood", "did stand", "standing", "stands"], answer: "stood", explanation: "Đảo ngữ vị trí: Cụm giới từ chỉ nơi chốn + động từ (chia trực tiếp) + chủ ngữ." },
+  { level: "C2", topic: "Đảo ngữ", question: "Into the quiet, dimly lit room ___ a tall, mysterious stranger.", options: ["walked", "did walk", "walk", "was walking"], answer: "walked", explanation: "Đảo ngữ chuyển động: Cụm giới từ chỉ hướng + động từ chia trực tiếp + chủ ngữ." },
+  { level: "C2", topic: "Đảo ngữ", question: "Down the steep hillside ___ torrents of muddy rainwater after the storm.", options: ["rushed", "did rush", "rushing", "were rush"], answer: "rushed", explanation: "Trạng từ chỉ hướng 'Down...' + động từ 'rushed' + chủ ngữ." },
+  { level: "C2", topic: "Đảo ngữ", question: "At the end of the narrow cobblestone alley ___ a quaint little tea shop.", options: ["lay", "did lie", "lying", "does lie"], answer: "lay", explanation: "Cụm vị trí 'At the end...' + động từ chia trực tiếp 'lay'." },
+  { level: "C2", topic: "Đảo ngữ", question: "Out of the dense forest ___ a majestic stag with impressive antlers.", options: ["emerged", "did emerge", "emerging", "was emerge"], answer: "emerged", explanation: "Cụm chỉ hướng 'Out of...' + động từ 'emerged'." },
+  { level: "C2", topic: "Đảo ngữ", question: "High above the valley ___ a solitary golden eagle soaring effortlessly.", options: ["flew", "did fly", "flying", "does fly"], answer: "flew", explanation: "Đảo ngữ chỉ vị trí 'High above...' + động từ 'flew'." },
+  { level: "C2", topic: "Đảo ngữ", question: "Beside the ornate marble fountain ___ several stone benches for weary visitors.", options: ["sat", "did sit", "sitting", "were sit"], answer: "sat", explanation: "Cụm vị trí 'Beside...' + động từ chia trực tiếp 'sat'." },
+  { level: "C2", topic: "Đảo ngữ", question: "Up into the night sky ___ the massive fireworks displaying vivid colors.", options: ["shot", "did shoot", "shooting", "were shoot"], answer: "shot", explanation: "Cụm chỉ hướng 'Up into...' + động từ 'shot'." },
+  { level: "C2", topic: "Đảo ngữ", question: "Opposite the historical town hall ___ the newly built library.", options: ["stands", "does stand", "standing", "is stand"], answer: "stands", explanation: "Cụm vị trí 'Opposite...' + động từ 'stands'." },
+  { level: "C2", topic: "Đảo ngữ", question: "Through the iron gates ___ a long parade of royal carriages.", options: ["swept", "did sweep", "sweeping", "were sweep"], answer: "swept", explanation: "Cụm chỉ hướng 'Through...' + động từ 'swept'." },
+  { level: "C2", topic: "Đảo ngữ", question: "Underneath the thick layers of soil ___ buried treasure from the 17th century.", options: ["lay", "did lie", "lying", "does lie"], answer: "lay", explanation: "Cụm vị trí 'Underneath...' + động từ chia trực tiếp 'lay'." },
+  { level: "C2", topic: "Đảo ngữ", question: "Across the roaring river ___ an ancient wooden suspension bridge.", options: ["stretched", "did stretch", "stretching", "was stretch"], answer: "stretched", explanation: "Cụm vị trí 'Across...' + động từ 'stretched'." },
+  { level: "C2", topic: "Đảo ngữ", question: "From behind the heavy velvet curtain ___ a masked figure in black.", options: ["stepped", "did step", "stepping", "was step"], answer: "stepped", explanation: "Cụm chỉ hướng 'From behind...' + động từ 'stepped'." },
+  { level: "C2", topic: "Đảo ngữ", question: "In the middle of the crowded courtyard ___ an imposing bronze statue.", options: ["rose", "did rise", "rising", "was rise"], answer: "rose", explanation: "Cụm vị trí 'In the middle...' + động từ 'rose'." },
+  { level: "C2", topic: "Đảo ngữ", question: "Over the horizon ___ the massive hull of an ocean liner.", options: ["appeared", "did appear", "appearing", "was appear"], answer: "appeared", explanation: "Cụm vị trí/hướng 'Over the horizon' + động từ 'appeared'." },
+  { level: "C2", topic: "Đảo ngữ", question: "Along the sunlit promenade ___ hundreds of tourists enjoying the sea air.", options: ["strolled", "did stroll", "strolling", "were stroll"], answer: "strolled", explanation: "Cụm chỉ nơi chốn/hướng 'Along...' + động từ 'strolled'." },
+  { level: "C2", topic: "Đảo ngữ", question: "Beyond the distant mountain range ___ a vast, unexplored desert.", options: ["lies", "does lie", "lying", "is lie"], answer: "lies", explanation: "Cụm vị trí 'Beyond...' + động từ chia hiện tại 'lies'." },
+  { level: "C2", topic: "Đảo ngữ", question: "Down the chimney ___ a cloud of thick black smoke.", options: ["puffed", "did puff", "puffing", "was puff"], answer: "puffed", explanation: "Cụm chỉ hướng 'Down the chimney' + động từ 'puffed'." },
+  { level: "C2", topic: "Đảo ngữ", question: "Around the campfire ___ a group of weary travelers telling folklore stories.", options: ["sat", "did sit", "sitting", "were sit"], answer: "sat", explanation: "Cụm vị trí 'Around...' + động từ 'sat'." },
+  { level: "C2", topic: "Đảo ngữ", question: "Off the coast of the tropical island ___ the remains of a famous shipwreck.", options: ["rested", "did rest", "resting", "were rest"], answer: "rested", explanation: "Cụm vị trí 'Off the coast...' + động từ 'rested'." },
+  { level: "C2", topic: "Đảo ngữ", question: "Through the misty valley ___ a crystal-clear mountain stream.", options: ["flowed", "did flow", "flowing", "was flow"], answer: "flowed", explanation: "Cụm vị trí/hướng 'Through...' + động từ 'flowed'." },
+  { level: "C2", topic: "Đảo ngữ", question: "At the center of the negotiation table ___ the lead diplomats of both nations.", options: ["sat", "did sit", "sitting", "were sit"], answer: "sat", explanation: "Cụm vị trí 'At the center...' + động từ 'sat'." },
+  { level: "C2", topic: "Đảo ngữ", question: "Out of the darkness ___ a flickering beam of light.", options: ["shone", "did shine", "shining", "was shine"], answer: "shone", explanation: "Cụm chỉ hướng/vị trí 'Out of...' + động từ 'shone'." },
+  { level: "C2", topic: "Đảo ngữ", question: "On the polished oak desk ___ a pile of unanswered letters.", options: ["lay", "did lie", "lying", "does lie"], answer: "lay", explanation: "Cụm vị trí 'On the desk' + động từ 'lay'." },
+  { level: "C2", topic: "Đảo ngữ", question: "Up the steep flight of stairs ___ the exhausted courier carrying the urgent parcel.", options: ["ran", "did run", "running", "was run"], answer: "ran", explanation: "Cụm chỉ hướng 'Up...' + động từ 'ran'." },
+  { level: "C2", topic: "Đảo ngữ", question: "By the entrance of the museum ___ two stone lions carved with intricate details.", options: ["stood", "did stand", "standing", "were stand"], answer: "stood", explanation: "Cụm vị trí 'By the entrance' + động từ 'stood'." },
+  { level: "C2", topic: "Đảo ngữ", question: "Deep within the subterranean cavern ___ a massive underground lake.", options: ["glowed", "did glow", "glowing", "was glow"], answer: "glowed", explanation: "Cụm vị trí 'Deep within...' + động từ 'glowed'." },
+  { level: "C2", topic: "Đảo ngữ", question: "Across the vast tundra ___ packs of wild wolves roaming for prey.", options: ["roamed", "did roam", "roaming", "were roam"], answer: "roamed", explanation: "Cụm vị trí 'Across...' + động từ 'roamed'." },
+  { level: "C2", topic: "Đảo ngữ", question: "In front of the grand cathedral ___ a crowd of expectant onlookers.", options: ["gathered", "did gather", "gathering", "were gather"], answer: "gathered", explanation: "Cụm vị trí 'In front of...' + động từ 'gathered'." },
+  { level: "C2", topic: "Đảo ngữ", question: "Down the quiet suburban avenue ___ the solitary mail carrier.", options: ["walked", "did walk", "walking", "was walk"], answer: "walked", explanation: "Cụm chỉ hướng/vị trí 'Down...' + động từ 'walked'." },
+
+  // 4. Thức giả định hiện tại trong câu trang trọng (Present subjunctive in formal structures) - 30 câu
+  { level: "C2", topic: "Câu giả định", question: "The board of directors insisted that the chief executive officer ___ immediately.", options: ["resign", "resigns", "resigned", "will resign"], answer: "resign", explanation: "Thức giả định hiện tại sau 'insisted that': động từ ở dạng V-nguyên mẫu ('resign')." },
+  { level: "C2", topic: "Câu giả định", question: "It is imperative that every candidate ___ the application form in person.", options: ["submit", "submits", "submitted", "is submitting"], answer: "submit", explanation: "Thức giả định sau tính từ trang trọng 'imperative that + S + V-nguyên mẫu'." },
+  { level: "C2", topic: "Câu giả định", question: "She demanded that she ___ allowed to review the confidential files.", options: ["be", "is", "was", "were"], answer: "be", explanation: "Dạng bị động của thức giả định: 'that she be allowed'." },
+  { level: "C2", topic: "Câu giả định", question: "The committee recommended that the proposal ___ thoroughly before implementation.", options: ["be reviewed", "is reviewed", "was reviewed", "will be reviewed"], answer: "be reviewed", explanation: "Thức giả định bị động: 'be + V3/ed'." },
+  { level: "C2", topic: "Câu giả định", question: "It is crucial that he ___ notified of the contract changes without delay.", options: ["be", "is", "was", "will be"], answer: "be", explanation: "Thức giả định bị động sau 'crucial that + S + be + V3'." },
+  { level: "C2", topic: "Câu giả định", question: "The judge stipulated that the defendant ___ close to the victims.", options: ["not approach", "doesn't approach", "not approaches", "didn't approach"], answer: "not approach", explanation: "Thức giả định dạng phủ định: 'S + not + V-nguyên mẫu'." },
+  { level: "C2", topic: "Câu giả định", question: "They requested that the guest speaker ___ his presentation by twenty minutes.", options: ["shorten", "shortens", "shortened", "will shorten"], answer: "shorten", explanation: "Thức giả định sau 'requested that + S + V-nguyên mẫu'." },
+  { level: "C2", topic: "Câu giả định", question: "It is essential that every safety protocol ___ strictly adhered to.", options: ["be", "is", "was", "will be"], answer: "be", explanation: "Thức giả định bị động sau 'essential that'." },
+  { level: "C2", topic: "Câu giả định", question: "The doctor advised that the patient ___ heavy physical exertion for a month.", options: ["avoid", "avoids", "avoided", "will avoid"], answer: "avoid", explanation: "Thức giả định sau 'advised that + S + V-nguyên mẫu'." },
+  { level: "C2", topic: "Câu giả định", question: "It is vital that confidentiality ___ maintained throughout the investigation.", options: ["be", "is", "was", "will be"], answer: "be", explanation: "Thức giả định bị động sau 'vital that'." },
+  { level: "C2", topic: "Câu giả định", question: "The chairman proposed that the meeting ___ adjourned until next Monday.", options: ["be", "is", "was", "will be"], answer: "be", explanation: "Thức giả định bị động sau 'proposed that'." },
+  { level: "C2", topic: "Câu giả định", question: "She requested that her name ___ disclosed in the press release.", options: ["not be", "isn't", "wasn't be", "not is"], answer: "not be", explanation: "Thức giả định bị động phủ định: 'not + be + V3'." },
+  { level: "C2", topic: "Câu giả định", question: "It is desirable that every delegate ___ a copy of the revised agenda.", options: ["receive", "receives", "received", "will receive"], answer: "receive", explanation: "Thức giả định sau 'desirable that + S + V-nguyên mẫu'." },
+  { level: "C2", topic: "Câu giả định", question: "The auditor demanded that all receipts ___ produced for examination.", options: ["be", "are", "were", "will be"], answer: "be", explanation: "Thức giả định bị động sau 'demanded that'." },
+  { level: "C2", topic: "Câu giả định", question: "It is urgent that a specialist ___ consulted immediately regarding the outbreak.", options: ["be", "is", "was", "will be"], answer: "be", explanation: "Thức giả định bị động sau 'urgent that'." },
+  { level: "C2", topic: "Câu giả định", question: "The guidelines require that each employee ___ safety goggles inside the lab.", options: ["wear", "wears", "wore", "will wear"], answer: "wear", explanation: "Thức giả định sau 'require that + S + V-nguyên mẫu'." },
+  { level: "C2", topic: "Câu giả định", question: "The council decreed that the ancient building ___ demolished under any circumstances.", options: ["not be", "isn't", "wasn't", "shouldn't be"], answer: "not be", explanation: "Thức giả định bị động phủ định: 'not be + V3'." },
+  { level: "C2", topic: "Câu giả định", question: "It is important that he ___ present during the contract signing.", options: ["be", "is", "was", "will be"], answer: "be", explanation: "Thức giả định với to be: 'that he be present'." },
+  { level: "C2", topic: "Câu giả định", question: "The lawyer suggested that the client ___ a word to the journalists.", options: ["not speak", "doesn't speak", "not speaks", "didn't speak"], answer: "not speak", explanation: "Thức giả định phủ định 'not + V-nguyên mẫu'." },
+  { level: "C2", topic: "Câu giả định", question: "It is necessary that the software update ___ installed before midnight.", options: ["be", "is", "was", "will be"], answer: "be", explanation: "Thức giả định bị động sau 'necessary that'." },
+  { level: "C2", topic: "Câu giả định", question: "The general ordered that the troops ___ their position at all costs.", options: ["maintain", "maintains", "maintained", "will maintain"], answer: "maintain", explanation: "Thức giả định sau 'ordered that + S + V-nguyên mẫu'." },
+  { level: "C2", topic: "Câu giả định", question: "It is compulsory that all international passengers ___ a valid entry visa.", options: ["possess", "possesses", "possessed", "will possess"], answer: "possess", explanation: "Thức giả định sau 'compulsory that + S + V-nguyên mẫu'." },
+  { level: "C2", topic: "Câu giả định", question: "She insisted that he ___ her in public ever again.", options: ["not contact", "doesn't contact", "not contacts", "didn't contact"], answer: "not contact", explanation: "Thức giả định phủ định 'not + V-nguyên mẫu'." },
+  { level: "C2", topic: "Câu giả định", question: "The tribunal mandated that full compensation ___ paid to the victims.", options: ["be", "is", "was", "will be"], answer: "be", explanation: "Thức giả định bị động sau 'mandated that'." },
+  { level: "C2", topic: "Câu giả định", question: "It is essential that every student ___ their thesis proposal by Friday.", options: ["submit", "submits", "submitted", "will submit"], answer: "submit", explanation: "Thức giả định sau 'essential that + S + V-nguyên mẫu'." },
+  { level: "C2", topic: "Câu giả định", question: "The manager moved that the committee ___ a vote on the issue immediately.", options: ["take", "takes", "took", "will take"], answer: "take", explanation: "Thức giả định sau động từ đề xuất 'moved that + S + V-nguyên mẫu'." },
+  { level: "C2", topic: "Câu giả định", question: "It is critical that water supplies ___ contaminated during the repairs.", options: ["not be", "aren't", "weren't", "don't be"], answer: "not be", explanation: "Thức giả định bị động phủ định 'not be + V3'." },
+  { level: "C2", topic: "Câu giả định", question: "The board ruled that the president ___ full administrative powers.", options: ["retain", "retains", "retained", "will retain"], answer: "retain", explanation: "Thức giả định sau 'ruled that + S + V-nguyên mẫu'." },
+  { level: "C2", topic: "Câu giả định", question: "It is fitting that she ___ honored for her lifelong charitable work.", options: ["be", "is", "was", "will be"], answer: "be", explanation: "Thức giả định bị động sau 'fitting that'." },
+  { level: "C2", topic: "Câu giả định", question: "The treaty specifies that all heavy weaponry ___ withdrawn from the border.", options: ["be", "is", "was", "will be"], answer: "be", explanation: "Thức giả định bị động sau 'specifies that'." },
+
+  // 5. Mệnh đề tính từ rút gọn tuyệt đối (Absolute Participial Clauses) - 30 câu
+  { level: "C2", topic: "Rút gọn mệnh đề", question: "Weather ___, the annual open-air festival will take place tomorrow afternoon.", options: ["permitting", "permitted", "permits", "to permit"], answer: "permitting", explanation: "Cấu trúc tuyệt đối mang nghĩa điều kiện 'Weather permitting'." },
+  { level: "C2", topic: "Rút gọn mệnh đề", question: "The crucial negotiations ___ ended, the delegates left the assembly hall.", options: ["having", "have", "had", "having been"], answer: "having", explanation: "Mệnh đề tuyệt đối hoàn thành 'The negotiations having ended'." },
+  { level: "C2", topic: "Rút gọn mệnh đề", question: "All things ___, the committee decided to approve the corporate merger.", options: ["considered", "considering", "consider", "to consider"], answer: "considered", explanation: "Cụm tuyệt đối cố định mang nghĩa bị động 'All things considered'." },
+  { level: "C2", topic: "Rút gọn mệnh đề", question: "Time ___, we shall visit the ancient ruins on our way back.", options: ["permitting", "permitted", "permits", "to permit"], answer: "permitting", explanation: "Cụm tuyệt đối 'Time permitting' (Nếu thời gian cho phép)." },
+  { level: "C2", topic: "Rút gọn mệnh đề", question: "His argument ___ been thoroughly disproved, he sat down in silence.", options: ["having", "has", "had", "having been"], answer: "having", explanation: "Cấu trúc tuyệt đối 'His argument having been disproved'." },
+  { level: "C2", topic: "Rút gọn mệnh đề", question: "Other factors ___ equal, price remains the primary concern for consumers.", options: ["being", "are", "were", "to be"], answer: "being", explanation: "Cụm tuyệt đối 'Other factors being equal' (Khi các yếu tố khác như nhau)." },
+  { level: "C2", topic: "Rút gọn mệnh đề", question: "The heavy rain ___ stopped, the rescue workers resumed their search.", options: ["having", "has", "had", "having been"], answer: "having", explanation: "Cấu trúc 'The rain having stopped'." },
+  { level: "C2", topic: "Rút gọn mệnh đề", question: "God ___, we will achieve our objective before the deadline.", options: ["willing", "willed", "wills", "to will"], answer: "willing", explanation: "Cụm tuyệt đối truyền thống 'God willing' (Nếu ơn trên phù hộ)." },
+  { level: "C2", topic: "Rút gọn mệnh đề", question: "The last train ___ left, we had no choice but to hire a taxi.", options: ["having", "has", "had", "having been"], answer: "having", explanation: "Mệnh đề tuyệt đối hoàn thành 'The last train having left'." },
+  { level: "C2", topic: "Rút gọn mệnh đề", question: "Present circumstances ___ what they are, we cannot afford further expenditure.", options: ["being", "are", "were", "be"], answer: "being", explanation: "Mệnh đề tuyệt đối chỉ lý do 'Present circumstances being what they are'." },
+  { level: "C2", topic: "Rút gọn mệnh đề", question: "The final verdict ___ delivered, the crowd dispersed peacefully.", options: ["having been", "having", "was", "been"], answer: "having been", explanation: "Mệnh đề tuyệt đối bị động hoàn thành 'The verdict having been delivered'." },
+  { level: "C2", topic: "Rút gọn mệnh đề", question: "All preparations ___ completed, the space shuttle was launched into orbit.", options: ["having been", "having", "were", "been"], answer: "having been", explanation: "Mệnh đề tuyệt đối bị động 'All preparations having been completed'." },
+  { level: "C2", topic: "Rút gọn mệnh đề", question: "No further questions ___ raised, the chairman concluded the proceedings.", options: ["being", "are", "were", "be"], answer: "being", explanation: "Mệnh đề tuyệt đối 'No further questions being raised'." },
+  { level: "C2", topic: "Rút gọn mệnh đề", question: "The contract ___ signed, both parties celebrated the successful joint venture.", options: ["having been", "having", "was", "been"], answer: "having been", explanation: "Mệnh đề tuyệt đối bị động 'The contract having been signed'." },
+  { level: "C2", topic: "Rút gọn mệnh đề", question: "The sun ___ set, the temperature began to drop rapidly in the desert.", options: ["having", "has", "had", "having been"], answer: "having", explanation: "Mệnh đề tuyệt đối 'The sun having set'." },
+  { level: "C2", topic: "Rút gọn mệnh đề", question: "His voice ___ with emotion, he thanked his supporters for their loyalty.", options: ["trembling", "trembled", "trembles", "to tremble"], answer: "trembling", explanation: "Mệnh đề tuyệt đối chủ động 'His voice trembling'." },
+  { level: "C2", topic: "Rút gọn mệnh đề", question: "The money ___ spent, we had to rely on donations to complete the project.", options: ["having been", "having", "was", "been"], answer: "having been", explanation: "Mệnh đề tuyệt đối bị động hoàn thành 'The money having been spent'." },
+  { level: "C2", topic: "Rút gọn mệnh đề", question: "Her eyes ___ with excitement, she unwrapped the unexpected gift.", options: ["shining", "shined", "shines", "to shine"], answer: "shining", explanation: "Mệnh đề tuyệt đối miêu tả thái độ 'Her eyes shining'." },
+  { level: "C2", topic: "Rút gọn mệnh đề", question: "All hands ___ on deck, the crew managed to secure the ship during the gale.", options: ["being", "are", "were", "be"], answer: "being", explanation: "Cụm tuyệt đối 'All hands being on deck'." },
+  { level: "C2", topic: "Rút gọn mệnh đề", question: "The power line ___ severed by the storm, the whole town was plunged into darkness.", options: ["having been", "having", "was", "been"], answer: "having been", explanation: "Mệnh đề tuyệt đối bị động 'The power line having been severed'." },
+  { level: "C2", topic: "Rút gọn mệnh đề", question: "Our funds ___ exhausted, we had no alternative but to apply for a bank loan.", options: ["being", "are", "were", "be"], answer: "being", explanation: "Mệnh đề tuyệt đối 'Our funds being exhausted'." },
+  { level: "C2", topic: "Rút gọn mệnh đề", question: "The door ___ locked from the inside, the investigators had to break through the window.", options: ["being", "was", "were", "is"], answer: "being", explanation: "Mệnh đề tuyệt đối 'The door being locked'." },
+  { level: "C2", topic: "Rút gọn mệnh đề", question: "His formal education ___ ended at fifteen, he was largely self-taught.", options: ["having", "has", "had", "having been"], answer: "having", explanation: "Mệnh đề tuyệt đối hoàn thành 'His education having ended'." },
+  { level: "C2", topic: "Rút gọn mệnh đề", question: "The main road ___ blocked by a landslide, motorists were diverted onto rural lanes.", options: ["being", "was", "were", "is"], answer: "being", explanation: "Mệnh đề tuyệt đối 'The road being blocked'." },
+  { level: "C2", topic: "Rút gọn mệnh đề", question: "Her reputation ___ restored, she returned to public life with confidence.", options: ["having been", "having", "was", "been"], answer: "having been", explanation: "Mệnh đề tuyệt đối bị động 'Her reputation having been restored'." },
+  { level: "C2", topic: "Rút gọn mệnh đề", question: "Night ___ fallen, the search team decided to pitch camp until morning.", options: ["having", "has", "had", "having been"], answer: "having", explanation: "Mệnh đề tuyệt đối 'Night having fallen'." },
+  { level: "C2", topic: "Rút gọn mệnh đề", question: "The target ___ achieved, the team received a performance bonus.", options: ["having been", "having", "was", "been"], answer: "having been", explanation: "Mệnh đề tuyệt đối bị động 'The target having been achieved'." },
+  { level: "C2", topic: "Rút gọn mệnh đề", question: "His hands ___ with cold, he could barely hold the pen to write.", options: ["stiff", "stiffened", "stiffening", "to stiffen"], answer: "stiff", explanation: "Mệnh đề tuyệt đối với tính từ 'His hands stiff with cold'." },
+  { level: "C2", topic: "Rút gọn mệnh đề", question: "The audience ___ taken their seats, the house lights began to dim.", options: ["having", "have", "had", "having been"], answer: "having", explanation: "Mệnh đề tuyệt đối 'The audience having taken their seats'." },
+  { level: "C2", topic: "Rút gọn mệnh đề", question: "All objections ___ addressed, the ordinance was passed unanimously.", options: ["having been", "having", "were", "been"], answer: "having been", explanation: "Mệnh đề tuyệt đối bị động 'All objections having been addressed'." },
+
+  // 6. Mệnh đề nhượng bộ với 'As' và 'Though' đảo ngữ (Concession with Inverted 'As / Though') - 30 câu
+  { level: "C2", topic: "Mệnh đề", question: "Exhausted ___ she was after the long journey, she managed to finish her report.", options: ["as", "though", "although", "despite"], answer: "as", explanation: "Đảo tính từ nhượng bộ: 'Adj + as/though + S + be'." },
+  { level: "C2", topic: "Mệnh đề", question: "Hard ___ he tried to solve the equation, he couldn't find the correct solution.", options: ["though", "as", "much", "however"], answer: "though", explanation: "Đảo trạng từ nhượng bộ: 'Adv + though/as + S + V'." },
+  { level: "C2", topic: "Mệnh đề", question: "Much ___ I respect your artistic vision, I cannot support this controversial plan.", options: ["as", "though", "although", "despite"], answer: "as", explanation: "Cấu trúc 'Much as + S + V' (Mặc dù tôi rất...)." },
+  { level: "C2", topic: "Mệnh đề", question: "Talented ___ he is as a pianist, he lacks stage confidence.", options: ["as", "despite", "although", "even"], answer: "as", explanation: "Cấu trúc 'Adj + as + S + be'." },
+  { level: "C2", topic: "Mệnh đề", question: "Late ___ it was, they insisted on continuing the negotiation.", options: ["though", "as", "although", "despite"], answer: "though", explanation: "Cấu trúc 'Adj + though + S + be'." },
+  { level: "C2", topic: "Mệnh đề", question: "Fast ___ he ran, he could not catch up with the lead marathoner.", options: ["as", "despite", "although", "even"], answer: "as", explanation: "Cấu trúc 'Adv + as + S + V'." },
+  { level: "C2", topic: "Mệnh đề", question: "Wealthy ___ they may be, they live a surprisingly frugal lifestyle.", options: ["though", "as", "although", "despite"], answer: "though", explanation: "Cấu trúc 'Adj + though + S + modal + be'." },
+  { level: "C2", topic: "Mệnh đề", question: "Much ___ she admired the painting, she couldn't afford its steep price.", options: ["as", "though", "although", "despite"], answer: "as", explanation: "Cấu trúc 'Much as + S + V'." },
+  { level: "C2", topic: "Mệnh đề", question: "Inexperienced ___ she appeared, she handled the crisis with remarkable poise.", options: ["as", "despite", "although", "even"], answer: "as", explanation: "Cấu trúc 'Adj + as + S + V-linking'." },
+  { level: "C2", topic: "Mệnh đề", question: "Bravely ___ the soldiers fought, they were ultimately overwhelmed by numbers.", options: ["though", "as", "although", "despite"], answer: "though", explanation: "Cấu trúc 'Adv + though + S + V'." },
+  { level: "C2", topic: "Mệnh đề", question: "Strange ___ it may sound, the old legend turned out to be completely true.", options: ["as", "despite", "although", "even"], answer: "as", explanation: "Cụm nhượng bộ 'Strange as it may sound'." },
+  { level: "C2", topic: "Mệnh đề", question: "Hard ___ they worked day and night, they missed the deadline.", options: ["as", "despite", "although", "even"], answer: "as", explanation: "Cấu trúc 'Adv + as + S + V'." },
+  { level: "C2", topic: "Mệnh đề", question: "Much ___ I would like to help you, my hands are tied by policy.", options: ["as", "though", "although", "despite"], answer: "as", explanation: "Cấu trúc 'Much as + S + V'." },
+  { level: "C2", topic: "Mệnh đề", question: "Small ___ the room was, it housed an extraordinary collection of rare books.", options: ["though", "as", "although", "despite"], answer: "though", explanation: "Cấu trúc 'Adj + though + S + be'." },
+  { level: "C2", topic: "Mệnh đề", question: "Well ___ she sang, she failed to win the judges' approval.", options: ["as", "despite", "although", "even"], answer: "as", explanation: "Cấu trúc 'Adv + as + S + V'." },
+  { level: "C2", topic: "Mệnh đề", question: "Improbable ___ it seems, scientists have discovered ice on Mercury.", options: ["as", "despite", "although", "even"], answer: "as", explanation: "Cấu trúc 'Adj + as + S + V'." },
+  { level: "C2", topic: "Mệnh đề", question: "Rich ___ he became, he never forgot his humble upbringing.", options: ["though", "as", "although", "despite"], answer: "though", explanation: "Cấu trúc 'Adj + though + S + V'." },
+  { level: "C2", topic: "Mệnh đề", question: "Much ___ we regretted the outcome, we had to move forward.", options: ["as", "though", "although", "despite"], answer: "as", explanation: "Cấu trúc 'Much as + S + V'." },
+  { level: "C2", topic: "Mệnh đề", question: "Cold ___ the weather was, the children insisted on playing outside.", options: ["as", "despite", "although", "even"], answer: "as", explanation: "Cấu trúc 'Adj + as + S + be'." },
+  { level: "C2", topic: "Mệnh đề", question: "Carefully ___ he searched the room, he couldn't find the missing key.", options: ["though", "as", "although", "despite"], answer: "though", explanation: "Cấu trúc 'Adv + though + S + V'." },
+  { level: "C2", topic: "Mệnh đề", question: "Simple ___ the design may look, it took years of engineering to perfect.", options: ["as", "despite", "although", "even"], answer: "as", explanation: "Cấu trúc 'Adj + as + S + modal'." },
+  { level: "C2", topic: "Mệnh đề", question: "Clearly ___ she explained the theory, some students remained confused.", options: ["as", "despite", "although", "even"], answer: "as", explanation: "Cấu trúc 'Adv + as + S + V'." },
+  { level: "C2", topic: "Mệnh đề", question: "Much ___ he wanted to accept the job, the salary was insufficient.", options: ["as", "though", "although", "despite"], answer: "as", explanation: "Cấu trúc 'Much as + S + V'." },
+  { level: "C2", topic: "Mệnh đề", question: "Difficult ___ the task was, they persevered until it was completed.", options: ["though", "as", "although", "despite"], answer: "though", explanation: "Cấu trúc 'Adj + though + S + be'." },
+  { level: "C2", topic: "Mệnh đề", question: "Young ___ she is, she commands immense respect in the academic community.", options: ["as", "despite", "although", "even"], answer: "as", explanation: "Cấu trúc 'Adj + as + S + be'." },
+  { level: "C2", topic: "Mệnh đề", question: "Eloquently ___ he spoke, he failed to convince the jury.", options: ["though", "as", "although", "despite"], answer: "though", explanation: "Cấu trúc 'Adv + though + S + V'." },
+  { level: "C2", topic: "Mệnh đề", question: "Much ___ I enjoy traveling abroad, there is no place like home.", options: ["as", "though", "although", "despite"], answer: "as", explanation: "Cấu trúc 'Much as + S + V'." },
+  { level: "C2", topic: "Mệnh đề", question: "Strict ___ the regulations were, some traders found loopholes.", options: ["as", "despite", "although", "even"], answer: "as", explanation: "Cấu trúc 'Adj + as + S + be'." },
+  { level: "C2", topic: "Mệnh đề", question: "Persuasively ___ he argued, the board rejected his proposal.", options: ["though", "as", "although", "despite"], answer: "though", explanation: "Cấu trúc 'Adv + though + S + V'." },
+  { level: "C2", topic: "Mệnh đề", question: "Unlikely ___ it appears, the two rivals decided to join forces.", options: ["as", "despite", "although", "even"], answer: "as", explanation: "Cấu trúc 'Adj + as + S + V'." },
+
+  // 7. Danh từ hóa và cấu trúc khách quan trang trọng (Nominalization in Academic English) - 30 câu
+  { level: "C2", topic: "Văn phong", question: "Choose the most academic nominalized version of: 'Because the city expanded rapidly, it caused severe environmental issues.'", options: [
+      "The rapid expansion of the city resulted in severe environmental issues.",
+      "The city expanded rapidly, resulting in severe environmental issues.",
+      "Because of the city's rapid expansion, it caused severe environmental issues.",
+      "Rapid expanding of the city led to severe environmental issues."
+    ], answer: "The rapid expansion of the city resulted in severe environmental issues.", explanation: "Biến mệnh đề nguyên nhân thành cụm danh từ phức hợp ('The rapid expansion of the city')." },
+  { level: "C2", topic: "Văn phong", question: "Select the formal nominalized sentence equivalent to: 'The manager departed suddenly, which caused widespread concern.'", options: [
+      "Her sudden departure caused widespread concern.",
+      "Because she departed suddenly, it caused widespread concern.",
+      "Her suddenly departing caused widespread concern.",
+      "The departure was sudden, causing widespread concern."
+    ], answer: "Her sudden departure caused widespread concern.", explanation: "Chuyển động từ/trạng từ thành cụm danh từ 'Her sudden departure'." },
+  { level: "C2", topic: "Văn phong", question: "Which option best rephrases 'They investigated the matter thoroughly, which led to discovering the truth' using nominalization?", options: [
+      "A thorough investigation led to the discovery of the truth.",
+      "They thoroughly investigated the matter, leading to the truth discovery.",
+      "Because they investigated thoroughly, they discovered the truth.",
+      "Thorough investigation of the matter led to discovering the truth."
+    ], answer: "A thorough investigation led to the discovery of the truth.", explanation: "Chuyển động từ thành các danh từ học thuật ('investigation', 'discovery')." },
+  { level: "C2", topic: "Văn phong", question: "Nominalize: 'Because prices increased sharp, consumers reduced their spending.'", options: [
+      "A sharp increase in prices resulted in a reduction in consumer spending.",
+      "Prices increased sharply, so consumers reduced spending.",
+      "Because of price increasing sharply, consumer spending was reduced.",
+      "Increasing prices sharply caused that consumers reduced spending."
+    ], answer: "A sharp increase in prices resulted in a reduction in consumer spending.", explanation: "Biến các mệnh đề thành cụm danh từ ('A sharp increase', 'a reduction')." },
+  { level: "C2", topic: "Văn phong", question: "Nominalize: 'Scientists discovered a new species, which made everyone excited.'", options: [
+      "The discovery of a new species generated widespread excitement.",
+      "Scientists discovered a new species, generating excitement.",
+      "Because scientists discovered a new species, people were excited.",
+      "Discovering a new species by scientists caused excitement."
+    ], answer: "The discovery of a new species generated widespread excitement.", explanation: "Dùng 'The discovery of a new species' làm chủ ngữ danh từ hóa." },
+  { level: "C2", topic: "Văn phong", question: "Nominalize: 'The company failed because it was managed poorly.'", options: [
+      "The failure of the company was attributed to poor management.",
+      "The company failed owing to managing poorly.",
+      "Because management was poor, the company failed.",
+      "Poorly managing caused the failure of the company."
+    ], answer: "The failure of the company was attributed to poor management.", explanation: "Biến 'failed' thành 'failure' và 'managed poorly' thành 'poor management'." },
+  { level: "C2", topic: "Văn phong", question: "Nominalize: 'Because the population grew rapidly, food was in short supply.'", options: [
+      "Rapid population growth led to a food shortage.",
+      "The population grew rapidly, leading to short food.",
+      "Because of rapid growing population, food became short.",
+      "Food shortage was because the population grew rapidly."
+    ], answer: "Rapid population growth led to a food shortage.", explanation: "Biến đổi thành cụm danh từ 'Rapid population growth' và 'a food shortage'." },
+  { level: "C2", topic: "Văn phong", question: "Nominalize: 'The government intervened prompt, which prevented an economic crisis.'", options: [
+      "Prompt government intervention averted an economic crisis.",
+      "The government intervened promptly, preventing economic crisis.",
+      "Because the government intervened promptly, crisis was averted.",
+      "Promptly intervening by government prevented an economic crisis."
+    ], answer: "Prompt government intervention averted an economic crisis.", explanation: "Danh từ hóa thành 'Prompt government intervention'." },
+  { level: "C2", topic: "Văn phong", question: "Nominalize: 'She refused the offer, which surprised the entire board.'", options: [
+      "Her refusal of the offer came as a surprise to the entire board.",
+      "She refused the offer, causing surprise to the board.",
+      "Because she refused the offer, the board was surprised.",
+      "Her refusing the offer surprised the entire board."
+    ], answer: "Her refusal of the offer came as a surprise to the entire board.", explanation: "Chuyển 'refused' thành danh từ 'refusal'." },
+  { level: "C2", topic: "Văn phong", question: "Nominalize: 'The sea level is rising, which threatens coastal communities.'", options: [
+      "The rise in sea levels poses a threat to coastal communities.",
+      "Rising sea levels threaten coastal communities.",
+      "Because sea levels rise, coastal communities are threatened.",
+      "Sea levels rising is a threat for coastal communities."
+    ], answer: "The rise in sea levels poses a threat to coastal communities.", explanation: "Danh từ hóa thành 'The rise in sea levels' và 'poses a threat'." },
+  { level: "C2", topic: "Văn phong", question: "Nominalize: 'He analyzed the data accurately, which enabled them to draw clear conclusions.'", options: [
+      "Accurate analysis of the data facilitated the drawing of clear conclusions.",
+      "He analyzed data accurately, allowing clear conclusions.",
+      "Because he analyzed data accurately, conclusions were clear.",
+      "Accurately analyzing data led to drawing clear conclusions."
+    ], answer: "Accurate analysis of the data facilitated the drawing of clear conclusions.", explanation: "Danh từ hóa 'Accurate analysis' và 'drawing of clear conclusions'." },
+  { level: "C2", topic: "Văn phong", question: "Nominalize: 'The climate changed abruptly, which destroyed local ecosystems.'", options: [
+      "Abrupt climate change resulted in the destruction of local ecosystems.",
+      "Climate changed abruptly, destroying local ecosystems.",
+      "Because climate changed abruptly, ecosystems were destroyed.",
+      "Abruptly changing climate destroyed local ecosystems."
+    ], answer: "Abrupt climate change resulted in the destruction of local ecosystems.", explanation: "Danh từ hóa thành 'Abrupt climate change' và 'destruction'." },
+  { level: "C2", topic: "Văn phong", question: "Nominalize: 'The patient recovered remarkably, which astonished the doctors.'", options: [
+      "The patient's remarkable recovery astonished the medical team.",
+      "The patient recovered remarkably, astonishing doctors.",
+      "Because the patient recovered remarkably, doctors were astonished.",
+      "Remarkably recovering of the patient astonished doctors."
+    ], answer: "The patient's remarkable recovery astonished the medical team.", explanation: "Chuyển 'recovered remarkably' thành 'remarkable recovery'." },
+  { level: "C2", topic: "Văn phong", question: "Nominalize: 'They implemented the strategy efficiently, which increased profits.'", options: [
+      "Efficient implementation of the strategy brought about an increase in profits.",
+      "Implementing the strategy efficiently increased profits.",
+      "Because they implemented the strategy efficiently, profits increased.",
+      "Efficient strategy implementation caused profit increasing."
+    ], answer: "Efficient implementation of the strategy brought about an increase in profits.", explanation: "Danh từ hóa thành 'Efficient implementation' và 'an increase'." },
+  { level: "C2", topic: "Văn phong", question: "Nominalize: 'The CEO resigned unexpectedly, which disrupted company operations.'", options: [
+      "The unexpected resignation of the CEO caused operational disruption.",
+      "The CEO resigned unexpectedly, disrupting operations.",
+      "Because the CEO resigned unexpectedly, operations were disrupted.",
+      "Unexpectedly resigning CEO disrupted company operations."
+    ], answer: "The unexpected resignation of the CEO caused operational disruption.", explanation: "Chuyển thành danh từ 'resignation' và 'operational disruption'." },
+  { level: "C2", topic: "Văn phong", question: "Nominalize: 'The region developed economically, which reduced poverty levels.'", options: [
+      "Economic development in the region led to a reduction in poverty levels.",
+      "The region developed economically, reducing poverty.",
+      "Because the region developed economically, poverty reduced.",
+      "Economically developing the region caused poverty reduction."
+    ], answer: "Economic development in the region led to a reduction in poverty levels.", explanation: "Danh từ hóa thành 'Economic development' và 'a reduction'." },
+  { level: "C2", topic: "Văn phong", question: "Nominalize: 'The suspect confessed, which led to a swift conviction.'", options: [
+      "The suspect's confession resulted in a swift conviction.",
+      "The suspect confessed, leading to a swift conviction.",
+      "Because the suspect confessed, he was swiftly convicted.",
+      "Confessing by the suspect caused swift conviction."
+    ], answer: "The suspect's confession resulted in a swift conviction.", explanation: "Chuyển động từ 'confessed' thành danh từ 'confession'." },
+  { level: "C2", topic: "Văn phong", question: "Nominalize: 'They reformed the tax system, which encouraged foreign investment.'", options: [
+      "Tax reform stimulated foreign investment.",
+      "Reforming the tax system encouraged foreign investment.",
+      "Because they reformed the tax system, foreign investment was encouraged.",
+      "Tax system reform caused encouraging foreign investment."
+    ], answer: "Tax reform stimulated foreign investment.", explanation: "Chuyển mệnh đề thành các danh từ học thuật 'Tax reform' và 'foreign investment'." },
+  { level: "C2", topic: "Văn phong", question: "Nominalize: 'Technology advanced rapidly, which transformed global communication.'", options: [
+      "Rapid technological advancement transformed global communication.",
+      "Technology advanced rapidly, transforming communication.",
+      "Because technology advanced rapidly, communication was transformed.",
+      "Rapidly advancing technology caused communication transformation."
+    ], answer: "Rapid technological advancement transformed global communication.", explanation: "Danh từ hóa thành 'Rapid technological advancement'." },
+  { level: "C2", topic: "Văn phong", question: "Nominalize: 'The volcanic eruption occurred suddenly, which forced thousands to evacuate.'", options: [
+      "The sudden volcanic eruption necessitated the evacuation of thousands.",
+      "The volcano erupted suddenly, forcing evacuation.",
+      "Because the volcano erupted suddenly, thousands evacuated.",
+      "Suddenly erupting volcano caused evacuation of thousands."
+    ], answer: "The sudden volcanic eruption necessitated the evacuation of thousands.", explanation: "Danh từ hóa thành 'sudden volcanic eruption' và 'evacuation'." },
+  { level: "C2", topic: "Văn phong", question: "Nominalize: 'The treaty was signed, which established permanent peace in the region.'", options: [
+      "The signing of the treaty marked the establishment of permanent peace.",
+      "Signing the treaty established permanent peace.",
+      "Because the treaty was signed, peace was established.",
+      "The treaty signature caused permanent peace establishment."
+    ], answer: "The signing of the treaty marked the establishment of permanent peace.", explanation: "Danh từ hóa thành 'The signing of the treaty' và 'establishment'." },
+  { level: "C2", topic: "Văn phong", question: "Nominalize: 'The currency depreciated sharply, which caused high inflation.'", options: [
+      "Sharp currency depreciation precipitated high inflation.",
+      "The currency depreciated sharply, causing inflation.",
+      "Because the currency depreciated sharply, inflation became high.",
+      "Sharply depreciating currency caused high inflation."
+    ], answer: "Sharp currency depreciation precipitated high inflation.", explanation: "Danh từ hóa thành 'Sharp currency depreciation'." },
+  { level: "C2", topic: "Văn phong", question: "Nominalize: 'They constructed the bridge, which improved local trade.'", options: [
+      "The construction of the bridge led to an improvement in local trade.",
+      "Constructing the bridge improved local trade.",
+      "Because they constructed the bridge, local trade improved.",
+      "Bridge construction caused local trade improving."
+    ], answer: "The construction of the bridge led to an improvement in local trade.", explanation: "Danh từ hóa thành 'The construction' và 'an improvement'." },
+  { level: "C2", topic: "Văn phong", question: "Nominalize: 'She argued persuasively, which convinced the committee.'", options: [
+      "Her persuasive argument won the approval of the committee.",
+      "She argued persuasively, convincing the committee.",
+      "Because she argued persuasively, the committee was convinced.",
+      "Persuasively arguing by her convinced the committee."
+    ], answer: "Her persuasive argument won the approval of the committee.", explanation: "Danh từ hóa 'persuasive argument' và 'approval'." },
+  { level: "C2", topic: "Văn phong", question: "Nominalize: 'The law was abolished, which restored freedom of speech.'", options: [
+      "The abolition of the law led to the restoration of freedom of speech.",
+      "Abolishing the law restored freedom of speech.",
+      "Because the law was abolished, freedom of speech was restored.",
+      "Law abolition caused freedom of speech restoration."
+    ], answer: "The abolition of the law led to the restoration of freedom of speech.", explanation: "Danh từ hóa thành 'The abolition' và 'restoration'." },
+  { level: "C2", topic: "Văn phong", question: "Nominalize: 'The company expanded globally, which required hiring more staff.'", options: [
+      "Global expansion of the company necessitated the recruitment of additional staff.",
+      "Expanding globally required hiring more staff.",
+      "Because the company expanded globally, more staff were hired.",
+      "Global company expanding caused staff hiring."
+    ], answer: "Global expansion of the company necessitated the recruitment of additional staff.", explanation: "Danh từ hóa thành 'Global expansion' và 'recruitment'." },
+  { level: "C2", topic: "Văn phong", question: "Nominalize: 'The policy failed, which created public outrage.'", options: [
+      "The failure of the policy sparked public outrage.",
+      "The policy failed, creating public outrage.",
+      "Because the policy failed, the public was outraged.",
+      "Failing of the policy caused outrage in public."
+    ], answer: "The failure of the policy sparked public outrage.", explanation: "Danh từ hóa thành 'The failure of the policy'." },
+  { level: "C2", topic: "Văn phong", question: "Nominalize: 'They published the report, which exposed financial irregularities.'", options: [
+      "The publication of the report revealed financial irregularities.",
+      "Publishing the report exposed financial irregularities.",
+      "Because they published the report, irregularities were exposed.",
+      "Report publication caused exposing financial irregularities."
+    ], answer: "The publication of the report revealed financial irregularities.", explanation: "Danh từ hóa thành 'The publication of the report'." },
+  { level: "C2", topic: "Văn phong", question: "Nominalize: 'The species disappeared, which disrupted the food chain.'", options: [
+      "The disappearance of the species caused a disruption in the food chain.",
+      "The species disappeared, disrupting the food chain.",
+      "Because the species disappeared, the food chain was disrupted.",
+      "Disappearing of the species caused food chain disruption."
+    ], answer: "The disappearance of the species caused a disruption in the food chain.", explanation: "Danh từ hóa thành 'The disappearance' và 'disruption'." },
+  { level: "C2", topic: "Văn phong", question: "Nominalize: 'They negotiated successfully, which brought the conflict to an end.'", options: [
+      "Successful negotiations brought about an end to the conflict.",
+      "Negotiating successfully ended the conflict.",
+      "Because they negotiated successfully, the conflict ended.",
+      "Successfully negotiating caused conflict ending."
+    ], answer: "Successful negotiations brought about an end to the conflict.", explanation: "Danh từ hóa thành 'Successful negotiations' và 'an end'." }
+
+
+
+
+
+
+
+
+
+
+
 ];
