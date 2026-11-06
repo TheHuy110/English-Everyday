@@ -44,10 +44,10 @@
       ex: list(g.examples).map(String), no: str(g.wrong), yes: str(g.right) };
   }).filter(function (g) { var ok = g.t && g.lv && g.rule; if (!ok) warn('ngữ pháp', g); return ok; });
 
-  var GBYID = Object.create(null);
+  var GBYID = Object.create(null), GDUP = [];
   GRAMMAR.forEach(function (g) {
     if (!g.gid) return;
-    if (GBYID[g.gid]) warn('ngữ pháp (grammarId bị trùng: ' + g.gid + ')', g); else GBYID[g.gid] = g;
+    if (GBYID[g.gid]) { GDUP.push(g.gid); warn('ngữ pháp (grammarId bị trùng: ' + g.gid + ')', g); } else GBYID[g.gid] = g;
   });
   var BANK = list(OEL.questions).map(function (q) {
     q = q || {};
@@ -57,6 +57,8 @@
     return { lv: str(q.level).toUpperCase(), topic: str(q.topic), q: String(q.question), o: o, a: a, why: str(q.explanation), gid: idOf(q.grammarId) };
   }).filter(Boolean);
 
+  var LINKS = Object.create(null);   /* grammarId -> number of questions pointing at it */
+  BANK.forEach(function (q) { if (q.gid) LINKS[q.gid] = (LINKS[q.gid] || 0) + 1; });
   var seenSets = {};
   var QSETS = list(OEL.tests).map(function (s) {
     s = s || {};
@@ -168,7 +170,10 @@
   if (PROG.curve && +PROG.curve.power > 0) CURVE.power = +PROG.curve.power;
   var PER_STAGE = Math.max(1, Math.floor(+PROG.levelsPerStage) || 1);
   var STAGES = list(PROG.stages).filter(function (s) { return s && str(s.name); }).map(function (s) { return { name: str(s.name), img: str(s.img) }; });
-  if (!STAGES.length) STAGES = [{ name: 'Hạt giống', img: '' }];
+  if (!STAGES.length) {   /* progress.js missing or in the old format: use built-in defaults (10 stages x 2 levels) */
+    STAGES = ['Hạt giống', 'Mầm non', 'Cây con', 'Cây non', 'Cây nhỏ', 'Cây trưởng thành', 'Cây lớn', 'Cây cao', 'Cây cổ thụ', 'Đại thụ'].map(function (n) { return { name: n, img: '' }; });
+    if (!PROG.levelsPerStage) PER_STAGE = 2;
+  }
   var PLEVELS = [], cumXp = 0;
   for (var lv = 1; lv <= STAGES.length * PER_STAGE; lv++) {
     var stg = STAGES[Math.floor((lv - 1) / PER_STAGE)];
@@ -178,8 +183,9 @@
   var ACHS = list(PROG.achievements).filter(function (x) { return x && str(x.id) && str(x.name) && str(x.stat) && typeof x.goal === 'number'; });
 
   function cleanActivity(raw) {
-    var out = { days: Object.create(null), learned: Object.create(null), grammar: Object.create(null), ach: Object.create(null) };
+    var out = { days: Object.create(null), learned: Object.create(null), grammar: Object.create(null), ach: Object.create(null), bonus: 0 };
     if (!raw || typeof raw !== 'object') return out;
+    if (isFinite(+raw.bonus)) out.bonus = Math.round(+raw.bonus);
     function num(v) { v = +v; return isFinite(v) && v > 0 ? Math.floor(v) : 0; }
     if (raw.days && typeof raw.days === 'object') Object.keys(raw.days).forEach(function (k) {
       var r = raw.days[k];
@@ -205,6 +211,7 @@
     var st = { minutes: Math.floor(tot.s / 60), streak: streak(), days: active, learned: Object.keys(activity.learned).length,
       reviewed: tot.r, grammar: Object.keys(activity.grammar).length, tests: tot.t, today: td };
     st.xp = st.minutes * XPR.minute + st.learned * XPR.learned + st.reviewed * XPR.reviewed + st.grammar * XPR.grammar + st.tests * XPR.test;
+    st.xp = Math.max(0, st.xp + (activity.bonus || 0));
     st.level = levelOf(st.xp) + 1;
     return st;
   }
@@ -244,6 +251,108 @@
     if (document.hidden || Date.now() - lastInput > IDLE * 1000) return;
     dayRec(today()).s += TICK; afterChange();
   }, TICK * 1000);
+
+
+  /* ---------- Quản trị (ẩn): gõ mã bí mật vào ô tìm kiếm ở trang Ngữ pháp ---------- */
+  /* Only a convenience for the site owner: it changes data stored in this browser, nothing else. The code is stored as hashes. */
+  var ADMIN = LS.get('oel.admin', 0) === 1, admConfirm = '';
+  function hashA(s) { var h = 0x811c9dc5, i; for (i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; } return h; }
+  function hashB(s) { var h = 5381, i; for (i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0; return h; }
+  function isAdminCode(s) { s = String(s).trim(); return s.length === 6 && hashA(s) === 1538674554 && hashB(s) === 2340756696; }
+  function syncAdminTab() {
+    var nav = document.getElementById('tabs'), el = document.getElementById('tab-admin');
+    if (!nav) return;
+    if (!el) { el = document.createElement('a'); el.id = 'tab-admin'; el.href = '#admin'; el.setAttribute('data-r', 'admin'); el.textContent = 'Admin'; nav.appendChild(el); }
+    el.hidden = !ADMIN;
+  }
+  function enableAdmin() {
+    ADMIN = true; LS.set('oel.admin', 1); gQuery = ''; syncAdminTab(); toast('Đã bật chế độ quản trị');
+    if (location.hash === '#admin') render(); else location.hash = '#admin';
+  }
+  function admQInfo(q) {
+    if (!ADMIN) return '';
+    var g = q.gid ? GBYID[q.gid] : null;
+    return '<p class="adm-note">' + (!q.gid ? '⚠ Câu hỏi chưa có grammarId' : g ? 'grammarId ' + esc(q.gid) + ' → ' + esc(g.t) + ' ✓' : '⚠ grammarId ' + esc(q.gid) + ' không khớp quy tắc nào') + '</p>';
+  }
+  function admBtn(action, label, n, cls) {
+    return '<button type="button" class="btn ' + (cls || 'ghost') + ' small" data-action="' + action + '"' + (n !== undefined ? ' data-n="' + n + '"' : '') + '>' + esc(label) + '</button>';
+  }
+  function admDanger(action, label) {
+    var on = admConfirm === action;
+    return '<button type="button" class="btn danger small" data-action="' + action + '">' + (on ? 'Bấm lần nữa để xác nhận: ' : '') + esc(label) + '</button>';
+  }
+  function viewAdmin() {
+    var ps = pStats(), lvRows = '', i;
+    var byLv = {}, byTopic = {};
+    BANK.forEach(function (q) { byLv[q.lv] = (byLv[q.lv] || 0) + 1; byTopic[q.topic || '(không có)'] = (byTopic[q.topic || '(không có)'] || 0) + 1; });
+    var gLv = {}; GRAMMAR.forEach(function (g) { gLv[g.lv] = (gLv[g.lv] || 0) + 1; });
+    function kv(o) { return Object.keys(o).sort().map(function (k) { return '<span class="tag">' + esc(k) + ': ' + o[k] + '</span>'; }).join(' '); }
+    var noIdQ = BANK.filter(function (q) { return !q.gid; }).length;
+    var orphan = BANK.filter(function (q) { return q.gid && !GBYID[q.gid]; });
+    var noIdG = GRAMMAR.filter(function (g) { return !g.gid; });
+    var noQ = GRAMMAR.filter(function (g) { return g.gid && !LINKS[g.gid]; });
+    var okQ = BANK.length - noIdQ - orphan.length;
+    function short(s) { s = String(s); return s.length > 70 ? s.slice(0, 70) + '…' : s; }
+    var rows = GRAMMAR.map(function (g) {
+      return '<tr><td>' + esc(g.gid || '—') + '</td><td>' + esc(g.t) + '</td><td>' + esc(g.lv) + '</td><td>' + esc(g.topic) + '</td><td>' + (g.gid ? (LINKS[g.gid] || 0) : '—') + '</td></tr>';
+    }).join('');
+    var orphanHtml = orphan.length ? '<div class="table-wrap"><table style="min-width:0"><thead><tr><th>grammarId</th><th>Câu hỏi</th></tr></thead><tbody>' +
+      orphan.slice(0, 60).map(function (q) { return '<tr><td>' + esc(q.gid) + '</td><td>' + esc(short(q.q)) + '</td></tr>'; }).join('') + '</tbody></table></div>' + (orphan.length > 60 ? '<p class="muted">… và ' + (orphan.length - 60) + ' câu nữa.</p>' : '') : '';
+    var vocabInfo = VLEVELS.map(function (l) { return '<span class="tag">' + esc(l) + ': ' + levelWords(l).length + ' từ</span>'; }).join(' ');
+    var setInfo = QSETS.map(function (s) { return '<span class="tag">' + esc(s.id) + ' (' + esc(s.lv) + '): ' + s.qs.length + ' câu</span>'; }).join(' ');
+    return head('Quản trị', 'Chế độ ẩn dành cho chủ trang. Mọi thay đổi chỉ nằm trong trình duyệt này.') + '<div class="stack" style="gap:1.5rem">' +
+      '<section class="panel stack" style="gap:0.8rem"><h2>Nội dung</h2>' +
+      '<p>Ngữ pháp: <strong>' + GRAMMAR.length + '</strong> quy tắc ' + kv(gLv) + '</p>' +
+      '<p>Câu hỏi: <strong>' + BANK.length + '</strong> ' + kv(byLv) + '</p><p>Chủ đề câu hỏi: ' + kv(byTopic) + '</p>' +
+      '<p>Từ vựng: ' + vocabInfo + '</p><p>Bài luyện: ' + setInfo + '</p></section>' +
+      '<section class="panel stack" style="gap:0.8rem"><h2>Kiểm tra grammarId</h2>' +
+      '<p>Câu hỏi khớp quy tắc: <strong>' + okQ + '</strong> · chưa có grammarId: <strong>' + noIdQ + '</strong> · grammarId không khớp: <strong>' + orphan.length + '</strong></p>' +
+      '<p>Quy tắc chưa có grammarId: <strong>' + noIdG.length + '</strong>' + (noIdG.length ? ' (' + esc(noIdG.slice(0, 8).map(function (g) { return g.t; }).join('; ')) + (noIdG.length > 8 ? '…' : '') + ')' : '') + '</p>' +
+      '<p>grammarId bị trùng: <strong>' + GDUP.length + '</strong>' + (GDUP.length ? ' (' + esc(GDUP.join(', ')) + ')' : '') + '</p>' +
+      '<p>Quy tắc chưa có câu hỏi nào: <strong>' + noQ.length + '</strong>' + (noQ.length ? ' (' + esc(noQ.slice(0, 12).map(function (g) { return g.gid; }).join(', ')) + (noQ.length > 12 ? '…' : '') + ')' : '') + '</p>' +
+      orphanHtml + '<details><summary style="cursor:pointer;font-weight:600">Bảng quy tắc ngữ pháp (' + GRAMMAR.length + ')</summary><div class="table-wrap"><table style="min-width:0"><thead><tr><th>ID</th><th>Quy tắc</th><th>Cấp</th><th>Chủ đề</th><th>Số câu hỏi</th></tr></thead><tbody>' + rows + '</tbody></table></div></details></section>' +
+      '<section class="panel stack" style="gap:0.8rem"><h2>Tiến độ (thử nghiệm)</h2>' +
+      '<p>XP hiện tại: <strong>' + ps.xp + '</strong> (đã cộng thêm ' + (activity.bonus || 0) + ') · Cấp <strong>' + ps.level + '</strong> / ' + PLEVELS.length + ' · chuỗi ' + ps.streak + ' ngày</p>' +
+      '<div class="row">' + [10, 100, 1000].map(function (n) { return admBtn('adm-xp', '+' + n + ' XP', n); }).join('') + admBtn('adm-xp', '-100 XP', -100) + '</div>' +
+      '<div class="row"><label for="adm-level" style="margin:0">Đặt cấp</label><input id="adm-level" type="number" min="1" max="' + PLEVELS.length + '" value="' + ps.level + '" style="width:5rem">' + admBtn('adm-level', 'Đặt') + '</div>' +
+      '<div class="row"><label for="adm-streak" style="margin:0">Chuỗi ngày</label><input id="adm-streak" type="number" min="1" max="400" value="7" style="width:5rem">' + admBtn('adm-streak', 'Tạo chuỗi') + '</div>' +
+      '<div class="row">' + admBtn('adm-min', '+10 phút', 10) + admBtn('adm-words', '+10 từ', 10) + admBtn('adm-rev', '+10 lần ôn', 10) + admBtn('adm-gram', '+5 ngữ pháp', 5) + admBtn('adm-test', '+1 bài kiểm tra', 1) + '</div>' +
+      '<div class="row">' + admBtn('adm-ach-all', 'Mở hết huy hiệu') + admBtn('adm-ach-none', 'Khóa hết huy hiệu') + '</div>' +
+      '<div class="row">' + admDanger('adm-reset-progress', 'Xóa tiến độ và XP') + admDanger('adm-reset-tests', 'Xóa điểm bài kiểm tra') + admDanger('adm-reset-vocab', 'Xóa danh sách từ') + admDanger('adm-reset-all', 'Xóa tất cả dữ liệu') + '</div></section>' +
+      '<div><button type="button" class="btn ghost" data-action="adm-exit">Thoát chế độ quản trị</button></div></div>';
+  }
+  function adminAction(a, t) {
+    var n = parseInt(t.getAttribute('data-n'), 10), sy = window.scrollY, d = today();
+    if (a.indexOf('adm-reset') === 0 && admConfirm !== a) { admConfirm = a; render(); window.scrollTo(0, sy); return; }
+    admConfirm = '';
+    function input(id) { var e = document.getElementById(id); return e ? parseInt(e.value, 10) : NaN; }
+    if (a === 'adm-exit') { ADMIN = false; LS.set('oel.admin', 0); syncAdminTab(); location.hash = '#home'; return; }
+    else if (a === 'adm-xp') activity.bonus = (activity.bonus || 0) + n;
+    else if (a === 'adm-level') {
+      var L = Math.max(1, Math.min(PLEVELS.length, input('adm-level') || 1)), raw = pStats().xp - (activity.bonus || 0);
+      activity.bonus = PLEVELS[L - 1].xp - raw;
+    }
+    else if (a === 'adm-streak') {
+      var k = Math.max(1, Math.min(400, input('adm-streak') || 1)), dt = new Date(); dt.setHours(12, 0, 0, 0);
+      for (var i = 0; i < k; i++) { var r = dayRec(fmt(dt)); if (r.s < 60) r.s = 60; dt.setDate(dt.getDate() - 1); }
+    }
+    else if (a === 'adm-min') dayRec(d).s += n * 60;
+    else if (a === 'adm-words') { var base = Object.keys(activity.learned).length; for (var w = 0; w < n; w++) activity.learned['admin:' + (base + w)] = 1; dayRec(d).l += n; }
+    else if (a === 'adm-rev') dayRec(d).r += n;
+    else if (a === 'adm-gram') { var gb = Object.keys(activity.grammar).length; for (var g = 0; g < n; g++) activity.grammar['admin:' + (gb + g)] = 1; dayRec(d).g += n; }
+    else if (a === 'adm-test') dayRec(d).t += n;
+    else if (a === 'adm-ach-all') ACHS.forEach(function (x) { if (!activity.ach[x.id]) activity.ach[x.id] = d; });
+    else if (a === 'adm-ach-none') activity.ach = Object.create(null);
+    else if (a === 'adm-reset-progress') { activity = cleanActivity({}); lastLevel = 0; }
+    else if (a === 'adm-reset-tests') { stats = { sets: {}, all: { sum: 0, cnt: 0 } }; LS.set('oel.stats', stats); LS.set('oel.placement', null); }
+    else if (a === 'adm-reset-vocab') { vstore = cleanStore({}); saveV(); }
+    else if (a === 'adm-reset-all') {
+      activity = cleanActivity({}); lastLevel = 0; stats = { sets: {}, all: { sum: 0, cnt: 0 } }; LS.set('oel.stats', stats); LS.set('oel.placement', null);
+      journal = []; LS.set('oel.journal', journal); vstore = cleanStore({}); saveV();
+    }
+    saveActivity(); lastLevel = levelOf(pStats().xp); checkAchievements(); saveActivity();
+    render(); window.scrollTo(0, sy);
+  }
 
   /* ---------- Trang chủ ---------- */
   function viewHome() {
@@ -328,7 +437,7 @@
     }).join('');
   }
   function ruleBody(g) {
-    return '<div class="body">' + (g.topic ? '<p><span class="tag">' + esc(g.topic) + '</span></p>' : '') + '<p>' + md(g.rule) + '</p>' + (g.form ? '<div class="form">' + esc(g.form) + '</div>' : '') +
+    return '<div class="body">' + (ADMIN ? '<p><span class="tag adm">ID ' + esc(g.gid || '—') + ' · ' + (g.gid ? (LINKS[g.gid] || 0) : 0) + ' câu hỏi</span></p>' : '') + (g.topic ? '<p><span class="tag">' + esc(g.topic) + '</span></p>' : '') + '<p>' + md(g.rule) + '</p>' + (g.form ? '<div class="form">' + esc(g.form) + '</div>' : '') +
       (g.ex.length ? '<ul>' + g.ex.map(function (e) { return '<li>' + esc(e) + '</li>'; }).join('') + '</ul>' : '') +
       (g.no && g.yes ? '<div class="pair"><div><b class="no-way">Sai</b><span class="no-way">' + esc(g.no) + '</span></div>' +
       '<div><b class="yes-way">Đúng</b><span class="yes-way">' + esc(g.yes) + '</span></div></div>' : '') + '</div>';
@@ -461,14 +570,15 @@
       ? '<p>Kết quả gần nhất: <mark>' + esc(last.level) + '</mark> <span class="muted">(ước lượng, ' + esc(niceDate(last.date)) + ')</span></p>' : '';
     var pool = customPool();
     var lvChips = bankLevels().map(function (l) { return chipBtn('c-level', l, l, cLevels.indexOf(l) > -1); }).join('');
-    var tpChips = bankTopics().map(function (t) { return chipBtn('c-topic', t, t, cTopics.indexOf(t) > -1); }).join('');
+    var tpChips = bankTopics().map(function (t) { return chipBtn('c-topic', t, t + (ADMIN ? ' (' + BANK.filter(function (q) { return q.topic === t; }).length + ')' : ''), cTopics.indexOf(t) > -1); }).join('');
     var lenChips = [10, 25].map(function (n) { return chipBtn('c-len', n, n === 10 ? 'Nhanh: 10 câu' : 'Dài: 25 câu', cLen === n); }).join('');
     var note = !pool.length ? 'Không có câu hỏi nào phù hợp. Hãy bỏ bớt một bộ lọc.'
       : pool.length < cLen ? 'Ít câu phù hợp nên bài sẽ ngắn hơn.' : '';
+    if (ADMIN) note += ' [admin] ' + pool.length + ' câu phù hợp.';
     var cards = QSETS.map(function (s) {
       var b = setStat(s.id), todayBest = b && b.day === today() && b.bn ? 'Điểm cao nhất hôm nay: ' + b.bs + '/' + b.bn : 'Hôm nay chưa làm';
       return '<div class="card"><span class="call">' + esc(s.lv) + '</span><h3>' + esc(s.title) + '</h3><p>' + esc(s.blurb) + '</p>' +
-        '<span class="meta">' + todayBest + (b && b.cnt ? ' · Trung bình: ' + pctOf(b.sum, b.cnt) + '%' : '') + '</span>' +
+        '<span class="meta">' + todayBest + (ADMIN ? ' · [admin] ' + s.qs.length + ' câu' : '') + (b && b.cnt ? ' · Trung bình: ' + pctOf(b.sum, b.cnt) + '%' : '') + '</span>' +
         '<div style="margin-top:0.6rem"><button class="btn" type="button" data-action="start" data-set="' + esc(s.id) + '">Bắt đầu</button></div></div>';
     }).join('');
     return head('Bài kiểm tra', 'Kiểm tra trình độ, ôn tập theo chủ đề, hoặc luyện theo cấp độ. Sau mỗi câu bạn sẽ thấy lời giải thích.') +
@@ -504,13 +614,13 @@
     }
     return '<div class="quiz"><div class="row" style="justify-content:space-between"><p class="call" style="margin:0">' + esc(quiz.title) + ' / ' + esc(quiz.lvLabel) + '</p><button class="btn ghost small" type="button" data-action="quit">Thoát</button></div>' +
       '<div><p class="muted" style="font-size:0.9rem;margin-bottom:0.4rem">Câu ' + (quiz.i + 1) + ' / ' + quiz.total + '</p><div class="bar"><i style="width:' + (quiz.i / quiz.total * 100) + '%"></i></div></div>' +
-      '<p class="qtext">' + esc(q.q) + '</p><div class="opts">' + opts + '</div>' + fb + '</div>';
+      '<p class="qtext">' + esc(q.q) + '</p>' + admQInfo(q) + '<div class="opts">' + opts + '</div>' + fb + '</div>';
   }
   function viewQuizResult() {
     var n = quiz.qs.length, pct = n ? quiz.score / n : 0;
     var miss = quiz.missed.map(function (i) {
       var q = quiz.qs[i], g = q.gid ? GBYID[q.gid] : null, open = !!(quiz.open && quiz.open[i]);
-      return '<div class="miss"><strong style="font-family:var(--font-display)">' + esc(q.q) + '</strong><span>Đáp án: <mark>' + esc(q.o[q.a]) + '</mark></span><span class="muted">' + esc(q.why) + '</span>' +
+      return '<div class="miss"><strong style="font-family:var(--font-display)">' + esc(q.q) + '</strong>' + admQInfo(q) + '<span>Đáp án: <mark>' + esc(q.o[q.a]) + '</mark></span><span class="muted">' + esc(q.why) + '</span>' +
         (g ? '<div><button class="btn ghost small" type="button" data-action="q-rule" data-v="' + i + '" aria-expanded="' + open + '">' + (open ? 'Ẩn quy tắc' : 'Xem quy tắc') + '</button></div>' +
           (open ? '<div class="rule ruleview"><div class="rv-head"><h3>' + esc(g.t) + '</h3><span class="tag lvtag">' + esc(g.lv) + '</span></div>' + ruleBody(g) + '</div>' : '') : '') + '</div>';
     }).join('');
@@ -944,12 +1054,13 @@
   /* ---------- Điều hướng ---------- */
   function current() {
     var h = location.hash.replace('#', '');
+    if (h === 'admin') return ADMIN ? 'admin' : 'home';
     return ROUTES.indexOf(h) > -1 ? h : 'home';
   }
   function render() {
     var r = current();
     var html = r === 'home' ? viewHome() : r === 'grammar' ? viewGrammar() : r === 'vocab' ? viewVocab() : r === 'tests' ? viewTests() :
-      r === 'resources' ? viewResources() : r === 'tips' ? viewTips() : viewJournal();
+      r === 'resources' ? viewResources() : r === 'tips' ? viewTips() : r === 'admin' ? viewAdmin() : viewJournal();
     view.innerHTML = html;
     var links = document.querySelectorAll('#tabs a');
     for (var i = 0; i < links.length; i++) {
@@ -981,6 +1092,7 @@
     if (!t) return;
     var a = t.getAttribute('data-action');
     if (/^(v|b|r|m|card)-/.test(a)) vMsg = '';
+    if (a.indexOf('adm-') === 0) { if (ADMIN) adminAction(a, t); return; }
     if (a === 'level') {
       quiz = null;
       gLevel = t.getAttribute('data-level');
@@ -1136,7 +1248,10 @@
     }
   });
   view.addEventListener('input', function (ev) {
-    if (ev.target.id === 'g-search') { gQuery = ev.target.value; renderGList(); }
+    if (ev.target.id === 'g-search') {
+      if (isAdminCode(ev.target.value)) { enableAdmin(); return; }
+      gQuery = ev.target.value; renderGList();
+    }
     else if (ev.target.id === 'v-search') { vQuery = ev.target.value; vLimit = 40; renderVList(); }
     else if (ev.target.id === 'j-conf') { var o = document.getElementById('j-conf-out'); if (o) o.textContent = ev.target.value; }
   });
@@ -1146,5 +1261,6 @@
   });
   window.addEventListener('hashchange', function () { render(); window.scrollTo(0, 0); });
 
+  syncAdminTab();
   render();
 })();
