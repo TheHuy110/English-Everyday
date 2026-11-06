@@ -3,7 +3,7 @@
 const fs = require('fs'), path = require('path'), vm = require('vm');
 const dir = path.join(__dirname, '..', 'content');
 const sandbox = { console }; sandbox.window = sandbox; vm.createContext(sandbox);
-for (const f of ['grammar','questions','tests','resources','tips','wordpairs','vocab']) {
+for (const f of ['grammar','questions','tests','resources','tips','wordpairs','vocab','progress']) {
   try { vm.runInContext(fs.readFileSync(path.join(dir, f + '.js'), 'utf8'), sandbox, { filename: f + '.js' }); }
   catch (e) { console.error('ERROR: content/' + f + '.js cannot be loaded: ' + e.message); process.exit(1); }
 }
@@ -61,6 +61,20 @@ Object.keys(OEL.vocab || {}).forEach(lv => { const seen = new Set();
     if (r[3] != null && !(Number.isInteger(r[3]) && r[3] >= 0 && r[3] < topics.length)) err(t + ': topic index out of range');
     const k = r[0] + '|' + r[1]; seen.has(k) ? err(t + ': duplicate word+pos in ' + lv) : seen.add(k); }); });
 
+const P = OEL.progress;
+if (!P) err('OEL.progress is missing');
+else {
+  ['minute','learned','reviewed','grammar','test'].forEach(k => (typeof (P.xp||{})[k] === 'number') || err('progress.xp.' + k + ' must be a number'));
+  const cv = P.curve || {}; (cv.base > 0 && cv.power > 0) || err('progress.curve needs base and power above 0');
+  (Number.isInteger(P.levelsPerStage) && P.levelsPerStage > 0) || err('progress.levelsPerStage must be a whole number above 0');
+  const sg = P.stages || []; sg.length || err('progress.stages is empty');
+  sg.forEach((s, i) => str(s.name) || err('progress stage #' + (i+1) + ': missing name'));
+  const STATS = ['minutes','streak','days','learned','reviewed','grammar','tests','level'], aid = new Set();
+  (P.achievements || []).forEach((x, i) => { const n = 'achievement #' + (i+1);
+    str(x.id) ? (aid.has(x.id) ? err(n + ': duplicate id ' + x.id) : aid.add(x.id)) : err(n + ': missing id');
+    str(x.name) || err(n + ': missing name'); STATS.includes(x.stat) || err(n + ': stat must be one of ' + STATS.join(', '));
+    (typeof x.goal === 'number' && x.goal > 0) || err(n + ': goal must be a number above 0'); });
+}
 console.log('Checked: ' + bank.length + ' questions, ' + arr('grammar').length + ' grammar rules, ' + total + ' vocabulary entries.');
 console.log(errors ? errors + ' error(s), ' + warns + ' warning(s).' : 'OK. ' + warns + ' warning(s).');
 process.exit(errors ? 1 : 0);
