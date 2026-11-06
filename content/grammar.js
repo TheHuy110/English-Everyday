@@ -733,7 +733,7 @@ OEL.grammar = [
     rule: "Dùng để chỉ mục đích của hành động. **So that / In order that** đi với một mệnh đề chứa động từ khuyết thiếu (can/could/will/would). **In order to / So as to** đi trực tiếp với động từ nguyên mẫu (To-V).",
     form: "S + V + so that / in order that + S + can/could/will/would + V | S + V + in order to / so as to + V- nguyên mẫu",
     examples: ["He woke up early so that he could catch the first bus.", "He woke up early in order to catch the first bus."],
-    wrong: "He woke up early in order that catching the first bus.", right: "He woke up early in order to catch the first bus." }
+    wrong: "He woke up early in order that catching the first bus.", right: "He woke up early in order to catch the first bus." },
 
   { title: "Mệnh đề chỉ sự nhượng bộ (Although / Even though / In spite of / Despite)", grammarId: "066", level: "B1", category: "Mệnh đề",
     rule: "**Although, Even though, Though** đi kèm với một mệnh đề đầy đủ (S + V). **In spite of, Despite** đi kèm với một danh từ, cụm danh từ hoặc danh động từ (V-ing).",
