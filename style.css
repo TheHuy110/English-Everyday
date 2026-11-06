@@ -262,3 +262,8 @@ textarea.export { font-family: var(--font-mono); font-size: 0.85rem; min-height:
 .placement h2 { font-size: clamp(1.9rem, 5vw, 2.6rem); letter-spacing: -0.02em; }
 .placement > p { font-size: 1.1rem; }
 .placement .btn { font-size: 1.1rem; padding: 0.85rem 1.4rem; }
+
+/* ---------- Admin (hidden) ---------- */
+.adm-note { font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, var(--surface)); border-left: 3px solid var(--accent); padding: 0.3rem 0.6rem; margin: 0 0 0.6rem; }
+.tag.adm { color: var(--accent); border-color: var(--accent); }
+#tab-admin { color: var(--accent) !important; }
