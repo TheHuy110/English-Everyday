@@ -267,3 +267,18 @@ textarea.export { font-family: var(--font-mono); font-size: 0.85rem; min-height:
 .adm-note { font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, var(--surface)); border-left: 3px solid var(--accent); padding: 0.3rem 0.6rem; margin: 0 0 0.6rem; }
 .tag.adm { color: var(--accent); border-color: var(--accent); }
 #tab-admin { color: var(--accent) !important; }
+
+/* ---------- IPA chart ---------- */
+.ipa-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(5.5rem, 1fr)); gap: 0.5rem; }
+.ipa-tile { font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 0.7rem 0.4rem; cursor: pointer; display: grid; gap: 0.15rem; justify-items: center; transition: border-color 0.15s, background 0.15s; }
+.ipa-tile b { font-family: var(--font-display); font-size: 1.7rem; line-height: 1.1; }
+.ipa-tile span { font-size: 0.8rem; color: var(--muted); }
+.ipa-tile:hover { border-color: var(--accent); }
+.ipa-tile[aria-pressed="true"] { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, var(--surface)); }
+.ipa-tile[aria-pressed="true"] b { color: var(--accent); }
+.ipa-detail { scroll-margin-top: 5rem; }
+.ipa-head { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+.ipa-big { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.6rem, 9vw, 4rem); color: var(--accent); line-height: 1; letter-spacing: -0.02em; }
+.ipa-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+.ipa-list li { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.ipa-t { font-family: var(--font-mono); font-size: 0.9rem; }
