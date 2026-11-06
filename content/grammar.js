@@ -223,7 +223,7 @@ OEL.grammar = [
     examples: ["I wish I knew the answer to this question.", "She wishes she lived closer to her workplace.", "He wishes he had more free time today."],
     wrong: "I wish I know the answer.", right: "I wish I knew the answer." },
 
-    { title: "Câu ước ở quá khứ (Wishes about the past)", level: "B2", category: "Câu ước",
+  { title: "Câu ước ở quá khứ (Wishes about the past)", level: "B2", category: "Câu ước",
     rule: "Dùng để diễn tả sự tiếc nuối về một việc đã xảy ra hoặc không xảy ra trong quá khứ.",
     form: "chủ ngữ + wish(es) + chủ ngữ + quá khứ hoàn thành (had + V3/ed)",
     examples: ["I wish I had studied harder for yesterday's test.", "She wishes she hadn't said those rude words to him.", "They wish they had bought the tickets earlier."],
