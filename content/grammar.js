@@ -243,7 +243,7 @@ OEL.grammar = [
     form: ["S + stative verb (thì đơn)"],
     examples: ["I understand your problem right now.", "This jacket belongs to my brother.", "She loves listening to classical music."],
     wrong: "I am understanding the lesson now.", right: "I understand the lesson now." },
-
+    
   { title: "Cách dùng 'Make' và 'Let' (Sai khiến)", grammarId: "041", level: "B1", category: "Động từ",
     rule: "**Make** mang nghĩa ép buộc ai làm gì; **let** mang nghĩa cho phép ai làm gì. Cả hai đi với động từ nguyên mẫu không 'to'.",
     form: ["S + make / let + object + V-bare"],
@@ -482,8 +482,5 @@ OEL.grammar = [
     rule: "Dùng câu mệnh lệnh ở vế đầu, nối với vế sau bằng **and** (kết quả tốt) hoặc **or** (hậu quả xấu).",
     form: ["Imperative verb..., and / or + S + will + V-bare"],
     examples: ["Study hard, and you will pass the upcoming examination.", "Hurry up, or you will miss the train."],
-    wrong: "Study hard, and you pass the exam.", right: "Study hard, and you will pass the upcoming examination." },
-
- 
-
+    wrong: "Study hard, and you pass the exam.", right: "Study hard, and you will pass the upcoming examination." }
 ];
