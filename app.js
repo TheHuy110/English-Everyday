@@ -37,18 +37,24 @@
   ];
 
   /* ---------- Làm sạch dữ liệu nội dung ---------- */
+  function idOf(v) { return v === undefined || v === null ? '' : String(v).trim(); }
   var GRAMMAR = list(OEL.grammar).map(function (g) {
     g = g || {};
-    return { t: str(g.title), lv: str(g.level).toUpperCase(), cat: str(g.category), rule: str(g.rule), form: str(g.form),
+    return { t: str(g.title), lv: str(g.level).toUpperCase(), topic: str(g.topic) || str(g.category), gid: idOf(g.grammarId), rule: str(g.rule), form: str(g.form),
       ex: list(g.examples).map(String), no: str(g.wrong), yes: str(g.right) };
   }).filter(function (g) { var ok = g.t && g.lv && g.rule; if (!ok) warn('ngữ pháp', g); return ok; });
 
+  var GBYID = Object.create(null);
+  GRAMMAR.forEach(function (g) {
+    if (!g.gid) return;
+    if (GBYID[g.gid]) warn('ngữ pháp (grammarId bị trùng: ' + g.gid + ')', g); else GBYID[g.gid] = g;
+  });
   var BANK = list(OEL.questions).map(function (q) {
     q = q || {};
     var o = list(q.options).map(String), a = o.indexOf(String(q.answer));
     var ok = q.question && o.length >= 2 && a > -1 && str(q.level);
     if (!ok) { warn('câu hỏi (đáp án phải trùng đúng một lựa chọn)', q); return null; }
-    return { lv: str(q.level).toUpperCase(), topic: str(q.topic), q: String(q.question), o: o, a: a, why: str(q.explanation) };
+    return { lv: str(q.level).toUpperCase(), topic: str(q.topic), q: String(q.question), o: o, a: a, why: str(q.explanation), gid: idOf(q.grammarId) };
   }).filter(Boolean);
 
   var seenSets = {};
@@ -84,12 +90,12 @@
 
   /* ---------- Trạng thái ---------- */
   var ALL = 'Tất cả';
-  var gQuery = '', gLevel = ALL, rType = ALL;
+  var gQuery = '', gLevel = ALL, gTopic = ALL, rType = ALL;
   var quiz = null;
   var cLevels = [], cTopics = [], cLen = 10;
   var journal = LS.get('oel.journal', []);
   if (!Array.isArray(journal)) journal = [];
-  var best = LS.get('oel.best', {});
+  var best = LS.get('oel.best2', {});
   if (!best || typeof best !== 'object') best = {};
   var delId = null, exportText = null, jOpen = false;
 
@@ -268,9 +274,13 @@
     var chips = [ALL].concat(lvls).map(function (l) {
       return '<button type="button" class="chip" data-action="level" data-level="' + l + '" aria-pressed="' + (gLevel === l) + '">' + l + '</button>';
     }).join('');
+    var topics = [];
+    GRAMMAR.forEach(function (g) { if (g.topic && topics.indexOf(g.topic) < 0) topics.push(g.topic); });
+    var tchips = topics.length ? '<div><p class="lab" style="margin-bottom:0.4rem">Chủ đề</p><div class="chips" role="group" aria-label="Lọc theo chủ đề">' +
+      [ALL].concat(topics).map(function (t) { return chipBtn('g-topic', t, t, gTopic === t); }).join('') + '</div></div>' : '';
     return head('Ngữ pháp', GRAMMAR.length + ' quy tắc cốt lõi từ thì hiện tại đơn đến đảo ngữ. Mỗi quy tắc có giải thích ngắn, ví dụ và một lỗi cần tránh.') +
       '<div class="tools"><div><label for="g-search">Tìm quy tắc</label><input id="g-search" type="search" placeholder="Thử: điều kiện, bị động, mạo từ" value="' + esc(gQuery) + '" autocomplete="off"></div>' +
-      '<div class="chips" role="group" aria-label="Lọc theo cấp độ">' + chips + '</div></div>' +
+      '<div><p class="lab" style="margin-bottom:0.4rem">Cấp độ</p><div class="chips" role="group" aria-label="Lọc theo cấp độ">' + chips + '</div></div>' + tchips + '</div>' +
       '<p class="muted" id="g-count" aria-live="polite" style="margin-bottom:0.8rem"></p><div id="g-list"></div>';
   }
   function renderGList() {
@@ -278,21 +288,24 @@
     var items = GRAMMAR.map(function (g, i) { return { g: g, i: i }; }).filter(function (o) {
       var g = o.g;
       if (gLevel !== ALL && g.lv !== gLevel) return false;
+      if (gTopic !== ALL && g.topic !== gTopic) return false;
       if (!q) return true;
-      return (g.t + ' ' + g.cat + ' ' + g.rule + ' ' + g.ex.join(' ') + ' ' + g.form).toLowerCase().indexOf(q) > -1;
+      return (g.t + ' ' + g.topic + ' ' + g.rule + ' ' + g.ex.join(' ') + ' ' + g.form).toLowerCase().indexOf(q) > -1;
     });
     var listEl = document.getElementById('g-list'), count = document.getElementById('g-count');
     if (!listEl) return;
-    count.textContent = items.length + ' quy tắc' + (gLevel !== ALL ? ' ở cấp ' + gLevel : '');
-    if (!items.length) { listEl.innerHTML = '<div class="empty">Không có quy tắc nào phù hợp. Hãy xóa từ khóa hoặc chọn cấp độ khác.</div>'; return; }
+    count.textContent = items.length + ' quy tắc' + (gLevel !== ALL ? ' ở cấp ' + gLevel : '') + (gTopic !== ALL ? ', chủ đề ' + gTopic : '');
+    if (!items.length) { listEl.innerHTML = '<div class="empty">Không có quy tắc nào phù hợp. Hãy xóa từ khóa hoặc chọn cấp độ, chủ đề khác.</div>'; return; }
     listEl.innerHTML = items.map(function (o) {
       var g = o.g;
-      return '<details class="rule"><summary><h3>' + esc(g.t) + '</h3><span class="tag">' + esc(g.lv) + '</span></summary>' +
-        '<div class="body"><p>' + md(g.rule) + '</p>' + (g.form ? '<div class="form">' + esc(g.form) + '</div>' : '') +
-        (g.ex.length ? '<ul>' + g.ex.map(function (e) { return '<li>' + esc(e) + '</li>'; }).join('') + '</ul>' : '') +
-        (g.no && g.yes ? '<div class="pair"><div><b class="no-way" style="text-decoration:none">Sai</b><span class="no-way">' + esc(g.no) + '</span></div>' +
-        '<div><b class="yes-way">Đúng</b><span class="yes-way">' + esc(g.yes) + '</span></div></div>' : '') + '</div></details>';
+      return '<details class="rule"><summary><h3>' + esc(g.t) + '</h3><span class="tag lvtag">' + esc(g.lv) + '</span></summary>' + ruleBody(g) + '</details>';
     }).join('');
+  }
+  function ruleBody(g) {
+    return '<div class="body">' + (g.topic ? '<p><span class="tag">' + esc(g.topic) + '</span></p>' : '') + '<p>' + md(g.rule) + '</p>' + (g.form ? '<div class="form">' + esc(g.form) + '</div>' : '') +
+      (g.ex.length ? '<ul>' + g.ex.map(function (e) { return '<li>' + esc(e) + '</li>'; }).join('') + '</ul>' : '') +
+      (g.no && g.yes ? '<div class="pair"><div><b class="no-way">Sai</b><span class="no-way">' + esc(g.no) + '</span></div>' +
+      '<div><b class="yes-way">Đúng</b><span class="yes-way">' + esc(g.yes) + '</span></div></div>' : '') + '</div>';
   }
 
   /* ---------- Kiểm tra ---------- */
@@ -318,16 +331,32 @@
     o.i = 0; o.score = 0; o.picked = null; o.missed = []; o.done = false; o.tally = {};
     return o;
   }
+  var PRACTICE_N = 20;
+  /* Random questions spread evenly across topics, so every area shows up. A new set every time. */
+  function pickBalanced(pool, n) {
+    var groups = Object.create(null), keys = [];
+    shuffle(pool).forEach(function (q) { var k = q.topic || '-'; if (!groups[k]) { groups[k] = []; keys.push(k); } groups[k].push(q); });
+    keys = shuffle(keys);
+    var out = [];
+    while (out.length < n && keys.length) {
+      keys = keys.filter(function (k) {
+        if (out.length < n && groups[k].length) out.push(groups[k].pop());
+        return groups[k].length > 0;
+      });
+    }
+    return shuffle(out);
+  }
   function startSet(id) {
     var s = QSETS.filter(function (x) { return x.id === id; })[0];
     if (!s) return;
-    quiz = newQuiz({ kind: 'set', setId: s.id, title: s.title, lvLabel: s.lv, qs: s.qs.slice(), total: s.qs.length });
+    var qs = pickBalanced(s.qs, PRACTICE_N);
+    quiz = newQuiz({ kind: 'set', setId: s.id, title: s.title, lvLabel: s.lv, qs: qs, total: qs.length, open: {} });
   }
   function startCustom() {
     var pool = shuffle(customPool());
     if (!pool.length) return;
     var take = pool.slice(0, Math.min(cLen, pool.length));
-    quiz = newQuiz({ kind: 'custom', title: 'Bài kiểm tra tự tạo', lvLabel: take.length + ' câu', qs: take, total: take.length });
+    quiz = newQuiz({ kind: 'custom', title: 'Bài kiểm tra tự tạo', lvLabel: take.length + ' câu', qs: take, total: take.length, open: {} });
   }
   /* Kiểm tra trình độ: bắt đầu ở B1, đúng thì lên một cấp, sai thì xuống một cấp. */
   function startPlacement(n) {
@@ -335,7 +364,7 @@
     if (!lvs.length) return;
     var mid = lvs.indexOf('B1');
     quiz = newQuiz({ kind: 'placement', title: 'Kiểm tra trình độ', lvLabel: n + ' câu', qs: [], used: [], lvs: lvs,
-      idx: mid > -1 ? mid : Math.floor(lvs.length / 2), total: n });
+      idx: mid > -1 ? mid : Math.floor(lvs.length / 2), total: n, open: {} });
     placementNext();
   }
   function placementNext() {
@@ -380,7 +409,8 @@
   function finishQuiz() {
     quiz.done = true; Act.test();
     if (quiz.kind === 'set') {
-      if (best[quiz.setId] === undefined || quiz.score > best[quiz.setId]) { best[quiz.setId] = quiz.score; LS.set('oel.best', best); }
+      var pb = best[quiz.setId];
+      if (!pb || !pb.n || quiz.score / quiz.total > pb.s / pb.n) { best[quiz.setId] = { s: quiz.score, n: quiz.total }; LS.set('oel.best2', best); }
     } else if (quiz.kind === 'placement') {
       quiz.est = estimateLevel();
       LS.set('oel.placement', { level: quiz.est, date: today(), n: quiz.qs.length });
@@ -400,12 +430,11 @@
     var tpChips = bankTopics().map(function (t) { return chipBtn('c-topic', t, t, cTopics.indexOf(t) > -1); }).join('');
     var lenChips = [10, 25].map(function (n) { return chipBtn('c-len', n, n === 10 ? 'Nhanh: 10 câu' : 'Dài: 25 câu', cLen === n); }).join('');
     var note = !pool.length ? 'Không có câu hỏi nào phù hợp. Hãy bỏ bớt một bộ lọc.'
-      : pool.length < cLen ? 'Có ' + pool.length + ' câu phù hợp, nên bài sẽ ngắn hơn ' + cLen + ' câu.'
-      : 'Có ' + pool.length + ' câu phù hợp.';
+      : pool.length < cLen ? 'Ít câu phù hợp nên bài sẽ ngắn hơn.' : '';
     var cards = QSETS.map(function (s) {
       var b = best[s.id];
       return '<div class="card"><span class="call">' + esc(s.lv) + '</span><h3>' + esc(s.title) + '</h3><p>' + esc(s.blurb) + '</p>' +
-        '<span class="meta">' + s.qs.length + ' câu hỏi / ' + (b !== undefined ? 'điểm cao nhất ' + b + '/' + s.qs.length : 'chưa làm') + '</span>' +
+        '<span class="meta">' + (b ? 'Điểm cao nhất ' + b.s + '/' + b.n : 'Chưa làm') + '</span>' +
         '<div style="margin-top:0.6rem"><button class="btn" type="button" data-action="start" data-set="' + esc(s.id) + '">Bắt đầu</button></div></div>';
     }).join('');
     return head('Bài kiểm tra', 'Kiểm tra trình độ, tự tạo bài theo cấp độ và chủ đề, hoặc luyện theo bài có sẵn. Sau mỗi câu bạn sẽ thấy lời giải thích.') +
@@ -445,8 +474,10 @@
   function viewQuizResult() {
     var n = quiz.qs.length, pct = n ? quiz.score / n : 0;
     var miss = quiz.missed.map(function (i) {
-      var q = quiz.qs[i];
-      return '<div class="miss"><strong style="font-family:var(--font-display)">' + esc(q.q) + '</strong><span>Đáp án: <mark>' + esc(q.o[q.a]) + '</mark></span><span class="muted">' + esc(q.why) + '</span></div>';
+      var q = quiz.qs[i], g = q.gid ? GBYID[q.gid] : null, open = !!(quiz.open && quiz.open[i]);
+      return '<div class="miss"><strong style="font-family:var(--font-display)">' + esc(q.q) + '</strong><span>Đáp án: <mark>' + esc(q.o[q.a]) + '</mark></span><span class="muted">' + esc(q.why) + '</span>' +
+        (g ? '<div><button class="btn ghost small" type="button" data-action="q-rule" data-v="' + i + '" aria-expanded="' + open + '">' + (open ? 'Ẩn quy tắc' : 'Xem quy tắc') + '</button></div>' +
+          (open ? '<div class="rule ruleview"><div class="rv-head"><h3>' + esc(g.t) + '</h3><span class="tag lvtag">' + esc(g.lv) + '</span></div>' + ruleBody(g) + '</div>' : '') : '') + '</div>';
     }).join('');
     var top, extra = '', msg, retry, nextBtn = '';
     if (quiz.kind === 'placement') {
@@ -465,7 +496,7 @@
     } else {
       msg = pct >= 0.85 ? 'Kết quả rất tốt. Hãy thử bài ở cấp độ cao hơn.' : pct >= 0.6 ? 'Tiến bộ tốt. Hãy xem lại các câu bên dưới rồi làm lại.' : 'Cố lên. Đọc lại ngữ pháp cho những câu bạn làm sai rồi thử lại.';
       top = '<div class="score">' + quiz.score + ' / ' + n + '</div>';
-      if (quiz.kind === 'set') extra = '<p class="muted">Điểm cao nhất trên thiết bị này: ' + best[quiz.setId] + '/' + n + '.</p>';
+      if (quiz.kind === 'set') extra = '<p class="muted">Điểm cao nhất trên thiết bị này: ' + best[quiz.setId].s + '/' + best[quiz.setId].n + '. Mỗi lần làm lại bạn sẽ nhận một bộ câu hỏi mới.</p>';
       nextBtn = '<a class="btn" href="#grammar">Ôn lại ngữ pháp</a>';
       retry = quiz.kind === 'set'
         ? '<button class="btn ghost" type="button" data-action="start" data-set="' + esc(quiz.setId) + '">Làm lại</button>'
@@ -517,7 +548,7 @@
       if (VBY[id]) { warn('từ vựng bị trùng', r); return; }
       var tp = typeof r[3] === 'number' && r[3] >= 0 && r[3] < VTOPICS.length ? r[3] : -1;
       var w = { id: id, w: String(r[0]), pos: String(r[1] || ''), vi: String(r[2]), tp: tp, lv: l.id };
-      VBY[id] = w; VOCAB.push(w);
+      w.r = Math.random(); VBY[id] = w; VOCAB.push(w);
       if (VLEVELS.indexOf(l.id) < 0) VLEVELS.push(l.id);
     });
   });
@@ -670,7 +701,7 @@
   function renderVList() {
     var listEl = document.getElementById('v-list'), cnt = document.getElementById('v-count');
     if (!listEl) return;
-    var items = vFiltered(), shown = items.slice(0, vLimit);
+    var items = vFiltered().sort(function (x, y) { return x.r - y.r; }), shown = items.slice(0, vLimit);
     cnt.textContent = items.length + ' từ' + (items.length > shown.length ? ', đang hiện ' + shown.length : '');
     if (!items.length) { listEl.innerHTML = '<div class="empty">Không có từ nào phù hợp. Hãy xóa từ khóa hoặc chọn chủ đề khác.</div>'; return; }
     listEl.innerHTML = '<div class="vgrid">' + shown.map(vsq).join('') + '</div>' +
@@ -750,11 +781,11 @@
     if (vReview) return vReview.done ? viewReviewDone() : viewReviewCard();
     var due = dueList().length, mine = storeIds().length;
     var subs = [['decks', 'Bộ từ'], ['review', 'Ôn hôm nay (' + due + ')'], ['mine', 'Từ của tôi (' + mine + ')']].map(function (s) {
-      return chipBtn('v-sub', s[0], s[1], vSub === s[0]);
+      return '<button type="button" class="subtab" data-action="v-sub" data-v="' + s[0] + '" aria-pressed="' + (vSub === s[0]) + '">' + esc(s[1]) + '</button>';
     }).join('');
     var body = vSub === 'review' ? viewReviewHome(due) : vSub === 'mine' ? viewMine() : viewDecks();
     return head('Từ vựng', 'Học từ theo danh sách chuẩn CEFR-J. Đánh dấu từ cần học rồi ôn lại đúng lúc: sau 1 ngày, 3 ngày, 7 ngày.') +
-      '<div class="chips" role="group" aria-label="Các phần của mục từ vựng" style="margin-bottom:1.25rem">' + subs + '</div>' +
+      '<div class="subtabs" role="group" aria-label="Các phần của mục từ vựng">' + subs + '</div>' +
       (vMsg ? '<p class="panel" role="status" style="margin-bottom:1rem">' + esc(vMsg) + '</p>' : '') + body +
       '<p class="muted" style="margin-top:2rem;font-size:0.9rem">Danh sách từ theo CEFR-J Vocabulary Profile v1.5 (Tono Laboratory, Tokyo University of Foreign Studies). Nghĩa tiếng Việt do Tiếng Anh mỗi ngày biên soạn và đang được rà soát.</p>';
   }
@@ -930,6 +961,11 @@
       if (p > -1) arr.splice(p, 1); else arr.push(v);
       render();
       refocus(a, v);
+    } else if (a === 'q-rule') {
+      var qi = parseInt(t.getAttribute('data-v'), 10), qsy = window.scrollY;
+      if (quiz && quiz.open) { quiz.open[qi] = !quiz.open[qi]; render(); window.scrollTo(0, qsy); refocus(a, String(qi)); }
+    } else if (a === 'g-topic') {
+      gTopic = t.getAttribute('data-v'); render(); refocus(a, gTopic);
     } else if (a === 'c-len') {
       cLen = parseInt(t.getAttribute('data-v'), 10) === 25 ? 25 : 10;
       render();
