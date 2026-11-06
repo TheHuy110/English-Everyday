@@ -91,7 +91,7 @@
   if (!Array.isArray(journal)) journal = [];
   var best = LS.get('oel.best', {});
   if (!best || typeof best !== 'object') best = {};
-  var delId = null, exportText = null;
+  var delId = null, exportText = null, jOpen = false;
 
   var view = document.getElementById('view');
   var ROUTES = ['home', 'grammar', 'vocab', 'tests', 'resources', 'tips', 'journal'];
@@ -112,6 +112,7 @@
   function streak() {
     var days = {};
     journal.forEach(function (e) { days[e.date] = true; });
+    Object.keys(activity.days).forEach(function (k) { if (dayActive(activity.days[k])) days[k] = true; });
     var d = new Date(); d.setHours(12, 0, 0, 0);
     if (!days[fmt(d)]) d.setDate(d.getDate() - 1);
     var n = 0;
@@ -128,10 +129,89 @@
     });
     return out;
   }
-  function totalMinutes() { return journal.reduce(function (s, e) { return s + (+e.minutes || 0); }, 0); }
-  function head(call, title, lead) {
-    return '<section class="sec-head"><p class="call">' + call + '</p><h1>' + title + '</h1><p class="lead">' + lead + '</p></section>';
+  function head(title, lead) {
+    return '<section class="sec-head"><h1>' + title + '</h1><p class="lead">' + lead + '</p></section>';
   }
+
+
+  /* ---------- Theo dõi tiến độ tự động (thời gian, từ, ngữ pháp, XP, cấp độ, huy hiệu) ---------- */
+  /* Rules and level names come from content/progress.js. Nothing is sent anywhere; it is saved in this browser only. */
+  var PROG = OEL.progress || {};
+  var XPR = { minute: 1, learned: 3, reviewed: 1, grammar: 2, test: 5 };
+  Object.keys(XPR).forEach(function (k) { if (PROG.xp && typeof PROG.xp[k] === 'number' && PROG.xp[k] >= 0) XPR[k] = PROG.xp[k]; });
+  var IDLE = typeof PROG.idleSeconds === 'number' && PROG.idleSeconds > 0 ? PROG.idleSeconds : 60;
+  var PLEVELS = list(PROG.levels).filter(function (l) { return l && str(l.name) && typeof l.xp === 'number'; })
+    .map(function (l) { return { name: str(l.name), xp: l.xp, img: str(l.img) }; }).sort(function (x, y) { return x.xp - y.xp; });
+  if (!PLEVELS.length) PLEVELS = [{ name: 'Hạt giống', xp: 0, img: '' }];
+  var ACHS = list(PROG.achievements).filter(function (x) { return x && str(x.id) && str(x.name) && str(x.stat) && typeof x.goal === 'number'; });
+
+  function cleanActivity(raw) {
+    var out = { days: Object.create(null), learned: Object.create(null), grammar: Object.create(null), ach: Object.create(null) };
+    if (!raw || typeof raw !== 'object') return out;
+    function num(v) { v = +v; return isFinite(v) && v > 0 ? Math.floor(v) : 0; }
+    if (raw.days && typeof raw.days === 'object') Object.keys(raw.days).forEach(function (k) {
+      var r = raw.days[k];
+      if (/^\d{4}-\d{2}-\d{2}$/.test(k) && r && typeof r === 'object') out.days[k] = { s: num(r.s), l: num(r.l), r: num(r.r), g: num(r.g), t: num(r.t) };
+    });
+    ['learned', 'grammar'].forEach(function (f) {
+      if (raw[f] && typeof raw[f] === 'object') Object.keys(raw[f]).forEach(function (k) { if (raw[f][k]) out[f][k] = 1; });
+    });
+    if (raw.ach && typeof raw.ach === 'object') Object.keys(raw.ach).forEach(function (k) { if (typeof raw.ach[k] === 'string') out.ach[k] = raw.ach[k].slice(0, 10); });
+    return out;
+  }
+  var activity = cleanActivity(LS.get('oel.activity', {}));
+  function saveActivity() { LS.set('oel.activity', activity); }
+  function dayActive(r) { return !!r && (r.s >= 60 || r.l > 0 || r.r > 0 || r.g > 0 || r.t > 0); }
+  function dayRec(d) { return activity.days[d] || (activity.days[d] = { s: 0, l: 0, r: 0, g: 0, t: 0 }); }
+
+  function pStats() {
+    var tot = { s: 0, r: 0, t: 0 }, active = 0;
+    Object.keys(activity.days).forEach(function (k) {
+      var r = activity.days[k]; tot.s += r.s; tot.r += r.r; tot.t += r.t; if (dayActive(r)) active++;
+    });
+    var td = activity.days[today()] || { s: 0, l: 0, r: 0, g: 0, t: 0 };
+    var st = { minutes: Math.floor(tot.s / 60), streak: streak(), days: active, learned: Object.keys(activity.learned).length,
+      reviewed: tot.r, grammar: Object.keys(activity.grammar).length, tests: tot.t, today: td };
+    st.xp = st.minutes * XPR.minute + st.learned * XPR.learned + st.reviewed * XPR.reviewed + st.grammar * XPR.grammar + st.tests * XPR.test;
+    st.level = levelOf(st.xp) + 1;
+    return st;
+  }
+  function levelOf(xp) { var n = 0; PLEVELS.forEach(function (l, i) { if (xp >= l.xp) n = i; }); return n; }
+  function toast(msg) {
+    try {
+      var el = document.createElement('div'); el.className = 'toast'; el.setAttribute('role', 'status'); el.textContent = msg;
+      document.body.appendChild(el); setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 5000);
+    } catch (e) {}
+  }
+  function checkAchievements() {
+    var st = pStats(), changed = false;
+    ACHS.forEach(function (x) {
+      if (!activity.ach[x.id] && st[x.stat] >= x.goal) { activity.ach[x.id] = today(); changed = true; toast('Huy hiệu mới: ' + x.name); }
+    });
+    return changed;
+  }
+  var lastLevel = levelOf(pStats().xp);
+  function afterChange() {
+    checkAchievements(); saveActivity();
+    var lv = levelOf(pStats().xp);
+    if (lv > lastLevel) toast('Lên cấp ' + (lv + 1) + ': ' + PLEVELS[lv].name);
+    lastLevel = lv;
+  }
+  var Act = {
+    learn: function (id) { if (!activity.learned[id]) { activity.learned[id] = 1; dayRec(today()).l++; afterChange(); } },
+    review: function () { dayRec(today()).r++; afterChange(); },
+    test: function () { dayRec(today()).t++; afterChange(); },
+    grammar: function (title) { if (title && !activity.grammar[title]) { activity.grammar[title] = 1; dayRec(today()).g++; afterChange(); } }
+  };
+  /* Time on the site: counts only while the tab is visible and the visitor was active in the last IDLE seconds. */
+  var lastInput = Date.now(), TICK = 5;
+  ['pointerdown', 'keydown', 'scroll', 'touchstart', 'mousemove'].forEach(function (n) {
+    window.addEventListener(n, function () { lastInput = Date.now(); }, { passive: true });
+  });
+  setInterval(function () {
+    if (document.hidden || Date.now() - lastInput > IDLE * 1000) return;
+    dayRec(today()).s += TICK; afterChange();
+  }, TICK * 1000);
 
   /* ---------- Trang chủ ---------- */
   function viewHome() {
@@ -149,26 +229,28 @@
       return '<button class="step" data-action="level" data-level="' + l.id + '" type="button"><b>' + l.id + '</b><span class="nm">' + l.name + '</span><span class="ds">' + l.d + '</span><span class="ct">' + ct + '</span></button>';
     }).join('');
     var shelf = [
-      ['#grammar', 'NGP 100', 'Ngữ pháp', 'Giải thích dễ hiểu, ví dụ và một lỗi thường gặp cho mỗi quy tắc.', GRAMMAR.length + ' quy tắc'],
-      ['#vocab', 'TV 150', 'Từ vựng', 'Thẻ từ vựng CEFR-J cấp A1 đến A2. Đánh dấu từ cần học và ôn theo lịch lặp lại.', VOCAB.length + ' từ'],
-      ['#tests', 'KT 200', 'Bài kiểm tra', 'Các bài trắc nghiệm ngắn, có giải thích cho từng đáp án.', BANK.length + ' câu hỏi'],
-      ['#resources', 'TN 300', 'Tài nguyên', 'Các trang miễn phí để luyện nghe, đọc, viết và từ vựng.', RESOURCES.length + ' trang'],
-      ['#tips', 'MEO 400', 'Mẹo học', 'Thói quen cho từng kỹ năng và các cặp từ ai cũng hay nhầm.', TIPS_FLAT.length + ' mẹo'],
-      ['#journal', 'NK 500', 'Nhật ký học tập', 'Ghi lại thời gian học, từ mới và lỗi sai. Chỉ mình bạn xem được.', journal.length + ' mục']
+      ['#grammar', 'Ngữ pháp', 'Giải thích dễ hiểu, ví dụ và một lỗi thường gặp cho mỗi quy tắc.', GRAMMAR.length + ' quy tắc'],
+      ['#vocab', 'Từ vựng', 'Thẻ từ vựng CEFR-J cấp A1 đến A2. Đánh dấu từ cần học và ôn theo lịch lặp lại.', VOCAB.length + ' từ'],
+      ['#tests', 'Bài kiểm tra', 'Các bài trắc nghiệm ngắn, có giải thích cho từng đáp án.', BANK.length + ' câu hỏi'],
+      ['#resources', 'Tài nguyên', 'Các trang miễn phí để luyện nghe, đọc, viết và từ vựng.', RESOURCES.length + ' trang'],
+      ['#tips', 'Mẹo học', 'Thói quen cho từng kỹ năng và các cặp từ ai cũng hay nhầm.', TIPS_FLAT.length + ' mẹo'],
+      ['#journal', 'Nhật ký học tập', 'Tự ghi lại thời gian học, chuỗi ngày, XP, cấp độ và huy hiệu. Chỉ mình bạn xem được.', 'Cấp ' + pStats().level]
     ].map(function (s) {
-      return '<a class="card" href="' + s[0] + '"><span class="call">' + s[1] + '</span><h3>' + s[2] + '</h3><p>' + s[3] + '</p><span class="meta">' + s[4] + '</span></a>';
+      return '<a class="card" href="' + s[0] + '"><h3>' + s[1] + '</h3><p>' + s[2] + '</p><span class="meta">' + s[3] + '</span></a>';
     }).join('');
     var bestKeys = Object.keys(best);
     var lastPl = LS.get('oel.placement', null);
     var plLine = lastPl && lastPl.level ? '<p style="margin-top:1rem">Trình độ ước lượng gần nhất: <mark>' + esc(lastPl.level) + '</mark></p>' : '';
-    var progress = (journal.length || bestKeys.length || plLine || Object.keys(vstore).length)
+    var ps = pStats();
+    var progress = (journal.length || bestKeys.length || plLine || Object.keys(vstore).length || ps.xp)
       ? plLine + '<div class="stats" style="margin-top:1rem">' +
-        '<div class="stat"><b>' + streak() + '</b><span>ngày liên tiếp</span></div>' +
-        '<div class="stat"><b>' + totalMinutes() + '</b><span>phút đã ghi</span></div>' +
-        '<div class="stat"><b>' + wordBank().length + '</b><span>từ đã lưu</span></div>' +
+        '<div class="stat"><b>' + ps.level + '</b><span>cấp ' + esc(PLEVELS[ps.level - 1].name) + '</span></div>' +
+        '<div class="stat"><b>' + ps.streak + '</b><span>ngày liên tiếp</span></div>' +
+        '<div class="stat"><b>' + ps.minutes + '</b><span>phút đã học</span></div>' +
+        '<div class="stat"><b>' + ps.learned + '</b><span>từ đã đánh dấu</span></div>' +
         '<div class="stat"><b>' + bestKeys.length + '/' + QSETS.length + '</b><span>bài đã làm</span></div>' +
         (Object.keys(vstore).length ? '<div class="stat"><b>' + dueList().length + '</b><span>từ cần ôn</span></div>' : '') + '</div>'
-      : '<p class="muted">Chưa có gì được ghi lại. Hãy viết một mục nhật ký hoặc làm một bài kiểm tra, tiến độ của bạn sẽ hiện ở đây.</p>';
+      : '<p class="muted">Chưa có gì được ghi lại. Cứ học như bình thường, trang sẽ tự ghi lại thời gian, từ vựng và ngữ pháp của bạn.</p>';
     return '<div class="stack">' +
       '<section class="hero"><p class="call">Dành cho người Việt học tiếng Anh</p><h1>Học tiếng Anh từ chữ đầu tiên đến thành thạo.</h1>' +
       '<p class="lead">Ngữ pháp, bài kiểm tra, tài nguyên đáng tin, mẹo học và nhật ký học tập riêng tư. Tất cả được giải thích bằng tiếng Việt.</p>' +
@@ -186,7 +268,7 @@
     var chips = [ALL].concat(lvls).map(function (l) {
       return '<button type="button" class="chip" data-action="level" data-level="' + l + '" aria-pressed="' + (gLevel === l) + '">' + l + '</button>';
     }).join('');
-    return head('NGP 100', 'Ngữ pháp', GRAMMAR.length + ' quy tắc cốt lõi từ thì hiện tại đơn đến đảo ngữ. Mỗi quy tắc có giải thích ngắn, ví dụ và một lỗi cần tránh.') +
+    return head('Ngữ pháp', GRAMMAR.length + ' quy tắc cốt lõi từ thì hiện tại đơn đến đảo ngữ. Mỗi quy tắc có giải thích ngắn, ví dụ và một lỗi cần tránh.') +
       '<div class="tools"><div><label for="g-search">Tìm quy tắc</label><input id="g-search" type="search" placeholder="Thử: điều kiện, bị động, mạo từ" value="' + esc(gQuery) + '" autocomplete="off"></div>' +
       '<div class="chips" role="group" aria-label="Lọc theo cấp độ">' + chips + '</div></div>' +
       '<p class="muted" id="g-count" aria-live="polite" style="margin-bottom:0.8rem"></p><div id="g-list"></div>';
@@ -205,7 +287,7 @@
     if (!items.length) { listEl.innerHTML = '<div class="empty">Không có quy tắc nào phù hợp. Hãy xóa từ khóa hoặc chọn cấp độ khác.</div>'; return; }
     listEl.innerHTML = items.map(function (o) {
       var g = o.g;
-      return '<details class="rule"><summary><span class="no">NGP ' + (101 + o.i) + '</span><h3>' + esc(g.t) + '</h3><span class="tag">' + esc(g.lv) + '</span></summary>' +
+      return '<details class="rule"><summary><h3>' + esc(g.t) + '</h3><span class="tag">' + esc(g.lv) + '</span></summary>' +
         '<div class="body"><p>' + md(g.rule) + '</p>' + (g.form ? '<div class="form">' + esc(g.form) + '</div>' : '') +
         (g.ex.length ? '<ul>' + g.ex.map(function (e) { return '<li>' + esc(e) + '</li>'; }).join('') + '</ul>' : '') +
         (g.no && g.yes ? '<div class="pair"><div><b class="no-way" style="text-decoration:none">Sai</b><span class="no-way">' + esc(g.no) + '</span></div>' +
@@ -296,7 +378,7 @@
     return est;
   }
   function finishQuiz() {
-    quiz.done = true;
+    quiz.done = true; Act.test();
     if (quiz.kind === 'set') {
       if (best[quiz.setId] === undefined || quiz.score > best[quiz.setId]) { best[quiz.setId] = quiz.score; LS.set('oel.best', best); }
     } else if (quiz.kind === 'placement') {
@@ -326,13 +408,13 @@
         '<span class="meta">' + s.qs.length + ' câu hỏi / ' + (b !== undefined ? 'điểm cao nhất ' + b + '/' + s.qs.length : 'chưa làm') + '</span>' +
         '<div style="margin-top:0.6rem"><button class="btn" type="button" data-action="start" data-set="' + esc(s.id) + '">Bắt đầu</button></div></div>';
     }).join('');
-    return head('KT 200', 'Bài kiểm tra', 'Kiểm tra trình độ, tự tạo bài theo cấp độ và chủ đề, hoặc luyện theo bài có sẵn. Sau mỗi câu bạn sẽ thấy lời giải thích.') +
+    return head('Bài kiểm tra', 'Kiểm tra trình độ, tự tạo bài theo cấp độ và chủ đề, hoặc luyện theo bài có sẵn. Sau mỗi câu bạn sẽ thấy lời giải thích.') +
       '<div class="stack">' +
-      '<section class="panel stack" style="gap:1rem"><div><p class="call">KT 210</p><h2>Kiểm tra trình độ</h2></div>' +
+      '<section class="panel stack" style="gap:1rem"><div><h2>Kiểm tra trình độ</h2></div>' +
       '<p class="muted">Độ khó tự điều chỉnh: trả lời đúng thì câu sau khó hơn, trả lời sai thì dễ hơn. Kết quả chỉ là mức ước lượng, không phải chứng chỉ.</p>' + lastTxt +
       '<div class="row"><button class="btn" type="button" data-action="start-placement" data-n="10">Kiểm tra nhanh: 10 câu</button>' +
       '<button class="btn ghost" type="button" data-action="start-placement" data-n="25">Kiểm tra dài: 25 câu</button></div></section>' +
-      '<section class="panel stack" style="gap:1rem"><div><p class="call">KT 220</p><h2>Tự tạo bài kiểm tra</h2></div>' +
+      '<section class="panel stack" style="gap:1rem"><div><h2>Tự tạo bài kiểm tra</h2></div>' +
       '<p class="muted">Chọn cấp độ và chủ đề. Không chọn gì nghĩa là lấy tất cả.</p>' +
       '<div><p class="lab" style="margin-bottom:0.4rem">Cấp độ</p><div class="chips" role="group" aria-label="Cấp độ">' + lvChips + '</div></div>' +
       '<div><p class="lab" style="margin-bottom:0.4rem">Chủ đề</p><div class="chips" role="group" aria-label="Chủ đề">' + tpChips + '</div></div>' +
@@ -404,7 +486,7 @@
       var host = r.u.replace(/^https?:\/\/(www\.)?/, '');
       return '<a class="card" href="' + esc(r.u) + '" target="_blank" rel="noopener noreferrer"><span class="row" style="justify-content:space-between;flex-wrap:nowrap"><h3>' + esc(r.n) + '</h3><span class="tag">' + esc(r.ty) + '</span></span><p>' + esc(r.d) + '</p><span class="dom">' + esc(host) + '</span></a>';
     }).join('');
-    return head('TN 300', 'Tài nguyên', 'Các trang miễn phí được chọn vì dạy rõ ràng. Lọc theo kỹ năng bạn muốn luyện. Liên kết mở trong tab mới.') +
+    return head('Tài nguyên', 'Các trang miễn phí được chọn vì dạy rõ ràng. Lọc theo kỹ năng bạn muốn luyện. Liên kết mở trong tab mới.') +
       '<div class="chips" role="group" aria-label="Lọc theo kỹ năng" style="margin-bottom:1.25rem">' + chips + '</div>' +
       (items.length ? '<div class="grid res">' + cards + '</div>' : '<div class="empty">Chưa có tài nguyên nào cho kỹ năng này.</div>');
   }
@@ -415,7 +497,7 @@
       return '<div class="panel"><h3>' + esc(g.g) + '</h3><ul class="tip-list">' + g.l.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div>';
     }).join('');
     var rows = CONFUSED.map(function (r) { return '<tr><td>' + esc(r[0]) + '</td><td>' + esc(r[1]) + '</td><td>' + esc(r[2]) + '</td></tr>'; }).join('');
-    return head('MEO 400', 'Mẹo học', 'Những thói quen nhỏ cho từng kỹ năng, và các cặp từ làm khó cả người học lẫn người bản xứ.') +
+    return head('Mẹo học', 'Những thói quen nhỏ cho từng kỹ năng, và các cặp từ làm khó cả người học lẫn người bản xứ.') +
       '<div class="stack"><div class="grid wide">' + groups + '</div>' +
       '<section><h2 style="margin-bottom:0.3rem">Các cặp từ dễ nhầm</h2><p class="muted" style="margin-bottom:1rem">Hãy kiểm tra những cặp này trước khi gửi email hoặc nộp bài viết.</p>' +
       '<div class="table-wrap"><table><thead><tr><th>Cặp từ</th><th>Quy tắc</th><th>Ví dụ</th></tr></thead><tbody>' + rows + '</tbody></table></div></section></div>';
@@ -514,7 +596,7 @@
   /* --- Phiên duyệt thẻ: chọn từ nào cần học --- */
   function startBrowse() {
     var pool = vFiltered().filter(function (w) { return !vstore[w.id]; });
-    var take = shuffle(pool).slice(0, 20);
+    var take = shuffle(pool);
     if (!take.length) { vMsg = 'Không còn từ chưa đánh dấu trong bộ lọc này.'; return; }
     vBrowse = { queue: take.map(function (w) { return w.id; }), i: 0, shown: false, added: 0, known: 0, skipped: 0, done: false };
   }
@@ -529,7 +611,7 @@
     var id = vReview.queue[vReview.i], e = vstore[id];
     if (e) {
       if (ok) {
-        vReview.right++;
+        vReview.right++; Act.review();
         if (e.s >= INTERVALS.length) { e.k = 1; e.d = ''; }
         else { e.d = addDays(today(), INTERVALS[e.s]); e.s++; }
       } else {
@@ -547,19 +629,19 @@
   }
   function sessionTop(title, i, total, exitAction) {
     return '<div class="row" style="justify-content:space-between"><p class="call" style="margin:0">' + esc(title) + '</p><button class="btn ghost small" type="button" data-action="' + exitAction + '">Thoát</button></div>' +
-      '<div><p class="muted" style="font-size:0.9rem;margin-bottom:0.4rem">Thẻ ' + (i + 1) + ' / ' + total + '</p><div class="bar"><i style="width:' + (i / total * 100) + '%"></i></div></div>';
+      '<div><p class="muted" style="font-size:0.9rem;margin-bottom:0.4rem">Thẻ ' + (i + 1) + ' / ' + total + (total - i - 1 > 0 ? ' (còn ' + (total - i - 1) + ')' : '') + '</p><div class="bar"><i style="width:' + (i / total * 100) + '%"></i></div></div>';
   }
   function viewBrowseCard() {
     var w = entryWord(vBrowse.queue[vBrowse.i]);
-    return '<div class="quiz">' + sessionTop('Duyệt thẻ / ' + vLevel, vBrowse.i, vBrowse.queue.length, 'b-exit') + cardHtml(w, vBrowse.shown) +
-      '<div class="row"><button class="btn" type="button" data-action="b-learn">Cần học</button><button class="btn ghost" type="button" data-action="b-know">Đã biết</button>' +
+    return '<div class="quiz">' + sessionTop('Duyệt thẻ / ' + vLevel, vBrowse.i, vBrowse.queue.length, 'b-exit') + cardHtml(w, true) +
+      '<div class="bcards"><button class="btn ghost" type="button" data-action="b-know">Đã biết</button><button class="btn" type="button" data-action="b-learn">Cần học</button>' +
       '<button class="btn ghost" type="button" data-action="b-skip">Bỏ qua</button></div>' +
-      '<p class="muted" style="font-size:0.9rem">“Cần học” đưa từ vào lịch ôn. “Đã biết” không ôn lại. “Bỏ qua” để từ ở lại trong bộ từ.</p></div>';
+      '<p class="muted" style="font-size:0.9rem">“Cần học” đưa từ vào lịch ôn. “Đã biết” không ôn lại. “Bỏ qua” để từ ở lại trong bộ từ. Bạn có thể dừng bất cứ lúc nào bằng nút Thoát.</p></div>';
   }
   function viewBrowseDone() {
-    return '<div class="quiz"><p class="call">Duyệt thẻ / ' + esc(vLevel) + '</p><h1 style="font-size:2rem">Xong 20 thẻ</h1>' +
+    return '<div class="quiz"><p class="call">Duyệt thẻ / ' + esc(vLevel) + '</p><h1 style="font-size:2rem">Đã duyệt hết thẻ</h1>' +
       '<div class="stats"><div class="stat"><b>' + vBrowse.added + '</b><span>cần học</span></div><div class="stat"><b>' + vBrowse.known + '</b><span>đã biết</span></div><div class="stat"><b>' + vBrowse.skipped + '</b><span>bỏ qua</span></div></div>' +
-      '<div class="row"><button class="btn" type="button" data-action="v-browse">Duyệt tiếp 20 từ</button><button class="btn ghost" type="button" data-action="m-open">Từ của tôi</button><button class="btn ghost" type="button" data-action="b-exit">Xong</button></div></div>';
+      '<div class="row"><button class="btn" type="button" data-action="v-browse">Duyệt lại từ chưa đánh dấu</button><button class="btn ghost" type="button" data-action="m-open">Từ của tôi</button><button class="btn ghost" type="button" data-action="b-exit">Xong</button></div></div>';
   }
   function viewReviewCard() {
     var w = entryWord(vReview.queue[vReview.i]);
@@ -576,15 +658,14 @@
       '<div class="row">' + (left ? '<button class="btn" type="button" data-action="r-start">Ôn tiếp</button>' : '') + '<button class="btn ghost" type="button" data-action="m-open">Từ của tôi</button><button class="btn ghost" type="button" data-action="r-exit">Xong</button></div></div>';
   }
 
-  function vrow(w) {
-    var e = vstore[w.id], status = '', act, key = 'data-key="' + esc(w.id) + '" data-id="' + esc(w.id) + '"';
-    if (!e) act = '<button type="button" class="btn small" data-action="v-add" ' + key + '>Học từ này</button>';
-    else {
-      status = e.k ? '<span class="tag">Đã biết</span>' : '<span class="tag on">Đang học</span>';
-      act = '<button type="button" class="btn ghost small" data-action="v-remove" ' + key + '>Bỏ đánh dấu</button>';
-    }
-    return '<li class="vrow"><div><span class="vw">' + esc(w.w) + '</span> ' + posTag(w) + status + '</div>' +
-      '<div class="vact">' + speakBtn(w.w) + act + '</div><div class="vvi">' + esc(w.vi) + '</div></li>';
+  /* Square card: click anywhere on the card to mark / unmark the word. The speaker button is separate. */
+  function vsq(w) {
+    var e = vstore[w.id], cls = 'vsq' + (e ? (e.k ? ' known' : ' learning') : ''), key = 'data-key="' + esc(w.id) + '" data-id="' + esc(w.id) + '"';
+    var status = e ? (e.k ? 'Đã biết' : 'Đang học') : 'Bấm để học';
+    return '<div class="' + cls + '"><button type="button" class="vsq-main" data-action="v-toggle" ' + key + ' aria-pressed="' + (e ? 'true' : 'false') + '" title="' + esc(w.vi) + '">' +
+      '<span class="vw">' + esc(w.w) + '</span>' + (w.pos ? '<span class="vpos">' + esc(POS_VI[w.pos] || w.pos) + '</span>' : '') +
+      '<span class="vm">' + esc(w.vi) + '</span><span class="vst">' + status + '</span></button>' +
+      (CAN_SPEAK ? '<button type="button" class="vsq-say" data-action="speak" data-w="' + esc(w.w) + '" aria-label="Nghe phát âm ' + esc(w.w) + '">Nghe</button>' : '') + '</div>';
   }
   function renderVList() {
     var listEl = document.getElementById('v-list'), cnt = document.getElementById('v-count');
@@ -592,7 +673,7 @@
     var items = vFiltered(), shown = items.slice(0, vLimit);
     cnt.textContent = items.length + ' từ' + (items.length > shown.length ? ', đang hiện ' + shown.length : '');
     if (!items.length) { listEl.innerHTML = '<div class="empty">Không có từ nào phù hợp. Hãy xóa từ khóa hoặc chọn chủ đề khác.</div>'; return; }
-    listEl.innerHTML = '<ul class="vlist">' + shown.map(vrow).join('') + '</ul>' +
+    listEl.innerHTML = '<div class="vgrid">' + shown.map(vsq).join('') + '</div>' +
       (items.length > shown.length ? '<div style="margin-top:1rem"><button class="btn ghost" type="button" data-action="v-more">Xem thêm 40 từ</button></div>' : '');
   }
   function viewDecks() {
@@ -610,8 +691,8 @@
     return '<div class="stack" style="gap:1.5rem">' +
       '<div class="chips" role="group" aria-label="Chọn bộ từ">' + lvChips + '</div>' +
       '<div class="panel"><div class="stats"><div class="stat"><b>' + learning + '</b><span>đang học</span></div><div class="stat"><b>' + known + '</b><span>đã biết</span></div><div class="stat"><b>' + (ws.length - learning - known) + '</b><span>chưa đánh dấu</span></div></div>' +
-      '<div class="row" style="margin-top:1rem"><button class="btn" type="button" data-action="v-browse">Duyệt thẻ: 20 từ</button><button class="btn ghost" type="button" data-action="v-batch">Thêm nhanh 20 từ mới</button></div>' +
-      '<p class="muted" style="margin-top:0.6rem;font-size:0.95rem">Duyệt thẻ cho bạn xem từng từ rồi chọn “Cần học” hoặc “Đã biết”. Thêm nhanh đưa 20 từ ngẫu nhiên vào danh sách học. Cả hai chỉ lấy từ chưa đánh dấu, theo bộ lọc bên dưới.</p></div>' +
+      '<div class="row" style="margin-top:1rem"><button class="btn" type="button" data-action="v-browse">Duyệt thẻ</button><button class="btn ghost" type="button" data-action="v-batch">Thêm nhanh 20 từ mới</button></div>' +
+      '<p class="muted" style="margin-top:0.6rem;font-size:0.95rem">Duyệt thẻ cho bạn xem từng từ trên một thẻ lớn rồi chọn “Đã biết”, “Cần học” hoặc “Bỏ qua”. Bên dưới, bấm vào một thẻ vuông để đánh dấu hoặc bỏ đánh dấu từ cần học. Thêm nhanh đưa 20 từ ngẫu nhiên vào danh sách học. Cả hai chỉ lấy từ chưa đánh dấu, theo bộ lọc bên dưới.</p></div>' +
       '<div><p class="lab" style="margin-bottom:0.4rem">Chủ đề</p><div class="chips" role="group" aria-label="Lọc theo chủ đề">' + tpChips + '</div></div>' +
       '<div><label for="v-search">Tìm từ hoặc nghĩa</label><input id="v-search" type="search" placeholder="Ví dụ: apple, quả táo" value="' + esc(vQuery) + '" autocomplete="off"></div>' +
       '<p class="muted" id="v-count" aria-live="polite"></p><div id="v-list"></div></div>';
@@ -672,7 +753,7 @@
       return chipBtn('v-sub', s[0], s[1], vSub === s[0]);
     }).join('');
     var body = vSub === 'review' ? viewReviewHome(due) : vSub === 'mine' ? viewMine() : viewDecks();
-    return head('TV 150', 'Từ vựng', 'Học từ theo danh sách chuẩn CEFR-J. Đánh dấu từ cần học rồi ôn lại đúng lúc: sau 1 ngày, 3 ngày, 7 ngày.') +
+    return head('Từ vựng', 'Học từ theo danh sách chuẩn CEFR-J. Đánh dấu từ cần học rồi ôn lại đúng lúc: sau 1 ngày, 3 ngày, 7 ngày.') +
       '<div class="chips" role="group" aria-label="Các phần của mục từ vựng" style="margin-bottom:1.25rem">' + subs + '</div>' +
       (vMsg ? '<p class="panel" role="status" style="margin-bottom:1rem">' + esc(vMsg) + '</p>' : '') + body +
       '<p class="muted" style="margin-top:2rem;font-size:0.9rem">Danh sách từ theo CEFR-J Vocabulary Profile v1.5 (Tono Laboratory, Tokyo University of Foreign Studies). Nghĩa tiếng Việt do Tiếng Anh mỗi ngày biên soạn và đang được rà soát.</p>';
@@ -682,7 +763,7 @@
     if (!w || !vi) { vMsg = 'Hãy nhập cả từ tiếng Anh và nghĩa tiếng Việt.'; render(); return; }
     var id = 'u:' + w.toLowerCase().slice(0, 80);
     if (vstore[id]) { vMsg = 'Từ này đã có trong danh sách riêng của bạn.'; render(); return; }
-    vstore[id] = { s: 0, d: today(), k: 0, w: w.slice(0, 80), vi: vi.slice(0, 200) };
+    vstore[id] = { s: 0, d: today(), k: 0, w: w.slice(0, 80), vi: vi.slice(0, 200) }; Act.learn(id);
     saveV(); vMsg = 'Đã thêm “' + w + '” vào danh sách học.'; render();
   }
 
@@ -704,11 +785,10 @@
       ? sorted.map(entryHtml).join('')
       : '<article class="panel entry example"><header><h3>Mục ví dụ</h3><span class="tag">Ví dụ, không được lưu</span></header><p><span class="lab">Đã học:</span> Thì hiện tại hoàn thành, 20 phút nghe BBC Learning English.</p><div class="words"><span class="word">rehearse</span><span class="word">on schedule</span><span class="word">figure out</span></div><p><span class="lab">Cần nhớ:</span> Nói “I saw him yesterday”, không nói “I have seen him yesterday”.</p></article>';
     var bank = wordBank();
-    return head('NK 500', 'Nhật ký học tập', 'Ghi lại bạn đã học gì, những từ mới gặp và những lỗi bạn muốn bỏ. Các mục chỉ được lưu trong trình duyệt này.') +
-      '<div class="stack"><div class="panel"><div class="stats">' +
-      '<div class="stat"><b>' + streak() + '</b><span>ngày liên tiếp</span></div><div class="stat"><b>' + journal.length + '</b><span>mục nhật ký</span></div>' +
-      '<div class="stat"><b>' + totalMinutes() + '</b><span>phút</span></div><div class="stat"><b>' + bank.length + '</b><span>từ đã lưu</span></div></div></div>' +
-      '<form id="jform" class="panel jform" novalidate>' +
+    return head('Nhật ký học tập', 'Trang tự ghi lại thời gian học, chuỗi ngày, từ vựng và ngữ pháp của bạn. Dữ liệu chỉ được lưu trong trình duyệt này.') +
+      '<div class="stack" style="gap:1.5rem">' + levelPanel() + progressStats() + weekChart() + achievementsHtml() + xpRules() +
+      '<details class="panel jbook"' + (jOpen ? ' open' : '') + '><summary><h2>Sổ tay: tự ghi chú</h2></summary><div class="stack" style="gap:1.25rem;margin-top:1rem">' +
+      '<form id="jform" class="jform" novalidate>' +
       '<div><label for="j-date">Ngày</label><input id="j-date" type="date" value="' + today() + '"></div>' +
       '<div><label for="j-min">Số phút đã học</label><input id="j-min" type="number" min="0" max="600" step="5" value="20"></div>' +
       '<div class="full"><label for="j-topic">Hôm nay bạn đã học gì?</label><input id="j-topic" type="text" placeholder="Ví dụ: quá khứ đơn, một tập podcast, 10 thẻ từ vựng"></div>' +
@@ -716,10 +796,60 @@
       '<div class="full"><label for="j-mistake">Một lỗi cần nhớ</label><textarea id="j-mistake" placeholder="Viết cả cách sai và cách đúng"></textarea></div>' +
       '<div class="full"><label for="j-conf">Mức tự tin hôm nay: <output id="j-conf-out">3</output>/5</label><input id="j-conf" type="range" min="1" max="5" step="1" value="3"></div>' +
       '<div class="full row"><button class="btn" type="submit">Lưu mục nhật ký</button><span id="j-msg" class="muted" role="status"></span></div></form>' +
-      (bank.length ? '<section><h2 style="margin-bottom:0.8rem">Kho từ vựng</h2><div class="words">' + bank.map(function (w) { return '<span class="word">' + esc(w) + '</span>'; }).join('') + '</div></section>' : '') +
-      '<section><div class="row" style="justify-content:space-between;margin-bottom:0.8rem"><h2>Các mục nhật ký</h2>' + (journal.length ? '<button class="btn ghost small" type="button" data-action="export">Sao chép tất cả dạng văn bản</button>' : '') + '</div>' +
+      (bank.length ? '<section><h3 style="margin-bottom:0.8rem">Kho từ vựng</h3><div class="words">' + bank.map(function (w) { return '<span class="word">' + esc(w) + '</span>'; }).join('') + '</div></section>' : '') +
+      '<section><div class="row" style="justify-content:space-between;margin-bottom:0.8rem"><h3>Các mục ghi chú</h3>' + (journal.length ? '<button class="btn ghost small" type="button" data-action="export">Sao chép tất cả dạng văn bản</button>' : '') + '</div>' +
       (exportText !== null ? '<div style="margin-bottom:1rem"><label for="j-export">Chọn tất cả và sao chép đoạn văn bản này</label><textarea id="j-export" class="export" readonly>' + esc(exportText) + '</textarea></div>' : '') +
-      '<div class="stack" style="gap:0.9rem" id="j-list">' + entries + '</div></section></div>';
+      '<div class="stack" style="gap:0.9rem" id="j-list">' + entries + '</div></section></div></details></div>';
+  }
+  /* --- Các khối của trang nhật ký --- */
+  function levelPanel() {
+    var st = pStats(), i = st.level - 1, cur = PLEVELS[i], next = PLEVELS[i + 1];
+    var pct = next ? Math.round((st.xp - cur.xp) / (next.xp - cur.xp) * 100) : 100;
+    var icon = cur.img ? '<img src="' + esc(cur.img) + '" alt="">' : '<span>' + st.level + '</span>';
+    return '<section class="panel lvl"><div class="lvl-icon" aria-hidden="true">' + icon + '</div><div class="stack" style="gap:0.5rem;min-width:0">' +
+      '<div><p class="call">Cấp ' + st.level + '</p><h2>' + esc(cur.name) + '</h2></div>' +
+      '<p class="muted">' + st.xp + ' XP' + (next ? ' · còn ' + (next.xp - st.xp) + ' XP để lên cấp ' + (st.level + 1) + ' (' + esc(next.name) + ')' : ' · bạn đã đạt cấp cao nhất') + '</p>' +
+      '<div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + pct + '"><i style="width:' + pct + '%"></i></div></div></section>';
+  }
+  function progressStats() {
+    var st = pStats(), td = st.today;
+    return '<section class="grid wide"><div class="panel"><p class="call">Hôm nay</p><div class="stats" style="margin-top:0.6rem">' +
+      '<div class="stat"><b>' + Math.floor(td.s / 60) + '</b><span>phút</span></div><div class="stat"><b>' + td.l + '</b><span>từ đánh dấu</span></div>' +
+      '<div class="stat"><b>' + td.r + '</b><span>lần nhớ từ</span></div><div class="stat"><b>' + td.g + '</b><span>quy tắc ngữ pháp</span></div></div></div>' +
+      '<div class="panel"><p class="call">Tổng cộng</p><div class="stats" style="margin-top:0.6rem">' +
+      '<div class="stat"><b>' + st.streak + '</b><span>ngày liên tiếp</span></div><div class="stat"><b>' + st.minutes + '</b><span>phút</span></div>' +
+      '<div class="stat"><b>' + st.days + '</b><span>ngày đã học</span></div><div class="stat"><b>' + st.learned + '</b><span>từ đã đánh dấu</span></div>' +
+      '<div class="stat"><b>' + st.grammar + '/' + GRAMMAR.length + '</b><span>quy tắc ngữ pháp</span></div><div class="stat"><b>' + st.tests + '</b><span>bài kiểm tra</span></div></div></div></section>';
+  }
+  function weekChart() {
+    var cols = [], max = 1, d = new Date(), i;
+    d.setHours(12, 0, 0, 0); d.setDate(d.getDate() - 6);
+    for (i = 0; i < 7; i++) {
+      var k = fmt(d), rec = activity.days[k], m = rec ? Math.floor(rec.s / 60) : 0, lab = '';
+      try { lab = d.toLocaleDateString('vi-VN', { weekday: 'short' }); } catch (e) { lab = k.slice(5); }
+      cols.push({ m: m, lab: lab, on: dayActive(rec) });
+      if (m > max) max = m;
+      d.setDate(d.getDate() + 1);
+    }
+    return '<section class="panel"><p class="call">7 ngày gần nhất (phút học)</p><div class="week" role="img" aria-label="Biểu đồ số phút học mỗi ngày trong 7 ngày gần nhất">' +
+      cols.map(function (c) {
+        return '<div class="wcol"><span class="wn">' + c.m + '</span><i class="' + (c.on ? 'on' : '') + '" style="height:' + Math.max(4, Math.round(c.m / max * 100)) + '%"></i><span class="wl">' + esc(c.lab) + '</span></div>';
+      }).join('') + '</div></section>';
+  }
+  function achievementsHtml() {
+    if (!ACHS.length) return '';
+    var st = pStats(), got = 0;
+    var cards = ACHS.map(function (x) {
+      var when = activity.ach[x.id], val = Math.min(st[x.stat] || 0, x.goal);
+      if (when) got++;
+      return '<div class="ach' + (when ? ' got' : '') + '"><b>' + esc(x.name) + '</b><span>' + esc(x.desc) + '</span>' +
+        (when ? '<em>Mở khóa ' + esc(niceShort(when)) + '</em>' : '<div class="bar"><i style="width:' + Math.round(val / x.goal * 100) + '%"></i></div><em>' + val + ' / ' + x.goal + '</em>') + '</div>';
+    }).join('');
+    return '<section><h2 style="margin-bottom:0.8rem">Huy hiệu (' + got + '/' + ACHS.length + ')</h2><div class="achs">' + cards + '</div></section>';
+  }
+  function xpRules() {
+    return '<p class="muted" style="font-size:0.95rem">Cách tính XP: 1 phút học = ' + XPR.minute + ' XP, 1 từ đánh dấu cần học = ' + XPR.learned + ' XP, 1 lần nhớ từ khi ôn = ' + XPR.reviewed +
+      ' XP, 1 quy tắc ngữ pháp mở lần đầu = ' + XPR.grammar + ' XP, 1 bài kiểm tra hoàn thành = ' + XPR.test + ' XP. Thời gian chỉ tính khi bạn đang dùng trang.</p>';
   }
   function buildExport() {
     return journal.slice().sort(function (a, b) { return a.date < b.date ? -1 : 1; }).map(function (e) {
@@ -773,6 +903,13 @@
   }
 
   /* ---------- Sự kiện ---------- */
+  /* Ghi nhận quy tắc ngữ pháp được mở, và nhớ trạng thái đóng/mở của sổ tay. */
+  view.addEventListener('toggle', function (ev) {
+    var d = ev.target;
+    if (!d || d.tagName !== 'DETAILS') return;
+    if (d.classList.contains('jbook')) jOpen = d.open;
+    else if (d.classList.contains('rule') && d.open) { var h = d.querySelector('h3'); if (h) Act.grammar(h.textContent); }
+  }, true);
   view.addEventListener('click', function (ev) {
     var t = ev.target.closest('[data-action]');
     if (!t) return;
@@ -830,13 +967,13 @@
       vTopic = parseInt(t.getAttribute('data-v'), 10); vLimit = 40; render(); refocus(a, String(vTopic));
     } else if (a === 'v-more') {
       vLimit += 40; renderVList();
-    } else if (a === 'v-add' || a === 'v-remove') {
-      var wid = t.getAttribute('data-id');
-      if (a === 'v-add') vstore[wid] = { s: 0, d: today(), k: 0 }; else delete vstore[wid];
-      saveV(); render(); refocusKey(wid);
+    } else if (a === 'v-toggle') {
+      var wid = t.getAttribute('data-id'), sy = window.scrollY;
+      if (vstore[wid]) delete vstore[wid]; else { vstore[wid] = { s: 0, d: today(), k: 0 }; Act.learn(wid); }
+      saveV(); render(); window.scrollTo(0, sy); refocusKey(wid);
     } else if (a === 'v-batch') {
       var bpool = shuffle(vFiltered().filter(function (w) { return !vstore[w.id]; })).slice(0, 20);
-      bpool.forEach(function (w) { vstore[w.id] = { s: 0, d: today(), k: 0 }; });
+      bpool.forEach(function (w) { vstore[w.id] = { s: 0, d: today(), k: 0 }; Act.learn(w.id); });
       saveV();
       vMsg = bpool.length ? 'Đã thêm ' + bpool.length + ' từ vào danh sách học. Các từ này sẽ xuất hiện ở mục “Ôn hôm nay”.' : 'Không còn từ chưa đánh dấu trong bộ lọc này.';
       render();
@@ -851,7 +988,7 @@
     } else if (a === 'b-learn' || a === 'b-know' || a === 'b-skip') {
       if (!vBrowse || vBrowse.done) return;
       var bid = vBrowse.queue[vBrowse.i];
-      if (a === 'b-learn') { vstore[bid] = { s: 0, d: today(), k: 0 }; vBrowse.added++; }
+      if (a === 'b-learn') { vstore[bid] = { s: 0, d: today(), k: 0 }; vBrowse.added++; Act.learn(bid); }
       else if (a === 'b-know') { vstore[bid] = { s: 0, d: '', k: 1 }; vBrowse.known++; }
       else vBrowse.skipped++;
       saveV(); vBrowse.i++; vBrowse.shown = false;

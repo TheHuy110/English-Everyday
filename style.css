@@ -2,7 +2,7 @@
 [hidden] { display: none !important; }
 body { margin: 0; }
 img { max-width: 100%; }
-/* Layout concept: a library catalogue. Sticky tab bar, call numbers on every section, and a CEFR staircase as the one bold moment on the home page. */
+/* Layout concept: sticky tab bar, a CEFR staircase as the one bold moment on the home page. */
 :root {
   color-scheme: light;
   --bg: #F1F4F6;
@@ -109,15 +109,17 @@ label { display: block; font-family: var(--font-display); font-weight: 500; font
 .step .nm { font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; }
 .step .ds { font-size: 0.875rem; color: var(--muted); line-height: 1.4; }
 .step .ct { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); }
+.step:hover, .step:focus-visible { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.step:hover b, .step:focus-visible b { color: var(--mark); }
+.step:hover .ds, .step:hover .ct, .step:focus-visible .ds, .step:focus-visible .ct { color: var(--bg); opacity: 0.85; }
+/* Staircase: every step is taller than the one before. Change the numbers to change the slope. */
 @media (min-width: 900px) {
-  .step:nth-child(1) { margin-top: 5rem; }
-  .step:nth-child(2) { margin-top: 4rem; }
-  .step:nth-child(3) { margin-top: 3rem; }
-  .step:nth-child(4) { margin-top: 2rem; }
-  .step:nth-child(5) { margin-top: 1rem; }
-  .step:nth-child(6) { margin-top: 0; background: var(--ink); color: var(--bg); border-color: var(--ink); }
-  .step:nth-child(6) b { color: var(--mark); }
-  .step:nth-child(6) .ds, .step:nth-child(6) .ct { color: var(--bg); opacity: 0.8; }
+  .step:nth-child(1) { min-height: 11rem; }
+  .step:nth-child(2) { min-height: 12.5rem; }
+  .step:nth-child(3) { min-height: 14rem; }
+  .step:nth-child(4) { min-height: 15.5rem; }
+  .step:nth-child(5) { min-height: 17rem; }
+  .step:nth-child(6) { min-height: 18.5rem; }
 }
 .card { display: grid; gap: 0.4rem; align-content: start; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 1.1rem 1.2rem; text-decoration: none; color: var(--ink); min-width: 0; }
 a.card:hover { border-color: var(--accent); }
@@ -203,3 +205,45 @@ textarea.export { font-family: var(--font-mono); font-size: 0.85rem; min-height:
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
 .btn, .chip, .step, .opt, .card { transition: border-color 0.15s; }
+
+/* ---------- Home cards, vocabulary squares, big flashcard ---------- */
+.bcards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.6rem; }
+.bcards .btn { justify-content: center; padding-block: 0.9rem; font-size: 1.05rem; }
+.vcard { min-height: 18rem; }
+.vgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr)); gap: 0.6rem; }
+.vsq { position: relative; min-width: 0; aspect-ratio: 1; }
+.vsq-main { font: inherit; color: var(--ink); text-align: left; width: 100%; height: 100%; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 0.75rem; cursor: pointer; display: grid; grid-template-rows: auto auto 1fr auto; gap: 0.2rem; align-content: start; transition: border-color 0.15s, background 0.15s; }
+.vsq-main:hover { border-color: var(--accent); }
+.vsq-main .vw { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; line-height: 1.2; overflow-wrap: anywhere; }
+.vsq-main .vpos { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); }
+.vsq-main .vm { color: var(--muted); font-size: 0.92rem; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.vsq-main .vst { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); align-self: end; }
+.vsq.learning .vsq-main { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, var(--surface)); }
+.vsq.learning .vst { color: var(--accent); font-weight: 600; }
+.vsq.known .vsq-main { opacity: 0.7; }
+.vsq-say { position: absolute; bottom: 0.5rem; right: 0.5rem; font: inherit; font-size: 0.72rem; padding: 0.2rem 0.45rem; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--ink); cursor: pointer; }
+.vsq-say:hover { border-color: var(--accent); }
+
+/* ---------- Journal: level, week chart, achievements ---------- */
+.lvl { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 1.25rem; align-items: center; }
+.lvl-icon { width: 5.5rem; height: 5.5rem; border-radius: 50%; background: color-mix(in srgb, var(--accent) 12%, var(--surface)); border: 2px solid var(--accent); display: grid; place-items: center; overflow: hidden; }
+.lvl-icon span { font-family: var(--font-display); font-weight: 700; font-size: 2.6rem; color: var(--accent); line-height: 1; }
+.lvl-icon img { width: 100%; height: 100%; object-fit: contain; }
+.week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0.5rem; height: 9rem; align-items: end; margin-top: 0.8rem; }
+.wcol { display: grid; grid-template-rows: auto 1fr auto; justify-items: center; align-items: end; height: 100%; gap: 0.2rem; }
+.wcol i { display: block; width: 100%; max-width: 2.5rem; background: var(--line); border-radius: 4px 4px 0 0; }
+.wcol i.on { background: var(--accent); }
+.wn, .wl { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); }
+.achs { display: grid; grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)); gap: 0.6rem; }
+.ach { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 0.8rem; display: grid; gap: 0.3rem; align-content: start; opacity: 0.75; }
+.ach b { font-family: var(--font-display); }
+.ach span { color: var(--muted); font-size: 0.9rem; }
+.ach em { font-style: normal; font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); }
+.ach.got { opacity: 1; border-color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, var(--surface)); }
+.ach.got em { color: var(--accent); }
+.jbook > summary { cursor: pointer; list-style: none; }
+.jbook > summary::-webkit-details-marker { display: none; }
+.jbook > summary h2::before { content: "+ "; color: var(--accent); }
+.jbook[open] > summary h2::before { content: "\2212  "; }
+.toast { position: fixed; left: 50%; bottom: max(1rem, env(safe-area-inset-bottom)); transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 0.7rem 1.1rem; border-radius: 8px; z-index: 50; max-width: calc(100vw - 2rem); box-shadow: 0 4px 14px rgba(0,0,0,0.25); }
+@media (max-width: 560px) { .lvl { grid-template-columns: 1fr; justify-items: start; } .bcards { grid-template-columns: 1fr; } .vgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
