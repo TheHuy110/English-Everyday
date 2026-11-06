@@ -2868,7 +2868,7 @@ OEL.questions = [
   { level: "A1", topic: "Đại từ", grammarId: "089", question: "This coat is ___; I bought it yesterday.", options: ["mine", "my", "me", "myself"], answer: "mine", explanation: "Đại từ sở hữu 'mine'." },
   { level: "A1", topic: "Đại từ", grammarId: "089", question: "These toys belong to the children; they are ___.", options: ["theirs", "their", "them", "themselves"], answer: "theirs", explanation: "Đại từ sở hữu thay cho 'their toys' là 'theirs'." },
 
-  // 90. Trật tự tính từ trong câu (OSASCOMP) - 30 câu
+  // 90. Trật tự của tính từ trước danh từ (Order of adjectives: OSASCOMP) - 30 câu
   { level: "B1", topic: "Tính từ", grammarId: "090", question: "She was wearing a ___ dress at the wedding.", options: ["beautiful long red silk", "red long beautiful silk", "silk red long beautiful", "long red beautiful silk"], answer: "beautiful long red silk", explanation: "Trật tự tính từ OSASCOMP: Opinion (beautiful) -> Size (long) -> Color (red) -> Material (silk)." },
   { level: "B1", topic: "Tính từ", grammarId: "090", question: "He bought a ___ table for his dining room.", options: ["lovely small round wooden", "round small lovely wooden", "wooden lovely small round", "small wooden lovely round"], answer: "lovely small round wooden", explanation: "OSASCOMP: Opinion (lovely) -> Size (small) -> Shape (round) -> Material (wooden)." },
   { level: "B1", topic: "Tính từ", grammarId: "090", question: "She carries a ___ handbag everywhere.", options: ["stylish new black leather", "black new stylish leather", "leather black stylish new", "new stylish leather black"], answer: "stylish new black leather", explanation: "OSASCOMP: Opinion (stylish) -> Age (new) -> Color (black) -> Material (leather)." },
@@ -2900,7 +2900,7 @@ OEL.questions = [
   { level: "B1", topic: "Tính từ", grammarId: "090", question: "She bought a ___ blanket.", options: ["warm thick wool", "wool thick warm", "thick wool warm", "warm wool thick"], answer: "warm thick wool", explanation: "OSASCOMP: Opinion (warm) -> Size/Thickness (thick) -> Material (wool)." },
   { level: "B1", topic: "Tính từ", grammarId: "090", question: "He saw a ___ statue in the museum.", options: ["striking ancient Greek marble", "Greek ancient striking marble", "marble striking ancient Greek", "ancient striking Greek marble"], answer: "striking ancient Greek marble", explanation: "OSASCOMP: Opinion (striking) -> Age (ancient) -> Origin (Greek) -> Material (marble)." },
 
-  // 91. Phân biệt tính từ đuôi '-ed' và '-ing' - 30 câu
+  // 91. Tính từ tận cùng bằng -ED và -ING (-ed/-ing adjectives) - 30 câu
   { level: "B1", topic: "Tính từ", grammarId: "091", question: "The long lecture was so ___ that half the audience fell asleep.", options: ["boring", "bored", "boredom", "bores"], answer: "boring", explanation: "Tính từ đuôi '-ing' mô tả bản chất gây ra cảm xúc của sự vật/sự việc ('boring lecture')." },
   { level: "B1", topic: "Tính từ", grammarId: "091", question: "She felt deeply ___ when she received the surprise news.", options: ["excited", "exciting", "excite", "excitement"], answer: "excited", explanation: "Tính từ đuôi '-ed' mô tả cảm xúc/trạng thái mà con người trải qua ('she felt excited')." },
   { level: "B1", topic: "Tính từ", grammarId: "091", question: "This math problem is very ___ ; I can't solve it.", options: ["confusing", "confused", "confuse", "confusion"], answer: "confusing", explanation: "Bài toán có bản chất gây rối rắm -> 'confusing'." },
