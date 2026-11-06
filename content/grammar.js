@@ -595,5 +595,23 @@ OEL.grammar = [
     rule: "Khi tường thuật lại câu mệnh lệnh hoặc yêu cầu, ta dùng cấu trúc với *ask* hoặc *tell* kèm theo tân ngữ và To-V.",
     form: "chủ ngữ + asked / told + tân ngữ + (not) + to + động từ nguyên mẫu",
     examples: ["“Please open the window,” she said -> She asked me to open the window.", "The teacher said, “Don't talk in class” -> The teacher told us not to talk in class."],
-    wrong: "She asked me opening the window.", right: "She asked me to open the window." }
+    wrong: "She asked me opening the window.", right: "She asked me to open the window." },
+
+  { title: "Đảo ngữ với mạo từ/tính từ (Inversion with 'So / Such... that')", level: "C1", category: "Đảo ngữ",
+    rule: "Đưa So + tính từ hoặc Such + be lên đầu câu để tạo ấn tượng mạnh mẽ trong văn phong trang trọng.",
+    form: "So + adj + be + S + that... | Such + be + N + that...",
+    examples: ["So beautiful was the melody that everyone fell silent.", "Such was her determination that she never gave up."],
+    wrong: "So beautiful the melody was that everyone fell silent.", right: "So beautiful was the melody that everyone fell silent." },
+
+  { title: "Thức giả định với 'Would rather' chỉ quá khứ (Past subjunctive with Would rather)", level: "C1", category: "Câu giả định",
+    rule: "Dùng để diễn tả mong muốn một người khác đã làm/không làm điều gì đó trong quá khứ (trái với thực tế quá khứ).",
+    form: "chủ ngữ 1 + would rather + chủ ngữ 2 + had + V3/ed",
+    examples: ["I would rather you had told me the truth yesterday.", "She would rather he hadn't spent all his savings."],
+    wrong: "I would rather you told me yesterday.", right: "I would rather you had told me yesterday." },
+
+  { title: "Mệnh đề nhượng bộ với 'No matter' và '-ever'", level: "C1", category: "Mệnh đề",
+    rule: "Dùng để nhấn mạnh rằng kết quả không thay đổi dù điều kiện có như thế nào đi nữa.",
+    form: "No matter + Wh- / Wh-ever + mệnh đề, mệnh đề chính",
+    examples: ["No matter how hard he tried, he couldn't open the lock.", "Whatever happens, we must remain calm."],
+    wrong: "No matter how he tried hard, he failed.", right: "No matter how hard he tried, he failed." }
 ];
