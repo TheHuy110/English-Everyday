@@ -243,7 +243,7 @@ OEL.grammar = [
     form: ["S + stative verb (thì đơn)"],
     examples: ["I understand your problem right now.", "This jacket belongs to my brother.", "She loves listening to classical music."],
     wrong: "I am understanding the lesson now.", right: "I understand the lesson now." },
-    
+
   { title: "Cách dùng 'Make' và 'Let' (Sai khiến)", grammarId: "041", level: "B1", category: "Động từ",
     rule: "**Make** mang nghĩa ép buộc ai làm gì; **let** mang nghĩa cho phép ai làm gì. Cả hai đi với động từ nguyên mẫu không 'to'.",
     form: ["S + make / let + object + V-bare"],
@@ -482,5 +482,193 @@ OEL.grammar = [
     rule: "Dùng câu mệnh lệnh ở vế đầu, nối với vế sau bằng **and** (kết quả tốt) hoặc **or** (hậu quả xấu).",
     form: ["Imperative verb..., and / or + S + will + V-bare"],
     examples: ["Study hard, and you will pass the upcoming examination.", "Hurry up, or you will miss the train."],
-    wrong: "Study hard, and you pass the exam.", right: "Study hard, and you will pass the upcoming examination." }
+    wrong: "Study hard, and you pass the exam.", right: "Study hard, and you will pass the upcoming examination." },
+
+  { title: "Danh từ đếm được và không đếm được", grammarId: "081", level: "A1", category: "Danh từ",
+    rule: "Danh từ đếm được có thể đếm số lượng và chia số nhiều; danh từ không đếm được không thể đếm trực tiếp. Để đếm danh từ không đếm được, cần dùng các cụm định lượng như *a piece of, a glass of*.",
+    form: ["Countable noun (singular/plural)", "Uncountable noun (+ a piece of / a bottle of)"],
+    examples: ["She gave me a great piece of advice.", "How much water do you drink every day?", "I need to buy some furniture for my new apartment."],
+    wrong: "She gave me a great advice.", right: "She gave me a great piece of advice." },
+
+  { title: "Danh từ ghép và sở hữu cách", grammarId: "082", level: "A2", category: "Danh từ",
+    rule: "Dùng danh từ ghép để chỉ một đối tượng cụ thể. Dùng sở hữu cách (*'s* cho danh từ số ít hoặc số nhiều không tận cùng bằng s, và *'* cho danh từ số nhiều tận cùng bằng s) để chỉ sự sở hữu của con người hoặc động vật.",
+    form: ["Noun + Noun (Danh từ ghép)", "Noun + 's + Noun (Sở hữu cách số ít)", "Nouns (số nhiều) + ' + Noun (Sở hữu cách số nhiều)"],
+    examples: ["This is my brother's laptop; he left it on the table.", "We visited the girls' dormitory yesterday.", "He bought a new bus ticket."],
+    wrong: "This is my brothers laptop.", right: "This is my brother's laptop." },
+
+  { title: "Sử dụng Mạo từ (A, An, The, Zero Article)", grammarId: "083", level: "A1", category: "Mạo từ",
+    rule: "Dùng *a/an* cho danh từ đếm được số ít chưa xác định; *the* cho danh từ đã xác định hoặc duy nhất; không dùng mạo từ (zero article) trước danh từ số nhiều hoặc không đếm được khi nói chung.",
+    form: ["a/an + N (số ít, chưa xác định)", "the + N (đã xác định / duy nhất)", "Ø + N (số nhiều / không đếm được nghĩa chung)"],
+    examples: ["She wants to buy a new car next month.", "The moon orbits around the Earth.", "Children love playing video games."],
+    wrong: "She wants to buy new car.", right: "She wants to buy a new car." },
+
+  { title: "Từ chỉ số lượng (Much, Many, A lot of, Plenty of)", grammarId: "084", level: "A2", category: "Từ chỉ số lượng",
+    rule: "**Many, A few** dùng với danh từ đếm được số nhiều. **Much, A little** dùng với danh từ không đếm được. **A lot of, Plenty of** dùng được cho cả hai loại danh từ trong câu khẳng định.",
+    form: ["many / few + danh từ đếm được số nhiều", "much / little + danh từ không đếm được", "a lot of / plenty of + cả hai loại danh từ"],
+    examples: ["How much sugar did you put in my coffee?", "There are many students in the library today.", "We have a lot of time before the train departs."],
+    wrong: "How many sugar do you need?", right: "How much sugar do you need?" },
+
+  { title: "Từ chỉ số lượng (Few, A few, Little, A little)", grammarId: "085", level: "B1", category: "Từ chỉ số lượng",
+    rule: "***A few / A little*** mang nghĩa tích cực (còn một ít, đủ dùng). ***Few / Little*** mang nghĩa phủ định (rất ít, hầu như không đủ dùng).",
+    form: ["a few / few + danh từ đếm được số nhiều", "a little / little + danh từ không đếm được"],
+    examples: ["I have a few friends in this city, so I rarely feel lonely.", "He has little experience in marketing, so he failed to get the job.", "We have a little time left before the deadline."],
+    wrong: "I have few friends so I feel very happy.", right: "I have a few friends so I feel quite happy." },
+
+  { title: "Đại từ phân bổ (All, Both, Neither, Either, None)", grammarId: "086", level: "B2", category: "Đại từ",
+    rule: "Dùng để chỉ tổng thể hoặc sự phân loại giữa các đối tượng. *Both* (cả hai), *Neither* (không ai trong hai), *Either* (một trong hai), *None* (không ai trong số từ ba trở lên).",
+    form: ["Both / Neither / None + of + the + danh từ xác định"],
+    examples: ["Neither of the two candidates was qualified for the job.", "Both of my parents are teachers.", "None of the students failed the final examination."],
+    wrong: "Neither of the two candidates were qualified.", right: "Neither of the two candidates was qualified." },
+
+  { title: "Phân biệt 'Every' và 'Each'", grammarId: "087", level: "B2", category: "Từ chỉ số lượng",
+    rule: "***Each*** dùng cho từ hai đối tượng trở lên, nhấn mạnh từng cá thể riêng biệt trong một nhóm. ***Every*** dùng cho từ ba đối tượng trở lên, nhấn mạnh tính tổng thể của toàn bộ nhóm.",
+    form: ["Each / Every + danh từ đếm được số ít + động từ số ít"],
+    examples: ["Each student in the class was given a unique project topic.", "Every room in this hotel has an ocean view.", "She spoke to each participant individually."],
+    wrong: "Every students received a gift.", right: "Each student received a gift." },
+
+  { title: "Đại từ phản thân (Reflexive pronouns)", grammarId: "088", level: "A2", category: "Đại từ",
+    rule: "Dùng khi chủ ngữ và tân ngữ chỉ cùng một người hoặc vật, hoặc dùng với cụm *by oneself* để diễn tả việc tự làm gì đó mà không cần ai giúp đỡ.",
+    form: ["S + verb + reflexive pronoun (myself, yourself, himself...)", "by + reflexive pronoun"],
+    examples: ["He built the bookshelf all by himself without any help.", "She looked at herself in the mirror.", "Children, you must take care of yourselves."],
+    wrong: "He looked at him in the mirror.", right: "He looked at himself in the mirror." },
+
+  { title: "Đại từ sở hữu và tính từ sở hữu", grammarId: "089", level: "A1", category: "Đại từ",
+    rule: "Tính từ sở hữu đứng trước danh từ để bổ nghĩa. Đại từ sở hữu đứng độc lập, thay thế cho cả tính từ sở hữu và danh từ đã nhắc đến trước đó nhằm tránh lặp từ.",
+    form: ["Possessive adjective + noun", "Possessive pronoun (mine, yours, his, hers, ours, theirs)"],
+    examples: ["This isn't my jacket; mine is blue.", "Her hair is long, but his is short.", "Is this umbrella yours or ours?"],
+    wrong: "This jacket is my.", right: "This jacket is mine." },
+
+  { title: "Trật tự của tính từ trước danh từ (OSASCOMP)", grammarId: "090", level: "B1", category: "Tính từ",
+    rule: "Khi có nhiều tính từ cùng bổ nghĩa cho một danh từ, sắp xếp theo thứ tự chuẩn: Opinion (Ý kiến) - Size (Kích thước) - Age (Tuổi) - Shape (Hình dáng) - Color (Màu sắc) - Origin (Nguồn gốc) - Material (Chất liệu) - Purpose (Mục đích).",
+    form: ["Opinion -> Size -> Age -> Shape -> Color -> Origin -> Material -> Purpose + Noun"],
+    examples: ["She was wearing a beautiful long red silk dress at the wedding.", "He bought an old small wooden house.", "They gave me a wonderful round golden ring."],
+    wrong: "She wore a red long beautiful silk dress.", right: "She was wearing a beautiful long red silk dress." },
+
+  { title: "Tính từ tận cùng bằng -ED và -ING", grammarId: "091", level: "B1", category: "Tính từ",
+    rule: "Tính từ đuôi *-ed* dùng để diễn tả cảm xúc của con người trước một sự việc. Tính từ đuôi *-ing* dùng để mô tả bản chất, tính chất hoặc nguyên nhân gây ra cảm xúc đó.",
+    form: ["S + be + adj-ed (cảm xúc bản thân)", "S + be + adj-ing (tính chất sự vật/sự việc)"],
+    examples: ["The long lecture was so boring that half the audience fell asleep.", "I am bored with this routine.", "She was surprised by the sudden news."],
+    wrong: "The lecture was so bored.", right: "The lecture was so boring." },
+
+  { title: "Vị trí và dạng của Trạng từ (Adverb placement & formation)", grammarId: "092", level: "A2", category: "Trạng từ",
+    rule: "Trạng từ thể cách diễn tả cách thức hành động diễn ra (thường thêm *-ly* vào tính từ). Thường đứng sau động từ chính hoặc sau tân ngữ.",
+    form: ["S + verb + (object) + adverb (-ly)"],
+    examples: ["She speaks English extremely fluently.", "He quickly finished his homework before dinner.", "Please drive carefully on this slippery road."],
+    wrong: "She speaks English fluent.", right: "She speaks English fluently." },
+
+  { title: "Trạng từ chỉ nơi chốn phủ định đứng đầu câu và đảo ngữ", grammarId: "093", level: "B2", category: "Đảo ngữ",
+    rule: "Khi các trạng từ chỉ nơi chốn mang tính giới hạn hoặc phủ định (*Nowhere, On the hill*) đứng đầu câu để nhấn mạnh, ta đảo trợ động từ hoặc động từ lên trước chủ ngữ.",
+    form: ["Nowhere / Locative adverb + trợ động từ / verb + S"],
+    examples: ["Nowhere will you find such breathtaking scenery as in the Alps.", "On the hilltop stood an ancient castle."],
+    wrong: "Nowhere you will find such scenery.", right: "Nowhere will you find such breathtaking scenery." },
+
+  { title: "Giới từ chỉ thời gian: In, On, At", grammarId: "094", level: "A1", category: "Giới từ",
+    rule: "Dùng **at** cho giờ cụ thể; **on** cho các ngày trong tuần và ngày tháng cụ thể; **in** cho tháng, năm, mùa, thế kỷ và các buổi trong ngày.",
+    form: ["at + giờ / mốc thời gian cụ thể", "on + thứ / ngày tháng", "in + tháng / năm / mùa / thế kỷ"],
+    examples: ["The concert starts at 7:30 PM sharp tonight.", "My birthday is on October 15th.", "We love traveling in summer."],
+    wrong: "The concert starts in 7:30 PM.", right: "The concert starts at 7:30 PM." },
+
+  { title: "Giới từ chỉ nơi chốn: In, On, At", grammarId: "095", level: "A1", category: "Giới từ",
+    rule: "Dùng **at** cho một điểm cụ thể, địa chỉ nhà; **on** cho bề mặt, đường phố; **in** cho không gian kín, thành phố, quốc gia.",
+    form: ["at + điểm cụ thể / địa chỉ", "on + bề mặt / tên đường", "in + không gian kín / thành phố / quốc gia"],
+    examples: ["She is currently studying at the library.", "There is a poster on the wall.", "They live in Hanoi, Vietnam."],
+    wrong: "She is studying on the library.", right: "She is studying at the library." },
+
+  { title: "Giới từ chỉ phương hướng và chuyển động", grammarId: "096", level: "A2", category: "Giới từ",
+    rule: "Dùng các giới từ như *to, into, out of, through, across* để chỉ chiều hướng di chuyển của đối tượng từ nơi này sang nơi khác.",
+    form: ["S + verb + into / out of / across / through + noun"],
+    examples: ["She walked into the dark room and switched on the lights.", "They swam across the wide river.", "The train went through a long tunnel."],
+    wrong: "She walked in the dark room from outside.", right: "She walked into the dark room." },
+
+  { title: "Giới từ chỉ phương tiện và công cụ", grammarId: "097", level: "B1", category: "Giới từ",
+    rule: "Dùng **by** trước phương tiện giao thông khi đi chung chung (không có mạo từ kẹp giữa). Dùng **with** khi chỉ công cụ, dụng cụ cụ thể do con người cầm nắm tác động.",
+    form: ["by + phương tiện (by bus, by train)", "with + công cụ / dụng cụ (with a pen, with a hammer)"],
+    examples: ["He usually travels to work by train to avoid traffic jams.", "She signed the official document with a golden pen.", "They went there by plane."],
+    wrong: "He travels to work by the train.", right: "He travels to work by train." },
+
+  { title: "Cụm động từ phổ biến (Phrasal Verbs with Take / Give / Make / Do)", grammarId: "098", level: "B1", category: "Cụm động từ",
+    rule: "Cụm động từ gồm một động từ kết hợp với một hoặc hai tiểu từ tạo ra nghĩa mới hoàn toàn khác biệt với động từ gốc.",
+    form: ["Verb + particle (off, up, on, out...)"],
+    examples: ["Please take off your shoes before entering the temple.", "She decided to give up smoking for good.", "The plane took off on time despite the fog."],
+    wrong: "Please take away your shoes.", right: "Please take off your shoes." },
+
+  { title: "Cụm động từ thông dụng phần 2 (Phrasal Verbs with Look / Bring / Turn / Put)", grammarId: "099", level: "B1", category: "Cụm động từ",
+    rule: "Các cụm động từ thông dụng đi với *look, bring, turn, put* xuất hiện rất nhiều trong giao tiếp hàng ngày và các kỳ thi.",
+    form: ["Verb + preposition / adverb"],
+    examples: ["Please put on your coat; the room is quite chilly.", "Can you turn down the music, please?", "She is looking forward to meeting you."],
+    wrong: "Please put on your coat off.", right: "Please put on your coat." },
+
+  { title: "Câu cảm thán với 'What' và 'How'", grammarId: "100", level: "A2", category: "Cấu trúc câu",
+    rule: "Dùng **What** trước cụm danh từ đếm được/không đếm được; dùng **How** trước tính từ hoặc trạng từ để biểu thị cảm xúc mạnh.",
+    form: ["What + (a/an) + adj + noun + S + V!", "How + adj / adv + S + V!"],
+    examples: ["What a wonderful painting this is!", "How brilliantly she played the piano tonight!", "What delicious food they prepared!"],
+    wrong: "How a wonderful painting this is!", right: "What a wonderful painting this is!" },
+
+  { title: "Câu hỏi đuôi nâng cao (Advanced Tag Questions)", grammarId: "101", level: "B2", category: "Cấu trúc câu",
+    rule: "Các trường hợp đặc biệt trong câu hỏi đuôi như *Let's* (dùng *shall we*), câu mệnh lệnh (dùng *will you*), hoặc chủ ngữ là *everyone, nobody* (dùng đại từ *they* ở đuôi).",
+    form: ["Let's + V-bare..., shall we?", "Imperative sentence..., will you?", "Everyone is..., aren't they?"],
+    examples: ["Let's organize a surprise birthday party for her, shall we?", "Open the door, will you?", "Nobody called while I was out, did they?"],
+    wrong: "Let's go out, will us?", right: "Let's go out, shall we?" },
+
+  { title: "Thức giả định nâng cao sau tính từ mạnh (Advanced Subjunctive Mood)", grammarId: "102", level: "C1", category: "Cấu trúc câu",
+    rule: "Dùng thức giả định sau các tính từ diễn tả sự quan trọng cấp thiết (*vital, essential, imperative, crucial*) + *that* + S + V nguyên mẫu (bare infinitive).",
+    form: ["It is vital / essential + that + S + V-bare"],
+    examples: ["It is vital that every single applicant complete the security clearance form.", "It is crucial that he be present at the ceremony."],
+    wrong: "It is vital that every applicant completes the form.", right: "It is vital that every applicant complete the form." },
+
+  { title: "Đảo ngữ nâng cao với 'Not until'", grammarId: "103", level: "C1", category: "Đảo ngữ",
+    rule: "Khi cấu trúc ***Not until*** + mốc thời gian/mệnh đề đứng đầu câu để nhấn mạnh thời điểm, ta phải đảo trợ động từ lên trước chủ ngữ ở mệnh đề chính.",
+    form: ["Not until + time / clause + trợ động từ + S + V-bare"],
+    examples: ["Not until the manager arrived were the employees allowed to leave.", "Not until he opened the box did he realize the truth."],
+    wrong: "Not until the manager arrived the employees were allowed.", right: "Not until the manager arrived were the employees allowed to leave." },
+
+  { title: "Câu chẻ nhấn mạnh (Cleft Sentences)", grammarId: "104", level: "C1", category: "Cấu trúc câu",
+    rule: "Dùng để nhấn mạnh một thành phần cụ thể trong câu (chủ ngữ, tân ngữ, trạng ngữ) bằng cấu trúc *It is/was + thành phần nhấn mạnh + that/who*.",
+    form: ["It is / was + focused element + who / that + clause"],
+    examples: ["It was Mary who solved the difficult quantum physics puzzle.", "It was in this quiet café that they first met."],
+    wrong: "It was Mary whom solved the puzzle.", right: "It was Mary who solved the puzzle." },
+
+  { title: "Đảo ngữ câu điều kiện ẩn 'If' nâng cao", grammarId: "105", level: "C2", category: "Đảo ngữ",
+    rule: "Các cấu trúc đảo ngữ học thuật không dùng *if* trong câu điều kiện ở cấp độ C2: *Should* (loại 1), *Were* (loại 2), *Had* (loại 3).",
+    form: ["Should / Were / Had + S + ..."],
+    examples: ["Should any further technical problems arise, please contact our support team immediately.", "Were I in your shoes, I would accept the offer."],
+    wrong: "If should any problems arise...", right: "Should any further technical problems arise..." },
+
+  { title: "Lược bỏ cấu trúc và từ thay thế (Ellipsis and Substitution)", grammarId: "106", level: "C2", category: "Văn phong",
+    rule: "Dùng các từ thay thế như *so, not, do so* hoặc lược bỏ các từ ngữ đã xuất hiện trước đó nhằm giúp câu văn ngắn gọn, súc tích và tự nhiên hơn trong tiếng Anh học thuật.",
+    form: ["I hope so / I hope not", "auxiliary verb substitution"],
+    examples: ["Do you think the government will lower taxes next year? - I hope not.", "She can play the piano brilliantly, and so can her younger brother."],
+    wrong: "I hope that they will not lower taxes.", right: "I hope not." },
+
+  { title: "Đảo ngữ vị trí học thuật (Locative and Directional Inversion)", grammarId: "107", level: "C2", category: "Đảo ngữ",
+    rule: "Trong văn phong mô tả trang trọng hoặc văn chương, khi trạng từ chỉ phương hướng hoặc vị trí đứng đầu câu, động từ chính được đảo thẳng lên trước chủ ngữ.",
+    form: ["Locative/Directional adverb + verb (chia trực tiếp) + S"],
+    examples: ["On the top of the snow-capped mountain stood an ancient monastery.", "Down came the heavy rain after a long dry spell."],
+    wrong: "On the top of the mountain did stand a monastery.", right: "On the top of the snow-capped mountain stood an ancient monastery." },
+
+  { title: "Thức giả định hiện tại trong câu trang trọng (Present Subjunctive)", grammarId: "108", level: "C2", category: "Thức giả định",
+    rule: "Dùng trong các văn bản pháp lý, quyết định hội đồng hoặc thông cáo báo chí trang trọng sau các động từ như *move, decree, command* + *that* + S + V nguyên mẫu.",
+    form: ["S + demand / decree / move + that + S + V-bare"],
+    examples: ["The board of directors insisted that the chief executive officer resign immediately.", "The judge ordered that the suspect be remanded in custody."],
+    wrong: "The board insisted that the CEO resigns.", right: "The board insisted that the CEO resign." },
+
+  { title: "Mệnh đề phân từ độc lập (Absolute Participial Clauses)", grammarId: "109", level: "C2", category: "Rút gọn mệnh đề",
+    rule: "Mệnh đề rút gọn có chủ ngữ riêng biệt (không trùng với chủ ngữ mệnh đề chính), nối với nhau bằng phân từ (*V-ing* hoặc *V3/ed*) để chỉ nguyên nhân hoặc điều kiện.",
+    form: ["Noun/Pronoun + V-ing / V3/ed, + clause"],
+    examples: ["Weather permitting, the annual open-air festival will take place tomorrow afternoon.", "All tickets having been sold out, we couldn't enter the concert hall."],
+    wrong: "Weather permits, the festival will take place.", right: "Weather permitting, the festival will take place." },
+
+  { title: "Đảo ngữ nhượng bộ với 'As' và 'Though'", grammarId: "110", level: "C2", category: "Mệnh đề nhượng bộ",
+    rule: "Dùng cấu trúc đảo tính từ hoặc phân từ lên đầu câu đi với *as* hoặc *though* để nhấn mạnh sự nhượng bộ trong văn phong học thuật cao cấp.",
+    form: ["Adj / Participle + as / though + S + be/verb, + clause"],
+    examples: ["Exhausted as she was after the long journey, she managed to finish her report.", "Defeated though they were, the team never lost their fighting spirit."],
+    wrong: "Although exhausted as she was, she finished her report.", right: "Exhausted as she was after the long journey, she managed to finish her report." },
+
+  { title: "Danh hóa trong tiếng Anh học thuật (Nominalization)", grammarId: "111", level: "C2", category: "Văn phong",
+    rule: "Chuyển đổi các động từ, tính từ hoặc mệnh đề thành danh từ để tăng tính khách trọng, trang trọng và súc tích cho văn bản nghiên cứu khoa học hoặc tiểu luận.",
+    form: ["Verb / Adjective clause -> Abstract noun phrase"],
+    examples: ["Because the city expanded rapidly, it caused severe environmental issues -> The rapid expansion of the city caused severe environmental issues.", "We analyzed the data carefully -> A careful analysis of the data was conducted."],
+    wrong: "The city expanding rapidly caused issues.", right: "The rapid expansion of the city caused severe environmental issues." }
+
+  
 ];
