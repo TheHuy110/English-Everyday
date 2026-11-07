@@ -315,3 +315,5 @@ textarea.export { font-family: var(--font-mono); font-size: 0.85rem; min-height:
 /* Admin: vocab ID tag */
 .vid { position: absolute; bottom: 0.6rem; left: 0.7rem; font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted); }
 .vcard .vid { top: 0.85rem; bottom: auto; left: 0.9rem; font-size: 0.8rem; }
+
+.adm-ok { margin-left: auto; font-family: var(--font-mono); font-size: 0.72rem; color: var(--good); }

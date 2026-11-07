@@ -150,12 +150,12 @@
       var items = PLHIST.filter(function (h) { return plKind(h) === k; });
       if (!items.length) return '';
       var ref = k === 'quick' ? 10 : 25, avg = 0, li = 0;
-      items.forEach(function (h) { avg += h.score / h.total; li += Math.max(0, lvIdx(h.level)); });
-      avg /= items.length; li = Math.round(li / items.length);
+      items.forEach(function (h) { avg += h.score / h.total; li = Math.max(li, lvIdx(h.level)); });
+      avg /= items.length;
       return '<tr><td>' + (k === 'quick' ? 'Kiểm tra nhanh' : 'Kiểm tra dài') + '</td><td>' + items.length + '</td><td>' + num1(avg * ref) + ' / ' + ref + '</td><td>' + esc(LEVELS[li].id) + '</td></tr>';
     }).join('');
     return '<div class="stack" style="gap:0.4rem">' + plLine('Kết quả cao nhất', plBest()) + plLine('Kết quả gần nhất', PLHIST[PLHIST.length - 1]) + '</div>' +
-      '<div class="table-wrap"><table style="min-width:0"><thead><tr><th>Chi tiết</th><th>Số bài</th><th>Điểm trung bình</th><th>Trình độ ước lượng</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
+      '<div class="table-wrap"><table style="min-width:0"><thead><tr><th>Chi tiết</th><th>Số bài</th><th>Điểm trung bình</th><th>Trình độ ước lượng cao nhất</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
   }
   var delId = null, exportText = null, jOpen = false;
 
@@ -602,7 +602,7 @@
     var lvs = bankLevels();
     if (!lvs.length) return;
     var mid = lvs.indexOf('B1');
-    quiz = newQuiz({ kind: 'placement', title: 'Kiểm tra trình độ', lvLabel: n + ' câu', qs: [], used: [], lvs: lvs,
+    quiz = newQuiz({ kind: 'placement', title: 'Tự kiểm tra trình độ', lvLabel: n + ' câu', qs: [], used: [], lvs: lvs,
       idx: mid > -1 ? mid : Math.floor(lvs.length / 2), total: n, open: {} });
     placementNext();
   }
@@ -657,6 +657,28 @@
     }
   }
 
+  function pickAnswer(idx) {
+    var q = quiz.qs[quiz.i], right = idx === q.a;
+    quiz.picked = idx;
+    if (right) quiz.score++; else quiz.missed.push(quiz.i);
+    var tl = quiz.tally[q.lv] || (quiz.tally[q.lv] = { asked: 0, right: 0 });
+    tl.asked++; if (right) tl.right++;
+    if (quiz.kind === 'placement') quiz.idx = Math.max(0, Math.min(quiz.lvs.length - 1, quiz.lvs.indexOf(q.lv) + (right ? 1 : -1)));
+  }
+  function nextQuestion() {
+    quiz.i++; quiz.picked = null;
+    if (quiz.kind === 'placement') { if (quiz.i >= quiz.total || !placementNext()) finishQuiz(); }
+    else if (quiz.i >= quiz.qs.length) finishQuiz();
+  }
+  /* Admin only: finish the rest of the quiz. 'random' picks any option; 'c1' answers right up to C1 and wrong above it. */
+  function autoRun(mode) {
+    var guard = 0, top = lvIdx('C1');
+    while (quiz && !quiz.done && guard++ < 200) {
+      var q = quiz.qs[quiz.i];
+      if (quiz.picked === null) pickAnswer(mode === 'random' ? Math.floor(Math.random() * q.o.length) : (lvIdx(q.lv) <= top ? q.a : (q.a + 1) % q.o.length));
+      nextQuestion();
+    }
+  }
   function chipBtn(action, val, label, pressed) {
     return '<button type="button" class="chip" data-action="' + action + '" data-v="' + esc(val) + '" aria-pressed="' + pressed + '">' + esc(label) + '</button>';
   }
@@ -676,10 +698,10 @@
         '<span class="meta">' + todayBest + (ADMIN ? ' · [admin] ' + s.qs.length + ' câu' : '') + (b && b.cnt ? ' · Trung bình: ' + pctOf(b.sum, b.cnt) + '%' : '') + '</span>' +
         '<div style="margin-top:0.6rem"><button class="btn" type="button" data-action="start" data-set="' + esc(s.id) + '">Bắt đầu</button></div></div>';
     }).join('');
-    return head('Bài kiểm tra', 'Kiểm tra trình độ, ôn tập theo chủ đề, hoặc luyện theo cấp độ. Sau mỗi câu bạn sẽ thấy lời giải thích.') +
+    return head('Bài kiểm tra', 'Tự kiểm tra trình độ, ôn tập theo chủ đề, hoặc luyện theo cấp độ. Sau mỗi câu bạn sẽ thấy lời giải thích.') +
       '<div class="stack">' +
-      '<section class="panel stack placement" style="gap:1rem"><div><h2>Kiểm tra trình độ</h2></div>' +
-      '<p class="muted">Độ khó tự điều chỉnh: trả lời đúng thì câu sau khó hơn, trả lời sai thì dễ hơn. Kết quả chỉ là mức ước lượng, không phải chứng chỉ.</p>' + lastTxt +
+      '<section class="panel stack placement" style="gap:1rem"><div><h2>Tự kiểm tra trình độ</h2></div>' +
+      '<p class="muted">Độ khó tự điều chỉnh theo năng lực, càng làm tốt càng khó hơn. Kết quả chỉ là mức ước lượng, không phải chứng chỉ. Bài kiểm tra nhanh sẽ kém chính xác hơn.</p>' + lastTxt +
       '<div class="row"><button class="btn" type="button" data-action="start-placement" data-n="10">Kiểm tra nhanh: 10 câu</button>' +
       '<button class="btn ghost" type="button" data-action="start-placement" data-n="25">Kiểm tra dài: 25 câu</button></div></section>' +
       '<section class="panel stack" style="gap:1rem"><div><h2>Ôn tập theo chủ đề</h2></div>' +
@@ -698,7 +720,7 @@
     var opts = q.o.map(function (o, i) {
       var cls = 'opt';
       if (answered) { if (i === q.a) cls += ' right'; else if (i === quiz.picked) cls += ' wrong'; }
-      return '<button type="button" class="' + cls + '" data-action="pick" data-i="' + i + '"' + (answered ? ' disabled' : '') + '><i>' + letters[i] + '</i><span>' + esc(o) + '</span></button>';
+      return '<button type="button" class="' + cls + '" data-action="pick" data-i="' + i + '"' + (answered ? ' disabled' : '') + '><i>' + letters[i] + '</i><span>' + esc(o) + '</span>' + (ADMIN && !answered && i === q.a ? '<b class="adm-ok">✓ đúng</b>' : '') + '</button>';
     }).join('');
     var fb = '';
     if (answered) {
@@ -708,7 +730,8 @@
     }
     return '<div class="quiz"><div class="row" style="justify-content:space-between"><p class="call" style="margin:0">' + esc(quiz.title) + ' / ' + esc(quiz.lvLabel) + '</p><button class="btn ghost small" type="button" data-action="quit">Thoát</button></div>' +
       '<div><p class="muted" style="font-size:0.9rem;margin-bottom:0.4rem">Câu ' + (quiz.i + 1) + ' / ' + quiz.total + '</p><div class="bar"><i style="width:' + (quiz.i / quiz.total * 100) + '%"></i></div></div>' +
-      '<p class="qtext">' + esc(q.q) + '</p>' + admQInfo(q) + '<div class="opts">' + opts + '</div>' + fb + '</div>';
+      '<p class="qtext">' + esc(q.q) + '</p>' + admQInfo(q) + '<div class="opts">' + opts + '</div>' + fb +
+      (ADMIN ? '<div class="row"><span class="tag adm">admin</span>' + admBtn('auto-random', 'Tự động làm: ngẫu nhiên') + admBtn('auto-c1', 'Tự động làm: nhắm C1') + '</div>' : '') + '</div>';
   }
   function viewQuizResult() {
     var n = quiz.qs.length, pct = n ? quiz.score / n : 0;
@@ -727,9 +750,9 @@
       top = '<p class="muted" style="margin:0">Trình độ ước lượng</p><div class="score">' + esc(quiz.est) + '</div><p class="muted">' + quiz.score + ' / ' + n + ' câu đúng</p>';
       msg = 'Hãy bắt đầu từ ngữ pháp ở cấp ' + quiz.est + ' và luyện thêm ở cấp đó.';
       extra = '<div class="table-wrap"><table style="min-width:0"><thead><tr><th>Cấp độ</th><th>Đúng / Đã hỏi</th></tr></thead><tbody>' + rows + '</tbody></table></div>' +
-        '<p class="muted">Đây là ước lượng dựa trên ' + n + ' câu. ' + (quiz.total <= 10
-          ? 'Bài ngắn lấy cấp độ bạn trả lời đúng tỉ lệ cao nhất. Nếu bạn đúng quá nửa ở cấp đó, bạn được xếp lên cấp kế tiếp để thử sức. Làm bài dài (25 câu) sẽ chính xác hơn.'
-          : 'Bài dài chọn cấp độ cao nhất mà bạn trả lời đúng từ một nửa số câu trở lên.') + '</p>';
+        '<p class="muted">Đây là kết quả ước lượng dựa trên ' + n + ' câu. ' + (quiz.total <= 10
+          ? 'Bạn được xếp vào trình độ cao hơn cấp bạn làm tốt nhất một bậc (khi bạn đúng quá nửa số câu ở cấp đó) để thử sức với cấp độ cao hơn, nhưng bạn vẫn nên tham khảo qua các cấp độ thấp hơn mà mình làm chưa tốt. Mục tiêu là không làm sai các bài tập dưới trình độ của mình. Làm bài dài (25 câu) sẽ chính xác hơn.'
+          : 'Bài dài lấy cấp độ cao nhất mà bạn trả lời đúng từ một nửa số câu trở lên, nên chính xác hơn bài nhanh. Bạn vẫn nên tham khảo qua các cấp độ thấp hơn mà mình làm chưa tốt. Mục tiêu là không làm sai các bài tập dưới trình độ của mình.') + '</p>';
       nextBtn = '<button class="btn" type="button" data-action="level" data-level="' + esc(quiz.est) + '">Xem ngữ pháp cấp ' + esc(quiz.est) + '</button>';
       retry = '<button class="btn ghost" type="button" data-action="start-placement" data-n="' + quiz.total + '">Làm lại</button>';
     } else {
@@ -743,7 +766,10 @@
     }
     return '<div class="quiz"><p class="call">' + esc(quiz.title) + ' / ' + esc(quiz.lvLabel) + '</p>' + top + '<p class="lead">' + msg + '</p>' + extra +
       '<div class="row">' + nextBtn + retry + '<button class="btn ghost" type="button" data-action="quit">Tất cả bài kiểm tra</button></div>' +
-      (miss ? '<div><h2 style="margin-bottom:0.5rem">Các câu cần ôn lại</h2>' + miss + '</div>' : '<p><mark>Điểm tuyệt đối. Không có câu nào cần ôn lại.</mark></p>') + '</div>';
+      (quiz.kind === 'placement' && miss
+        ? '<div><button class="btn ghost" type="button" data-action="q-show-ans" aria-expanded="' + !!quiz.showAns + '">' + (quiz.showAns ? 'Ẩn đáp án và giải thích' : 'Xem đáp án và quy tắc của ' + quiz.missed.length + ' câu làm sai') + '</button></div>' +
+          (quiz.showAns ? '<div><h2 style="margin-bottom:0.5rem">Các câu cần ôn lại</h2>' + miss + '</div>' : '')
+        : (miss ? '<div><h2 style="margin-bottom:0.5rem">Các câu cần ôn lại</h2>' + miss + '</div>' : '<p><mark>Điểm tuyệt đối. Không có câu nào cần ôn lại.</mark></p>')) + '</div>';
   }
 
   /* ---------- Tài nguyên ---------- */
@@ -1336,6 +1362,8 @@
       var dp = document.getElementById('ipa-detail'); if (dp && dp.scrollIntoView) dp.scrollIntoView({ block: 'start' });
     } else if (a === 'ipa-play') {
       playFile(t.getAttribute('data-src'), t.getAttribute('data-w'));
+    } else if (a === 'q-show-ans') {
+      if (quiz) { quiz.showAns = !quiz.showAns; render(); }
     } else if (a === 'q-rule') {
       var qi = parseInt(t.getAttribute('data-v'), 10), qsy = window.scrollY;
       if (quiz && quiz.open) { quiz.open[qi] = !quiz.open[qi]; render(); window.scrollTo(0, qsy); refocus(a, String(qi)); }
@@ -1349,27 +1377,15 @@
       quiz = null; render();
     } else if (a === 'pick') {
       if (!quiz || quiz.picked !== null) return;
-      var q = quiz.qs[quiz.i];
-      var idx = parseInt(t.getAttribute('data-i'), 10);
-      var right = idx === q.a;
-      quiz.picked = idx;
-      if (right) quiz.score++; else quiz.missed.push(quiz.i);
-      var tl = quiz.tally[q.lv] || (quiz.tally[q.lv] = { asked: 0, right: 0 });
-      tl.asked++; if (right) tl.right++;
-      if (quiz.kind === 'placement') {
-        quiz.idx = Math.max(0, Math.min(quiz.lvs.length - 1, quiz.lvs.indexOf(q.lv) + (right ? 1 : -1)));
-      }
+      pickAnswer(parseInt(t.getAttribute('data-i'), 10));
       render();
       var nb = view.querySelector('[data-action="next"]'); if (nb) nb.focus();
     } else if (a === 'next') {
       if (!quiz) return;
-      quiz.i++; quiz.picked = null;
-      if (quiz.kind === 'placement') {
-        if (quiz.i >= quiz.total || !placementNext()) finishQuiz();
-      } else if (quiz.i >= quiz.qs.length) {
-        finishQuiz();
-      }
+      nextQuestion();
       render(); window.scrollTo(0, 0);
+    } else if (a === 'auto-random' || a === 'auto-c1') {
+      if (ADMIN && quiz && !quiz.done) { autoRun(a === 'auto-random' ? 'random' : 'c1'); render(); window.scrollTo(0, 0); }
     } else if (a === 'v-sub') {
       vSub = t.getAttribute('data-v'); render(); refocus(a, vSub);
     } else if (a === 'v-level') {
