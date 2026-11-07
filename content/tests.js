@@ -6,5 +6,5 @@ var OEL = window.OEL;
 OEL.tests = [
   { id: "a", title: "Nền tảng", levels: ["A1", "A2"], blurb: "Các thì cơ bản, mạo từ, danh từ và so sánh." },
   { id: "b", title: "Trung cấp", levels: ["B1", "B2"], blurb: "Thì hoàn thành, câu điều kiện, bị động, mệnh đề quan hệ và câu gián tiếp." },
-  { id: "c", title: "Cao cấp", levels: ["C1"], blurb: "Điều kiện loại 3, đảo ngữ, câu ước và các cấu trúc động từ." }
+  { id: "c", title: "Cao cấp", levels: ["C1", "C2"], blurb: "Điều kiện loại 3, đảo ngữ, câu ước và các cấu trúc động từ." }
 ];

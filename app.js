@@ -125,6 +125,38 @@
     }
     LS.set('oel.stats', stats);
   }
+  /* Placement history: every finished placement test, kept for "highest" and "latest" results and averages per test length. */
+  var PLHIST = (function () {
+    var h = LS.get('oel.placehist', []);
+    return (Array.isArray(h) ? h : []).filter(function (x) { return x && typeof x.level === 'string' && x.total > 0 && x.score >= 0 && typeof x.date === 'string'; }).slice(-200);
+  })();
+  function savePl() { LS.set('oel.placehist', PLHIST.slice(-200)); }
+  function lvIdx(l) { for (var i = 0; i < LEVELS.length; i++) if (LEVELS[i].id === l) return i; return -1; }
+  function plKind(h) { return h.total <= 10 ? 'quick' : 'long'; }
+  function plBest() {
+    var best = null;
+    PLHIST.forEach(function (h) {
+      if (!best || lvIdx(h.level) > lvIdx(best.level) || (lvIdx(h.level) === lvIdx(best.level) && h.score / h.total >= best.score / best.total)) best = h;
+    });
+    return best;
+  }
+  function num1(x) { return String(Math.round(x * 10) / 10); }
+  function plLine(label, h) {
+    return '<p style="margin:0">' + label + ': <mark>' + esc(h.level) + '</mark> <span class="muted">(ước lượng, ' + esc(niceDate(h.date)) + ' · ' + h.score + '/' + h.total + ' câu, ' + (plKind(h) === 'quick' ? 'KT nhanh' : 'KT dài') + ')</span></p>';
+  }
+  function plSummary() {
+    if (!PLHIST.length) return '';
+    var rows = ['quick', 'long'].map(function (k) {
+      var items = PLHIST.filter(function (h) { return plKind(h) === k; });
+      if (!items.length) return '';
+      var ref = k === 'quick' ? 10 : 25, avg = 0, li = 0;
+      items.forEach(function (h) { avg += h.score / h.total; li += Math.max(0, lvIdx(h.level)); });
+      avg /= items.length; li = Math.round(li / items.length);
+      return '<tr><td>' + (k === 'quick' ? 'Kiểm tra nhanh' : 'Kiểm tra dài') + '</td><td>' + items.length + '</td><td>' + num1(avg * ref) + ' / ' + ref + '</td><td>' + esc(LEVELS[li].id) + '</td></tr>';
+    }).join('');
+    return '<div class="stack" style="gap:0.4rem">' + plLine('Kết quả cao nhất', plBest()) + plLine('Kết quả gần nhất', PLHIST[PLHIST.length - 1]) + '</div>' +
+      '<div class="table-wrap"><table style="min-width:0"><thead><tr><th>Chi tiết</th><th>Số bài</th><th>Điểm trung bình</th><th>Trình độ ước lượng</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
+  }
   var delId = null, exportText = null, jOpen = false;
 
   var view = document.getElementById('view');
@@ -291,6 +323,51 @@
     var on = admConfirm === action;
     return '<button type="button" class="btn danger small" data-action="' + action + '">' + (on ? 'Bấm lần nữa để xác nhận: ' : '') + esc(label) + '</button>';
   }
+  /* Vocabulary admin: words and meanings are matched by ID (the order number in oxford.csv / meanings.csv), never by row position. */
+  var admV = { q: '', f: 'all', limit: 50 };
+  function admVRows() {
+    var q = admV.q.trim().toLowerCase(), rows = [];
+    if (admV.f === 'orphan') {
+      Object.keys(VDEF).forEach(function (k) { if (!VORD[k]) rows.push({ o: Number(k), orphan: true, vi: String(VDEF[k]) }); });
+    } else {
+      VOCAB.forEach(function (w) {
+        if (admV.f === 'nomean' && hasDef(w)) return;
+        if (admV.f === 'noaudio' && w.uk && w.us) return;
+        rows.push(w);
+      });
+    }
+    rows.sort(function (a, b) { return a.o - b.o; });
+    if (q) rows = rows.filter(function (w) { return String(w.o) === q || (w.w || '').toLowerCase().indexOf(q) > -1 || (w.vi || '').toLowerCase().indexOf(q) > -1; });
+    return rows;
+  }
+  function renderAdmVList() {
+    var el = document.getElementById('adm-vlist'), cnt = document.getElementById('adm-vcount');
+    if (!el) return;
+    var rows = admVRows(), shown = rows.slice(0, admV.limit);
+    cnt.textContent = rows.length + ' dòng' + (rows.length > shown.length ? ', đang hiện ' + shown.length : '');
+    if (!rows.length) { el.innerHTML = '<div class="empty">Không có dòng nào phù hợp.</div>'; return; }
+    el.innerHTML = '<div class="table-wrap"><table style="min-width:0"><thead><tr><th>ID</th><th>Từ</th><th>Loại</th><th>Cấp</th><th>Phiên âm</th><th>Nghĩa</th><th>Anh</th><th>Mỹ</th></tr></thead><tbody>' +
+      shown.map(function (w) {
+        if (w.orphan) return '<tr><td>' + w.o + '</td><td colspan="4"><span class="adm-note">⚠ không có từ nào mang ID này</span></td><td>' + esc(w.vi) + '</td><td></td><td></td></tr>';
+        return '<tr><td>' + w.o + '</td><td>' + esc(w.w) + '</td><td>' + esc(w.pos) + '</td><td>' + esc(w.lv) + '</td><td>' + esc(w.ph) + '</td><td>' + (hasDef(w) ? esc(w.vi) : '<span class="muted">—</span>') +
+          '</td><td>' + (w.uk ? '✓' : '—') + '</td><td>' + (w.us ? '✓' : '—') + '</td></tr>';
+      }).join('') + '</tbody></table></div>' +
+      (rows.length > shown.length ? '<div style="margin-top:0.8rem">' + admBtn('adm-v-more', 'Xem thêm 50 dòng') + '</div>' : '');
+  }
+  function admVocabPanel() {
+    var withDef = VOCAB.filter(hasDef).length, mIds = Object.keys(VDEF), orphan = mIds.filter(function (k) { return !VORD[k]; });
+    var noUk = VOCAB.filter(function (w) { return !w.uk; }).length, noUs = VOCAB.filter(function (w) { return !w.us; }).length;
+    function ids(a, n) { return a.length ? ' (' + esc(a.slice(0, n).join(', ')) + (a.length > n ? '…' : '') + ')' : ''; }
+    var fl = [['all', 'Tất cả'], ['nomean', 'Chưa có nghĩa'], ['noaudio', 'Thiếu âm thanh'], ['orphan', 'ID nghĩa không có từ']].map(function (f) { return chipBtn('adm-v-f', f[0], f[1], admV.f === f[0]); }).join('');
+    return '<section class="panel stack" style="gap:0.8rem"><h2>Kiểm tra từ vựng (theo ID)</h2>' +
+      '<p>Từ: <strong>' + VOCAB.length + '</strong> · ID nghĩa: <strong>' + mIds.length + '</strong> · từ đã có nghĩa: <strong>' + withDef + '</strong> · chưa có nghĩa: <strong>' + (VOCAB.length - withDef) + '</strong></p>' +
+      '<p>ID nghĩa không có từ tương ứng: <strong>' + orphan.length + '</strong>' + ids(orphan, 12) + '</p>' +
+      '<p>ID từ bị trùng: <strong>' + VDUP.length + '</strong>' + ids(VDUP, 12) + ' · dòng từ bị bỏ qua: <strong>' + VSKIP + '</strong></p>' +
+      '<p>Thiếu tệp âm thanh Anh: <strong>' + noUk + '</strong> · Mỹ: <strong>' + noUs + '</strong></p>' +
+      '<div class="chips" role="group" aria-label="Lọc bảng từ vựng">' + fl + '</div>' +
+      '<div><label for="adm-v-search">Tìm theo ID, từ hoặc nghĩa</label><input id="adm-v-search" type="search" autocomplete="off" value="' + esc(admV.q) + '"></div>' +
+      '<p class="muted" id="adm-vcount" aria-live="polite"></p><div id="adm-vlist"></div></section>';
+  }
   function viewAdmin() {
     var ps = pStats(), lvRows = '', i;
     var byLv = {}, byTopic = {};
@@ -321,6 +398,7 @@
       '<p>grammarId bị trùng: <strong>' + GDUP.length + '</strong>' + (GDUP.length ? ' (' + esc(GDUP.join(', ')) + ')' : '') + '</p>' +
       '<p>Quy tắc chưa có câu hỏi nào: <strong>' + noQ.length + '</strong>' + (noQ.length ? ' (' + esc(noQ.slice(0, 12).map(function (g) { return g.gid; }).join(', ')) + (noQ.length > 12 ? '…' : '') + ')' : '') + '</p>' +
       orphanHtml + '<details><summary style="cursor:pointer;font-weight:600">Bảng quy tắc ngữ pháp (' + GRAMMAR.length + ')</summary><div class="table-wrap"><table style="min-width:0"><thead><tr><th>ID</th><th>Quy tắc</th><th>Cấp</th><th>Chủ đề</th><th>Số câu hỏi</th></tr></thead><tbody>' + rows + '</tbody></table></div></details></section>' +
+      admVocabPanel() +
       '<section class="panel stack" style="gap:0.8rem"><h2>Tiến độ (thử nghiệm)</h2>' +
       '<p>XP hiện tại: <strong>' + ps.xp + '</strong> (đã cộng thêm ' + (activity.bonus || 0) + ') · Cấp <strong>' + ps.level + '</strong> / ' + PLEVELS.length + ' · chuỗi ' + ps.streak + ' ngày</p>' +
       '<div class="row">' + [10, 100, 1000].map(function (n) { return admBtn('adm-xp', '+' + n + ' XP', n); }).join('') + admBtn('adm-xp', '-100 XP', -100) + '</div>' +
@@ -335,6 +413,8 @@
     var n = parseInt(t.getAttribute('data-n'), 10), sy = window.scrollY, d = today();
     if (a.indexOf('adm-reset') === 0 && admConfirm !== a) { admConfirm = a; render(); window.scrollTo(0, sy); return; }
     admConfirm = '';
+    if (a === 'adm-v-f') { admV.f = t.getAttribute('data-v'); admV.limit = 50; render(); window.scrollTo(0, sy); return; }
+    if (a === 'adm-v-more') { admV.limit += 50; renderAdmVList(); return; }
     function input(id) { var e = document.getElementById(id); return e ? parseInt(e.value, 10) : NaN; }
     if (a === 'adm-exit') { ADMIN = false; LS.set('oel.admin', 0); syncAdminTab(); location.hash = '#home'; return; }
     else if (a === 'adm-xp') activity.bonus = (activity.bonus || 0) + n;
@@ -354,10 +434,10 @@
     else if (a === 'adm-ach-all') ACHS.forEach(function (x) { if (!activity.ach[x.id]) activity.ach[x.id] = d; });
     else if (a === 'adm-ach-none') activity.ach = Object.create(null);
     else if (a === 'adm-reset-progress') { activity = cleanActivity({}); lastLevel = 0; }
-    else if (a === 'adm-reset-tests') { stats = { sets: {}, all: { sum: 0, cnt: 0 } }; LS.set('oel.stats', stats); LS.set('oel.placement', null); }
+    else if (a === 'adm-reset-tests') { stats = { sets: {}, all: { sum: 0, cnt: 0 } }; LS.set('oel.stats', stats); PLHIST = []; savePl(); }
     else if (a === 'adm-reset-vocab') { vstore = cleanStore({}); saveV(); }
     else if (a === 'adm-reset-all') {
-      activity = cleanActivity({}); lastLevel = 0; stats = { sets: {}, all: { sum: 0, cnt: 0 } }; LS.set('oel.stats', stats); LS.set('oel.placement', null);
+      activity = cleanActivity({}); lastLevel = 0; stats = { sets: {}, all: { sum: 0, cnt: 0 } }; LS.set('oel.stats', stats); PLHIST = []; savePl();
       journal = []; LS.set('oel.journal', journal); vstore = cleanStore({}); saveV();
     }
     saveActivity(); lastLevel = levelOf(pStats().xp); checkAchievements(); saveActivity();
@@ -391,7 +471,7 @@
       return '<a class="card" href="' + s[0] + '"><h3>' + s[1] + '</h3><p>' + s[2] + '</p><span class="meta">' + s[3] + '</span></a>';
     }).join('');
     var bestKeys = Object.keys(stats.sets).filter(function (k) { return stats.sets[k] && stats.sets[k].cnt > 0; });
-    var lastPl = LS.get('oel.placement', null);
+    var lastPl = PLHIST.length ? PLHIST[PLHIST.length - 1] : null;
     var plLine = lastPl && lastPl.level ? '<p style="margin-top:1rem">Trình độ ước lượng gần nhất: <mark>' + esc(lastPl.level) + '</mark></p>' : '';
     var ps = pStats();
     var progress = (journal.length || bestKeys.length || plLine || Object.keys(vstore).length || ps.xp)
@@ -573,7 +653,7 @@
       /* điểm được ghi ở recordResult() bên dưới */
     } else if (quiz.kind === 'placement') {
       quiz.est = estimateLevel();
-      LS.set('oel.placement', { level: quiz.est, date: today(), n: quiz.qs.length });
+      PLHIST.push({ level: quiz.est, date: today(), score: quiz.score, total: quiz.qs.length }); savePl();
     }
   }
 
@@ -582,9 +662,7 @@
   }
   function viewTests() {
     if (quiz) return quiz.done ? viewQuizResult() : viewQuizQuestion();
-    var last = LS.get('oel.placement', null);
-    var lastTxt = last && last.level
-      ? '<p>Kết quả gần nhất: <mark>' + esc(last.level) + '</mark> <span class="muted">(ước lượng, ' + esc(niceDate(last.date)) + ')</span></p>' : '';
+    var lastTxt = plSummary();
     var pool = customPool();
     var lvChips = bankLevels().map(function (l) { return chipBtn('c-level', l, l, cLevels.indexOf(l) > -1); }).join('');
     var tpChips = bankTopics().map(function (t) { return chipBtn('c-topic', t, t + (ADMIN ? ' (' + BANK.filter(function (q) { return q.topic === t; }).length + ')' : ''), cTopics.indexOf(t) > -1); }).join('');
@@ -599,7 +677,6 @@
         '<div style="margin-top:0.6rem"><button class="btn" type="button" data-action="start" data-set="' + esc(s.id) + '">Bắt đầu</button></div></div>';
     }).join('');
     return head('Bài kiểm tra', 'Kiểm tra trình độ, ôn tập theo chủ đề, hoặc luyện theo cấp độ. Sau mỗi câu bạn sẽ thấy lời giải thích.') +
-      (stats.all.cnt ? '<p class="muted" style="margin-bottom:1rem">Điểm trung bình của tất cả bài đã làm: <strong>' + pctOf(stats.all.sum, stats.all.cnt) + '%</strong> (' + stats.all.cnt + ' bài)</p>' : '') +
       '<div class="stack">' +
       '<section class="panel stack placement" style="gap:1rem"><div><h2>Kiểm tra trình độ</h2></div>' +
       '<p class="muted">Độ khó tự điều chỉnh: trả lời đúng thì câu sau khó hơn, trả lời sai thì dễ hơn. Kết quả chỉ là mức ước lượng, không phải chứng chỉ.</p>' + lastTxt +
@@ -704,10 +781,11 @@
 
   /* Danh sách từ Oxford: mỗi hàng [số thứ tự, từ, loại từ, cấp CEFR, phiên âm Mỹ, tệp âm thanh Anh, tệp âm thanh Mỹ]. Định nghĩa nằm riêng trong OEL.vocabDef (theo số thứ tự). */
   var VDEF = OEL.vocabDef && typeof OEL.vocabDef === 'object' ? OEL.vocabDef : {};
-  var VOCAB = [], VBY = Object.create(null), VLEVELS = [];
+  var VOCAB = [], VBY = Object.create(null), VLEVELS = [], VORD = Object.create(null), VDUP = [], VSKIP = 0;
   list(OEL.vocab).forEach(function (r) {
     var lv = Array.isArray(r) ? str(r[3]).toUpperCase() : '';
-    if (!Array.isArray(r) || !str(r[1]) || !LEVELS.some(function (l) { return l.id === lv; })) { warn('từ vựng', r); return; }
+    if (!Array.isArray(r) || !str(r[1]) || !LEVELS.some(function (l) { return l.id === lv; })) { VSKIP++; warn('từ vựng', r); return; }
+    if (VORD[r[0]]) VDUP.push(r[0]); else VORD[r[0]] = 1;
     var id = String(r[1]) + '|' + String(r[2] || '');
     if (VBY[id]) id += '|' + r[0];
     if (VBY[id]) { warn('từ vựng bị trùng', r); return; }
@@ -873,7 +951,7 @@
     vReview.choice = buildChoices(vReview.queue[vReview.i]);
   }
   function cardHtml(w, shown) {
-    return '<div class="vcard">' + (w.lv && !w.custom ? '<span class="vband" title="Cấp độ CEFR">' + esc(w.lv) + '</span>' : '') + '<span class="big">' + esc(w.w) + '</span>' + (w.ph ? '<span class="vph">' + esc(w.ph) + '</span>' : '') +
+    return '<div class="vcard">' + (ADMIN && w.o !== undefined ? '<span class="vid">ID ' + w.o + '</span>' : '') + (w.lv && !w.custom ? '<span class="vband" title="Cấp độ CEFR">' + esc(w.lv) + '</span>' : '') + '<span class="big">' + esc(w.w) + '</span>' + (w.ph ? '<span class="vph">' + esc(w.ph) + '</span>' : '') +
       '<div class="row" style="justify-content:center">' + posTag(w) + speakBtn(w) + '</div>' +
       (shown === 'quiz' ? '' : shown ? '<p class="mean">' + esc(viText(w)) + '</p>' : '<button class="btn ghost" type="button" data-action="card-show">Hiện nghĩa</button>') + '</div>';
   }
@@ -928,7 +1006,7 @@
     var status = e ? (e.k ? 'Đã biết' : 'Đang học') : 'Bấm để học';
     return '<div class="' + cls + '"><button type="button" class="vsq-main" data-action="v-toggle" ' + key + ' aria-pressed="' + (e ? 'true' : 'false') + '" title="' + esc(viText(w)) + '">' +
       '<span class="vw">' + esc(w.w) + '</span>' + (w.ph ? '<span class="vph">' + esc(w.ph) + '</span>' : '') + (w.pos ? '<span class="vpos">' + esc(POS_VI[w.pos] || w.pos) + '</span>' : '') +
-      '<span class="vm">' + esc(viText(w)) + '</span><span class="vlv">' + esc(w.lv) + '</span><span class="vst">' + status + '</span></button>' +
+      '<span class="vm">' + esc(viText(w)) + '</span><span class="vlv">' + esc(w.lv) + '</span>' + (ADMIN && w.o !== undefined ? '<span class="vid">ID ' + w.o + '</span>' : '') + '<span class="vst">' + status + '</span></button>' +
       '<span class="vsq-say-row">' + audioBtns(w, 'vsq-say') + '</span></div>';
   }
   function renderVList() {
@@ -1211,6 +1289,7 @@
     }
     if (r === 'grammar') renderGList();
     if (r === 'vocab' && vSub === 'decks' && !vBrowse && !vReview) renderVList();
+    if (r === 'admin') renderAdmVList();
   }
 
   /* Giữ tiêu điểm bàn phím trên nút vừa bấm sau khi vẽ lại trang. */
@@ -1409,6 +1488,7 @@
       if (isAdminCode(ev.target.value)) { enableAdmin(); return; }
       gQuery = ev.target.value; renderGList();
     }
+    else if (ev.target.id === 'adm-v-search') { admV.q = ev.target.value; admV.limit = 50; renderAdmVList(); }
     else if (ev.target.id === 'v-search') { vQuery = ev.target.value; vLimit = 40; renderVList(); }
     else if (ev.target.id === 'j-conf') { var o = document.getElementById('j-conf-out'); if (o) o.textContent = ev.target.value; }
   });
