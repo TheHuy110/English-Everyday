@@ -735,9 +735,10 @@
   }
   function viewQuizResult() {
     var n = quiz.qs.length, pct = n ? quiz.score / n : 0;
+    var hideAns = quiz.kind === 'placement' && !quiz.showAns;  /* placement: the wrong-answer list is always shown, correct answers only on request */
     var miss = quiz.missed.map(function (i) {
       var q = quiz.qs[i], g = q.gid ? GBYID[q.gid] : null, open = !!(quiz.open && quiz.open[i]);
-      return '<div class="miss"><strong style="font-family:var(--font-display)">' + esc(q.q) + '</strong>' + admQInfo(q) + '<span>Đáp án: <mark>' + esc(q.o[q.a]) + '</mark></span><span class="muted">' + esc(q.why) + '</span>' +
+      return '<div class="miss"><strong style="font-family:var(--font-display)">' + esc(q.q) + '</strong>' + admQInfo(q) + (hideAns ? '' : '<span>Đáp án: <mark>' + esc(q.o[q.a]) + '</mark></span><span class="muted">' + esc(q.why) + '</span>') +
         (g ? '<div><button class="btn ghost small" type="button" data-action="q-rule" data-v="' + i + '" aria-expanded="' + open + '">' + (open ? 'Ẩn quy tắc' : 'Xem quy tắc') + '</button></div>' +
           (open ? '<div class="rule ruleview"><div class="rv-head"><h3>' + esc(g.t) + '</h3><span class="tag lvtag">' + esc(g.lv) + '</span></div>' + ruleBody(g) + '</div>' : '') : '') + '</div>';
     }).join('');
@@ -766,10 +767,9 @@
     }
     return '<div class="quiz"><p class="call">' + esc(quiz.title) + ' / ' + esc(quiz.lvLabel) + '</p>' + top + '<p class="lead">' + msg + '</p>' + extra +
       '<div class="row">' + nextBtn + retry + '<button class="btn ghost" type="button" data-action="quit">Tất cả bài kiểm tra</button></div>' +
-      (quiz.kind === 'placement' && miss
-        ? '<div><button class="btn ghost" type="button" data-action="q-show-ans" aria-expanded="' + !!quiz.showAns + '">' + (quiz.showAns ? 'Ẩn đáp án và giải thích' : 'Xem đáp án và quy tắc của ' + quiz.missed.length + ' câu làm sai') + '</button></div>' +
-          (quiz.showAns ? '<div><h2 style="margin-bottom:0.5rem">Các câu cần ôn lại</h2>' + miss + '</div>' : '')
-        : (miss ? '<div><h2 style="margin-bottom:0.5rem">Các câu cần ôn lại</h2>' + miss + '</div>' : '<p><mark>Điểm tuyệt đối. Không có câu nào cần ôn lại.</mark></p>')) + '</div>';
+      (miss ? '<div><div class="row" style="justify-content:space-between;margin-bottom:0.5rem"><h2>Các câu cần ôn lại</h2>' +
+        (quiz.kind === 'placement' ? '<button class="btn ghost small" type="button" data-action="q-show-ans" aria-pressed="' + !!quiz.showAns + '">' + (quiz.showAns ? 'Ẩn đáp án đúng' : 'Xem đáp án đúng') + '</button>' : '') + '</div>' + miss + '</div>'
+        : '<p><mark>Điểm tuyệt đối. Không có câu nào cần ôn lại.</mark></p>') + '</div>';
   }
 
   /* ---------- Tài nguyên ---------- */
