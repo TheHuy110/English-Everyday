@@ -721,7 +721,7 @@
 
   /* Âm thanh nằm trong audio/uk_audio/ và audio/us_audio/. Thiếu tệp thì đọc bằng giọng của trình duyệt (nếu có). */
   var audioEl = null;
-  function playFile(kind, file, word) {
+  function playVocabAudio(kind, file, word) {
     var lang = kind === 'uk' ? 'en-GB' : 'en-US';
     if (!file) { speak(word, lang); return; }
     try {
@@ -1309,7 +1309,7 @@
     } else if (a === 'v-browse') {
       vBrowse = null; startBrowse(); render(); window.scrollTo(0, 0);
     } else if (a === 'play') {
-      playFile(t.getAttribute('data-k'), t.getAttribute('data-f'), t.getAttribute('data-w'));
+      playVocabAudio(t.getAttribute('data-k'), t.getAttribute('data-f'), t.getAttribute('data-w'));
     } else if (a === 'speak') {
       speak(t.getAttribute('data-w'));
     } else if (a === 'card-show') {
