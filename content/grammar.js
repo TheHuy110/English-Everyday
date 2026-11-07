@@ -333,6 +333,193 @@ OEL.grammar = [
   },
   
 
+  { title: "Cách dùng Make và Let", grammarId: "041", level: "B1", category: "Động từ",
+    rule: "**Make** mang nghĩa ép buộc hoặc bắt buộc ai phải làm gì; **let** mang nghĩa cho phép ai làm gì. Cả hai đều đi trực tiếp với động từ nguyên mẫu không **to** (**V-bare**).",
+    form: ["S + make / let + object + V-bare"],
+    examples: ["My parents let me stay out late on weekends.", "The teacher made us rewrite the whole essay.", "Nothing can make me change my mind."],
+    wrong: "She made me to cry yesterday.", right: "She made me cry yesterday.",
+    more: [
+      { type: "nuance", text: "Khi chuyển sang câu bị động, **make** bắt buộc phải trả lại giới từ **to** trước nguyên mẫu: *He was made to rewrite the essay*." }
+    ]
+  },
+  { title: "Động từ theo sau bởi To-V hoặc V-ing thay đổi nghĩa", grammarId: "042", level: "B2", category: "Động từ",
+    rule: "Một số động từ như **stop**, **remember**, **forget**, **try** khi đi với **to-V** và **V-ing** sẽ mang ý nghĩa hoàn toàn khác nhau.",
+    form: ["S + verb + to-V (hướng tới tương lai / mục đích)", "S + verb + V-ing (hành động đã qua / trải nghiệm)"],
+    examples: ["I stopped working because I was feeling exhausted.", "Please remember to lock the door.", "She stopped to take a short break."],
+    wrong: "I stopped to work because I was tired.", right: "I stopped working because I was tired.",
+    more: [
+      { type: "extension", text: "**Stop to do something**: Dừng lại **để** làm việc gì đó (chỉ mục đích). **Stop doing something**: Dừng hẳn, thôi không làm việc đó nữa." }
+    ]
+  },
+  { title: "Câu hỏi với từ để hỏi đóng vai trò chủ ngữ", grammarId: "043", level: "A2", category: "Câu hỏi",
+    rule: "Khi từ để hỏi như **Who**, **What**, **Which** chính là chủ ngữ thực hiện hành động trong câu hỏi, ta chia trực tiếp động từ theo ngôi thứ ba số ít mà **không mượn trợ động từ** do/does/did.",
+    form: ["Who / What / Which + verb (chia số ít) + object?"],
+    examples: ["Who broke this expensive glass window yesterday?", "What caused the massive traffic jam?", "Which team won the championship last year?"],
+    wrong: "Who did break this window?", right: "Who broke this window?"
+  },
+  { title: "Câu cảm thán với What và How", grammarId: "044", level: "A2", category: "Cấu trúc câu",
+    rule: "Dùng **What** trước danh từ hoặc cụm danh từ để cảm thán; dùng **How** trước tính từ hoặc trạng từ độc lập.",
+    form: ["What + (a/an) + adj + noun + S + V!", "How + adj / adv + S + V!"],
+    examples: ["What a wonderful day it is!", "What delicious food!", "How fast he runs!"],
+    wrong: "How a beautiful girl she is!", right: "What a beautiful girl she is!"
+  },
+  { title: "Cấu trúc Too... for someone to do something", grammarId: "045", level: "B1", category: "Cấu trúc câu",
+    rule: "Dùng để chỉ mức độ quá mức khiến cho ai đó **không thể** thực hiện được một hành động nào đó.",
+    form: ["S + be + too + adj + for + object + to-V"],
+    examples: ["This math problem is too difficult for me to solve.", "The coffee was too hot for him to drink.", "The box was too heavy for her to lift."],
+    wrong: "This box is too heavy for she to lift.", right: "This box is too heavy for her to lift."
+  },
+  { title: "Cấu trúc Enough... for someone to do something", grammarId: "046", level: "B1", category: "Cấu trúc câu",
+    rule: "Dùng để chỉ mức độ đủ điều kiện cho ai đó thực hiện thành công một hành động. Lưu ý tính từ/trạng từ phải đứng **trước enough**.",
+    form: ["S + be + adj + enough + for + object + to-V"],
+    examples: ["The weather is warm enough for us to go swimming.", "He is old enough for his parents to trust him.", "The room is large enough for everyone to sit in."],
+    wrong: "He is enough tall for me to see.", right: "He is tall enough for me to see."
+  },
+  { title: "Cấu trúc It takes / took someone time to do something", grammarId: "047", level: "A2", category: "Cấu trúc câu",
+    rule: "Dùng cấu trúc này để diễn tả khoảng thời gian cần thiết hoặc tiêu tốn để ai đó hoàn thành một hành động cụ thể.",
+    form: ["It takes / took + time + object + to-V"],
+    examples: ["It takes me twenty minutes to walk to school every morning.", "It took her two hours to finish the project.", "How long does it take to fly to Paris?"],
+    wrong: "It takes me walking to school.", right: "It takes me twenty minutes to walk to school."
+  },
+  { title: "Cấu trúc Spend time / money", grammarId: "048", level: "A2", category: "Cấu trúc câu",
+    rule: "Dùng để diễn tả việc dành ra khoảng thời gian hoặc tiền bạc vào việc gì đó hoặc để làm việc gì đó, theo sau bởi danh từ hoặc **V-ing**.",
+    form: ["S + spend(s) / spent + time / money + V-ing / noun"],
+    examples: ["She spends two hours reading books every day.", "They spent a lot of money on renovating their house.", "He spends too much time playing video games."],
+    wrong: "I spend two hours to read books.", right: "I spend two hours reading books."
+  },
+  { title: "Cấu trúc Prefer A to B", grammarId: "049", level: "B1", category: "Cấu trúc câu",
+    rule: "Dùng để diễn tả sự yêu thích một sự vật, hoạt động này hơn một sự vật, hoạt động khác. Lưu ý sử dụng giới từ **to** thay vì *than*.",
+    form: ["S + prefer + noun / V-ing + to + noun / V-ing"],
+    examples: ["I prefer drinking tea to drinking coffee.", "She prefers movies to books.", "He prefers walking to driving in rush hour."],
+    wrong: "I prefer tea than coffee.", right: "I prefer tea to coffee."
+  },
+  { title: "Cấu trúc Would rather", grammarId: "050", level: "B2", category: "Cấu trúc câu",
+    rule: "Dùng để diễn tả sở thích làm gì hơn ở hiện tại hoặc tương lai, theo sau trực tiếp bởi động từ nguyên mẫu không **to** (**V-bare**).",
+    form: ["S + would rather + V-bare + (than + V-bare)"],
+    examples: ["I would rather stay at home than go out tonight.", "She would rather read a book than watch TV.", "Would you rather have coffee or juice?"],
+    wrong: "I would rather to stay at home.", right: "I would rather stay at home."
+  },
+  { title: "Cấu trúc It is time", grammarId: "051", level: "B2", category: "Cấu trúc câu",
+    rule: "Dùng để diễn tả rằng đã đến lúc một việc gì đó nên được thực hiện ngay lập tức. Mệnh đề theo sau bắt buộc phải chia ở thì **quá khứ đơn**.",
+    form: ["It is (high / about) time + S + V-ed/V2"],
+    examples: ["It is high time you went to bed; it's almost midnight.", "It is time we started our meeting.", "It is about time he apologized to her."],
+    wrong: "It is time you go to bed.", right: "It is time you went to bed."
+  },
+  { title: "Mệnh đề trạng ngữ chỉ thời gian với When, While, As", grammarId: "052", level: "B1", category: "Mệnh đề",
+    rule: "Dùng để nối các hành động xảy ra đồng thời hoặc có hành động ngắn xen vào hành động dài trong quá khứ/hiện tại.",
+    form: ["When / While / As + clause, clause"],
+    examples: ["While I was cooking dinner, the phone rang.", "When she arrived, everyone was waiting.", "As he walked down the street, he met an old friend."],
+    wrong: "While I cooked, the phone rang.", right: "While I was cooking, the phone rang."
+  },
+  { title: "Cấu trúc Hardly... when và No sooner... than", grammarId: "053", level: "C1", category: "Cấu trúc câu",
+    rule: "Diễn tả hành động này vừa mới xảy ra thì hành động tiếp theo nối tiếp ngay lập tức. Vế đầu bắt buộc phải **đảo ngữ** với quá khứ hoàn thành.",
+    form: ["Hardly / Scarcely + had + S + V3/ed + when + S + V2/ed", "No sooner + had + S + V3/ed + than + S + V2/ed"],
+    examples: ["Hardly had I opened the door when a cat jumped out.", "No sooner had we reached the station than the train left."],
+    wrong: "Hardly I had opened the door when a cat jumped out.", right: "Hardly had I opened the door when a cat jumped out."
+  },
+  { title: "Cấu trúc Not only... but also", grammarId: "054", level: "B2", category: "Liên từ",
+    rule: "Dùng để nhấn mạnh hai đặc điểm hoặc hành động cùng tồn tại ở một đối tượng (không những... mà còn...).",
+    form: ["S + verb + not only + A + but also + B"],
+    examples: ["She is not only intelligent but also extremely hardworking.", "Not only did he pass the exam, but he also got a scholarship."],
+    wrong: "He not only is smart, but also kind.", right: "He is not only smart, but also kind."
+  },
+  { title: "Cấu trúc Either... or và Neither... nor", grammarId: "055", level: "B1", category: "Liên từ",
+    rule: "**Either... or...** (hoặc... hoặc...); **Neither... nor...** (không... mà cũng không...). Động từ chính được chia theo chủ ngữ gần nó nhất (N2).",
+    form: ["Either / Neither + S1 + or / nor + S2 + verb (chia theo S2)"],
+    examples: ["Either you or I am responsible for this mistake.", "Neither the teacher nor the students were present.", "You can either stay here or come with us."],
+    wrong: "Neither he nor I is ready.", right: "Neither he nor I am ready."
+  },
+  { title: "Mệnh đề quan hệ rút gọn bằng V-ing và V3/ed", grammarId: "056", level: "B2", category: "Mệnh đề",
+    rule: "Khi mệnh đề quan hệ ở thể chủ động, ta rút gọn bằng **V-ing**. Nếu ở thể bị động, ta rút gọn bằng quá khứ phân từ (**V3/ed**).",
+    form: ["N + V-ing / V3/ed + ..."],
+    examples: ["The girl standing next to my sister in the photograph is my cousin.", "The letter written by Mary yesterday is on the table."],
+    wrong: "The girl stands next to my sister is my cousin.", right: "The girl standing next to my sister is my cousin."
+  },
+  { title: "Mệnh đề quan hệ rút gọn bằng To-V", grammarId: "057", level: "B2", category: "Mệnh đề",
+    rule: "Dùng để rút gọn mệnh đề quan hệ khi danh từ đứng trước có chứa các từ chỉ thứ tự (**the first**, **the second**, **the last**) hoặc **the only**.",
+    form: ["N + to-V + ..."],
+    examples: ["Neil Armstrong was the first man to walk on the moon.", "I have many documents to sign before leaving."],
+    wrong: "He is the first person step on Mars.", right: "He is the first person to step on Mars."
+  },
+  { title: "Đảo ngữ với Only", grammarId: "058", level: "C1", category: "Cấu trúc câu",
+    rule: "Khi cụm từ bắt đầu bằng **Only** (như *only when*, *only after*, *only by*) đứng đầu câu để nhấn mạnh, ta phải **đảo trợ động từ** lên trước chủ ngữ ở mệnh đề chính.",
+    form: ["Only + time/condition + trợ động từ + S + V-bare"],
+    examples: ["Only when she reached home did she realize her bag was missing.", "Only after finishing his homework did he go out to play."],
+    wrong: "Only when she reached home she realized her bag.", right: "Only when she reached home did she realize her bag was missing."
+  },
+  { title: "Đảo ngữ với cụm từ phủ định tuyệt đối", grammarId: "059", level: "C1", category: "Cấu trúc câu",
+    rule: "Các cụm từ mang ý nghĩa phủ định tuyệt đối đứng đầu câu nhằm nhấn mạnh sự nghiêm ngặt như **under no circumstances**, **on no account**, bắt buộc phải đảo ngữ.",
+    form: ["Cụm từ phủ định + trợ động từ + S + V-bare"],
+    examples: ["Under no circumstances should you leave the room during the examination.", "On no account must this information be leaked."],
+    wrong: "Under no circumstances you should leave the room.", right: "Under no circumstances should you leave the room."
+  },
+  { title: "Đảo ngữ câu điều kiện ẩn If", grammarId: "060", level: "C1", category: "Câu điều kiện",
+    rule: "Dùng để viết lại câu điều kiện trang trọng hơn bằng cách bỏ **if** và đảo trợ động từ (**Should**, **Were**, **Had**) lên trước chủ ngữ.",
+    form: ["Should / Were / Had + S + ..."],
+    examples: ["Should you need any assistance, please contact us.", "Had I known the truth, I would have told you."],
+    wrong: "If should you need assistance...", right: "Should you need any assistance..."
+  },
+  { title: "Cấu trúc So... that và Such... that", grammarId: "061", level: "B1", category: "Cấu trúc câu",
+    rule: "Dùng để chỉ mức độ dẫn đến kết quả. **So** đi với tính từ/trạng từ; **such** đi với danh từ hoặc cụm danh từ.",
+    form: ["S + be + so + adj + that + clause", "S + verb + such + (a/an) + adj + noun + that + clause"],
+    examples: ["The tea was so hot that I couldn't drink it right away.", "It was such a difficult test that nobody could get a high score."],
+    wrong: "It was so a difficult test that nobody passed.", right: "It was such a difficult test that nobody passed."
+  },
+  { title: "Đảo ngữ So... that và Such... that", grammarId: "062", level: "C1", category: "Cấu trúc câu",
+    rule: "Khi muốn nhấn mạnh mức độ, ta đưa cụm **So + adj** hoặc **Such + noun phrase** lên đầu câu, sau đó đảo động từ 'be' lên trước chủ ngữ.",
+    form: ["So + adj + be + S + that + clause", "Such + be + noun phrase + that + clause"],
+    examples: ["So heavy was the rain that all football matches were postponed.", "Such was her beauty that everyone stared at her."],
+    wrong: "So heavy the rain was that matches were postponed.", right: "So heavy was the rain that all football matches were postponed."
+  },
+  { title: "Mệnh đề chỉ nguyên nhân", grammarId: "063", level: "B1", category: "Mệnh đề",
+    rule: "**Because**, **as**, **since** đi kèm với mệnh đề (S + V). **Owing to**, **due to**, **because of** đi kèm với danh từ hoặc cụm danh từ.",
+    form: ["Because / As / Since + clause", "Because of / Due to / Owing to + noun phrase / V-ing"],
+    examples: ["The outdoor match was postponed because of the heavy rain.", "Because it rained heavily, we stayed at home."],
+    wrong: "Because of it rained heavily, we stayed at home.", right: "Because it rained heavily, we stayed at home."
+  },
+  { title: "Mệnh đề chỉ kết quả", grammarId: "064", level: "B1", category: "Liên từ",
+    rule: "Dùng để diễn tả hệ quả của hành động ở mệnh đề trước. **Therefore**, **consequently** thường đứng sau dấu chấm phẩy.",
+    form: ["Clause, so + clause", "Clause; therefore / consequently / as a result, + clause"],
+    examples: ["He didn't study for the exam; therefore, he failed it.", "He didn't study hard, so he failed the exam."],
+    wrong: "He didn't study, therefore he failed.", right: "He didn't study; therefore, he failed."
+  },
+  { title: "Mệnh đề chỉ mục đích", grammarId: "065", level: "B1", category: "Mệnh đề",
+    rule: "**So that** / **in order that** đi với mệnh đề chứa động từ khuyết thiếu. **In order to** / **so as to** đi với động từ nguyên mẫu.",
+    form: ["S + V + so that / in order that + S + can/will + V", "S + V + in order to / so as to + V-bare"],
+    examples: ["He got early in order to catch the first bus to work.", "He woke up early so that he could catch the first bus."],
+    wrong: "He got up early in order that catching the bus.", right: "He got up early in order to catch the first bus."
+  },
+  { title: "Mệnh đề chỉ sự nhượng bộ", grammarId: "066", level: "B1", category: "Mệnh đề",
+    rule: "**Although** / **even though** đi với mệnh đề (S + V). **In spite of** / **despite** đi với danh từ hoặc cụm danh từ.",
+    form: ["Although / Even though + clause", "In spite of / Despite + noun phrase / V-ing"],
+    examples: ["Although it was raining heavily, they went for a hike.", "Despite the heavy rain, they went for a hike."],
+    wrong: "Despite it was raining, they went for a hike.", right: "Despite the heavy rain, they went for a hike."
+  },
+  { title: "Cấu trúc nhượng bộ nâng cao", grammarId: "067", level: "C1", category: "Cấu trúc câu",
+    rule: "Đưa tính từ hoặc trạng từ lên đầu câu, theo sau bởi **as** hoặc **though** để diễn tả ý nghĩa 'mặc dù...'.",
+    form: ["Adj / Adv + as / though + S + V, clause"],
+    examples: ["Hard as he tried, he couldn't lift the heavy weight.", "Rich as they are, they live very simply."],
+    wrong: "Although hard as he tried, he failed.", right: "Hard as he tried, he couldn't lift the heavy weight."
+  },
+  { title: "Mệnh đề giả định với As if / As though", grammarId: "068", level: "B2", category: "Mệnh đề",
+    rule: "Diễn tả tình huống không có thật ở hiện tại, dùng thì quá khứ đơn trong mệnh đề sau để chỉ sự giả định.",
+    form: ["S + verb + as if / as though + S + quá khứ đơn (were)"],
+    examples: ["He talks as if he knew everything about astrophysics.", "She acted as though she didn't care at all."],
+    wrong: "He talks as if he knows everything.", right: "He talks as if he knew everything."
+  },
+  { title: "Thức giả định với Suggest / Recommend / Insist", grammarId: "069", level: "B2", category: "Thức giả định",
+    rule: "Dùng sau các động từ cầu khiến, đề nghị. Động từ ở mệnh đề sau luôn ở dạng nguyên mẫu không chia (**bare infinitive**).",
+    form: ["S + suggest / insist + that + S + (should) + V-bare"],
+    examples: ["The doctor suggested that he eat more vegetables in his diet.", "I insist that he be present at the meeting."],
+    wrong: "The doctor suggested that he eats vegetables.", right: "The doctor suggested that he eat more vegetables in his diet."
+  },
+  { title: "So sánh bằng với As... as", grammarId: "070", level: "A2", category: "So sánh",
+    rule: "Dùng để diễn tả sự tương đương giữa hai đối tượng về tính chất hoặc mức độ.",
+    form: ["S + be + as + adj/adv + as + noun/pronoun"],
+    examples: ["She runs as fast as her older brother.", "My house is as big as yours."],
+    wrong: "She runs as fast than her brother.", right: "She runs as fast as her older brother."
+  },
+
 
   
   
