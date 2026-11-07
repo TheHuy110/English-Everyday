@@ -113,7 +113,8 @@
   if (!stats.sets || typeof stats.sets !== 'object') stats.sets = {};
   if (!stats.all || typeof stats.all !== 'object') stats.all = { sum: 0, cnt: 0 };
   function setStat(id) { return Object.prototype.hasOwnProperty.call(stats.sets, id) ? stats.sets[id] : null; }
-  function pctOf(sum, cnt) { return cnt ? Math.round(sum / cnt * 100) : 0; }
+  function s10(score, total) { return total ? num1(score / total * 10) : '0'; }   /* every score is shown out of 10 */
+  function avg10(sum, cnt) { return cnt ? num1(sum / cnt * 10) : '0'; }
   function recordResult() {
     var total = quiz.kind === 'placement' ? quiz.qs.length : quiz.total, frac = total ? quiz.score / total : 0;
     stats.all.sum = (+stats.all.sum || 0) + frac; stats.all.cnt = (+stats.all.cnt || 0) + 1;
@@ -142,17 +143,17 @@
   }
   function num1(x) { return String(Math.round(x * 10) / 10); }
   function plLine(label, h) {
-    return '<p style="margin:0">' + label + ': <mark>' + esc(h.level) + '</mark> <span class="muted">(ước lượng, ' + esc(niceDate(h.date)) + ' · ' + h.score + '/' + h.total + ' câu, ' + (plKind(h) === 'quick' ? 'KT nhanh' : 'KT dài') + ')</span></p>';
+    return '<p style="margin:0">' + label + ': <mark>' + esc(h.level) + '</mark> <span class="muted">(ước lượng, ' + esc(niceDate(h.date)) + ' · ' + s10(h.score, h.total) + '/10, ' + (plKind(h) === 'quick' ? 'KT nhanh' : 'KT dài') + ')</span></p>';
   }
   function plSummary() {
     if (!PLHIST.length) return '';
     var rows = ['quick', 'long'].map(function (k) {
       var items = PLHIST.filter(function (h) { return plKind(h) === k; });
       if (!items.length) return '';
-      var ref = k === 'quick' ? 10 : 25, avg = 0, li = 0;
+      var avg = 0, li = 0;
       items.forEach(function (h) { avg += h.score / h.total; li = Math.max(li, lvIdx(h.level)); });
       avg /= items.length;
-      return '<tr><td>' + (k === 'quick' ? 'Kiểm tra nhanh' : 'Kiểm tra dài') + '</td><td>' + items.length + '</td><td>' + num1(avg * ref) + ' / ' + ref + '</td><td>' + esc(LEVELS[li].id) + '</td></tr>';
+      return '<tr><td>' + (k === 'quick' ? 'Kiểm tra nhanh' : 'Kiểm tra dài') + '</td><td>' + items.length + '</td><td>' + num1(avg * 10) + ' / 10' + '</td><td>' + esc(LEVELS[li].id) + '</td></tr>';
     }).join('');
     return '<div class="stack" style="gap:0.4rem">' + plLine('Kết quả cao nhất', plBest()) + plLine('Kết quả gần nhất', PLHIST[PLHIST.length - 1]) + '</div>' +
       '<div class="table-wrap"><table style="min-width:0"><thead><tr><th>Chi tiết</th><th>Số bài</th><th>Điểm trung bình</th><th>Trình độ ước lượng cao nhất</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
@@ -659,7 +660,7 @@
 
   function pickAnswer(idx) {
     var q = quiz.qs[quiz.i], right = idx === q.a;
-    quiz.picked = idx;
+    quiz.picked = idx; (quiz.answers = quiz.answers || {})[quiz.i] = idx;
     if (right) quiz.score++; else quiz.missed.push(quiz.i);
     var tl = quiz.tally[q.lv] || (quiz.tally[q.lv] = { asked: 0, right: 0 });
     tl.asked++; if (right) tl.right++;
@@ -693,9 +694,9 @@
       : pool.length < cLen ? 'Ít câu phù hợp nên bài sẽ ngắn hơn.' : '';
     if (ADMIN) note += ' [admin] ' + pool.length + ' câu phù hợp.';
     var cards = QSETS.map(function (s) {
-      var b = setStat(s.id), todayBest = b && b.day === today() && b.bn ? 'Điểm cao nhất hôm nay: ' + b.bs + '/' + b.bn : 'Hôm nay chưa làm';
+      var b = setStat(s.id), todayBest = b && b.day === today() && b.bn ? 'Điểm cao nhất hôm nay: ' + s10(b.bs, b.bn) + '/10' : 'Hôm nay chưa làm';
       return '<div class="card"><span class="call">' + esc(s.lv) + '</span><h3>' + esc(s.title) + '</h3><p>' + esc(s.blurb) + '</p>' +
-        '<span class="meta">' + todayBest + (ADMIN ? ' · [admin] ' + s.qs.length + ' câu' : '') + (b && b.cnt ? ' · Trung bình: ' + pctOf(b.sum, b.cnt) + '%' : '') + '</span>' +
+        '<span class="meta">' + todayBest + (ADMIN ? ' · [admin] ' + s.qs.length + ' câu' : '') + (b && b.cnt ? ' · Trung bình: ' + avg10(b.sum, b.cnt) + '/10' : '') + '</span>' +
         '<div style="margin-top:0.6rem"><button class="btn" type="button" data-action="start" data-set="' + esc(s.id) + '">Bắt đầu</button></div></div>';
     }).join('');
     return head('Bài kiểm tra', 'Tự kiểm tra trình độ, ôn tập theo chủ đề, hoặc luyện theo cấp độ. Sau mỗi câu bạn sẽ thấy lời giải thích.') +
@@ -735,20 +736,29 @@
   }
   function viewQuizResult() {
     var n = quiz.qs.length, pct = n ? quiz.score / n : 0;
-    var hideAns = !quiz.showAns;  /* all test modes: wrong questions are always listed, correct answers only on request */
-    var miss = quiz.missed.map(function (i) {
-      var q = quiz.qs[i], g = q.gid ? GBYID[q.gid] : null, open = !!(quiz.open && quiz.open[i]);
-      return '<div class="miss"><strong style="font-family:var(--font-display)">' + esc(q.q) + '</strong>' + admQInfo(q) + (hideAns ? '' : '<span>Đáp án: <mark>' + esc(q.o[q.a]) + '</mark></span><span class="muted">' + esc(q.why) + '</span>') +
+    /* After a test: wrong questions are listed right away with the user's answer, the correct one and the explanation.
+       Right questions sit behind a button. Every item has a grammar-rule button. */
+    function item(i, wrong) {
+      var q = quiz.qs[i], g = q.gid ? GBYID[q.gid] : null, open = !!(quiz.open && quiz.open[i]), mine = quiz.answers ? quiz.answers[i] : undefined;
+      return '<div class="miss"><strong style="font-family:var(--font-display)">' + esc(q.q) + '</strong>' + admQInfo(q) +
+        (wrong && mine !== undefined ? '<span>Bạn chọn: <span class="no-way">' + esc(q.o[mine]) + '</span></span>' : '') +
+        '<span>Đáp án: <mark>' + esc(q.o[q.a]) + '</mark></span><span class="muted">' + esc(q.why) + '</span>' +
         (g ? '<div><button class="btn ghost small" type="button" data-action="q-rule" data-v="' + i + '" aria-expanded="' + open + '">' + (open ? 'Ẩn quy tắc' : 'Xem quy tắc') + '</button></div>' +
           (open ? '<div class="rule ruleview"><div class="rv-head"><h3>' + esc(g.t) + '</h3><span class="tag lvtag">' + esc(g.lv) + '</span></div>' + ruleBody(g) + '</div>' : '') : '') + '</div>';
-    }).join('');
+    }
+    var miss = quiz.missed.map(function (i) { return item(i, true); }).join('');
+    var rightIdx = [];
+    quiz.qs.forEach(function (q, i) { if (quiz.answers && quiz.answers[i] === q.a) rightIdx.push(i); });
+    var rightHtml = rightIdx.length
+      ? '<div><button class="btn ghost" type="button" data-action="q-show-right" aria-expanded="' + !!quiz.showRight + '">' + (quiz.showRight ? 'Ẩn các câu làm đúng' : 'Xem lại ' + rightIdx.length + ' câu làm đúng') + '</button></div>' +
+        (quiz.showRight ? '<div>' + rightIdx.map(function (i) { return item(i, false); }).join('') + '</div>' : '') : '';
     var top, extra = '', msg, retry, nextBtn = '';
     if (quiz.kind === 'placement') {
       var rows = quiz.lvs.filter(function (l) { return quiz.tally[l]; }).map(function (l) {
         var t = quiz.tally[l];
         return '<tr><td>' + esc(l) + '</td><td>' + t.right + ' / ' + t.asked + '</td></tr>';
       }).join('');
-      top = '<p class="muted" style="margin:0">Trình độ ước lượng</p><div class="score">' + esc(quiz.est) + '</div><p class="muted">' + quiz.score + ' / ' + n + ' câu đúng</p>';
+      top = '<p class="muted" style="margin:0">Trình độ ước lượng</p><div class="score">' + esc(quiz.est) + '</div><p class="muted">Điểm: ' + s10(quiz.score, n) + ' / 10 (' + quiz.score + ' / ' + n + ' câu đúng)</p>';
       msg = 'Hãy bắt đầu từ ngữ pháp ở cấp ' + quiz.est + ' và luyện thêm ở cấp đó.';
       extra = '<div class="table-wrap"><table style="min-width:0"><thead><tr><th>Cấp độ</th><th>Đúng / Đã hỏi</th></tr></thead><tbody>' + rows + '</tbody></table></div>' +
         '<p class="muted">Đây là kết quả ước lượng dựa trên ' + n + ' câu. ' + (quiz.total <= 10
@@ -758,8 +768,8 @@
       retry = '<button class="btn ghost" type="button" data-action="start-placement" data-n="' + quiz.total + '">Làm lại</button>';
     } else {
       msg = pct >= 0.85 ? 'Kết quả rất tốt. Hãy thử bài ở cấp độ cao hơn.' : pct >= 0.6 ? 'Tiến bộ tốt. Hãy xem lại các câu bên dưới rồi làm lại.' : 'Cố lên. Đọc lại ngữ pháp cho những câu bạn làm sai rồi thử lại.';
-      top = '<div class="score">' + quiz.score + ' / ' + n + '</div>';
-      if (quiz.kind === 'set') { var sb = setStat(quiz.setId); extra = '<p class="muted">Điểm cao nhất hôm nay: ' + sb.bs + '/' + sb.bn + '. Điểm trung bình của bài này: ' + pctOf(sb.sum, sb.cnt) + '%. Mỗi lần làm lại bạn sẽ nhận một bộ câu hỏi mới.</p>'; }
+      top = '<div class="score">' + s10(quiz.score, n) + ' / 10</div><p class="muted">' + quiz.score + ' / ' + n + ' câu đúng</p>';
+      if (quiz.kind === 'set') { var sb = setStat(quiz.setId); extra = '<p class="muted">Điểm cao nhất hôm nay: ' + s10(sb.bs, sb.bn) + '/10. Điểm trung bình của bài này: ' + avg10(sb.sum, sb.cnt) + '/10. Mỗi lần làm lại bạn sẽ nhận một bộ câu hỏi mới.</p>'; }
       nextBtn = '<a class="btn" href="#grammar">Ôn lại ngữ pháp</a>';
       retry = quiz.kind === 'set'
         ? '<button class="btn ghost" type="button" data-action="start" data-set="' + esc(quiz.setId) + '">Làm lại</button>'
@@ -767,9 +777,8 @@
     }
     return '<div class="quiz"><p class="call">' + esc(quiz.title) + ' / ' + esc(quiz.lvLabel) + '</p>' + top + '<p class="lead">' + msg + '</p>' + extra +
       '<div class="row">' + nextBtn + retry + '<button class="btn ghost" type="button" data-action="quit">Tất cả bài kiểm tra</button></div>' +
-      (miss ? '<div><div class="row" style="justify-content:space-between;margin-bottom:0.5rem"><h2>Các câu cần ôn lại</h2>' +
-        '<button class="btn ghost small" type="button" data-action="q-show-ans" aria-pressed="' + !!quiz.showAns + '">' + (quiz.showAns ? 'Ẩn đáp án đúng' : 'Xem đáp án đúng') + '</button>' + '</div>' + miss + '</div>'
-        : '<p><mark>Điểm tuyệt đối. Không có câu nào cần ôn lại.</mark></p>') + '</div>';
+      (miss ? '<div><h2 style="margin-bottom:0.5rem">Các câu làm sai (' + quiz.missed.length + ')</h2>' + miss + '</div>' : '<p><mark>Điểm tuyệt đối. Không có câu nào làm sai.</mark></p>') +
+      rightHtml + '</div>';
   }
 
   /* ---------- Tài nguyên ---------- */
@@ -1362,8 +1371,8 @@
       var dp = document.getElementById('ipa-detail'); if (dp && dp.scrollIntoView) dp.scrollIntoView({ block: 'start' });
     } else if (a === 'ipa-play') {
       playFile(t.getAttribute('data-src'), t.getAttribute('data-w'));
-    } else if (a === 'q-show-ans') {
-      if (quiz) { quiz.showAns = !quiz.showAns; render(); }
+    } else if (a === 'q-show-right') {
+      if (quiz) { quiz.showRight = !quiz.showRight; render(); }
     } else if (a === 'q-rule') {
       var qi = parseInt(t.getAttribute('data-v'), 10), qsy = window.scrollY;
       if (quiz && quiz.open) { quiz.open[qi] = !quiz.open[qi]; render(); window.scrollTo(0, qsy); refocus(a, String(qi)); }
