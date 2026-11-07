@@ -605,7 +605,276 @@ OEL.grammar = [
     ]
   },
 
-
+  { title: "So sánh hơn với tính từ và trạng từ", grammarId: "071", level: "A1", category: "So sánh",
+    rule: "Thêm đuôi **-er + than** cho tính từ/trạng từ ngắn (1 âm tiết) và **more + adj/adv + than** cho từ dài (2 âm tiết trở lên). *Mẹo chính tả:* Tính từ ngắn kết thúc bằng một phụ âm đứng sau một nguyên âm thì gấp đôi phụ âm cuối trước khi thêm **-er** (**big** -> **bigger**).",
+    form: ["S + V + adj/adv-er + than + N / pronoun", "S + V + more + adj/adv + than + N / pronoun"],
+    examples: ["This building is taller than that one.", "This exercise is more difficult than the previous one.", "He runs faster than me."],
+    wrong: "This building is more tall than that one.", right: "This building is taller than that one.",
+    more: [
+      { type: "nuance", text: "Phân biệt sắc thái: Dùng **more** với tính từ/trạng từ dài thể hiện sự tăng tiến tổng quát, nhưng có thể nhấn mạnh sự chênh lệch nhỏ bằng **slightly/a bit** hoặc chênh lệch lớn bằng **much/far** trước hình thức so sánh." }
+    ]
+  },
+  { title: "So sánh nhất với tính từ và trạng từ", grammarId: "072", level: "A1", category: "So sánh",
+    rule: "Dùng để so sánh một đối tượng với toàn bộ tập hợp (từ 3 đối tượng trở lên). Thêm **the + adj/adv-est** cho từ ngắn và **the most + adj/adv** cho từ dài.",
+    form: ["S + V + the + adj/adv-est + (in/of...)", "S + V + the most + adj/adv + (in/of...)"],
+    examples: ["Mount Everest is the highest mountain in the world.", "He is the most intelligent student in our class.", "She ran the fastest of all."],
+    wrong: "He is the more intelligent student in our class.", right: "He is the most intelligent student in our class.",
+    more: [
+      { type: "nuance", text: "Phân biệt giới từ theo sau: Dùng **in** khi chỉ một địa điểm hoặc tập hợp danh từ số ít (**in the world**, **in the team**); dùng **of** khi đi với khoảng thời gian hoặc danh từ số nhiều (**of the three**, **of all time**)." }
+    ]
+  },
+  { title: "So sánh kép The comparative, the comparative", grammarId: "073", level: "B2", category: "So sánh",
+    rule: "Diễn tả mối quan hệ nguyên nhân - kết quả đồng tiến ('càng... thì càng...'). Cả hai vế đều đảo hình thức so sánh hơn lên đầu mệnh đề và bắt buộc có mạo từ **the**.",
+    form: ["The + comparative + S + V, the + comparative + S + V"],
+    examples: ["The more you practice, the better you will play.", "The higher we climbed, the colder it became.", "The sooner you start, the earlier you will finish."],
+    wrong: "More you practice, better you will play.", right: "The more you practice, the better you will play.",
+    more: [
+      { type: "nuance", text: "Phân biệt sắc thái với cấu trúc ngắn: Trong giao tiếp có thể rút gọn tối đa mệnh đề thành các cụm từ ngắn như **The more, the merrier** (Càng đông càng vui) mà không cần chủ ngữ và động từ." }
+    ]
+  },
+  { title: "So sánh lũy tiến", grammarId: "074", level: "B1", category: "So sánh",
+    rule: "Diễn tả sự thay đổi liên tục theo chiều hướng tăng lên hoặc giảm đi của một đặc tính ('ngày càng...'). Tính từ ngắn nối bằng **and**, tính từ dài lặp lại từ **more**.",
+    form: ["adj/adv-er + and + adj/adv-er", "more and more + adj/adv dài"],
+    examples: ["Computers are getting smaller and cheaper every year.", "Traffic is becoming more and more congested.", "She worked harder and harder."],
+    wrong: "Computers are getting smaller and cheap.", right: "Computers are getting smaller and cheaper every year.",
+    more: [
+      { type: "nuance", text: "Phân biệt với dạng giảm dần: Khi muốn diễn tả 'ngày càng kém/ít đi', dùng cấu trúc **less and less + adj/adv** cho cả từ ngắn lẫn từ dài (**less and less clear**)." }
+    ]
+  },
+  { title: "Từ nối chỉ sự bổ sung", grammarId: "075", level: "B2", category: "Từ nối",
+    rule: "Dùng **In addition**, **Moreover**, **Furthermore**, **Besides** để bổ sung thông tin hoặc luận điểm mới vào câu trước. Thường đứng đầu câu hoặc sau dấu chấm phẩy và ngăn cách bằng dấu phẩy.",
+    form: ["Clause; moreover / furthermore / in addition / besides, + clause"],
+    examples: ["He is fluent in French; moreover, he speaks German and Italian.", "The apartment is spacious; furthermore, it is centrally located.", "In addition to his salary, he gets bonuses."],
+    wrong: "He is fluent in French moreover he speaks German.", right: "He is fluent in French; moreover, he speaks German.",
+    more: [
+      { type: "nuance", text: "Phân biệt sắc thái giữa các từ: **Moreover** và **Furthermore** mang văn phong trang trọng/học thuật cao dùng trong luận điểm; **Besides** vừa là trạng từ vừa là giới từ (**besides + N/V-ing**) mang tính thân mật hơn trong giao tiếp." }
+    ]
+  },
+  { title: "Liên từ chỉ sự tương phản", grammarId: "076", level: "B2", category: "Từ nối",
+    rule: "Dùng **However**, **Nevertheless**, **On the other hand** để đưa ra ý kiến hoặc sự việc tương phản với mệnh đề trước đó.",
+    form: ["Clause; however / nevertheless / on the other hand, + clause"],
+    examples: ["The team worked hard; however, they could not secure the contract.", "It was raining; nevertheless, they went out for a walk.", "On the one hand..., on the other hand..."],
+    wrong: "The team worked hard, however they could not secure it.", right: "The team worked hard; however, they could not secure it.",
+    more: [
+      { type: "nuance", text: "Phân biệt mức độ trang trọng: **Nevertheless** mang sắc thái cực kỳ trang trọng và trang nghiêm hơn **However**; **On the other hand** dùng khi cân nhắc hai mặt đối lập của một vấn đề." }
+    ]
+  },
+  { title: "Cấu trúc In case và In case of", grammarId: "077", level: "B1", category: "Liên từ",
+    rule: "Dùng để diễn tả sự chuẩn bị, phòng ngừa một khả năng có thể xảy ra trong tương lai. **In case** đi với mệnh đề (S + V); **In case of** đi với danh từ hoặc cụm danh từ.",
+    form: ["In case + clause", "In case of + N / V-ing"],
+    examples: ["Take an umbrella with you in case it rains later.", "In case of emergency, please break the glass.", "I brought extra money in case we need it."],
+    wrong: "In case of it rains, take an umbrella.", right: "In case it rains, take an umbrella.",
+    more: [
+      { type: "nuance", text: "Phân biệt **In case** và **If**: **In case** là hành động chuẩn bị làm trước *để phòng ngừa* (mang dù trước); **If** là hành động chỉ thực hiện *sau khi* điều kiện xảy ra (mưa mới mở dù)." }
+    ]
+  },
+  { title: "Cấu trúc Provided that và As long as", grammarId: "078", level: "B2", category: "Liên từ",
+    rule: "Dùng để đặt ra điều kiện bắt buộc để một sự việc khác được phép diễn ra ('miễn là', 'với điều kiện là'). Mệnh đề chứa điều kiện tuyệt đối không chia thì tương lai đơn.",
+    form: ["Provided that / Providing that / As long as + S + V (hiện tại đơn), clause"],
+    examples: ["You can borrow my car as long as you return it with a full tank.", "Provided that you study hard, you will pass the exam.", "Providing that weather is fine, we leave tomorrow."],
+    wrong: "You can borrow my car as long as you will return it.", right: "You can borrow my car as long as you return it.",
+    more: [
+      { type: "nuance", text: "Phân biệt sắc thái: **Provided that** / **Providing that** thường dùng trong văn phong viết, hợp đồng hoặc quy định trang trọng; **As long as** dùng phổ biến trong giao tiếp hàng ngày." }
+    ]
+  },
+  { title: "Mệnh đề trạng ngữ chỉ vị trí", grammarId: "079", level: "B1", category: "Mệnh đề",
+    rule: "Dùng **where** (nơi mà) hoặc **wherever** (bất cứ nơi đâu) để bổ nghĩa cho động từ chính về vị trí/địa điểm diễn ra hành động.",
+    form: ["Where / Wherever + clause, clause", "S + V + where / wherever + clause"],
+    examples: ["You can sit wherever you like in the auditorium.", "Put the keys where everyone can see them.", "Wherever she goes, she makes friends easily."],
+    wrong: "You can sit everywhere you like.", right: "You can sit wherever you like in the auditorium.",
+    more: [
+      { type: "nuance", text: "Phân biệt **Where** và **Wherever**: **Where** chỉ một địa điểm xác định cụ thể (*where I was born*); **Wherever** mang tính mở rộng, vô định (*bất kỳ chỗ nào*)." }
+    ]
+  },
+  { title: "Câu mệnh lệnh kết hợp and hoặc or", grammarId: "080", level: "A2", category: "Cấu trúc câu",
+    rule: "Đưa ra lời khuyên hoặc cảnh báo bằng cách dùng câu mệnh lệnh đứng đầu (**V-bare**), nối với vế sau bằng **and** (kết quả tích cực) hoặc **or / or else** (hậu quả tiêu cực).",
+    form: ["V-bare..., and + S + will + V-bare", "V-bare..., or / or else + S + will + V-bare"],
+    examples: ["Study hard, and you will pass the upcoming examination.", "Hurry up, or you will miss the train.", "Listen carefully, and you will understand."],
+    wrong: "Study hard, and you pass the exam.", right: "Study hard, and you will pass the upcoming examination.",
+    more: [
+      { type: "nuance", text: "Phân biệt tương đương với câu điều kiện: **V-bare..., and...** tương đương mệnh đề **If + khẳng định**; **V-bare..., or...** tương đương mệnh đề **If + phủ định** (*If you don't hurry...*)." }
+    ]
+  },
+  { title: "Danh từ đếm được và không đếm được nâng cao", grammarId: "081", level: "A1", category: "Danh từ",
+    rule: "Danh từ đếm được có thể đếm bằng số và có dạng số nhiều; danh từ không đếm được không thể đếm trực tiếp mà phải thông qua các cụm từ định lượng (**a piece of**, **a glass of**).",
+    form: ["Countable N (singular/plural)", "Uncountable N (+ a piece of / a bottle of / a cup of)"],
+    examples: ["She gave me a great piece of advice.", "How much water do you drink every day?", "I need to buy some furniture for my new apartment."],
+    wrong: "She gave me a great advice.", right: "She gave me a great piece of advice.",
+    more: [
+      { type: "nuance", text: "Phân biệt các từ có hai dạng nghĩa: **Hair** chỉ toàn bộ mái tóc là không đếm được (*Her hair is dark*), nhưng chỉ các sợi tóc riêng lẻ là đếm được (*There are two hairs on your shirt*)." }
+    ]
+  },
+  { title: "Danh từ ghép và sở hữu cách", grammarId: "082", level: "A2", category: "Danh từ",
+    rule: "Dùng danh từ ghép để chỉ tên loại đối tượng (**noun + noun**). Dùng sở hữu cách (**'s** cho danh từ số ít hoặc số nhiều bất quy tắc; **'** cho danh từ số nhiều tận cùng bằng s) để chỉ quyền sở hữu của người/động vật.",
+    form: ["Noun + Noun (danh từ ghép)", "N (số ít) + 's + N", "N (số nhiều có s) + ' + N"],
+    examples: ["This is my brother's laptop; he left it on the table.", "We visited the girls' dormitory yesterday.", "He bought a new bus ticket."],
+    wrong: "This is my brothers laptop.", right: "This is my brother's laptop.",
+    more: [
+      { type: "nuance", text: "Phân biệt sở hữu với vật/thực thể vô sinh: Với đồ vật, dùng cấu trúc **N + of + N** (*the leg of the table*) chứ ít khi dùng sở hữu cách *'s* (*the table's leg*)." }
+    ]
+  },
+  { title: "Sử dụng mạo từ nâng cao", grammarId: "083", level: "A1", category: "Mạo từ",
+    rule: "Dùng **a/an** cho danh từ số ít nhắc tới lần đầu; **the** cho danh từ đã xác định/duy nhất; không dùng mạo từ (**zero article**) trước danh từ số nhiều/không đếm được khi phát biểu chung.",
+    form: ["a / an + N (số ít, chưa xác định)", "the + N (đã xác định / duy nhất)", "Ø + N (số nhiều / không đếm được nghĩa chung)"],
+    examples: ["She wants to buy a new car next month.", "The moon orbits around the Earth.", "Children love playing video games."],
+    wrong: "She wants to buy new car.", right: "She wants to buy a new car.",
+    more: [
+      { type: "nuance", text: "Phân biệt danh từ có và không có **the**: **Go to hospital** (đến bệnh viện để chữa bệnh với tư cách bệnh nhân); **Go to the hospital** (đến bệnh viện với tư cách người thăm nuôi/khách)." }
+    ]
+  },
+  { title: "Từ chỉ số lượng Much Many A lot of Plenty of", grammarId: "084", level: "A2", category: "Từ chỉ số lượng",
+    rule: "**Many** đi với danh từ đếm được số nhiều; **Much** đi với danh từ không đếm được. **A lot of** / **Plenty of** dùng linh hoạt cho cả hai loại danh từ trong câu khẳng định.",
+    form: ["many + N (đếm được số nhiều)", "much + N (không đếm được)", "a lot of / plenty of + N (cả hai loại)"],
+    examples: ["How much sugar did you put in my coffee?", "There are many students in the library today.", "We have a lot of time before the train departs."],
+    wrong: "How many sugar do you need?", right: "How much sugar do you need?",
+    more: [
+      { type: "nuance", text: "Phân biệt sắc thái: **Plenty of** mang ý nghĩa 'đủ và thừa thãi cho nhu cầu', trong khi **a lot of** chỉ đơn thuần là 'số lượng nhiều'." }
+    ]
+  },
+  { title: "Từ chỉ số lượng Few A few Little A little", grammarId: "085", level: "B1", category: "Từ chỉ số lượng",
+    rule: "**A few** / **A little** mang nghĩa tích cực (còn một ít, đủ dùng). **Few** / **Little** mang nghĩa phủ định (rất ít, hầu như không có, không đủ dùng).",
+    form: ["a few / few + N (đếm được số nhiều)", "a little / little + N (không đếm được)"],
+    examples: ["I have a few friends in this city, so I rarely feel lonely.", "He has little experience in marketing, so he failed to get the job.", "We have a little time left before the deadline."],
+    wrong: "I have few friends so I feel very happy.", right: "I have a few friends so I feel quite happy.",
+    more: [
+      { type: "nuance", text: "Phân biệt thái độ người nói: **I have a little money** (Vui vì vẫn còn tiền tiêu); **I have little money** (Buồn/lo lắng vì sắp hết tiền)." }
+    ]
+  },
+  { title: "Đại từ phân bổ All Both Neither Either None", grammarId: "086", level: "B2", category: "Đại từ",
+    rule: "Dùng để chỉ tổng thể hoặc phân loại nhóm đối tượng. **Both / Neither / Either** dùng cho nhóm 2 đối tượng; **All / None** dùng cho nhóm từ 3 đối tượng trở lên.",
+    form: ["Both / Neither / Either + of + the + N (2 đối tượng)", "All / None + of + the + N (>= 3 đối tượng)"],
+    examples: ["Neither of the two candidates was qualified for the job.", "Both of my parents are teachers.", "None of the students failed the final examination."],
+    wrong: "Neither of the two candidates were qualified.", right: "Neither of the two candidates was qualified.",
+    more: [
+      { type: "nuance", text: "Phân biệt hòa hợp chủ vị: **Neither of / Either of** theo sau bởi danh từ số nhiều nhưng động từ trong ngữ pháp trang trọng luôn chia ở **số ít** (*Neither of them was present*)." }
+    ]
+  },
+  { title: "Phân biệt Every và Each", grammarId: "087", level: "B2", category: "Từ chỉ số lượng",
+    rule: "**Each** dùng cho nhóm từ 2 đối tượng trở lên, nhấn mạnh tính riêng biệt từng cá thể. **Every** dùng cho nhóm từ 3 đối tượng trở lên, nhấn mạnh tính tổng thể của cả tập hợp.",
+    form: ["Each / Every + N (đếm được số ít) + V (số ít)"],
+    examples: ["Each student in the class was given a unique project topic.", "Every room in this hotel has an ocean view.", "She spoke to each participant individually."],
+    wrong: "Every students received a gift.", right: "Each student received a gift.",
+    more: [
+      { type: "nuance", text: "Phân biệt cấu trúc: **Each** có thể đứng một mình hoặc đi với *of* (**Each of the boys**), nhưng **Every** bắt buộc phải có danh từ đứng ngay sau (không dùng *Every of*)." }
+    ]
+  },
+  { title: "Đại từ phản thân", grammarId: "088", level: "A2", category: "Đại từ",
+    rule: "Dùng khi chủ ngữ và tân ngữ chỉ cùng một đối tượng (**myself**, **yourself**, **himself**...), hoặc kết hợp cụm **by + reflexive pronoun** để diễn tả việc tự làm không có người giúp.",
+    form: ["S + V + reflexive pronoun", "by + reflexive pronoun (tự mình làm)"],
+    examples: ["He built the bookshelf all by himself without any help.", "She looked at herself in the mirror.", "Children, you must take care of yourselves."],
+    wrong: "He looked at him in the mirror.", right: "He looked at himself in the mirror.",
+    more: [
+      { type: "nuance", text: "Phân biệt tân ngữ thường và đại từ phản thân: **He saw him** (Anh ấy nhìn thấy người đàn ông khác); **He saw himself** (Anh ấy nhìn chính mình trong gương)." }
+    ]
+  },
+  { title: "Đại từ sở hữu và tính từ sở hữu", grammarId: "089", level: "A1", category: "Đại từ",
+    rule: "Tính từ sở hữu (**my**, **your**, **his**...) phải đứng trước danh từ. Đại từ sở hữu (**mine**, **yours**, **his**...) đứng độc lập thay thế cho cả 'tính từ sở hữu + danh từ' để tránh lặp từ.",
+    form: ["Possessive adj + N", "Possessive pronoun (mine / yours / his / hers / ours / theirs)"],
+    examples: ["This isn't my jacket; mine is blue.", "Her hair is long, but his is short.", "Is this umbrella yours or ours?"],
+    wrong: "This jacket is my.", right: "This jacket is mine.",
+    more: [
+      { type: "nuance", text: "Phân biệt **its** và **it's**: **Its** là tính từ sở hữu (*The dog wagged its tail*); **It's** là dạng viết tắt của *It is* hoặc *It has*." }
+    ]
+  },
+  { title: "Trật tự của tính từ trước danh từ", grammarId: "090", level: "B1", category: "Tính từ",
+    rule: "Khi nhiều tính từ cùng bổ nghĩa cho một danh từ, sắp xếp theo thứ tự **OSASCOMP**: Opinion (Ý kiến) -> Size (Kích thước) -> Age (Tuổi) -> Shape (Hình dáng) -> Color (Màu sắc) -> Origin (Nguồn gốc) -> Material (Chất liệu) -> Purpose (Mục đích).",
+    form: ["Opinion -> Size -> Age -> Shape -> Color -> Origin -> Material -> Purpose + N"],
+    examples: ["She was wearing a beautiful long red silk dress at the wedding.", "He bought an old small wooden house.", "They gave me a wonderful round golden ring."],
+    wrong: "She wore a red long beautiful silk dress.", right: "She was wearing a beautiful long red silk dress.",
+    more: [
+      { type: "nuance", text: "Phân biệt tính từ ý kiến chủ quan và khách quan: Tính từ thể hiện quan điểm chủ quan (**beautiful**, **lovely**) luôn đứng trước các tính từ miêu tả thực tế khách quan (**long**, **red**)." }
+    ]
+  },
+  { title: "Tính từ tận cùng bằng ED và ING", grammarId: "091", level: "B1", category: "Tính từ",
+    rule: "Tính từ đuôi **-ed** diễn tả cảm xúc/bị tác động của con người. Tính từ đuôi **-ing** mô tả bản chất, tính chất gây ra cảm xúc của sự vật, sự việc hoặc người khác.",
+    form: ["S (người) + be + adj-ed (cảm xúc)", "S (sự vật/sự việc) + be + adj-ing (tính chất)"],
+    examples: ["The long lecture was so boring that half the audience fell asleep.", "I am bored with this routine.", "She was surprised by the sudden news."],
+    wrong: "The lecture was so bored.", right: "The lecture was so boring.",
+    more: [
+      { type: "nuance", text: "Phân biệt khi mô tả người: **He is bored** (Anh ấy đang cảm thấy chán nản); **He is boring** (Anh ấy là một người tẻ nhạt, làm người khác phát chán)." }
+    ]
+  },
+  { title: "Vị trí và dạng của trạng từ", grammarId: "092", level: "A2", category: "Trạng từ",
+    rule: "Trạng từ thể cách diễn tả cách thức hành động diễn ra (thêm **-ly** vào tính từ). Đứng sau động từ chính hoặc sau tân ngữ, tuyệt đối không đứng giữa động từ và tân ngữ.",
+    form: ["S + V + (O) + adv (-ly)"],
+    examples: ["She speaks English extremely fluently.", "He quickly finished his homework before dinner.", "Please drive carefully on this slippery road."],
+    wrong: "She speaks English fluent.", right: "She speaks English fluently.",
+    more: [
+      { type: "nuance", text: "Phân biệt tính từ/trạng từ bất quy tắc: **Hard** (chăm chỉ/cứng) -> trạng từ vẫn là **hard**; còn **hardly** mang nghĩa hoàn toàn khác là 'hầu như không'." }
+    ]
+  },
+  { title: "Trạng từ chỉ nơi chốn phủ định đứng đầu câu", grammarId: "093", level: "B2", category: "Trạng từ",
+    rule: "Khi trạng từ chỉ nơi chốn mang tính phủ định hoặc giới hạn (**Nowhere**, **On no hill**) đứng đầu câu để nhấn mạnh, ta thực hiện đảo trợ động từ lên trước chủ ngữ.",
+    form: ["Nowhere / Locative phrase + trợ động từ + S + V-bare"],
+    examples: ["Nowhere will you find such breathtaking scenery as in the Alps.", "On the hilltop stood an ancient castle."],
+    wrong: "Nowhere you will find such scenery.", right: "Nowhere will you find such breathtaking scenery.",
+    more: [
+      { type: "nuance", text: "Phân biệt đảo ngữ toàn bộ và đảo trợ động từ: Khi cụm trạng từ chỉ vị trí đứng đầu câu trong văn mô tả, động từ chính được đảo thẳng lên trước chủ ngữ không mượn trợ động từ (**On the table sat a black cat**)." }
+    ]
+  },
+  { title: "Giới từ chỉ thời gian In On At", grammarId: "094", level: "A1", category: "Giới từ",
+    rule: "Dùng **at** cho mốc giờ cụ thể, dịp lễ; **on** cho các ngày trong tuần, ngày tháng cụ thể; **in** cho tháng, năm, mùa, thế kỷ và các buổi trong ngày.",
+    form: ["at + giờ / mốc thời gian cụ thể", "on + thứ / ngày tháng", "in + tháng / năm / mùa / thế kỷ"],
+    examples: ["The concert starts at 7:30 PM sharp tonight.", "My birthday is on October 15th.", "We love traveling in summer."],
+    wrong: "The concert starts in 7:30 PM.", right: "The concert starts at 7:30 PM.",
+    more: [
+      { type: "nuance", text: "Phân biệt **at night** và **in the night**: **At night** nói chung về thời gian ban đêm; **In the night** chỉ một thời điểm cụ thể trong một đêm nhất định." }
+    ]
+  },
+  { title: "Giới từ chỉ nơi chốn In On At", grammarId: "095", level: "A1", category: "Giới từ",
+    rule: "Dùng **at** cho vị trí địa điểm/sự kiện cụ thể, địa chỉ nhà; **on** cho bề mặt, tầng nhà, tên đường; **in** cho không gian kín, thành phố, quốc gia.",
+    form: ["at + điểm cụ thể / địa chỉ nhà", "on + bề mặt / tên đường / tầng", "in + không gian kín / thành phố / quốc gia"],
+    examples: ["She is currently studying at the library.", "There is a poster on the wall.", "They live in Hanoi, Vietnam."],
+    wrong: "She is studying on the library.", right: "She is studying at the library.",
+    more: [
+      { type: "nuance", text: "Phân biệt **at the corner** (ở góc đường/ngã tư bên ngoài) và **in the corner** (ở góc bên trong một căn phòng)." }
+    ]
+  },
+  { title: "Giới từ chỉ phương hướng và chuyển động", grammarId: "096", level: "A2", category: "Giới từ",
+    rule: "Dùng các giới từ như **to**, **into**, **out of**, **through**, **across** để chỉ hướng di chuyển của đối tượng từ vị trí này sang vị trí khác.",
+    form: ["S + V (chuyển động) + into / out of / across / through + N"],
+    examples: ["She walked into the dark room and switched on the lights.", "They swam across the wide river.", "The train went through a long tunnel."],
+    wrong: "She walked in the dark room from outside.", right: "She walked into the dark room.",
+    more: [
+      { type: "nuance", text: "Phân biệt **in** và **into**: **In** chỉ vị trí tĩnh bên trong (*She is in the room*); **Into** chỉ hướng di chuyển từ ngoài vào trong (*She walked into the room*)." }
+    ]
+  },
+  { title: "Giới từ chỉ phương tiện và công cụ", grammarId: "097", level: "B1", category: "Giới từ",
+    rule: "Dùng **by** trước phương tiện giao thông chung chung (không mạo từ). Dùng **on/in** khi phương tiện có mạo từ/tính từ sở hữu. Dùng **with** chỉ công cụ, dụng cụ cụ thể.",
+    form: ["by + phương tiện (by bus, by train)", "in / on + a/my + phương tiện", "with + công cụ (with a pen, with a knife)"],
+    examples: ["He usually travels to work by train to avoid traffic jams.", "She signed the official document with a golden pen.", "They went there in my car."],
+    wrong: "He travels to work by the train.", right: "He travels to work by train.",
+    more: [
+      { type: "nuance", text: "Phân biệt **in** và **on** với phương tiện riêng: Dùng **on** cho phương tiện có thể đi lại đứng thẳng bên trong (**on the bus/plane/train**); dùng **in** cho phương tiện nhỏ phải ngồi xếp chân (**in a car/taxi**)." }
+    ]
+  },
+  { title: "Cụm động từ với Take Give Make Do", grammarId: "098", level: "B1", category: "Cụm động từ",
+    rule: "Cụm động từ (**phrasal verbs**) gồm động từ chính kết hợp với một hoặc hai tiểu từ, tạo ra ý nghĩa hoàn toàn mới khác biệt so với động từ gốc.",
+    form: ["Verb + particle (take off, give up, make up, do away with)"],
+    examples: ["Please take off your shoes before entering the temple.", "She decided to give up smoking for good.", "The plane took off on time despite the fog."],
+    wrong: "Please take away your shoes.", right: "Please take off your shoes.",
+    more: [
+      { type: "nuance", text: "Phân biệt đa nghĩa của **take off**: Mang nghĩa cởi (quần áo/giày dép), máy bay cất cánh, hoặc sự nghiệp bắt đầu khởi sắc nhanh chóng." }
+    ]
+  },
+  { title: "Cụm động từ với Look Bring Turn Put", grammarId: "099", level: "B1", category: "Cụm động từ",
+    rule: "Các cụm động từ thông dụng đi với **look**, **bring**, **turn**, **put** thường xuyên xuất hiện trong giao tiếp và các kỳ thi đánh giá năng lực.",
+    form: ["Verb + preposition / adverb (look forward to, turn down, put on)"],
+    examples: ["Please put on your coat; the room is quite chilly.", "Can you turn down the music, please?", "She is looking forward to meeting you."],
+    wrong: "Please put on your coat off.", right: "Please put on your coat.",
+    more: [
+      { type: "nuance", text: "Phân biệt cấu trúc đặc biệt: **Look forward to** bắt buộc theo sau bởi danh từ hoặc danh động từ **V-ing** (**looking forward to seeing you**), không dùng *to V-bare*." }
+    ]
+  },
+  { title: "Câu cảm thán với What và How nâng cao", grammarId: "100", level: "A2", category: "Câu cảm thán",
+    rule: "Dùng **What** trước cụm danh từ đếm được số ít, số nhiều hoặc không đếm được; dùng **How** trước tính từ hoặc trạng từ để thể hiện cảm xúc mạnh mẽ.",
+    form: ["What + (a/an) + adj + N + S + V!", "How + adj / adv + S + V!"],
+    examples: ["What a wonderful painting this is!", "How brilliantly she played the piano tonight!", "What delicious food they prepared!"],
+    wrong: "How a wonderful painting this is!", right: "What a wonderful painting this is!",
+    more: [
+      { type: "nuance", text: "Phân biệt mạo từ với danh từ không đếm được trong câu cảm thán **What**: Tuyệt đối không thêm **a/an** trước danh từ không đếm được (**What bad weather!**, không viết *What a bad weather!*)." }
+    ]
+  },
   
   
 ];
