@@ -1,0 +1,501 @@
+id,meaning
+0,Một; bất kỳ
+1,Từ bỏ; ruồng bỏ
+2,Khả năng; năng lực
+3,Có thể; có khả năng
+4,Bãi bỏ; hủy bỏ
+5,Sự phá thai
+6,Khoảng; xấp xỉ
+7,"Về (chủ đề, việc gì)"
+8,Ở trên; phía trên
+9,Phía trên; cao hơn
+10,Ở nước ngoài
+11,Sự vắng mặt
+12,Vắng mặt; nghỉ học
+13,Tuyệt đối; hoàn toàn
+14,Hoàn toàn; chắc chắn
+15,Hấp thụ; tiếp thu
+16,Trừu tượng
+17,Vô lý; ngớ ngẩn
+18,Sự dồi dào; phong phú
+19,Sự lạm dụng; ngược đãi
+20,Lạm dụng; ngược đãi
+21,Thuộc học thuật; giáo dục
+22,Giảng viên; nhà nghiên cứu
+23,Học viện; viện nghiên cứu
+24,Tăng tốc; thúc đẩy
+25,Giọng điệu; trọng âm
+26,Chấp nhận; thừa nhận
+27,Có thể chấp nhận
+28,Sự chấp nhận; đồng ý
+29,Quyền truy cập; lối vào
+30,Truy cập; tiếp cận
+31,Dễ tiếp cận; dễ sử dụng
+32,Tai nạn; sự cố
+33,Tình cờ; vô tình
+34,Cung cấp chỗ ở; đáp ứng
+35,Chỗ ở; phòng ở
+36,Đi cùng; đồng hành
+37,Hoàn thành; đạt được
+38,Thành tựu; sự hoàn thành
+39,Sự phù hợp; tuân theo
+40,Theo như; căn cứ vào
+41,Do đó; vì vậy; phù hợp
+42,Tài khoản; bản báo cáo
+43,Giải thích; coi là
+44,Trách nhiệm giải trình
+45,Chịu trách nhiệm
+46,Kế toán viên
+47,Tích lũy; gom góp
+48,Sự tích lũy; chất đống
+49,Độ chính xác
+50,Chính xác; chuẩn xác
+51,Một cách chính xác
+52,Lời cáo buộc; sự buộc tội
+53,Cáo buộc; buộc tội
+54,Bị cáo; người bị buộc tội
+55,Đạt được; hoàn thành
+56,Thành tựu; kết quả
+57,Có tính a-xít; chua
+58,Chất a-xít
+59,Thừa nhận; công nhận
+60,Thu được; đạt được
+61,Sự thu mua; sự đạt được
+62,Mẫu Anh (đơn vị diện tích)
+63,Ngang qua; ở phía bên kia
+64,Băng qua; ngang qua
+65,Hành vi; đạo luật
+66,Hành động; diễn xuất
+67,Hành động; hoạt động
+68,Kích hoạt
+69,Sự kích hoạt
+70,Năng động; chủ động
+71,Nhà hoạt động
+72,Hoạt động
+73,Nam diễn viên
+74,Nữ diễn viên
+75,Thực tế; thực sự
+76,Thực ra; thực sự
+77,Cấp tính; sắc bén
+78,Bài quảng cáo
+79,Thích ứng; điều chỉnh
+80,Sự thích nghi; chuyển thể
+81,Thêm vào; cộng
+82,Sự nghiện ngập
+83,Sự thêm vào; phép cộng
+84,Bổ sung; thêm vào
+85,Ngoài ra; thêm vào đó
+86,Địa chỉ; bài phát biểu
+87,Giải quyết; phát biểu tới
+88,Đầy đủ; thỏa đáng
+89,Đầy đủ; tương xứng
+90,Tuân thủ; dính chặt
+91,Kế bên; liền kề
+92,Điều chỉnh
+93,Sự điều chỉnh
+94,Quản lý; điều hành
+95,Sự quản lý; chính quyền
+96,Thuộc hành chính
+97,Quản trị viên; người quản lý
+98,Ngưỡng mộ; khâm phục
+99,Sự nhận vào; tiền vé vào cửa
+100,Thừa nhận; nhận vào
+101,Thanh thiếu niên
+102,Nhận nuôi; áp dụng
+103,Sự nhận nuôi; sự áp dụng
+104,Trưởng thành
+105,Người trưởng thành
+106,Trước; tiên tiến
+107,Sự tiến bộ; tiền ứng
+108,Tiến bộ; phát triển
+109,Nâng cao; tiên tiến
+110,Lợi thế; ưu điểm
+111,Cuộc phiêu lưu
+112,Bất lợi; hại
+113,Quảng cáo
+114,Bài quảng cáo
+115,Ngành quảng cáo
+116,Lời khuyên
+117,Khuyên bảo
+118,Người ủng hộ; luật sư
+119,Ủng hộ; cổ vũ
+120,Thuộc thẩm mỹ
+121,Vụ việc; chuyện
+122,Ảnh hưởng đến
+123,Sự yêu thương; tình cảm
+124,Chi trả; có đủ khả năng
+125,Giá cả phải chăng
+126,E sợ; lo lắng
+127,Sau đó
+128,Sau khi
+129,Sau khi; phía sau
+130,Hậu quả
+131,Buổi chiều
+132,Sau đó
+133,Lại; lần nữa
+134,Chống lại; tựa vào
+135,Tuổi tác; thời đại
+136,Lão hóa; già đi
+137,Cao tuổi; ở độ tuổi
+138,Đại lý; cơ quan
+139,Chương trình nghị sự
+140,Tác nhân; đại lý
+141,Sự hung hăng; xâm lược
+142,Hung hăng; quyết liệt
+143,Trước đây
+144,Đồng ý; thống nhất
+145,Hợp đồng; sự đồng ý
+146,Thuộc nông nghiệp
+147,Nông nghiệp
+148,Chà; ôi
+149,Phía trước
+150,Sự viện trợ; sự giúp đỡ
+151,Giúp đỡ; viện trợ
+152,Trợ lý
+153,Bệnh AIDS
+154,Mục tiêu
+155,Nhắm tới; hướng vào
+156,Không khí
+157,Máy bay
+158,Hãng hàng không
+159,Sân bay
+160,Báo động; đồng hồ báo thức
+161,Báo động; làm hoảng sợ
+162,Mặc dù
+163,Album nhạc; tập ảnh
+164,Cồn; chất có cồn
+165,Chứa cồn
+166,Tỉnh táo; cảnh giác
+167,Sự cảnh báo
+168,Cảnh báo
+169,Xa lạ; thuộc ngoại hành tinh
+170,Người ngoài hành tinh
+171,Căn chỉnh; thẳng hàng
+172,Sự căn chỉnh
+173,Giống nhau
+174,Tương tự như nhau
+175,Còn sống; sống động
+176,Tất cả
+177,Tất cả mọi thứ
+178,Ổn; tốt
+179,Ổn; tốt
+180,Lời cáo buộc
+181,Cáo buộc; tuyên bố
+182,Theo cáo buộc
+183,Liên minh
+184,Phân bổ; chỉ định
+185,Sự phân bổ
+186,Cho phép
+187,Tiền trợ cấp; phụ cấp
+188,Đồng minh
+189,Gần như; hầu như
+190,Một mình; đơn độc
+191,Một mình
+192,Dọc theo; cùng đi
+193,Dọc theo
+194,Bên cạnh; cùng với
+195,Đã; rồi
+196,Cũng; ngoài ra
+197,Thay đổi; biến đổi
+198,Thay thế
+199,Phương án thay thế
+200,Mặc dù
+201,Nhìn chung; hoàn toàn
+202,Nhôm
+203,Luôn luôn
+204,Nghiệp dư
+205,Người nghiệp dư
+206,Kinh ngạc
+207,Đáng kinh ngạc
+208,Đại sứ
+209,Tham vọng; hoài bão
+210,Tham vọng
+211,Xe cứu thương
+212,Sửa đổi; bổ sung
+213,Sự sửa đổi
+214,Ở giữa; trong lúc
+215,Trong số; giữa
+216,Số lượng; lượng
+217,Vui nhộn; gây cười
+218,Sự tương tự; so sánh
+219,Phân tích
+220,Sự phân tích
+221,Chuyên viên phân tích
+222,Tổ tiên
+223,Mỏ neo; phát thanh viên
+224,Cổ xưa; cổ đại
+225,Và
+226,Thiên thần
+227,Cơn giận; sự tức giận
+228,Góc độ
+229,Tức giận
+230,Động vật
+231,Hoạt họa; sự sống động
+232,Cổ chân
+233,Ngày kỷ niệm
+234,Thông báo; tuyên bố
+235,Lời thông báo
+236,Làm phiền; chọc tức
+237,Bực mình
+238,Gây bực mình
+239,Hàng năm
+240,Mỗi năm một lần
+241,Ẩn danh
+242,Một cái khác
+243,Cái khác
+244,Câu trả lời
+245,Trả lời
+246,Dự đoán; mong đợi
+247,Sự lo âu; trăn trở
+248,Lo âu; hồi hộp
+249,Bất kỳ
+250,Bất kỳ cái nào
+251,Nữa; không còn nữa
+252,Bất kỳ ai
+253,Nữa; không còn nữa
+254,Bất kỳ ai
+255,Bất kỳ cái gì
+256,Dù sao đi nữa
+257,Bất kỳ đâu
+258,Tách biệt; rời ra
+259,Căn hộ
+260,Xin lỗi
+261,Lời xin lỗi
+262,Ứng dụng
+263,Thiết bị; bộ máy
+264,Rõ ràng; hiển nhiên
+265,Hình như; hiển nhiên
+266,Lời kêu gọi; sự kháng án
+267,Kêu gọi; kháng án; thu hút
+268,Lôi cuốn; hấp dẫn
+269,Xuất hiện; hình như
+270,Vẻ bề ngoài; sự xuất hiện
+271,Sự thèm ăn
+272,Vỗ tay tán thưởng
+273,Quả táo
+274,Có thể áp dụng
+275,Ứng viên
+276,Đơn xin; ứng dụng
+277,Nộp đơn; áp dụng
+278,Bổ nhiệm; chỉ định
+279,Cuộc hẹn; sự bổ nhiệm
+280,Trân trọng; đánh giá cao
+281,Sự trân trọng; sự đánh giá cao
+282,Cách tiếp cận; phương pháp
+283,Tiếp cận; đến gần
+284,Thích hợp; phù hợp
+285,Một cách thích hợp
+286,Sự phê duyệt; chấp thuận
+287,Phê duyệt; chấp thuận
+288,Khoảng; xấp xỉ
+289,Tháng Tư
+290,Tùy ý; cảm tính
+291,Kiến trúc sư
+292,Thuộc kiến trúc
+293,Kiến trúc
+294,Lưu trữ; kho lưu trữ
+295,Khu vực; diện tích
+296,Đấu trường; sân vận động
+297,Có thể cho rằng
+298,Tranh luận; cãi nhau
+299,Lập luận; sự tranh cãi
+300,Nảy sinh; phát sinh
+301,Cánh tay
+302,Trang bị vũ khí
+303,Vũ trang; có vũ khí
+304,Vũ khí
+305,Quân đội
+306,Xung quanh; khoảng
+307,Xung quanh
+308,Sắp xếp; thu xếp
+309,Sự sắp xếp; thỏa thuận
+310,Mảng; dải đa dạng
+311,Sự bắt giữ
+312,Bắt giữ
+313,Sự đến nơi
+314,Đến nơi
+315,Mũi tên
+316,Nghệ thuật
+317,Bài báo; điều khoản
+318,Diễn đạt rõ ràng
+319,Nhân tạo
+320,Nghệ sĩ
+321,Thuộc nghệ thuật
+322,Tác phẩm nghệ thuật
+323,Như; bằng
+324,Khi; vì; như
+325,Với tư cách là
+326,Tro tàn
+327,Hổ thẹn; xấu hổ
+328,Sang một bên
+329,Hỏi; yêu cầu
+330,Đang ngủ
+331,Khía cạnh
+332,Khát vọng; nguyện vọng
+333,Khao khát; hướng tới
+334,Sự ám sát
+335,Cuộc tấn công; hành hung
+336,Tấn công; hành hung
+337,Lắp ráp; tập hợp
+338,Cuộc họp; sự lắp ráp
+339,Khẳng định; quả quyết
+340,Sự khẳng định
+341,Đánh giá; định giá
+342,Sự đánh giá
+343,Tài sản
+344,Phân công; giao việc
+345,Nhiệm vụ; bài tập
+346,Hỗ trợ; giúp đỡ
+347,Sự hỗ trợ
+348,Trợ lý; người phụ tá
+349,Đồng nghiệp; đối tác
+350,Liên kết; gắn kết
+351,Liên quan; liên kết
+352,Hiệp hội; sự liên kết
+353,Cho rằng; giả định
+354,Giả định
+355,Sự đảm bảo; sự cam đoan
+356,Đảm bảo; cam đoan
+357,Đáng kinh ngạc
+358,Sự tị nạn; nơi trú ẩn
+359,Tại; ở
+360,Vận động viên
+361,Thuộc thể thao
+362,Bầu khí quyển; không khí
+363,Nguyên tử
+364,Thuộc nguyên tử
+365,Hành động dã man
+366,Đính kèm; gắn vào
+367,Tệp đính kèm
+368,Cuộc tấn công
+369,Tấn công
+370,Đạt được
+371,Sự nỗ lực; sự thử sức
+372,Nỗ lực; thử sức
+373,Tham dự; chú ý
+374,Sự tham dự; sĩ số
+375,Sự chú ý
+376,Thái độ
+377,Luật sư
+378,Thu hút; hấp dẫn
+379,Điểm thu hút; sức hút
+380,Hấp dẫn; lôi cuốn
+381,Thuộc tính; đặc tính
+382,Cho là do; quy cho
+383,Buổi đấu giá
+384,Khán giả; độc giả
+385,Thuộc âm thanh
+386,Âm thanh
+387,Sự kiểm toán; kiểm tra
+388,Kiểm toán; kiểm tra
+389,Tháng Tám
+390,Cô; dì; thím
+391,Xác thực; đích thực
+392,Tác giả
+393,Thẩm quyền; chính quyền
+394,Ủy quyền; cấp phép
+395,Xe ô tô
+396,Tự động
+397,Một cách tự động
+398,Quyền tự trị
+399,Mùa thu
+400,Mức độ sẵn có
+401,Sẵn có
+402,Trung bình
+403,Mức trung bình
+404,Đạt mức trung bình
+405,Tránh; né tránh
+406,Chờ đợi
+407,Giải thưởng
+408,Trao giải
+409,Nhận thức được
+410,Nhận thức; sự hiểu biết
+411,Xa; đi xa
+412,Kinh khủng; tồi tệ
+413,Vụng về; ngượng ngùng
+414,Em bé
+415,Phía sau; lưng
+416,Ủng hộ; đáp lại
+417,Phông nền
+418,Nền tảng; bối cảnh
+419,Sự hỗ trợ; chống lưng
+420,Dự phòng; sao lưu
+421,Về phía sau
+422,Vi khuẩn
+423,Tồi tệ; xấu
+424,Huy hiệu
+425,Tồi tệ; nghiêm trọng
+426,Túi; cặp
+427,Tiền bảo lãnh
+428,Nướng bánh
+429,Sự cân bằng; số dư
+430,Cân bằng
+431,Quả bóng; hình cầu
+432,Múa ba-lê
+433,Khí cầu; bóng bay
+434,Lá phiếu bầu
+435,Lệnh cấm
+436,Cấm
+437,Quả chuối
+438,Ban nhạc; dải băng
+439,Ngân hàng; bờ sông
+440,Nhân viên ngân hàng
+441,Ngành ngân hàng
+442,Sự phá sản
+443,Biểu ngữ; băng rôn
+444,Quán bar; thanh chắn
+445,Trần trụi; trọc
+446,Vừa đủ; suýt soát
+447,Món hời; thỏa thuận
+448,Thùng tròn; nòng súng
+449,Rào cản
+450,Căn cứ; nền tảng
+451,Bóng chày
+452,Dựa trên
+453,Đường cơ sở
+454,Tầng hầm
+455,Cơ bản
+456,Về cơ bản
+457,Cơ sở; nền tảng
+458,Cái rổ; cái giỏ
+459,Bóng rổ
+460,Âm trầm; đàn bass
+461,Gậy đánh bóng; con dơi
+462,Bồn tắm; sự tắm
+463,Phòng tắm
+464,Pin; ắc quy
+465,Trận chiến
+466,Chiến trường
+467,Vịnh biển
+468,Thì; là; ở
+469,Bãi biển
+470,Chùm sáng; xà nhà
+471,Hạt đậu
+472,Con gấu; chịu đựng
+473,Quái thú
+474,Đánh; đánh bại; nhịp
+475,Đẹp; tuyệt đẹp
+476,Vẻ đẹp; sắc đẹp
+477,Bởi vì
+478,Trở thành; trở nên
+479,Cái giường
+480,Phòng ngủ
+481,Con ong
+482,Thịt bò
+483,Bia
+484,Trước khi
+485,Trước khi
+486,Trước
+487,Xin xỏ; ăn xin
+488,Bắt đầu
+489,Người bắt đầu
+490,Khởi đầu; phần đầu
+491,Thay mặt; nhân danh
+492,Cư xử; hành xử
+493,Hành vi; ứng xử
+494,Hành vi; cư xử
+495,Phía sau
+496,Sinh vật; sự tồn tại
+497,Niềm tin; tín ngưỡng
+498,Tin tưởng
+499,Cái chuông

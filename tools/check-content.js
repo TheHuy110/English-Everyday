@@ -67,7 +67,7 @@ rows.forEach((r, i) => { const t = 'vocab #' + (i+1) + ' (' + (r && r[1]) + ')';
   [[5, 0], [6, 1]].forEach(([c, d]) => { if (!str(r[c])) noAudio++;
     else { const f = path.join(__dirname, '..', 'audio', AUDIO[d], r[c]); if (fs2.existsSync(path.join(__dirname, '..', 'audio', AUDIO[d])) && fs2.readdirSync(path.join(__dirname, '..', 'audio', AUDIO[d])).length > 1 && !fs2.existsSync(f)) warn(t + ': audio file missing: audio/' + AUDIO[d] + '/' + r[c]); } }); });
 Object.keys(defs).forEach(k => seenId.has(Number(k)) || warn('definition #' + k + ' has no matching word in vocab.js'));
-noDef && warn(noDef + ' of ' + rows.length + ' words have no definition yet (shown as *_def; quiz needs definitions)');
+noDef && warn(noDef + ' of ' + rows.length + ' words have no definition yet (the review quiz needs definitions; those words use self-check)');
 noAudio && warn(noAudio + ' audio fields are empty (browser voice is used instead)');
 const total = rows.length;
 

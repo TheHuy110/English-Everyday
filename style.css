@@ -306,3 +306,8 @@ textarea.export { font-family: var(--font-mono); font-size: 0.85rem; min-height:
 .vsq-main .vst { top: 0.5rem; bottom: auto; }
 .vsq-say-row { position: absolute; bottom: 0.5rem; right: 0.5rem; display: flex; gap: 0.25rem; }
 .vsq-say { position: static; }
+
+/* Band (CEFR level) in the corner */
+.vcard { position: relative; }
+.vband { position: absolute; top: 0.75rem; right: 0.9rem; font-family: var(--font-mono); font-weight: 500; font-size: 0.85rem; letter-spacing: 0.06em; color: var(--accent); border: 1px solid var(--accent); border-radius: 4px; padding: 0.1rem 0.5rem; }
+.vlv { position: absolute; top: 0.5rem; right: 0.6rem; font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500; color: var(--accent); }
