@@ -6,108 +6,108 @@ var OEL = window.OEL;
 OEL.grammar = [
   
   
-  { title: "Thì hiện tại đơn", level: "A1", category: "Thì",
+  { title: "Thì hiện tại đơn", grammarId: "001", level: "A1", category: "Thì",
     rule: "Dùng thì hiện tại đơn cho thói quen, việc lặp đi lặp lại, sự thật hiển nhiên và lịch trình cố định. Với các chủ ngữ số ít (**he**, **she**, **it**) hoặc danh từ không đếm được, động từ phải thêm **-s hoặc -es**. *Mẹo chính tả:* Động từ kết thúc bằng phụ âm + **y** đổi thành **-ies** (**fly** -> **flies**), nhưng nguyên âm + **y** chỉ thêm **-s** (**play** -> **plays**).",
-    form: ["I / you / we / they + động từ nguyên mẫu", "he / she / it + động từ + s / es"],
+    form: ["S + V(s/es)", "S + do / does + not + V-bare", "Do / Does + S + V-bare?"],
     examples: ["She walks to work every day.", "Water boils at 100 degrees Celsius.", "The train leaves at 7:15."],
     wrong: "He go to school by bus.", right: "He goes to school by bus.",
     more: [
-      { type: "extension", text: "Dùng thì hiện tại đơn trong mệnh đề thời gian và mệnh đề if để nói về tương lai: **When** she arrives, we will start. **If** it rains, we'll stay home." },
-      { type: "nuance", text: "Với **always**, thì hiện tại tiếp diễn thêm sắc thái bực mình: He is always losing his keys. Còn He always loses his keys chỉ nêu một thói quen, không mang cảm xúc." },
-      { type: "advanced", text: "Hiện tại lịch sử: khi kể chuyện quá khứ, người nói dùng thì hiện tại đơn cho sinh động: So I walk in, and he says nothing. Cách này cũng thường gặp trong tiêu đề báo." }
+      { type: "extension", text: "Dùng thì hiện tại đơn trong mệnh đề thời gian và mệnh đề **if** để nói về tương lai: **When** she arrives, we will start. **If** it rains, we'll stay home." },
+      { type: "nuance", text: "Với **always**, thì hiện tại tiếp diễn thêm sắc thái bực mình: **He is always losing his keys**. Còn **He always loses his keys** chỉ nêu một thói quen trung tính, không mang cảm xúc." },
+      { type: "advanced", text: "Hiện tại lịch sử (**historic present**): khi kể chuyện quá khứ, người nói dùng thì hiện tại đơn cho sinh động (**So I walk in, and he says nothing**). Cách này cũng thường gặp trong tiêu đề báo chí." }
     ]
   },
-  { title: "Thì hiện tại tiếp diễn", level: "A1", category: "Thì",
-    rule: "Dùng cho hành động đang diễn ra lúc nói hoặc quanh thời điểm hiện tại, và cho tình huống tạm thời. Các động từ chỉ trạng thái như **know, like, want, believe** thường không dùng với **-ing**.",
-    form: ["I + am + động từ-ing", "he / she / it + is + động từ-ing", "you / we / they + are + động từ-ing"],
+  { title: "Thì hiện tại tiếp diễn", grammarId: "002", level: "A1", category: "Thì",
+    rule: "Dùng cho hành động đang diễn ra lúc nói hoặc quanh thời điểm hiện tại, và cho tình huống tạm thời. Các động từ chỉ trạng thái như **know**, **like**, **want**, **believe** thường không dùng với **-ing**.",
+    form: ["S + am / is / are + V-ing", "S + am / is / are + not + V-ing", "Am / Is / Are + S + V-ing?"],
     examples: ["I'm reading a book right now.", "They are staying with friends this week.", "Is it raining?"],
     wrong: "I am knowing the answer.", right: "I know the answer.",
     more: [
-      { type: "extension", text: "Dùng cho kế hoạch đã sắp xếp trong tương lai gần: We're meeting at six tomorrow." },
-      { type: "nuance", text: "Một số động từ chỉ trạng thái dùng được với **-ing** khi mang nghĩa hành động: I'm thinking about it (đang cân nhắc) khác I think it's good (nghĩ rằng). Tương tự, I'm having lunch (đang ăn) khác I have a car (sở hữu)." }
+      { type: "extension", text: "Dùng cho kế hoạch cá nhân đã thu xếp trong tương lai gần (**future arrangement**): **We're meeting at six tomorrow**." },
+      { type: "nuance", text: "Một số động từ chỉ trạng thái dùng được với **-ing** khi mang nghĩa hành động: **I'm thinking about it** (đang cân nhắc) khác **I think it's good** (nghĩ rằng/tin là). Tương tự, **I'm having lunch** (đang ăn) khác **I have a car** (sở hữu)." }
     ]
   },
-  { title: "Mạo từ", level: "A1", category: "Danh từ",
-    rule: "Dùng **a / an** cho một người hoặc vật chưa xác định, hoặc khi nhắc đến lần đầu. Dùng **the** khi người nói và người nghe đều biết đó là cái nào. Không dùng mạo từ với danh từ số nhiều nói chung và danh từ không đếm được. *Mẹo chính tả:* Việc chọn **a** hay **an** phụ thuộc vào **nguyên âm phiên âm** (sound) chứ không phải chữ cái viết (letter).",
-    form: ["a + danh từ bắt đầu bằng âm phụ âm", "an + danh từ bắt đầu bằng âm nguyên âm", "the + danh từ xác định"],
+  { title: "Mạo từ", grammarId: "003", level: "A1", category: "Mạo từ",
+    rule: "Dùng **a / an** cho một người hoặc vật chưa xác định, hoặc khi nhắc đến lần đầu. Dùng **the** khi người nói và người nghe đều biết đó là cái nào. Không dùng mạo từ với danh từ số nhiều nói chung và danh từ không đếm được. *Mẹo chính tả:* Việc chọn **a** hay **an** phụ thuộc hoàn toàn vào **nguyên âm phiên âm** (sound) chứ không phải chữ cái viết (letter) (ví dụ: **an hour** vì **h** câm, phát âm bắt đầu bằng **/aʊ/**, nhưng **a university** vì bắt đầu bằng bán nguyên âm **/j/**).",
+    form: ["a + N (bắt đầu bằng âm phụ âm)", "an + N (bắt đầu bằng âm nguyên âm)", "the + N (xác định / duy nhất)"],
     examples: ["I saw a dog. The dog was huge.", "She is an engineer.", "I love music."],
     wrong: "She is engineer.", right: "She is an engineer.",
     more: [
-      { type: "extension", text: "Dùng **the** với tính từ để chỉ cả một nhóm người: the poor, the elderly, the young." },
-      { type: "nuance", text: "Khi nói chung về một loại, có thể dùng số nhiều không mạo từ (Dogs are loyal) hoặc a + danh từ (A dog is loyal). The + danh từ số ít (The dog is loyal) nghe trang trọng, thường dùng khi nói về loài hoặc phát minh." },
-      { type: "advanced", text: "Một số cụm cố định không dùng mạo từ: go to school, at night, by bus. Cách dùng có thể khác giữa Anh-Anh và Anh-Mỹ: in hospital (Anh) và in the hospital (Mỹ)." }
+      { type: "extension", text: "Dùng **the** với tính từ để chỉ cả một nhóm người trong xã hội: **the poor**, **the elderly**, **the young**." },
+      { type: "nuance", text: "Khi nói chung về một loại, có thể dùng số nhiều không mạo từ (**Dogs are loyal**) hoặc **a** + danh từ số ít (**A dog is loyal**). **The** + danh từ số ít (**The dog is loyal**) nghe trang trọng, thường dùng khi nói về loài hoặc phát minh." },
+      { type: "advanced", text: "Một số cụm cố định không dùng mạo từ (**zero article**): **go to school**, **at night**, **by bus**. Cách dùng có thể khác giữa Anh-Anh và Anh-Mỹ: **in hospital** (Anh) và **in the hospital** (Mỹ)." }
     ]
   },
-  { title: "Thì quá khứ đơn", level: "A2", category: "Thì",
-    rule: "Dùng cho hành động đã kết thúc tại một thời điểm xác định trong quá khứ. Động từ có quy tắc thêm **-ed**. Động từ bất quy tắc đổi dạng và phải học thuộc. Sau **did** hoặc **didn't**, dùng động từ nguyên mẫu.",
-    form: ["Khẳng định: chủ ngữ + động từ-ed (hoặc dạng bất quy tắc)", "Phủ định: chủ ngữ + did not + động từ nguyên mẫu", "Nghi vấn: Did + chủ ngữ + động từ nguyên mẫu?"],
+  { title: "Thì quá khứ đơn", grammarId: "004", level: "A2", category: "Thì",
+    rule: "Dùng cho hành động đã kết thúc tại một thời điểm xác định trong quá khứ. Động từ có quy tắc thêm **-ed**. Động từ bất quy tắc đổi dạng và phải học thuộc. Sau **did** hoặc **didn't**, bắt buộc dùng động từ nguyên mẫu (**V-bare**).",
+    form: ["S + V-ed / V2", "S + did + not + V-bare", "Did + S + V-bare?"],
     examples: ["We visited my grandparents last summer.", "I didn't see him yesterday.", "Did you call her?"],
     wrong: "I didn't went to the party.", right: "I didn't go to the party.",
     more: [
-      { type: "extension", text: "**Used to** + động từ nguyên mẫu nói về thói quen hoặc trạng thái trong quá khứ nay đã chấm dứt: I used to live in Huế." },
-      { type: "advanced", text: "Dùng thì quá khứ để lịch sự hơn khi nhờ vả: I was wondering if you could help me. Ở đây quá khứ không nói về quá khứ mà làm lời nhờ nhẹ nhàng hơn." }
+      { type: "extension", text: "**Used to** + **V-bare** nói về thói quen hoặc trạng thái từng xảy ra thường xuyên trong quá khứ nay đã chấm dứt: **I used to live in Huế**." },
+      { type: "advanced", text: "Dùng thì quá khứ đơn để tạo sự lịch sự, mềm mỏng hơn khi đưa ra yêu cầu hoặc nhờ vả: **I was wondering if you could help me**. Ở đây quá khứ không nói về thời gian quá khứ mà giúp hạ bớt độ đường đột của lời nhờ." }
     ]
   },
-  { title: "Danh từ đếm được và không đếm được", level: "A2", category: "Danh từ",
-    rule: "Danh từ đếm được có thể đếm (**one chair**, **two chairs**). Danh từ không đếm được thì không (**water**, **advice**, **information**). Dùng **many / few** với danh từ đếm được và **much / little** với danh từ không đếm được. **A lot of** dùng được với cả hai.",
-    form: ["many + danh từ số nhiều", "much + danh từ không đếm được"],
+  { title: "Danh từ đếm được và không đếm được", grammarId: "005", level: "A2", category: "Danh từ",
+    rule: "Danh từ đếm được có thể đếm bằng số (**one chair**, **two chairs**). Danh từ không đếm được thì không (**water**, **advice**, **information**). Dùng **many / few** với danh từ đếm được số nhiều và **much / little** với danh từ không đếm được. **A lot of** dùng được với cả hai.",
+    form: ["many / few + N (số nhiều)", "much / little + N (không đếm được)", "a lot of / plenty of + N (cả hai loại)"],
     examples: ["How many bottles do we need?", "How much water is left?", "She gave me some good advice."],
     wrong: "He gave me many informations.", right: "He gave me a lot of information.",
     more: [
-      { type: "nuance", text: "Phân biệt **a few / a little** (mang nghĩa tích cực, có một chút đủ dùng) với **few / little** (mang nghĩa phủ định, rất ít hầu như không đủ)." },
-      { type: "advanced", text: "Một số danh từ thay đổi ý nghĩa hoàn toàn tùy thuộc vào việc đếm được hay không: **coffee** (chất cà phê) vs **a coffee** (một tách cà phê)." }
+      { type: "nuance", text: "Phân biệt **a few / a little** (mang nghĩa tích cực: có một chút, đủ dùng) với **few / little** (mang nghĩa phủ định: rất ít, hầu như không đủ)." },
+      { type: "advanced", text: "Một số danh từ thay đổi ý nghĩa hoàn toàn tùy thuộc vào việc đếm được hay không: **coffee** (không đếm được: chất cà phê) vs **a coffee** (đếm được: một tách cà phê), **paper** (giấy) vs **a paper** (tờ báo/bài báo khoa học)." }
     ]
   },
-  { title: "So sánh hơn và so sánh nhất", level: "A2", category: "Tính từ",
-    rule: "Thêm **-er / -est** vào tính từ ngắn. Dùng **more / most** với tính từ dài. Không dùng cả hai cùng lúc.",
-    form: ["Tính từ ngắn: adj-er + than", "Tính từ ngắn: the + adj-est", "Tính từ dài: more + adj + than", "Tính từ dài: the most + adj"],
+  { title: "So sánh hơn và so sánh nhất", grammarId: "006", level: "A2", category: "Tính từ",
+    rule: "Thêm **-er / -est** vào tính từ ngắn. Dùng **more / most** với tính từ dài. Không dùng lặp cả hai cùng lúc (**more cheaper** là lỗi thừa từ). *Mẹo chính tả:* Tính từ 2 âm tiết tận cùng bằng **-y** (**happy**, **easy**) đổi **y** -> **i** rồi thêm **-er / -est**.",
+    form: ["S + V + adj-er + than + N", "S + V + the + adj-est", "S + V + more + adj + than + N", "S + V + the most + adj"],
     examples: ["This bag is cheaper than that one.", "It was the most interesting film of the year.", "She is taller than her brother."],
     wrong: "This bag is more cheaper.", right: "This bag is cheaper.",
     more: [
-      { type: "extension", text: "Phân biệt **farther** (khoảng cách vật lý) và **further** (khoảng cách hoặc mức độ/chiều sâu tinh thần như **further information**)." },
+      { type: "extension", text: "Phân biệt **farther** (chỉ khoảng cách địa lý vật lý) và **further** (khoảng cách vật lý lẫn chiều sâu tinh thần/mức độ như **further information**)." },
       { type: "advanced", text: "Nhấn mạnh mức độ so sánh hơn bằng cách thêm **much**, **far**, **a lot** vào trước cấu trúc: **This car is much more expensive than that one**." }
     ]
   },
-  { title: "Thì hiện tại hoàn thành", level: "B1", category: "Thì",
-    rule: "Nối quá khứ với hiện tại: trải nghiệm, tin mới, và tình huống bắt đầu trong quá khứ và còn tiếp tục. Không dùng với mốc thời gian đã kết thúc như **yesterday** hoặc **in 2019**.",
-    form: ["I / you / we / they + have + quá khứ phân từ", "he / she / it + has + quá khứ phân từ"],
+  { title: "Thì hiện tại hoàn thành", grammarId: "007", level: "B1", category: "Thì",
+    rule: "Nối quá khứ với hiện tại: diễn tả trải nghiệm (**ever**, **never**), tin mới/hành động vừa xảy ra (**just**, **already**), và tình huống bắt đầu trong quá khứ còn tiếp tục ở hiện tại. Không dùng với mốc thời gian đã kết thúc như **yesterday** hoặc **in 2019**.",
+    form: ["S + have / has + V3/ed", "S + have / has + not + V3/ed", "Have / Has + S + V3/ed?"],
     examples: ["I have lived here for five years.", "She has just left.", "Have you ever tried sushi?"],
     wrong: "I have seen him yesterday.", right: "I saw him yesterday.",
     more: [
-      { type: "extension", text: "**For** + khoảng thời gian, **since** + mốc thời gian: I've lived here for five years. I've lived here since 2019." },
-      { type: "nuance", text: "**Have been to** nghĩa là đã từng đến và đã quay về (She has been to Paris). **Have gone to** nghĩa là đã đi và chưa về (She has gone to Paris)." },
-      { type: "nuance", text: "Anh-Mỹ hay dùng quá khứ đơn với **just**, **already**, **yet**: Did you eat yet? Anh-Anh thường dùng Have you eaten yet?" }
+      { type: "extension", text: "**For** + khoảng thời gian (**for 5 years**), **since** + mốc thời gian (**since 2019**): **I've lived here for five years. I've lived here since 2019**." },
+      { type: "nuance", text: "**Have been to** nghĩa là đã từng đến và đã quay về (**She has been to Paris**). **Have gone to** nghĩa là đã đi và hiện chưa về (**She has gone to Paris**)." },
+      { type: "nuance", text: "Anh-Mỹ hay dùng quá khứ đơn với **just**, **already**, **yet**: **Did you eat yet?** Anh-Anh thường dùng hiện tại hoàn thành: **Have you eaten yet?**" }
     ]
   },
-  { title: "Động từ khuyết thiếu", level: "B1", category: "Động từ",
-    rule: "**Can**, **could**, **must**, **should**, **might** và **will** đi với **động từ nguyên mẫu**. Chúng không thêm **-s** ở ngôi thứ ba và không có “to” theo sau.",
-    form: ["chủ ngữ + động từ khuyết thiếu + động từ nguyên mẫu"],
+  { title: "Động từ khuyết thiếu", grammarId: "008", level: "B1", category: "Động từ",
+    rule: "**Can**, **could**, **must**, **should**, **might** và **will** đi trực tiếp với **động từ nguyên mẫu không to** (**V-bare**). Chúng không thêm **-s** ở ngôi thứ ba và không có “to” theo sau.",
+    form: ["S + modal verb + V-bare", "S + ought to + V-bare"],
     examples: ["You should rest.", "It might rain later.", "You must wear a seat belt."],
     wrong: "She can to swim.", right: "She can swim.",
     more: [
       { type: "nuance", text: "Sắc thái khuyên bảo: **Should** đưa ra lời khuyên cá nhân nhẹ nhàng; **Ought to** mang nghĩa vụ hoặc chuẩn mực đạo đức xã hội." },
-      { type: "advanced", text: "Phân biệt **must** (bắt buộc chủ quan từ người nói) và **have to** (bắt buộc khách quan từ quy định bên ngoài)." }
+      { type: "advanced", text: "Phân biệt **must** (sự bắt buộc chủ quan từ bản thân người nói) và **have to** (sự bắt buộc khách quan từ quy định/luật lệ bên ngoài)." }
     ]
   },
-  { title: "Câu điều kiện loại 1 và loại 2", level: "B1", category: "Câu điều kiện",
-    rule: "Loại 1 nói về tình huống có thật hoặc có khả năng xảy ra trong tương lai. Loại 2 nói về tình huống không có thật hoặc khó xảy ra. Không dùng **will** trong mệnh đề **if**.",
-    form: ["Loại 1: if + hiện tại, will + động từ nguyên mẫu", "Loại 2: if + quá khứ, would + động từ nguyên mẫu"],
+  { title: "Câu điều kiện loại 1 và loại 2", grammarId: "009", level: "B1", category: "Câu điều kiện",
+    rule: "Loại 1 nói về tình huống có thật hoặc có khả năng xảy ra trong tương lai. Loại 2 nói về tình huống không có thật hoặc khó xảy ra ở hiện tại. Không dùng **will** hoặc **would** ngay bên trong mệnh đề **if**.",
+    form: ["Loại 1: If + S + hiện tại đơn, S + will + V-bare", "Loại 2: If + S + quá khứ đơn (were cho mọi ngôi), S + would + V-bare"],
     examples: ["If it rains, we'll stay home.", "If I had more time, I would learn the piano.", "If I were you, I would apologise."],
     wrong: "If I will see him, I tell him.", right: "If I see him, I'll tell him.",
     more: [
-      { type: "extension", text: "Có thể dùng **should**, **might**, **could** thay cho **will**, **would** để giảm độ chắc chắn: If it rains, we might stay home." },
-      { type: "nuance", text: "**Unless** nghĩa là **if ... not**: Unless you hurry, you'll be late nghĩa là If you don't hurry, you'll be late." },
-      { type: "advanced", text: "Ở loại 2, dùng **were** cho mọi ngôi trong văn viết trang trọng: If I were you... Trong văn nói, If I was you cũng được chấp nhận." }
+      { type: "extension", text: "Có thể dùng **should**, **might**, **could** thay cho **will**, **would** để giảm độ chắc chắn của kết quả: **If it rains, we might stay home**." },
+      { type: "nuance", text: "**Unless** tương đương với **if ... not**: **Unless you hurry, you'll be late** tương đương **If you don't hurry, you'll be late**." },
+      { type: "advanced", text: "Ở câu điều kiện loại 2, dùng **were** cho mọi ngôi trong văn viết trang trọng: **If I were you...** Trong văn nói giao tiếp, **If I was you** cũng được chấp nhận." }
     ]
   },
-  { title: "Câu bị động", level: "B1", category: "Động từ",
-    rule: "Dùng câu bị động khi hành động hoặc đối tượng chịu tác động quan trọng hơn người thực hiện. Chia **be** đúng thì, rồi thêm quá khứ phân từ.",
-    form: ["be (đúng thì) + quá khứ phân từ"],
+  { title: "Câu bị động", grammarId: "010", level: "B1", category: "Động từ",
+    rule: "Dùng câu bị động khi hành động hoặc đối tượng chịu tác động quan trọng hơn người thực hiện. Chia động từ **be** đúng thì của câu gốc, rồi thêm quá khứ phân từ (**V3/ed**).",
+    form: ["S + be (chia đúng thì) + V3/ed + (by + tác nhân)"],
     examples: ["The bridge was built in 1998.", "English is spoken in many countries.", "The report is being written now."],
     wrong: "The report is writing now.", right: "The report is being written now.",
     more: [
-      { type: "nuance", text: "Vị trí trạng từ: Trạng từ chỉ nơi chốn đứng trước **by + tác nhân**, trạng từ chỉ thời gian đứng sau." },
-      { type: "advanced", text: "Các nội động từ (**intransitive verbs** như **happen**, **arrive**, **die**) không có tân ngữ nên không thể chuyển sang câu bị động." }
+      { type: "nuance", text: "Vị trí trạng từ: Trạng từ chỉ nơi chốn đứng *trước* **by + tác nhân**, trạng từ chỉ thời gian đứng *sau* **by + tác nhân**." },
+      { type: "advanced", text: "Các nội động từ (**intransitive verbs** như **happen**, **arrive**, **die**, **disappear**) không có tân ngữ nên KHÔNG BAO GIỜ được chia ở dạng bị động." }
     ]
   },
 
