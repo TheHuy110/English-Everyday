@@ -1,5944 +1,1001 @@
 ,word,def
-0,a,*_def
-1,abandon,*_def
-2,ability,*_def
-3,able,*_def
-4,abolish,*_def
-5,abortion,*_def
-6,about,*_def
-7,about,*_def
-8,above,*_def
-9,above,*_def
-10,abroad,*_def
-11,absence,*_def
-12,absent,*_def
-13,absolute,*_def
-14,absolutely,*_def
-15,absorb,*_def
-16,abstract,*_def
-17,absurd,*_def
-18,abundance,*_def
-19,abuse,*_def
-20,abuse,*_def
-21,academic,*_def
-22,academic,*_def
-23,academy,*_def
-24,accelerate,*_def
-25,accent,*_def
-26,accept,*_def
-27,acceptable,*_def
-28,acceptance,*_def
-29,access,*_def
-30,access,*_def
-31,accessible,*_def
-32,accident,*_def
-33,accidentally,*_def
-34,accommodate,*_def
-35,accommodation,*_def
-36,accompany,*_def
-37,accomplish,*_def
-38,accomplishment,*_def
-39,accordance,*_def
-40,according to,*_def
-41,accordingly,*_def
-42,account,*_def
-43,account,*_def
-44,accountability,*_def
-45,accountable,*_def
-46,accountant,*_def
-47,accumulate,*_def
-48,accumulation,*_def
-49,accuracy,*_def
-50,accurate,*_def
-51,accurately,*_def
-52,accusation,*_def
-53,accuse,*_def
-54,accused,*_def
-55,achieve,*_def
-56,achievement,*_def
-57,acid,*_def
-58,acid,*_def
-59,acknowledge,*_def
-60,acquire,*_def
-61,acquisition,*_def
-62,acre,*_def
-63,across,*_def
-64,across,*_def
-65,act,*_def
-66,act,*_def
-67,action,*_def
-68,activate,*_def
-69,activation,*_def
-70,active,*_def
-71,activist,*_def
-72,activity,*_def
-73,actor,*_def
-74,actress,*_def
-75,actual,*_def
-76,actually,*_def
-77,acute,*_def
-78,ad,*_def
-79,adapt,*_def
-80,adaptation,*_def
-81,add,*_def
-82,addiction,*_def
-83,addition,*_def
-84,additional,*_def
-85,additionally,*_def
-86,address,*_def
-87,address,*_def
-88,adequate,*_def
-89,adequately,*_def
-90,adhere,*_def
-91,adjacent,*_def
-92,adjust,*_def
-93,adjustment,*_def
-94,administer,*_def
-95,administration,*_def
-96,administrative,*_def
-97,administrator,*_def
-98,admire,*_def
-99,admission,*_def
-100,admit,*_def
-101,adolescent,*_def
-102,adopt,*_def
-103,adoption,*_def
-104,adult,*_def
-105,adult,*_def
-106,advance,*_def
-107,advance,*_def
-108,advance,*_def
-109,advanced,*_def
-110,advantage,*_def
-111,adventure,*_def
-112,adverse,*_def
-113,advertise,*_def
-114,advertisement,*_def
-115,advertising,*_def
-116,advice,*_def
-117,advise,*_def
-118,advocate,*_def
-119,advocate,*_def
-120,aesthetic,*_def
-121,affair,*_def
-122,affect,*_def
-123,affection,*_def
-124,afford,*_def
-125,affordable,*_def
-126,afraid,*_def
-127,after,*_def
-128,after,*_def
-129,after,*_def
-130,aftermath,*_def
-131,afternoon,*_def
-132,afterwards,*_def
-133,again,*_def
-134,against,*_def
-135,age,*_def
-136,age,*_def
-137,aged,*_def
-138,agency,*_def
-139,agenda,*_def
-140,agent,*_def
-141,aggression,*_def
-142,aggressive,*_def
-143,ago,*_def
-144,agree,*_def
-145,agreement,*_def
-146,agricultural,*_def
-147,agriculture,*_def
-148,ah,*_def
-149,ahead,*_def
-150,aid,*_def
-151,aid,*_def
-152,aide,*_def
-153,AIDS,*_def
-154,aim,*_def
-155,aim,*_def
-156,air,*_def
-157,aircraft,*_def
-158,airline,*_def
-159,airport,*_def
-160,alarm,*_def
-161,alarm,*_def
-162,albeit,*_def
-163,album,*_def
-164,alcohol,*_def
-165,alcoholic,*_def
-166,alert,*_def
-167,alert,*_def
-168,alert,*_def
-169,alien,*_def
-170,alien,*_def
-171,align,*_def
-172,alignment,*_def
-173,alike,*_def
-174,alike,*_def
-175,alive,*_def
-176,all,*_def
-177,all,*_def
-178,all,*_def
-179,all right,*_def
-180,all right,*_def
-181,all right,*_def
-182,allegation,*_def
-183,allege,*_def
-184,allegedly,*_def
-185,alliance,*_def
-186,allocate,*_def
-187,allocation,*_def
-188,allow,*_def
-189,allowance,*_def
-190,ally,*_def
-191,almost,*_def
-192,alone,*_def
-193,alone,*_def
-194,along,*_def
-195,along,*_def
-196,alongside,*_def
-197,already,*_def
-198,also,*_def
-199,alter,*_def
-200,alternative,*_def
-201,alternative,*_def
-202,although,*_def
-203,altogether,*_def
-204,aluminium,*_def
-205,always,*_def
-206,amateur,*_def
-207,amateur,*_def
-208,amazed,*_def
-209,amazing,*_def
-210,ambassador,*_def
-211,ambition,*_def
-212,ambitious,*_def
-213,ambulance,*_def
-214,amend,*_def
-215,amendment,*_def
-216,amid,*_def
-217,among,*_def
-218,amount,*_def
-219,amount,*_def
-220,amusing,*_def
-221,analogy,*_def
-222,analyse,*_def
-223,analysis,*_def
-224,analyst,*_def
-225,ancestor,*_def
-226,anchor,*_def
-227,ancient,*_def
-228,and,*_def
-229,angel,*_def
-230,anger,*_def
-231,angle,*_def
-232,angry,*_def
-233,animal,*_def
-234,animation,*_def
-235,ankle,*_def
-236,anniversary,*_def
-237,announce,*_def
-238,announcement,*_def
-239,annoy,*_def
-240,annoyed,*_def
-241,annoying,*_def
-242,annual,*_def
-243,annually,*_def
-244,anonymous,*_def
-245,another,*_def
-246,another,*_def
-247,answer,*_def
-248,answer,*_def
-249,anticipate,*_def
-250,anxiety,*_def
-251,anxious,*_def
-252,any,*_def
-253,any,*_def
-254,any,*_def
-255,any more,*_def
-256,anybody,*_def
-257,anyone,*_def
-258,anything,*_def
-259,anyway,*_def
-260,anywhere,*_def
-261,anywhere,*_def
-262,apart,*_def
-263,apartment,*_def
-264,apologize,*_def
-265,apology,*_def
-266,app,*_def
-267,apparatus,*_def
-268,apparent,*_def
-269,apparently,*_def
-270,appeal,*_def
-271,appeal,*_def
-272,appealing,*_def
-273,appear,*_def
-274,appearance,*_def
-275,appetite,*_def
-276,applaud,*_def
-277,apple,*_def
-278,applicable,*_def
-279,applicant,*_def
-280,application,*_def
-281,apply,*_def
-282,appoint,*_def
-283,appointment,*_def
-284,appreciate,*_def
-285,appreciation,*_def
-286,approach,*_def
-287,approach,*_def
-288,appropriate,*_def
-289,appropriately,*_def
-290,approval,*_def
-291,approve,*_def
-292,approximately,*_def
-293,April,*_def
-294,arbitrary,*_def
-295,architect,*_def
-296,architectural,*_def
-297,architecture,*_def
-298,archive,*_def
-299,area,*_def
-300,arena,*_def
-301,arguably,*_def
-302,argue,*_def
-303,argument,*_def
-304,arise,*_def
-305,arm,*_def
-306,arm,*_def
-307,armed,*_def
-308,arms,*_def
-309,army,*_def
-310,around,*_def
-311,around,*_def
-312,arrange,*_def
-313,arrangement,*_def
-314,array,*_def
-315,arrest,*_def
-316,arrest,*_def
-317,arrival,*_def
-318,arrive,*_def
-319,arrow,*_def
-320,art,*_def
-321,article,*_def
-322,articulate,*_def
-323,artificial,*_def
-324,artist,*_def
-325,artistic,*_def
-326,artwork,*_def
-327,as,*_def
-328,as,*_def
-329,as,*_def
-330,ash,*_def
-331,ashamed,*_def
-332,aside,*_def
-333,ask,*_def
-334,asleep,*_def
-335,aspect,*_def
-336,aspiration,*_def
-337,aspire,*_def
-338,assassination,*_def
-339,assault,*_def
-340,assault,*_def
-341,assemble,*_def
-342,assembly,*_def
-343,assert,*_def
-344,assertion,*_def
-345,assess,*_def
-346,assessment,*_def
-347,asset,*_def
-348,assign,*_def
-349,assignment,*_def
-350,assist,*_def
-351,assistance,*_def
-352,assistant,*_def
-353,assistant,*_def
-354,associate,*_def
-355,associated,*_def
-356,association,*_def
-357,assume,*_def
-358,assumption,*_def
-359,assurance,*_def
-360,assure,*_def
-361,astonishing,*_def
-362,asylum,*_def
-363,at,*_def
-364,athlete,*_def
-365,atmosphere,*_def
-366,atrocity,*_def
-367,attach,*_def
-368,attachment,*_def
-369,attack,*_def
-370,attack,*_def
-371,attain,*_def
-372,attempt,*_def
-373,attempt,*_def
-374,attend,*_def
-375,attendance,*_def
-376,attention,*_def
-377,attention,*_def
-378,attitude,*_def
-379,attorney,*_def
-380,attract,*_def
-381,attraction,*_def
-382,attractive,*_def
-383,attribute,*_def
-384,attribute,*_def
-385,auction,*_def
-386,audience,*_def
-387,audio,*_def
-388,audit,*_def
-389,August,*_def
-390,aunt,*_def
-391,authentic,*_def
-392,author,*_def
-393,authority,*_def
-394,authorize,*_def
-395,auto,*_def
-396,automatic,*_def
-397,automatically,*_def
-398,autonomy,*_def
-399,autumn,*_def
-400,availability,*_def
-401,available,*_def
-402,average,*_def
-403,average,*_def
-404,average,*_def
-405,avoid,*_def
-406,await,*_def
-407,award,*_def
-408,award,*_def
-409,aware,*_def
-410,awareness,*_def
-411,away,*_def
-412,awful,*_def
-413,awkward,*_def
-414,baby,*_def
-415,back,*_def
-416,back,*_def
-417,back,*_def
-418,back,*_def
-419,backdrop,*_def
-420,background,*_def
-421,backing,*_def
-422,backup,*_def
-423,backwards,*_def
-424,bacteria,*_def
-425,bad,*_def
-426,badge,*_def
-427,badly,*_def
-428,bag,*_def
-429,bail,*_def
-430,bake,*_def
-431,balance,*_def
-432,balance,*_def
-433,balanced,*_def
-434,ball,*_def
-435,ballet,*_def
-436,balloon,*_def
-437,ballot,*_def
-438,ban,*_def
-439,ban,*_def
-440,banana,*_def
-441,band,*_def
-442,bank,*_def
-443,banner,*_def
-444,bar,*_def
-445,bar,*_def
-446,bare,*_def
-447,barely,*_def
-448,bargain,*_def
-449,barrel,*_def
-450,barrier,*_def
-451,base,*_def
-452,base,*_def
-453,baseball,*_def
-454,based,*_def
-455,basement,*_def
-456,basic,*_def
-457,basically,*_def
-458,basis,*_def
-459,basket,*_def
-460,basketball,*_def
-461,bass,*_def
-462,bat,*_def
-463,bat,*_def
-464,bath,*_def
-465,bathroom,*_def
-466,battery,*_def
-467,battle,*_def
-468,battle,*_def
-469,battlefield,*_def
-470,bay,*_def
-471,be,*_def
-472,be,*_def
-473,beach,*_def
-474,beam,*_def
-475,bean,*_def
-476,bear,*_def
-477,bear,*_def
-478,beast,*_def
-479,beat,*_def
-480,beat,*_def
-481,beautiful,*_def
-482,beauty,*_def
-483,because,*_def
-484,become,*_def
-485,bed,*_def
-486,bedroom,*_def
-487,bee,*_def
-488,beef,*_def
-489,beer,*_def
-490,before,*_def
-491,before,*_def
-492,before,*_def
-493,beg,*_def
-494,begin,*_def
-495,beginning,*_def
-496,behalf,*_def
-497,behave,*_def
-498,behaviour,*_def
-499,behind,*_def
-500,behind,*_def
-501,being,*_def
-502,belief,*_def
-503,believe,*_def
-504,bell,*_def
-505,belong,*_def
-506,beloved,*_def
-507,below,*_def
-508,below,*_def
-509,belt,*_def
-510,bench,*_def
-511,benchmark,*_def
-512,bend,*_def
-513,bend,*_def
-514,beneath,*_def
-515,beneficial,*_def
-516,beneficiary,*_def
-517,benefit,*_def
-518,benefit,*_def
-519,bent,*_def
-520,beside,*_def
-521,besides,*_def
-522,besides,*_def
-523,best,*_def
-524,best,*_def
-525,best,*_def
-526,bet,*_def
-527,bet,*_def
-528,betray,*_def
-529,better,*_def
-530,better,*_def
-531,better,*_def
-532,between,*_def
-533,between,*_def
-534,beyond,*_def
-535,beyond,*_def
-536,bias,*_def
-537,bicycle,*_def
-538,bid,*_def
-539,bid,*_def
-540,big,*_def
-541,bike,*_def
-542,bill,*_def
-543,bill,*_def
-544,billion,*_def
-545,bin,*_def
-546,bind,*_def
-547,biography,*_def
-548,biological,*_def
-549,biology,*_def
-550,bird,*_def
-551,birth,*_def
-552,birthday,*_def
-553,biscuit,*_def
-554,bishop,*_def
-555,bit,*_def
-556,bite,*_def
-557,bite,*_def
-558,bitter,*_def
-559,bizarre,*_def
-560,black,*_def
-561,black,*_def
-562,blade,*_def
-563,blame,*_def
-564,blame,*_def
-565,blank,*_def
-566,blank,*_def
-567,blanket,*_def
-568,blast,*_def
-569,blast,*_def
-570,bleed,*_def
-571,blend,*_def
-572,blend,*_def
-573,bless,*_def
-574,blessing,*_def
-575,blind,*_def
-576,block,*_def
-577,block,*_def
-578,blog,*_def
-579,blonde,*_def
-580,blood,*_def
-581,blow,*_def
-582,blow,*_def
-583,blue,*_def
-584,blue,*_def
-585,board,*_def
-586,board,*_def
-587,boast,*_def
-588,boat,*_def
-589,body,*_def
-590,boil,*_def
-591,bold,*_def
-592,bomb,*_def
-593,bomb,*_def
-594,bombing,*_def
-595,bond,*_def
-596,bone,*_def
-597,bonus,*_def
-598,book,*_def
-599,book,*_def
-600,booking,*_def
-601,boom,*_def
-602,boost,*_def
-603,boost,*_def
-604,boot,*_def
-605,border,*_def
-606,border,*_def
-607,bored,*_def
-608,boring,*_def
-609,born,*_def
-610,borrow,*_def
-611,boss,*_def
-612,both,*_def
-613,both,*_def
-614,bother,*_def
-615,bottle,*_def
-616,bottom,*_def
-617,bottom,*_def
-618,bounce,*_def
-619,bound,*_def
-620,boundary,*_def
-621,bow,*_def
-622,bow,*_def
-623,bowl,*_def
-624,box,*_def
-625,boy,*_def
-626,boyfriend,*_def
-627,brain,*_def
-628,branch,*_def
-629,brand,*_def
-630,brand,*_def
-631,brave,*_def
-632,breach,*_def
-633,breach,*_def
-634,bread,*_def
-635,break,*_def
-636,break,*_def
-637,breakdown,*_def
-638,breakfast,*_def
-639,breakthrough,*_def
-640,breast,*_def
-641,breath,*_def
-642,breathe,*_def
-643,breathing,*_def
-644,breed,*_def
-645,breed,*_def
-646,brick,*_def
-647,bride,*_def
-648,bridge,*_def
-649,brief,*_def
-650,briefly,*_def
-651,bright,*_def
-652,brilliant,*_def
-653,bring,*_def
-654,broad,*_def
-655,broadband,*_def
-656,broadcast,*_def
-657,broadcast,*_def
-658,broadcaster,*_def
-659,broadly,*_def
-660,broken,*_def
-661,brother,*_def
-662,brown,*_def
-663,brown,*_def
-664,browser,*_def
-665,brush,*_def
-666,brush,*_def
-667,brutal,*_def
-668,bubble,*_def
-669,buck,*_def
-670,buddy,*_def
-671,budget,*_def
-672,buffer,*_def
-673,bug,*_def
-674,build,*_def
-675,building,*_def
-676,bulk,*_def
-677,bullet,*_def
-678,bunch,*_def
-679,burden,*_def
-680,bureaucracy,*_def
-681,burial,*_def
-682,burn,*_def
-683,burn,*_def
-684,burst,*_def
-685,bury,*_def
-686,bus,*_def
-687,bush,*_def
-688,business,*_def
-689,businessman,*_def
-690,busy,*_def
-691,but,*_def
-692,but,*_def
-693,butter,*_def
-694,button,*_def
-695,buy,*_def
-696,by,*_def
-697,by,*_def
-698,bye,*_def
-699,cabin,*_def
-700,cabinet,*_def
-701,cable,*_def
-702,cafe,*_def
-703,cake,*_def
-704,calculate,*_def
-705,calculation,*_def
-706,call,*_def
-707,call,*_def
-708,calm,*_def
-709,calm,*_def
-710,calm,*_def
-711,camera,*_def
-712,camp,*_def
-713,camp,*_def
-714,campaign,*_def
-715,campaign,*_def
-716,camping,*_def
-717,campus,*_def
-718,can,*_def
-719,can,*_def
-720,canal,*_def
-721,cancel,*_def
-722,cancer,*_def
-723,candidate,*_def
-724,candle,*_def
-725,cannot,*_def
-726,canvas,*_def
-727,cap,*_def
-728,capability,*_def
-729,capable,*_def
-730,capacity,*_def
-731,capital,*_def
-732,capital,*_def
-733,capitalism,*_def
-734,capitalist,*_def
-735,captain,*_def
-736,capture,*_def
-737,capture,*_def
-738,car,*_def
-739,carbon,*_def
-740,card,*_def
-741,care,*_def
-742,care,*_def
-743,career,*_def
-744,careful,*_def
-745,carefully,*_def
-746,careless,*_def
-747,cargo,*_def
-748,carpet,*_def
-749,carriage,*_def
-750,carrot,*_def
-751,carry,*_def
-752,cartoon,*_def
-753,carve,*_def
-754,case,*_def
-755,cash,*_def
-756,casino,*_def
-757,cast,*_def
-758,cast,*_def
-759,castle,*_def
-760,casual,*_def
-761,casualty,*_def
-762,cat,*_def
-763,catalogue,*_def
-764,catch,*_def
-765,catch,*_def
-766,category,*_def
-767,cater,*_def
-768,cattle,*_def
-769,cause,*_def
-770,cause,*_def
-771,caution,*_def
-772,cautious,*_def
-773,cave,*_def
-774,CD,*_def
-775,cease,*_def
-776,ceiling,*_def
-777,celebrate,*_def
-778,celebration,*_def
-779,celebrity,*_def
-780,cell,*_def
-781,cemetery,*_def
-782,cent,*_def
-783,central,*_def
-784,centre,*_def
-785,centre,*_def
-786,century,*_def
-787,ceremony,*_def
-788,certain,*_def
-789,certainly,*_def
-790,certainty,*_def
-791,certificate,*_def
-792,chain,*_def
-793,chain,*_def
-794,chair,*_def
-795,chair,*_def
-796,chairman,*_def
-797,challenge,*_def
-798,challenge,*_def
-799,challenging,*_def
-800,chamber,*_def
-801,champion,*_def
-802,championship,*_def
-803,chance,*_def
-804,change,*_def
-805,change,*_def
-806,channel,*_def
-807,chaos,*_def
-808,chapter,*_def
-809,character,*_def
-810,characteristic,*_def
-811,characteristic,*_def
-812,characterize,*_def
-813,charge,*_def
-814,charge,*_def
-815,charity,*_def
-816,charm,*_def
-817,charming,*_def
-818,chart,*_def
-819,chart,*_def
-820,charter,*_def
-821,chase,*_def
-822,chase,*_def
-823,chat,*_def
-824,chat,*_def
-825,cheap,*_def
-826,cheap,*_def
-827,cheat,*_def
-828,cheat,*_def
-829,check,*_def
-830,check,*_def
-831,cheek,*_def
-832,cheer,*_def
-833,cheer,*_def
-834,cheerful,*_def
-835,cheese,*_def
-836,chef,*_def
-837,chemical,*_def
-838,chemical,*_def
-839,chemistry,*_def
-840,chest,*_def
-841,chicken,*_def
-842,chief,*_def
-843,chief,*_def
-844,child,*_def
-845,childhood,*_def
-846,chip,*_def
-847,chocolate,*_def
-848,choice,*_def
-849,choir,*_def
-850,choose,*_def
-851,chop,*_def
-852,chronic,*_def
-853,chunk,*_def
-854,church,*_def
-855,cigarette,*_def
-856,cinema,*_def
-857,circle,*_def
-858,circle,*_def
-859,circuit,*_def
-860,circulate,*_def
-861,circulation,*_def
-862,circumstance,*_def
-863,cite,*_def
-864,citizen,*_def
-865,citizenship,*_def
-866,city,*_def
-867,civic,*_def
-868,civil,*_def
-869,civilian,*_def
-870,civilian,*_def
-871,civilization,*_def
-872,claim,*_def
-873,claim,*_def
-874,clarify,*_def
-875,clarity,*_def
-876,clash,*_def
-877,class,*_def
-878,classic,*_def
-879,classic,*_def
-880,classical,*_def
-881,classification,*_def
-882,classify,*_def
-883,classroom,*_def
-884,clause,*_def
-885,clean,*_def
-886,clean,*_def
-887,clear,*_def
-888,clear,*_def
-889,clearly,*_def
-890,clerk,*_def
-891,clever,*_def
-892,click,*_def
-893,click,*_def
-894,client,*_def
-895,cliff,*_def
-896,climate,*_def
-897,climb,*_def
-898,climb,*_def
-899,cling,*_def
-900,clinic,*_def
-901,clinical,*_def
-902,clip,*_def
-903,clock,*_def
-904,close,*_def
-905,close,*_def
-906,close,*_def
-907,close,*_def
-908,closed,*_def
-909,closely,*_def
-910,closure,*_def
-911,cloth,*_def
-912,clothes,*_def
-913,clothing,*_def
-914,cloud,*_def
-915,club,*_def
-916,clue,*_def
-917,cluster,*_def
-918,coach,*_def
-919,coach,*_def
-920,coal,*_def
-921,coalition,*_def
-922,coast,*_def
-923,coastal,*_def
-924,coat,*_def
-925,cocktail,*_def
-926,code,*_def
-927,coffee,*_def
-928,cognitive,*_def
-929,coin,*_def
-930,coincide,*_def
-931,coincidence,*_def
-932,cold,*_def
-933,cold,*_def
-934,collaborate,*_def
-935,collaboration,*_def
-936,collapse,*_def
-937,collapse,*_def
-938,colleague,*_def
-939,collect,*_def
-940,collection,*_def
-941,collective,*_def
-942,collector,*_def
-943,college,*_def
-944,collision,*_def
-945,colonial,*_def
-946,colony,*_def
-947,colour,*_def
-948,coloured,*_def
-949,colourful,*_def
-950,column,*_def
-951,columnist,*_def
-952,combat,*_def
-953,combat,*_def
-954,combination,*_def
-955,combine,*_def
-956,come,*_def
-957,comedy,*_def
-958,comfort,*_def
-959,comfort,*_def
-960,comfortable,*_def
-961,comic,*_def
-962,comic,*_def
-963,command,*_def
-964,command,*_def
-965,commander,*_def
-966,commence,*_def
-967,comment,*_def
-968,comment,*_def
-969,commentary,*_def
-970,commentator,*_def
-971,commerce,*_def
-972,commercial,*_def
-973,commercial,*_def
-974,commission,*_def
-975,commission,*_def
-976,commissioner,*_def
-977,commit,*_def
-978,commitment,*_def
-979,committee,*_def
-980,commodity,*_def
-981,common,*_def
-982,commonly,*_def
-983,communicate,*_def
-984,communication,*_def
-985,communist,*_def
-986,community,*_def
-987,companion,*_def
-988,company,*_def
-989,comparable,*_def
-990,comparative,*_def
-991,compare,*_def
-992,comparison,*_def
-993,compassion,*_def
-994,compel,*_def
-995,compelling,*_def
-996,compensate,*_def
-997,compensation,*_def
-998,compete,*_def
-999,competence,*_def
-1000,competent,*_def
-1001,competition,*_def
-1002,competitive,*_def
-1003,competitor,*_def
-1004,compile,*_def
-1005,complain,*_def
-1006,complaint,*_def
-1007,complement,*_def
-1008,complete,*_def
-1009,complete,*_def
-1010,completely,*_def
-1011,completion,*_def
-1012,complex,*_def
-1013,complex,*_def
-1014,complexity,*_def
-1015,compliance,*_def
-1016,complicated,*_def
-1017,complication,*_def
-1018,comply,*_def
-1019,component,*_def
-1020,compose,*_def
-1021,composer,*_def
-1022,composition,*_def
-1023,compound,*_def
-1024,comprehensive,*_def
-1025,comprise,*_def
-1026,compromise,*_def
-1027,compromise,*_def
-1028,compulsory,*_def
-1029,compute,*_def
-1030,computer,*_def
-1031,conceal,*_def
-1032,concede,*_def
-1033,conceive,*_def
-1034,concentrate,*_def
-1035,concentration,*_def
-1036,concept,*_def
-1037,conception,*_def
-1038,concern,*_def
-1039,concern,*_def
-1040,concerned,*_def
-1041,concert,*_def
-1042,concession,*_def
-1043,conclude,*_def
-1044,conclusion,*_def
-1045,concrete,*_def
-1046,concrete,*_def
-1047,condemn,*_def
-1048,condition,*_def
-1049,conduct,*_def
-1050,conduct,*_def
-1051,confer,*_def
-1052,conference,*_def
-1053,confess,*_def
-1054,confession,*_def
-1055,confidence,*_def
-1056,confident,*_def
-1057,configuration,*_def
-1058,confine,*_def
-1059,confirm,*_def
-1060,confirmation,*_def
-1061,conflict,*_def
-1062,conflict,*_def
-1063,confront,*_def
-1064,confrontation,*_def
-1065,confuse,*_def
-1066,confused,*_def
-1067,confusing,*_def
-1068,confusion,*_def
-1069,congratulate,*_def
-1070,congregation,*_def
-1071,congressional,*_def
-1072,connect,*_def
-1073,connected,*_def
-1074,connection,*_def
-1075,conquer,*_def
-1076,conscience,*_def
-1077,conscious,*_def
-1078,consciousness,*_def
-1079,consecutive,*_def
-1080,consensus,*_def
-1081,consent,*_def
-1082,consent,*_def
-1083,consequence,*_def
-1084,consequently,*_def
-1085,conservation,*_def
-1086,conservative,*_def
-1087,conservative,*_def
-1088,conserve,*_def
-1089,consider,*_def
-1090,considerable,*_def
-1091,considerably,*_def
-1092,consideration,*_def
-1093,consist,*_def
-1094,consistency,*_def
-1095,consistent,*_def
-1096,consistently,*_def
-1097,consolidate,*_def
-1098,conspiracy,*_def
-1099,constant,*_def
-1100,constantly,*_def
-1101,constituency,*_def
-1102,constitute,*_def
-1103,constitution,*_def
-1104,constitutional,*_def
-1105,constraint,*_def
-1106,construct,*_def
-1107,construction,*_def
-1108,consult,*_def
-1109,consultant,*_def
-1110,consultation,*_def
-1111,consume,*_def
-1112,consumer,*_def
-1113,consumption,*_def
-1114,contact,*_def
-1115,contact,*_def
-1116,contain,*_def
-1117,container,*_def
-1118,contemplate,*_def
-1119,contemporary,*_def
-1120,contempt,*_def
-1121,contend,*_def
-1122,contender,*_def
-1123,content,*_def
-1124,content,*_def
-1125,contention,*_def
-1126,contest,*_def
-1127,contest,*_def
-1128,context,*_def
-1129,continent,*_def
-1130,continually,*_def
-1131,continue,*_def
-1132,continuous,*_def
-1133,contract,*_def
-1134,contract,*_def
-1135,contractor,*_def
-1136,contradiction,*_def
-1137,contrary,*_def
-1138,contrary,*_def
-1139,contrast,*_def
-1140,contrast,*_def
-1141,contribute,*_def
-1142,contribution,*_def
-1143,contributor,*_def
-1144,control,*_def
-1145,control,*_def
-1146,controversial,*_def
-1147,controversy,*_def
-1148,convenience,*_def
-1149,convenient,*_def
-1150,convention,*_def
-1151,conventional,*_def
-1152,conversation,*_def
-1153,conversion,*_def
-1154,convert,*_def
-1155,convey,*_def
-1156,convict,*_def
-1157,conviction,*_def
-1158,convince,*_def
-1159,convinced,*_def
-1160,convincing,*_def
-1161,cook,*_def
-1162,cook,*_def
-1163,cooker,*_def
-1164,cooking,*_def
-1165,cool,*_def
-1166,cool,*_def
-1167,cooperate,*_def
-1168,cooperative,*_def
-1169,coordinate,*_def
-1170,coordination,*_def
-1171,coordinator,*_def
-1172,cop,*_def
-1173,cope,*_def
-1174,copper,*_def
-1175,copy,*_def
-1176,copy,*_def
-1177,copyright,*_def
-1178,core,*_def
-1179,core,*_def
-1180,corner,*_def
-1181,corporate,*_def
-1182,corporation,*_def
-1183,correct,*_def
-1184,correct,*_def
-1185,correction,*_def
-1186,correctly,*_def
-1187,correlate,*_def
-1188,correlation,*_def
-1189,correspond,*_def
-1190,correspondence,*_def
-1191,correspondent,*_def
-1192,corresponding,*_def
-1193,corridor,*_def
-1194,corrupt,*_def
-1195,corruption,*_def
-1196,cost,*_def
-1197,cost,*_def
-1198,costly,*_def
-1199,costume,*_def
-1200,cottage,*_def
-1201,cotton,*_def
-1202,could,*_def
-1203,council,*_def
-1204,councillor,*_def
-1205,counselling,*_def
-1206,counsellor,*_def
-1207,count,*_def
-1208,count,*_def
-1209,counter,*_def
-1210,counter,*_def
-1211,counterpart,*_def
-1212,countless,*_def
-1213,country,*_def
-1214,countryside,*_def
-1215,county,*_def
-1216,coup,*_def
-1217,couple,*_def
-1218,courage,*_def
-1219,course,*_def
-1220,court,*_def
-1221,courtesy,*_def
-1222,cousin,*_def
-1223,cover,*_def
-1224,cover,*_def
-1225,coverage,*_def
-1226,covered,*_def
-1227,cow,*_def
-1228,crack,*_def
-1229,crack,*_def
-1230,craft,*_def
-1231,craft,*_def
-1232,crash,*_def
-1233,crash,*_def
-1234,crawl,*_def
-1235,crazy,*_def
-1236,cream,*_def
-1237,cream,*_def
-1238,create,*_def
-1239,creation,*_def
-1240,creative,*_def
-1241,creativity,*_def
-1242,creator,*_def
-1243,creature,*_def
-1244,credibility,*_def
-1245,credible,*_def
-1246,credit,*_def
-1247,credit,*_def
-1248,creep,*_def
-1249,crew,*_def
-1250,crime,*_def
-1251,criminal,*_def
-1252,criminal,*_def
-1253,crisis,*_def
-1254,criterion,*_def
-1255,critic,*_def
-1256,critical,*_def
-1257,critically,*_def
-1258,criticism,*_def
-1259,criticize,*_def
-1260,critique,*_def
-1261,crop,*_def
-1262,cross,*_def
-1263,cross,*_def
-1264,crowd,*_def
-1265,crowded,*_def
-1266,crown,*_def
-1267,crucial,*_def
-1268,crude,*_def
-1269,cruel,*_def
-1270,cruise,*_def
-1271,cruise,*_def
-1272,crush,*_def
-1273,cry,*_def
-1274,cry,*_def
-1275,crystal,*_def
-1276,cue,*_def
-1277,cult,*_def
-1278,cult,*_def
-1279,cultivate,*_def
-1280,cultural,*_def
-1281,culture,*_def
-1282,cup,*_def
-1283,cupboard,*_def
-1284,cure,*_def
-1285,cure,*_def
-1286,curiosity,*_def
-1287,curious,*_def
-1288,curly,*_def
-1289,currency,*_def
-1290,current,*_def
-1291,current,*_def
-1292,currently,*_def
-1293,curriculum,*_def
-1294,curtain,*_def
-1295,curve,*_def
-1296,curve,*_def
-1297,curved,*_def
-1298,custody,*_def
-1299,custom,*_def
-1300,customer,*_def
-1301,cut,*_def
-1302,cut,*_def
-1303,cute,*_def
-1304,cutting,*_def
-1305,cycle,*_def
-1306,cycle,*_def
-1307,cynical,*_def
-1308,dad,*_def
-1309,daily,*_def
-1310,daily,*_def
-1311,dairy,*_def
-1312,dairy,*_def
-1313,dam,*_def
-1314,damage,*_def
-1315,damage,*_def
-1316,damaging,*_def
-1317,dance,*_def
-1318,dance,*_def
-1319,dancer,*_def
-1320,dancing,*_def
-1321,danger,*_def
-1322,dangerous,*_def
-1323,dare,*_def
-1324,dark,*_def
-1325,dark,*_def
-1326,darkness,*_def
-1327,data,*_def
-1328,database,*_def
-1329,date,*_def
-1330,date,*_def
-1331,daughter,*_def
-1332,dawn,*_def
-1333,day,*_def
-1334,dead,*_def
-1335,deadline,*_def
-1336,deadly,*_def
-1337,deal,*_def
-1338,deal,*_def
-1339,dealer,*_def
-1340,dear,*_def
-1341,dear,*_def
-1342,death,*_def
-1343,debate,*_def
-1344,debate,*_def
-1345,debris,*_def
-1346,debt,*_def
-1347,debut,*_def
-1348,decade,*_def
-1349,December,*_def
-1350,decent,*_def
-1351,decide,*_def
-1352,decision,*_def
-1353,decision-making,*_def
-1354,decisive,*_def
-1355,deck,*_def
-1356,declaration,*_def
-1357,declare,*_def
-1358,decline,*_def
-1359,decline,*_def
-1360,decorate,*_def
-1361,decoration,*_def
-1362,decrease,*_def
-1363,decrease,*_def
-1364,dedicated,*_def
-1365,dedication,*_def
-1366,deed,*_def
-1367,deem,*_def
-1368,deep,*_def
-1369,deep,*_def
-1370,deeply,*_def
-1371,default,*_def
-1372,defeat,*_def
-1373,defeat,*_def
-1374,defect,*_def
-1375,defence,*_def
-1376,defend,*_def
-1377,defender,*_def
-1378,defensive,*_def
-1379,deficiency,*_def
-1380,deficit,*_def
-1381,define,*_def
-1382,definite,*_def
-1383,definitely,*_def
-1384,definition,*_def
-1385,defy,*_def
-1386,degree,*_def
-1387,delay,*_def
-1388,delay,*_def
-1389,delegate,*_def
-1390,delegation,*_def
-1391,delete,*_def
-1392,deliberate,*_def
-1393,deliberately,*_def
-1394,delicate,*_def
-1395,delicious,*_def
-1396,delight,*_def
-1397,delight,*_def
-1398,delighted,*_def
-1399,deliver,*_def
-1400,delivery,*_def
-1401,demand,*_def
-1402,demand,*_def
-1403,democracy,*_def
-1404,democratic,*_def
-1405,demon,*_def
-1406,demonstrate,*_def
-1407,demonstration,*_def
-1408,denial,*_def
-1409,denounce,*_def
-1410,dense,*_def
-1411,density,*_def
-1412,dentist,*_def
-1413,deny,*_def
-1414,depart,*_def
-1415,department,*_def
-1416,departure,*_def
-1417,depend,*_def
-1418,dependence,*_def
-1419,dependent,*_def
-1420,depict,*_def
-1421,deploy,*_def
-1422,deployment,*_def
-1423,deposit,*_def
-1424,deposit,*_def
-1425,depressed,*_def
-1426,depressing,*_def
-1427,depression,*_def
-1428,deprive,*_def
-1429,depth,*_def
-1430,deputy,*_def
-1431,derive,*_def
-1432,descend,*_def
-1433,descent,*_def
-1434,describe,*_def
-1435,description,*_def
-1436,desert,*_def
-1437,desert,*_def
-1438,deserve,*_def
-1439,design,*_def
-1440,design,*_def
-1441,designate,*_def
-1442,designer,*_def
-1443,desirable,*_def
-1444,desire,*_def
-1445,desire,*_def
-1446,desk,*_def
-1447,desktop,*_def
-1448,desperate,*_def
-1449,desperately,*_def
-1450,despite,*_def
-1451,destination,*_def
-1452,destroy,*_def
-1453,destruction,*_def
-1454,destructive,*_def
-1455,detail,*_def
-1456,detail,*_def
-1457,detailed,*_def
-1458,detain,*_def
-1459,detect,*_def
-1460,detection,*_def
-1461,detective,*_def
-1462,detention,*_def
-1463,deteriorate,*_def
-1464,determination,*_def
-1465,determine,*_def
-1466,determined,*_def
-1467,devastate,*_def
-1468,develop,*_def
-1469,development,*_def
-1470,device,*_def
-1471,devil,*_def
-1472,devise,*_def
-1473,devote,*_def
-1474,diagnose,*_def
-1475,diagnosis,*_def
-1476,diagram,*_def
-1477,dialogue,*_def
-1478,diamond,*_def
-1479,diary,*_def
-1480,dictate,*_def
-1481,dictator,*_def
-1482,dictionary,*_def
-1483,die,*_def
-1484,diet,*_def
-1485,differ,*_def
-1486,difference,*_def
-1487,different,*_def
-1488,differentiate,*_def
-1489,differently,*_def
-1490,difficult,*_def
-1491,difficulty,*_def
-1492,dig,*_def
-1493,digital,*_def
-1494,dignity,*_def
-1495,dilemma,*_def
-1496,dimension,*_def
-1497,diminish,*_def
-1498,dinner,*_def
-1499,dip,*_def
-1500,diplomat,*_def
-1501,diplomatic,*_def
-1502,direct,*_def
-1503,direct,*_def
-1504,direct,*_def
-1505,direction,*_def
-1506,directly,*_def
-1507,director,*_def
-1508,directory,*_def
-1509,dirt,*_def
-1510,dirty,*_def
-1511,disability,*_def
-1512,disabled,*_def
-1513,disadvantage,*_def
-1514,disagree,*_def
-1515,disagreement,*_def
-1516,disappear,*_def
-1517,disappoint,*_def
-1518,disappointed,*_def
-1519,disappointing,*_def
-1520,disappointment,*_def
-1521,disaster,*_def
-1522,disastrous,*_def
-1523,disc,*_def
-1524,discard,*_def
-1525,discharge,*_def
-1526,discipline,*_def
-1527,disclose,*_def
-1528,disclosure,*_def
-1529,discount,*_def
-1530,discount,*_def
-1531,discourage,*_def
-1532,discourse,*_def
-1533,discover,*_def
-1534,discovery,*_def
-1535,discretion,*_def
-1536,discrimination,*_def
-1537,discuss,*_def
-1538,discussion,*_def
-1539,disease,*_def
-1540,dish,*_def
-1541,dishonest,*_def
-1542,disk,*_def
-1543,dislike,*_def
-1544,dislike,*_def
-1545,dismiss,*_def
-1546,dismissal,*_def
-1547,disorder,*_def
-1548,displace,*_def
-1549,display,*_def
-1550,display,*_def
-1551,disposal,*_def
-1552,dispose,*_def
-1553,dispute,*_def
-1554,dispute,*_def
-1555,disrupt,*_def
-1556,disruption,*_def
-1557,dissolve,*_def
-1558,distance,*_def
-1559,distant,*_def
-1560,distinct,*_def
-1561,distinction,*_def
-1562,distinctive,*_def
-1563,distinguish,*_def
-1564,distort,*_def
-1565,distract,*_def
-1566,distress,*_def
-1567,distress,*_def
-1568,distribute,*_def
-1569,distribution,*_def
-1570,district,*_def
-1571,disturb,*_def
-1572,disturbing,*_def
-1573,dive,*_def
-1574,dive,*_def
-1575,diverse,*_def
-1576,diversity,*_def
-1577,divert,*_def
-1578,divide,*_def
-1579,divide,*_def
-1580,divine,*_def
-1581,division,*_def
-1582,divorce,*_def
-1583,divorce,*_def
-1584,divorced,*_def
-1585,do,*_def
-1586,do,*_def
-1587,doctor,*_def
-1588,doctrine,*_def
-1589,document,*_def
-1590,document,*_def
-1591,documentary,*_def
-1592,documentation,*_def
-1593,dog,*_def
-1594,dollar,*_def
-1595,domain,*_def
-1596,domestic,*_def
-1597,dominance,*_def
-1598,dominant,*_def
-1599,dominate,*_def
-1600,donate,*_def
-1601,donation,*_def
-1602,donor,*_def
-1603,door,*_def
-1604,dose,*_def
-1605,dot,*_def
-1606,double,*_def
-1607,double,*_def
-1608,double,*_def
-1609,double,*_def
-1610,double,*_def
-1611,doubt,*_def
-1612,doubt,*_def
-1613,down,*_def
-1614,down,*_def
-1615,download,*_def
-1616,download,*_def
-1617,downstairs,*_def
-1618,downstairs,*_def
-1619,downtown,*_def
-1620,downtown,*_def
-1621,downtown,*_def
-1622,downwards,*_def
-1623,dozen,*_def
-1624,dozen,*_def
-1625,draft,*_def
-1626,draft,*_def
-1627,drag,*_def
-1628,drain,*_def
-1629,drama,*_def
-1630,dramatic,*_def
-1631,dramatically,*_def
-1632,draw,*_def
-1633,drawing,*_def
-1634,dream,*_def
-1635,dream,*_def
-1636,dress,*_def
-1637,dress,*_def
-1638,dressed,*_def
-1639,drift,*_def
-1640,drink,*_def
-1641,drink,*_def
-1642,drive,*_def
-1643,drive,*_def
-1644,driver,*_def
-1645,driving,*_def
-1646,driving,*_def
-1647,drop,*_def
-1648,drop,*_def
-1649,drought,*_def
-1650,drown,*_def
-1651,drug,*_def
-1652,drum,*_def
-1653,drunk,*_def
-1654,dry,*_def
-1655,dry,*_def
-1656,dual,*_def
-1657,dub,*_def
-1658,due,*_def
-1659,dull,*_def
-1660,dumb,*_def
-1661,dump,*_def
-1662,duo,*_def
-1663,duration,*_def
-1664,during,*_def
-1665,dust,*_def
-1666,duty,*_def
-1667,DVD,*_def
-1668,dynamic,*_def
-1669,dynamic,*_def
-1670,each,*_def
-1671,each,*_def
-1672,each,*_def
-1673,eager,*_def
-1674,ear,*_def
-1675,early,*_def
-1676,early,*_def
-1677,earn,*_def
-1678,earnings,*_def
-1679,earth,*_def
-1680,earthquake,*_def
-1681,ease,*_def
-1682,ease,*_def
-1683,easily,*_def
-1684,east,*_def
-1685,east,*_def
-1686,east,*_def
-1687,eastern,*_def
-1688,easy,*_def
-1689,eat,*_def
-1690,echo,*_def
-1691,echo,*_def
-1692,ecological,*_def
-1693,economic,*_def
-1694,economics,*_def
-1695,economist,*_def
-1696,economy,*_def
-1697,edge,*_def
-1698,edit,*_def
-1699,edition,*_def
-1700,editor,*_def
-1701,editorial,*_def
-1702,educate,*_def
-1703,educated,*_def
-1704,education,*_def
-1705,educational,*_def
-1706,educator,*_def
-1707,effect,*_def
-1708,effective,*_def
-1709,effectively,*_def
-1710,effectiveness,*_def
-1711,efficiency,*_def
-1712,efficient,*_def
-1713,efficiently,*_def
-1714,effort,*_def
-1715,egg,*_def
-1716,ego,*_def
-1717,eight,*_def
-1718,eighteen,*_def
-1719,eighty,*_def
-1720,either,*_def
-1721,either,*_def
-1722,either,*_def
-1723,elaborate,*_def
-1724,elbow,*_def
-1725,elderly,*_def
-1726,elect,*_def
-1727,election,*_def
-1728,electoral,*_def
-1729,electric,*_def
-1730,electrical,*_def
-1731,electricity,*_def
-1732,electronic,*_def
-1733,electronics,*_def
-1734,elegant,*_def
-1735,element,*_def
-1736,elementary,*_def
-1737,elephant,*_def
-1738,elevate,*_def
-1739,eleven,*_def
-1740,eligible,*_def
-1741,eliminate,*_def
-1742,elite,*_def
-1743,else,*_def
-1744,elsewhere,*_def
-1745,email,*_def
-1746,email,*_def
-1747,embark,*_def
-1748,embarrassed,*_def
-1749,embarrassing,*_def
-1750,embarrassment,*_def
-1751,embassy,*_def
-1752,embed,*_def
-1753,embody,*_def
-1754,embrace,*_def
-1755,emerge,*_def
-1756,emergence,*_def
-1757,emergency,*_def
-1758,emission,*_def
-1759,emotion,*_def
-1760,emotional,*_def
-1761,emotionally,*_def
-1762,emphasis,*_def
-1763,emphasize,*_def
-1764,empire,*_def
-1765,empirical,*_def
-1766,employ,*_def
-1767,employee,*_def
-1768,employer,*_def
-1769,employment,*_def
-1770,empower,*_def
-1771,empty,*_def
-1772,empty,*_def
-1773,enable,*_def
-1774,enact,*_def
-1775,encompass,*_def
-1776,encounter,*_def
-1777,encounter,*_def
-1778,encourage,*_def
-1779,encouragement,*_def
-1780,encouraging,*_def
-1781,end,*_def
-1782,end,*_def
-1783,endeavour,*_def
-1784,ending,*_def
-1785,endless,*_def
-1786,endorse,*_def
-1787,endorsement,*_def
-1788,endure,*_def
-1789,enemy,*_def
-1790,energy,*_def
-1791,enforce,*_def
-1792,enforcement,*_def
-1793,engage,*_def
-1794,engaged,*_def
-1795,engagement,*_def
-1796,engaging,*_def
-1797,engine,*_def
-1798,engineer,*_def
-1799,engineering,*_def
-1800,enhance,*_def
-1801,enjoy,*_def
-1802,enjoyable,*_def
-1803,enormous,*_def
-1804,enough,*_def
-1805,enough,*_def
-1806,enough,*_def
-1807,enquire,*_def
-1808,enquiry,*_def
-1809,enrich,*_def
-1810,enrol,*_def
-1811,ensue,*_def
-1812,ensure,*_def
-1813,enter,*_def
-1814,enterprise,*_def
-1815,entertain,*_def
-1816,entertaining,*_def
-1817,entertainment,*_def
-1818,enthusiasm,*_def
-1819,enthusiast,*_def
-1820,enthusiastic,*_def
-1821,entire,*_def
-1822,entirely,*_def
-1823,entitle,*_def
-1824,entity,*_def
-1825,entrance,*_def
-1826,entrepreneur,*_def
-1827,entry,*_def
-1828,envelope,*_def
-1829,environment,*_def
-1830,environmental,*_def
-1831,epidemic,*_def
-1832,episode,*_def
-1833,equal,*_def
-1834,equal,*_def
-1835,equal,*_def
-1836,equality,*_def
-1837,equally,*_def
-1838,equation,*_def
-1839,equip,*_def
-1840,equipment,*_def
-1841,equivalent,*_def
-1842,equivalent,*_def
-1843,era,*_def
-1844,erect,*_def
-1845,error,*_def
-1846,erupt,*_def
-1847,escalate,*_def
-1848,escape,*_def
-1849,escape,*_def
-1850,especially,*_def
-1851,essay,*_def
-1852,essence,*_def
-1853,essential,*_def
-1854,essentially,*_def
-1855,establish,*_def
-1856,establishment,*_def
-1857,estate,*_def
-1858,estimate,*_def
-1859,estimate,*_def
-1860,eternal,*_def
-1861,ethic,*_def
-1862,ethical,*_def
-1863,ethnic,*_def
-1864,euro,*_def
-1865,evacuate,*_def
-1866,evaluate,*_def
-1867,evaluation,*_def
-1868,even,*_def
-1869,even,*_def
-1870,evening,*_def
-1871,event,*_def
-1872,eventually,*_def
-1873,ever,*_def
-1874,every,*_def
-1875,everybody,*_def
-1876,everyday,*_def
-1877,everyone,*_def
-1878,everything,*_def
-1879,everywhere,*_def
-1880,evidence,*_def
-1881,evident,*_def
-1882,evil,*_def
-1883,evil,*_def
-1884,evoke,*_def
-1885,evolution,*_def
-1886,evolutionary,*_def
-1887,evolve,*_def
-1888,exact,*_def
-1889,exactly,*_def
-1890,exaggerate,*_def
-1891,exam,*_def
-1892,examination,*_def
-1893,examine,*_def
-1894,example,*_def
-1895,exceed,*_def
-1896,excellence,*_def
-1897,excellent,*_def
-1898,except,*_def
-1899,except,*_def
-1900,exception,*_def
-1901,exceptional,*_def
-1902,excess,*_def
-1903,excess,*_def
-1904,excessive,*_def
-1905,exchange,*_def
-1906,exchange,*_def
-1907,excited,*_def
-1908,excitement,*_def
-1909,exciting,*_def
-1910,exclude,*_def
-1911,exclusion,*_def
-1912,exclusive,*_def
-1913,exclusively,*_def
-1914,excuse,*_def
-1915,excuse,*_def
-1916,execute,*_def
-1917,execution,*_def
-1918,executive,*_def
-1919,executive,*_def
-1920,exercise,*_def
-1921,exercise,*_def
-1922,exert,*_def
-1923,exhibit,*_def
-1924,exhibit,*_def
-1925,exhibition,*_def
-1926,exile,*_def
-1927,exist,*_def
-1928,existence,*_def
-1929,exit,*_def
-1930,exit,*_def
-1931,exotic,*_def
-1932,expand,*_def
-1933,expansion,*_def
-1934,expect,*_def
-1935,expectation,*_def
-1936,expected,*_def
-1937,expedition,*_def
-1938,expenditure,*_def
-1939,expense,*_def
-1940,expensive,*_def
-1941,experience,*_def
-1942,experience,*_def
-1943,experienced,*_def
-1944,experiment,*_def
-1945,experiment,*_def
-1946,experimental,*_def
-1947,expert,*_def
-1948,expert,*_def
-1949,expertise,*_def
-1950,expire,*_def
-1951,explain,*_def
-1952,explanation,*_def
-1953,explicit,*_def
-1954,explicitly,*_def
-1955,explode,*_def
-1956,exploit,*_def
-1957,exploitation,*_def
-1958,exploration,*_def
-1959,explore,*_def
-1960,explosion,*_def
-1961,explosive,*_def
-1962,explosive,*_def
-1963,export,*_def
-1964,export,*_def
-1965,expose,*_def
-1966,exposure,*_def
-1967,express,*_def
-1968,expression,*_def
-1969,extend,*_def
-1970,extension,*_def
-1971,extensive,*_def
-1972,extensively,*_def
-1973,extent,*_def
-1974,external,*_def
-1975,extra,*_def
-1976,extra,*_def
-1977,extra,*_def
-1978,extract,*_def
-1979,extract,*_def
-1980,extraordinary,*_def
-1981,extreme,*_def
-1982,extreme,*_def
-1983,extremely,*_def
-1984,extremist,*_def
-1985,eye,*_def
-1986,fabric,*_def
-1987,fabulous,*_def
-1988,face,*_def
-1989,face,*_def
-1990,facilitate,*_def
-1991,facility,*_def
-1992,fact,*_def
-1993,faction,*_def
-1994,factor,*_def
-1995,factory,*_def
-1996,faculty,*_def
-1997,fade,*_def
-1998,fail,*_def
-1999,failed,*_def
-2000,failure,*_def
-2001,fair,*_def
-2002,fairly,*_def
-2003,fairness,*_def
-2004,faith,*_def
-2005,fake,*_def
-2006,fall,*_def
-2007,fall,*_def
-2008,false,*_def
-2009,fame,*_def
-2010,familiar,*_def
-2011,family,*_def
-2012,family,*_def
-2013,famous,*_def
-2014,fan,*_def
-2015,fancy,*_def
-2016,fancy,*_def
-2017,fantastic,*_def
-2018,fantasy,*_def
-2019,far,*_def
-2020,far,*_def
-2021,fare,*_def
-2022,farm,*_def
-2023,farm,*_def
-2024,farmer,*_def
-2025,farming,*_def
-2026,fascinating,*_def
-2027,fashion,*_def
-2028,fashionable,*_def
-2029,fast,*_def
-2030,fast,*_def
-2031,fasten,*_def
-2032,fat,*_def
-2033,fat,*_def
-2034,fatal,*_def
-2035,fate,*_def
-2036,father,*_def
-2037,fault,*_def
-2038,favour,*_def
-2039,favour,*_def
-2040,favourable,*_def
-2041,favourite,*_def
-2042,favourite,*_def
-2043,fear,*_def
-2044,fear,*_def
-2045,feat,*_def
-2046,feather,*_def
-2047,feature,*_def
-2048,feature,*_def
-2049,February,*_def
-2050,federal,*_def
-2051,fee,*_def
-2052,feed,*_def
-2053,feed,*_def
-2054,feedback,*_def
-2055,feel,*_def
-2056,feel,*_def
-2057,feeling,*_def
-2058,fellow,*_def
-2059,female,*_def
-2060,female,*_def
-2061,feminist,*_def
-2062,feminist,*_def
-2063,fence,*_def
-2064,festival,*_def
-2065,fever,*_def
-2066,few,*_def
-2067,few,*_def
-2068,few,*_def
-2069,fibre,*_def
-2070,fiction,*_def
-2071,field,*_def
-2072,fierce,*_def
-2073,fifteen,*_def
-2074,fifth,*_def
-2075,fifty,*_def
-2076,fight,*_def
-2077,fight,*_def
-2078,fighting,*_def
-2079,figure,*_def
-2080,figure,*_def
-2081,file,*_def
-2082,file,*_def
-2083,fill,*_def
-2084,film,*_def
-2085,film,*_def
-2086,film-maker,*_def
-2087,filter,*_def
-2088,filter,*_def
-2089,final,*_def
-2090,final,*_def
-2091,finally,*_def
-2092,finance,*_def
-2093,finance,*_def
-2094,financial,*_def
-2095,find,*_def
-2096,finding,*_def
-2097,fine,*_def
-2098,fine,*_def
-2099,fine,*_def
-2100,finger,*_def
-2101,finish,*_def
-2102,finish,*_def
-2103,fire,*_def
-2104,fire,*_def
-2105,firearm,*_def
-2106,firefighter,*_def
-2107,firework,*_def
-2108,firm,*_def
-2109,firm,*_def
-2110,firmly,*_def
-2111,first,*_def
-2112,first,*_def
-2113,first,*_def
-2114,first,*_def
-2115,firstly,*_def
-2116,fish,*_def
-2117,fish,*_def
-2118,fishing,*_def
-2119,fit,*_def
-2120,fit,*_def
-2121,fit,*_def
-2122,fitness,*_def
-2123,five,*_def
-2124,fix,*_def
-2125,fix,*_def
-2126,fixed,*_def
-2127,fixture,*_def
-2128,flag,*_def
-2129,flame,*_def
-2130,flash,*_def
-2131,flash,*_def
-2132,flat,*_def
-2133,flat,*_def
-2134,flavour,*_def
-2135,flaw,*_def
-2136,flawed,*_def
-2137,flee,*_def
-2138,fleet,*_def
-2139,flesh,*_def
-2140,flexibility,*_def
-2141,flexible,*_def
-2142,flight,*_def
-2143,float,*_def
-2144,flood,*_def
-2145,flood,*_def
-2146,floor,*_def
-2147,flour,*_def
-2148,flourish,*_def
-2149,flow,*_def
-2150,flow,*_def
-2151,flower,*_def
-2152,flu,*_def
-2153,fluid,*_def
-2154,fly,*_def
-2155,fly,*_def
-2156,flying,*_def
-2157,flying,*_def
-2158,focus,*_def
-2159,focus,*_def
-2160,fold,*_def
-2161,fold,*_def
-2162,folding,*_def
-2163,folk,*_def
-2164,folk,*_def
-2165,follow,*_def
-2166,following,*_def
-2167,following,*_def
-2168,following,*_def
-2169,fond,*_def
-2170,food,*_def
-2171,fool,*_def
-2172,foot,*_def
-2173,footage,*_def
-2174,football,*_def
-2175,for,*_def
-2176,forbid,*_def
-2177,force,*_def
-2178,force,*_def
-2179,forecast,*_def
-2180,forecast,*_def
-2181,foreign,*_def
-2182,foreigner,*_def
-2183,forest,*_def
-2184,forever,*_def
-2185,forge,*_def
-2186,forget,*_def
-2187,forgive,*_def
-2188,fork,*_def
-2189,form,*_def
-2190,form,*_def
-2191,formal,*_def
-2192,format,*_def
-2193,formation,*_def
-2194,former,*_def
-2195,formerly,*_def
-2196,formula,*_def
-2197,formulate,*_def
-2198,forth,*_def
-2199,forthcoming,*_def
-2200,fortunate,*_def
-2201,fortunately,*_def
-2202,fortune,*_def
-2203,forty,*_def
-2204,forum,*_def
-2205,forward,*_def
-2206,forward,*_def
-2207,fossil,*_def
-2208,foster,*_def
-2209,found,*_def
-2210,foundation,*_def
-2211,founder,*_def
-2212,four,*_def
-2213,fourteen,*_def
-2214,fourth,*_def
-2215,fraction,*_def
-2216,fragile,*_def
-2217,fragment,*_def
-2218,frame,*_def
-2219,frame,*_def
-2220,framework,*_def
-2221,franchise,*_def
-2222,frankly,*_def
-2223,fraud,*_def
-2224,free,*_def
-2225,free,*_def
-2226,free,*_def
-2227,freedom,*_def
-2228,freely,*_def
-2229,freeze,*_def
-2230,frequency,*_def
-2231,frequent,*_def
-2232,frequently,*_def
-2233,fresh,*_def
-2234,Friday,*_def
-2235,fridge,*_def
-2236,friend,*_def
-2237,friendly,*_def
-2238,friendship,*_def
-2239,frighten,*_def
-2240,frightened,*_def
-2241,frightening,*_def
-2242,frog,*_def
-2243,from,*_def
-2244,front,*_def
-2245,front,*_def
-2246,frozen,*_def
-2247,fruit,*_def
-2248,frustrated,*_def
-2249,frustrating,*_def
-2250,frustration,*_def
-2251,fry,*_def
-2252,fuel,*_def
-2253,fuel,*_def
-2254,fulfil,*_def
-2255,full,*_def
-2256,full-time,*_def
-2257,full-time,*_def
-2258,fully,*_def
-2259,fun,*_def
-2260,fun,*_def
-2261,function,*_def
-2262,function,*_def
-2263,functional,*_def
-2264,fund,*_def
-2265,fund,*_def
-2266,fundamental,*_def
-2267,fundamentally,*_def
-2268,funding,*_def
-2269,fundraising,*_def
-2270,funeral,*_def
-2271,funny,*_def
-2272,fur,*_def
-2273,furious,*_def
-2274,furniture,*_def
-2275,further,*_def
-2276,further,*_def
-2277,furthermore,*_def
-2278,future,*_def
-2279,future,*_def
-2280,gain,*_def
-2281,gain,*_def
-2282,gallery,*_def
-2283,gallon,*_def
-2284,gambling,*_def
-2285,game,*_def
-2286,gaming,*_def
-2287,gang,*_def
-2288,gap,*_def
-2289,garage,*_def
-2290,garden,*_def
-2291,gas,*_def
-2292,gate,*_def
-2293,gather,*_def
-2294,gathering,*_def
-2295,gay,*_def
-2296,gaze,*_def
-2297,gaze,*_def
-2298,gear,*_def
-2299,gender,*_def
-2300,gene,*_def
-2301,general,*_def
-2302,generally,*_def
-2303,generate,*_def
-2304,generation,*_def
-2305,generic,*_def
-2306,generous,*_def
-2307,genetic,*_def
-2308,genius,*_def
-2309,genocide,*_def
-2310,genre,*_def
-2311,gentle,*_def
-2312,gentleman,*_def
-2313,genuine,*_def
-2314,genuinely,*_def
-2315,geography,*_def
-2316,gesture,*_def
-2317,get,*_def
-2318,ghost,*_def
-2319,giant,*_def
-2320,giant,*_def
-2321,gift,*_def
-2322,gig,*_def
-2323,girl,*_def
-2324,girlfriend,*_def
-2325,give,*_def
-2326,glad,*_def
-2327,glance,*_def
-2328,glance,*_def
-2329,glass,*_def
-2330,glimpse,*_def
-2331,global,*_def
-2332,globalization,*_def
-2333,globe,*_def
-2334,glorious,*_def
-2335,glory,*_def
-2336,glove,*_def
-2337,go,*_def
-2338,go,*_def
-2339,goal,*_def
-2340,god,*_def
-2341,gold,*_def
-2342,gold,*_def
-2343,golden,*_def
-2344,golf,*_def
-2345,good,*_def
-2346,good,*_def
-2347,goodbye,*_def
-2348,goodbye,*_def
-2349,goodness,*_def
-2350,goods,*_def
-2351,gorgeous,*_def
-2352,govern,*_def
-2353,governance,*_def
-2354,government,*_def
-2355,governor,*_def
-2356,grab,*_def
-2357,grace,*_def
-2358,grade,*_def
-2359,grade,*_def
-2360,gradually,*_def
-2361,graduate,*_def
-2362,graduate,*_def
-2363,grain,*_def
-2364,grand,*_def
-2365,grandfather,*_def
-2366,grandmother,*_def
-2367,grandparent,*_def
-2368,grant,*_def
-2369,grant,*_def
-2370,graphic,*_def
-2371,graphics,*_def
-2372,grasp,*_def
-2373,grasp,*_def
-2374,grass,*_def
-2375,grateful,*_def
-2376,grave,*_def
-2377,grave,*_def
-2378,gravity,*_def
-2379,great,*_def
-2380,greatly,*_def
-2381,green,*_def
-2382,green,*_def
-2383,greenhouse,*_def
-2384,greet,*_def
-2385,grey,*_def
-2386,grey,*_def
-2387,grid,*_def
-2388,grief,*_def
-2389,grin,*_def
-2390,grin,*_def
-2391,grind,*_def
-2392,grip,*_def
-2393,grip,*_def
-2394,grocery,*_def
-2395,gross,*_def
-2396,ground,*_def
-2397,group,*_def
-2398,grow,*_def
-2399,growth,*_def
-2400,guarantee,*_def
-2401,guarantee,*_def
-2402,guard,*_def
-2403,guard,*_def
-2404,guerrilla,*_def
-2405,guess,*_def
-2406,guess,*_def
-2407,guest,*_def
-2408,guidance,*_def
-2409,guide,*_def
-2410,guide,*_def
-2411,guideline,*_def
-2412,guilt,*_def
-2413,guilty,*_def
-2414,guitar,*_def
-2415,gun,*_def
-2416,gut,*_def
-2417,guy,*_def
-2418,gym,*_def
-2419,habit,*_def
-2420,habitat,*_def
-2421,hail,*_def
-2422,hair,*_def
-2423,half,*_def
-2424,half,*_def
-2425,half,*_def
-2426,half,*_def
-2427,halfway,*_def
-2428,hall,*_def
-2429,halt,*_def
-2430,halt,*_def
-2431,hand,*_def
-2432,hand,*_def
-2433,handful,*_def
-2434,handle,*_def
-2435,handle,*_def
-2436,handling,*_def
-2437,handy,*_def
-2438,hang,*_def
-2439,happen,*_def
-2440,happily,*_def
-2441,happiness,*_def
-2442,happy,*_def
-2443,harassment,*_def
-2444,harbour,*_def
-2445,hard,*_def
-2446,hard,*_def
-2447,hardly,*_def
-2448,hardware,*_def
-2449,harm,*_def
-2450,harm,*_def
-2451,harmful,*_def
-2452,harmony,*_def
-2453,harsh,*_def
-2454,harvest,*_def
-2455,harvest,*_def
-2456,hat,*_def
-2457,hate,*_def
-2458,hate,*_def
-2459,hatred,*_def
-2460,haunt,*_def
-2461,have,*_def
-2462,have,*_def
-2463,have to,*_def
-2464,hazard,*_def
-2465,he,*_def
-2466,head,*_def
-2467,head,*_def
-2468,headache,*_def
-2469,headline,*_def
-2470,headquarters,*_def
-2471,heal,*_def
-2472,health,*_def
-2473,healthcare,*_def
-2474,healthy,*_def
-2475,hear,*_def
-2476,hearing,*_def
-2477,heart,*_def
-2478,heat,*_def
-2479,heat,*_def
-2480,heating,*_def
-2481,heaven,*_def
-2482,heavily,*_def
-2483,heavy,*_def
-2484,heel,*_def
-2485,height,*_def
-2486,heighten,*_def
-2487,helicopter,*_def
-2488,hell,*_def
-2489,hello,*_def
-2490,hello,*_def
-2491,helmet,*_def
-2492,help,*_def
-2493,help,*_def
-2494,helpful,*_def
-2495,hence,*_def
-2496,her,*_def
-2497,her,*_def
-2498,herb,*_def
-2499,here,*_def
-2500,heritage,*_def
-2501,hero,*_def
-2502,hers,*_def
-2503,herself,*_def
-2504,hesitate,*_def
-2505,hey,*_def
-2506,hi,*_def
-2507,hidden,*_def
-2508,hide,*_def
-2509,hierarchy,*_def
-2510,high,*_def
-2511,high,*_def
-2512,high,*_def
-2513,high-profile,*_def
-2514,highlight,*_def
-2515,highlight,*_def
-2516,highly,*_def
-2517,highway,*_def
-2518,hilarious,*_def
-2519,hill,*_def
-2520,him,*_def
-2521,himself,*_def
-2522,hint,*_def
-2523,hint,*_def
-2524,hip,*_def
-2525,hire,*_def
-2526,hire,*_def
-2527,his,*_def
-2528,his,*_def
-2529,historian,*_def
-2530,historic,*_def
-2531,historical,*_def
-2532,history,*_def
-2533,hit,*_def
-2534,hit,*_def
-2535,hobby,*_def
-2536,hockey,*_def
-2537,hold,*_def
-2538,hold,*_def
-2539,hole,*_def
-2540,holiday,*_def
-2541,hollow,*_def
-2542,holy,*_def
-2543,home,*_def
-2544,home,*_def
-2545,home,*_def
-2546,homeland,*_def
-2547,homeless,*_def
-2548,homework,*_def
-2549,honest,*_def
-2550,honesty,*_def
-2551,honour,*_def
-2552,honour,*_def
-2553,hook,*_def
-2554,hook,*_def
-2555,hope,*_def
-2556,hope,*_def
-2557,hopeful,*_def
-2558,hopefully,*_def
-2559,horizon,*_def
-2560,horn,*_def
-2561,horrible,*_def
-2562,horror,*_def
-2563,horse,*_def
-2564,hospital,*_def
-2565,host,*_def
-2566,host,*_def
-2567,hostage,*_def
-2568,hostile,*_def
-2569,hostility,*_def
-2570,hot,*_def
-2571,hotel,*_def
-2572,hour,*_def
-2573,house,*_def
-2574,house,*_def
-2575,household,*_def
-2576,housing,*_def
-2577,how,*_def
-2578,however,*_def
-2579,huge,*_def
-2580,human,*_def
-2581,human,*_def
-2582,humanitarian,*_def
-2583,humanity,*_def
-2584,humble,*_def
-2585,humorous,*_def
-2586,humour,*_def
-2587,hundred,*_def
-2588,hunger,*_def
-2589,hungry,*_def
-2590,hunt,*_def
-2591,hunt,*_def
-2592,hunting,*_def
-2593,hurricane,*_def
-2594,hurry,*_def
-2595,hurry,*_def
-2596,hurt,*_def
-2597,hurt,*_def
-2598,hurt,*_def
-2599,husband,*_def
-2600,hydrogen,*_def
-2601,hypothesis,*_def
-2602,I,*_def
-2603,ice,*_def
-2604,ice cream,*_def
-2605,icon,*_def
-2606,ID,*_def
-2607,idea,*_def
-2608,ideal,*_def
-2609,ideal,*_def
-2610,identical,*_def
-2611,identification,*_def
-2612,identify,*_def
-2613,identity,*_def
-2614,ideological,*_def
-2615,ideology,*_def
-2616,idiot,*_def
-2617,if,*_def
-2618,ignorance,*_def
-2619,ignore,*_def
-2620,ill,*_def
-2621,illegal,*_def
-2622,illness,*_def
-2623,illusion,*_def
-2624,illustrate,*_def
-2625,illustration,*_def
-2626,image,*_def
-2627,imagery,*_def
-2628,imaginary,*_def
-2629,imagination,*_def
-2630,imagine,*_def
-2631,immediate,*_def
-2632,immediately,*_def
-2633,immense,*_def
-2634,immigrant,*_def
-2635,immigration,*_def
-2636,imminent,*_def
-2637,immune,*_def
-2638,impact,*_def
-2639,impact,*_def
-2640,impatient,*_def
-2641,implement,*_def
-2642,implementation,*_def
-2643,implication,*_def
-2644,imply,*_def
-2645,import,*_def
-2646,import,*_def
-2647,importance,*_def
-2648,important,*_def
-2649,impose,*_def
-2650,impossible,*_def
-2651,impress,*_def
-2652,impressed,*_def
-2653,impression,*_def
-2654,impressive,*_def
-2655,imprison,*_def
-2656,imprisonment,*_def
-2657,improve,*_def
-2658,improvement,*_def
-2659,in,*_def
-2660,in,*_def
-2661,inability,*_def
-2662,inadequate,*_def
-2663,inappropriate,*_def
-2664,incentive,*_def
-2665,inch,*_def
-2666,incidence,*_def
-2667,incident,*_def
-2668,inclined,*_def
-2669,include,*_def
-2670,included,*_def
-2671,including,*_def
-2672,inclusion,*_def
-2673,income,*_def
-2674,incorporate,*_def
-2675,incorrect,*_def
-2676,increase,*_def
-2677,increase,*_def
-2678,increasingly,*_def
-2679,incredible,*_def
-2680,incredibly,*_def
-2681,incur,*_def
-2682,indeed,*_def
-2683,independence,*_def
-2684,independent,*_def
-2685,index,*_def
-2686,indicate,*_def
-2687,indication,*_def
-2688,indicator,*_def
-2689,indictment,*_def
-2690,indigenous,*_def
-2691,indirect,*_def
-2692,individual,*_def
-2693,individual,*_def
-2694,indoor,*_def
-2695,indoors,*_def
-2696,induce,*_def
-2697,indulge,*_def
-2698,industrial,*_def
-2699,industry,*_def
-2700,inequality,*_def
-2701,inevitable,*_def
-2702,inevitably,*_def
-2703,infamous,*_def
-2704,infant,*_def
-2705,infect,*_def
-2706,infection,*_def
-2707,infer,*_def
-2708,inflation,*_def
-2709,inflict,*_def
-2710,influence,*_def
-2711,influence,*_def
-2712,influential,*_def
-2713,info,*_def
-2714,inform,*_def
-2715,informal,*_def
-2716,information,*_def
-2717,infrastructure,*_def
-2718,ingredient,*_def
-2719,inhabitant,*_def
-2720,inherent,*_def
-2721,inherit,*_def
-2722,inhibit,*_def
-2723,initial,*_def
-2724,initially,*_def
-2725,initiate,*_def
-2726,initiative,*_def
-2727,inject,*_def
-2728,injection,*_def
-2729,injure,*_def
-2730,injured,*_def
-2731,injury,*_def
-2732,injustice,*_def
-2733,ink,*_def
-2734,inmate,*_def
-2735,inner,*_def
-2736,innocent,*_def
-2737,innovation,*_def
-2738,innovative,*_def
-2739,input,*_def
-2740,inquiry,*_def
-2741,insect,*_def
-2742,insert,*_def
-2743,insertion,*_def
-2744,inside,*_def
-2745,inside,*_def
-2746,inside,*_def
-2747,inside,*_def
-2748,insider,*_def
-2749,insight,*_def
-2750,insist,*_def
-2751,inspect,*_def
-2752,inspection,*_def
-2753,inspector,*_def
-2754,inspiration,*_def
-2755,inspire,*_def
-2756,install,*_def
-2757,installation,*_def
-2758,instance,*_def
-2759,instant,*_def
-2760,instantly,*_def
-2761,instead,*_def
-2762,instinct,*_def
-2763,institute,*_def
-2764,institution,*_def
-2765,institutional,*_def
-2766,instruct,*_def
-2767,instruction,*_def
-2768,instructor,*_def
-2769,instrument,*_def
-2770,instrumental,*_def
-2771,insufficient,*_def
-2772,insult,*_def
-2773,insult,*_def
-2774,insurance,*_def
-2775,intact,*_def
-2776,intake,*_def
-2777,integral,*_def
-2778,integrate,*_def
-2779,integrated,*_def
-2780,integration,*_def
-2781,integrity,*_def
-2782,intellectual,*_def
-2783,intellectual,*_def
-2784,intelligence,*_def
-2785,intelligent,*_def
-2786,intend,*_def
-2787,intended,*_def
-2788,intense,*_def
-2789,intensify,*_def
-2790,intensity,*_def
-2791,intensive,*_def
-2792,intent,*_def
-2793,intention,*_def
-2794,interact,*_def
-2795,interaction,*_def
-2796,interactive,*_def
-2797,interest,*_def
-2798,interest,*_def
-2799,interested,*_def
-2800,interesting,*_def
-2801,interface,*_def
-2802,interfere,*_def
-2803,interference,*_def
-2804,interim,*_def
-2805,interior,*_def
-2806,interior,*_def
-2807,intermediate,*_def
-2808,internal,*_def
-2809,international,*_def
-2810,internet,*_def
-2811,interpret,*_def
-2812,interpretation,*_def
-2813,interrupt,*_def
-2814,interval,*_def
-2815,intervene,*_def
-2816,intervention,*_def
-2817,interview,*_def
-2818,interview,*_def
-2819,intimate,*_def
-2820,into,*_def
-2821,intriguing,*_def
-2822,introduce,*_def
-2823,introduction,*_def
-2824,invade,*_def
-2825,invasion,*_def
-2826,invent,*_def
-2827,invention,*_def
-2828,invest,*_def
-2829,investigate,*_def
-2830,investigation,*_def
-2831,investigator,*_def
-2832,investment,*_def
-2833,investor,*_def
-2834,invisible,*_def
-2835,invitation,*_def
-2836,invite,*_def
-2837,invoke,*_def
-2838,involve,*_def
-2839,involved,*_def
-2840,involvement,*_def
-2841,iron,*_def
-2842,iron,*_def
-2843,ironic,*_def
-2844,ironically,*_def
-2845,irony,*_def
-2846,irrelevant,*_def
-2847,island,*_def
-2848,isolate,*_def
-2849,isolated,*_def
-2850,isolation,*_def
-2851,issue,*_def
-2852,issue,*_def
-2853,IT,*_def
-2854,it,*_def
-2855,item,*_def
-2856,its,*_def
-2857,itself,*_def
-2858,jacket,*_def
-2859,jail,*_def
-2860,jail,*_def
-2861,jam,*_def
-2862,January,*_def
-2863,jazz,*_def
-2864,jeans,*_def
-2865,jet,*_def
-2866,jewellery,*_def
-2867,job,*_def
-2868,join,*_def
-2869,joint,*_def
-2870,joint,*_def
-2871,joke,*_def
-2872,joke,*_def
-2873,journal,*_def
-2874,journalism,*_def
-2875,journalist,*_def
-2876,journey,*_def
-2877,joy,*_def
-2878,judge,*_def
-2879,judge,*_def
-2880,judgement,*_def
-2881,judicial,*_def
-2882,juice,*_def
-2883,July,*_def
-2884,jump,*_def
-2885,jump,*_def
-2886,junction,*_def
-2887,June,*_def
-2888,junior,*_def
-2889,jurisdiction,*_def
-2890,jury,*_def
-2891,just,*_def
-2892,just,*_def
-2893,justice,*_def
-2894,justification,*_def
-2895,justify,*_def
-2896,keen,*_def
-2897,keep,*_def
-2898,key,*_def
-2899,key,*_def
-2900,key,*_def
-2901,keyboard,*_def
-2902,kick,*_def
-2903,kick,*_def
-2904,kid,*_def
-2905,kidnap,*_def
-2906,kidney,*_def
-2907,kill,*_def
-2908,killing,*_def
-2909,kilometre,*_def
-2910,kind,*_def
-2911,kind,*_def
-2912,king,*_def
-2913,kingdom,*_def
-2914,kiss,*_def
-2915,kiss,*_def
-2916,kit,*_def
-2917,kitchen,*_def
-2918,knee,*_def
-2919,knife,*_def
-2920,knock,*_def
-2921,knock,*_def
-2922,know,*_def
-2923,knowledge,*_def
-2924,lab,*_def
-2925,label,*_def
-2926,label,*_def
-2927,laboratory,*_def
-2928,labour,*_def
-2929,lack,*_def
-2930,lack,*_def
-2931,lad,*_def
-2932,ladder,*_def
-2933,lady,*_def
-2934,lake,*_def
-2935,lamp,*_def
-2936,land,*_def
-2937,land,*_def
-2938,landing,*_def
-2939,landlord,*_def
-2940,landmark,*_def
-2941,landscape,*_def
-2942,lane,*_def
-2943,language,*_def
-2944,lap,*_def
-2945,laptop,*_def
-2946,large,*_def
-2947,large-scale,*_def
-2948,largely,*_def
-2949,laser,*_def
-2950,last,*_def
-2951,last,*_def
-2952,last,*_def
-2953,last,*_def
-2954,late,*_def
-2955,late,*_def
-2956,lately,*_def
-2957,later,*_def
-2958,later,*_def
-2959,latest,*_def
-2960,latest,*_def
-2961,latter,*_def
-2962,latter,*_def
-2963,laugh,*_def
-2964,laugh,*_def
-2965,laughter,*_def
-2966,launch,*_def
-2967,launch,*_def
-2968,law,*_def
-2969,lawn,*_def
-2970,lawsuit,*_def
-2971,lawyer,*_def
-2972,lay,*_def
-2973,layer,*_def
-2974,layout,*_def
-2975,lazy,*_def
-2976,lead,*_def
-2977,lead,*_def
-2978,leader,*_def
-2979,leadership,*_def
-2980,leading,*_def
-2981,leaf,*_def
-2982,leaflet,*_def
-2983,league,*_def
-2984,leak,*_def
-2985,leak,*_def
-2986,lean,*_def
-2987,leap,*_def
-2988,leap,*_def
-2989,learn,*_def
-2990,learning,*_def
-2991,least,*_def
-2992,least,*_def
-2993,least,*_def
-2994,leather,*_def
-2995,leave,*_def
-2996,leave,*_def
-2997,lecture,*_def
-2998,lecture,*_def
-2999,left,*_def
-3000,left,*_def
-3001,left,*_def
-3002,leg,*_def
-3003,legacy,*_def
-3004,legal,*_def
-3005,legend,*_def
-3006,legendary,*_def
-3007,legislation,*_def
-3008,legislative,*_def
-3009,legislature,*_def
-3010,legitimate,*_def
-3011,leisure,*_def
-3012,lemon,*_def
-3013,lend,*_def
-3014,length,*_def
-3015,lengthy,*_def
-3016,lens,*_def
-3017,lesbian,*_def
-3018,less,*_def
-3019,less,*_def
-3020,less,*_def
-3021,lesser,*_def
-3022,lesson,*_def
-3023,let,*_def
-3024,lethal,*_def
-3025,letter,*_def
-3026,level,*_def
-3027,level,*_def
-3028,level,*_def
-3029,liable,*_def
-3030,liberal,*_def
-3031,liberal,*_def
-3032,liberation,*_def
-3033,liberty,*_def
-3034,library,*_def
-3035,licence,*_def
-3036,license,*_def
-3037,lie,*_def
-3038,lie,*_def
-3039,lie,*_def
-3040,life,*_def
-3041,lifelong,*_def
-3042,lifestyle,*_def
-3043,lifetime,*_def
-3044,lift,*_def
-3045,lift,*_def
-3046,light,*_def
-3047,light,*_def
-3048,light,*_def
-3049,lighting,*_def
-3050,like,*_def
-3051,like,*_def
-3052,like,*_def
-3053,likelihood,*_def
-3054,likely,*_def
-3055,likewise,*_def
-3056,limb,*_def
-3057,limit,*_def
-3058,limit,*_def
-3059,limitation,*_def
-3060,limited,*_def
-3061,line,*_def
-3062,line,*_def
-3063,line-up,*_def
-3064,linear,*_def
-3065,linger,*_def
-3066,link,*_def
-3067,link,*_def
-3068,lion,*_def
-3069,lip,*_def
-3070,liquid,*_def
-3071,liquid,*_def
-3072,list,*_def
-3073,list,*_def
-3074,listen,*_def
-3075,listener,*_def
-3076,listing,*_def
-3077,literacy,*_def
-3078,literally,*_def
-3079,literary,*_def
-3080,literature,*_def
-3081,litre,*_def
-3082,litter,*_def
-3083,little,*_def
-3084,little,*_def
-3085,little,*_def
-3086,little,*_def
-3087,live,*_def
-3088,live,*_def
-3089,live,*_def
-3090,lively,*_def
-3091,liver,*_def
-3092,living,*_def
-3093,living,*_def
-3094,load,*_def
-3095,load,*_def
-3096,loan,*_def
-3097,lobby,*_def
-3098,lobby,*_def
-3099,local,*_def
-3100,local,*_def
-3101,locate,*_def
-3102,located,*_def
-3103,location,*_def
-3104,lock,*_def
-3105,lock,*_def
-3106,log,*_def
-3107,log,*_def
-3108,logic,*_def
-3109,logical,*_def
-3110,logo,*_def
-3111,lonely,*_def
-3112,long,*_def
-3113,long,*_def
-3114,long-standing,*_def
-3115,long-term,*_def
-3116,long-term,*_def
-3117,long-time,*_def
-3118,look,*_def
-3119,look,*_def
-3120,loom,*_def
-3121,loop,*_def
-3122,loose,*_def
-3123,lord,*_def
-3124,lorry,*_def
-3125,lose,*_def
-3126,loss,*_def
-3127,lost,*_def
-3128,lot,*_def
-3129,lot,*_def
-3130,lot,*_def
-3131,lottery,*_def
-3132,loud,*_def
-3133,loud,*_def
-3134,loudly,*_def
-3135,love,*_def
-3136,love,*_def
-3137,lovely,*_def
-3138,low,*_def
-3139,low,*_def
-3140,low,*_def
-3141,lower,*_def
-3142,loyal,*_def
-3143,loyalty,*_def
-3144,luck,*_def
-3145,lucky,*_def
-3146,lunch,*_def
-3147,lung,*_def
-3148,luxury,*_def
-3149,luxury,*_def
-3150,lyric,*_def
-3151,machine,*_def
-3152,machinery,*_def
-3153,mad,*_def
-3154,magazine,*_def
-3155,magic,*_def
-3156,magic,*_def
-3157,magical,*_def
-3158,magistrate,*_def
-3159,magnetic,*_def
-3160,magnificent,*_def
-3161,magnitude,*_def
-3162,mail,*_def
-3163,mail,*_def
-3164,main,*_def
-3165,mainland,*_def
-3166,mainly,*_def
-3167,mainstream,*_def
-3168,mainstream,*_def
-3169,maintain,*_def
-3170,maintenance,*_def
-3171,major,*_def
-3172,majority,*_def
-3173,make,*_def
-3174,make,*_def
-3175,make-up,*_def
-3176,making,*_def
-3177,male,*_def
-3178,male,*_def
-3179,mall,*_def
-3180,man,*_def
-3181,manage,*_def
-3182,management,*_def
-3183,manager,*_def
-3184,mandate,*_def
-3185,mandatory,*_def
-3186,manifest,*_def
-3187,manipulate,*_def
-3188,manipulation,*_def
-3189,manner,*_def
-3190,manufacture,*_def
-3191,manufacturing,*_def
-3192,manuscript,*_def
-3193,many,*_def
-3194,many,*_def
-3195,map,*_def
-3196,map,*_def
-3197,marathon,*_def
-3198,March,*_def
-3199,march,*_def
-3200,march,*_def
-3201,margin,*_def
-3202,marginal,*_def
-3203,marine,*_def
-3204,mark,*_def
-3205,mark,*_def
-3206,marker,*_def
-3207,market,*_def
-3208,market,*_def
-3209,marketing,*_def
-3210,marketplace,*_def
-3211,marriage,*_def
-3212,married,*_def
-3213,marry,*_def
-3214,martial,*_def
-3215,mask,*_def
-3216,mass,*_def
-3217,mass,*_def
-3218,massacre,*_def
-3219,massive,*_def
-3220,master,*_def
-3221,master,*_def
-3222,match,*_def
-3223,match,*_def
-3224,matching,*_def
-3225,mate,*_def
-3226,mate,*_def
-3227,material,*_def
-3228,material,*_def
-3229,mathematical,*_def
-3230,mathematics,*_def
-3231,maths,*_def
-3232,matter,*_def
-3233,matter,*_def
-3234,mature,*_def
-3235,mature,*_def
-3236,maximize,*_def
-3237,maximum,*_def
-3238,maximum,*_def
-3239,May,*_def
-3240,may,*_def
-3241,maybe,*_def
-3242,mayor,*_def
-3243,me,*_def
-3244,meal,*_def
-3245,mean,*_def
-3246,meaning,*_def
-3247,meaningful,*_def
-3248,means,*_def
-3249,meantime,*_def
-3250,meanwhile,*_def
-3251,measure,*_def
-3252,measure,*_def
-3253,measurement,*_def
-3254,meat,*_def
-3255,mechanic,*_def
-3256,mechanical,*_def
-3257,mechanism,*_def
-3258,medal,*_def
-3259,media,*_def
-3260,medical,*_def
-3261,medication,*_def
-3262,medicine,*_def
-3263,medieval,*_def
-3264,meditation,*_def
-3265,medium,*_def
-3266,medium,*_def
-3267,meet,*_def
-3268,meeting,*_def
-3269,melody,*_def
-3270,melt,*_def
-3271,member,*_def
-3272,membership,*_def
-3273,memo,*_def
-3274,memoir,*_def
-3275,memorable,*_def
-3276,memorial,*_def
-3277,memory,*_def
-3278,mental,*_def
-3279,mention,*_def
-3280,mention,*_def
-3281,mentor,*_def
-3282,menu,*_def
-3283,merchant,*_def
-3284,mercy,*_def
-3285,mere,*_def
-3286,merely,*_def
-3287,merge,*_def
-3288,merger,*_def
-3289,merit,*_def
-3290,mess,*_def
-3291,message,*_def
-3292,metal,*_def
-3293,metaphor,*_def
-3294,method,*_def
-3295,methodology,*_def
-3296,metre,*_def
-3297,middle,*_def
-3298,middle,*_def
-3299,midnight,*_def
-3300,midst,*_def
-3301,might,*_def
-3302,migration,*_def
-3303,mild,*_def
-3304,mile,*_def
-3305,militant,*_def
-3306,militant,*_def
-3307,military,*_def
-3308,military,*_def
-3309,militia,*_def
-3310,milk,*_def
-3311,mill,*_def
-3312,million,*_def
-3313,mind,*_def
-3314,mind,*_def
-3315,mine,*_def
-3316,mine,*_def
-3317,miner,*_def
-3318,mineral,*_def
-3319,minimal,*_def
-3320,minimize,*_def
-3321,minimum,*_def
-3322,minimum,*_def
-3323,mining,*_def
-3324,minister,*_def
-3325,ministry,*_def
-3326,minor,*_def
-3327,minority,*_def
-3328,minute,*_def
-3329,minute,*_def
-3330,miracle,*_def
-3331,mirror,*_def
-3332,miserable,*_def
-3333,misery,*_def
-3334,misleading,*_def
-3335,miss,*_def
-3336,missile,*_def
-3337,missing,*_def
-3338,mission,*_def
-3339,mistake,*_def
-3340,mistake,*_def
-3341,mix,*_def
-3342,mix,*_def
-3343,mixed,*_def
-3344,mixture,*_def
-3345,mob,*_def
-3346,mobile,*_def
-3347,mobile,*_def
-3348,mobility,*_def
-3349,mobilize,*_def
-3350,mode,*_def
-3351,model,*_def
-3352,model,*_def
-3353,moderate,*_def
-3354,modern,*_def
-3355,modest,*_def
-3356,modification,*_def
-3357,modify,*_def
-3358,moment,*_def
-3359,momentum,*_def
-3360,Monday,*_def
-3361,money,*_def
-3362,monitor,*_def
-3363,monitor,*_def
-3364,monk,*_def
-3365,monkey,*_def
-3366,monopoly,*_def
-3367,monster,*_def
-3368,month,*_def
-3369,monthly,*_def
-3370,monument,*_def
-3371,mood,*_def
-3372,moon,*_def
-3373,moral,*_def
-3374,moral,*_def
-3375,morality,*_def
-3376,more,*_def
-3377,more,*_def
-3378,more,*_def
-3379,moreover,*_def
-3380,morning,*_def
-3381,mortgage,*_def
-3382,mosque,*_def
-3383,most,*_def
-3384,most,*_def
-3385,most,*_def
-3386,mostly,*_def
-3387,mother,*_def
-3388,motion,*_def
-3389,motivate,*_def
-3390,motivation,*_def
-3391,motive,*_def
-3392,motor,*_def
-3393,motor,*_def
-3394,motorcycle,*_def
-3395,motorist,*_def
-3396,mount,*_def
-3397,mountain,*_def
-3398,mouse,*_def
-3399,mouth,*_def
-3400,move,*_def
-3401,move,*_def
-3402,movement,*_def
-3403,movie,*_def
-3404,moving,*_def
-3405,much,*_def
-3406,much,*_def
-3407,much,*_def
-3408,mud,*_def
-3409,multiple,*_def
-3410,multiply,*_def
-3411,mum,*_def
-3412,municipal,*_def
-3413,murder,*_def
-3414,murder,*_def
-3415,muscle,*_def
-3416,museum,*_def
-3417,music,*_def
-3418,musical,*_def
-3419,musical,*_def
-3420,musician,*_def
-3421,must,*_def
-3422,mutual,*_def
-3423,my,*_def
-3424,myself,*_def
-3425,mysterious,*_def
-3426,mystery,*_def
-3427,myth,*_def
-3428,nail,*_def
-3429,naked,*_def
-3430,name,*_def
-3431,name,*_def
-3432,namely,*_def
-3433,narrative,*_def
-3434,narrative,*_def
-3435,narrow,*_def
-3436,narrow,*_def
-3437,nasty,*_def
-3438,nation,*_def
-3439,national,*_def
-3440,national,*_def
-3441,nationwide,*_def
-3442,native,*_def
-3443,native,*_def
-3444,natural,*_def
-3445,naturally,*_def
-3446,nature,*_def
-3447,naval,*_def
-3448,navigation,*_def
-3449,near,*_def
-3450,near,*_def
-3451,near,*_def
-3452,nearby,*_def
-3453,nearby,*_def
-3454,nearly,*_def
-3455,neat,*_def
-3456,necessarily,*_def
-3457,necessary,*_def
-3458,necessity,*_def
-3459,neck,*_def
-3460,need,*_def
-3461,need,*_def
-3462,need,*_def
-3463,needle,*_def
-3464,negative,*_def
-3465,negative,*_def
-3466,neglect,*_def
-3467,neglect,*_def
-3468,negotiate,*_def
-3469,negotiation,*_def
-3470,neighbour,*_def
-3471,neighbourhood,*_def
-3472,neighbouring,*_def
-3473,neither,*_def
-3474,neither,*_def
-3475,neither,*_def
-3476,nerve,*_def
-3477,nervous,*_def
-3478,nest,*_def
-3479,net,*_def
-3480,net,*_def
-3481,network,*_def
-3482,neutral,*_def
-3483,never,*_def
-3484,nevertheless,*_def
-3485,new,*_def
-3486,newly,*_def
-3487,news,*_def
-3488,newsletter,*_def
-3489,newspaper,*_def
-3490,next,*_def
-3491,next,*_def
-3492,next,*_def
-3493,next to,*_def
-3494,nice,*_def
-3495,niche,*_def
-3496,night,*_def
-3497,nightmare,*_def
-3498,nine,*_def
-3499,nineteen,*_def
-3500,ninety,*_def
-3501,no,*_def
-3502,no,*_def
-3503,no one,*_def
-3504,noble,*_def
-3505,nobody,*_def
-3506,nod,*_def
-3507,noise,*_def
-3508,noisy,*_def
-3509,nominate,*_def
-3510,nomination,*_def
-3511,nominee,*_def
-3512,non-profit,*_def
-3513,none,*_def
-3514,nonetheless,*_def
-3515,nonsense,*_def
-3516,noon,*_def
-3517,nor,*_def
-3518,nor,*_def
-3519,norm,*_def
-3520,normal,*_def
-3521,normal,*_def
-3522,normally,*_def
-3523,north,*_def
-3524,north,*_def
-3525,north,*_def
-3526,northern,*_def
-3527,nose,*_def
-3528,not,*_def
-3529,notable,*_def
-3530,notably,*_def
-3531,note,*_def
-3532,note,*_def
-3533,notebook,*_def
-3534,nothing,*_def
-3535,notice,*_def
-3536,notice,*_def
-3537,notify,*_def
-3538,notion,*_def
-3539,notorious,*_def
-3540,novel,*_def
-3541,novel,*_def
-3542,novelist,*_def
-3543,November,*_def
-3544,now,*_def
-3545,now,*_def
-3546,nowadays,*_def
-3547,nowhere,*_def
-3548,nuclear,*_def
-3549,number,*_def
-3550,number,*_def
-3551,numerous,*_def
-3552,nurse,*_def
-3553,nursery,*_def
-3554,nursing,*_def
-3555,nut,*_def
-3556,nutrition,*_def
-3557,o'clock,*_def
-3558,obesity,*_def
-3559,obey,*_def
-3560,object,*_def
-3561,object,*_def
-3562,objection,*_def
-3563,objective,*_def
-3564,objective,*_def
-3565,obligation,*_def
-3566,oblige,*_def
-3567,observation,*_def
-3568,observe,*_def
-3569,observer,*_def
-3570,obsess,*_def
-3571,obsession,*_def
-3572,obstacle,*_def
-3573,obtain,*_def
-3574,obvious,*_def
-3575,obviously,*_def
-3576,occasion,*_def
-3577,occasional,*_def
-3578,occasionally,*_def
-3579,occupation,*_def
-3580,occupy,*_def
-3581,occur,*_def
-3582,occurrence,*_def
-3583,ocean,*_def
-3584,October,*_def
-3585,odd,*_def
-3586,odds,*_def
-3587,of,*_def
-3588,off,*_def
-3589,off,*_def
-3590,offence,*_def
-3591,offend,*_def
-3592,offender,*_def
-3593,offensive,*_def
-3594,offer,*_def
-3595,offer,*_def
-3596,offering,*_def
-3597,office,*_def
-3598,officer,*_def
-3599,official,*_def
-3600,official,*_def
-3601,offspring,*_def
-3602,often,*_def
-3603,oh,*_def
-3604,oil,*_def
-3605,OK,*_def
-3606,OK,*_def
-3607,OK,*_def
-3608,old,*_def
-3609,old-fashioned,*_def
-3610,on,*_def
-3611,on,*_def
-3612,once,*_def
-3613,once,*_def
-3614,one,*_def
-3615,one,*_def
-3616,one,*_def
-3617,ongoing,*_def
-3618,onion,*_def
-3619,online,*_def
-3620,online,*_def
-3621,only,*_def
-3622,only,*_def
-3623,onto,*_def
-3624,open,*_def
-3625,open,*_def
-3626,opening,*_def
-3627,openly,*_def
-3628,opera,*_def
-3629,operate,*_def
-3630,operation,*_def
-3631,operational,*_def
-3632,operator,*_def
-3633,opinion,*_def
-3634,opponent,*_def
-3635,opportunity,*_def
-3636,oppose,*_def
-3637,opposed,*_def
-3638,opposite,*_def
-3639,opposite,*_def
-3640,opposite,*_def
-3641,opposite,*_def
-3642,opposition,*_def
-3643,opt,*_def
-3644,optical,*_def
-3645,optimism,*_def
-3646,optimistic,*_def
-3647,option,*_def
-3648,or,*_def
-3649,oral,*_def
-3650,orange,*_def
-3651,orange,*_def
-3652,orchestra,*_def
-3653,order,*_def
-3654,order,*_def
-3655,ordinary,*_def
-3656,organ,*_def
-3657,organic,*_def
-3658,organization,*_def
-3659,organizational,*_def
-3660,organize,*_def
-3661,organized,*_def
-3662,organizer,*_def
-3663,orientation,*_def
-3664,origin,*_def
-3665,original,*_def
-3666,original,*_def
-3667,originally,*_def
-3668,originate,*_def
-3669,other,*_def
-3670,other,*_def
-3671,otherwise,*_def
-3672,ought,*_def
-3673,our,*_def
-3674,ours,*_def
-3675,ourselves,*_def
-3676,out,*_def
-3677,out,*_def
-3678,outbreak,*_def
-3679,outcome,*_def
-3680,outdoor,*_def
-3681,outdoors,*_def
-3682,outer,*_def
-3683,outfit,*_def
-3684,outing,*_def
-3685,outlet,*_def
-3686,outline,*_def
-3687,outline,*_def
-3688,outlook,*_def
-3689,output,*_def
-3690,outrage,*_def
-3691,outrage,*_def
-3692,outside,*_def
-3693,outside,*_def
-3694,outside,*_def
-3695,outside,*_def
-3696,outsider,*_def
-3697,outstanding,*_def
-3698,oven,*_def
-3699,over,*_def
-3700,over,*_def
-3701,overall,*_def
-3702,overall,*_def
-3703,overcome,*_def
-3704,overlook,*_def
-3705,overly,*_def
-3706,overnight,*_def
-3707,overseas,*_def
-3708,overseas,*_def
-3709,oversee,*_def
-3710,overturn,*_def
-3711,overwhelm,*_def
-3712,overwhelming,*_def
-3713,owe,*_def
-3714,own,*_def
-3715,own,*_def
-3716,own,*_def
-3717,owner,*_def
-3718,ownership,*_def
-3719,oxygen,*_def
-3720,pace,*_def
-3721,pace,*_def
-3722,pack,*_def
-3723,pack,*_def
-3724,package,*_def
-3725,package,*_def
-3726,packet,*_def
-3727,pad,*_def
-3728,page,*_def
-3729,pain,*_def
-3730,painful,*_def
-3731,paint,*_def
-3732,paint,*_def
-3733,painter,*_def
-3734,painting,*_def
-3735,pair,*_def
-3736,palace,*_def
-3737,pale,*_def
-3738,palm,*_def
-3739,pan,*_def
-3740,panel,*_def
-3741,panic,*_def
-3742,pants,*_def
-3743,paper,*_def
-3744,parade,*_def
-3745,paragraph,*_def
-3746,parallel,*_def
-3747,parallel,*_def
-3748,parameter,*_def
-3749,parent,*_def
-3750,parental,*_def
-3751,parish,*_def
-3752,park,*_def
-3753,park,*_def
-3754,parking,*_def
-3755,parliament,*_def
-3756,parliamentary,*_def
-3757,part,*_def
-3758,part-time,*_def
-3759,partial,*_def
-3760,partially,*_def
-3761,participant,*_def
-3762,participate,*_def
-3763,participation,*_def
-3764,particular,*_def
-3765,particularly,*_def
-3766,partly,*_def
-3767,partner,*_def
-3768,partnership,*_def
-3769,party,*_def
-3770,pass,*_def
-3771,pass,*_def
-3772,passage,*_def
-3773,passenger,*_def
-3774,passing,*_def
-3775,passion,*_def
-3776,passionate,*_def
-3777,passive,*_def
-3778,passport,*_def
-3779,password,*_def
-3780,past,*_def
-3781,past,*_def
-3782,past,*_def
-3783,past,*_def
-3784,pastor,*_def
-3785,patch,*_def
-3786,patent,*_def
-3787,path,*_def
-3788,pathway,*_def
-3789,patience,*_def
-3790,patient,*_def
-3791,patient,*_def
-3792,patrol,*_def
-3793,patrol,*_def
-3794,patron,*_def
-3795,pattern,*_def
-3796,pause,*_def
-3797,pause,*_def
-3798,pay,*_def
-3799,pay,*_def
-3800,payment,*_def
-3801,peace,*_def
-3802,peaceful,*_def
-3803,peak,*_def
-3804,peasant,*_def
-3805,peculiar,*_def
-3806,peer,*_def
-3807,pen,*_def
-3808,penalty,*_def
-3809,pencil,*_def
-3810,penny,*_def
-3811,pension,*_def
-3812,people,*_def
-3813,pepper,*_def
-3814,per,*_def
-3815,per cent,*_def
-3816,per cent,*_def
-3817,per cent,*_def
-3818,perceive,*_def
-3819,percentage,*_def
-3820,perception,*_def
-3821,perfect,*_def
-3822,perfectly,*_def
-3823,perform,*_def
-3824,performance,*_def
-3825,perhaps,*_def
-3826,period,*_def
-3827,permanent,*_def
-3828,permanently,*_def
-3829,permission,*_def
-3830,permit,*_def
-3831,permit,*_def
-3832,persist,*_def
-3833,persistent,*_def
-3834,person,*_def
-3835,personal,*_def
-3836,personality,*_def
-3837,personally,*_def
-3838,personnel,*_def
-3839,perspective,*_def
-3840,persuade,*_def
-3841,pet,*_def
-3842,petition,*_def
-3843,petrol,*_def
-3844,phase,*_def
-3845,phenomenon,*_def
-3846,philosopher,*_def
-3847,philosophical,*_def
-3848,philosophy,*_def
-3849,phone,*_def
-3850,phone,*_def
-3851,photo,*_def
-3852,photograph,*_def
-3853,photograph,*_def
-3854,photographer,*_def
-3855,photography,*_def
-3856,phrase,*_def
-3857,physical,*_def
-3858,physician,*_def
-3859,physics,*_def
-3860,piano,*_def
-3861,pick,*_def
-3862,pick,*_def
-3863,picture,*_def
-3864,picture,*_def
-3865,piece,*_def
-3866,pig,*_def
-3867,pile,*_def
-3868,pile,*_def
-3869,pill,*_def
-3870,pilot,*_def
-3871,pin,*_def
-3872,pin,*_def
-3873,pink,*_def
-3874,pink,*_def
-3875,pioneer,*_def
-3876,pioneer,*_def
-3877,pipe,*_def
-3878,pipeline,*_def
-3879,pirate,*_def
-3880,pit,*_def
-3881,pitch,*_def
-3882,pity,*_def
-3883,place,*_def
-3884,place,*_def
-3885,placement,*_def
-3886,plain,*_def
-3887,plan,*_def
-3888,plan,*_def
-3889,plane,*_def
-3890,planet,*_def
-3891,planning,*_def
-3892,plant,*_def
-3893,plant,*_def
-3894,plastic,*_def
-3895,plastic,*_def
-3896,plate,*_def
-3897,platform,*_def
-3898,play,*_def
-3899,play,*_def
-3900,player,*_def
-3901,plea,*_def
-3902,plead,*_def
-3903,pleasant,*_def
-3904,please,*_def
-3905,please,*_def
-3906,pleased,*_def
-3907,pleasure,*_def
-3908,pledge,*_def
-3909,pledge,*_def
-3910,plenty,*_def
-3911,plot,*_def
-3912,plot,*_def
-3913,plug,*_def
-3914,plug,*_def
-3915,plunge,*_def
-3916,plus,*_def
-3917,plus,*_def
-3918,plus,*_def
-3919,plus,*_def
-3920,pocket,*_def
-3921,poem,*_def
-3922,poet,*_def
-3923,poetry,*_def
-3924,point,*_def
-3925,point,*_def
-3926,pointed,*_def
-3927,poison,*_def
-3928,poison,*_def
-3929,poisonous,*_def
-3930,pole,*_def
-3931,police,*_def
-3932,policeman,*_def
-3933,policy,*_def
-3934,polite,*_def
-3935,political,*_def
-3936,politician,*_def
-3937,politics,*_def
-3938,poll,*_def
-3939,pollution,*_def
-3940,pond,*_def
-3941,pool,*_def
-3942,poor,*_def
-3943,pop,*_def
-3944,pop,*_def
-3945,pop,*_def
-3946,popular,*_def
-3947,popularity,*_def
-3948,population,*_def
-3949,port,*_def
-3950,portfolio,*_def
-3951,portion,*_def
-3952,portrait,*_def
-3953,portray,*_def
-3954,pose,*_def
-3955,position,*_def
-3956,position,*_def
-3957,positive,*_def
-3958,positive,*_def
-3959,possess,*_def
-3960,possession,*_def
-3961,possibility,*_def
-3962,possible,*_def
-3963,possibly,*_def
-3964,post,*_def
-3965,post,*_def
-3966,post-war,*_def
-3967,poster,*_def
-3968,postpone,*_def
-3969,pot,*_def
-3970,potato,*_def
-3971,potential,*_def
-3972,potential,*_def
-3973,potentially,*_def
-3974,pound,*_def
-3975,pour,*_def
-3976,poverty,*_def
-3977,powder,*_def
-3978,power,*_def
-3979,power,*_def
-3980,powerful,*_def
-3981,practical,*_def
-3982,practice,*_def
-3983,practise,*_def
-3984,practitioner,*_def
-3985,praise,*_def
-3986,praise,*_def
-3987,pray,*_def
-3988,prayer,*_def
-3989,preach,*_def
-3990,precede,*_def
-3991,precedent,*_def
-3992,precious,*_def
-3993,precise,*_def
-3994,precisely,*_def
-3995,precision,*_def
-3996,predator,*_def
-3997,predecessor,*_def
-3998,predict,*_def
-3999,predictable,*_def
-4000,prediction,*_def
-4001,predominantly,*_def
-4002,prefer,*_def
-4003,preference,*_def
-4004,pregnancy,*_def
-4005,pregnant,*_def
-4006,prejudice,*_def
-4007,preliminary,*_def
-4008,premier,*_def
-4009,premise,*_def
-4010,premium,*_def
-4011,preparation,*_def
-4012,prepare,*_def
-4013,prepared,*_def
-4014,prescribe,*_def
-4015,prescription,*_def
-4016,presence,*_def
-4017,present,*_def
-4018,present,*_def
-4019,present,*_def
-4020,presentation,*_def
-4021,presently,*_def
-4022,preservation,*_def
-4023,preserve,*_def
-4024,preside,*_def
-4025,presidency,*_def
-4026,president,*_def
-4027,presidential,*_def
-4028,press,*_def
-4029,press,*_def
-4030,pressure,*_def
-4031,prestigious,*_def
-4032,presumably,*_def
-4033,presume,*_def
-4034,pretend,*_def
-4035,pretty,*_def
-4036,pretty,*_def
-4037,prevail,*_def
-4038,prevalence,*_def
-4039,prevent,*_def
-4040,prevention,*_def
-4041,previous,*_def
-4042,previously,*_def
-4043,prey,*_def
-4044,price,*_def
-4045,price,*_def
-4046,pride,*_def
-4047,priest,*_def
-4048,primarily,*_def
-4049,primary,*_def
-4050,prime,*_def
-4051,prince,*_def
-4052,princess,*_def
-4053,principal,*_def
-4054,principal,*_def
-4055,principle,*_def
-4056,print,*_def
-4057,print,*_def
-4058,printer,*_def
-4059,printing,*_def
-4060,prior,*_def
-4061,priority,*_def
-4062,prison,*_def
-4063,prisoner,*_def
-4064,privacy,*_def
-4065,private,*_def
-4066,privatization,*_def
-4067,privilege,*_def
-4068,prize,*_def
-4069,probability,*_def
-4070,probable,*_def
-4071,probably,*_def
-4072,probe,*_def
-4073,probe,*_def
-4074,problem,*_def
-4075,problematic,*_def
-4076,procedure,*_def
-4077,proceed,*_def
-4078,proceeding,*_def
-4079,proceeds,*_def
-4080,process,*_def
-4081,process,*_def
-4082,processing,*_def
-4083,processor,*_def
-4084,proclaim,*_def
-4085,produce,*_def
-4086,produce,*_def
-4087,producer,*_def
-4088,product,*_def
-4089,production,*_def
-4090,productive,*_def
-4091,productivity,*_def
-4092,profession,*_def
-4093,professional,*_def
-4094,professional,*_def
-4095,professor,*_def
-4096,profile,*_def
-4097,profit,*_def
-4098,profitable,*_def
-4099,profound,*_def
-4100,program,*_def
-4101,program,*_def
-4102,programme,*_def
-4103,programming,*_def
-4104,progress,*_def
-4105,progress,*_def
-4106,progressive,*_def
-4107,prohibit,*_def
-4108,project,*_def
-4109,project,*_def
-4110,projection,*_def
-4111,prominent,*_def
-4112,promise,*_def
-4113,promise,*_def
-4114,promising,*_def
-4115,promote,*_def
-4116,promotion,*_def
-4117,prompt,*_def
-4118,pronounce,*_def
-4119,pronounced,*_def
-4120,proof,*_def
-4121,propaganda,*_def
-4122,proper,*_def
-4123,properly,*_def
-4124,property,*_def
-4125,proportion,*_def
-4126,proposal,*_def
-4127,propose,*_def
-4128,proposition,*_def
-4129,prosecute,*_def
-4130,prosecution,*_def
-4131,prosecutor,*_def
-4132,prospect,*_def
-4133,prospective,*_def
-4134,prosperity,*_def
-4135,protect,*_def
-4136,protection,*_def
-4137,protective,*_def
-4138,protein,*_def
-4139,protest,*_def
-4140,protest,*_def
-4141,protester,*_def
-4142,protocol,*_def
-4143,proud,*_def
-4144,prove,*_def
-4145,provide,*_def
-4146,province,*_def
-4147,provincial,*_def
-4148,provision,*_def
-4149,provoke,*_def
-4150,psychiatric,*_def
-4151,psychological,*_def
-4152,psychologist,*_def
-4153,psychology,*_def
-4154,pub,*_def
-4155,public,*_def
-4156,public,*_def
-4157,publication,*_def
-4158,publicity,*_def
-4159,publish,*_def
-4160,publishing,*_def
-4161,pull,*_def
-4162,pull,*_def
-4163,pulse,*_def
-4164,pump,*_def
-4165,pump,*_def
-4166,punch,*_def
-4167,punch,*_def
-4168,punish,*_def
-4169,punishment,*_def
-4170,punk,*_def
-4171,pupil,*_def
-4172,purchase,*_def
-4173,purchase,*_def
-4174,pure,*_def
-4175,purely,*_def
-4176,purple,*_def
-4177,purple,*_def
-4178,purpose,*_def
-4179,pursue,*_def
-4180,pursuit,*_def
-4181,push,*_def
-4182,push,*_def
-4183,put,*_def
-4184,puzzle,*_def
-4185,qualification,*_def
-4186,qualified,*_def
-4187,qualify,*_def
-4188,quality,*_def
-4189,quantity,*_def
-4190,quarter,*_def
-4191,queen,*_def
-4192,query,*_def
-4193,quest,*_def
-4194,question,*_def
-4195,question,*_def
-4196,questionnaire,*_def
-4197,queue,*_def
-4198,queue,*_def
-4199,quick,*_def
-4200,quickly,*_def
-4201,quiet,*_def
-4202,quietly,*_def
-4203,quit,*_def
-4204,quite,*_def
-4205,quota,*_def
-4206,quotation,*_def
-4207,quote,*_def
-4208,quote,*_def
-4209,race,*_def
-4210,race,*_def
-4211,racial,*_def
-4212,racing,*_def
-4213,racism,*_def
-4214,racist,*_def
-4215,racist,*_def
-4216,radar,*_def
-4217,radiation,*_def
-4218,radical,*_def
-4219,radio,*_def
-4220,rage,*_def
-4221,raid,*_def
-4222,raid,*_def
-4223,rail,*_def
-4224,railway,*_def
-4225,rain,*_def
-4226,rain,*_def
-4227,raise,*_def
-4228,rally,*_def
-4229,rally,*_def
-4230,random,*_def
-4231,range,*_def
-4232,range,*_def
-4233,rank,*_def
-4234,rank,*_def
-4235,ranking,*_def
-4236,rape,*_def
-4237,rape,*_def
-4238,rapid,*_def
-4239,rapidly,*_def
-4240,rare,*_def
-4241,rarely,*_def
-4242,rat,*_def
-4243,rate,*_def
-4244,rate,*_def
-4245,rather,*_def
-4246,rating,*_def
-4247,ratio,*_def
-4248,rational,*_def
-4249,raw,*_def
-4250,ray,*_def
-4251,reach,*_def
-4252,reach,*_def
-4253,react,*_def
-4254,reaction,*_def
-4255,read,*_def
-4256,reader,*_def
-4257,readily,*_def
-4258,reading,*_def
-4259,ready,*_def
-4260,real,*_def
-4261,realistic,*_def
-4262,reality,*_def
-4263,realization,*_def
-4264,realize,*_def
-4265,really,*_def
-4266,realm,*_def
-4267,rear,*_def
-4268,rear,*_def
-4269,reason,*_def
-4270,reasonable,*_def
-4271,reasonably,*_def
-4272,reasoning,*_def
-4273,reassure,*_def
-4274,rebel,*_def
-4275,rebellion,*_def
-4276,rebuild,*_def
-4277,recall,*_def
-4278,receipt,*_def
-4279,receive,*_def
-4280,receiver,*_def
-4281,recent,*_def
-4282,recently,*_def
-4283,reception,*_def
-4284,recession,*_def
-4285,recipe,*_def
-4286,recipient,*_def
-4287,reckon,*_def
-4288,recognition,*_def
-4289,recognize,*_def
-4290,recommend,*_def
-4291,recommendation,*_def
-4292,reconstruction,*_def
-4293,record,*_def
-4294,record,*_def
-4295,recording,*_def
-4296,recount,*_def
-4297,recover,*_def
-4298,recovery,*_def
-4299,recruit,*_def
-4300,recruit,*_def
-4301,recruitment,*_def
-4302,recycle,*_def
-4303,red,*_def
-4304,red,*_def
-4305,reduce,*_def
-4306,reduction,*_def
-4307,refer,*_def
-4308,referee,*_def
-4309,reference,*_def
-4310,referendum,*_def
-4311,reflect,*_def
-4312,reflection,*_def
-4313,reform,*_def
-4314,reform,*_def
-4315,refuge,*_def
-4316,refugee,*_def
-4317,refusal,*_def
-4318,refuse,*_def
-4319,regain,*_def
-4320,regard,*_def
-4321,regard,*_def
-4322,regardless,*_def
-4323,regime,*_def
-4324,region,*_def
-4325,regional,*_def
-4326,register,*_def
-4327,register,*_def
-4328,registration,*_def
-4329,regret,*_def
-4330,regret,*_def
-4331,regular,*_def
-4332,regularly,*_def
-4333,regulate,*_def
-4334,regulation,*_def
-4335,regulator,*_def
-4336,regulatory,*_def
-4337,rehabilitation,*_def
-4338,reign,*_def
-4339,reign,*_def
-4340,reinforce,*_def
-4341,reject,*_def
-4342,rejection,*_def
-4343,relate,*_def
-4344,related,*_def
-4345,relation,*_def
-4346,relationship,*_def
-4347,relative,*_def
-4348,relative,*_def
-4349,relatively,*_def
-4350,relax,*_def
-4351,relaxed,*_def
-4352,relaxing,*_def
-4353,release,*_def
-4354,release,*_def
-4355,relevance,*_def
-4356,relevant,*_def
-4357,reliability,*_def
-4358,reliable,*_def
-4359,relief,*_def
-4360,relieve,*_def
-4361,relieved,*_def
-4362,religion,*_def
-4363,religious,*_def
-4364,reluctant,*_def
-4365,rely,*_def
-4366,remain,*_def
-4367,remainder,*_def
-4368,remains,*_def
-4369,remark,*_def
-4370,remark,*_def
-4371,remarkable,*_def
-4372,remarkably,*_def
-4373,remedy,*_def
-4374,remember,*_def
-4375,remind,*_def
-4376,reminder,*_def
-4377,remote,*_def
-4378,removal,*_def
-4379,remove,*_def
-4380,render,*_def
-4381,renew,*_def
-4382,renowned,*_def
-4383,rent,*_def
-4384,rent,*_def
-4385,rental,*_def
-4386,repair,*_def
-4387,repair,*_def
-4388,repeat,*_def
-4389,repeat,*_def
-4390,repeated,*_def
-4391,replace,*_def
-4392,replacement,*_def
-4393,reply,*_def
-4394,reply,*_def
-4395,report,*_def
-4396,report,*_def
-4397,reportedly,*_def
-4398,reporter,*_def
-4399,reporting,*_def
-4400,represent,*_def
-4401,representation,*_def
-4402,representative,*_def
-4403,representative,*_def
-4404,reproduce,*_def
-4405,reproduction,*_def
-4406,republic,*_def
-4407,reputation,*_def
-4408,request,*_def
-4409,request,*_def
-4410,require,*_def
-4411,requirement,*_def
-4412,rescue,*_def
-4413,rescue,*_def
-4414,research,*_def
-4415,research,*_def
-4416,researcher,*_def
-4417,resemble,*_def
-4418,reservation,*_def
-4419,reserve,*_def
-4420,reserve,*_def
-4421,reside,*_def
-4422,residence,*_def
-4423,resident,*_def
-4424,resident,*_def
-4425,residential,*_def
-4426,residue,*_def
-4427,resign,*_def
-4428,resignation,*_def
-4429,resist,*_def
-4430,resistance,*_def
-4431,resolution,*_def
-4432,resolve,*_def
-4433,resort,*_def
-4434,resource,*_def
-4435,respect,*_def
-4436,respect,*_def
-4437,respective,*_def
-4438,respectively,*_def
-4439,respond,*_def
-4440,response,*_def
-4441,responsibility,*_def
-4442,responsible,*_def
-4443,rest,*_def
-4444,rest,*_def
-4445,restaurant,*_def
-4446,restoration,*_def
-4447,restore,*_def
-4448,restraint,*_def
-4449,restrict,*_def
-4450,restriction,*_def
-4451,result,*_def
-4452,result,*_def
-4453,resume,*_def
-4454,retail,*_def
-4455,retain,*_def
-4456,retire,*_def
-4457,retired,*_def
-4458,retirement,*_def
-4459,retreat,*_def
-4460,retreat,*_def
-4461,retrieve,*_def
-4462,return,*_def
-4463,return,*_def
-4464,reveal,*_def
-4465,revelation,*_def
-4466,revenge,*_def
-4467,revenue,*_def
-4468,reverse,*_def
-4469,reverse,*_def
-4470,reverse,*_def
-4471,review,*_def
-4472,review,*_def
-4473,revise,*_def
-4474,revision,*_def
-4475,revival,*_def
-4476,revive,*_def
-4477,revolution,*_def
-4478,revolutionary,*_def
-4479,reward,*_def
-4480,reward,*_def
-4481,rhetoric,*_def
-4482,rhythm,*_def
-4483,rice,*_def
-4484,rich,*_def
-4485,rid,*_def
-4486,ride,*_def
-4487,ride,*_def
-4488,ridiculous,*_def
-4489,rifle,*_def
-4490,right,*_def
-4491,right,*_def
-4492,right,*_def
-4493,ring,*_def
-4494,ring,*_def
-4495,riot,*_def
-4496,rip,*_def
-4497,rise,*_def
-4498,rise,*_def
-4499,risk,*_def
-4500,risk,*_def
-4501,risky,*_def
-4502,ritual,*_def
-4503,rival,*_def
-4504,rival,*_def
-4505,river,*_def
-4506,road,*_def
-4507,rob,*_def
-4508,robbery,*_def
-4509,robot,*_def
-4510,robust,*_def
-4511,rock,*_def
-4512,rock,*_def
-4513,rocket,*_def
-4514,rod,*_def
-4515,role,*_def
-4516,roll,*_def
-4517,roll,*_def
-4518,romance,*_def
-4519,romantic,*_def
-4520,roof,*_def
-4521,room,*_def
-4522,root,*_def
-4523,rope,*_def
-4524,rose,*_def
-4525,rotate,*_def
-4526,rotation,*_def
-4527,rough,*_def
-4528,roughly,*_def
-4529,round,*_def
-4530,round,*_def
-4531,round,*_def
-4532,round,*_def
-4533,route,*_def
-4534,routine,*_def
-4535,routine,*_def
-4536,row,*_def
-4537,royal,*_def
-4538,rub,*_def
-4539,rubber,*_def
-4540,rubber,*_def
-4541,rubbish,*_def
-4542,rude,*_def
-4543,rugby,*_def
-4544,ruin,*_def
-4545,ruin,*_def
-4546,rule,*_def
-4547,rule,*_def
-4548,ruling,*_def
-4549,rumour,*_def
-4550,run,*_def
-4551,run,*_def
-4552,runner,*_def
-4553,running,*_def
-4554,rural,*_def
-4555,rush,*_def
-4556,rush,*_def
-4557,sack,*_def
-4558,sacred,*_def
-4559,sacrifice,*_def
-4560,sacrifice,*_def
-4561,sad,*_def
-4562,sadly,*_def
-4563,safe,*_def
-4564,safety,*_def
-4565,sail,*_def
-4566,sail,*_def
-4567,sailing,*_def
-4568,sailor,*_def
-4569,saint,*_def
-4570,sake,*_def
-4571,salad,*_def
-4572,salary,*_def
-4573,sale,*_def
-4574,salt,*_def
-4575,same,*_def
-4576,same,*_def
-4577,same,*_def
-4578,sample,*_def
-4579,sample,*_def
-4580,sanction,*_def
-4581,sand,*_def
-4582,sandwich,*_def
-4583,satellite,*_def
-4584,satisfaction,*_def
-4585,satisfied,*_def
-4586,satisfy,*_def
-4587,Saturday,*_def
-4588,sauce,*_def
-4589,save,*_def
-4590,saving,*_def
-4591,say,*_def
-4592,say,*_def
-4593,scale,*_def
-4594,scan,*_def
-4595,scandal,*_def
-4596,scare,*_def
-4597,scare,*_def
-4598,scared,*_def
-4599,scary,*_def
-4600,scattered,*_def
-4601,scenario,*_def
-4602,scene,*_def
-4603,sceptical,*_def
-4604,schedule,*_def
-4605,schedule,*_def
-4606,scheme,*_def
-4607,scholar,*_def
-4608,scholarship,*_def
-4609,school,*_def
-4610,science,*_def
-4611,scientific,*_def
-4612,scientist,*_def
-4613,scope,*_def
-4614,score,*_def
-4615,score,*_def
-4616,scratch,*_def
-4617,scratch,*_def
-4618,scream,*_def
-4619,scream,*_def
-4620,screen,*_def
-4621,screen,*_def
-4622,screening,*_def
-4623,screw,*_def
-4624,screw,*_def
-4625,script,*_def
-4626,scrutiny,*_def
-4627,sculpture,*_def
-4628,sea,*_def
-4629,seal,*_def
-4630,seal,*_def
-4631,search,*_def
-4632,search,*_def
-4633,season,*_def
-4634,seat,*_def
-4635,seat,*_def
-4636,second,*_def
-4637,second,*_def
-4638,second,*_def
-4639,second,*_def
-4640,secondary,*_def
-4641,secondly,*_def
-4642,secret,*_def
-4643,secret,*_def
-4644,secretary,*_def
-4645,section,*_def
-4646,sector,*_def
-4647,secular,*_def
-4648,secure,*_def
-4649,secure,*_def
-4650,security,*_def
-4651,see,*_def
-4652,seed,*_def
-4653,seek,*_def
-4654,seeker,*_def
-4655,seem,*_def
-4656,seemingly,*_def
-4657,segment,*_def
-4658,seize,*_def
-4659,seldom,*_def
-4660,select,*_def
-4661,selection,*_def
-4662,selective,*_def
-4663,self,*_def
-4664,sell,*_def
-4665,seminar,*_def
-4666,senator,*_def
-4667,send,*_def
-4668,senior,*_def
-4669,sensation,*_def
-4670,sense,*_def
-4671,sense,*_def
-4672,sensible,*_def
-4673,sensitive,*_def
-4674,sensitivity,*_def
-4675,sentence,*_def
-4676,sentence,*_def
-4677,sentiment,*_def
-4678,separate,*_def
-4679,separate,*_def
-4680,separation,*_def
-4681,September,*_def
-4682,sequence,*_def
-4683,serial,*_def
-4684,series,*_def
-4685,serious,*_def
-4686,seriously,*_def
-4687,servant,*_def
-4688,serve,*_def
-4689,service,*_def
-4690,session,*_def
-4691,set,*_def
-4692,set,*_def
-4693,set-up,*_def
-4694,setting,*_def
-4695,settle,*_def
-4696,settlement,*_def
-4697,settler,*_def
-4698,seven,*_def
-4699,seventeen,*_def
-4700,seventy,*_def
-4701,several,*_def
-4702,several,*_def
-4703,severe,*_def
-4704,severely,*_def
-4705,sex,*_def
-4706,sexual,*_def
-4707,sexuality,*_def
-4708,sexy,*_def
-4709,shade,*_def
-4710,shadow,*_def
-4711,shake,*_def
-4712,shake,*_def
-4713,shall,*_def
-4714,shallow,*_def
-4715,shame,*_def
-4716,shape,*_def
-4717,shape,*_def
-4718,shaped,*_def
-4719,share,*_def
-4720,share,*_def
-4721,shareholder,*_def
-4722,sharp,*_def
-4723,shatter,*_def
-4724,she,*_def
-4725,shed,*_def
-4726,sheep,*_def
-4727,sheer,*_def
-4728,sheet,*_def
-4729,shelf,*_def
-4730,shell,*_def
-4731,shelter,*_def
-4732,shelter,*_def
-4733,shift,*_def
-4734,shift,*_def
-4735,shine,*_def
-4736,shiny,*_def
-4737,ship,*_def
-4738,ship,*_def
-4739,shipping,*_def
-4740,shirt,*_def
-4741,shock,*_def
-4742,shock,*_def
-4743,shocked,*_def
-4744,shocking,*_def
-4745,shoe,*_def
-4746,shoot,*_def
-4747,shoot,*_def
-4748,shooting,*_def
-4749,shop,*_def
-4750,shop,*_def
-4751,shopping,*_def
-4752,shore,*_def
-4753,short,*_def
-4754,short-term,*_def
-4755,shortage,*_def
-4756,shortly,*_def
-4757,shot,*_def
-4758,should,*_def
-4759,shoulder,*_def
-4760,shout,*_def
-4761,shout,*_def
-4762,show,*_def
-4763,show,*_def
-4764,shower,*_def
-4765,shrink,*_def
-4766,shrug,*_def
-4767,shut,*_def
-4768,shut,*_def
-4769,shy,*_def
-4770,sibling,*_def
-4771,sick,*_def
-4772,side,*_def
-4773,sigh,*_def
-4774,sigh,*_def
-4775,sight,*_def
-4776,sign,*_def
-4777,sign,*_def
-4778,signal,*_def
-4779,signal,*_def
-4780,signature,*_def
-4781,significance,*_def
-4782,significant,*_def
-4783,significantly,*_def
-4784,silence,*_def
-4785,silent,*_def
-4786,silk,*_def
-4787,silly,*_def
-4788,silver,*_def
-4789,silver,*_def
-4790,similar,*_def
-4791,similarity,*_def
-4792,similarly,*_def
-4793,simple,*_def
-4794,simply,*_def
-4795,simulate,*_def
-4796,simulation,*_def
-4797,simultaneously,*_def
-4798,sin,*_def
-4799,since,*_def
-4800,since,*_def
-4801,since,*_def
-4802,sincere,*_def
-4803,sing,*_def
-4804,singer,*_def
-4805,singing,*_def
-4806,single,*_def
-4807,single,*_def
-4808,sink,*_def
-4809,sir,*_def
-4810,sister,*_def
-4811,sit,*_def
-4812,site,*_def
-4813,situated,*_def
-4814,situation,*_def
-4815,six,*_def
-4816,sixteen,*_def
-4817,sixty,*_def
-4818,size,*_def
-4819,sketch,*_def
-4820,ski,*_def
-4821,ski,*_def
-4822,ski,*_def
-4823,skiing,*_def
-4824,skill,*_def
-4825,skilled,*_def
-4826,skin,*_def
-4827,skip,*_def
-4828,skirt,*_def
-4829,skull,*_def
-4830,sky,*_def
-4831,slam,*_def
-4832,slap,*_def
-4833,slash,*_def
-4834,slave,*_def
-4835,slavery,*_def
-4836,sleep,*_def
-4837,sleep,*_def
-4838,slice,*_def
-4839,slice,*_def
-4840,slide,*_def
-4841,slide,*_def
-4842,slight,*_def
-4843,slightly,*_def
-4844,slip,*_def
-4845,slogan,*_def
-4846,slope,*_def
-4847,slope,*_def
-4848,slot,*_def
-4849,slow,*_def
-4850,slow,*_def
-4851,slowly,*_def
-4852,small,*_def
-4853,smart,*_def
-4854,smartphone,*_def
-4855,smash,*_def
-4856,smell,*_def
-4857,smell,*_def
-4858,smile,*_def
-4859,smile,*_def
-4860,smoke,*_def
-4861,smoke,*_def
-4862,smoking,*_def
-4863,smooth,*_def
-4864,snake,*_def
-4865,snap,*_def
-4866,snow,*_def
-4867,snow,*_def
-4868,so,*_def
-4869,so,*_def
-4870,so-called,*_def
-4871,soak,*_def
-4872,soap,*_def
-4873,soar,*_def
-4874,soccer,*_def
-4875,social,*_def
-4876,socialist,*_def
-4877,society,*_def
-4878,sock,*_def
-4879,soft,*_def
-4880,software,*_def
-4881,soil,*_def
-4882,solar,*_def
-4883,soldier,*_def
-4884,sole,*_def
-4885,solely,*_def
-4886,solicitor,*_def
-4887,solid,*_def
-4888,solid,*_def
-4889,solidarity,*_def
-4890,solo,*_def
-4891,solo,*_def
-4892,solution,*_def
-4893,solve,*_def
-4894,some,*_def
-4895,some,*_def
-4896,somebody,*_def
-4897,somehow,*_def
-4898,someone,*_def
-4899,something,*_def
-4900,sometime,*_def
-4901,sometimes,*_def
-4902,somewhat,*_def
-4903,somewhere,*_def
-4904,somewhere,*_def
-4905,son,*_def
-4906,song,*_def
-4907,soon,*_def
-4908,sophisticated,*_def
-4909,sorry,*_def
-4910,sorry,*_def
-4911,sort,*_def
-4912,sort,*_def
-4913,soul,*_def
-4914,sound,*_def
-4915,sound,*_def
-4916,sound,*_def
-4917,soup,*_def
-4918,source,*_def
-4919,south,*_def
-4920,south,*_def
-4921,south,*_def
-4922,southern,*_def
-4923,sovereignty,*_def
-4924,space,*_def
-4925,spam,*_def
-4926,span,*_def
-4927,span,*_def
-4928,spare,*_def
-4929,spare,*_def
-4930,spark,*_def
-4931,speak,*_def
-4932,speaker,*_def
-4933,special,*_def
-4934,specialist,*_def
-4935,specialist,*_def
-4936,specialize,*_def
-4937,specialized,*_def
-4938,species,*_def
-4939,specific,*_def
-4940,specifically,*_def
-4941,specification,*_def
-4942,specify,*_def
-4943,specimen,*_def
-4944,spectacle,*_def
-4945,spectacular,*_def
-4946,spectator,*_def
-4947,spectrum,*_def
-4948,speculate,*_def
-4949,speculation,*_def
-4950,speech,*_def
-4951,speed,*_def
-4952,speed,*_def
-4953,spell,*_def
-4954,spell,*_def
-4955,spelling,*_def
-4956,spend,*_def
-4957,spending,*_def
-4958,sphere,*_def
-4959,spice,*_def
-4960,spicy,*_def
-4961,spider,*_def
-4962,spill,*_def
-4963,spin,*_def
-4964,spin,*_def
-4965,spine,*_def
-4966,spirit,*_def
-4967,spiritual,*_def
-4968,spite,*_def
-4969,split,*_def
-4970,split,*_def
-4971,spoil,*_def
-4972,spoken,*_def
-4973,spokesman,*_def
-4974,spokesperson,*_def
-4975,spokeswoman,*_def
-4976,sponsor,*_def
-4977,sponsor,*_def
-4978,sponsorship,*_def
-4979,spoon,*_def
-4980,sport,*_def
-4981,sporting,*_def
-4982,spot,*_def
-4983,spot,*_def
-4984,spotlight,*_def
-4985,spouse,*_def
-4986,spread,*_def
-4987,spread,*_def
-4988,spring,*_def
-4989,spring,*_def
-4990,spy,*_def
-4991,spy,*_def
-4992,squad,*_def
-4993,square,*_def
-4994,square,*_def
-4995,squeeze,*_def
-4996,stab,*_def
-4997,stability,*_def
-4998,stabilize,*_def
-4999,stable,*_def
-5000,stadium,*_def
-5001,staff,*_def
-5002,stage,*_def
-5003,stage,*_def
-5004,stair,*_def
-5005,stake,*_def
-5006,stall,*_def
-5007,stamp,*_def
-5008,stance,*_def
-5009,stand,*_def
-5010,stand,*_def
-5011,standard,*_def
-5012,standard,*_def
-5013,standing,*_def
-5014,star,*_def
-5015,star,*_def
-5016,stare,*_def
-5017,stark,*_def
-5018,start,*_def
-5019,start,*_def
-5020,starve,*_def
-5021,state,*_def
-5022,state,*_def
-5023,state,*_def
-5024,statement,*_def
-5025,station,*_def
-5026,statistic,*_def
-5027,statistical,*_def
-5028,statue,*_def
-5029,status,*_def
-5030,stay,*_def
-5031,stay,*_def
-5032,steadily,*_def
-5033,steady,*_def
-5034,steal,*_def
-5035,steam,*_def
-5036,steel,*_def
-5037,steep,*_def
-5038,steer,*_def
-5039,stem,*_def
-5040,stem,*_def
-5041,step,*_def
-5042,step,*_def
-5043,stereotype,*_def
-5044,stick,*_def
-5045,stick,*_def
-5046,sticky,*_def
-5047,stiff,*_def
-5048,still,*_def
-5049,still,*_def
-5050,stimulate,*_def
-5051,stimulus,*_def
-5052,stir,*_def
-5053,stock,*_def
-5054,stomach,*_def
-5055,stone,*_def
-5056,stop,*_def
-5057,stop,*_def
-5058,storage,*_def
-5059,store,*_def
-5060,store,*_def
-5061,storm,*_def
-5062,story,*_def
-5063,straight,*_def
-5064,straight,*_def
-5065,straightforward,*_def
-5066,strain,*_def
-5067,strand,*_def
-5068,strange,*_def
-5069,stranger,*_def
-5070,strategic,*_def
-5071,strategy,*_def
-5072,stream,*_def
-5073,street,*_def
-5074,strength,*_def
-5075,strengthen,*_def
-5076,stress,*_def
-5077,stress,*_def
-5078,stretch,*_def
-5079,stretch,*_def
-5080,strict,*_def
-5081,strictly,*_def
-5082,strike,*_def
-5083,strike,*_def
-5084,striking,*_def
-5085,string,*_def
-5086,strip,*_def
-5087,strip,*_def
-5088,strive,*_def
-5089,stroke,*_def
-5090,strong,*_def
-5091,strongly,*_def
-5092,structural,*_def
-5093,structure,*_def
-5094,structure,*_def
-5095,struggle,*_def
-5096,struggle,*_def
-5097,student,*_def
-5098,studio,*_def
-5099,study,*_def
-5100,study,*_def
-5101,stuff,*_def
-5102,stuff,*_def
-5103,stumble,*_def
-5104,stun,*_def
-5105,stunning,*_def
-5106,stupid,*_def
-5107,style,*_def
-5108,subject,*_def
-5109,subject,*_def
-5110,submission,*_def
-5111,submit,*_def
-5112,subscriber,*_def
-5113,subscription,*_def
-5114,subsequent,*_def
-5115,subsequently,*_def
-5116,subsidy,*_def
-5117,substance,*_def
-5118,substantial,*_def
-5119,substantially,*_def
-5120,substitute,*_def
-5121,substitute,*_def
-5122,substitution,*_def
-5123,subtle,*_def
-5124,suburb,*_def
-5125,suburban,*_def
-5126,succeed,*_def
-5127,success,*_def
-5128,successful,*_def
-5129,successfully,*_def
-5130,succession,*_def
-5131,successive,*_def
-5132,successor,*_def
-5133,such,*_def
-5134,such,*_def
-5135,suck,*_def
-5136,sudden,*_def
-5137,suddenly,*_def
-5138,sue,*_def
-5139,suffer,*_def
-5140,suffering,*_def
-5141,sufficient,*_def
-5142,sufficiently,*_def
-5143,sugar,*_def
-5144,suggest,*_def
-5145,suggestion,*_def
-5146,suicide,*_def
-5147,suit,*_def
-5148,suit,*_def
-5149,suitable,*_def
-5150,suite,*_def
-5151,sum,*_def
-5152,sum,*_def
-5153,summarize,*_def
-5154,summary,*_def
-5155,summer,*_def
-5156,summit,*_def
-5157,sun,*_def
-5158,Sunday,*_def
-5159,super,*_def
-5160,superb,*_def
-5161,superior,*_def
-5162,supermarket,*_def
-5163,supervise,*_def
-5164,supervision,*_def
-5165,supervisor,*_def
-5166,supplement,*_def
-5167,supplement,*_def
-5168,supply,*_def
-5169,supply,*_def
-5170,support,*_def
-5171,support,*_def
-5172,supporter,*_def
-5173,supportive,*_def
-5174,suppose,*_def
-5175,supposedly,*_def
-5176,suppress,*_def
-5177,supreme,*_def
-5178,sure,*_def
-5179,sure,*_def
-5180,surely,*_def
-5181,surface,*_def
-5182,surge,*_def
-5183,surge,*_def
-5184,surgeon,*_def
-5185,surgery,*_def
-5186,surgical,*_def
-5187,surplus,*_def
-5188,surprise,*_def
-5189,surprise,*_def
-5190,surprised,*_def
-5191,surprising,*_def
-5192,surrender,*_def
-5193,surround,*_def
-5194,surrounding,*_def
-5195,surveillance,*_def
-5196,survey,*_def
-5197,survey,*_def
-5198,survival,*_def
-5199,survive,*_def
-5200,survivor,*_def
-5201,suspect,*_def
-5202,suspect,*_def
-5203,suspend,*_def
-5204,suspension,*_def
-5205,suspicion,*_def
-5206,suspicious,*_def
-5207,sustain,*_def
-5208,sustainable,*_def
-5209,swallow,*_def
-5210,swear,*_def
-5211,sweater,*_def
-5212,sweep,*_def
-5213,sweet,*_def
-5214,sweet,*_def
-5215,swim,*_def
-5216,swim,*_def
-5217,swimming,*_def
-5218,swing,*_def
-5219,swing,*_def
-5220,switch,*_def
-5221,switch,*_def
-5222,sword,*_def
-5223,symbol,*_def
-5224,symbolic,*_def
-5225,sympathetic,*_def
-5226,sympathy,*_def
-5227,symptom,*_def
-5228,syndrome,*_def
-5229,synthesis,*_def
-5230,system,*_def
-5231,systematic,*_def
-5232,T-shirt,*_def
-5233,table,*_def
-5234,tablet,*_def
-5235,tackle,*_def
-5236,tackle,*_def
-5237,tactic,*_def
-5238,tactical,*_def
-5239,tag,*_def
-5240,tag,*_def
-5241,tail,*_def
-5242,take,*_def
-5243,tale,*_def
-5244,talent,*_def
-5245,talented,*_def
-5246,talk,*_def
-5247,talk,*_def
-5248,tall,*_def
-5249,tank,*_def
-5250,tap,*_def
-5251,tap,*_def
-5252,tape,*_def
-5253,target,*_def
-5254,target,*_def
-5255,task,*_def
-5256,taste,*_def
-5257,taste,*_def
-5258,tax,*_def
-5259,tax,*_def
-5260,taxi,*_def
-5261,taxpayer,*_def
-5262,tea,*_def
-5263,teach,*_def
-5264,teacher,*_def
-5265,teaching,*_def
-5266,team,*_def
-5267,tear,*_def
-5268,tear,*_def
-5269,technical,*_def
-5270,technique,*_def
-5271,technological,*_def
-5272,technology,*_def
-5273,teenage,*_def
-5274,teenager,*_def
-5275,teens,*_def
-5276,telephone,*_def
-5277,telephone,*_def
-5278,television,*_def
-5279,tell,*_def
-5280,temperature,*_def
-5281,temple,*_def
-5282,temporarily,*_def
-5283,temporary,*_def
-5284,tempt,*_def
-5285,ten,*_def
-5286,tenant,*_def
-5287,tend,*_def
-5288,tendency,*_def
-5289,tender,*_def
-5290,tennis,*_def
-5291,tension,*_def
-5292,tent,*_def
-5293,tenure,*_def
-5294,term,*_def
-5295,term,*_def
-5296,terminal,*_def
-5297,terminal,*_def
-5298,terminate,*_def
-5299,terms,*_def
-5300,terrain,*_def
-5301,terrible,*_def
-5302,terribly,*_def
-5303,terrific,*_def
-5304,terrify,*_def
-5305,territory,*_def
-5306,terror,*_def
-5307,terrorism,*_def
-5308,terrorist,*_def
-5309,test,*_def
-5310,test,*_def
-5311,testify,*_def
-5312,testimony,*_def
-5313,testing,*_def
-5314,text,*_def
-5315,text,*_def
-5316,textbook,*_def
-5317,texture,*_def
-5318,than,*_def
-5319,than,*_def
-5320,thank,*_def
-5321,thankfully,*_def
-5322,thanks,*_def
-5323,thanks,*_def
-5324,that,*_def
-5325,that,*_def
-5326,that,*_def
-5327,that,*_def
-5328,the,*_def
-5329,theatre,*_def
-5330,theatrical,*_def
-5331,theft,*_def
-5332,their,*_def
-5333,theirs,*_def
-5334,them,*_def
-5335,theme,*_def
-5336,themselves,*_def
-5337,then,*_def
-5338,theology,*_def
-5339,theoretical,*_def
-5340,theory,*_def
-5341,therapist,*_def
-5342,therapy,*_def
-5343,there,*_def
-5344,thereafter,*_def
-5345,thereby,*_def
-5346,therefore,*_def
-5347,thesis,*_def
-5348,they,*_def
-5349,thick,*_def
-5350,thief,*_def
-5351,thin,*_def
-5352,thing,*_def
-5353,think,*_def
-5354,thinking,*_def
-5355,third,*_def
-5356,third,*_def
-5357,thirsty,*_def
-5358,thirteen,*_def
-5359,thirty,*_def
-5360,this,*_def
-5361,this,*_def
-5362,this,*_def
-5363,thorough,*_def
-5364,thoroughly,*_def
-5365,though,*_def
-5366,though,*_def
-5367,thought,*_def
-5368,thought-provoking,*_def
-5369,thoughtful,*_def
-5370,thousand,*_def
-5371,thread,*_def
-5372,threat,*_def
-5373,threaten,*_def
-5374,three,*_def
-5375,threshold,*_def
-5376,thrilled,*_def
-5377,thrive,*_def
-5378,throat,*_def
-5379,through,*_def
-5380,through,*_def
-5381,throughout,*_def
-5382,throughout,*_def
-5383,throw,*_def
-5384,thumb,*_def
-5385,Thursday,*_def
-5386,thus,*_def
-5387,ticket,*_def
-5388,tide,*_def
-5389,tidy,*_def
-5390,tidy,*_def
-5391,tie,*_def
-5392,tie,*_def
-5393,tight,*_def
-5394,tighten,*_def
-5395,till,*_def
-5396,till,*_def
-5397,timber,*_def
-5398,time,*_def
-5399,time,*_def
-5400,timely,*_def
-5401,timing,*_def
-5402,tin,*_def
-5403,tiny,*_def
-5404,tip,*_def
-5405,tip,*_def
-5406,tired,*_def
-5407,tissue,*_def
-5408,title,*_def
-5409,title,*_def
-5410,to,*_def
-5411,to,*_def
-5412,tobacco,*_def
-5413,today,*_def
-5414,today,*_def
-5415,toe,*_def
-5416,together,*_def
-5417,toilet,*_def
-5418,tolerance,*_def
-5419,tolerate,*_def
-5420,toll,*_def
-5421,tomato,*_def
-5422,tomorrow,*_def
-5423,tomorrow,*_def
-5424,ton,*_def
-5425,tone,*_def
-5426,tongue,*_def
-5427,tonight,*_def
-5428,tonight,*_def
-5429,tonne,*_def
-5430,too,*_def
-5431,tool,*_def
-5432,tooth,*_def
-5433,top,*_def
-5434,top,*_def
-5435,top,*_def
-5436,topic,*_def
-5437,torture,*_def
-5438,torture,*_def
-5439,toss,*_def
-5440,total,*_def
-5441,total,*_def
-5442,total,*_def
-5443,totally,*_def
-5444,touch,*_def
-5445,touch,*_def
-5446,tough,*_def
-5447,tour,*_def
-5448,tour,*_def
-5449,tourism,*_def
-5450,tourist,*_def
-5451,tournament,*_def
-5452,towards,*_def
-5453,towel,*_def
-5454,tower,*_def
-5455,town,*_def
-5456,toxic,*_def
-5457,toy,*_def
-5458,toy,*_def
-5459,trace,*_def
-5460,trace,*_def
-5461,track,*_def
-5462,track,*_def
-5463,trade,*_def
-5464,trade,*_def
-5465,trademark,*_def
-5466,trading,*_def
-5467,tradition,*_def
-5468,traditional,*_def
-5469,traffic,*_def
-5470,tragedy,*_def
-5471,tragic,*_def
-5472,trail,*_def
-5473,trail,*_def
-5474,trailer,*_def
-5475,train,*_def
-5476,train,*_def
-5477,trainer,*_def
-5478,training,*_def
-5479,trait,*_def
-5480,transaction,*_def
-5481,transcript,*_def
-5482,transfer,*_def
-5483,transfer,*_def
-5484,transform,*_def
-5485,transformation,*_def
-5486,transit,*_def
-5487,transition,*_def
-5488,translate,*_def
-5489,translation,*_def
-5490,transmission,*_def
-5491,transmit,*_def
-5492,transparency,*_def
-5493,transparent,*_def
-5494,transport,*_def
-5495,transport,*_def
-5496,transportation,*_def
-5497,trap,*_def
-5498,trap,*_def
-5499,trauma,*_def
-5500,travel,*_def
-5501,travel,*_def
-5502,traveller,*_def
-5503,treasure,*_def
-5504,treat,*_def
-5505,treatment,*_def
-5506,treaty,*_def
-5507,tree,*_def
-5508,tremendous,*_def
-5509,trend,*_def
-5510,trial,*_def
-5511,tribal,*_def
-5512,tribe,*_def
-5513,tribunal,*_def
-5514,tribute,*_def
-5515,trick,*_def
-5516,trick,*_def
-5517,trigger,*_def
-5518,trigger,*_def
-5519,trillion,*_def
-5520,trio,*_def
-5521,trip,*_def
-5522,trip,*_def
-5523,triumph,*_def
-5524,troop,*_def
-5525,trophy,*_def
-5526,tropical,*_def
-5527,trouble,*_def
-5528,trouble,*_def
-5529,troubled,*_def
-5530,trousers,*_def
-5531,truck,*_def
-5532,true,*_def
-5533,truly,*_def
-5534,trust,*_def
-5535,trust,*_def
-5536,trustee,*_def
-5537,truth,*_def
-5538,try,*_def
-5539,try,*_def
-5540,tsunami,*_def
-5541,tube,*_def
-5542,Tuesday,*_def
-5543,tuition,*_def
-5544,tune,*_def
-5545,tunnel,*_def
-5546,turn,*_def
-5547,turn,*_def
-5548,turnout,*_def
-5549,turnover,*_def
-5550,TV,*_def
-5551,twelve,*_def
-5552,twenty,*_def
-5553,twice,*_def
-5554,twin,*_def
-5555,twin,*_def
-5556,twist,*_def
-5557,twist,*_def
-5558,two,*_def
-5559,type,*_def
-5560,type,*_def
-5561,typical,*_def
-5562,typically,*_def
-5563,tyre,*_def
-5564,ugly,*_def
-5565,ultimate,*_def
-5566,ultimately,*_def
-5567,umbrella,*_def
-5568,unable,*_def
-5569,unacceptable,*_def
-5570,uncertainty,*_def
-5571,uncle,*_def
-5572,uncomfortable,*_def
-5573,unconscious,*_def
-5574,under,*_def
-5575,under,*_def
-5576,undergo,*_def
-5577,undergraduate,*_def
-5578,underground,*_def
-5579,underground,*_def
-5580,underlying,*_def
-5581,undermine,*_def
-5582,understand,*_def
-5583,understanding,*_def
-5584,undertake,*_def
-5585,underwear,*_def
-5586,undoubtedly,*_def
-5587,unemployed,*_def
-5588,unemployment,*_def
-5589,unexpected,*_def
-5590,unfair,*_def
-5591,unfold,*_def
-5592,unfortunate,*_def
-5593,unfortunately,*_def
-5594,unhappy,*_def
-5595,uniform,*_def
-5596,unify,*_def
-5597,union,*_def
-5598,unique,*_def
-5599,unit,*_def
-5600,unite,*_def
-5601,united,*_def
-5602,unity,*_def
-5603,universal,*_def
-5604,universe,*_def
-5605,university,*_def
-5606,unknown,*_def
-5607,unless,*_def
-5608,unlike,*_def
-5609,unlikely,*_def
-5610,unnecessary,*_def
-5611,unpleasant,*_def
-5612,unprecedented,*_def
-5613,until,*_def
-5614,until,*_def
-5615,unusual,*_def
-5616,unveil,*_def
-5617,up,*_def
-5618,up,*_def
-5619,upcoming,*_def
-5620,update,*_def
-5621,update,*_def
-5622,upgrade,*_def
-5623,upgrade,*_def
-5624,uphold,*_def
-5625,upon,*_def
-5626,upper,*_def
-5627,upset,*_def
-5628,upset,*_def
-5629,upstairs,*_def
-5630,upstairs,*_def
-5631,upwards,*_def
-5632,urban,*_def
-5633,urge,*_def
-5634,urgent,*_def
-5635,us,*_def
-5636,usage,*_def
-5637,use,*_def
-5638,use,*_def
-5639,used,*_def
-5640,used to,*_def
-5641,useful,*_def
-5642,useless,*_def
-5643,user,*_def
-5644,usual,*_def
-5645,usually,*_def
-5646,utility,*_def
-5647,utilize,*_def
-5648,utterly,*_def
-5649,vacation,*_def
-5650,vacuum,*_def
-5651,vague,*_def
-5652,valid,*_def
-5653,validity,*_def
-5654,valley,*_def
-5655,valuable,*_def
-5656,value,*_def
-5657,value,*_def
-5658,van,*_def
-5659,vanish,*_def
-5660,variable,*_def
-5661,variable,*_def
-5662,variation,*_def
-5663,varied,*_def
-5664,variety,*_def
-5665,various,*_def
-5666,vary,*_def
-5667,vast,*_def
-5668,vegetable,*_def
-5669,vehicle,*_def
-5670,vein,*_def
-5671,venture,*_def
-5672,venture,*_def
-5673,venue,*_def
-5674,verbal,*_def
-5675,verdict,*_def
-5676,verify,*_def
-5677,verse,*_def
-5678,version,*_def
-5679,versus,*_def
-5680,vertical,*_def
-5681,very,*_def
-5682,very,*_def
-5683,vessel,*_def
-5684,veteran,*_def
-5685,via,*_def
-5686,viable,*_def
-5687,vibrant,*_def
-5688,vice,*_def
-5689,vicious,*_def
-5690,victim,*_def
-5691,victory,*_def
-5692,video,*_def
-5693,view,*_def
-5694,view,*_def
-5695,viewer,*_def
-5696,viewpoint,*_def
-5697,village,*_def
-5698,villager,*_def
-5699,violate,*_def
-5700,violation,*_def
-5701,violence,*_def
-5702,violent,*_def
-5703,virtual,*_def
-5704,virtue,*_def
-5705,virus,*_def
-5706,visa,*_def
-5707,visible,*_def
-5708,vision,*_def
-5709,visit,*_def
-5710,visit,*_def
-5711,visitor,*_def
-5712,visual,*_def
-5713,vital,*_def
-5714,vitamin,*_def
-5715,vocal,*_def
-5716,voice,*_def
-5717,volume,*_def
-5718,voluntary,*_def
-5719,volunteer,*_def
-5720,volunteer,*_def
-5721,vote,*_def
-5722,vote,*_def
-5723,voting,*_def
-5724,vow,*_def
-5725,vulnerability,*_def
-5726,vulnerable,*_def
-5727,wage,*_def
-5728,wait,*_def
-5729,wait,*_def
-5730,waiter,*_def
-5731,wake,*_def
-5732,walk,*_def
-5733,walk,*_def
-5734,wall,*_def
-5735,wander,*_def
-5736,want,*_def
-5737,war,*_def
-5738,ward,*_def
-5739,warehouse,*_def
-5740,warfare,*_def
-5741,warm,*_def
-5742,warm,*_def
-5743,warming,*_def
-5744,warn,*_def
-5745,warning,*_def
-5746,warrant,*_def
-5747,warrant,*_def
-5748,warrior,*_def
-5749,wash,*_def
-5750,wash,*_def
-5751,washing,*_def
-5752,waste,*_def
-5753,waste,*_def
-5754,waste,*_def
-5755,watch,*_def
-5756,watch,*_def
-5757,water,*_def
-5758,water,*_def
-5759,wave,*_def
-5760,wave,*_def
-5761,way,*_def
-5762,way,*_def
-5763,we,*_def
-5764,weak,*_def
-5765,weaken,*_def
-5766,weakness,*_def
-5767,wealth,*_def
-5768,wealthy,*_def
-5769,weapon,*_def
-5770,wear,*_def
-5771,weather,*_def
-5772,weave,*_def
-5773,web,*_def
-5774,website,*_def
-5775,wedding,*_def
-5776,Wednesday,*_def
-5777,weed,*_def
-5778,week,*_def
-5779,weekend,*_def
-5780,weekly,*_def
-5781,weigh,*_def
-5782,weight,*_def
-5783,weird,*_def
-5784,welcome,*_def
-5785,welcome,*_def
-5786,welcome,*_def
-5787,welcome,*_def
-5788,welfare,*_def
-5789,well,*_def
-5790,well,*_def
-5791,well,*_def
-5792,well,*_def
-5793,well-being,*_def
-5794,west,*_def
-5795,west,*_def
-5796,west,*_def
-5797,western,*_def
-5798,wet,*_def
-5799,what,*_def
-5800,what,*_def
-5801,whatever,*_def
-5802,whatever,*_def
-5803,whatever,*_def
-5804,whatsoever,*_def
-5805,wheat,*_def
-5806,wheel,*_def
-5807,when,*_def
-5808,when,*_def
-5809,when,*_def
-5810,whenever,*_def
-5811,where,*_def
-5812,where,*_def
-5813,whereas,*_def
-5814,whereby,*_def
-5815,wherever,*_def
-5816,whether,*_def
-5817,which,*_def
-5818,which,*_def
-5819,while,*_def
-5820,while,*_def
-5821,whilst,*_def
-5822,whip,*_def
-5823,whisper,*_def
-5824,whisper,*_def
-5825,white,*_def
-5826,white,*_def
-5827,who,*_def
-5828,whoever,*_def
-5829,whole,*_def
-5830,whole,*_def
-5831,wholly,*_def
-5832,whom,*_def
-5833,whose,*_def
-5834,whose,*_def
-5835,why,*_def
-5836,wide,*_def
-5837,widely,*_def
-5838,widen,*_def
-5839,widespread,*_def
-5840,widow,*_def
-5841,width,*_def
-5842,wife,*_def
-5843,wild,*_def
-5844,wildlife,*_def
-5845,will,*_def
-5846,will,*_def
-5847,willing,*_def
-5848,willingness,*_def
-5849,win,*_def
-5850,win,*_def
-5851,wind,*_def
-5852,wind,*_def
-5853,window,*_def
-5854,wine,*_def
-5855,wing,*_def
-5856,winner,*_def
-5857,winter,*_def
-5858,wipe,*_def
-5859,wire,*_def
-5860,wisdom,*_def
-5861,wise,*_def
-5862,wish,*_def
-5863,wish,*_def
-5864,wit,*_def
-5865,with,*_def
-5866,withdraw,*_def
-5867,withdrawal,*_def
-5868,within,*_def
-5869,without,*_def
-5870,witness,*_def
-5871,witness,*_def
-5872,woman,*_def
-5873,wonder,*_def
-5874,wonder,*_def
-5875,wonderful,*_def
-5876,wood,*_def
-5877,wooden,*_def
-5878,wool,*_def
-5879,word,*_def
-5880,work,*_def
-5881,work,*_def
-5882,worker,*_def
-5883,workforce,*_def
-5884,working,*_def
-5885,workout,*_def
-5886,workplace,*_def
-5887,workshop,*_def
-5888,world,*_def
-5889,worldwide,*_def
-5890,worldwide,*_def
-5891,worm,*_def
-5892,worried,*_def
-5893,worry,*_def
-5894,worry,*_def
-5895,worse,*_def
-5896,worse,*_def
-5897,worse,*_def
-5898,worship,*_def
-5899,worship,*_def
-5900,worst,*_def
-5901,worst,*_def
-5902,worst,*_def
-5903,worth,*_def
-5904,worth,*_def
-5905,worthwhile,*_def
-5906,worthy,*_def
-5907,would,*_def
-5908,wound,*_def
-5909,wound,*_def
-5910,wow,*_def
-5911,wrap,*_def
-5912,wrist,*_def
-5913,write,*_def
-5914,writer,*_def
-5915,writing,*_def
-5916,written,*_def
-5917,wrong,*_def
-5918,wrong,*_def
-5919,wrong,*_def
-5920,yard,*_def
-5921,yeah,*_def
-5922,year,*_def
-5923,yell,*_def
-5924,yellow,*_def
-5925,yellow,*_def
-5926,yes,*_def
-5927,yesterday,*_def
-5928,yesterday,*_def
-5929,yet,*_def
-5930,yet,*_def
-5931,yield,*_def
-5932,yield,*_def
-5933,you,*_def
-5934,young,*_def
-5935,young,*_def
-5936,youngster,*_def
-5937,your,*_def
-5938,yours,*_def
-5939,yourself,*_def
-5940,youth,*_def
-5941,zero,*_def
-5942,zone,*_def
+113,advertise,Quảng cáo
+114,advertisement,Bài quảng cáo
+115,advertising,Ngành quảng cáo
+116,advice,Lời khuyên
+117,advise,Khuyên bảo
+118,advocate,Ủng hộ; cổ vũ
+120,aesthetic,Thẩm mỹ
+121,affair,Vụ việc; chuyện
+122,affect,Ảnh hưởng đến
+123,affection,Tình cảm; sự yêu thương
+124,afford,Chi trả; có đủ khả năng
+125,affordable,Giá cả phải chăng
+126,afraid,E sợ; lo lắng
+127,after,Sau khi; phía sau
+130,aftermath,Hậu quả
+131,afternoon,Buổi chiều
+132,afterwards,Sau đó
+133,again,Lại; lần nữa
+134,against,Chống lại; tựa vào
+135,age,Tuổi tác; thời đại
+137,aged,Cao tuổi; độ tuổi
+138,agency,Đại lý; cơ quan
+139,agenda,Chương trình nghị sự
+140,agent,Tác nhân; đại lý
+141,aggression,Sự hung hăng; xâm lược
+142,aggressive,Hung hăng; quyết liệt
+143,ago,Trước đây
+144,agree,Đồng ý; thống nhất
+145,agreement,Hợp đồng; sự đồng ý
+146,agricultural,Thuộc nông nghiệp
+147,agriculture,Nông nghiệp
+148,ah,Chà; ôi
+149,ahead,Phía trước
+150,aid,Viện trợ; giúp đỡ
+152,aide,Trợ lý
+153,AIDS,Bệnh AIDS
+154,aim,Mục tiêu; nhắm tới
+156,air,Không khí
+157,aircraft,Máy bay
+158,airline,Hãng hàng không
+159,airport,Sân bay
+160,alarm,Báo động; đồng hồ báo thức
+162,albeit,Mặc dù
+163,album,Album nhạc; tập ảnh
+164,alcohol,Cồn; chất có cồn
+165,alcoholic,Chứa cồn
+166,alert,Cảnh báo; tỉnh táo
+169,alien,Người ngoài hành tinh; xa lạ
+171,align,Căn chỉnh
+172,alignment,Sự căn chỉnh
+173,alike,Giống nhau
+175,alive,Còn sống; sống động
+176,all,Tất cả
+179,all right,Ổn; tốt
+182,allegation,Lời cáo buộc
+183,allege,Cáo buộc; tuyên bố
+184,allegedly,Theo cáo buộc
+185,alliance,Liên minh
+186,allocate,Phân bổ; chỉ định
+187,allocation,Sự phân bổ
+188,allow,Cho phép
+189,allowance,Tiền trợ cấp; phụ cấp
+190,ally,Đồng minh
+191,almost,Gần như; hầu như
+192,alone,Một mình; đơn độc
+194,along,Dọc theo
+196,alongside,Bên cạnh; cùng với
+197,already,Đã; rồi
+198,also,Cũng; ngoài ra
+199,alter,Thay đổi; biến đổi
+200,alternative,Phương án thay thế
+202,although,Mặc dù
+203,altogether,Nhìn chung; hoàn toàn
+204,aluminium,Nhôm
+205,always,Luôn luôn
+206,amateur,Nghiệp dư
+208,amazed,Kinh ngạc
+209,amazing,Đáng kinh ngạc
+210,ambassador,Đại sứ
+211,ambition,Tham vọng; hoài bão
+212,ambitious,Tham vọng
+213,ambulance,Xe cứu thương
+214,amend,Sửa đổi; bổ sung
+215,amendment,Sự sửa đổi
+216,amid,Ở giữa; trong lúc
+217,among,Trong số; giữa
+218,amount,Số lượng; lượng
+220,amusing,Vui nhộn; gây cười
+221,analogy,Sự tương tự; so sánh
+222,analyse,Phân tích
+223,analysis,Sự phân tích
+224,analyst,Chuyên viên phân tích
+225,ancestor,Tổ tiên
+226,anchor,Mỏ neo; phát thanh viên
+227,ancient,Cổ xưa; cổ đại
+228,and,Và
+229,angel,Thiên thần
+230,anger,Cơn giận; sự tức giận
+231,angle,Góc độ
+232,angry,Tức giận
+233,animal,Động vật
+234,animation,Hoạt họa; sự sống động
+235,ankle,Cổ chân
+236,anniversary,Ngày kỷ niệm
+237,announce,Thông báo; tuyên bố
+238,announcement,Lời thông báo
+239,annoy,Làm phiền; chọc tức
+240,annoyed,Bực mình
+241,annoying,Gây bực mình
+242,annual,Hàng năm
+243,annually,Mỗi năm một lần
+244,anonymous,Ẩn danh
+245,another,Một cái khác; khác
+247,answer,Câu trả lời; trả lời
+249,anticipate,Dự đoán; mong đợi
+250,anxiety,Sự lo âu; trăn trở
+251,anxious,Lo âu; hồi hộp
+252,any,Bất kỳ
+255,any more,Nữa; không còn nữa
+256,anybody,Bất kỳ ai
+257,anyone,Bất kỳ ai
+258,anything,Bất kỳ cái gì
+259,anyway,Dù sao đi nữa
+260,anywhere,Bất kỳ đâu
+262,apart,Tách biệt; rời ra
+263,apartment,Căn hộ
+264,apologize,Xin lỗi
+265,apology,Lời xin lỗi
+266,app,Ứng dụng
+267,apparatus,Thiết bị; bộ máy
+268,apparent,Rõ ràng; hiển nhiên
+269,apparently,Hình như; hiển nhiên
+270,appeal,Kêu gọi; kháng án
+272,appealing,Lôi cuốn; hấp dẫn
+273,appear,Xuất hiện; hình như
+274,appearance,Vẻ bề ngoài; sự xuất hiện
+275,appetite,Sự thèm ăn
+276,applaud,Vỗ tay tán thưởng
+277,apple,Quả táo
+278,applicable,Có thể áp dụng
+279,applicant,Ứng viên
+280,application,Đơn xin; ứng dụng
+281,apply,Nộp đơn; áp dụng
+282,appoint,Bổ nhiệm; chỉ định
+283,appointment,Cuộc hẹn; sự bổ nhiệm
+284,appreciate,Trân trọng; đánh giá cao
+285,appreciation,Sự trân trọng
+286,approach,Tiếp cận; phương pháp
+288,appropriate,Thích hợp; phù hợp
+289,appropriately,Một cách thích hợp
+290,approval,Sự phê duyệt; chấp thuận
+291,approve,Phê duyệt; chấp thuận
+292,approximately,Khoảng; xấp xỉ
+293,April,Tháng Tư
+294,arbitrary,Tùy ý; cảm tính
+295,architect,Kiến trúc sư
+296,architectural,Thuộc kiến trúc
+297,architecture,Kiến trúc
+298,archive,Lưu trữ; kho lưu trữ
+299,area,Khu vực; diện tích
+300,arena,Đấu trường; sân vận động
+301,arguably,Có thể cho rằng
+302,argue,Tranh luận; cãi nhau
+303,argument,Lập luận; sự tranh cãi
+304,arise,Nảy sinh; phát sinh
+305,arm,Cánh tay; trang bị vũ khí
+307,armed,Vũ trang; có vũ khí
+308,arms,Vũ khí
+309,army,Quân đội
+310,around,Xung quanh; khoảng
+312,arrange,Sắp xếp; thu xếp
+313,arrangement,Sự sắp xếp; thỏa thuận
+314,array,Mảng; dải đa dạng
+315,arrest,Bắt giữ
+317,arrival,Sự đến nơi
+318,arrive,Đến nơi
+319,arrow,Mũi tên
+320,art,Nghệ thuật
+321,article,Bài báo; điều khoản
+322,articulate,Diễn đạt rõ ràng
+323,artificial,Nhân tạo
+324,artist,Nghệ sĩ
+325,artistic,Thuộc nghệ thuật
+326,artwork,Tác phẩm nghệ thuật
+327,as,Như; khi; vì
+330,ash,Tro tàn
+331,ashamed,Hổ thẹn; xấu hổ
+332,aside,Sang một bên
+333,ask,Hỏi; yêu cầu
+334,asleep,Đang ngủ
+335,aspect,Khía cạnh
+336,aspiration,Khát vọng; nguyện vọng
+337,aspire,Khao khát; hướng tới
+338,assassination,Sự ám sát
+339,assault,Cuộc tấn công; hành hung
+341,assemble,Lắp ráp; tập hợp
+342,assembly,Cuộc họp; sự lắp ráp
+343,assert,Khẳng định; quả quyết
+344,assertion,Sự khẳng định
+345,assess,Đánh giá; định giá
+346,assessment,Sự đánh giá
+347,asset,Tài sản
+348,assign,Phân công; giao việc
+349,assignment,Nhiệm vụ; bài tập
+350,assist,Hỗ trợ; giúp đỡ
+351,assistance,Sự hỗ trợ
+352,assistant,Trợ lý; người phụ tá
+354,associate,Liên kết; đồng nghiệp
+355,associated,Cùng liên kết; liên quan
+356,association,Hiệp hội; sự liên kết
+357,assume,Cho rằng; giả định
+358,assumption,Giả định
+359,assurance,Sự đảm bảo; cam đoan
+360,assure,Đảm bảo; cam đoan
+361,astonishing,Đáng kinh ngạc
+362,asylum,Sự tị nạn; nơi trú ẩn
+363,at,Tại; ở
+364,athlete,Vận động viên
+365,atmosphere,Bầu khí quyển; không khí
+366,atrocity,Hành động dã man
+367,attach,Đính kèm; gắn vào
+368,attachment,Tệp đính kèm
+369,attack,Tấn công
+371,attain,Đạt được
+372,attempt,Nỗ lực; thử sức
+374,attend,Tham dự; chú ý
+375,attendance,Sự tham dự; sĩ số
+376,attention,Sự chú ý
+378,attitude,Thái độ
+379,attorney,Luật sư
+380,attract,Thu hút; hấp dẫn
+381,attraction,Điểm thu hút; sức hút
+382,attractive,Hấp dẫn; lôi cuốn
+383,attribute,Thuộc tính; cho là do
+385,auction,Buổi đấu giá
+386,audience,Khán giả; độc giả
+387,audio,Âm thanh
+388,audit,Kiểm toán; kiểm tra
+389,August,Tháng Tám
+390,aunt,Cô; dì; thím
+391,authentic,Xác thực; đích thực
+392,author,Tác giả
+393,authority,Thẩm quyền; chính quyền
+394,authorize,Ủy quyền; cấp phép
+395,auto,Tự động; ô tô
+396,automatic,Tự động
+397,automatically,Một cách tự động
+398,autonomy,Quyền tự trị
+399,autumn,Mùa thu
+400,availability,Mức độ sẵn có
+401,available,Sẵn có
+402,average,Trung bình
+405,avoid,Tránh; né tránh
+406,await,Chờ đợi
+407,award,Giải thưởng; trao giải
+409,aware,Nhận thức được
+410,awareness,Nhận thức; sự hiểu biết
+411,away,Xa; đi xa
+412,awful,Kinh khủng; tồi tệ
+413,awkward,Vụng về; ngượng ngùng
+414,baby,Em bé
+415,back,Phía sau; lưng
+419,backdrop,Phông nền
+420,background,Nền tảng; bối cảnh
+421,backing,Sự hỗ trợ; chống lưng
+422,backup,Dự phòng; sao lưu
+423,backwards,Về phía sau
+424,bacteria,Vi khuẩn
+425,bad,Tồi tệ; xấu
+426,badge,Huy hiệu
+427,badly,Tồi tệ; nghiêm trọng
+428,bag,Túi; cặp
+429,bail,Tiền bảo lãnh
+430,bake,Nướng bánh
+431,balance,Sự cân bằng; số dư
+433,balanced,Cân bằng
+434,ball,Quả bóng; hình cầu
+435,ballet,Múa ba-lê
+436,balloon,Khí cầu; bóng bay
+437,ballot,Lá phiếu bầu
+438,ban,Lệnh cấm; cấm
+440,banana,Quả chuối
+441,band,Ban nhạc; dải băng
+442,bank,Ngân hàng; bờ sông
+443,banner,Biểu ngữ; băng rôn
+444,bar,Quán bar; thanh chắn
+446,bare,Trần trụi; trọc
+447,barely,Vừa đủ; suýt soát
+448,bargain,Món hời; mặc cả
+449,barrel,Thùng tròn; nòng súng
+450,barrier,Rào cản
+451,base,Căn cứ; nền tảng
+453,baseball,Bóng chày
+454,based,Dựa trên
+455,basement,Tầng hầm
+456,basic,Cơ bản
+457,basically,Về cơ bản
+458,basis,Cơ sở; nền tảng
+459,basket,Cái rổ; cái giỏ
+460,basketball,Bóng rổ
+461,bass,Âm trầm; đàn bass
+462,bat,Gậy đánh bóng; con dơi
+464,bath,Bồn tắm; sự tắm
+465,bathroom,Phòng tắm
+466,battery,Pin; ắc quy
+467,battle,Trận chiến
+469,battlefield,Chiến trường
+470,bay,Vịnh biển
+471,be,Thì; là; ở
+473,beach,Bãi biển
+474,beam,Chùm sáng; xà nhà
+475,bean,Hạt đậu
+476,bear,Con gấu; chịu đựng
+478,beast,Quái thú
+479,beat,Đánh; đánh bại; nhịp
+481,beautiful,Đẹp; tuyệt đẹp
+482,beauty,Vẻ đẹp; sắc đẹp
+483,because,Bởi vì
+484,become,Trở thành; trở nên
+485,bed,Cái giường
+486,bedroom,Phòng ngủ
+487,bee,Con ong
+488,beef,Thịt bò
+489,beer,Bia
+490,before,Trước khi
+493,beg,Xin xỏ; ăn xin
+494,begin,Bắt đầu
+495,beginning,Khởi đầu; phần đầu
+496,behalf,Thay mặt; nhân danh
+497,behave,Cư xử; hành xử
+498,behaviour,Hành vi; cư xử
+499,behind,Phía sau
+501,being,Sinh vật; sự tồn tại
+502,belief,Niềm tin; tín ngưỡng
+503,believe,Tin tưởng
+504,bell,Cái chuông
+505,belong,Thuộc về
+506,beloved,Được yêu thương
+507,below,Ở dưới; phía dưới
+509,belt,Thắt lưng; dây curoa
+510,bench,Ghế dài
+511,benchmark,Điểm chuẩn; tiêu chuẩn
+512,bend,Bẻ cong; uốn cong
+514,beneath,Ở dưới
+515,beneficial,Có lợi; có ích
+516,beneficiary,Người thụ hưởng
+517,benefit,Lợi ích; trợ cấp
+519,bent,Bị cong; uốn cong
+520,beside,Bên cạnh
+521,besides,Ngoài ra; bên cạnh đó
+523,best,Tốt nhất
+526,bet,Đặt cược
+528,betray,Phản bội
+529,better,Tốt hơn
+532,between,Ở giữa
+534,beyond,Vượt ngoài
+536,bias,Sự thiên vị; định kiến
+537,bicycle,Xe đạp
+538,bid,Đấu giá; trả giá
+540,big,To lớn
+541,bike,Xe đạp
+542,bill,Hóa đơn; tiền giấy
+544,billion,Một tỷ
+545,bin,Thùng rác
+546,bind,Ràng buộc; trói buộc
+547,biography,Tiểu sử
+548,biological,Thuộc sinh học
+549,biology,Sinh học
+550,bird,Con chim
+551,birth,Sự sinh ra; sự ra đời
+552,birthday,Sinh nhật
+553,biscuit,Bánh quy
+554,bishop,Giám mục; quân tượng
+555,bit,Một chút; mảnh nhỏ
+556,bite,Cắn; miếng cắn
+558,bitter,Đắng; cay đắng
+559,bizarre,Kỳ quặc; quái đản
+560,black,Màu đen
+562,blade,Lưỡi dao
+563,blame,Đổ lỗi; trách mắng
+565,blank,Trống; để trống
+567,blanket,Cái chăn
+568,blast,Vụ nổ; luồng gió
+570,bleed,Chảy máu
+571,blend,Pha trộn; hòa trộn
+573,bless,Ban phúc; cầu nguyện
+574,blessing,Phước lành
+575,blind,Mù; không thấy
+576,block,Khối; phong tỏa
+578,blog,Trang nhật ký mạng
+579,blonde,Tóc vàng
+580,blood,Máu
+581,blow,Thổi; cú đòn
+583,blue,Màu xanh dương
+585,board,Tấm bảng; ban quản trị
+587,boast,Khoe khoang
+588,boat,Con thuyền
+589,body,Cơ thể; thân thể
+590,boil,Sôi; đun sôi
+591,bold,Táo bạo; in đậm
+592,bomb,Quả bom
+594,bombing,Vụ nổ bom
+595,bond,Mối liên kết; trái phiếu
+596,bone,Xương
+597,bonus,Tiền thưởng
+598,book,Quyển sách; đặt chỗ
+600,booking,Sự đặt chỗ
+601,boom,Sự bùng nổ
+602,boost,Thúc đẩy; tăng cường
+604,boot,Đôi bốt; cốp xe
+605,border,Biên giới; ranh giới
+607,bored,Chán nản
+608,boring,Nhàm chán
+609,born,Sinh ra
+610,borrow,Vay; mượn
+611,boss,Sếp; ông chủ
+612,both,Cả hai
+614,bother,Làm phiền; bận tâm
+615,bottle,Chai; lọ
+616,bottom,Đáy; phần dưới
+618,bounce,Nảy lên
+619,bound,Ràng buộc; chắc chắn
+620,boundary,Ranh giới
+621,bow,Cúi chào; cây cung
+623,bowl,Cái bát; cái tô
+624,box,Hộp; thùng
+625,boy,Cậu bé; con trai
+626,boyfriend,Bạn trai
+627,brain,Bộ não
+628,branch,Chi nhánh; cành cây
+629,brand,Thương hiệu
+631,brave,Dũng cảm
+632,breach,Vi phạm; lỗ hổng
+634,bread,Bánh mì
+635,break,Làm vỡ; giờ nghỉ
+637,breakdown,Sự hỏng hóc; suy sụp
+638,breakfast,Bữa sáng
+639,breakthrough,Bước đột phá
+640,breast,Vú; ngực
+641,breath,Hơi thở
+642,breathe,Hít thở
+643,breathing,Sự hô hấp
+644,breed,Giống loài; nhân giống
+646,brick,Viên gạch
+647,bride,Cô dâu
+648,bridge,Cây cầu
+649,brief,Ngắn gọn; tóm tắt
+650,briefly,Tóm tắt; ngắn gọn
+651,bright,Tươi sáng; thông minh
+652,brilliant,Rực rỡ; tài giỏi
+653,bring,Mang theo; đem lại
+654,broad,Rộng lớn; bao la
+655,broadband,Băng thông rộng
+656,broadcast,Phát sóng
+658,broadcaster,Phát thanh viên
+659,broadly,Nói chung; rộng rãi
+660,broken,Bị vỡ; hỏng
+661,brother,Anh em trai
+662,brown,Màu nâu
+664,browser,Trình duyệt
+665,brush,Bàn chải; cọ
+667,brutal,Tàn bạo
+668,bubble,Bọt khí; bong bóng
+669,buck,Đô la; hươu đực
+670,buddy,Bạn thân
+671,budget,Ngân sách
+672,buffer,Bộ đệm; đệm lót
+673,bug,Côn trùng; lỗi phần mềm
+674,build,Xây dựng
+675,building,Tòa nhà
+676,bulk,Số lượng lớn
+677,bullet,Viên đạn
+678,bunch,Bó; chùm
+679,burden,Gánh nặng
+680,bureaucracy,Bộ máy quan liêu
+681,burial,Sự an táng
+682,burn,Đốt cháy; bị bỏng
+684,burst,Nổ tung; bùng phát
+685,bury,Chôn cất
+686,bus,Xe buýt
+687,bush,Bụi cây
+688,business,Kinh doanh; doanh nghiệp
+689,businessman,Doanh nhân nam
+690,busy,Bận rộn
+691,but,Nhưng
+693,butter,Bơ
+694,button,Nút bấm; cúc áo
+695,buy,Mua
+696,by,Bởi; bằng; bên cạnh
+698,bye,Tạm biệt
+699,cabin,Cabin; túp lều
+700,cabinet,Tủ; nội các
+701,cable,Dây cáp
+702,cafe,Quán cà phê
+703,cake,Bánh ngọt
+704,calculate,Tính toán
+705,calculation,Sự tính toán
+706,call,Gọi điện; cuộc gọi
+708,calm,Bình tĩnh; êm đềm
+711,camera,Máy ảnh; máy quay
+712,camp,Trại; trại hè
+714,campaign,Chiến dịch
+716,camping,Hoạt động cắm trại
+717,campus,Khu khuôn viên trường
+718,can,Có thể; lon
+720,canal,Kênh đào
+721,cancel,Hủy bỏ
+722,cancer,Bệnh ung thư
+723,candidate,Ứng cử viên
+724,candle,Cây nến
+725,cannot,Không thể
+726,canvas,Vải bạt; tranh sơn dầu
+727,cap,Mũ lưỡi trai; nắp
+728,capability,Khả năng; năng lực
+729,capable,Có năng lực
+730,capacity,Sức chứa; công suất
+731,capital,Thủ đô; vốn
+733,capitalism,Chủ nghĩa tư bản
+734,capitalist,Nhà tư bản
+735,captain,Đội trưởng; thuyền trưởng
+736,capture,Bắt giữ; ghi lại
+738,car,Ô tô
+739,carbon,Cạc-bon
+740,card,Thẻ; thiệp
+741,care,Sự chăm sóc; quan tâm
+743,career,Sự nghiệp
+744,careful,Cẩn thận
+745,carefully,Một cách cẩn thận
+746,careless,Cẩu thả; lơ đễnh
+747,cargo,Hàng hóa vận chuyển
+748,carpet,Tấm thảm
+749,carriage,Toa xe; xe ngựa
+750,carrot,Củ cà rốt
+751,carry,Mang; vác; chở
+752,cartoon,Phim hoạt hình
+753,carve,Chạm khắc
+754,case,Trường hợp; chiếc hộp
+755,cash,Tiền mặt
+756,casino,Sòng bạc
+757,cast,Dàn diễn viên; đúc
+759,castle,Tòa lâu đài
+760,casual,Bình thường; giản dị
+761,casualty,Nạn nhân; thương vong
+762,cat,Con mèo
+763,catalogue,Danh mục sản phẩm
+764,catch,Bắt lấy; đuổi kịp
+766,category,Danh mục; thể loại
+767,cater,Cung cấp dịch vụ ăn uống
+768,cattle,Gia súc
+769,cause,Nguyên nhân; gây ra
+771,caution,Sự thận trọng
+772,cautious,Thận trọng; dè chừng
+773,cave,Hang động
+774,CD,Đĩa CD
+775,cease,Ngừng; chấm dứt
+776,ceiling,Trần nhà
+777,celebrate,Ăn mừng; kỷ niệm
+778,celebration,Lễ kỷ niệm
+779,celebrity,Người nổi tiếng
+780,cell,Tế bào; ô
+781,cemetery,Nghĩa trang
+782,cent,Đồng xu cent
+783,central,Thuộc trung tâm
+784,centre,Trung tâm
+786,century,Thế kỷ
+787,ceremony,Nghi lễ
+788,certain,Chắc chắn; nhất định
+789,certainly,Chắc chắn
+790,certainty,Sự chắc chắn
+791,certificate,Chứng chỉ; giấy chứng nhận
+792,chain,Chuỗi; dây chuyền
+794,chair,Cái ghế; chủ tọa
+796,chairman,Chủ tịch
+797,challenge,Thử thách; thách thức
+799,challenging,Đầy thách thức
+800,chamber,Phòng; phòng họp
+801,champion,Nhà vô địch
+802,championship,Giải vô địch
+803,chance,Cơ hội; khả năng
+804,change,Thay đổi; tiền lẻ
+806,channel,Kênh truyền hình; kênh
+807,chaos,Sự hỗn loạn
+808,chapter,Chương
+809,character,Nhân vật; tính cách
+810,characteristic,Đặc điểm; đặc trưng
+812,characterize,Đặc trưng hóa
+813,charge,Sạc; tính phí; cáo buộc
+815,charity,Từ thiện; tổ chức từ thiện
+816,charm,Sức hấp dẫn; bùa may mắn
+817,charming,Quyến rũ; duyên dáng
+818,chart,Biểu đồ; sơ đồ
+820,charter,Hiến chương; thuê chuyến
+821,chase,Đuổi theo; săn đuổi
+823,chat,Trò chuyện
+825,cheap,Rẻ
+827,cheat,Gian lận; lừa dối
+829,check,Kiểm tra; séc
+831,cheek,Mái má
+832,cheer,Reo hò; cổ vũ
+834,cheerful,Vui vẻ; hân hoan
+835,cheese,Pho mát
+836,chef,Đầu bếp
+837,chemical,Hóa chất; thuộc hóa học
+839,chemistry,Hóa học
+840,chest,Lồng ngực; chiếc rương
+841,chicken,Con gà; thịt gà
+842,chief,Thủ lĩnh; chính
+844,child,Đứa trẻ
+845,childhood,Thời thơ ấu
+846,chip,Mảnh vỡ; chip điện tử
+847,chocolate,Sô-cô-la
+848,choice,Sự lựa chọn
+849,choir,Dàn hợp xướng
+850,choose,Lựa chọn
+851,chop,Chặt; chặt nhỏ
+852,chronic,Mãn tính
+853,chunk,Khối lớn; khúc lớn
+854,church,Nhà thờ
+855,cigarette,Điếu thuốc lá
+856,cinema,Rạp chiếu phim
+857,circle,Hình tròn; hình cầu
+859,circuit,Mạch điện; đường đua
+860,circulate,Lưu thông; tuần hoàn
+861,circulation,Sự lưu thông
+862,circumstance,Hoàn cảnh; trường hợp
+863,cite,Trích dẫn
+864,citizen,Công dân
+865,citizenship,Quyền công dân
+866,city,Thành phố
+867,civic,Thuộc công dân
+868,civil,Thuộc dân sự
+869,civilian,Thường dân
+871,civilization,Nền văn minh
+872,claim,Tuyên bố; yêu cầu
+874,clarify,Làm rõ
+875,clarity,Sự rõ ràng
+876,clash,Va chạm; xung đột
+877,class,Lớp học; tầng lớp
+878,classic,Kinh điển
+880,classical,Cổ điển
+881,classification,Sự phân loại
+882,classify,Phân loại
+883,classroom,Phòng học
+884,clause,Điều khoản; mệnh đề
+885,clean,Sạch sẽ; dọn dẹp
+887,clear,Rõ ràng; trong sạch
+889,clearly,Một cách rõ ràng
+890,clerk,Nhân viên văn phòng
+891,clever,Thông minh; khéo léo
+892,click,Cú nhấp chuột
+894,client,Khách hàng
+895,cliff,Vách đá
+896,climate,Khí hậu
+897,climb,Leo trèo
+899,cling,Bám chặt; níu lấy
+900,clinic,Phòng khám
+901,clinical,Thuộc lâm sàng
+902,clip,Đoạn phim ngắn; kẹp
+903,clock,Đồng hồ treo tường
+904,close,Đóng; gần gũi
+908,closed,Đã đóng cửa
+909,closely,Một cách chặt chẽ
+910,closure,Sự đóng cửa
+911,cloth,Vải vóc
+912,clothes,Quần áo
+913,clothing,Trang phục
+914,cloud,Đám mây
+915,club,Câu lạc bộ
+916,clue,Manh mối
+917,cluster,Cụm; chùm
+918,coach,Huấn luyện viên; xe khách
+920,coal,Than đá
+921,coalition,Liên minh
+922,coast,Bờ biển
+923,coastal,Thuộc vùng ven biển
+924,coat,Áo khoác
+925,cocktail,Đồ uống cocktail
+926,code,Mã; bộ luật
+927,coffee,Cà phê
+928,cognitive,Thuộc nhận thức
+929,coin,Đồng xu
+930,coincide,Trùng hợp; xảy ra đồng thời
+931,coincidence,Sự trùng hợp
+932,cold,Lạnh; cảm lạnh
+934,collaborate,Hợp tác
+935,collaboration,Sự hợp tác
+936,collapse,Sụp đổ
+938,colleague,Đồng nghiệp
+939,collect,Thu thập; sưu tầm
+940,collection,Bộ sưu tập
+941,collective,Tập thể; chung
+942,collector,Người sưu tầm
+943,college,Trường cao đẳng
+944,collision,Cuộc va chạm
+945,colonial,Thuộc thuộc địa
+946,colony,Thuộc địa
+947,colour,Màu sắc
+948,coloured,Có màu
+949,colourful,Rực rỡ màu sắc
+950,column,Cột; mục báo
+951,columnist,Người viết mục báo
+952,combat,Trận chiến; chiến đấu
+954,combination,Sự kết hợp
+955,combine,Kết hợp
+956,come,Đến; tới
+957,comedy,Hài kịch
+958,comfort,Sự thoải mái; an ủi
+960,comfortable,Thoải mái
+961,comic,Truyện tranh; hài hước
+963,command,Lệnh; chỉ huy
+965,commander,Người chỉ huy
+966,commence,Bắt đầu
+967,comment,Bình luận; nhận xét
+969,commentary,Bài bình luận
+970,commentator,Bình luận viên
+971,commerce,Thương mại
+972,commercial,Thuộc thương mại
+974,commission,Ủy ban; tiền hoa hồng
+976,commissioner,Ủy viên
+977,commit,Cam kết; phạm tội
+978,commitment,Sự cam kết
+979,committee,Ủy ban
+980,commodity,Hàng hóa
+981,common,Phổ biến; chung
+982,commonly,Một cách phổ biến
+983,communicate,Giao tiếp
+984,communication,Sự giao tiếp
+985,communist,Người cộng sản
+986,community,Cộng đồng
+987,companion,Bạn đồng hành
+988,company,Công ty; sự đồng hành
+989,comparable,Có thể so sánh
+990,comparative,Tương đối; so sánh
+991,compare,So sánh
+992,comparison,Sự so sánh
+993,compassion,Lòng trắc ẩn
+994,compel,Bắt buộc; cưỡng chế
+995,compelling,Thuyết phục; hấp dẫn
+996,compensate,Đền bù; bồi thường
+997,compensation,Tiền bồi thường; thù lao
+998,compete,Cạnh tranh; tranh tài
+999,competence,Năng lực; khả năng
+1000,competent,Thành thạo; có năng lực
+1001,competition,Cuộc thi; sự cạnh tranh
+1002,competitive,Cạnh tranh
+1003,competitor,Đối thủ cạnh tranh
+1004,compile,Biên soạn; thu thập
+1005,complain,Phàn nàn; khiếu nại
+1006,complaint,Lời phàn nàn
+1007,complement,Phần bổ sung
+1008,complete,Hoàn thành; đầy đủ
+1010,completely,Hoàn toàn
+1011,completion,Sự hoàn thành
+1012,complex,Phức tạp; khu phức hợp
+1014,complexity,Sự phức tạp
+1015,compliance,Sự tuân thủ
+1016,complicated,Phức tạp
+1017,complication,Biến chứng; sự rắc rối
+1018,comply,Tuân thủ
+1019,component,Thành phần; linh kiện
+1020,compose,Sáng tác; cấu thành
+1021,composer,Nhà soạn nhạc
+1022,composition,Tác phẩm; thành phần
+1023,compound,Hợp chất; khu phức hợp
+1024,comprehensive,Toàn diện
+1025,comprise,Bao gồm
+1026,compromise,Sự thỏa hiệp
+1028,compulsory,Bắt buộc
+1029,compute,Tính toán
+1030,computer,Máy tính
+1031,conceal,Che giấu; ẩn giấu
+1032,concede,Thừa nhận; nhượng bộ
+1033,conceive,Nhận thức; thụ thai
+1034,concentrate,Tập trung
+1035,concentration,Sự tập trung
+1036,concept,Khái niệm
+1037,conception,Quan niệm; sự thụ thai
+1038,concern,Mối bận tâm; lo lắng
+1040,concerned,Lo lắng; có liên quan
+1041,concert,Buổi hòa nhạc
+1042,concession,Sự nhượng bộ
+1043,conclude,Kết luận
+1044,conclusion,Kết luận
+1045,concrete,Bê tông; cụ thể
+1047,condemn,Lên án; kết án
+1048,condition,Điều kiện; tình trạng
+1049,conduct,Tiến hành; hành vi
+1051,confer,Hội đàm; trao tặng
+1052,conference,Hội nghị
+1053,confess,Thú nhận
+1054,confession,Lời thú nhận
+1055,confidence,Sự tự tin; sự tin cậy
+1056,confident,Tự tin
+1057,configuration,Cấu hình; hình dạng
+1058,confine,Giam giữ; hạn chế
+1059,confirm,Xác nhận
+1060,confirmation,Sự xác nhận
+1061,conflict,Xung đột; tranh chấp
+1063,confront,Đối mặt; đương đầu
+1064,confrontation,Sự đối đầu
+1065,confuse,Làm bối rối
+1066,confused,Bối rối
+1067,confusing,Gây bối rối
+1068,confusion,Sự bối rối; hỗn loạn
+1069,congratulate,Chúc mừng
+1070,congregation,Giáo xứ; tín đồ
+1071,congressional,Thuộc quốc hội
+1072,connect,Kết nối
+1073,connected,Có kết nối
+1074,connection,Sự kết nối
+1075,conquer,Chinh phục; xâm chiếm
+1076,conscience,Lương tâm
+1077,conscious,Nhận thức; tỉnh táo
+1078,consciousness,Ý thức
+1079,consecutive,Liên tiếp
+1080,consensus,Sự đồng thuận
+1081,consent,Sự đồng ý
+1083,consequence,Hậu quả; kết quả
+1084,consequently,Kết quả là; do đó
+1085,conservation,Sự bảo tồn
+1086,conservative,Bảo thủ
+1088,conserve,Bảo tồn; giữ gìn
+1089,consider,Cân nhắc; xem xét
+1090,considerable,Đáng kể
+1091,considerably,Một cách đáng kể
+1092,consideration,Sự cân nhắc
+1093,consist,Bao gồm
+1094,consistency,Tính nhất quán
+1095,consistent,Nhất quán
+1096,consistently,Nhất quán; luôn luôn
+1097,consolidate,Củng cố; hợp nhất
+1098,conspiracy,Âm mưu
+1099,constant,Hằng số; liên tục
+1100,constantly,Liên tục; không ngừng
+1101,constituency,Cử tri; đơn vị bầu cử
+1102,constitute,Cấu thành; tạo thành
+1103,constitution,Hiến pháp
+1104,constitutional,Thuộc hiến pháp
+1105,constraint,Sự hạn chế; gông cùm
+1106,construct,Xây dựng
+1107,construction,Sự xây dựng; công trình
+1108,consult,Tham vấn; tư vấn
+1109,consultant,Chuyên viên tư vấn
+1110,consultation,Sự tư vấn
+1111,consume,Tiêu thụ
+1112,consumer,Người tiêu dùng
+1113,consumption,Sự tiêu thụ
+1114,contact,Liên hệ; tiếp xúc
+1116,contain,Chứa đựng
+1117,container,Thùng chứa; công-ten-nơ
+1118,contemplate,Suy ngẫm; cân nhắc
+1119,contemporary,Đương đại; hiện đại
+1120,contempt,Sự khinh bỉ
+1121,contend,Dự tranh; đấu tranh
+1122,contender,Đối thủ; ứng viên
+1123,content,Nội dung; hài lòng
+1125,contention,Sự tranh cãi
+1126,contest,Cuộc thi
+1128,context,Bối cảnh; ngữ cảnh
+1129,continent,Lục địa
+1130,continually,Liên tục không ngừng
+1131,continue,Tiếp tục
+1132,continuous,Liên tục không ngắt quãng
+1133,contract,Hợp đồng
+1135,contractor,Nhà thầu
+1136,contradiction,Sự mâu thuẫn
+1137,contrary,Trái ngược
+1139,contrast,Sự tương phản
+1141,contribute,Đóng góp
+1142,contribution,Sự đóng góp
+1143,contributor,Người đóng góp
+1144,control,Kiểm soát
+1146,controversial,Gây tranh cãi
+1147,controversy,Cuộc tranh cãi
+1148,convenience,Sự tiện lợi
+1149,convenient,Tiện lợi
+1150,convention,Hội nghị; quy ước
+1151,conventional,Theo truyền thống
+1152,conversation,Cuộc trò chuyện
+1153,conversion,Sự chuyển đổi
+1154,convert,Chuyển đổi
+1155,convey,Truyền tải
+1156,convict,Kết án; bị cáo
+1157,conviction,Sự kết án; niềm tin
+1158,convince,Thuyết phục
+1159,convinced,Thuyết phục; tin chắc
+1160,convincing,Có tính thuyết phục
+1161,cook,Nấu ăn; đầu bếp
+1163,cooker,Nồi nấu
+1164,cooking,Việc nấu ăn
+1165,cool,Mát mẻ; ngầu
+1167,cooperate,Hợp tác
+1168,cooperative,Hợp tác; hợp tác xã
+1169,coordinate,Phối hợp
+1170,coordination,Sự phối hợp
+1171,coordinator,Điều phối viên
+1172,cop,Cảnh sát
+1173,cope,Đương đầu; đối phó
+1174,copper,Kim loại đồng
+1175,copy,Bản sao; sao chép
+1177,copyright,Bản quyền
+1178,core,Cốt lõi; nhân
+1180,corner,Góc đường; góc
+1181,corporate,Thuộc doanh nghiệp
+1182,corporation,Tập đoàn
+1183,correct,Chính xác; sửa chữa
+1185,correction,Sự sửa chữa
+1186,correctly,Một cách chính xác
+1187,correlate,Tương quan
+1188,correlation,Sự tương quan
+1189,correspond,Tương ứng; trao đổi thư
+1190,correspondence,Thư từ; sự tương ứng
+1191,correspondent,Phóng viên; người viết thư
+1192,corresponding,Tương ứng
+1193,corridor,Hành lang
+1194,corrupt,Tham nhũng; hỏng
+1195,corruption,Sự tham nhũng
+1196,cost,Chi phí; giá cả
+1198,costly,Đắt đỏ; tốn kém
+1199,costume,Trang phục biểu diễn
+1200,cottage,Nhà tranh; túp lều
+1201,cotton,Bông; vải bông
+1202,could,Có thể
+1203,council,Hội đồng
+1204,councillor,Ủy viên hội đồng
+1205,counselling,Sự tư vấn tâm lý
+1206,counsellor,Cố vấn; chuyên viên tư vấn
+1207,count,Đếm; tính
+1209,counter,Quầy hàng; phản công
+1211,counterpart,Bên tương ứng; đối tác
+1212,countless,Vô số; không đếm hế
+1213,country,Quốc gia; đất nước
+1214,countryside,Nông thôn
+1215,county,Hạt; quận
+1216,coup,Cuộc đảo chính
+1217,couple,Cặp đôi; một vài
+1218,courage,Lòng dũng cảm
+1219,course,Khóa học; tiến trình
+1220,court,Tòa án; sân đấu
+1221,courtesy,Sự lịch sự; nhã nhặn
+1222,cousin,Anh chị em họ
+1223,cover,Bao phủ; vỏ bọc
+1225,coverage,Mức độ bao phủ; đưa tin
+1226,covered,Được bao phủ
+1227,cow,Con bò
+1228,crack,Vết nứt; làm nứt
+1230,craft,Thủ công; tay nghề
+1232,crash,Vụ va chạm; sụp đổ
+1234,crawl,Bò; trườn
+1235,crazy,Điên rồ
+1236,cream,Kem
+1238,create,Tạo ra; sáng tạo
+1239,creation,Sự tạo ra; tác phẩm
+1240,creative,Sáng tạo
+1241,creativity,Sức sáng tạo
+1242,creator,Đấng tạo hóa; người tạo
+1243,creature,Sinh vật
+1244,credibility,Độ uy tín; đáng tin
+1245,credible,Đáng tin cậy
+1246,credit,Tín dụng; tín nhiệm
+1248,creep,Bò; trườn
+1249,crew,Đội ngũ; thủy thủ đoàn
+1250,crime,Tội phạm; tội lỗi
+1251,criminal,Tội phạm; thuộc tội phạm
+1253,crisis,Cuộc khủng hoảng
+1254,criterion,Tiêu chí
+1255,critic,Nhà bình luận; phê bình
+1256,critical,Phê bình; chỉ trích; quan trọng
+1257,critically,Một cách nghiêm trọng; chỉ trích
+1258,criticism,Lời chỉ trích
+1259,criticize,Chỉ trích; phê bình
+1260,critique,Bài phê bình
+1261,crop,Cây trồng; vụ mùa
+1262,cross,Băng qua; cây thánh giá
+1264,crowd,Đám đông
+1265,crowded,Đông đúc
+1266,crown,Vương miện
+1267,crucial,Quan trọng; then chốt
+1268,crude,Thô; chưa chế biến
+1269,cruel,Tàn nhẫn
+1270,cruise,Chuyến du thuyền
+1272,crush,Đè nát; ép
+1273,cry,Khóc; tiếng kêu
+1275,crystal,Pha lê; tinh thể
+1276,cue,Gợi ý; tín hiệu
+1277,cult,Sùng bái; giáo phái
+1279,cultivate,Trồng cọt; trau dồi
+1280,cultural,Thuộc văn hóa
+1281,culture,Văn hóa
+1282,cup,Cái cốc; chiếc cúp
+1283,cupboard,Tủ đựng chén bát
+1284,cure,Chữa trị; phương thuốc
+1286,curiosity,Sự tò mò
+1287,curious,Tò mò
+1288,curly,Xoăn
+1289,currency,Tiền tệ
+1290,current,Hiện tại; dòng chảy
+1292,currently,Hiện tại
+1293,curriculum,Chương trình học
+1294,curtain,Rèm cửa
