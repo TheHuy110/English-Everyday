@@ -876,5 +876,115 @@ OEL.grammar = [
     ]
   },
   
+  { title: "Câu hỏi đuôi nâng cao", grammarId: "101", level: "B2", category: "Cấu trúc câu",
+    rule: "Các trường hợp ngoại lệ trong câu hỏi đuôi (**tag questions**): Rủ rê với **Let's** dùng **shall we**; câu mệnh lệnh dùng **will you**; chủ ngữ là đại từ bất định chỉ người (**everyone**, **nobody**) dùng **they** ở vế đuôi. *Lỗi tinh tế hay gặp:* Khi câu có các từ mang nghĩa phủ định ẩn (**hardly**, **seldom**, **never**, **nobody**), vế đuôi bắt buộc phải ở dạng **khẳng định**.",
+    form: ["Let's + V-bare..., shall we?", "Imperative sentence..., will you?", "Everyone / Nobody + V..., ... + they?"],
+    examples: ["Let's organize a surprise birthday party for her, shall we?", "Open the door, will you?", "Nobody called while I was out, did they?"],
+    wrong: "Let's go out, will us?", right: "Let's go out, shall we?",
+    more: [
+      { type: "nuance", text: "Với mệnh đề **I am...**, câu hỏi đuôi phủ định chuẩn xác là **aren't I?** (*I am late, aren't I?*). Tuy nhiên, nếu ở thể phủ định **I am not...**, câu hỏi đuôi lại giữ nguyên dạng **am I?** (*I am not wrong, am I?*)." },
+      { type: "advanced", text: "Khi phát biểu ý kiến với **I think / I believe + clause**, câu hỏi đuôi được chia theo mệnh đề phụ đằng sau (*I think she will pass, won't she?*). Nhưng nếu chủ ngữ không phải là **I** (*She thinks...*), vế đuôi lại tính theo mệnh đề chính (*She thinks he is smart, doesn't she?*)." }
+    ]
+  },
+  { title: "Thức giả định nâng cao sau tính từ mạnh", grammarId: "102", level: "C1", category: "Cấu trúc câu",
+    rule: "Dùng thức giả định (**subjunctive mood**) trong mệnh đề **that** đi sau các tính từ chỉ tính cấp thiết hoặc tầm quan trọng tối cao (**vital**, **essential**, **imperative**, **crucial**, **mandatory**). Động từ ở mệnh đề sau bắt buộc luôn ở dạng **nguyên mẫu không chia** (**bare infinitive**), bất kể thì hay chủ ngữ.",
+    form: ["It is vital / essential / imperative / crucial + that + S + V-bare"],
+    examples: ["It is vital that every single applicant complete the security clearance form.", "It is crucial that he be present at the ceremony.", "It is imperative that the decision be made today."],
+    wrong: "It is vital that every applicant completes the form.", right: "It is vital that every applicant complete the form.",
+    more: [
+      { type: "nuance", text: "Dạng phủ định của thức giả định chỉ đơn giản là đặt **not** ngay trước động từ nguyên mẫu (**not complete**, **not be**), tuyệt đối không dùng trợ động từ *doesn't* hay *don't* (*It is essential that he not arrive late*)." },
+      { type: "advanced", text: "Trong Anh - Anh trang trọng, người nói có thể thêm **should** trước động từ nguyên mẫu (*It is vital that every applicant should complete the form*). Tuy nhiên, văn phong học thuật chuẩn mực quốc tế (Anh - Mỹ) ưu tiên dùng trực tiếp động từ nguyên mẫu câm." }
+    ]
+  },
+  { title: "Đảo ngữ nâng cao với Not until", grammarId: "103", level: "C1", category: "Đảo ngữ",
+    rule: "Khi cấu trúc **Not until** + mốc thời gian hoặc mệnh đề chỉ thời gian đứng ở đầu câu nhằm nhấn mạnh thời điểm xảy ra sự việc, hiện tượng đảo ngữ trợ động từ (**inversion**) bắt buộc phải thực hiện ở **mệnh đề chính** đằng sau.",
+    form: ["Not until + time / clause + trợ động từ / be + S + V-bare"],
+    examples: ["Not until the manager arrived were the employees allowed to leave.", "Not until he opened the box did he realize the truth.", "Not until 2025 will the new policy take effect."],
+    wrong: "Not until the manager arrived the employees were allowed to leave.", right: "Not until the manager arrived were the employees allowed to leave.",
+    more: [
+      { type: "nuance", text: "Bẫy ngữ pháp cực kỳ phổ biến: Mệnh đề ngay sau **Not until** giữ nguyên trật tự chủ-vị bình thường (**Not until the manager arrived**), chỉ đảo ngữ ở mệnh đề đứng đằng sau (**were the employees allowed...**)." },
+      { type: "extension", text: "Cấu trúc này tương đương với cấu trúc câu chẻ nhấn mạnh: **It was not until + time/clause + that + S + V** (*It was not until the manager arrived that the employees were allowed to leave*)." }
+    ]
+  },
+  { title: "Câu chẻ nhấn mạnh", grammarId: "104", level: "C1", category: "Cấu trúc câu",
+    rule: "Câu chẻ (**cleft sentences**) dùng để cô lập và xoáy sâu sự chú ý vào một thành phần cụ thể trong câu (chủ ngữ, tân ngữ, trạng ngữ). Cấu trúc chuẩn: **It is / was + thành phần nhấn mạnh + who / that + clause**.",
+    form: ["It is / was + focused element + who / that + clause"],
+    examples: ["It was Mary who solved the difficult quantum physics puzzle.", "It was in this quiet café that they first met.", "It is his arrogance that annoys everyone."],
+    wrong: "It was Mary whom solved the puzzle.", right: "It was Mary who solved the puzzle.",
+    more: [
+      { type: "nuance", text: "Dùng **who** hoặc **that** khi nhấn mạnh chủ ngữ chỉ người. Tuy nhiên, khi thành phần nhấn mạnh là trạng ngữ (chỉ thời gian, địa điểm, nguyên nhân), bắt buộc dùng **that**, tuyệt đối không dùng *where* hay *when* (*It was in Hanoi THAT we met*, không dùng *where*)." },
+      { type: "advanced", text: "Dạng câu chẻ mở rộng với **Wh-** (**Wh-cleft / Pseudo-cleft**): **What + S + V + is/was + focused element** (*What I need right now is a long vacation*). Dạng này giúp tạo nhịp điệu diễn thuyết cực kỳ ấn tượng trong bài viết C1/C2." }
+    ]
+  },
+  { title: "Đảo ngữ câu điều kiện ẩn If nâng cao", grammarId: "105", level: "C2", category: "Đảo ngữ",
+    rule: "Trái ngược với văn phong thông thường, trong văn phong học thuật C2, liên từ **if** hoàn toàn bị triệt tiêu bằng cách đảo trực tiếp các trợ động từ/động từ giả định lên đầu câu: **Should** (loại 1), **Were** (loại 2), **Had** (loại 3).",
+    form: ["Should + S + V-bare, clause", "Were + S + to-V / N / adj, clause", "Had + S + V3/ed, clause"],
+    examples: ["Should any further technical problems arise, please contact our support team immediately.", "Were I in your shoes, I would accept the offer.", "Had we known about the storm, we would not have set sail."],
+    wrong: "If should any problems arise, contact us.", right: "Should any further technical problems arise, please contact our support team immediately.",
+    more: [
+      { type: "nuance", text: "Với đảo ngữ loại 2 của động từ thường: Đưa **Were** lên đầu câu và chuyển động từ chính về dạng **to-V** (**Were the government to raise taxes, public protest would follow**)." },
+      { type: "advanced", text: "Đảo ngữ câu điều kiện phủ định: Khi phủ định câu đảo ngữ, từ **not** đứng ngay sau chủ ngữ, tuyệt đối không viết tắt trợ động từ lên đầu (**Had it not been for your help...**, không viết *Hadn't it been...*)." }
+    ]
+  },
+  { title: "Lược bỏ cấu trúc và từ thay thế", grammarId: "106", level: "C2", category: "Văn phong",
+    rule: "Hiện tượng lược bỏ (**ellipsis**) và từ thay thế (**substitution**) giúp loại bỏ sự trùng lặp từ ngữ, tăng tính súc tích, tinh tế cho câu. Sử dụng các đại từ/trạng từ thay thế như **so**, **not**, **do so**, hoặc lược bỏ mệnh đề trùng lặp đằng sau trợ động từ.",
+    form: ["S + verb + so / not", "S + auxiliary verb (ellipsis)", "S + do so (action substitution)"],
+    examples: ["Do you think the government will lower taxes next year? - I hope not.", "She can play the piano brilliantly, and so can her younger brother.", "He promised to clear the desk, and he did so."],
+    wrong: "I hope that they will not lower taxes.", right: "I hope not.",
+    more: [
+      { type: "nuance", text: "Phân biệt **I hope so** và **I guess so**: **I hope so** thể hiện mong muốn tích cực của người nói; **I guess so** thể hiện sự đồng ý miễn cưỡng hoặc thiếu chắc chắn." },
+      { type: "advanced", text: "Sử dụng cụm **do so** để thay thế cho một cụm động từ hành động đã được nhắc đến ở vế trước (*If you wish to apply, please do so before Friday*). **Do so** trang trọng hơn nhiều so với việc chỉ dùng *do it*." }
+    ]
+  },
+  { title: "Đảo ngữ vị trí học thuật", grammarId: "107", level: "C2", category: "Đảo ngữ",
+    rule: "Trong văn phong miêu tả trang trọng, văn học hoặc phân tích không gian, khi trạng từ/cụm giới từ chỉ vị trí (**locative inversion**) hoặc phương hướng đứng đầu câu, **động từ chính được đảo trực tiếp lên trước chủ ngữ** mà không mượn trợ động từ do/does/did.",
+    form: ["Prepositional phrase / Directional adv + verb (chia trực tiếp) + S"],
+    examples: ["On the top of the snow-capped mountain stood an ancient monastery.", "Down came the heavy rain after a long dry spell.", "Next to the main entrance lies the administrative building."],
+    wrong: "On the top of the mountain did stand a monastery.", right: "On the top of the snow-capped mountain stood an ancient monastery.",
+    more: [
+      { type: "nuance", text: "Điều kiện bắt buộc: Động từ chính phải là nội động từ chỉ trạng thái hoặc chuyển động (**stand**, **lie**, **sit**, **come**, **go**), và chủ ngữ phải là **danh từ**." },
+      { type: "advanced", text: "Lỗi bẫy C2: Nếu chủ ngữ là một **đại từ nhân xưng** (**he**, **she**, **it**, **they**), tuyệt đối KHÔNG thực hiện đảo ngữ (*Down it came*, không viết *Down came it*)." }
+    ]
+  },
+  { title: "Thức giả định hiện tại trong câu trang trọng", grammarId: "108", level: "C2", category: "Thức giả định",
+    rule: "Sử dụng trong văn bản pháp lý, nghị quyết, thông cáo chính thức hoặc văn phong ngoại giao. Đứng sau các động từ như **decree**, **mandate**, **stipulate**, **move**, **command** + **that** + S + động từ nguyên mẫu không chia (**present subjunctive**).",
+    form: ["S + decree / mandate / stipulate / move + that + S + V-bare"],
+    examples: ["The board of directors insisted that the chief executive officer resign immediately.", "The judge ordered that the suspect be remanded in custody.", "The law stipulates that every citizen pay taxes."],
+    wrong: "The board insisted that the CEO resigns.", right: "The board insisted that the CEO resign.",
+    more: [
+      { type: "nuance", text: "Dạng bị động của thức giả định hiện tại có cấu trúc là **be + V3/ed** (*It is required that the documents be submitted on time*), không chia *is/are/was/were*." },
+      { type: "advanced", text: "Thức giả định cố định trong các thành ngữ cổ trang trọng (**fixed subjunctive phrases**): **Be that as it may** (Dù có như thế đi nữa), **Far be it from me to...** (Tôi đâu dám...), **God forbid** (Trời phật phù hộ / Đừng để xảy ra), **Come what may** (Dù có chuyện gì xảy ra)." }
+    ]
+  },
+  { title: "Mệnh đề phân từ độc lập", grammarId: "109", level: "C2", category: "Rút gọn mệnh đề",
+    rule: "Mệnh đề phân từ độc lập (**absolute participial clauses**) là mệnh đề rút gọn có chủ ngữ riêng biệt (không trùng với chủ ngữ mệnh đề chính). Hai mệnh đề ngăn cách bằng dấu phẩy và nối với nhau bằng danh từ/đại từ + phân từ (**V-ing** cho chủ động, **V3/ed** cho bị động).",
+    form: ["Noun / Pronoun + V-ing / V3/ed / Adj, + main clause"],
+    examples: ["Weather permitting, the annual open-air festival will take place tomorrow afternoon.", "All tickets having been sold out, we couldn't enter the concert hall.", "The task finished, they walked out of the room happily."],
+    wrong: "Weather permits, the festival will take place.", right: "Weather permitting, the annual open-air festival will take place tomorrow afternoon.",
+    more: [
+      { type: "nuance", text: "Phân biệt với rút gọn mệnh đề thông thường: Rút gọn thông thường bắt buộc hai vế phải **chủ ngữ trùng nhau**. Mệnh đề độc lập dùng khi hai vế có **hai chủ ngữ hoàn toàn khác nhau** (*Weather* vs *The festival*)." },
+      { type: "advanced", text: "Cấu trúc độc lập đi với giới từ **With**: **With + N + V-ing / V3/ed / Prep phrase** diễn tả nguyên nhân hoặc hoàn cảnh kèm theo (*With night coming on, we decided to set up camp*)." }
+    ]
+  },
+  { title: "Đảo ngữ nhượng bộ với As và Though", grammarId: "110", level: "C2", category: "Mệnh đề",
+    rule: "Đưa tính từ, trạng từ, hoặc động từ phân từ lên đầu câu đi liền với **as** hoặc **though** nhằm tạo sự nhấn mạnh cực đại vào tính chất nhượng bộ (tương đương với *Although + S + be + adj*).",
+    form: ["Adj / Adv / Participle + as / though + S + be / verb, + main clause"],
+    examples: ["Exhausted as she was after the long journey, she managed to finish her report.", "Defeated though they were, the team never lost their fighting spirit.", "Much as I respect him, I cannot agree with his decision."],
+    wrong: "Although exhausted as she was, she finished her report.", right: "Exhausted as she was after the long journey, she managed to finish her report.",
+    more: [
+      { type: "nuance", text: "Khi đảo ngữ với danh từ đếm được số ít, mạo từ **a/an** phải bị loại bỏ tuyệt đối (*Child as he is, he speaks like an adult*, không dùng *A child as he is*)." },
+      { type: "advanced", text: "Biến thể nhượng bộ với trạng từ **Much**: **Much as + S + V** mang nghĩa 'Mặc dù rất...' (*Much as I would like to help, I have no time*). Cấu trúc này xuất hiện dày đặc trong bài thi Writing C1/C2." }
+    ]
+  },
+  { title: "Danh từ hóa trong tiếng Anh học thuật", grammarId: "111", level: "C2", category: "Văn phong",
+    rule: "Danh từ hóa (**nominalization**) là quá trình biến đổi động từ, tính từ hoặc cả mệnh đề thành các cụm danh từ trừu tượng. Đây là tiêu chuẩn cốt lõi trong văn phong học thuật C2 nhằm tăng độ trang trọng, tính khách quan và súc tích cho bài viết.",
+    form: ["Clause (S + V + O) -> Abstract Noun Phrase (The + N + of + N)"],
+    examples: ["Because the city expanded rapidly, it caused severe environmental issues. -> The rapid expansion of the city caused severe environmental issues.", "We analyzed the data carefully. -> A careful analysis of the data was conducted."],
+    wrong: "The city expanding rapidly caused issues.", right: "The rapid expansion of the city caused severe environmental issues.",
+    more: [
+      { type: "nuance", text: "Lợi ích của danh từ hóa: Loại bỏ bớt các đại từ xưng hô cá nhân (**I**, **we**, **you**), chuyển góc nhìn từ 'người thực hiện hành động' sang 'bản thân sự việc/nguyện lý' (*We discovered... -> The discovery of...*)." },
+      { type: "advanced", text: "Bẫy lạm dụng danh từ hóa (**zombie nouns**): Mặc dù danh từ hóa nâng tầm văn phong học thuật, việc lạm dụng quá nhiều cụm danh từ phức tạp liên tiếp có thể khiến câu văn trở nên nặng nề, trì trệ và khó đọc. Cần phối hợp hài hòa giữa danh từ hóa và động từ mạnh." }
+    ]
+  },
   
 ];
