@@ -985,6 +985,7 @@ OEL.grammar = [
       { type: "nuance", text: "Lợi ích của danh từ hóa: Loại bỏ bớt các đại từ xưng hô cá nhân (**I**, **we**, **you**), chuyển góc nhìn từ 'người thực hiện hành động' sang 'bản thân sự việc/nguyện lý' (*We discovered... -> The discovery of...*)." },
       { type: "advanced", text: "Bẫy lạm dụng danh từ hóa (**zombie nouns**): Mặc dù danh từ hóa nâng tầm văn phong học thuật, việc lạm dụng quá nhiều cụm danh từ phức tạp liên tiếp có thể khiến câu văn trở nên nặng nề, trì trệ và khó đọc. Cần phối hợp hài hòa giữa danh từ hóa và động từ mạnh." }
     ]
-  },
+  }
+  
   
 ];
