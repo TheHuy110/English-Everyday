@@ -17,5 +17,13 @@ OEL.resources = [
   { name: "Anki", url: "https://apps.ankiweb.net", type: "Từ vựng", description: "Thẻ ghi nhớ miễn phí với lặp lại ngắt quãng để ôn từ mới." },
   { name: "TED Talks", url: "https://www.ted.com/talks", type: "Nghe", description: "Bài nói có phụ đề và bản ghi tiếng Anh về hầu hết mọi chủ đề." },
   { name: "LibriVox", url: "https://librivox.org", type: "Nghe", description: "Sách nói miễn phí do tình nguyện viên đọc. Vừa nghe vừa đọc theo văn bản." },
-  { name: "Project Gutenberg", url: "https://www.gutenberg.org", type: "Đọc", description: "Sách điện tử miễn phí về văn học Anh kinh điển." }
+  { name: "Project Gutenberg", url: "https://www.gutenberg.org", type: "Đọc", description: "Sách điện tử miễn phí về văn học Anh kinh điển." },
+  { name: "Ms Hoa Giao Tiếp", url: "https://mshoagiaotiep.com", type: "Nghe", description: "Bằng tiếng Việt. Video tình huống giao tiếp hằng ngày song ngữ Việt - Anh, kèm tài liệu miễn phí." },
+  { name: "Cambridge Dictionary Anh - Việt", url: "https://dictionary.cambridge.org/vi/dictionary/english-vietnamese/", type: "Từ điển", description: "Bằng tiếng Việt. Tra từ tiếng Anh, xem nghĩa tiếng Việt cùng định nghĩa tiếng Anh, câu ví dụ và âm thanh." },
+  { name: "Oxford Learner’s Dictionaries", url: "https://www.oxfordlearnersdictionaries.com", type: "Từ điển", description: "Từ điển dành cho người học, có phiên âm, âm thanh Anh - Mỹ, câu ví dụ và các danh sách Oxford 3000, 5000." },
+  { name: "VnExpress International", url: "https://e.vnexpress.net", type: "Đọc", description: "Báo tiếng Anh của VnExpress về Việt Nam. Chủ đề quen thuộc nên dễ đoán nghĩa từ mới." },
+  { name: "Duolingo", url: "https://www.duolingo.com", type: "Từ vựng", description: "Bài học ngắn mỗi ngày cho người mới bắt đầu, học bằng tiếng Việt. Bản miễn phí có quảng cáo." },
+  { name: "ELSA Speak", url: "https://elsaspeak.com", type: "Phát âm", description: "Ứng dụng chấm phát âm từng âm bằng AI và chỉ ra chỗ bạn đọc sai. Bản miễn phí giới hạn, nhiều tính năng cần trả phí." },
+  { name: "TOEIC chính thức (IIG Việt Nam)", url: "https://iigvietnam.com", type: "Luyện thi", description: "Đơn vị tổ chức thi TOEIC chính thức tại Việt Nam. Xem cấu trúc đề thi, tài liệu giới thiệu và lịch thi." },
+  { name: "IELTS (IDP Việt Nam)", url: "https://ielts.idp.com/vietnam", type: "Luyện thi", description: "Thông tin chính thức về kỳ thi IELTS, cấu trúc đề, mẹo làm bài và tài liệu luyện tập." }
 ];

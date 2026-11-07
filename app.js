@@ -735,7 +735,7 @@
   }
   function viewQuizResult() {
     var n = quiz.qs.length, pct = n ? quiz.score / n : 0;
-    var hideAns = quiz.kind === 'placement' && !quiz.showAns;  /* placement: the wrong-answer list is always shown, correct answers only on request */
+    var hideAns = !quiz.showAns;  /* all test modes: wrong questions are always listed, correct answers only on request */
     var miss = quiz.missed.map(function (i) {
       var q = quiz.qs[i], g = q.gid ? GBYID[q.gid] : null, open = !!(quiz.open && quiz.open[i]);
       return '<div class="miss"><strong style="font-family:var(--font-display)">' + esc(q.q) + '</strong>' + admQInfo(q) + (hideAns ? '' : '<span>Đáp án: <mark>' + esc(q.o[q.a]) + '</mark></span><span class="muted">' + esc(q.why) + '</span>') +
@@ -768,7 +768,7 @@
     return '<div class="quiz"><p class="call">' + esc(quiz.title) + ' / ' + esc(quiz.lvLabel) + '</p>' + top + '<p class="lead">' + msg + '</p>' + extra +
       '<div class="row">' + nextBtn + retry + '<button class="btn ghost" type="button" data-action="quit">Tất cả bài kiểm tra</button></div>' +
       (miss ? '<div><div class="row" style="justify-content:space-between;margin-bottom:0.5rem"><h2>Các câu cần ôn lại</h2>' +
-        (quiz.kind === 'placement' ? '<button class="btn ghost small" type="button" data-action="q-show-ans" aria-pressed="' + !!quiz.showAns + '">' + (quiz.showAns ? 'Ẩn đáp án đúng' : 'Xem đáp án đúng') + '</button>' : '') + '</div>' + miss + '</div>'
+        '<button class="btn ghost small" type="button" data-action="q-show-ans" aria-pressed="' + !!quiz.showAns + '">' + (quiz.showAns ? 'Ẩn đáp án đúng' : 'Xem đáp án đúng') + '</button>' + '</div>' + miss + '</div>'
         : '<p><mark>Điểm tuyệt đối. Không có câu nào cần ôn lại.</mark></p>') + '</div>';
   }
 
