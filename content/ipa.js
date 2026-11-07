@@ -63,7 +63,7 @@ OEL.ipa = {
     "examples": [{"word": "pat", "ipa": "pæt"}, {"word": "pop", "ipa": "pɑp"}],
     "tip": "Hai môi mím chặt rồi bật hơi mạnh ra ngoài, dây thanh không rung.",
     "mistake": "Phát âm giống chữ 'p' cuối tiếng Việt (âm câm/không bật hơi), hoặc nhầm với /b/.",
-    "pairs": [{"a": "pack", "aIpa": "pæk", "b": "back", "bIpa": "bæk"}]
+    "pairs": [{"a": "pack", "aIpa": "pæk", "b": "back", "bIpa": "bæk"}, {"a": "palm", "aIpa": "pɑm", "b": "balm", "bIpa": "bɑm"}]
     },
     {
     "id": "b",
@@ -74,7 +74,7 @@ OEL.ipa = {
     "examples": [{"word": "bat", "ipa": "bæt"}, {"word": "boy", "ipa": "bɔɪ"}],
     "tip": "Hai môi mím chặt, bật hơi đồng thời rung dây thanh.",
     "mistake": "Đọc quá nhẹ hoặc nuốt âm khi đứng cuối từ (job nghe như 'chóp').",
-    "pairs": [{"a": "bin", "aIpa": "bɪn", "b": "pin", "bIpa": "pɪn"}]
+    "pairs": [{"a": "bin", "aIpa": "bɪn", "b": "pin", "bIpa": "pɪn"}, {"a": "best", "aIpa": "bɛst", "b": "pest", "bIpa": "pɛst"}]
     },
     {
     "id": "t",
@@ -140,7 +140,7 @@ OEL.ipa = {
     "examples": [{"word": "van", "ipa": "væn"}, {"word": "leave", "ipa": "liv"}],
     "tip": "Vị trí răng cắn môi dưới giống /f/, nhưng dây thanh rung mạnh.",
     "mistake": "Hay đọc lẫn lộn thành /b/ hoặc /f/ (ví dụ 'very' đọc thành 'mery' hoặc 'fery').",
-    "pairs": [{"a": "vest", "aIpa": "vɛst", "b": "best", "bIpa": "bɛst"}]
+    "pairs": [{"a": "vest", "aIpa": "vɛst", "b": "best", "bIpa": "bɛst"}, {"a": "of", "aIpa": "ʌv", "b": "off", "bIpa": "ɔf"}]
     },
     {
     "id": "th_voiceless",

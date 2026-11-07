@@ -38,9 +38,12 @@
 
   /* ---------- Làm sạch dữ liệu nội dung ---------- */
   function idOf(v) { return v === undefined || v === null ? '' : String(v).trim(); }
+  var MORE_TYPES = { extension: 'Mở rộng', advanced: 'Nâng cao', nuance: 'Sắc thái' };
   var GRAMMAR = list(OEL.grammar).map(function (g) {
     g = g || {};
-    return { t: str(g.title), lv: str(g.level).toUpperCase(), topic: str(g.topic) || str(g.category), gid: idOf(g.grammarId), rule: str(g.rule), form: str(g.form),
+    return { t: str(g.title), lv: str(g.level).toUpperCase(), topic: str(g.topic) || str(g.category), gid: idOf(g.grammarId), rule: str(g.rule),
+      form: (Array.isArray(g.form) ? g.form : [g.form]).map(str).filter(Boolean),
+      more: list(g.more).map(function (m) { m = m || {}; return { type: MORE_TYPES[str(m.type)] ? str(m.type) : 'extension', text: str(m.text) }; }).filter(function (m) { return m.text; }),
       ex: list(g.examples).map(String), no: str(g.wrong), yes: str(g.right) };
   }).filter(function (g) { var ok = g.t && g.lv && g.rule; if (!ok) warn('ngữ pháp', g); return ok; });
 
@@ -378,7 +381,7 @@
     }).join('');
     var shelf = [
       ['#grammar', 'Ngữ pháp', 'Giải thích dễ hiểu, ví dụ và một lỗi thường gặp cho mỗi quy tắc.', GRAMMAR.length + ' quy tắc'],
-      ['#vocab', 'Từ vựng', 'Thẻ từ vựng CEFR-J cấp A1 đến A2. Đánh dấu từ cần học và ôn theo lịch lặp lại.', VOCAB.length + ' từ'],
+      ['#vocab', 'Từ vựng', 'Danh sách từ Oxford theo cấp độ CEFR, có phiên âm và giọng Anh, Mỹ. Đánh dấu từ cần học và ôn theo lịch lặp lại.', VOCAB.length + ' từ'],
       ['#ipa', 'Phát âm', 'Bảng âm IPA tiếng Anh Mỹ: nghe âm, xem ví dụ, mẹo phát âm và các cặp âm dễ nhầm.', IPA.length + ' âm'],
       ['#tests', 'Bài kiểm tra', 'Các bài trắc nghiệm ngắn, có giải thích cho từng đáp án.', BANK.length + ' câu hỏi'],
       ['#resources', 'Tài nguyên', 'Các trang miễn phí để luyện nghe, đọc, viết và từ vựng.', RESOURCES.length + ' trang'],
@@ -433,7 +436,7 @@
       if (gLevel !== ALL && g.lv !== gLevel) return false;
       if (gTopic !== ALL && g.topic !== gTopic) return false;
       if (!q) return true;
-      return (g.t + ' ' + g.topic + ' ' + g.rule + ' ' + g.ex.join(' ') + ' ' + g.form).toLowerCase().indexOf(q) > -1;
+      return (g.t + ' ' + g.topic + ' ' + g.rule + ' ' + g.ex.join(' ') + ' ' + g.form.join(' ') + ' ' + g.more.map(function (m) { return m.text; }).join(' ')).toLowerCase().indexOf(q) > -1;
     });
     var listEl = document.getElementById('g-list'), count = document.getElementById('g-count');
     if (!listEl) return;
@@ -444,11 +447,17 @@
       return '<details class="rule"><summary><h3>' + esc(g.t) + '</h3><span class="tag lvtag">' + esc(g.lv) + '</span></summary>' + ruleBody(g) + '</details>';
     }).join('');
   }
+  /* Extensions, advanced uses and nuances: collapsed so beginners see only the core rule. */
+  function moreHtml(g) {
+    if (!g.more.length) return '';
+    return '<details class="more"><summary>Tìm hiểu thêm <span class="tag">' + g.more.length + '</span></summary><ul class="more-list">' +
+      g.more.map(function (m) { return '<li class="more-item t-' + m.type + '"><span class="mtag">' + esc(MORE_TYPES[m.type]) + '</span><p>' + md(m.text) + '</p></li>'; }).join('') + '</ul></details>';
+  }
   function ruleBody(g) {
-    return '<div class="body">' + (ADMIN ? '<p><span class="tag adm">ID ' + esc(g.gid || '—') + ' · ' + (g.gid ? (LINKS[g.gid] || 0) : 0) + ' câu hỏi</span></p>' : '') + (g.topic ? '<p><span class="tag">' + esc(g.topic) + '</span></p>' : '') + '<p>' + md(g.rule) + '</p>' + (g.form ? '<div class="form">' + esc(g.form) + '</div>' : '') +
+    return '<div class="body">' + (ADMIN ? '<p><span class="tag adm">ID ' + esc(g.gid || '—') + ' · ' + (g.gid ? (LINKS[g.gid] || 0) : 0) + ' câu hỏi</span></p>' : '') + (g.topic ? '<p><span class="tag">' + esc(g.topic) + '</span></p>' : '') + '<p>' + md(g.rule) + '</p>' + (g.form.length ? '<div class="form">' + g.form.map(function (f) { return '<div>' + esc(f) + '</div>'; }).join('') + '</div>' : '') +
       (g.ex.length ? '<ul>' + g.ex.map(function (e) { return '<li>' + esc(e) + '</li>'; }).join('') + '</ul>' : '') +
       (g.no && g.yes ? '<div class="pair"><div><b class="no-way">Sai</b><span class="no-way">' + esc(g.no) + '</span></div>' +
-      '<div><b class="yes-way">Đúng</b><span class="yes-way">' + esc(g.yes) + '</span></div></div>' : '') + '</div>';
+      '<div><b class="yes-way">Đúng</b><span class="yes-way">' + esc(g.yes) + '</span></div></div>' : '') + moreHtml(g) + '</div>';
   }
 
   /* ---------- Kiểm tra ---------- */
@@ -689,30 +698,48 @@
 
   /* ---------- Từ vựng ---------- */
   var INTERVALS = [1, 3, 7]; /* số ngày chờ trước lần ôn tiếp theo; sau lần nhớ thứ 4 từ được tính là đã thuộc */
-  var POS_VI = { n: 'danh từ', v: 'động từ', adj: 'tính từ', adv: 'trạng từ', prep: 'giới từ', conj: 'liên từ', pron: 'đại từ',
-    det: 'hạn định từ', num: 'số từ', interj: 'thán từ', modal: 'động từ khuyết thiếu', be: 'động từ', 'do': 'động từ', have: 'động từ', to: 'to + động từ' };
+  var POS_VI = { noun: 'danh từ', verb: 'động từ', adjective: 'tính từ', adverb: 'trạng từ', preposition: 'giới từ', conjunction: 'liên từ', pronoun: 'đại từ',
+    determiner: 'hạn định từ', number: 'số từ', exclamation: 'thán từ', 'modal verb': 'động từ khuyết thiếu', 'auxiliary verb': 'trợ động từ',
+    'linking verb': 'động từ nối', 'indefinite article': 'mạo từ không xác định', 'definite article': 'mạo từ xác định', 'infinitive marker': 'to + động từ' };
 
-  var VTOPICS = list(OEL.vocabTopics).map(String);
+  /* Danh sách từ Oxford: mỗi hàng [số thứ tự, từ, loại từ, cấp CEFR, phiên âm Mỹ, tệp âm thanh Anh, tệp âm thanh Mỹ]. Định nghĩa nằm riêng trong OEL.vocabDef (theo số thứ tự). */
+  var DEF_MISSING = '*_def';
+  var VDEF = OEL.vocabDef && typeof OEL.vocabDef === 'object' ? OEL.vocabDef : {};
   var VOCAB = [], VBY = Object.create(null), VLEVELS = [];
-  LEVELS.forEach(function (l) {
-    list(OEL.vocab && OEL.vocab[l.id]).forEach(function (r) {
-      if (!Array.isArray(r) || !str(r[0]) || !str(r[2])) { warn('từ vựng', r); return; }
-      var id = l.id + ':' + r[0] + '|' + r[1];
-      if (VBY[id]) { warn('từ vựng bị trùng', r); return; }
-      var tp = typeof r[3] === 'number' && r[3] >= 0 && r[3] < VTOPICS.length ? r[3] : -1;
-      var w = { id: id, w: String(r[0]), pos: String(r[1] || ''), vi: String(r[2]), tp: tp, lv: l.id };
-      w.r = Math.random(); VBY[id] = w; VOCAB.push(w);
-      if (VLEVELS.indexOf(l.id) < 0) VLEVELS.push(l.id);
-    });
+  list(OEL.vocab).forEach(function (r) {
+    var lv = Array.isArray(r) ? str(r[3]).toUpperCase() : '';
+    if (!Array.isArray(r) || !str(r[1]) || !LEVELS.some(function (l) { return l.id === lv; })) { warn('từ vựng', r); return; }
+    var id = String(r[1]) + '|' + String(r[2] || '');
+    if (VBY[id]) id += '|' + r[0];
+    if (VBY[id]) { warn('từ vựng bị trùng', r); return; }
+    var def = str(VDEF[r[0]]);
+    var w = { id: id, o: r[0], w: String(r[1]), pos: String(r[2] || ''), lv: lv, ph: str(r[4]), uk: str(r[5]), us: str(r[6]), vi: def || DEF_MISSING, tp: -1 };
+    w.r = Math.random(); VBY[id] = w; VOCAB.push(w);
   });
+  LEVELS.forEach(function (l) { if (VOCAB.some(function (w) { return w.lv === l.id; })) VLEVELS.push(l.id); });
+  function hasDef(w) { return !!w && !!w.vi && w.vi !== DEF_MISSING; }
+
+  /* Âm thanh nằm trong audio/uk_audio/ và audio/us_audio/. Thiếu tệp thì đọc bằng giọng của trình duyệt (nếu có). */
+  var audioEl = null;
+  function playFile(kind, file, word) {
+    var lang = kind === 'uk' ? 'en-GB' : 'en-US';
+    if (!file) { speak(word, lang); return; }
+    try {
+      if (audioEl) audioEl.pause();
+      var a = new window.Audio('audio/' + kind + '_audio/' + encodeURIComponent(file));
+      audioEl = a;
+      a.addEventListener('error', function () { speak(word, lang); });
+      var pr = a.play(); if (pr && pr.catch) pr.catch(function () {});
+    } catch (e) { speak(word, lang); }
+  }
 
   var CAN_SPEAK = (function () {
     try { return 'speechSynthesis' in window && typeof window.SpeechSynthesisUtterance === 'function'; } catch (e) { return false; }
   })();
-  function speak(text) {
+  function speak(text, lang) {
     try {
       var u = new window.SpeechSynthesisUtterance(String(text).split('/')[0]);
-      u.lang = 'en-US'; u.rate = 0.9;
+      u.lang = lang || 'en-US'; u.rate = 0.9;
       window.speechSynthesis.cancel(); window.speechSynthesis.speak(u);
     } catch (e) {}
   }
@@ -738,10 +765,10 @@
     });
     return out;
   }
-  var vstore = cleanStore(LS.get('oel.vocab', {}));
-  function saveV() { LS.set('oel.vocab', vstore); }
+  var vstore = cleanStore(LS.get('oel.vocab2', {}));
+  function saveV() { LS.set('oel.vocab2', vstore); }
 
-  var vSub = 'decks', vLevel = VLEVELS[0] || 'A1', vQuery = '', vTopic = -1, vLimit = 40, vMsg = '';
+  var vSub = 'decks', vLevel = VLEVELS[0] || 'A1', vQuery = '', vLimit = 40, vMsg = '';
   var vBrowse = null, vReview = null, mFilter = 'all', vExport = null, vPending = null;
 
   function addDays(s, n) { var d = parseDay(s); d.setDate(d.getDate() + n); return fmt(d); }
@@ -763,18 +790,25 @@
     var q = vQuery.trim().toLowerCase();
     return VOCAB.filter(function (w) {
       if (w.lv !== vLevel) return false;
-      if (vTopic > -1 && w.tp !== vTopic) return false;
       if (!q) return true;
-      return w.w.toLowerCase().indexOf(q) > -1 || w.vi.toLowerCase().indexOf(q) > -1;
+      return w.w.toLowerCase().indexOf(q) > -1 || (hasDef(w) && w.vi.toLowerCase().indexOf(q) > -1);
     });
   }
   function refocusKey(id) {
     var els = view.querySelectorAll('[data-key]');
     for (var i = 0; i < els.length; i++) if (els[i].getAttribute('data-key') === id) { els[i].focus(); return; }
   }
-  function speakBtn(w) {
-    return CAN_SPEAK ? '<button type="button" class="btn ghost small" data-action="speak" data-w="' + esc(w) + '" aria-label="Nghe phát âm ' + esc(w) + '">Nghe</button>' : '';
+  /* Nút nghe: Anh và Mỹ nếu có tệp âm thanh; từ riêng của người dùng thì đọc bằng giọng trình duyệt. */
+  function audioBtns(w, cls) {
+    cls = cls || 'btn ghost small';
+    if (w.uk || w.us) {
+      return [['uk', w.uk, 'Anh'], ['us', w.us, 'Mỹ']].map(function (k) {
+        return k[1] ? '<button type="button" class="' + cls + '" data-action="play" data-k="' + k[0] + '" data-f="' + esc(k[1]) + '" data-w="' + esc(w.w) + '" aria-label="Nghe giọng ' + k[2] + ': ' + esc(w.w) + '">' + k[0].toUpperCase() + '</button>' : '';
+      }).join('');
+    }
+    return CAN_SPEAK ? '<button type="button" class="' + cls + '" data-action="speak" data-w="' + esc(w.w) + '" aria-label="Nghe phát âm ' + esc(w.w) + '">Nghe</button>' : '';
   }
+  function speakBtn(w) { return audioBtns(w); }
   function posTag(w) { return w.pos ? '<span class="tag">' + esc(POS_VI[w.pos] || w.pos) + '</span> ' : ''; }
 
   /* --- Phiên duyệt thẻ: chọn từ nào cần học --- */
@@ -789,9 +823,11 @@
     var ids = dueList();
     if (!ids.length) return;
     var q = ids.slice(0, 20);
-    vReview = { queue: q, i: 0, shown: false, right: 0, wrong: 0, left: ids.length - q.length, done: false };
+    vReview = { queue: q, i: 0, shown: false, right: 0, wrong: 0, left: ids.length - q.length, done: false, picked: null, choice: null };
+    prepReview();
   }
-  function answerReview(ok) {
+  /* Chấm điểm một lần trả lời (cập nhật lịch ôn) nhưng chưa chuyển sang thẻ kế tiếp. */
+  function gradeReview(ok) {
     var id = vReview.queue[vReview.i], e = vstore[id];
     if (e) {
       if (ok) {
@@ -803,13 +839,42 @@
       }
       saveV();
     }
-    vReview.i++; vReview.shown = false;
-    if (vReview.i >= vReview.queue.length) vReview.done = true;
   }
+  function nextReview() {
+    vReview.i++;
+    if (vReview.i >= vReview.queue.length) vReview.done = true; else prepReview();
+  }
+  function answerReview(ok) { gradeReview(ok); nextReview(); }  /* cách tự đánh giá, chỉ dùng khi từ chưa có nghĩa */
 
+  /* Câu trắc nghiệm 4 lựa chọn: nghĩa đúng + 3 nghĩa gây nhiễu (ưu tiên cùng loại từ và cùng cấp độ, không trùng nghĩa). */
+  var DEF_POOL = null;
+  function buildChoices(id) {
+    var w = entryWord(id);
+    if (!hasDef(w)) return null;
+    if (!DEF_POOL) DEF_POOL = VOCAB.filter(hasDef);
+    var norm = function (t) { return t.trim().toLowerCase(); }, seen = {}, tiers = [[], [], []], texts = [];
+    seen[norm(w.vi)] = 1;
+    shuffle(DEF_POOL).forEach(function (x) {
+      if (x.id === w.id || x.w === w.w) return;
+      tiers[x.pos === w.pos && x.lv === w.lv ? 0 : x.pos === w.pos ? 1 : 2].push(x);
+    });
+    tiers[0].concat(tiers[1], tiers[2]).some(function (x) {
+      var k = norm(x.vi);
+      if (!seen[k]) { seen[k] = 1; texts.push(x.vi); }
+      return texts.length >= 3;
+    });
+    if (texts.length < 3) return null;
+    var opts = shuffle([w.vi].concat(texts));
+    return { opts: opts, a: opts.indexOf(w.vi) };
+  }
+  function prepReview() {
+    vReview.picked = null; vReview.shown = false;
+    vReview.choice = buildChoices(vReview.queue[vReview.i]);
+  }
   function cardHtml(w, shown) {
-    return '<div class="vcard"><span class="big">' + esc(w.w) + '</span><div class="row" style="justify-content:center">' + posTag(w) + speakBtn(w.w) + '</div>' +
-      (shown ? '<p class="mean">' + esc(w.vi) + '</p>' : '<button class="btn ghost" type="button" data-action="card-show">Hiện nghĩa</button>') + '</div>';
+    return '<div class="vcard"><span class="big">' + esc(w.w) + '</span>' + (w.ph ? '<span class="vph">' + esc(w.ph) + '</span>' : '') +
+      '<div class="row" style="justify-content:center">' + posTag(w) + (w.lv && !w.custom ? '<span class="tag">' + esc(w.lv) + '</span> ' : '') + speakBtn(w) + '</div>' +
+      (shown === 'quiz' ? '' : shown ? '<p class="mean">' + esc(w.vi) + '</p>' : '<button class="btn ghost" type="button" data-action="card-show">Hiện nghĩa</button>') + '</div>';
   }
   function sessionTop(title, i, total, exitAction) {
     return '<div class="row" style="justify-content:space-between"><p class="call" style="margin:0">' + esc(title) + '</p><button class="btn ghost small" type="button" data-action="' + exitAction + '">Thoát</button></div>' +
@@ -828,17 +893,31 @@
       '<div class="row"><button class="btn" type="button" data-action="v-browse">Duyệt lại từ chưa đánh dấu</button><button class="btn ghost" type="button" data-action="m-open">Từ của tôi</button><button class="btn ghost" type="button" data-action="b-exit">Xong</button></div></div>';
   }
   function viewReviewCard() {
-    var w = entryWord(vReview.queue[vReview.i]);
-    return '<div class="quiz">' + sessionTop('Ôn tập', vReview.i, vReview.queue.length, 'r-exit') + cardHtml(w, vReview.shown) +
-      (vReview.shown ? '<div class="row"><button class="btn" type="button" data-action="r-yes">Đã nhớ</button><button class="btn ghost" type="button" data-action="r-no">Chưa nhớ</button></div>' +
-        '<p class="muted" style="font-size:0.9rem">Từ chưa nhớ sẽ xuất hiện lại ở cuối buổi ôn này.</p>' :
-        '<p class="muted" style="font-size:0.9rem">Hãy thử nhớ nghĩa trước, rồi bấm “Hiện nghĩa” để kiểm tra.</p>') + '</div>';
+    var w = entryWord(vReview.queue[vReview.i]), ch = vReview.choice, top = sessionTop('Ôn tập', vReview.i, vReview.queue.length, 'r-exit');
+    if (!ch) {  /* chưa đủ nghĩa để ra câu trắc nghiệm: dùng cách tự đánh giá */
+      return '<div class="quiz">' + top + cardHtml(w, vReview.shown) +
+        (vReview.shown ? '<div class="row"><button class="btn" type="button" data-action="r-yes">Đã nhớ</button><button class="btn ghost" type="button" data-action="r-no">Chưa nhớ</button></div>' +
+          '<p class="muted" style="font-size:0.9rem">Từ chưa nhớ sẽ xuất hiện lại ở cuối buổi ôn này.</p>' :
+          '<p class="muted" style="font-size:0.9rem">Từ này chưa có nghĩa để ra câu trắc nghiệm. Hãy thử nhớ nghĩa trước, rồi bấm “Hiện nghĩa” để kiểm tra.</p>') + '</div>';
+    }
+    var p = vReview.picked, answered = p !== null, letters = ['A', 'B', 'C', 'D'];
+    var opts = ch.opts.map(function (o, i) {
+      var cls = 'opt';
+      if (answered) { if (i === ch.a) cls += ' right'; else if (i === p) cls += ' wrong'; }
+      return '<button type="button" class="' + cls + '" data-action="r-pick" data-i="' + i + '"' + (answered ? ' disabled' : '') + '><i>' + letters[i] + '</i><span>' + esc(o) + '</span></button>';
+    }).join('');
+    var fb = answered
+      ? '<div class="feedback" aria-live="polite"><strong>' + (p === ch.a ? 'Chính xác.' : 'Chưa đúng.') + '</strong><span>' + esc(w.w) + ': ' + esc(ch.opts[ch.a]) + '</span>' +
+        (p === ch.a ? '' : '<span class="muted">Từ này sẽ xuất hiện lại ở cuối buổi ôn.</span>') +
+        '<div style="margin-top:0.5rem"><button class="btn" type="button" data-action="r-next">Tiếp</button></div></div>'
+      : '<div><button class="btn ghost" type="button" data-action="r-pick" data-i="-1">Mình chưa biết</button></div>';
+    return '<div class="quiz">' + top + cardHtml(w, 'quiz') + '<p class="muted" style="margin:0">Chọn nghĩa đúng của từ này.</p><div class="opts">' + opts + '</div>' + fb + '</div>';
   }
   function viewReviewDone() {
     var left = dueList().length;
     return '<div class="quiz"><p class="call">Ôn tập</p><h1 style="font-size:2rem">Xong buổi ôn</h1>' +
-      '<div class="stats"><div class="stat"><b>' + vReview.right + '</b><span>lần nhớ</span></div><div class="stat"><b>' + vReview.wrong + '</b><span>lần chưa nhớ</span></div><div class="stat"><b>' + left + '</b><span>từ còn cần ôn</span></div></div>' +
-      '<p class="muted">Từ bạn nhớ sẽ quay lại sau 1, 3 rồi 7 ngày. Sau lần nhớ thứ tư, từ được tính là đã thuộc.</p>' +
+      '<div class="stats"><div class="stat"><b>' + vReview.right + '</b><span>lần đúng</span></div><div class="stat"><b>' + vReview.wrong + '</b><span>lần sai</span></div><div class="stat"><b>' + left + '</b><span>từ còn cần ôn</span></div></div>' +
+      '<p class="muted">Từ bạn trả lời đúng sẽ quay lại sau 1, 3 rồi 7 ngày. Sau lần đúng thứ tư, từ được tính là đã thuộc.</p>' +
       '<div class="row">' + (left ? '<button class="btn" type="button" data-action="r-start">Ôn tiếp</button>' : '') + '<button class="btn ghost" type="button" data-action="m-open">Từ của tôi</button><button class="btn ghost" type="button" data-action="r-exit">Xong</button></div></div>';
   }
 
@@ -847,37 +926,32 @@
     var e = vstore[w.id], cls = 'vsq' + (e ? (e.k ? ' known' : ' learning') : ''), key = 'data-key="' + esc(w.id) + '" data-id="' + esc(w.id) + '"';
     var status = e ? (e.k ? 'Đã biết' : 'Đang học') : 'Bấm để học';
     return '<div class="' + cls + '"><button type="button" class="vsq-main" data-action="v-toggle" ' + key + ' aria-pressed="' + (e ? 'true' : 'false') + '" title="' + esc(w.vi) + '">' +
-      '<span class="vw">' + esc(w.w) + '</span>' + (w.pos ? '<span class="vpos">' + esc(POS_VI[w.pos] || w.pos) + '</span>' : '') +
+      '<span class="vw">' + esc(w.w) + '</span>' + (w.ph ? '<span class="vph">' + esc(w.ph) + '</span>' : '') + (w.pos ? '<span class="vpos">' + esc(POS_VI[w.pos] || w.pos) + '</span>' : '') +
       '<span class="vm">' + esc(w.vi) + '</span><span class="vst">' + status + '</span></button>' +
-      (CAN_SPEAK ? '<button type="button" class="vsq-say" data-action="speak" data-w="' + esc(w.w) + '" aria-label="Nghe phát âm ' + esc(w.w) + '">Nghe</button>' : '') + '</div>';
+      '<span class="vsq-say-row">' + audioBtns(w, 'vsq-say') + '</span></div>';
   }
   function renderVList() {
     var listEl = document.getElementById('v-list'), cnt = document.getElementById('v-count');
     if (!listEl) return;
-    var items = vFiltered().sort(function (x, y) { return x.r - y.r; }), shown = items.slice(0, vLimit);
+    var items = vFiltered().sort(vQuery.trim() ? function (x, y) { return x.o - y.o; } : function (x, y) { return x.r - y.r; }), shown = items.slice(0, vLimit);
     cnt.textContent = items.length + ' từ' + (items.length > shown.length ? ', đang hiện ' + shown.length : '');
-    if (!items.length) { listEl.innerHTML = '<div class="empty">Không có từ nào phù hợp. Hãy xóa từ khóa hoặc chọn chủ đề khác.</div>'; return; }
+    if (!items.length) { listEl.innerHTML = '<div class="empty">Không có từ nào phù hợp. Hãy thử từ khóa khác.</div>'; return; }
     listEl.innerHTML = '<div class="vgrid">' + shown.map(vsq).join('') + '</div>' +
       (items.length > shown.length ? '<div style="margin-top:1rem"><button class="btn ghost" type="button" data-action="v-more">Xem thêm 40 từ</button></div>' : '');
   }
   function viewDecks() {
     if (!VLEVELS.length) return '<div class="empty">Chưa có bộ từ nào.</div>';
     var lvChips = VLEVELS.map(function (l) { return chipBtn('v-level', l, l + ' (' + levelWords(l).length + ' từ)', vLevel === l); }).join('');
-    var ws = levelWords(vLevel), learning = 0, known = 0, topicCount = {};
+    var ws = levelWords(vLevel), learning = 0, known = 0;
     ws.forEach(function (w) {
       var e = vstore[w.id];
       if (e) { if (e.k) known++; else learning++; }
-      if (w.tp > -1) topicCount[w.tp] = (topicCount[w.tp] || 0) + 1;
     });
-    var tpChips = chipBtn('v-topic', '-1', 'Tất cả', vTopic === -1) + VTOPICS.map(function (t, i) {
-      return topicCount[i] ? chipBtn('v-topic', String(i), t + ' (' + topicCount[i] + ')', vTopic === i) : '';
-    }).join('');
     return '<div class="stack" style="gap:1.5rem">' +
       '<div class="chips" role="group" aria-label="Chọn bộ từ">' + lvChips + '</div>' +
       '<div class="panel"><div class="stats"><div class="stat"><b>' + learning + '</b><span>đang học</span></div><div class="stat"><b>' + known + '</b><span>đã biết</span></div><div class="stat"><b>' + (ws.length - learning - known) + '</b><span>chưa đánh dấu</span></div></div>' +
       '<div class="row" style="margin-top:1rem"><button class="btn" type="button" data-action="v-browse">Duyệt thẻ</button><button class="btn ghost" type="button" data-action="v-batch">Thêm nhanh 20 từ mới</button></div>' +
-      '<p class="muted" style="margin-top:0.6rem;font-size:0.95rem">Duyệt thẻ cho bạn xem từng từ trên một thẻ lớn rồi chọn “Đã biết”, “Cần học” hoặc “Bỏ qua”. Bên dưới, bấm vào một thẻ vuông để đánh dấu hoặc bỏ đánh dấu từ cần học. Thêm nhanh đưa 20 từ ngẫu nhiên vào danh sách học. Cả hai chỉ lấy từ chưa đánh dấu, theo bộ lọc bên dưới.</p></div>' +
-      '<div><p class="lab" style="margin-bottom:0.4rem">Chủ đề</p><div class="chips" role="group" aria-label="Lọc theo chủ đề">' + tpChips + '</div></div>' +
+      '<p class="muted" style="margin-top:0.6rem;font-size:0.95rem">Duyệt thẻ cho bạn xem từng từ trên một thẻ lớn rồi chọn “Đã biết”, “Cần học” hoặc “Bỏ qua”. Bên dưới, bấm vào một thẻ vuông để đánh dấu hoặc bỏ đánh dấu từ cần học. Thêm nhanh đưa 20 từ ngẫu nhiên vào danh sách học. Cả hai chỉ lấy từ chưa đánh dấu trong cấp độ đang chọn.</p></div>' +
       '<div><label for="v-search">Tìm từ hoặc nghĩa</label><input id="v-search" type="search" placeholder="Ví dụ: apple, quả táo" value="' + esc(vQuery) + '" autocomplete="off"></div>' +
       '<p class="muted" id="v-count" aria-live="polite"></p><div id="v-list"></div></div>';
   }
@@ -890,7 +964,7 @@
         (next ? 'Lần ôn kế tiếp: ngày ' + esc(niceShort(next)) + '.' : 'Tất cả từ trong danh sách đã thuộc. Hãy thêm từ mới ở “Bộ từ”.') + '</p></div>';
     }
     return '<div class="panel stack" style="gap:1rem"><div><p class="call">Ôn hôm nay</p><h2>' + due + ' từ cần ôn</h2></div>' +
-      '<p class="muted">Mỗi buổi ôn tối đa 20 từ. Bạn nhớ từ thì từ quay lại sau 1, 3 rồi 7 ngày. Bạn chưa nhớ thì từ trở lại từ đầu và xuất hiện lại ở cuối buổi.</p>' +
+      '<p class="muted">Mỗi buổi ôn tối đa 20 từ, mỗi từ là một câu trắc nghiệm 4 lựa chọn. Trả lời đúng thì từ quay lại sau 1, 3 rồi 7 ngày. Trả lời sai thì từ trở lại từ đầu và xuất hiện lại ở cuối buổi.</p>' +
       '<div class="row"><button class="btn" type="button" data-action="r-start">Bắt đầu ôn</button></div></div>';
   }
   function statusText(e) { return e.k ? 'Đã thuộc' : (e.d <= today() ? 'Cần ôn hôm nay' : 'Ôn lại ngày ' + niceShort(e.d)); }
@@ -900,7 +974,7 @@
     var acts = (e.k ? '<button type="button" class="btn ghost small" data-action="m-relearn" ' + key + '>Học lại</button>' : '') +
       '<button type="button" class="btn ghost small" data-action="m-remove" ' + key + '>' + (w.custom ? 'Xóa' : 'Bỏ khỏi danh sách') + '</button>';
     return '<li class="vrow"><div><span class="vw">' + esc(w.w) + '</span> ' + posTag(w) + (w.custom ? '<span class="tag">Từ riêng</span> ' : '') +
-      '<span class="tag' + (due ? ' on' : '') + '">' + esc(statusText(e)) + '</span></div><div class="vact">' + speakBtn(w.w) + acts + '</div><div class="vvi">' + esc(w.vi) + '</div></li>';
+      '<span class="tag' + (due ? ' on' : '') + '">' + esc(statusText(e)) + '</span></div><div class="vact">' + speakBtn(w) + acts + '</div><div class="vvi">' + esc(w.vi) + '</div></li>';
   }
   function viewMine() {
     var ids = storeIds(), t = today(), counts = { all: ids.length, due: 0, learning: 0, known: 0 };
@@ -937,10 +1011,10 @@
       return '<button type="button" class="subtab" data-action="v-sub" data-v="' + s[0] + '" aria-pressed="' + (vSub === s[0]) + '">' + esc(s[1]) + '</button>';
     }).join('');
     var body = vSub === 'review' ? viewReviewHome(due) : vSub === 'mine' ? viewMine() : viewDecks();
-    return head('Từ vựng', 'Học từ theo danh sách chuẩn CEFR-J. Đánh dấu từ cần học rồi ôn lại đúng lúc: sau 1 ngày, 3 ngày, 7 ngày.') +
+    return head('Từ vựng', 'Học từ theo danh sách Oxford. Đánh dấu từ cần học rồi ôn lại đúng lúc: sau 1 ngày, 3 ngày, 7 ngày.') +
       '<div class="subtabs" role="group" aria-label="Các phần của mục từ vựng">' + subs + '</div>' +
       (vMsg ? '<p class="panel" role="status" style="margin-bottom:1rem">' + esc(vMsg) + '</p>' : '') + body +
-      '<p class="muted" style="margin-top:2rem;font-size:0.9rem">Danh sách từ theo CEFR-J Vocabulary Profile v1.5 (Tono Laboratory, Tokyo University of Foreign Studies). Nghĩa tiếng Việt do Tiếng Anh mỗi ngày biên soạn và đang được rà soát.</p>';
+      '<p class="muted" style="margin-top:2rem;font-size:0.9rem">Danh sách từ, phiên âm và âm thanh theo Oxford Learner’s Dictionaries. Phần giải nghĩa do Tiếng Anh mỗi ngày biên soạn và đang được bổ sung.</p>';
   }
   function addCustomWord() {
     var w = document.getElementById('v-word').value.trim(), vi = document.getElementById('v-vi').value.trim();
@@ -1219,9 +1293,7 @@
     } else if (a === 'v-sub') {
       vSub = t.getAttribute('data-v'); render(); refocus(a, vSub);
     } else if (a === 'v-level') {
-      vLevel = t.getAttribute('data-v'); vTopic = -1; vLimit = 40; render(); refocus(a, vLevel);
-    } else if (a === 'v-topic') {
-      vTopic = parseInt(t.getAttribute('data-v'), 10); vLimit = 40; render(); refocus(a, String(vTopic));
+      vLevel = t.getAttribute('data-v'); vLimit = 40; render(); refocus(a, vLevel);
     } else if (a === 'v-more') {
       vLimit += 40; renderVList();
     } else if (a === 'v-toggle') {
@@ -1236,6 +1308,8 @@
       render();
     } else if (a === 'v-browse') {
       vBrowse = null; startBrowse(); render(); window.scrollTo(0, 0);
+    } else if (a === 'play') {
+      playFile(t.getAttribute('data-k'), t.getAttribute('data-f'), t.getAttribute('data-w'));
     } else if (a === 'speak') {
       speak(t.getAttribute('data-w'));
     } else if (a === 'card-show') {
@@ -1260,6 +1334,14 @@
     } else if (a === 'r-yes' || a === 'r-no') {
       if (!vReview || vReview.done) return;
       answerReview(a === 'r-yes'); render();
+    } else if (a === 'r-pick') {
+      if (!vReview || vReview.done || !vReview.choice || vReview.picked !== null) return;
+      var pi = parseInt(t.getAttribute('data-i'), 10);
+      vReview.picked = pi; gradeReview(pi === vReview.choice.a); render();
+      var nb = view.querySelector('[data-action="r-next"]'); if (nb) nb.focus();
+    } else if (a === 'r-next') {
+      if (!vReview || vReview.done || vReview.picked === null) return;
+      nextReview(); render(); window.scrollTo(0, 0);
     } else if (a === 'r-exit') {
       vReview = null; render();
     } else if (a === 'm-filter') {

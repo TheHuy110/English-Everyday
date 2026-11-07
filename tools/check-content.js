@@ -3,7 +3,7 @@
 const fs = require('fs'), path = require('path'), vm = require('vm');
 const dir = path.join(__dirname, '..', 'content');
 const sandbox = { console }; sandbox.window = sandbox; vm.createContext(sandbox);
-for (const f of ['grammar','questions','tests','resources','tips','wordpairs','vocab','progress']) {
+for (const f of ['grammar','questions','tests','resources','tips','wordpairs','vocab','vocab-def','progress']) {
   try { vm.runInContext(fs.readFileSync(path.join(dir, f + '.js'), 'utf8'), sandbox, { filename: f + '.js' }); }
   catch (e) { console.error('ERROR: content/' + f + '.js cannot be loaded: ' + e.message); process.exit(1); }
 }
@@ -16,7 +16,10 @@ const arr = (n) => Array.isArray(OEL[n]) ? OEL[n] : (err('OEL.' + n + ' is missi
 const str = v => typeof v === 'string' && v.trim();
 
 arr('grammar').forEach((g, i) => { const t = 'grammar #' + (i+1) + ' (' + (g.title||'?') + ')';
-  ['title','category','rule','form'].forEach(k => str(g[k]) || err(t + ': missing ' + k));
+  ['title','category','rule'].forEach(k => str(g[k]) || err(t + ': missing ' + k));
+  Array.isArray(g.form) && g.form.length && g.form.every(str) || err(t + ': form must be a list of non-empty lines');
+  (g.more === undefined || Array.isArray(g.more)) || err(t + ': more must be a list');
+  (g.more || []).forEach((m, j) => { ['extension','advanced','nuance'].includes(m && m.type) || err(t + ': more #' + (j+1) + ' type must be extension, advanced or nuance'); str(m && m.text) || err(t + ': more #' + (j+1) + ' has no text'); });
   LV.includes(g.level) || err(t + ': level must be one of ' + LV.join(', '));
   Array.isArray(g.examples) && g.examples.length || warn(t + ': no examples'); });
 
@@ -49,17 +52,24 @@ arr('tips').forEach((g, i) => { str(g.group) || err('tips group #' + (i+1) + ': 
 
 arr('wordPairs').forEach((p, i) => ['pair','rule','example'].forEach(k => str(p[k]) || err('wordPairs #' + (i+1) + ': missing ' + k)));
 
-const POS = ['n','v','adj','adv','prep','conj','pron','det','num','interj','modal','be','do','have','to'];
-const topics = OEL.vocabTopics || []; topics.length || err('OEL.vocabTopics missing');
-let total = 0;
-Object.keys(OEL.vocab || {}).forEach(lv => { const seen = new Set();
-  LV.includes(lv) || err('vocab level "' + lv + '" is not a CEFR level');
-  (OEL.vocab[lv] || []).forEach((r, i) => { total++; const t = 'vocab ' + lv + ' #' + (i+1) + ' (' + (r && r[0]) + ')';
-    if (!Array.isArray(r)) return err(t + ': must be [word, pos, meaning, topic]');
-    str(r[0]) || err(t + ': missing word'); str(r[2]) || err(t + ': missing meaning');
-    POS.includes(r[1]) || warn(t + ': unknown part of speech "' + r[1] + '"');
-    if (r[3] != null && !(Number.isInteger(r[3]) && r[3] >= 0 && r[3] < topics.length)) err(t + ': topic index out of range');
-    const k = r[0] + '|' + r[1]; seen.has(k) ? err(t + ': duplicate word+pos in ' + lv) : seen.add(k); }); });
+const fs2 = require('fs');
+const rows = arr('vocab'), defs = OEL.vocabDef || {}, seenId = new Set(), seenKey = new Set();
+const AUDIO = ['uk_audio', 'us_audio'];
+let noDef = 0, noAudio = 0;
+rows.forEach((r, i) => { const t = 'vocab #' + (i+1) + ' (' + (r && r[1]) + ')';
+  if (!Array.isArray(r) || r.length < 7) return err(t + ': must be [order, word, type, cefr, phonetic, uk, us]');
+  Number.isInteger(r[0]) ? (seenId.has(r[0]) ? err(t + ': duplicate order number ' + r[0]) : seenId.add(r[0])) : err(t + ': order must be a whole number');
+  str(r[1]) || err(t + ': missing word');
+  ['A1','A2','B1','B2','C1'].includes(r[3]) || warn(t + ': unexpected cefr "' + r[3] + '"');
+  str(r[2]) || warn(t + ': missing type');
+  const k = r[1] + '|' + r[2]; seenKey.has(k) && warn(t + ': same word and type appears twice'); seenKey.add(k);
+  str(defs[r[0]]) || noDef++;
+  [[5, 0], [6, 1]].forEach(([c, d]) => { if (!str(r[c])) noAudio++;
+    else { const f = path.join(__dirname, '..', 'audio', AUDIO[d], r[c]); if (fs2.existsSync(path.join(__dirname, '..', 'audio', AUDIO[d])) && fs2.readdirSync(path.join(__dirname, '..', 'audio', AUDIO[d])).length > 1 && !fs2.existsSync(f)) warn(t + ': audio file missing: audio/' + AUDIO[d] + '/' + r[c]); } }); });
+Object.keys(defs).forEach(k => seenId.has(Number(k)) || warn('definition #' + k + ' has no matching word in vocab.js'));
+noDef && warn(noDef + ' of ' + rows.length + ' words have no definition yet (shown as *_def; quiz needs definitions)');
+noAudio && warn(noAudio + ' audio fields are empty (browser voice is used instead)');
+const total = rows.length;
 
 const P = OEL.progress;
 if (!P) err('OEL.progress is missing');
