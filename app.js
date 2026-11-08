@@ -405,7 +405,7 @@
     }
     var lv = Object.keys(LEVEL_ELO).map(function (l) { return '<span class="tag">' + l + ': ' + LEVEL_ELO[l] + '</span>'; }).join(' ');
     return '<section class="panel stack" style="gap:0.8rem"><h2>Elo (thử nghiệm)</h2>' +
-      '<p>Điểm hiện tại: <strong>' + Math.round(ELO.r) + '</strong> · cấp theo Elo: <strong>' + esc(eloBand(ELO.r, bankLevels())) + '</strong> · câu đã tính: <strong>' + ELO.n + '</strong> (đúng ' + ok + '/' + ELO.h.length + ' trong ' + ELO.h.length + ' câu gần nhất) · K = ' + Math.round(eloK()) + '</p>' +
+      '<p>Điểm hiện tại: <strong>' + Math.round(ELO.r) + '</strong> · cấp theo Elo: <strong>' + esc(eloBand(ELO.r, bankLevels())) + '</strong> · câu đã tính: <strong>' + ELO.n + '</strong> · đã qua bài đầu tiên: <strong>' + (ELO.s ? 'rồi' : 'chưa (bài sau dùng cách cũ rồi gieo Elo)') + '</strong> (đúng ' + ok + '/' + ELO.h.length + ' trong ' + ELO.h.length + ' câu gần nhất) · K = ' + Math.round(eloK()) + '</p>' +
       '<p class="muted">Độ khó mỗi cấp: ' + lv + '. Điểm bắt đầu ' + ECFG.start + '. Chỉ admin thấy điểm này. Mọi câu trả lời trong mọi bài đều được tính.</p>' +
       (pts ? '<svg viewBox="0 0 300 60" width="100%" height="60" role="img" aria-label="Biểu đồ Elo ' + h.length + ' câu gần nhất" preserveAspectRatio="none" style="max-width:30rem"><polyline fill="none" stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke" points="' + pts + '"/></svg>' : '') +
       '<p>Cách xếp cấp đang dùng: <strong>' + (eloMode === 'elo' ? 'Elo' : 'cách cũ (cấp có tỉ lệ đúng cao nhất)') + '</strong></p>' +
@@ -725,7 +725,7 @@
     if (!lvs.length) return;
     var mid = lvs.indexOf('B1');
     quiz = newQuiz({ kind: 'placement', title: 'Tự kiểm tra trình độ', lvLabel: n + ' câu', qs: [], used: [], lvs: lvs,
-      idx: mid > -1 ? mid : Math.floor(lvs.length / 2), total: n, open: {}, useElo: eloMode === 'elo' && !(ECFG.firstOld && !PLHIST.length) });
+      idx: mid > -1 ? mid : Math.floor(lvs.length / 2), total: n, open: {}, useElo: eloMode === 'elo' && !(ECFG.firstOld && !ELO.s) });
     /* câu hỏi luôn theo kiểu bậc thang (đúng thì khó hơn, sai thì dễ hơn). Người đã có điểm Elo bắt đầu từ cấp gần điểm đó nhất. */
     if (quiz.useElo) { var bi = 0; lvs.forEach(function (l, i) { if (Math.abs(LEVEL_ELO[l] - ELO.r) < Math.abs(LEVEL_ELO[lvs[bi]] - ELO.r)) bi = i; }); quiz.idx = bi; }
     placementNext();
@@ -779,7 +779,7 @@
       quiz.estOld = estimateLevel(); quiz.estElo = eloBand(ELO.r, quiz.lvs);
       quiz.est = quiz.useElo ? quiz.estElo : quiz.estOld;
       /* lần kiểm tra đầu tiên dùng cách cũ, rồi gieo điểm Elo ở giữa cấp vừa xếp để Elo bắt đầu từ chỗ hợp lý */
-      if (!quiz.useElo && eloMode === 'elo' && ECFG.seed && LEVEL_ELO[quiz.est]) { ELO.r = LEVEL_ELO[quiz.est]; saveElo(); }
+      if (!quiz.useElo && eloMode === 'elo') { if (ECFG.seed && LEVEL_ELO[quiz.est]) ELO.r = LEVEL_ELO[quiz.est]; ELO.s = 1; saveElo(); }
       PLHIST.push({ level: quiz.est, date: today(), score: quiz.score, total: quiz.qs.length, elo: Math.round(ELO.r) }); savePl();
     }
   }
