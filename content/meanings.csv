@@ -1,4 +1,4 @@
-id,meaning
+Id,Meaning
 0,Một; bất kỳ
 1,Từ bỏ; ruồng bỏ
 2,Khả năng; năng lực
@@ -6,7 +6,7 @@ id,meaning
 4,Bãi bỏ; hủy bỏ
 5,Sự phá thai
 6,Khoảng; xấp xỉ
-7,"Về (chủ đề, việc gì)"
+7,Về (chủ đề, việc gì)
 8,Ở trên; phía trên
 9,Phía trên; cao hơn
 10,Ở nước ngoài
@@ -180,7 +180,7 @@ id,meaning
 178,Tất cả mọi thứ
 179,Ổn; tốt
 180,Ổn; tốt
-181,All right
+181,Được rồi; đồng ý
 182,Lời cáo buộc
 183,Cáo buộc; tuyên bố
 184,Theo cáo buộc
@@ -260,7 +260,7 @@ id,meaning
 258,Bất kỳ cái gì
 259,Dù sao đi nữa
 260,Bất kỳ đâu
-261,Anywhere
+261,Bất kỳ đâu; bất kỳ nơi nào
 262,Tách biệt; rời ra
 263,Căn hộ
 264,Xin lỗi
@@ -310,7 +310,7 @@ id,meaning
 308,Vũ khí
 309,Quân đội
 310,Xung quanh; khoảng
-311,Xung quanh
+311,Xung quanh; quanh
 312,Sắp xếp; thu xếp
 313,Sự sắp xếp; thỏa thuận
 314,Mảng; dải đa dạng
@@ -351,7 +351,7 @@ id,meaning
 349,Nhiệm vụ; bài tập
 350,Hỗ trợ; giúp đỡ
 351,Sự hỗ trợ
-352,Assistant
+352,Phụ tá; trợ lý
 353,Trợ lý; người phụ tá
 354,Liên kết; gắn kết
 355,Liên quan; liên kết
@@ -375,7 +375,7 @@ id,meaning
 373,Nỗ lực; thử sức
 374,Tham dự; chú ý
 375,Sự tham dự; sĩ số
-376,Attention
+376,Chú ý!; Chú ý lắng nghe!
 377,Sự chú ý
 378,Thái độ
 379,Luật sư
@@ -414,7 +414,7 @@ id,meaning
 412,Kinh khủng; tồi tệ
 413,Vụng về; ngượng ngùng
 414,Em bé
-415,Back
+415,Phía sau; đằng sau
 416,Trở lại; về phía sau
 417,Phía sau; lưng
 418,Ủng hộ; đáp lại
@@ -432,7 +432,7 @@ id,meaning
 430,Nướng bánh
 431,Sự cân bằng; số dư
 432,Cân bằng
-433,Balanced
+433,Cân bằng; hài hòa
 434,Quả bóng; hình cầu
 435,Múa ba-lê
 436,Khí cầu; bóng bay
@@ -471,7 +471,7 @@ id,meaning
 469,Chiến trường
 470,Vịnh biển
 471,Thì; là; ở
-472,Be
+472,Là; thì; ở (trợ động từ)
 473,Bãi biển
 474,Chùm sáng; xà nhà
 475,Hạt đậu
@@ -488,7 +488,7 @@ id,meaning
 486,Phòng ngủ
 487,Con ong
 488,Thịt bò
-489,Bia
+489,Bia; thức uống có cồn
 490,Trước; trước đây
 491,Trước khi
 492,Trước; phía trước
@@ -499,7 +499,6 @@ id,meaning
 497,Cư xử; hành xử
 498,Hành vi; cư xử
 499,Ở phía sau
-500,Phía sau; đằng sau
 500,Phía sau; đằng sau
 501,Sinh vật; sự tồn tại
 502,Niềm tin; tín ngưỡng
@@ -566,12 +565,12 @@ id,meaning
 563,Sự đổ lỗi; trách mắng
 564,Đổ lỗi; trách mắng
 565,Trống; để trống
-566,Blank
+566,Khoảng trống; chỗ trống
 567,Cái chăn
 568,Vụ nổ; luồng gió
 569,Làm blast; blast
 570,Chảy máu
-571,Blend
+571,Hỗn hợp pha trộn
 572,Pha trộn; hòa trộn
 573,Ban phúc; cầu nguyện
 574,Phước lành
@@ -584,10 +583,10 @@ id,meaning
 581,Cú đòn; tiếng thổi
 582,Thổi
 583,Màu xanh dương
-584,Blue
+584,Màu xanh dương
 585,Tấm bảng; ban quản trị
 586,Làm board; board
-587,Khoe khoang
+587,Khoe khoang; tự hào
 588,Con thuyền
 589,Cơ thể; thân thể
 590,Sôi; đun sôi
@@ -609,14 +608,14 @@ id,meaning
 606,Làm border; border
 607,Chán nản
 608,Nhàm chán
-609,Sinh ra
+609,Sinh ra; ra đời
 610,Vay; mượn
 611,Sếp; ông chủ
 612,Cả hai
 613,Cả hai
 614,Làm phiền; bận tâm
 615,Chai; lọ
-616,Bottom
+616,Dưới cùng; đáy
 617,Đáy; phần dưới
 618,Nảy lên
 619,Ràng buộc; chắc chắn
@@ -661,9 +660,9 @@ id,meaning
 658,Phát thanh viên
 659,Nói chung; rộng rãi
 660,Bị vỡ; hỏng
-661,Anh em trai
+661,Anh trai; em trai
 662,Màu nâu
-663,Brown
+663,Màu nâu
 664,Trình duyệt
 665,Bàn chải; cọ
 666,Chải; quét
@@ -682,7 +681,7 @@ id,meaning
 679,Gánh nặng
 680,Bộ máy quan liêu
 681,Sự an táng
-682,Burn
+682,Vết bỏng; sự cháy
 683,Đốt cháy; bị bỏng
 684,Nổ tung; bùng phát
 685,Chôn cất
@@ -692,10 +691,10 @@ id,meaning
 689,Doanh nhân nam
 690,Bận rộn
 691,Nhưng
-692,But
+692,Ngoại trừ; trừ ra
 693,Bơ
 694,Nút bấm; cúc áo
-695,Mua
+695,Mua; mua sắm
 696,Một cách by
 697,Bởi; bằng; bên cạnh
 698,Tạm biệt
@@ -734,9 +733,9 @@ id,meaning
 731,Chính; hoa (chữ)
 732,Thủ đô; vốn
 733,Chủ nghĩa tư bản
-734,Capitalist
+734,Thuộc tư bản chủ nghĩa
 735,Đội trưởng; thuyền trưởng
-736,Capture
+736,Sự bắt giữ; sự chiếm đoạt
 737,Bắt giữ; ghi lại
 738,Ô tô
 739,Cạc-bon
@@ -764,7 +763,7 @@ id,meaning
 761,Nạn nhân; thương vong
 762,Con mèo
 763,Danh mục sản phẩm
-764,Catch
+764,Sự bắt lấy; lượng cá bắt được
 765,Bắt lấy; đuổi kịp
 766,Danh mục; thể loại
 767,Cung cấp dịch vụ ăn uống
@@ -827,7 +826,7 @@ id,meaning
 824,Trò chuyện
 825,Rẻ
 826,Một cách cheap
-827,Cheat
+827,Kẻ gian lận; trò lừa đảo
 828,Gian lận; lừa dối
 829,Sự kiểm tra; séc
 830,Kiểm tra
@@ -897,7 +896,7 @@ id,meaning
 894,Khách hàng
 895,Vách đá
 896,Khí hậu
-897,Climb
+897,Chuyến leo núi; sự trèo
 898,Leo trèo
 899,Bám chặt; níu lấy
 900,Phòng khám
@@ -906,7 +905,7 @@ id,meaning
 903,Đồng hồ treo tường
 904,Gần gũi; chặt chẽ
 905,Gần
-906,Close
+906,Sự kết thúc; sự đóng lại
 907,Đóng; khép lại
 908,Đã đóng cửa
 909,Một cách chặt chẽ
@@ -1119,7 +1118,7 @@ id,meaning
 1116,Chứa đựng
 1117,Thùng chứa; công-ten-nơ
 1118,Suy ngẫm; cân nhắc
-1119,Contemporary
+1119,Đương đại; hiện đại
 1120,Sự khinh bỉ
 1121,Làm contend; contend
 1122,Dự tranh; đối thủ
@@ -1138,7 +1137,7 @@ id,meaning
 1135,Nhà thầu
 1136,Sự mâu thuẫn
 1137,Trái ngược
-1138,Contrary
+1138,Điều ngược lại; sự trái ngược
 1139,Sự tương phản
 1140,Tương phản
 1141,Đóng góp
@@ -1203,7 +1202,7 @@ id,meaning
 1200,Nhà tranh; túp lều
 1201,Bông; vải bông
 1202,Có thể
-1203,Council
+1203,Hội đồng
 1204,Ủy viên hội đồng
 1205,Sự tư vấn tâm lý
 1206,Cố vấn; chuyên viên tư vấn
@@ -1237,7 +1236,7 @@ id,meaning
 1234,Bò; trườn
 1235,Điên rồ
 1236,Màu kem
-1237,Kem
+1237,Kem; lớp kem
 1238,Tạo ra; sáng tạo
 1239,Sự tạo ra; tác phẩm
 1240,Sáng tạo
@@ -1277,7 +1276,7 @@ id,meaning
 1274,Khóc; kêu lên
 1275,Pha lê; tinh thể
 1276,Gợi ý; tín hiệu
-1277,Cult
+1277,Được sùng bái; mang tính thần thần
 1278,Sùng bái; giáo phái
 1279,Trồng trọt; trau dồi
 1280,Thuộc văn hóa
@@ -1297,30 +1296,30 @@ id,meaning
 1294,Rèm cửa
 1295,Đường cong
 1296,Uốn cong
-1297,Curved
+1297,Cong; cong queo
 1298,Sự tạm giam; quyền nuôi con
 1299,Tập quán; phong tục
 1300,Khách hàng
 1301,Vết cắt; sự giảm bớt
 1302,Cắt; giảm bớt
 1303,Dễ thương
-1304,Cutting
+1304,Đoạn phim/bài báo cắt ra; việc cắt
 1305,Chu kỳ; xe đạp
 1306,Đi xe đạp
 1307,Thuộc cynical
-1308,Dad
+1308,Bố; cha
 1309,Hàng ngày
 1310,Hàng ngày
-1311,Dairy
-1312,Dairy
-1313,Dam
+1311,Thuộc bơ sữa
+1312,Cửa hàng bơ sữa; nơi sản xuất sữa
+1313,Đập thủy điện; đập nước
 1314,Thiệt hại; sự hư hại
 1315,Gây thiệt hại
-1316,Damaging
+1316,Gây hại; gây tổn hại
 1317,Sự khiêu vũ; điệu nhảy
 1318,Khiêu vũ; nhảy múa
 1319,Vũ công
-1320,Dancing
+1320,Việc nhảy múa; sự khiêu vũ
 1321,Sự nguy hiểm
 1322,Nguy hiểm
 1323,Dám
@@ -1341,21 +1340,21 @@ id,meaning
 1338,Đối phó; chia bài
 1339,Người buôn bán; đại lý
 1340,Thân mến; đắt đỏ
-1341,Dear
+1341,Trời ơi!; Ôi chao!
 1342,Cái chết
 1343,Cuộc tranh luận
 1344,Tranh luận
-1345,Debris
+1345,Mảnh vỡ; mảnh vụn
 1346,Khoản nợ
-1347,Debut
+1347,Sự ra mắt; lần xuất hiện đầu tiên
 1348,Thập kỷ
 1349,Tháng Mười Hai
 1350,Đàng hoàng; tử tế
 1351,Quyết định
 1352,Quyết định
-1353,Decision-making
+1353,Việc ra quyết định
 1354,Dứt khoát; quả quyết
-1355,Deck
+1355,Boong tàu; sàn nhà
 1356,Sự tuyên bố
 1357,Tuyên bố; khai báo
 1358,Sự suy giảm; từ chối
@@ -1364,7 +1363,7 @@ id,meaning
 1361,Sự trang trí
 1362,Sự giảm bớt
 1363,Giảm; hạ xuống
-1364,Dedicated
+1364,Tận tụy; chuyên dụng
 1365,Sự cống hiến
 1366,Hành động; chứng thư
 1367,Làm deem; deem
@@ -1374,7 +1373,7 @@ id,meaning
 1371,Mặc định; sự vắng mặt
 1372,Sự thất bại; đánh bại
 1373,Đánh bại
-1374,Defect
+1374,Khuyết điểm; lỗi kỹ thuật
 1375,Sự phòng thủ; bảo vệ
 1376,Bảo vệ; phòng thủ
 1377,Hậu vệ; người bảo vệ
@@ -1405,14 +1404,14 @@ id,meaning
 1402,Yêu cầu; đòi hỏi
 1403,Nền dân chủ
 1404,Thuộc dân chủ
-1405,Demon
+1405,Con quỷ; ác quỷ
 1406,Chứng minh; biểu tình
 1407,Sự chứng minh; cuộc biểu tình
 1408,Sự từ chối; bác bỏ
 1409,Làm denounce; denounce
-1410,Dense
+1410,Dày đặc; đông đúc
 1411,Sự density
-1412,Dentist
+1412,Bác sĩ nha khoa; nha sĩ
 1413,Bác bỏ; từ chối
 1414,Làm depart; depart
 1415,Bộ; khoa; phòng ban
@@ -1425,8 +1424,8 @@ id,meaning
 1422,Sự triển khai
 1423,Tiền gửi; tiền đặt cọc
 1424,Nộp tiền; gửi tiền
-1425,Depressed
-1426,Depressing
+1425,Chán nản; trầm cảm
+1426,Gây thất vọng; làm buồn nản
 1427,Sự suy thoái; trầm cảm
 1428,Tước đoạt; tước bỏ
 1429,Chiều sâu; độ sâu
@@ -1443,11 +1442,11 @@ id,meaning
 1440,Thiết kế; tạo mẫu
 1441,Chỉ định; bổ nhiệm
 1442,Nhà thiết kế
-1443,Desirable
+1443,Đáng khao khát; đáng mong muốn
 1444,Sự thèm muốn; khao khát
 1445,Khao khát; mong muốn
 1446,Bàn làm việc
-1447,Desktop
+1447,Máy tính để bàn; màn hình chính
 1448,Tuyệt vọng; liều lĩnh
 1449,Tuyệt vọng; cực kỳ
 1450,Mặc dù
@@ -1471,7 +1470,7 @@ id,meaning
 1468,Phát triển
 1469,Sự phát triển
 1470,Thiết bị; dụng cụ
-1471,Devil
+1471,Ác quỷ; con quỷ
 1472,Nghĩ ra; sáng chế
 1473,Cống hiến; dốc sức
 1474,Chẩn đoán
@@ -1515,988 +1514,4431 @@ id,meaning
 1512,Khuyết tật; tàn tật
 1513,Bất lợi; điểm yếu
 1514,Không đồng ý; bất đồng
-1515,Sự biến mất
-1516,Biến mất; biến khuất
-1517,Thất vọng
-1518,Sự thất vọng
+1515,Sự bất đồng
+1516,Biến mất
+1517,Làm thất vọng
+1518,Thất vọng
 1519,Gây thất vọng
-1520,Thảm họa; tai họa
-1521,Kỷ luật; sự tuân thủ
-1522,Kỷ luật; trừng phạt
-1523,Giảm giá; sự giảm giá
-1524,Giảm giá; bán rẻ
-1525,Khóa học; sự bất hòa
-1526,Khám phá; tìm ra
-1527,Sự khám phá
-1528,Phân biệt đối xử
-1529,Sự phân biệt đối xử
-1530,Thảo luận; bàn bạc
-1531,Cuộc thảo luận; cuộc bàn bạc
-1532,Dịch bệnh; bệnh truyền nhiễm
-1533,Trưng bày; trưng triển lãm
-1534,Triển lãm; sự trưng bày
-1535,Ném đi; thải ra
-1536,Sự thải ra; sự gạt bỏ
-1537,Tranh chấp; cuộc tranh cãi
-1538,Tranh chấp; cãi nhau
-1539,Khoảng cách; khoảng thời gian
-1540,Khác biệt; xa cách
-1541,Phân biệt; nhận diện
-1542,Khác biệt; đặc sắc
-1543,Sự khác biệt
-1544,Khác biệt; không giống nhau
-1545,Khác; khác nhau
-1546,Khó khăn; khó chịu
-1547,Biến mất; tan biến
-1548,Khí tài; dụng cụ
-1549,Bệnh tật; căn bệnh
-1550,Làm bận tâm; khó chịu
-1551,Disposal
-1552,Làm dispose; dispose
-1553,Dispute
-1554,Làm dispute; dispute
-1555,Làm disrupt; disrupt
-1556,Sự disruption
-1557,Làm dissolve; dissolve
-1558,Sự distance
-1559,Distant
-1560,Distinct
-1561,Sự distinction
-1562,Thuộc distinctive; mang tính distinctive
-1563,Làm distinguish; distinguish
-1564,Làm distort; distort
-1565,Làm distract; distract
-1566,Distress
-1567,Làm distress; distress
-1568,Làm distribute; distribute
-1569,Sự distribution
-1570,District
-1571,Làm disturb; disturb
-1572,Disturbing
-1573,Dive
-1574,Làm dive; dive
-1575,Diverse
-1576,Sự diversity
-1577,Làm divert; divert
-1578,Divide
-1579,Làm divide; divide
-1580,Divine
-1581,Sự division
-1582,Divorce
-1583,Làm divorce; divorce
-1584,Divorced
-1585,Làm do; do
-1586,Do
-1587,Doctor
-1588,Doctrine
-1589,Sự document
-1590,Làm document; document
-1591,Documentary
-1592,Sự documentation
-1593,Dog
-1594,Dollar
-1595,Domain
-1596,Thuộc domestic; mang tính domestic
-1597,Sự dominance
-1598,Dominant
-1599,Làm dominate; dominate
-1600,Làm donate; donate
-1601,Sự donation
-1602,Donor
-1603,Door
-1604,Dose
-1605,Dot
-1606,Double
-1607,Một cách double
-1608,Từ hạn định double
-1609,Đại từ double
-1610,Làm double; double
-1611,Doubt
-1612,Làm doubt; doubt
-1613,Một cách down
-1614,Giới từ chỉ down
-1615,Download
-1616,Làm download; download
-1617,Downstairs
-1618,Một cách downstairs
-1619,Downtown
-1620,Một cách downtown
-1621,Downtown
-1622,Một cách downwards
-1623,Từ hạn định dozen
-1624,Dozen
-1625,Draft
-1626,Làm draft; draft
-1627,Làm drag; drag
-1628,Làm drain; drain
-1629,Drama
-1630,Thuộc dramatic; mang tính dramatic
-1631,Một cách dramatically
-1632,Làm draw; draw
-1633,Drawing
-1634,Dream
-1635,Làm dream; dream
-1636,Dress
-1637,Làm dress; dress
-1638,Dressed
-1639,Làm drift; drift
-1640,Drink
-1641,Làm drink; drink
-1642,Drive
-1643,Làm drive; drive
-1644,Driver
-1645,Driving
-1646,Driving
-1647,Drop
-1648,Làm drop; drop
-1649,Drought
-1650,Làm drown; drown
-1651,Drug
-1652,Drum
-1653,Drunk
-1654,Dry
-1655,Làm dry; dry
-1656,Thuộc dual; mang tính dual
-1657,Làm dub; dub
-1658,Due
-1659,Dull
-1660,Dumb
-1661,Làm dump; dump
-1662,Duo
-1663,Sự duration
-1664,Giới từ chỉ during
-1665,Dust
-1666,Duty
-1667,Dvd
-1668,Thuộc dynamic; mang tính dynamic
-1669,Dynamic
-1670,Một cách each
-1671,Từ hạn định each
-1672,Đại từ each
-1673,Eager
-1674,Ear
-1675,Early
-1676,Một cách early
-1677,Làm earn; earn
-1678,Earnings
-1679,Earth
-1680,Earthquake
-1681,Ease
-1682,Làm ease; ease
-1683,Một cách easily
-1684,East
-1685,Một cách east
-1686,East
-1687,Eastern
-1688,Easy
-1689,Làm eat; eat
-1690,Echo
-1691,Làm echo; echo
-1692,Thuộc ecological; mang tính ecological
-1693,Thuộc economic; mang tính economic
-1694,Economics
-1695,Economist
-1696,Economy
-1697,Edge
-1698,Làm edit; edit
-1699,Sự edition
-1700,Editor
-1701,Thuộc editorial; mang tính editorial
-1702,Làm educate; educate
-1703,Educated
-1704,Sự education
-1705,Thuộc educational; mang tính educational
-1706,Educator
-1707,Effect
-1708,Thuộc effective; mang tính effective
-1709,Một cách effectively
-1710,Sự effectiveness
-1711,Efficiency
-1712,Efficient
-1713,Một cách efficiently
-1714,Effort
-1715,Egg
-1716,Ego
-1717,Eight
-1718,Eighteen
-1719,Eighty
-1720,Một cách either
-1721,Từ hạn định either
-1722,Đại từ either
-1723,Elaborate
-1724,Elbow
-1725,Elderly
-1726,Làm elect; elect
-1727,Sự election
-1728,Thuộc electoral; mang tính electoral
-1729,Thuộc electric; mang tính electric
-1730,Thuộc electrical; mang tính electrical
-1731,Sự electricity
-1732,Thuộc electronic; mang tính electronic
-1733,Electronics
-1734,Elegant
-1735,Sự element
-1736,Elementary
-1737,Elephant
-1738,Làm elevate; elevate
-1739,Eleven
-1740,Thuộc eligible; mang tính eligible
-1741,Làm eliminate; eliminate
-1742,Elite
-1743,Một cách else
-1744,Một cách elsewhere
-1745,Email
-1746,Làm email; email
-1747,Làm embark; embark
-1748,Embarrassed
-1749,Embarrassing
-1750,Sự embarrassment
-1751,Embassy
-1752,Làm embed; embed
-1753,Làm embody; embody
-1754,Làm embrace; embrace
-1755,Làm emerge; emerge
-1756,Sự emergence
-1757,Emergency
-1758,Sự emission
-1759,Sự emotion
-1760,Thuộc emotional; mang tính emotional
-1761,Một cách emotionally
-1762,Emphasis
-1763,Làm emphasize; emphasize
-1764,Empire
-1765,Thuộc empirical; mang tính empirical
-1766,Làm employ; employ
-1767,Employee
-1768,Employer
-1769,Sự employment
-1770,Làm empower; empower
-1771,Empty
-1772,Làm empty; empty
-1773,Làm enable; enable
-1774,Làm enact; enact
-1775,Làm encompass; encompass
-1776,Encounter
-1777,Làm encounter; encounter
-1778,Làm encourage; encourage
-1779,Sự encouragement
-1780,Encouraging
-1781,End
-1782,Làm end; end
-1783,Endeavour
-1784,Ending
-1785,Thuộc endless; mang tính endless
-1786,Làm endorse; endorse
-1787,Sự endorsement
-1788,Làm endure; endure
-1789,Enemy
-1790,Energy
-1791,Làm enforce; enforce
-1792,Sự enforcement
-1793,Làm engage; engage
-1794,Engaged
-1795,Sự engagement
-1796,Engaging
-1797,Engine
-1798,Engineer
-1799,Engineering
-1800,Làm enhance; enhance
-1801,Làm enjoy; enjoy
-1802,Thuộc enjoyable; mang tính enjoyable
-1803,Thuộc enormous; mang tính enormous
-1804,Một cách enough
-1805,Từ hạn định enough
-1806,Đại từ enough
-1807,Làm enquire; enquire
-1808,Enquiry
-1809,Làm enrich; enrich
-1810,Làm enrol; enrol
-1811,Làm ensue; ensue
-1812,Làm ensure; ensure
-1813,Làm enter; enter
-1814,Enterprise
-1815,Làm entertain; entertain
-1816,Entertaining
-1817,Sự entertainment
-1818,Enthusiasm
-1819,Enthusiast
-1820,Thuộc enthusiastic; mang tính enthusiastic
-1821,Entire
-1822,Một cách entirely
-1823,Làm entitle; entitle
-1824,Sự entity
-1825,Sự entrance
-1826,Entrepreneur
-1827,Entry
-1828,Envelope
-1829,Sự environment
-1830,Thuộc environmental; mang tính environmental
-1831,Epidemic
-1832,Episode
-1833,Thuộc equal; mang tính equal
-1834,Equal
-1835,Làm equal; equal
-1836,Sự equality
-1837,Một cách equally
-1838,Sự equation
-1839,Làm equip; equip
-1840,Sự equipment
-1841,Equivalent
-1842,Equivalent
-1843,Era
-1844,Làm erect; erect
-1845,Error
-1846,Làm erupt; erupt
-1847,Làm escalate; escalate
-1848,Escape
-1849,Làm escape; escape
-1850,Một cách especially
-1851,Essay
-1852,Sự essence
-1853,Thuộc essential; mang tính essential
-1854,Một cách essentially
-1855,Làm establish; establish
-1856,Sự establishment
-1857,Estate
-1858,Estimate
-1859,Làm estimate; estimate
-1860,Thuộc eternal; mang tính eternal
-1861,Ethic
-1862,Thuộc ethical; mang tính ethical
-1863,Thuộc ethnic; mang tính ethnic
-1864,Euro
-1865,Làm evacuate; evacuate
-1866,Làm evaluate; evaluate
-1867,Sự evaluation
-1868,Even
-1869,Một cách even
-1870,Evening
-1871,Event
-1872,Một cách eventually
-1873,Một cách ever
-1874,Từ hạn định every
-1875,Đại từ everybody
-1876,Everyday
-1877,Đại từ everyone
-1878,Đại từ everything
-1879,Một cách everywhere
-1880,Sự evidence
-1881,Evident
-1882,Evil
-1883,Evil
-1884,Làm evoke; evoke
-1885,Sự evolution
-1886,Evolutionary
-1887,Làm evolve; evolve
-1888,Exact
-1889,Một cách exactly
-1890,Làm exaggerate; exaggerate
-1891,Exam
-1892,Sự examination
-1893,Làm examine; examine
-1894,Example
-1895,Làm exceed; exceed
-1896,Sự excellence
-1897,Excellent
-1898,Liên từ except
-1899,Giới từ chỉ except
-1900,Sự exception
-1901,Thuộc exceptional; mang tính exceptional
-1902,Excess
-1903,Excess
-1904,Thuộc excessive; mang tính excessive
-1905,Exchange
-1906,Làm exchange; exchange
-1907,Excited
-1908,Sự excitement
-1909,Exciting
-1910,Làm exclude; exclude
-1911,Sự exclusion
-1912,Thuộc exclusive; mang tính exclusive
-1913,Một cách exclusively
-1914,Excuse
-1915,Làm excuse; excuse
-1916,Làm execute; execute
-1917,Sự execution
-1918,Thuộc executive; mang tính executive
-1919,Executive
-1920,Exercise
-1921,Làm exercise; exercise
-1922,Làm exert; exert
-1923,Exhibit
-1924,Làm exhibit; exhibit
-1925,Sự exhibition
-1926,Exile
-1927,Làm exist; exist
-1928,Sự existence
-1929,Exit
-1930,Làm exit; exit
-1931,Thuộc exotic; mang tính exotic
-1932,Làm expand; expand
-1933,Sự expansion
-1934,Làm expect; expect
-1935,Sự expectation
-1936,Expected
-1937,Sự expedition
-1938,Sự expenditure
-1939,Expense
-1940,Thuộc expensive; mang tính expensive
-1941,Sự experience
-1942,Làm experience; experience
-1943,Experienced
-1944,Sự experiment
-1945,Làm experiment; experiment
-1946,Thuộc experimental; mang tính experimental
-1947,Expert
-1948,Expert
-1949,Expertise
-1950,Làm expire; expire
-1951,Làm explain; explain
-1952,Sự explanation
-1953,Explicit
-1954,Một cách explicitly
-1955,Làm explode; explode
-1956,Làm exploit; exploit
-1957,Sự exploitation
-1958,Sự exploration
-1959,Làm explore; explore
-1960,Sự explosion
-1961,Thuộc explosive; mang tính explosive
-1962,Explosive
-1963,Export
-1964,Làm export; export
-1965,Làm expose; expose
-1966,Sự exposure
-1967,Làm express; express
-1968,Sự expression
-1969,Làm extend; extend
-1970,Sự extension
-1971,Thuộc extensive; mang tính extensive
-1972,Một cách extensively
-1973,Extent
-1974,Thuộc external; mang tính external
-1975,Extra
-1976,Một cách extra
-1977,Extra
-1978,Extract
-1979,Làm extract; extract
-1980,Extraordinary
-1981,Extreme
-1982,Extreme
-1983,Một cách extremely
-1984,Extremist
-1985,Eye
-1986,Fabric
-1987,Thuộc fabulous; mang tính fabulous
-1988,Face
-1989,Làm face; face
-1990,Làm facilitate; facilitate
-1991,Sự facility
-1992,Fact
-1993,Sự faction
-1994,Factor
-1995,Factory
-1996,Faculty
-1997,Làm fade; fade
-1998,Làm fail; fail
-1999,Failed
-2000,Sự failure
-2001,Fair
-2002,Một cách fairly
-2003,Sự fairness
-2004,Faith
-2005,Fake
-2006,Fall
-2007,Làm fall; fall
-2008,False
-2009,Fame
-2010,Familiar
-2011,Family
-2012,Family
-2013,Thuộc famous; mang tính famous
-2014,Fan
-2015,Fancy
-2016,Làm fancy; fancy
-2017,Thuộc fantastic; mang tính fantastic
-2018,Fantasy
-2019,Far
-2020,Một cách far
-2021,Fare
-2022,Farm
-2023,Làm farm; farm
-2024,Farmer
-2025,Farming
-2026,Fascinating
-2027,Fashion
-2028,Thuộc fashionable; mang tính fashionable
-2029,Fast
-2030,Một cách fast
-2031,Làm fasten; fasten
-2032,Fat
-2033,Fat
-2034,Thuộc fatal; mang tính fatal
-2035,Fate
-2036,Father
-2037,Fault
-2038,Favour
-2039,Làm favour; favour
-2040,Thuộc favourable; mang tính favourable
-2041,Favourite
-2042,Favourite
-2043,Fear
-2044,Làm fear; fear
-2045,Feat
-2046,Feather
-2047,Sự feature
-2048,Làm feature; feature
-2049,February
-2050,Thuộc federal; mang tính federal
-2051,Fee
-2052,Feed
-2053,Làm feed; feed
-2054,Feedback
-2055,Feel
-2056,Làm feel; feel
-2057,Feeling
-2058,Fellow
-2059,Female
-2060,Female
-2061,Feminist
-2062,Feminist
-2063,Sự fence
-2064,Festival
-2065,Fever
-2066,Few
-2067,Từ hạn định few
-2068,Đại từ few
-2069,Fibre
-2070,Sự fiction
-2071,Field
-2072,Fierce
-2073,Fifteen
-2074,Fifth
-2075,Fifty
-2076,Fight
-2077,Làm fight; fight
-2078,Fighting
-2079,Sự figure
-2080,Làm figure; figure
-2081,File
-2082,Làm file; file
-2083,Làm fill; fill
-2084,Film
-2085,Làm film; film
-2086,Film-maker
-2087,Filter
-2088,Làm filter; filter
-2089,Thuộc final; mang tính final
-2090,Final
-2091,Một cách finally
-2092,Sự finance
-2093,Làm finance; finance
-2094,Thuộc financial; mang tính financial
-2095,Làm find; find
-2096,Finding
-2097,Fine
-2098,Fine
-2099,Làm fine; fine
-2100,Finger
-2101,Finish
-2102,Làm finish; finish
-2103,Fire
-2104,Làm fire; fire
-2105,Firearm
-2106,Firefighter
-2107,Firework
-2108,Firm
-2109,Firm
-2110,Một cách firmly
-2111,Một cách first
-2112,Từ hạn định first
-2113,First
-2114,First
-2115,Một cách firstly
-2116,Fish
-2117,Làm fish; fish
-2118,Fishing
-2119,Fit
-2120,Fit
-2121,Làm fit; fit
-2122,Sự fitness
-2123,Five
-2124,Fix
-2125,Làm fix; fix
-2126,Fixed
-2127,Sự fixture
-2128,Flag
-2129,Flame
-2130,Flash
-2131,Làm flash; flash
-2132,Flat
-2133,Flat
-2134,Flavour
-2135,Flaw
-2136,Flawed
-2137,Làm flee; flee
-2138,Fleet
-2139,Flesh
-2140,Sự flexibility
-2141,Thuộc flexible; mang tính flexible
-2142,Flight
-2143,Làm float; float
-2144,Flood
-2145,Làm flood; flood
-2146,Floor
-2147,Flour
-2148,Làm flourish; flourish
-2149,Flow
-2150,Làm flow; flow
-2151,Flower
-2152,Flu
-2153,Fluid
-2154,Fly
-2155,Làm fly; fly
-2156,Flying
-2157,Flying
-2158,Focus
-2159,Làm focus; focus
-2160,Fold
-2161,Làm fold; fold
-2162,Folding
-2163,Folk
-2164,Folk
-2165,Làm follow; follow
-2166,Following
-2167,Following
-2168,Giới từ chỉ following
-2169,Fond
-2170,Food
-2171,Fool
-2172,Foot
-2173,Footage
-2174,Football
-2175,Giới từ chỉ for
-2176,Làm forbid; forbid
-2177,Force
-2178,Làm force; force
-2179,Forecast
-2180,Làm forecast; forecast
-2181,Foreign
-2182,Foreigner
-2183,Forest
-2184,Một cách forever
-2185,Làm forge; forge
-2186,Làm forget; forget
-2187,Làm forgive; forgive
-2188,Fork
-2189,Form
-2190,Làm form; form
-2191,Thuộc formal; mang tính formal
-2192,Format
-2193,Sự formation
-2194,Former
-2195,Một cách formerly
-2196,Formula
-2197,Làm formulate; formulate
-2198,Một cách forth
-2199,Forthcoming
-2200,Fortunate
-2201,Một cách fortunately
-2202,Fortune
-2203,Forty
-2204,Forum
-2205,Forward
-2206,Một cách forward
-2207,Fossil
-2208,Làm foster; foster
-2209,Làm found; found
-2210,Sự foundation
-2211,Founder
-2212,Four
-2213,Fourteen
-2214,Fourth
-2215,Sự fraction
-2216,Fragile
-2217,Sự fragment
-2218,Frame
-2219,Làm frame; frame
-2220,Framework
-2221,Franchise
-2222,Một cách frankly
-2223,Fraud
-2224,Free
-2225,Một cách free
-2226,Làm free; free
-2227,Freedom
-2228,Một cách freely
-2229,Làm freeze; freeze
-2230,Frequency
-2231,Frequent
-2232,Một cách frequently
-2233,Fresh
-2234,Friday
-2235,Fridge
-2236,Friend
-2237,Friendly
-2238,Friendship
-2239,Làm frighten; frighten
-2240,Frightened
-2241,Frightening
-2242,Frog
-2243,Giới từ chỉ from
-2244,Front
-2245,Front
-2246,Frozen
-2247,Fruit
-2248,Frustrated
-2249,Frustrating
-2250,Sự frustration
-2251,Làm fry; fry
-2252,Fuel
-2253,Làm fuel; fuel
-2254,Làm fulfil; fulfil
-2255,Full
-2256,Full-time
-2257,Một cách full-time
-2258,Một cách fully
-2259,Fun
-2260,Fun
-2261,Sự function
-2262,Làm function; function
-2263,Thuộc functional; mang tính functional
-2264,Fund
-2265,Làm fund; fund
-2266,Thuộc fundamental; mang tính fundamental
-2267,Một cách fundamentally
-2268,Funding
-2269,Fundraising
-2270,Funeral
-2271,Funny
-2272,Fur
-2273,Thuộc furious; mang tính furious
-2274,Sự furniture
-2275,Further
-2276,Một cách further
-2277,Một cách furthermore
-2278,Future
-2279,Sự future
-2280,Gain
-2281,Làm gain; gain
-2282,Gallery
-2283,Gallon
-2284,Gambling
-2285,Game
-2286,Gaming
-2287,Gang
-2288,Gap
-2289,Garage
-2290,Garden
-2291,Gas
-2292,Gate
-2293,Làm gather; gather
-2294,Gathering
-2295,Gay
-2296,Gaze
-2297,Làm gaze; gaze
-2298,Gear
-2299,Gender
-2300,Gene
-2301,Thuộc general; mang tính general
-2302,Một cách generally
-2303,Làm generate; generate
-2304,Sự generation
-2305,Thuộc generic; mang tính generic
-2306,Thuộc generous; mang tính generous
-2307,Thuộc genetic; mang tính genetic
-2308,Genius
-2309,Genocide
-2310,Genre
-2311,Gentle
-2312,Gentleman
-2313,Genuine
-2314,Một cách genuinely
-2315,Geography
-2316,Sự gesture
-2317,Làm get; get
-2318,Ghost
-2319,Giant
-2320,Giant
-2321,Gift
-2322,Gig
-2323,Girl
-2324,Girlfriend
-2325,Làm give; give
-2326,Glad
-2327,Sự glance
-2328,Làm glance; glance
-2329,Glass
-2330,Glimpse
-2331,Thuộc global; mang tính global
-2332,Sự globalization
-2333,Globe
-2334,Thuộc glorious; mang tính glorious
-2335,Glory
-2336,Glove
-2337,Go
-2338,Làm go; go
-2339,Goal
-2340,God
-2341,Gold
-2342,Gold
-2343,Golden
-2344,Golf
-2345,Good
-2346,Good
-2347,Goodbye
-2348,Goodbye
-2349,Sự goodness
-2350,Goods
-2351,Thuộc gorgeous; mang tính gorgeous
-2352,Làm govern; govern
-2353,Sự governance
-2354,Sự government
-2355,Governor
-2356,Làm grab; grab
-2357,Grace
-2358,Grade
-2359,Làm grade; grade
-2360,Một cách gradually
-2361,Graduate
-2362,Làm graduate; graduate
-2363,Grain
-2364,Grand
-2365,Grandfather
-2366,Grandmother
-2367,Grandparent
-2368,Grant
-2369,Làm grant; grant
-2370,Thuộc graphic; mang tính graphic
-2371,Graphics
-2372,Grasp
-2373,Làm grasp; grasp
-2374,Grass
-2375,Thuộc grateful; mang tính grateful
-2376,Grave
-2377,Grave
-2378,Sự gravity
-2379,Great
-2380,Một cách greatly
-2381,Green
-2382,Green
-2383,Greenhouse
-2384,Làm greet; greet
-2385,Grey
-2386,Grey
-2387,Grid
-2388,Grief
-2389,Grin
-2390,Làm grin; grin
-2391,Làm grind; grind
-2392,Grip
-2393,Làm grip; grip
-2394,Grocery
-2395,Gross
-2396,Ground
-2397,Group
-2398,Làm grow; grow
-2399,Growth
-2400,Guarantee
-2401,Làm guarantee; guarantee
-2402,Guard
-2403,Làm guard; guard
-2404,Guerrilla
-2405,Guess
-2406,Làm guess; guess
-2407,Guest
-2408,Sự guidance
-2409,Guide
-2410,Làm guide; guide
-2411,Guideline
-2412,Guilt
-2413,Guilty
-2414,Guitar
-2415,Gun
-2416,Gut
-2417,Guy
-2418,Gym
-2419,Habit
-2420,Habitat
-2421,Làm hail; hail
-2422,Hair
-2423,Một cách half
-2424,Từ hạn định half
-2425,Half
-2426,Đại từ half
-2427,Một cách halfway
-2428,Hall
-2429,Halt
-2430,Làm halt; halt
-2431,Hand
-2432,Làm hand; hand
-2433,Handful
-2434,Handle
-2435,Làm handle; handle
-2436,Handling
-2437,Handy
-2438,Làm hang; hang
-2439,Làm happen; happen
-2440,Một cách happily
-2441,Sự happiness
-2442,Happy
-2443,Sự harassment
-2444,Harbour
-2445,Hard
-2446,Một cách hard
-2447,Một cách hardly
-2448,Hardware
-2449,Harm
-2450,Làm harm; harm
-2451,Thuộc harmful; mang tính harmful
-2452,Harmony
-2453,Harsh
-2454,Harvest
-2455,Làm harvest; harvest
-2456,Hat
-2457,Hate
-2458,Làm hate; hate
-2459,Hatred
-2460,Làm haunt; haunt
-2461,Làm have; have
-2462,Have
-2463,Have to
-2464,Hazard
-2465,Đại từ he
-2466,Head
-2467,Làm head; head
-2468,Headache
-2469,Headline
-2470,Headquarters
-2471,Làm heal; heal
-2472,Health
-2473,Healthcare
-2474,Healthy
-2475,Làm hear; hear
-2476,Hearing
-2477,Heart
-2478,Heat
-2479,Làm heat; heat
-2480,Heating
-2481,Heaven
-2482,Một cách heavily
-2483,Heavy
-2484,Heel
-2485,Height
-2486,Làm heighten; heighten
-2487,Helicopter
-2488,Hell
-2489,Hello
-2490,Hello
-2491,Helmet
-2492,Help
-2493,Làm help; help
-2494,Thuộc helpful; mang tính helpful
-2495,Một cách hence
-2496,Từ hạn định her
-2497,Đại từ her
-2498,Herb
-2499,Một cách here
+1520,Sự thất vọng
+1521,Thảm họa; tai họa
+1522,Thảm khốc
+1523,Đĩa tròn
+1524,Vứt bỏ; loại bỏ
+1525,Xuất viện; xả ra
+1526,Kỷ luật
+1527,Tiết lộ; bộc lộ
+1528,Sự tiết lộ
+1529,Sự giảm giá
+1530,Giảm giá; chiết khấu
+1531,Làm nản lòng
+1532,Diễn ngôn; bài thuyết trình
+1533,Khám phá; tìm ra
+1534,Sự khám phá
+1535,Sự thận trọng; tùy nghi
+1536,Sự phân biệt đối xử
+1537,Thảo luận
+1538,Cuộc thảo luận
+1539,Căn bệnh; bệnh tật
+1540,Món ăn; cái đĩa
+1541,Không trung thực
+1542,Đĩa máy tính
+1543,Sự không thích
+1544,Không thích
+1545,Sa thải; giải tán; gạt bỏ
+1546,Sự sa thải; sự giải tán
+1547,Sự rối loạn; mất trật tự
+1548,Di dời; thay thế
+1549,Sự trưng bày; màn hình
+1550,Trưng bày; hiển thị
+1551,Sự vứt bỏ; xử lý
+1552,Vứt bỏ; xử lý
+1553,Cuộc tranh chấp
+1554,Tranh chấp; cãi nhau
+1555,Phá vỡ; làm gián đoạn
+1556,Sự gián đoạn
+1557,Hòa tan; giải tán
+1558,Khoảng cách
+1559,Xa xôi; xa cách
+1560,Khác biệt; rõ rệt
+1561,Sự khác biệt; sự nét nổi bật
+1562,Đặc trưng; nét riêng
+1563,Phân biệt
+1564,Xuyên tạc; bóp méo
+1565,Làm xao nhãng; làm phân tâm
+1566,Sự phiền muộn; ngặt nghèo
+1567,Làm đau khổ; làm phiền muộn
+1568,Phân phối; phát
+1569,Sự phân phối
+1570,Quận; huyện; khu vực
+1571,Làm phiền; quấy rối
+1572,Gây lo ngại; quấy rầy
+1573,Cú lặn
+1574,Lặn; lao xuống
+1575,Đa dạng
+1576,Sự đa dạng
+1577,Chuyển hướng
+1578,Sự phân chia
+1579,Phân chia; chia ra
+1580,Thuộc thần thánh; tuyệt diệu
+1581,Sự phân chia; bộ phận
+1582,Sự ly hôn
+1583,Ly hôn
+1584,Đã ly hôn
+1585,Làm; thực hiện
+1586,Trợ từ làm
+1587,Bác sĩ; tiến sĩ
+1588,Học thuyết; giáo lý
+1589,Tài liệu; văn bản
+1590,Ghi chép tài liệu
+1591,Phim tài liệu
+1592,Tài liệu hướng dẫn
+1593,Con chó
+1594,Đồng đô-la
+1595,Lĩnh vực; tên miền
+1596,Trong nước; nội địa; nội trợ
+1597,Sự thống trị
+1598,Thống trị; vượt trội
+1599,Thống trị; chi phối
+1600,Quyên góp; hiến tặng
+1601,Khoản quyên góp
+1602,Người quyên góp; người hiến
+1603,Cánh cửa
+1604,Liều lượng (thuốc)
+1605,Dấu chấm
+1606,Gấp đôi; đôi
+1607,Gấp đôi
+1608,Gấp đôi
+1609,Lượng gấp đôi
+1610,Tăng gấp đôi
+1611,Sự nghi ngờ
+1612,Nghi ngờ
+1613,Xuống; phía dưới
+1614,Dọc theo; xuống
+1615,Tệp tải xuống
+1616,Tải xuống
+1617,Ở tầng dưới
+1618,Dưới nhà; dưới tầng
+1619,Thuộc khu trung tâm thành phố
+1620,Về hướng trung tâm thành phố
+1621,Khu trung tâm thành phố
+1622,Hướng xuống dưới
+1623,Một tá (12 cái)
+1624,Một tá
+1625,Bản thảo; dự thảo
+1626,Phác thảo; soạn thảo
+1627,Kéo lê; kéo
+1628,Tháo nước; làm cạn kiệt
+1629,Kịch; kịch tính
+1630,Kịch tính; ấn tượng
+1631,Một cách kịch tính; đáng kể
+1632,Vẽ; kéo; rút out
+1633,Bức vẽ; sự vẽ
+1634,Giấc mơ; ước mơ
+1635,Mơ ước; nằm mơ
+1636,Váy; trang phục
+1637,Mặc quần áo
+1638,Mặc trang phục
+1639,Trôi dạt
+1640,Đồ uống
+1641,Uống
+1642,Chuyến đi xe; sự lái xe
+1643,Lái xe; thúc đẩy
+1644,Tài xế; người lái xe
+1645,Mạnh mẽ; định hướng
+1646,Việc lái xe
+1647,Giọt nước; sự sụt giảm
+1648,Rơi; thả xuống; giảm
+1649,Hạn hán
+1650,Chết đuối; làm ngập
+1651,Thuốc; ma túy
+1652,Cái trống
+1653,Say rượu
+1654,Khô ráo
+1655,Làm khô
+1656,Kép; đôi
+1657,Lồng tiếng; đặt biệt danh
+1658,Đến hạn; do bởi
+1659,Nhàm chán; u ám
+1660,Ngu ngốc; câm
+1661,Vứt bỏ; trút xuống
+1662,Bộ đôi
+1663,Khoảng thời gian; thời lượng
+1664,Trong suốt (thời gian)
+1665,Bụi bẩn
+1666,Nhiệm vụ; thuế
+1667,Đĩa DVD
+1668,Năng động; năng nổ
+1669,Động lực; sự năng động
+1670,Mỗi
+1671,Mỗi
+1672,Mỗi cái; mỗi người
+1673,Háo hức; hăng hái
+1674,Lỗ tai; tai
+1675,Sớm
+1676,Sớm
+1677,Kiếm tiền; đạt được
+1678,Thu nhập; tiền lương
+1679,Trái Đất; đất
+1680,Trận động đất
+1681,Sự thanh thản; dễ dàng
+1682,Làm dịu; giảm bớt
+1683,Một cách dễ dàng
+1684,Phía đông
+1685,Về phía đông
+1686,Phía đông
+1687,Thuộc phương đông
+1688,Dễ dàng
+1689,Ăn
+1690,Tiếng vang
+1691,Dội lại; lặp lại
+1692,Thuộc sinh thái
+1693,Thuộc kinh tế
+1694,Kinh tế học
+1695,Nhà kinh tế học
+1696,Nền kinh tế
+1697,Rìa; mép; lợi thế
+1698,Chỉnh sửa; biên tập
+1699,Phiên bản; xuất bản
+1700,Biên tập viên
+1701,Thuộc biên tập
+1702,Giáo dục; đào tạo
+1703,Có giáo dục; học thức
+1704,Nền giáo dục
+1705,Thuộc giáo dục
+1706,Nhà giáo dục
+1707,Tác động; hiệu ứng
+1708,Hiệu quả
+1709,Một cách hiệu quả
+1710,Tính hiệu quả
+1711,Hiệu suất; sự hiệu quả
+1712,Có hiệu suất cao
+1713,Một cách hiệu quả
+1714,Nỗ lực; cố gắng
+1715,Quả trứng
+1716,Cái tôi
+1717,Số tám
+1718,Số mười tám
+1719,Số tám mươi
+1720,Cũng không
+1721,Một trong hai
+1722,Một trong hai
+1723,Tỉ mỉ; phức tạp
+1724,Khuỷu tay
+1725,Cao tuổi; người già
+1726,Bầu chọn; lựa chọn
+1727,Cuộc bầu cử
+1728,Thuộc bầu cử
+1729,Thuộc điện
+1730,Thuộc về điện
+1731,Nguồn điện; điện năng
+1732,Thuộc điện tử
+1733,Ngành điện tử
+1734,Thanh lịch; trang nhã
+1735,Yếu tố; nguyên tố
+1736,Sơ cấp; cơ bản
+1737,Con voi
+1738,Nâng cao; cất nhắc
+1739,Số mười một
+1740,Đủ điều kiện
+1741,Loại bỏ; triệt tiêu
+1742,Thành phần ưu tú
+1743,Khác; nữa
+1744,Ở nơi khác
+1745,Thư điện tử email
+1746,Gửi email
+1747,Bắt đầu; lên tàu
+1748,Xấu hổ; ngượng ngùng
+1749,Gây xấu hổ
+1750,Sự xấu hổ
+1751,Đại sứ quán
+1752,Gắn vào; nhúng
+1753,Hiện thân; đại diện
+1754,Đón nhận; ôm lấy
+1755,Nổi lên; xuất hiện
+1756,Sự xuất hiện; nổi lên
+1757,Trường hợp khẩn cấp
+1758,Sự phát thải; khí thải
+1759,Cảm xúc
+1760,Thuộc cảm xúc
+1761,Về mặt cảm xúc
+1762,Sự nhấn mạnh
+1763,Nhấn mạnh
+1764,Đế chế; đế quốc
+1765,Thuộc thực nghiệm
+1766,Tuyển dụng; sử dụng
+1767,Nhân viên; người làm công
+1768,Người sử dụng lao động
+1769,Việc làm; sự tuyển dụng
+1770,Trao quyền
+1771,Trống rỗng
+1772,Làm trống
+1773,Cho phép; kích hoạt
+1774,Ban hành (luật)
+1775,Bao gồm; bao quát
+1776,Cuộc chạm chán
+1777,Bắt gặp; đụng độ
+1778,Khuyến khích; động viên
+1779,Sự khuyến khích; sự động viên
+1780,Mang tính động viên
+1781,Kết thúc; phần cuối
+1782,Kết thúc
+1783,Nỗ lực; sự cố gắng
+1784,Phần kết
+1785,Bất tận; vô tận
+1786,Ủng hộ; xác nhận
+1787,Sự ủng hộ; quảng cáo
+1788,Chịu đựng; tồn tại
+1789,Kẻ thù
+1790,Năng lượng
+1791,Thực thi (luật)
+1792,Sự thực thi
+1793,Tham gia; thu hút
+1794,Đã đính hôn; bận rộn
+1795,Sự tham gia; đính hôn
+1796,Lôi cuốn; hấp dẫn
+1797,Động cơ
+1798,Kỹ sư
+1799,Ngành kỹ thuật
+1800,Nâng cao; tăng cường
+1801,Thưởng thức; thích
+1802,Thú vị
+1803,To lớn; khổng lồ
+1804,Đủ
+1805,Đủ
+1806,Sự đầy đủ
+1807,Hỏi; truy vấn
+1808,Thắc mắc; sự truy vấn
+1809,Làm giàu; làm phong phú
+1810,Đăng ký học; kết nạp
+1811,Xảy ra sau đó; nảy sinh
+1812,Đảm bảo
+1813,Đi vào; nhập
+1814,Doanh nghiệp; dự án
+1815,Giải trí; chiêu đãi
+1816,Có tính giải trí
+1817,Sự giải trí
+1818,Sự nhiệt tình
+1819,Người hào hứng
+1820,Nhiệt tình; hăng hái
+1821,Toàn bộ
+1822,Hoàn toàn
+1823,Trao quyền; đặt tiêu đề
+1824,Thực thể
+1825,Lối vào; cổng vào
+1826,Nhà khởi nghiệp
+1827,Lối vào; mục ghi
+1828,Phong bì
+1829,Môi trường
+1830,Thuộc môi trường
+1831,Dịch bệnh
+1832,Tập phim; tình tiết
+1833,Bằng nhau; bình đẳng
+1834,Người ngang hàng
+1835,Bằng với
+1836,Sự bình đẳng
+1837,Một cách bình đẳng
+1838,Phương trình; sự cân bằng
+1839,Trang bị
+1840,Thiết bị; dụng cụ
+1841,Tương đương
+1842,Vật tương đương
+1843,Kỷ nguyên; thời đại
+1844,Dựng lên; xây dựng
+1845,Lỗi; sự sai sót
+1846,Phun trào; bùng nổ
+1847,Leo thang; gia tăng
+1848,Lối thoát; sự trốn thoát
+1849,Trốn thoát; thoát khỏi
+1850,Đặc biệt là
+1851,Bài văn; bài luận
+1852,Bản chất; cốt lõi
+1853,Thiết yếu; quan trọng
+1854,Về bản chất
+1855,Thành lập; thiết lập
+1856,Sự thành lập; cơ sở
+1857,Bất động sản; di sản
+1858,Sự ước tính; báo giá
+1859,Ước tính
+1860,Vĩnh cửu; bất diệt
+1861,Đạo đức; chuẩn mực
+1862,Thuộc đạo đức
+1863,Thuộc dân tộc
+1864,Đồng ơ-rô
+1865,Sơ tán; di tản
+1866,Đánh giá
+1867,Sự đánh giá
+1868,Bằng phẳng; chẵn (số)
+1869,Ngay cả; thậm chí
+1870,Buổi tối
+1871,Sự kiện
+1872,Cuối cùng
+1873,Đã từng; bao giờ
+1874,Mỗi; mọi
+1875,Mọi người
+1876,Hàng ngày; thông thường
+1877,Mọi người
+1878,Mọi thứ
+1879,Khắp mọi nơi
+1880,Bằng chứng
+1881,Hiển nhiên; rõ ràng
+1882,Độc ác; xấu xa
+1883,Điều ác; sự xấu xa
+1884,Gợi lên
+1885,Sự tiến hóa
+1886,Thuộc tiến hóa
+1887,Tiến hóa; phát triển
+1888,Chính xác
+1889,Chính xác
+1890,Phóng đại; nói quá
+1891,Kỳ thi
+1892,Kỳ thi; sự kiểm tra
+1893,Kiểm tra; khám
+1894,Ví dụ
+1895,Vượt quá
+1896,Sự xuất sắc
+1897,Xuất sắc; tuyệt vời
+1898,Trừ khi; ngoại trừ
+1899,Ngoại trừ
+1900,Ngoại lệ
+1901,Nổi bật; ngoại lệ
+1902,Dư thừa
+1903,Sự dư thừa
+1904,Quá mức; quá độ
+1905,Sự trao đổi
+1906,Trao đổi
+1907,Hào hứng; phấn khích
+1908,Sự phấn khích
+1909,Thú vị; gây hào hứng
+1910,Loại trừ
+1911,Sự loại trừ
+1912,Độc quyền; dành riêng
+1913,Dành riêng; độc quyền
+1914,Lý do biện hộ
+1915,Thứ lỗi; xin lỗi
+1916,Thi hành; thực thi
+1917,Sự thi hành; sự thực thi
+1918,Thuộc điều hành
+1919,Giám đốc điều hành
+1920,Bài tập; sự tập luyện
+1921,Tập thể dục; thực hiện
+1922,Áp dụng; nỗ lực
+1923,Vật trưng bày
+1924,Trưng bày; thể hiện
+1925,Cuộc triển lãm
+1926,Sự lưu vong
+1927,Tồn tại
+1928,Sự tồn tại
+1929,Lối thoát; lối ra
+1930,Đi ra; thoát ra
+1931,Kỳ lạ; ngoại nhập
+1932,Mở rộng
+1933,Sự mở rộng
+1934,Kỳ vọng; mong chờ
+1935,Sự kỳ vọng
+1936,Được dự đoán
+1937,Cuộc thám hiểm
+1938,Chi phí; sự tiêu dùng
+1939,Chi phí
+1940,Đắt đỏ
+1941,Kinh nghiệm; trải nghiệm
+1942,Trải qua; trải nghiệm
+1943,Có kinh nghiệm
+1944,Thí nghiệm
+1945,Làm thí nghiệm
+1946,Thuộc thí nghiệm
+1947,Chuyên gia
+1948,Chuyên gia
+1949,Kiến thức chuyên môn
+1950,Hết hạn
+1951,Giải thích
+1952,Lời giải thích
+1953,Rõ ràng; minh bạch
+1954,Một cách rõ ràng
+1955,Nổ tung
+1956,Khai thác; lạm dụng
+1957,Sự khai thác; lạm dụng
+1958,Sự thám hiểm; thăm dò
+1959,Khám phá; thám hiểm
+1960,Vụ nổ
+1961,Dễ nổ
+1962,Chất nổ
+1963,Hàng xuất khẩu
+1964,Xuất khẩu
+1965,Bộc lộ; phơi bày
+1966,Sự tiếp xúc; phơi bày
+1967,Bày tỏ; thể hiện
+1968,Sự bày tỏ; biểu cảm
+1969,Mở rộng; kéo dài
+1970,Sự mở rộng; máy nhánh
+1971,Rộng lớn; diện rộng
+1972,Rộng rãi
+1973,Mức độ; phạm vi
+1974,Thuộc bên ngoài
+1975,Thêm; phụ
+1976,Thêm
+1977,Phần thêm
+1978,Chiết xuất; đoạn trích
+1979,Trích xuất; nhổ ra
+1980,Phi thường; đặc biệt
+1981,Cực đoan; vô cùng
+1982,Mức cực đoan
+1983,Vô cùng; cực kỳ
+1984,Kẻ cực đoan
+1985,Mắt
+1986,Vải vóc; kết cấu
+1987,Tuyệt vời; thần thoại
+1988,Khuôn mặt; bề mặt
+1989,Đối mặt; hướng về
+1990,Tạo điều kiện
+1991,Cơ sở vật chất
+1992,Sự thật; thực tế
+1993,Phe phái
+1994,Yếu tố; nhân tố
+1995,Nhà máy; xưởng
+1996,Khoa; năng lực
+1997,Phai màu; mờ dần
+1998,Thất bại; hỏng
+1999,Thất bại
+2000,Sự thất bại
+2001,Công bằng; khá tốt
+2002,Khá là; công bằng
+2003,Sự công bằng
+2004,Niềm tin; tín ngưỡng
+2005,Giả mạo
+2006,Sự rơi; mùa thu
+2007,Rơi; ngã
+2008,Sai; giả
+2009,Danh tiếng
+2010,Quen thuộc
+2011,Thuộc gia đình
+2012,Gia đình
+2013,Nổi tiếng
+2014,Người hâm mộ; cái quạt
+2015,Sang trọng; đẹp mắt
+2016,Thích; tưởng tượng
+2017,Tuyệt vời
+2018,Sự tưởng tượng; ảo tưởng
+2019,Xa xôi; xa
+2020,Xa; nhiều
+2021,Tiền xe; tiền vé
+2022,Trang trại
+2023,Làm nông
+2024,Nông dân
+2025,Ngành nông nghiệp
+2026,Lôi cuốn; hấp dẫn
+2027,Thời trang
+2028,Hợp thời trang
+2029,Nhanh chóng
+2030,Nhanh chóng; mau lẹ
+2031,Thắt chặt; buộc
+2032,Béo; mập
+2033,Mỡ; chất béo
+2034,Chết người; chí mạng
+2035,Số phận; định mệnh
+2036,Người cha
+2037,Lỗi sai; khuyết điểm
+2038,Sự giúp đỡ; ủng hộ
+2039,Ủng hộ; thiên vị
+2040,Thuận lợi; tán thành
+2041,Được yêu thích nhất
+2042,Vật yêu thích nhất
+2043,Sự sợ hãi
+2044,E sợ; sợ hãi
+2045,Thành tựu; ngón nghề
+2046,Lông vũ
+2047,Đặc điểm; tính năng
+2048,Bao gồm; nổi bật
+2049,Tháng Hai
+2050,Thuộc liên bang
+2051,Học phí; phí
+2052,Thức ăn gia súc; nguồn tin
+2053,Cho ăn; nuôi dưỡng
+2054,Ý kiến phản hồi
+2055,Cảm giác
+2056,Cảm thấy
+2057,Cảm xúc; cảm giác
+2058,Cùng hội; bạn
+2059,Thuộc nữ giới
+2060,Phái nữ
+2061,Thuộc nữ quyền
+2062,Người theo nữ quyền
+2063,Hàng rào
+2064,Lễ hội
+2065,Cơn sốt
+2066,Một vài
+2067,Một vài
+2068,Một vài
+2069,Sợi; chất xơ
+2070,Văn học hư cấu
+2071,Cánh đồng; lĩnh vực
+2072,Hung dữ; dữ dội
+2073,Số mười lăm
+2074,Thứ năm
+2075,Số năm mươi
+2076,Cuộc chiến; trận đánh
+2077,Chiến đấu; đánh nhau
+2078,Cuộc giao tranh
+2079,Con số; nhân vật
+2080,Tính toán; suy nghĩ
+2081,Tệp tin; hồ sơ
+2082,Lưu hồ sơ; nộp đơn
+2083,Lấp đầy; điền vào
+2084,Phim ảnh
+2085,Quay phim
+2086,Nhà làm phim
+2087,Bộ lọc
+2088,Lọc
+2089,Cuối cùng
+2090,Trận chung kết
+2091,Cuối cùng
+2092,Tài chính
+2093,Cấp vốn; tài trợ
+2094,Thuộc tài chính
+2095,Tìm thấy; phát hiện
+2096,Kết quả phát hiện
+2097,Tốt; ổn; phạt
+2098,Tiền phạt
+2099,Phạt tiền
+2100,Ngón tay
+2101,Sự kết thúc; phần hoàn thiện
+2102,Hoàn thành; kết thúc
+2103,Ngọn lửa; vụ cháy
+2104,Bắn súng; sa thải
+2105,Súng súng lục
+2106,Lính chữa cháy
+2107,Pháo hoa
+2108,Vững chắc; kiên quyết
+2109,Công ty; hãng
+2110,Vững chắc
+2111,Đầu tiên
+2112,Đầu tiên
+2113,Người/vật đầu tiên
+2114,Thứ nhất; đầu tiên
+2115,Đầu tiên
+2116,Con cá
+2117,Câu cá
+2118,Việc đánh cá
+2119,Vừa vặn; khỏe mạnh
+2120,Sự vừa vặn; cơn phát bệnh
+2121,Vừa vặn; lắp đặt
+2122,Sự thể lực; khỏe mạnh
+2123,Số năm
+2124,Giải pháp; sự sửa chữa
+2125,Sửa chữa; cố định
+2126,Cố định
+2127,Thiết bị cố định; lịch thi đấu
+2128,Lá cờ
+2129,Ngọn lửa
+2130,Ánh lóe sáng; đèn flash
+2131,Lóe sáng
+2132,Bằng phẳng
+2133,Căn hộ
+2134,Hương vị
+2135,Thiếu sót; vết nứt
+2136,Có khiếm khuyết
+2137,Chạy trốn; bỏ chạy
+2138,Hạm đội; đội xe
+2139,Thịt; thịt người
+2140,Sự linh hoạt
+2141,Linh hoạt
+2142,Chuyến bay
+2143,Nổi; trôi bồng bềnh
+2144,Trận lũ lụt
+2145,Làm ngập lụt
+2146,Sàn nhà; tầng
+2147,Bột mỹ; bột
+2148,Hưng thịnh; phát triển
+2149,Dòng chảy
+2150,Chảy
+2151,Bông hoa
+2152,Bệnh cúm
+2153,Chất lưu; chất lỏng
+2154,Con ruồi
+2155,Bay; lái máy bay
+2156,Biết bay; di chuyển nhanh
+2157,Việc bay
+2158,Tiêu điểm; sự tập trung
+2159,Tập trung
+2160,Nếp gấp
+2161,Gấp lại
+2162,Có thể gấp gọn
+2163,Thuộc dân gian
+2164,Người dân; dân gian
+2165,Theo dõi; đi theo
+2166,Tiếp theo
+2167,Lượng người theo dõi
+2168,Sau khi; tiếp theo
+2169,Yêu thích; mến
+2170,Thức ăn; thực phẩm
+2171,Kẻ ngốc
+2172,Bàn chân; bộ (đơn vị đo)
+2173,Đoạn phim
+2174,Môn bóng đá
+2175,Cho; dành cho; vì
+2176,Cấm đoán
+2177,Lực lượng; sức mạnh
+2178,Bắt buộc; ép buộc
+2179,Sự dự báo
+2180,Dự báo
+2181,Nước ngoài; lạ
+2182,Người nước ngoài
+2183,Khu rừng
+2184,Mãi mãi
+2185,Rèn luyện; giả mạo
+2186,Quên
+2187,Tha thứ
+2188,Cái nĩa; ngã ba
+2189,Hình thức; mẫu đơn
+2190,Tạo thành; hình thành
+2191,Trang trọng; chính thức
+2192,Định dạng; khuôn dạng
+2193,Sự hình thành; đội hình
+2194,Cựu; trước đây
+2195,Trước đây
+2196,Công thức
+2197,Đề ra; xây dựng
+2198,Tới; ra phía trước
+2199,Sắp tới
+2200,May mắn
+2201,May mắn thay
+2202,Vận may; tài sản lớn
+2203,Số bốn mươi
+2204,Diễn đàn
+2205,Ở phía trước; tiến về trước
+2206,Phía trước; tiến lên
+2207,Hóa thạch
+2208,Nuôi dưỡng; thúc đẩy
+2209,Thành lập; sáng lập
+2210,Nền móng; quỹ từ thiện
+2211,Nhà sáng lập
+2212,Số bốn
+2213,Số mười bốn
+2214,Thứ tư
+2215,Phân số; một phần nhỏ
+2216,Dễ vỡ; mong manh
+2217,Mảnh vỡ
+2218,Khung; gọng
+2219,Dựng khung; đóng khung
+2220,Khuôn khổ; cơ cấu
+2221,Nhượng quyền thương hiệu
+2222,Thẳng thắn
+2223,Sự gian lận; lừa đảo
+2224,Tự do; miễn phí
+2225,Miễn phí; tự do
+2226,Giải phóng
+2227,Sự tự do
+2228,Một cách tự do
+2229,Đông đá; đóng đóng
+2230,Tần số; tần suất
+2231,Thường xuyên
+2232,Thường xuyên
+2233,Tươi mới; trong lành
+2234,Thứ Sáu
+2235,Tủ lạnh
+2236,Người bạn
+2237,Thân thiện
+2238,Tình bạn
+2239,Làm hoảng sợ
+2240,Hoảng sợ
+2241,Đáng sợ
+2242,Con ếch
+2243,Từ
+2244,Phía trước
+2245,Mặt trước; tiền tuyến
+2246,Đông lạnh; đóng băng
+2247,Trái cây; quả
+2248,Bực bội; nản lòng
+2249,Gây bực bội
+2250,Sự bực bội; sự nản lòng
+2251,Rán; chiên
+2252,Nhiên liệu
+2253,Cung cấp nhiên liệu
+2254,Hoàn thành; đáp ứng
+2255,Đầy; hoàn toàn
+2256,Toàn thời gian
+2257,Toàn thời gian
+2258,Hoàn toàn; đầy đủ
+2259,Vui vẻ
+2260,Sự vui đùa
+2261,Chức năng; nhiệm vụ
+2262,Hoạt động; vận hành
+2263,Thuộc chức năng; hữu dụng
+2264,Quỹ
+2265,Cấp vốn
+2266,Cơ bản; cốt lõi
+2267,Về cơ bản
+2268,Nguồn vốn tài trợ
+2269,Việc gây quỹ
+2270,Tang lễ
+2271,Hài hước; buồn cười
+2272,Lông thú
+2273,Giận dữ; điên tiết
+2274,Đồ nội thất
+2275,Xa hơn; thêm nữa
+2276,Xa hơn; thêm nữa
+2277,Hơn nữa; ngoài ra
+2278,Tương lai
+2279,Tương lai
+2280,Lợi ích; sự gia tăng
+2281,Đạt được; gia tăng
+2282,Phòng trưng bày nghệ thuật
+2283,Đơn vị đo thể tích (ga-lông)
+2284,Trò cờ bạc; việc cá cược
+2285,Trò chơi; trận đấu
+2286,Việc chơi game
+2287,Băng nhóm
+2288,Khoảng trống; khoảng cách
+2289,Nhà để xe; xưởng sửa xe
+2290,Khu vườn
+2291,Khí gas; xăng
+2292,Cổng
+2293,Tụ tập; thu thập
+2294,Cuộc tụ họp
+2295,Đồng tính
+2296,Cái nhìn chằm chằm
+2297,Nhìn chằm chằm
+2298,Bánh răng; thiết bị
+2299,Giới tính
+2300,Gen di truyền
+2301,Chung; tổng quát
+2302,Nói chung; thường là
+2303,Tạo ra; phát ra
+2304,Thế hệ; sự tạo ra
+2305,Chung chung; không nhãn hiệu
+2306,Rộng lượng; hào phóng
+2307,Thuộc di truyền
+2308,Thiên tài
+2309,Tội diệt chủng
+2310,Thể loại
+2311,Dịu dàng; nhẹ nhàng
+2312,Quý ông
+2313,Chân thật; đích thực
+2314,Một cách chân thành
+2315,Địa lý
+2316,Cử chỉ; điệu bộ
+2317,Nhận được; trở nên
+2318,Con ma; bóng ma
+2319,Khổng lồ
+2320,Gã khổng lồ
+2321,Món quà; tài năng
+2322,Buổi biểu diễn âm nhạc
+2323,Cậu bé gái; con gái
+2324,Bạn gái
+2325,Cho; tặng
+2326,Vui mừng
+2327,Cái nhìn thoáng qua
+2328,Nhìn thoáng qua
+2329,Thủy tinh; cái ly
+2330,Cái nhìn lướt qua
+2331,Toàn cầu
+2332,Sự toàn cầu hóa
+2333,Quả địa cầu
+2334,Rực rỡ; vinh quang
+2335,Vinh quang; danh vọng
+2336,Găng tay
+2337,Lượt đi; sự thử sức
+2338,Đi
+2339,Mục tiêu; bàn thắng
+2340,Vị Thần; Chúa
+2341,Bằng vàng
+2342,Vàng
+2343,Thuộc bằng vàng; tuyệt vời
+2344,Môn đánh golf
+2345,Tốt; hay
+2346,Điều tốt
+2347,Tạm biệt
+2348,Lời tạm biệt
+2349,Lòng tốt; sự tử tế
+2350,Hàng hóa
+2351,Tuyệt đẹp; rực rỡ
+2352,Cai trị; quản lý
+2353,Sự quản trị
+2354,Chính phủ
+2355,Thống đốc
+2356,Nắm lấy; giật lấy
+2357,Vẻ duyên dáng; sự ân sủng
+2358,Điểm số; cấp độ
+2359,Chấm điểm; xếp loại
+2360,Dần dần
+2361,Người tốt nghiệp
+2362,Tốt nghiệp
+2363,Hạt ngũ cốc; hạt
+2364,Hoành tráng; đại
+2365,Ông nội; ông ngoại
+2366,Bà nội; bà ngoại
+2367,Ông bà
+2368,Khoản trợ cấp
+2369,Cấp; ban cho
+2370,Thuộc đồ họa
+2371,Đồ họa
+2372,Sự hiểu biết; sự nắm bắt
+2373,Nắm bắt; hiểu rõ
+2374,Bãi cỏ; cỏ
+2375,Biết ơn; biết ghi nhớ
+2376,Nghiêm trọng; trầm trọng
+2377,Ngôi mộ
+2378,Trọng lực
+2379,Tuyệt vời; to lớn
+2380,Rất nhiều
+2381,Màu xanh lá
+2382,Màu xanh lá
+2383,Nhà kính
+2384,Chào hỏi
+2385,Màu xám
+2386,Màu xám
+2387,Lưới; hệ thống mạng lưới
+2388,Nỗi đau buồn
+2389,Nụ cười toe tóe
+2390,Cười toe tóe
+2391,Xay; nghiền
+2392,Sự cầm nắm; bám
+2393,Nắm chặt; kẹp
+2394,Cửa hàng tạp hóa
+2395,Tổng; ghê tởm
+2396,Mặt đất; cơ sở
+2397,Nhóm
+2398,Phát triển; trồng
+2399,Sự phát triển; sự tăng trưởng
+2400,Sự bảo hành; cam kết
+2401,Bảo hành; cam kết
+2402,Bảo vệ; người gác
+2403,Bảo vệ; canh giữ
+2404,Du kích
+2405,Sự dự đoán
+2406,Đoán
+2407,Khách mời
+2408,Sự hướng dẫn
+2409,Người hướng dẫn; sách hướng dẫn
+2410,Hướng dẫn
+2411,Hướng dẫn; nguyên tắc
+2412,Tội lỗi; sự tội lỗi
+2413,Có tội; phạm tội
+2414,Đàn ghi-ta
+2415,Khẩu súng
+2416,Ruột; lòng dũng cảm
+2417,Anh chàng; gã
+2418,Phòng tập gym
+2419,Thói quen
+2420,Môi trường sống
+2421,Hoan hô; gọi (xe)
+2422,Tóc; lông
+2423,Một nửa
+2424,Một nửa
+2425,Một nửa
+2426,Một nửa
+2427,Nửa chừng
+2428,Sảnh; hội trường
+2429,Sự dừng lại
+2430,Dừng lại; tạm ngưng
+2431,Bàn tay
+2432,Trao; đưa cho
+2433,Một nắm; một ít
+2434,Tay cầm
+2435,Xử lý; giải quyết
+2436,Sự xử lý; điều khiển
+2437,Tiện lợi; khéo tay
+2438,Treo; móc
+2439,Xảy ra
+2440,Một cách hạnh phúc
+2441,Sự hạnh phúc
+2442,Hạnh phúc; vui vẻ
+2443,Sự quấy rối
+2444,Cảng biển; bến tàu
+2445,Khó khăn; cứng
+2446,Chăm chỉ; vất vả
+2447,Hầu như không
+2448,Phần cứng
+2449,Tác hại; sự tổn hại
+2450,Gây hại
+2451,Gây hại
+2452,Sự hòa hợp
+2453,Khắc nghiệt; gay gắt
+2454,Vụ thu hoạch
+2455,Thu hoạch
+2456,Cái mũ
+2457,Sự ghét bỏ
+2458,Ghét
+2459,Sự căm thù
+2460,Ám ảnh; ám
+2461,Có; sở hữu
+2462,Trợ từ
+2463,Phải
+2464,Mối nguy hiểm
+2465,Anh ấy; ông ấy
+2466,Cái đầu; người đứng đầu
+2467,Dẫn đầu; đi về hướng
+2468,Cơn đau đầu
+2469,Tiêu đề bài báo
+2470,Trụ sở chính
+2471,Chữa lành; hồi phục
+2472,Sức khỏe
+2473,Dịch vụ y tế
+2474,Khỏe mạnh
+2475,Nghe thấy; lắng nghe
+2476,Thính giác; phiên phân xử
+2477,Trái tim
+2478,Hơi nóng; nhiệt độ
+2479,Làm nóng
+2480,Hệ thống sưởi
+2481,Thiên đường
+2482,Nặng nề; nhiều
+2483,Nặng nề
+2484,Gót chân
+2485,Chiều cao
+2486,Tăng cường; nâng cao
+2487,Máy bay trực thăng
+2488,Địa ngục
+2489,Xin chào
+2490,Lời xin chào
+2491,Mũ bảo hiểm
+2492,Sự giúp đỡ
+2493,Giúp đỡ
+2494,Có ích; hữu ích
+2495,Do đó; vì vậy
+2496,Của cô ấy
+2497,Cô ấy
+2498,Thảo mộc; rau thơm
+2499,Ở đây
+2500,Di sản; gia tài
+2501,Anh hùng; nhân vật chính
+2502,Cái của cô ấy
+2503,Chính cô ấy
+2504,Do dự; ngập ngừng
+2505,Này; chà
+2506,Xin chào
+2507,Ẩn giấu; giấu kín
+2508,Che giấu; trốn
+2509,Hệ thống thứ bậc
+2510,Cao lớn; cao
+2511,Ở mức cao
+2512,Mức cao; đỉnh điểm
+2513,Gây chú ý; vị thế cao
+2514,Điểm nổi bật
+2515,Nêu bật; nhấn mạnh
+2516,Rất; đánh giá cao
+2517,Đường xa lộ
+2518,Vui nhộn; cực kỳ hài hước
+2519,Ngọn đồi
+2520,Anh ấy; ông ấy
+2521,Chính anh ấy
+2522,Lời gợi ý
+2523,Gợi ý; ám chỉ
+2524,Hông
+2525,Sự thuê mướn
+2526,Thuê mướn; tuyển dụng
+2527,Của anh ấy
+2528,Cái của anh ấy
+2529,Nhà sử học
+2530,Mang tính lịch sử
+2531,Thuộc lịch sử
+2532,Lịch sử
+2533,Cú đánh; bài hát thành công
+2534,Đánh; va chạm
+2535,Sở thích
+2536,Môn khúc côn cầu
+2537,Sự cầm nắm; quyền kiểm soát
+2538,Cầm; nắm; tổ chức
+2539,Cái lỗ; hố
+2540,Kỳ nghỉ; ngày lễ
+2541,Rỗng; rỗng tuếch
+2542,Linh thiêng; thần thánh
+2543,Thuộc về nhà; sân nhà
+2544,Về nhà
+2545,Ngôi nhà; nhà
+2546,Quê hương; tổ quốc
+2547,Vô gia cư
+2548,Bài tập về nhà
+2549,Trung thực; thành thật
+2550,Sự trung thực
+2551,Danh dự
+2552,Tôn vinh
+2553,Cái móc
+2554,Móc vào; thu hút
+2555,Hy vọng
+2556,Hy vọng
+2557,Đầy hy vọng
+2558,Hy vọng rằng
+2559,Chân trời; tầm nhìn
+2560,Sừng động vật; còi xe
+2561,Kinh khủng; đáng sợ
+2562,Sự kinh hoàng; sự sợ hãi
+2563,Con ngựa
+2564,Bệnh viện
+2565,Chủ nhà; người dẫn chương trình
+2566,Dẫn chương trình; đăng cai
+2567,Con xin; con mồi
+2568,Thù địch; chống đối
+2569,Sự thù địch
+2570,Nóng; cay
+2571,Khách sạn
+2572,Giờ; tiếng đồng hồ
+2573,Ngôi nhà
+2574,Cung cấp chỗ ở
+2575,Hộ gia đình
+2576,Nơi ở; nhà ở
+2577,Như thế nào; ra sao
+2578,Tuy nhiên
+2579,To lớn; đồ sộ
+2580,Thuộc con người
+2581,Con người
+2582,Thuộc nhân đạo
+2583,Nhân loại; lòng nhân đạo
+2584,Khiêm tốn; nhún nhường
+2585,Hài hước
+2586,Sự hài hước
+2587,Một trăm
+2588,Cơn đói
+2589,Đói bụng
+2590,Cuộc săn bắt
+2591,Săn bắt
+2592,Việc săn bắt
+2593,Cơn bão lớn
+2594,Sự vội vã
+2595,Vội vã; giục
+2596,Bị tổn thương
+2597,Sự tổn thương
+2598,Làm đau; gây tổn thương
+2599,Người chồng
+2600,Khí hydro
+2601,Giả thuyết
+2602,Tôi
+2603,Băng; đá
+2604,Kem
+2605,Biểu tượng
+2606,Thẻ căn cước; danh tính
+2607,Ý tưởng; ý niệm
+2608,Lý tưởng
+2609,Hình mẫu lý tưởng
+2610,Y hệt; giống hệt
+2611,Sự nhận dạng; giấy tờ tùy thân
+2612,Nhận dạng; xác định
+2613,Danh tính; bản sắc
+2614,Thuộc tư tưởng
+2615,Hệ tư tưởng
+2616,Tên ngốc
+2617,Nếu; liệu
+2618,Sự thiếu hiểu biết
+2619,Phớt lờ; bỏ qua
+2620,Bị ốm; đau yếu
+2621,Bất hợp pháp
+2622,Căn bệnh; sự ốm đau
+2623,Ảo tưởng; ảo giác
+2624,Minh họa
+2625,Sự minh họa; hình minh họa
+2626,Hình ảnh
+2627,Hình tượng; hình ảnh mô tả
+2628,Tưởng tượng; hư cấu
+2629,Sức tưởng tượng
+2630,Tưởng tượng
+2631,Lập tức; ngay tức thì
+2632,Ngay lập tức
+2633,Bao la; mênh mông
+2634,Người nhập cư
+2635,Sự nhập cư
+2636,Sắp xảy ra; cận kề
+2637,Miễn dịch
+2638,Tác động; ảnh hưởng
+2639,Tác động đến
+2640,Thiếu kiên nhẫn
+2641,Thực thi; áp dụng
+2642,Sự thực thi
+2643,Hàm ý; hệ lụy
+2644,Ngụ ý; hàm ý
+2645,Hàng nhập khẩu
+2646,Nhập khẩu
+2647,Tầm quan trọng
+2648,Quan trọng
+2649,Áp đặt; áp thuế
+2650,Không thể thực hiện
+2651,Gây ấn tượng
+2652,Bị ấn tượng
+2653,Ấn tượng
+2654,Gây ấn tượng mạnh
+2655,Bỏ tù; tống giam
+2656,Sự bỏ tù; hình phạt tù
+2657,Cải thiện; nâng cao
+2658,Sự cải thiện
+2659,Ở trong; vào trong
+2660,Ở trong; trong
+2661,Sự không có khả năng
+2662,Không đầy đủ; yếu kém
+2663,Không thích hợp
+2664,Sự khuyến khích; động lực
+2665,Đơn vị inch
+2666,Tỷ lệ mắc; sự tác động
+2667,Sự cố; vụ việc
+2668,Có xu hướng
+2669,Bao gồm
+2670,Được bao gồm
+2671,Bao gồm cả
+2672,Sự bao gồm; sự hòa nhập
+2673,Thu nhập
+2674,Kết hợp; sáp nhập
+2675,Sai; không chính xác
+2676,Sự gia tăng
+2677,Gia tăng; tăng lên
+2678,Ngày càng
+2679,Đáng kinh ngạc; phi thường
+2680,Vô cùng; cực kỳ
+2681,Gánh chịu; phát sinh
+2682,Quả thực; thực sự
+2683,Sự độc lập
+2684,Độc lập
+2685,Chỉ số; mục lục
+2686,Chỉ ra; hiển thị
+2687,Dấu hiệu; sự chỉ ra
+2688,Chỉ số; dấu hiệu
+2689,Cáo trạng
+2690,Bản địa
+2691,Gián tiếp
+2692,Thuộc cá nhân
+2693,Cá nhân
+2694,Trong nhà
+2695,Ở trong nhà
+2696,Gây ra; xui khiến
+2697,Nuông chiều; đắm chìm
+2698,Thuộc công nghiệp
+2699,Ngành công nghiệp
+2700,Sự bất bình đẳng
+2701,Không thể tránh khỏi
+2702,Chắc chắn xảy ra
+2703,Tai tiếng; khét tiếng
+2704,Trẻ sơ sinh
+2705,Gây nhiễm; lây nhiễm
+2706,Sự lây nhiễm; nhiễm trùng
+2707,Suy ra; suy luận
+2708,Lạm phát
+2709,Gây ra (tổn hại)
+2710,Sự ảnh hưởng
+2711,Ảnh hưởng đến
+2712,Có ảnh hưởng lớn
+2713,Thông tin
+2714,Thông báo; cho biết
+2715,Thân mật; không chính thức
+2716,Thông tin
+2717,Cơ sở hạ tầng
+2718,Thành phần; nguyên liệu
+2719,Cư dân
+2720,Vốn có; cố hữu
+2721,Thừa kế; thừa hưởng
+2722,Ức chế; ngăn chặn
+2723,Ban đầu
+2724,Ban đầu
+2725,Khởi xướng; bắt đầu
+2726,Sáng kiến; sự chủ động
+2727,Tiêm; tiêm chủng
+2728,Sự tiêm thuốc
+2729,Gây thương tích
+2730,Bị thương
+2731,Vết thương; sự tổn thương
+2732,Sự bất công
+2733,Mực in
+2734,Tù nhân; người ở cùng
+2735,Bên trong; nội tâm
+2736,Vô tội; ngây thơ
+2737,Sự đổi mới; sáng tạo
+2738,Mang tính đổi mới
+2739,Dữ liệu đầu vào
+2740,Sự điều tra; thắc mắc
+2741,Côn trùng
+2742,Chèn vào; nhập
+2743,Sự chèn vào
+2744,Bên trong
+2745,Bên trong
+2746,Phía bên trong
+2747,Ở bên trong
+2748,Người trong cuộc
+2749,Sự hiểu biết sâu sắc
+2750,Khăng khăng; nhẫn nại
+2751,Thanh tra; kiểm tra
+2752,Sự thanh tra; kiểm tra
+2753,Thanh tra viên
+2754,Nguồn cảm hứng
+2755,Truyền cảm hứng
+2756,Cài đặt; lắp đặt
+2757,Sự cài đặt; lắp đặt
+2758,Ví dụ; trường hợp
+2759,Tức thì; ngay lập tức
+2760,Ngay lập tức
+2761,Thay vào đó
+2762,Bản năng
+2763,Học viện; viện nghiên cứu
+2764,Tổ chức; thể chế
+2765,Thuộc thể chế
+2766,Hướng dẫn; chỉ thị
+2767,Sự hướng dẫn
+2768,Người hướng dẫn; huấn luyện viên
+2769,Nhạc cụ; công cụ
+2770,Đóng vai trò quan trọng
+2771,Thiếu hụt; không đầy đủ
+2772,Lời xúc phạm
+2773,Xúc phạm
+2774,Bảo hiểm
+2775,Nguyên vẹn
+2776,Lượng tiêu thụ; lượng nhận vào
+2777,Không thể thiếu; toàn bộ
+2778,Tích hợp; hòa nhập
+2779,Được tích hợp
+2780,Sự tích hợp; hòa nhập
+2781,Sự liêm chính; tính nguyên vẹn
+2782,Thuộc trí tuệ
+2783,Nhà trí thức
+2784,Trí thông minh; tình báo
+2785,Thông minh
+2786,Dự định; có ý định
+2787,Dành cho; dự định
+2788,Cực kỳ; dữ dội
+2789,Tăng cường; làm dữ dội
+2790,Cường độ; độ dữ dội
+2791,Cấp tốc; chuyên sâu
+2792,Ý định; mục đích
+2793,Ý định; mục đích
+2794,Tương tác
+2795,Sự tương tác
+2796,Có tính tương tác
+2797,Sự quan tâm; lãi suất
+2798,Gây chú ý
+2799,Hứng thú; quan tâm
+2800,Thú vị
+2801,Giao diện
+2802,Can thiệp; cản trở
+2803,Sự can thiệp
+2804,Tạm thời; lâm thời
+2805,Nội thất; bên trong
+2806,Phần bên trong
+2807,Trung cấp; trung gian
+2808,Thuộc bên trong; nội bộ
+2809,Thuộc quốc tế
+2810,Mạng internet
+2811,Giải thích; phiên dịch
+2812,Sự giải thích; sự phiên dịch
+2813,Gián đoạn; ngắt lời
+2814,Khoảng thời gian; khoảng nghỉ
+2815,Can thiệp
+2816,Sự can thiệp
+2817,Cuộc phỏng vấn
+2818,Phỏng vấn
+2819,Thân mật; riêng tư
+2820,Vào trong
+2821,Hấp dẫn; gợi tò mò
+2822,Giới thiệu
+2823,Sự giới thiệu; phần mở đầu
+2824,Xâm lược; xâm nhập
+2825,Sự xâm lược
+2826,Sáng chế; phát minh
+2827,Sự sáng chế; phát minh
+2828,Đầu tư
+2829,Điều tra
+2830,Cuộc điều tra
+2831,Điều tra viên
+2832,Khoản đầu tư
+2833,Nhà đầu tư
+2834,Vô hình
+2835,Lời mời; thiệp mời
+2836,Mời
+2837,Gợi nhớ; dẫn chứng
+2838,Liên quan; bao gồm
+2839,Có liên quan
+2840,Sự tham gia; sự liên quan
+2841,Sắt; bàn là
+2842,Là quần áo
+2843,Mỉa mai; trớ trêu
+2844,Trớ trêu thay; mỉa mai thay
+2845,Sự trớ trêu; sự mỉa mai
+2846,Không liên quan
+2847,Hòn đảo
+2848,Cách ly; cô lập
+2849,Biệt lập; bị cô lập
+2850,Sự cô lập
+2851,Vấn đề; sự phát hành
+2852,Phát hành; ban hành
+2853,Công nghệ thông tin
+2854,Nó
+2855,Món đồ; mục
+2856,Của nó
+2857,Chính nó
+2858,Áo khoác ngắn
+2859,Nhà tù
+2860,Bỏ tù
+2861,Mứt; sự tắc nghẽn
+2862,Tháng Giêng
+2863,Nhạc jazz
+2864,Quần jeans
+2865,Máy bay phản lực
+2866,Trang sức
+2867,Công việc
+2868,Tham gia; gia nhập
+2869,Chung; liên kết
+2870,Khớp xương
+2871,Lời nói đùa
+2872,Nói đùa
+2873,Tạp chí chuyên ngành
+2874,Ngành báo chí
+2875,Nhà báo
+2876,Hành trình; chuyến đi
+2877,Niềm vui
+2878,Thẩm phán; giám khảo
+2879,Đánh giá; phán xét
+2880,Sự đánh giá; phán quyết
+2881,Thuộc tư pháp
+2882,Nước ép
+2883,Tháng Bảy
+2884,Cú nhảy
+2885,Nhảy
+2886,Giao lộ; điểm nối
+2887,Tháng Sáu
+2888,Cấp thấp hơn; trẻ tuổi hơn
+2889,Thẩm quyền tài phán
+2890,Bồi thẩm đoàn
+2891,Công bằng; chính trực
+2892,Chỉ; vừa mới
+2893,Sự công lý; công bằng
+2894,Sự biện hộ
+2895,Biện hộ; bào chữa
+2896,Hăng hái; sắc sảo
+2897,Giữ; duy trì
+2898,Chính; then chốt
+2899,Chìa khóa; phím
+2900,Làm key; key
+2901,Bàn phím
+2902,Cú đá
+2903,Đá
+2904,Đứa trẻ
+2905,Bắt cóc
+2906,Quả thận
+2907,Giết chết
+2908,Vụ chém giết
+2909,Ki-lô-mét
+2910,Tốt bụng; tử tế
+2911,Loại; thể loại
+2912,Đức Vua
+2913,Vương quốc
+2914,Nụ hôn
+2915,Hôn
+2916,Bộ dụng cụ
+2917,Phòng bếp
+2918,Đầu gối
+2919,Con dao
+2920,Tiếng gõ
+2921,Gõ cửa; đánh gục
+2922,Biết; hiểu rõ
+2923,Kiến thức
+2924,Phòng thí nghiệm
+2925,Nhãn hiệu; nhãn
+2926,Dán nhãn
+2927,Phòng thí nghiệm
+2928,Sức lao động
+2929,Sự thiếu hụt
+2930,Thiếu hụt
+2931,Chàng trai trẻ
+2932,Cái thang
+2933,Quý bà; phụ nữ
+2934,Hồ nước
+2935,Đèn
+2936,Đất đai
+2937,Hạ cánh
+2938,Sự hạ cánh
+2939,Chủ nhà trọ
+2940,Cột mốc; địa danh
+2941,Phong cảnh
+2942,Làn đường; ngõ nhỏ
+2943,Ngôn ngữ
+2944,Vòng chạy; đùi
+2945,Máy tính xách tay
+2946,Rộng lớn
+2947,Quy mô lớn
+2948,Phần lớn
+2949,Tia la-ze
+2950,Lần cuối
+2951,Cuối cùng
+2952,Người/vật cuối cùng
+2953,Kéo dài
+2954,Muộn; trễ
+2955,Muộn
+2956,Dạo gần đây
+2957,Xảy ra sau; muộn hơn
+2958,Sau đó
+2959,Mới nhất
+2960,Tin tức mới nhất
+2961,Cái sau; nửa sau
+2962,Cái sau; người sau
+2963,Tiếng cười
+2964,Cười
+2965,Tiếng cười
+2966,Sự ra mắt
+2967,Ra mắt; phóng
+2968,Luật pháp
+2969,Bãi cỏ
+2970,Vụ kiện
+2971,Luật sư
+2972,Đặt; để
+2973,Lớp; tầng
+2974,Bố cục
+2975,Lười biếng
+2976,Sự dẫn dắt
+2977,Lãnh đạo; dẫn dắt
+2978,Nhà lãnh đạo
+2979,Khả năng lãnh đạo
+2980,Hàng đầu
+2981,Chiếc lá
+2982,Tờ rơi
+2983,Giải đấu
+2984,Sự rò rỉ
+2985,Rò rỉ
+2986,Dựa vào
+2987,Bước nhảy vọt
+2988,Nhảy vọt
+2989,Học hỏi
+2990,Sự học tập
+2991,Ít nhất
+2992,Ít nhất
+2993,Ít nhất
+2994,Chất liệu da
+2995,Sự nghỉ phép
+2996,Rời đi
+2997,Bài giảng
+2998,Thuyết giảng
+2999,Bên trái
+3000,Về bên trái
+3001,Phía bên trái
+3002,Chân
+3003,Di sản
+3004,Hợp pháp
+3005,Huyền thoại
+3006,Thuộc huyền thoại
+3007,Pháp luật
+3008,Thuộc lập pháp
+3009,Cơ quan lập pháp
+3010,Chính đáng
+3011,Thời gian rảnh rỗi
+3012,Quả chanh vàng
+3013,Cho vay; cho mượn
+3014,Chiều dài
+3015,Dài dòng; lê thê
+3016,Ống kính; thấu kính
+3017,Đồng tính nữ
+3018,Ít hơn
+3019,Ít hơn
+3020,Ít hơn
+3021,Nhỏ hơn; ít hơn
+3022,Bài học
+3023,Cho phép
+3024,Gây chết người
+3025,Lá thư; chữ cái
+3026,Bằng phẳng
+3027,Cấp độ; mức độ
+3028,Làm bằng phẳng
+3029,Chịu trách nhiệm pháp lý
+3030,Tự do; phóng khoáng
+3031,Người theo chủ nghĩa tự do
+3032,Sự giải phóng
+3033,Sự tự do
+3034,Thư viện
+3035,Giấy phép
+3036,Cấp phép
+3037,Lời nói dối
+3038,Nói dối; nằm
+3039,Nói dối; nằm
+3040,Cuộc sống
+3041,Cả đời
+3042,Phong cách sống
+3043,Cả cuộc đời
+3044,Thang máy
+3045,Nâng lên
+3046,Nhẹ; sáng
+3047,Ánh sáng
+3048,Thắp sáng
+3049,Hệ thống chiếu sáng
+3050,Sự yêu thích; sở thích
+3051,Giống như
+3052,Thích
+3053,Khả năng xảy ra
+3054,Có khả năng
+3055,Tương tự như vậy
+3056,Chi tay chân
+3057,Giới hạn
+3058,Giới hạn
+3059,Sự giới hạn
+3060,Có giới hạn
+3061,Đường thẳng; hàng
+3062,Xếp thành hàng
+3063,Đội hình
+3064,Tuyến tính
+3065,Nán lại
+3066,Liên kết
+3067,Liên kết
+3068,Con sư tử
+3069,Bờ môi
+3070,Thuộc chất lỏng
+3071,Chất lỏng
+3072,Danh sách
+3073,Liệt kê
+3074,Lắng nghe
+3075,Người nghe
+3076,Danh sách niêm yết
+3077,Sự biết đọc biết viết
+3078,Theo nghĩa đen
+3079,Thuộc văn học
+3080,Văn học
+3081,Lít
+3082,Rác thải
+3083,Nhỏ bé
+3084,Một ít
+3085,Một ít
+3086,Một ít
+3087,Trực tiếp
+3088,Trực tiếp
+3089,Sống
+3090,Sống động
+3091,Lá gan
+3092,Đang sống
+3093,Cuộc sống
+3094,Tải trọng
+3095,Chất hàng
+3096,Khoản vay
+3097,Sảnh chờ
+3098,Làm lobby; lobby
+3099,Thuộc địa phương
+3100,Người địa phương
+3101,Xác định vị trí
+3102,Tọa lạc
+3103,Vị trí
+3104,Ổ khóa
+3105,Khóa lại
+3106,Nhật ký ghi chép
+3107,Đăng nhập
+3108,Tư duy logic
+3109,Thuộc logic
+3110,Biểu trưng logo
+3111,Cô đơn
+3112,Dài
+3113,Lâu
+3114,Lâu đời
+3115,Dài hạn
+3116,Một cách long-term
+3117,Lâu năm
+3118,Cái nhìn
+3119,Nhìn
+3120,Hiện ra lờ mờ
+3121,Vòng lặp
+3122,Lỏng lẻo
+3123,Chúa tể
+3124,Xe tải
+3125,Làm mất; thua
+3126,Tổn thất
+3127,Bị lạc
+3128,Một cách lot
+3129,Rất nhiều
+3130,Rất nhiều
+3131,Xổ số
+3132,To tiếng
+3133,To tiếng
+3134,Một cách ồn ào
+3135,Tình yêu
+3136,Yêu thương
+3137,Đáng yêu
+3138,Thấp
+3139,Ở mức thấp
+3140,Mức thấp nhất
+3141,Hạ thấp
+3142,Trung thành
+3143,Lòng trung thành
+3144,Vận may
+3145,May mắn
+3146,Bữa trưa
+3147,Lá phổi
+3148,Xa xỉ; sang trọng
+3149,Sự sang trọng
+3150,Lời bài hát
+3151,Máy móc
+3152,Hệ thống máy móc
+3153,Điên rồ
+3154,Tạp chí
+3155,Thuộc ảo thuật
+3156,Phép thuật
+3157,Kỳ diệu
+3158,Thẩm phán sơ thẩm
+3159,Thuộc nam châm
+3160,Tráng lệ
+3161,Tầm cỡ
+3162,Thư từ
+3163,Gửi thư
+3164,Chính; chủ yếu
+3165,Đất liền
+3166,Chủ yếu
+3167,Thuộc xu hướng chính
+3168,Xu hướng chính
+3169,Duy trì
+3170,Sự bảo trì
+3171,Chính; lớn
+3172,Đa số
+3173,Thương hiệu
+3174,Làm; chế tạo
+3175,Trang điểm
+3176,Sự chế tạo
+3177,Thuộc nam giới
+3178,Phái nam
+3179,Trung tâm thương mại
+3180,Người đàn ông
+3181,Quản lý
+3182,Ban quản lý
+3183,Quản lý
+3184,Nhiệm kỳ; ủy thi
+3185,Bắt buộc
+3186,Bộc lộ
+3187,Thao túng
+3188,Sự thao túng
+3189,Cách thức
+3190,Sản xuất
+3191,Ngành sản xuất
+3192,Bản thảo
+3193,Nhiều
+3194,Nhiều
+3195,Bản đồ
+3196,Lập bản đồ
+3197,Cuộc chạy marathon
+3198,Tháng Ba; diễu hành
+3199,Tháng Ba; diễu hành
+3200,Diễu hành
+3201,Lề; biên lợi nhuận
+3202,Nhỏ; không đáng kể
+3203,Thuộc biển
+3204,Dấu vết; điểm số
+3205,Đánh dấu
+3206,Bút dạ
+3207,Thị trường
+3208,Tiếp thị
+3209,Ngành tiếp thị
+3210,Thị trường
+3211,Hôn nhân
+3212,Đã kết hôn
+3213,Kết hôn
+3214,Thuộc võ thuật
+3215,Khẩu trang
+3216,Hàng loạt
+3217,Khối lượng
+3218,Cuộc thảm sát
+3219,Đồ sộ
+3220,Chủ nhân
+3221,Thành thạo
+3222,Trận đấu
+3223,Khớp
+3224,Đồng bộ
+3225,Bạn bè
+3226,Làm mate; mate
+3227,Vật chất
+3228,Vật liệu
+3229,Thuộc toán học
+3230,Môn toán học
+3231,Môn toán
+3232,Vấn đề
+3233,Quan trọng
+3234,Trưởng thành
+3235,Trưởng thành
+3236,Tối đa hóa
+3237,Tối đa
+3238,Mức tối đa
+3239,Tháng Năm
+3240,Có thể
+3241,Có lẽ
+3242,Thị trưởng
+3243,Tôi
+3244,Bữa ăn
+3245,Có nghĩa là
+3246,Ý nghĩa
+3247,Có ý nghĩa
+3248,Phương tiện
+3249,Trong lúc đó
+3250,Trong khi đó
+3251,Biện pháp
+3252,Đo lường
+3253,Sự đo lường
+3254,Thịt
+3255,Thợ cơ khí
+3256,Thuộc cơ khí
+3257,Cơ chế
+3258,Huy chương
+3259,Truyền thông
+3260,Thuộc y tế
+3261,Thuốc điều trị
+3262,Y học; thuốc
+3263,Thời trung cổ
+3264,Sự thiền định
+3265,Vừa
+3266,Phương tiện
+3267,Gặp gỡ
+3268,Cuộc họp
+3269,Giai điệu
+3270,Tan chảy
+3271,Thành viên
+3272,Tư cách thành viên
+3273,Bản ghi nhớ
+3274,Hồi ký
+3275,Đáng nhớ
+3276,Đài tưởng niệm
+3277,Ký ức
+3278,Thuộc tinh thần
+3279,Sự đề cập
+3280,Đề cập
+3281,Người cố vấn
+3282,Thực đơn
+3283,Thương gia
+3284,Lòng trắc ẩn
+3285,Chỉ là
+3286,Chỉ đơn thuần
+3287,Sáp nhập
+3288,Sự sáp nhập
+3289,Giá trị; công lao
+3290,Bãi bừa bộn
+3291,Tin nhắn
+3292,Kim loại
+3293,Phép ẩn dụ
+3294,Phương pháp
+3295,Hệ phương pháp
+3296,Mét
+3297,Ở giữa
+3298,Phần giữa
+3299,Nửa đêm
+3300,Giữa lúc
+3301,Có thể
+3302,Sự di cư
+3303,Nhẹ nhàng
+3304,Dặm
+3305,Thích chiến đấu
+3306,Phần tử chiến đấu
+3307,Thuộc quân đội
+3308,Quân đội
+3309,Lực lượng dân quân
+3310,Sữa
+3311,Xưởng xay
+3312,Một triệu
+3313,Tâm trí
+3314,Bận tâm
+3315,Mỏ khoáng sản
+3316,Cái của tôi
+3317,Thợ mỏ
+3318,Khoáng chất
+3319,Tối thiểu
+3320,Tối thiểu hóa
+3321,Tối thiểu
+3322,Mức tối thiểu
+3323,Khai khoáng
+3324,Bộ trưởng
+3325,Bộ chính phủ
+3326,Nhỏ; thứ yếu
+3327,Thiểu số
+3328,Rất nhỏ
+3329,Phút
+3330,Phép màu
+3331,Tấm gương
+3332,Khốn khổ
+3333,Nỗi khốn khổ
+3334,Gây hiểu lầm
+3335,Nhớ; bỏ lỡ
+3336,Tên lửa
+3337,Mất tích
+3338,Nhiệm vụ
+3339,Lỗi sai
+3340,Nhầm lẫn
+3341,Sự pha trộn
+3342,Trộn lẫn
+3343,Hỗn hợp
+3344,Hỗn hợp
+3345,Đám đông hỗn loạn
+3346,Di động
+3347,Điện thoại di động
+3348,Tính di động
+3349,Huy động
+3350,Chế độ
+3351,Mô hình
+3352,Làm mô hình
+3353,Vừa phải
+3354,Hiện đại
+3355,Khiêm tốn
+3356,Sự sửa đổi
+3357,Sửa đổi
+3358,Khoảnh khắc
+3359,Đà phát triển
+3360,Thứ Hai
+3361,Tiền bạc
+3362,Màn hình
+3363,Giám sát
+3364,Thầy nhà sư
+3365,Con khỉ
+3366,Sự độc quyền
+3367,Quái vật
+3368,Tháng
+3369,Hàng tháng
+3370,Đài tưởng niệm
+3371,Tâm trạng
+3372,Mặt trăng
+3373,Thuộc đạo đức
+3374,Bài học đạo đức
+3375,Đạo đức
+3376,Nhiều hơn
+3377,Nhiều hơn
+3378,Nhiều hơn
+3379,Hơn nữa
+3380,Buổi sáng
+3381,Khoản thế chấp
+3382,Thánh đường Hồi giáo
+3383,Nhất
+3384,Hầu hết
+3385,Phần lớn
+3386,Chủ yếu là
+3387,Người mẹ
+3388,Sự chuyển động
+3389,Tạo động lực
+3390,Động lực
+3391,Động cơ
+3392,Thuộc động cơ
+3393,Động cơ
+3394,Xe máy
+3395,Người đi xe ô tô
+3396,Trèo lên; tăng lên
+3397,Ngọn núi
+3398,Con chuột
+3399,Cái miệng
+3400,Bước đi
+3401,Di chuyển
+3402,Phong trào
+3403,Bộ phim
+3404,Cảm động
+3405,Nhiều
+3406,Nhiều
+3407,Nhiều
+3408,Bùn lầy
+3409,Nhiều
+3410,Nhân lên
+3411,Mẹ
+3412,Thuộc đô thị
+3413,Vụ giết người
+3414,Giết người
+3415,Cơ bắp
+3416,Bảo tàng
+3417,Âm nhạc
+3418,Thuộc âm nhạc
+3419,Vở nhạc kịch
+3420,Nhạc sĩ
+3421,Phải
+3422,Lẫn nhau
+3423,Của tôi
+3424,Chính tôi
+3425,Bí ẩn
+3426,Bí ẩn
+3427,Thần thoại
+3428,Móng tay; cây đinh
+3429,Khỏa thân
+3430,Tên gọi
+3431,Đặt tên
+3432,Cụ thể là
+3433,Thuộc narrative
+3434,Câu chuyện
+3435,Hẹp
+3436,Thu hẹp
+3437,Xấu xa
+3438,Quốc gia
+3439,Thuộc quốc gia
+3440,Công dân một nước
+3441,Toàn quốc
+3442,Bản địa
+3443,Người bản địa
+3444,Tự nhiên
+3445,Tự nhiên
+3446,Tự nhiên
+3447,Thuộc hải quân
+3448,Sự điều hướng
+3449,Gần
+3450,Gần
+3451,Ở gần
+3452,Ở gần
+3453,Một cách nearby
+3454,Gần như
+3455,Gọn gàng
+3456,Nhất thiết
+3457,Cần thiết
+3458,Sự cần thiết
+3459,Cái cổ
+3460,Nhu cầu
+3461,Cần thiết
+3462,Cần
+3463,Cây kim
+3464,Tiêu cực
+3465,Điều tiêu cực; ảnh âm bản
+3466,Sự bỏ mặc; sự lơ đễnh
+3467,Bỏ mặc
+3468,Đàm phán
+3469,Cuộc đàm phán
+3470,Hàng xóm
+3471,Khu phố
+3472,Láng giềng; lân cận
+3473,Cũng không
+3474,Không cái nào trong hai
+3475,Không cái nào trong hai
+3476,Dây thần kinh
+3477,Hồi hộp
+3478,Tổ chim
+3479,Thuần; ròng
+3480,Tấm lưới
+3481,Mạng lưới
+3482,Trung lập
+3483,Không bao giờ
+3484,Tuy nhiên
+3485,Mới
+3486,Mới gần đây
+3487,Tin tức
+3488,Bản tin
+3489,Tờ báo
+3490,Kế tiếp
+3491,Kế tiếp
+3492,Người/vật tiếp theo
+3493,Bên cạnh
+3494,Đẹp; tử tế
+3495,Thị trường ngách
+3496,Ban đêm
+3497,Cơn ác mộng
+3498,Số chín
+3499,Số mười chín
+3500,Chín mươi
+3501,Khái niệm phủ định; không
+3502,Không
+3503,Không ai
+3504,Cao quý; quý tộc
+3505,Không ai
+3506,Gật đầu
+3507,Tiếng ồn; âm thanh
+3508,Ồn ào; huyên náo
+3509,Đề cử; bổ nhiệm
+3510,Sự đề cử; sự bổ nhiệm
+3511,Người được đề cử
+3512,Phi lợi nhuận
+3513,Không ai; không cái nào
+3514,Dù sao thì; tuy nhiên
+3515,Lời nói nhảm; sự vô lý
+3516,Buổi trưa; 12 giờ trưa
+3517,Cũng không
+3518,Cũng không
+3519,Quy chuẩn; chuẩn mực
+3520,Bình thường; thông thường
+3521,Mức bình thường; trạng thái bình thường
+3522,Thông thường; như thường lệ
+3523,Phía bắc; thuộc hướng bắc
+3524,Về phía bắc
+3525,Hướng bắc; phía bắc
+3526,Phía bắc; thuộc về phía bắc
+3527,Mũi
+3528,Không
+3529,Đáng chú ý; nổi bật
+3530,Đặc biệt là; đáng chú ý là
+3531,Ghi chú; nốt nhạc; tờ tiền
+3532,Ghi chú; chú ý
+3533,Sổ tay; vở ghi chép
+3534,Không có gì; không cái gì
+3535,Thông báo; sự chú ý
+3536,Nhận ra; chú ý
+3537,Thông báo; khai báo
+3538,Khái niệm; quan niệm
+3539,Mang tiếng xấu; tai tiếng
+3540,Mới lạ; độc đáo
+3541,Tiểu thuyết
+3542,Nhà văn viết tiểu thuyết
+3543,Tháng mười một
+3544,Bây giờ; hiện tại
+3545,Vì rằng; giờ đây khi
+3546,Ngày nay; thời nay
+3547,Không đâu; không nơi nào
+3548,Hạt nhân; thuộc hạt nhân
+3549,Con số; số lượng
+3550,Đánh số; lên tới số lượng
+3551,Đông đảo; nhiều
+3552,Y tá; điều dưỡng
+3553,Nhà trẻ; mẫu giáo
+3554,Ngành y tế; việc chăm sóc bệnh nhân
+3555,Hạt cây; đai ốc
+3556,Dinh dưỡng; sự nuôi dưỡng
+3557,Đúng giờ (theo đồng hồ)
+3558,Bệnh béo phì
+3559,Vâng lời; tuân theo
+3560,Vật thể; mục tiêu; tân ngữ
+3561,Phản đối; chống đối
+3562,Sự phản đối; sự chống đối
+3563,Khách quan
+3564,Mục tiêu; mục đích
+3565,Nghĩa vụ; bổn phận
+3566,Bắt buộc; cưỡng bách
+3567,Sự quan sát; sự theo dõi
+3568,Quan sát; tuân thủ
+3569,Người quan sát; người theo dõi
+3570,Ám ảnh
+3571,Sự ám ảnh
+3572,Chướng ngại vật; rào cản
+3573,Đạt được; thu được
+3574,Rõ ràng; hiển nhiên
+3575,Rõ ràng; hiển nhiên
+3576,Dịp; cơ hội; sự kiện
+3577,Thỉnh thoảng; đôi khi
+3578,Thỉnh thoảng; đôi khi
+3579,Nghề nghiệp; việc làm
+3580,Chiếm giữ; chiếm chỗ
+3581,Xảy ra; diễn ra
+3582,Sự cố; sự việc xảy ra
+3583,Đại dương
+3584,Tháng mười
+3585,Kỳ lạ; lẻ (số)
+3586,Xác suất; tỷ lệ cược
+3587,Của; thuộc về
+3588,Tắt; rời khỏi
+3589,Khỏi; rời khỏi
+3590,Hành vi xúc phạm; tội lỗi
+3591,Xúc phạm; làm mất lòng
+3592,Người vi phạm; kẻ phạm tội
+3593,Phản cảm; xúc phạm
+3594,Lời đề nghị; sự chào hàng
+3595,Đề nghị; cung cấp
+3596,Vật cúng tế; sản phẩm cung cấp
+3597,Văn phòng; cơ quan
+3598,Sĩ quan; cán bộ; viên chức
+3599,Chính thức; thuộc chính quyền
+3600,Quan chức; viên chức
+3601,Con cái; thế hệ sau
+3602,Thường xuyên
+3603,Ôi; ồ
+3604,Dầu; dầu mỏ
+3605,Ổn; tốt
+3606,Ổn; được
+3607,Được; đồng ý
+3608,Cũ; già
+3609,Lỗi thời; cổ điển
+3610,Tiếp tục; đang bật
+3611,Trên; vào lúc
+3612,Một lần; đã từng
+3613,Một khi; ngay khi
+3614,Một
+3615,Số một
+3616,Một người; một vật
+3617,Đang diễn ra
+3618,Hành tây
+3619,Trực tuyến
+3620,Trực tuyến
+3621,Duy nhất
+3622,Chỉ; mới
+3623,Lên trên
+3624,Mở; cởi mở
+3625,Mở; bắt đầu
+3626,Lễ khai mạc; chỗ trống
+3627,Công khai; cởi mở
+3628,Nhạc kịch
+3629,Vận hành; hoạt động
+3630,Sự vận hành; cuộc phẫu thuật
+3631,Sẵn sàng hoạt động
+3632,Người vận hành; tổng đài viên
+3633,Ý kiến; quan điểm
+3634,Đối thủ; đối phương
+3635,Cơ hội; thời cơ
+3636,Phản đối; chống đối
+3637,Phản đối; trái ngược
+3638,Đối diện; trái ngược
+3639,Đối diện
+3640,Điều trái ngược
+3641,Đối diện với
+3642,Sự phản đối; phe đối lập
+3643,Lựa chọn
+3644,Thuộc quang học
+3645,Sự lạc quan
+3646,Lạc quan
+3647,Tùy chọn; sự lựa chọn
+3648,Hoặc; hay
+3649,Bằng miệng; truyền miệng
+3650,Màu cam
+3651,Quả cam; màu cam
+3652,Dàn nhạc giao hưởng
+3653,Thứ tự; đơn hàng; mệnh lệnh
+3654,Đặt hàng; ra lệnh
+3655,Bình thường; thông thường
+3656,Cơ quan (cơ thể); đàn phong cầm
+3657,Hữu cơ
+3658,Tổ chức; sự sắp xếp
+3659,Thuộc tổ chức
+3660,Tổ chức; sắp xếp
+3661,Có tổ chức; ngăn nắp
+3662,Người tổ chức
+3663,Sự định hướng
+3664,Nguồn gốc; xuất xứ
+3665,Ban đầu; nguyên bản
+3666,Bản gốc
+3667,Ban đầu; vốn dĩ
+3668,Bắt nguồn; khởi đầu
+3669,Khác
+3670,Khác
+3671,Người khác; cái khác
+3672,Nếu không thì; mặt khác
+3673,Nên
+3674,Của chúng tôi; của chúng ta
+3675,Cái của chúng tôi
+3676,Bản thân chúng tôi
+3677,Ra ngoài; hết
+3678,Ra khỏi
+3679,Kết quả; đầu ra
+3680,Ngoài trời
+3681,Ở ngoài trời
+3682,Bên ngoài; phía ngoài
+3683,Trang phục; bộ đồ
+3684,Dàn ý; nét phác thảo
+3685,Phác thảo; nêu dàn ý
+3686,Góc nhìn; triển vọng
+3687,Sản lượng; đầu ra
+3688,Sự phẫn nộ
+3689,Làm phẫn nộ
+3690,Người ngoài cuộc
+3691,Nổi bật; xuất sắc
+3692,Lò nướng
+3693,Hơn; kết thúc
+3694,Trên; qua
+3695,Tổng thể; toàn bộ
+3696,Nhìn chung
+3697,Vượt qua; khắc phục
+3698,Bỏ qua; nhìn ra hướng
+3699,Quá mức; quá chừng
+3700,Phía trên; qua; vượt qua
+3701,Tổng thể; toàn bộ
+3702,Nhìn chung; tổng thể
+3703,Vượt qua; khắc phục
+3704,Bỏ qua; nhìn ra hướng
+3705,Quá mức; quá chừng
+3706,Qua đêm; chỉ sau một đêm
+3707,Nước ngoài; hải ngoại
+3708,Ở nước ngoài
+3709,Giám sát; trông nom
+3710,Lật đổ; đảo ngược
+3711,Áp đảo; tràn ngập
+3712,Áp đảo; quá mạnh
+3713,Nợ; mắc nợ
+3714,Riêng; của chính mình
+3715,Của riêng mình
+3716,Sở hữu; có
+3717,Chủ sở hữu; chủ nhà
+3718,Quyền sở hữu
+3719,Khí ô-xy
+3720,Tốc độ; nhịp độ
+3721,Đi rảo bước; đi lại
+3722,Gói; bầy đàn; bộ
+3723,Đóng gói; đóng hành lý
+3724,Bưu kiện; gói hàng
+3725,Đóng gói hàng
+3726,Gói nhỏ
+3727,Tấm đệm; tập giấy
+3728,Trang sách; trang web
+3729,Cơn đau; sự đau đớn
+3730,Đau đớn; gây đau
+3731,Sơn; nước sơn
+3732,Sơn; vẽ tranh
+3733,Họa sĩ; thợ sơn
+3734,Bức tranh vẽ
+3735,Đôi; cặp
+3736,Cung điện; dinh thự
+3737,Nhợt nhạt; tái xám
+3738,Lòng bàn tay; cây cọ
+3739,Cái chảo
+3740,Bảng điều khiển; hội đồng
+3741,Sự hoảng loạn
+3742,Quần dài
+3743,Giấy; tờ báo
+3744,Cuộc diễu hành
+3745,Đoạn văn
+3746,Song song; tương đồng
+3747,Sự song song; đường song song
+3748,Nhân viên cấp cứu
+3749,Phụ huynh; cha mẹ
+3750,Thuộc về cha mẹ
+3751,Giáo khu; xứ đạo
+3752,Công viên
+3753,Đỗ xe; đậu xe
+3754,Bãi đỗ xe; sự đỗ xe
+3755,Nghị viện; quốc hội
+3756,Thuộc nghị viện
+3757,Phần; bộ phận
+3758,Bán thời gian
+3759,Một phần; thiên vị
+3760,Một phần
+3761,Người tham gia
+3762,Tham gia; tham dự
+3763,Sự tham gia
+3764,Cụ thể; đặc biệt
+3765,Đặc biệt là; cụ thể là
+3766,Một phần
+3767,Đối tác; bạn đời
+3768,Sự hợp tác; quan hệ đối tác
+3769,Bữa tiệc; đảng phái
+3770,Thẻ qua cửa; đường đèo
+3771,Vượt qua; chuyền; đi qua
+3772,Lối đi; đoạn văn
+3773,Hành khách
+3774,Sự đi qua; sự trôi qua
+3775,Đam mê; nồng nhiệt
+3776,Đam mê; cuồng nhiệt
+3777,Bị động; thụ động
+3778,Hộ chiếu
+3779,Mật khẩu
+3780,Quá khứ; đã qua
+3781,Băng qua; qua
+3782,Quá khứ
+3783,Ngang qua; quá
+3784,Mục sư
+3785,Miếng vá; mảnh đất nhỏ
+3786,Bằng sáng chế
+3787,Đường mòn; con đường
+3788,Đường nhỏ; con đường
+3789,Sự kiên nhẫn
+3790,Kiên nhẫn
+3791,Bệnh nhân
+3792,Đội tuần tra
+3793,Tuần tra
+3794,Khách quen; người bảo trợ
+3795,Mẫu; kiểu mẫu; hoa văn
+3796,Sự tạm dừng
+3797,Tạm dừng; ngừng lại
+3798,Tiền lương; sự trả công
+3799,Thanh toán; trả tiền
+3800,Khoản thanh toán; sự trả tiền
+3801,Hòa bình; sự bình yên
+3802,Yên bình; thanh bình
+3803,Đỉnh; điểm cao nhất
+3804,Nông dân
+3805,Kỳ lạ; đặc biệt
+3806,Bạn đồng trang lứa
+3807,Cái bút
+3808,Hình phạt; quả phạt đền
+3809,Bút chì
+3810,Đồng xu
+3811,Tiền lương hưu
+3812,Mọi người; nhân dân
+3813,Hạt tiêu; ớt
+3814,Mỗi
+3815,Phần trăm
+3816,Một cách tổng quát
+3817,Phần trăm; tỷ lệ phần trăm
+3818,Nhận thức; nhận thấy
+3819,Tỷ lệ phần trăm
+3820,Sự nhận thức
+3821,Hoàn hảo
+3822,Một cách hoàn hảo
+3823,Biểu diễn; thực hiện
+3824,Buổi biểu diễn; hiệu suất
+3825,Có lẽ
+3826,Kỳ; giai đoạn; tiết học
+3827,Vĩnh viễn; lâu dài
+3828,Một cách tổng quát
+3829,Sự cho phép; giấy phép
+3830,Giấy phép
+3831,Cho phép
+3832,Kiên trì; kéo dài
+3833,Kiên trì; dai dẳng
+3834,Người
+3835,Cá nhân
+3836,Tính cách; nhân cách
+3837,Về phần mình; cá nhân tôi
+3838,Nhân sự; nhân viên
+3839,Góc nhìn; viễn cảnh
+3840,Thuyết phục
+3841,Thú cưng
+3842,Đơn kiến nghị; lời thỉnh cầu
+3843,Xăng
+3844,Giai đoạn; thời kỳ
+3845,Hiện tượng
+3846,Nhà triết học
+3847,Thuộc triết học; triết lý
+3848,Triết học
+3849,Điện thoại
+3850,Gọi điện thoại
+3851,Bức ảnh
+3852,Bức ảnh
+3853,Chụp ảnh
+3854,Nhiếp ảnh gia
+3855,Nghệ thuật nhiếp ảnh
+3856,Cụm từ
+3857,Thuộc thể chất; vật lý
+3858,Bác sĩ đa khoa
+3859,Môn vật lý
+3860,Đàn piano
+3861,Sự lựa chọn; lựa chọn tốt nhất
+3862,Nhặt; chọn lựa
+3863,Bức tranh; bức ảnh
+3864,Thực hiện; hành động
+3865,Mảnh; miếng; mẩu
+3866,Con lợn
+3867,Đống; chồng
+3868,Thực hiện; hành động
+3869,Viên thuốc
+3870,Phi công
+3871,Cái ghim; đinh ghim
+3872,Thực hiện; hành động
+3873,Màu hồng
+3874,Màu hồng
+3875,Người tiên phong
+3876,Thực hiện; hành động
+3877,Ống dẫn; tẩu thuốc
+3878,Đường ống dẫn
+3879,Cướp biển; kẻ vi phạm bản quyền
+3880,Hố sâu; mỏ than
+3881,Sân thi đấu; cao độ
+3882,Sự thương hại; điều đáng tiếc
+3883,Nơi chốn; địa điểm
+3884,Đặt; để
+3885,Sự sắp đặt; nơi thực tập
+3886,Đơn giản; rõ ràng
+3887,Kế hoạch
+3888,Lên kế hoạch
+3889,Máy bay
+3890,Hành tinh
+3891,Sự lập kế hoạch
+3892,Thực vật; nhà máy
+3893,Trồng cây
+3894,Bằng nhựa
+3895,Chất nhựa
+3896,Cái đĩa
+3897,Nền tảng; sân ga
+3898,Vở kịch; trò chơi
+3899,Chơi; đóng vai
+3900,Người chơi; cầu thủ
+3901,Lời khẩn cầu; sự bào chữa
+3902,Thực hiện; hành động
+3903,Dễ chịu; thú vị
+3904,Xin vui lòng
+3905,Làm hài lòng
+3906,Hài lòng; vui mừng
+3907,Niềm vui; sự hân hạnh
+3908,Lời thề; sự cam kết
+3909,Thực hiện; hành động
+3910,Sự phong phú; nhiều
+3911,Cốt truyện; mảnh đất
+3912,Thực hiện; hành động
+3913,Phích cắm
+3914,Thực hiện; hành động
+3915,Thực hiện; hành động
+3916,Dương; cộng
+3917,Thêm vào đó
+3918,Điểm cộng; lợi thế
+3919,Cộng với
+3920,Túi áo; túi quần
+3921,Bài thơ
+3922,Nhà thơ
+3923,Thơ ca
+3924,Điểm; mũi nhọn
+3925,Chỉ; chỉ tay
+3926,Nhọn; sắc sảo
+3927,Chất độc
+3928,Thực hiện; hành động
+3929,Độc hại
+3930,Cột; cực (Trái Đất)
+3931,Cảnh sát
+3932,Nam cảnh sát
+3933,Chính sách
+3934,Lịch sự; nhã nhặn
+3935,Thuộc chính trị
+3936,Chính trị gia
+3937,Chính trị học; chính trị
+3938,Cuộc thăm dò ý kiến
+3939,Sự ô nhiễm
+3940,Cái ao
+3941,Hồ bơi; vũng nước
+3942,Nghèo; kém
+3943,Thuộc nhạc pop; phổ thông
+3944,Nhạc pop; tiếng nổ
+3945,Thực hiện; hành động
+3946,Phổ biến; nổi tiếng
+3947,Sự phổ biến; sự ưa chuộng
+3948,Dân số
+3949,Cảng biển
+3950,Hồ sơ năng lực; danh mục đầu tư
+3951,Phần chia; khẩu phần
+3952,Bức chân dung
+3953,Thực hiện; hành động
+3954,Đặt ra (vấn đề); tạo dáng
+3955,Vị trí; chức vụ
+3956,Thực hiện; hành động
+3957,Tích cực; lạc quan
+3958,Điểm tích cực; điều tốt
+3959,Sở hữu; có
+3960,Quyền sở hữu; tài sản
+3961,Khả năng
+3962,Có thể
+3963,Có lẽ; có thể
+3964,Cọc; bưu điện; bài đăng
+3965,Gửi bưu điện; đăng tải
+3966,Thuộc thời hậu chiến
+3967,Tấm áp phích; tờ quảng cáo
+3968,Thực hiện; hành động
+3969,Cái nồi; chậu
+3970,Củ khoai tây
+3971,Tiềm năng
+3972,Tiềm năng; khả năng
+3973,Một cách tổng quát
+3974,Đồng bảng Anh; cân Anh
+3975,Rót; đổ; trút
+3976,Sự nghèo đói
+3977,Bột; thuốc bột
+3978,Sức mạnh; quyền lực; năng lượng
+3979,Thực hiện; hành động
+3980,Mạnh mẽ; hùng mạnh
+3981,Thực tế; thiết thực
+3982,Sự luyện tập; thói quen
+3983,Thực hiện; hành động
+3984,Người hành nghề; bác sĩ thực hành
+3985,Lời ca ngợi; sự tán dương
+3986,Ca ngợi; tán dương
+3987,Cầu nguyện
+3988,Lời cầu nguyện
+3989,Thuyết giáo
+3990,Đi trước; đứng trước
+3991,Tiền lệ
+3992,Quý giá; quý hiếm
+3993,Chính xác
+3994,Một cách chính xác
+3995,Sự chính xác
+3996,Động vật ăn thịt; kẻ săn mồi
+3997,Người tiền nhiệm
+3998,Dự đoán
+3999,Có thể dự đoán trước
+4000,Sự dự đoán
+4001,Một cách tổng quát
+4002,Thích hơn
+4003,Sự ưu tiên; sở thích
+4004,Sự mang thai; thai kỳ
+4005,Mang thai; có bầu
+4006,Định kiến; thành kiến
+4007,Sơ bộ; mở đầu
+4008,Hàng đầu; nhất
+4009,Tiền đề
+4010,Phí bảo hiểm; tiền thưởng thêm
+4011,Sự chuẩn bị
+4012,Chuẩn bị
+4013,Được chuẩn bị sẵn sàng
+4014,Thực hiện; hành động
+4015,Đơn thuốc; sự kê đơn
+4016,Sự hiện diện
+4017,Hiện tại; có mặt
+4018,Món quà; thời gian hiện tại
+4019,Trình bày; giới thiệu
+4020,Bài thuyết trình
+4021,Một cách tổng quát
+4022,Sự bảo tồn; sự giữ gìn
+4023,Bảo quản; giữ gìn
+4024,Thực hiện; hành động
+4025,Nhiệm kỳ tổng thống
+4026,Chủ tịch; tổng thống
+4027,Thuộc tổng thống
+4028,Báo chí; máy ép
+4029,Ấn; ép; bấm
+4030,Áp lực; áp suất
+4031,Uy tín; danh giá
+4032,Có lẽ là; đoán chừng
+4033,Đoán chừng; cho là
+4034,Giả vờ
+4035,Xinh xắn; đẹp mắt
+4036,Khá là
+4037,Thực hiện; hành động
+4038,Sự phổ biến; tính thịnh hành
+4039,Ngăn chặn; ngăn ngừa
+4040,Sự phòng ngừa; sự ngăn chặn
+4041,Trước đó
+4042,Trước đây
+4043,Con mồi
+4044,Giá cả
+4045,Thực hiện; hành động
+4046,Niềm tự hào
+4047,Linh mục; thầy tu
+4048,Chủ yếu là
+4049,Chính; chủ yếu; tiểu học
+4050,Chủ yếu; hàng đầu
+4051,Hoàng tử
+4052,Công chúa
+4053,Chính; chủ yếu
+4054,Hiệu trưởng; người đứng đầu
+4055,Nguyên tắc; nguyên lý
+4056,Chữ in; vết in
+4057,In; in ấn
+4058,Máy in; thợ in
+4059,Sự in ấn; ngành in
+4060,Trước; ưu tiên
+4061,Sự ưu tiên; quyền ưu tiên
+4062,Nhà tù; trại giam
+4063,Tù nhân
+4064,Sự riêng tư
+4065,Riêng tư; tư nhân
+4066,Sự tư nhân hóa
+4067,Đặc quyền
+4068,Giải thưởng
+4069,Xác suất; khả năng xảy ra
+4070,Có thể xảy ra
+4071,Có lẽ
+4072,Đầu dò; sự thăm dò
+4073,Thăm dò; điều tra
+4074,Vấn đề; khó khăn
+4075,Gây tranh cãi; đầy rắc rối
+4076,Thủ tục; quy trình
+4077,Tiến hành; tiếp tục
+4078,Vụ kiện; biên bản cuộc họp
+4079,Tiền thu được; doanh thu
+4080,Quá trình; quy trình
+4081,Xử lý; chế biến
+4082,Sự xử lý; sự chế biến
+4083,Bộ xử lý; máy chế biến
+4084,Tuyên bố; công bố
+4085,Nông sản
+4086,Sản xuất; tạo ra
+4087,Nhà sản xuất
+4088,Sản phẩm
+4089,Sự sản xuất; sản lượng
+4090,Năng suất; hiệu quả
+4091,Năng suất lao động
+4092,Nghề nghiệp; chuyên môn
+4093,Chuyên nghiệp
+4094,Chuyên gia
+4095,Giáo sư
+4096,Hồ sơ sơ lược; tiểu sử
+4097,Lợi nhuận
+4098,Có lợi nhuận
+4099,Sâu sắc; uyên thâm
+4100,Chương trình
+4101,Lập trình
+4102,Chương trình
+4103,Sự lập trình
+4104,Sự tiến bộ; sự phát triển
+4105,Tiến bộ; tiến triển
+4106,Tiến bộ; phát triển
+4107,Cấm; ngăn cấm
+4108,Dự án; đề án
+4109,Dự kiến; phóng chiếu
+4110,Sự sự đoán; sự phóng chiếu
+4111,Nổi bật; lỗi lạc
+4112,Lời hứa
+4113,Hứa hẹn
+4114,Đầy triển vọng
+4115,Thúc đẩy; quảng bá; thăng chức
+4116,Sự thăng chức; sự quảng bá
+4117,Thúc đẩy; gợi ý
+4118,Thực hiện; hành động
+4119,Rõ rệt; nổi bật
+4120,Bằng chứng; chứng cứ
+4121,Sự tuyên truyền
+4122,Đúng đắn; thích hợp
+4123,Một cách đàng hoàng; đúng cách
+4124,Tài sản; bất động sản
+4125,Tỷ lệ; phần
+4126,Lời đề nghị; bản đề xuất
+4127,Đề xuất; cầu hôn
+4128,Lời đề nghị; mệnh đề
+4129,Truy tố; khởi tố
+4130,Sự truy tố; bên truy tố
+4131,Kiểm sát viên; công tố viên
+4132,Viễn cảnh; triển vọng
+4133,Thuộc triển vọng; tiềm năng
+4134,Sự thịnh vượng
+4135,Bảo vệ
+4136,Sự bảo vệ
+4137,Mang tính bảo vệ
+4138,Chất đạm; prô-tê-in
+4139,Cuộc biểu tình; sự phản đối
+4140,Phản đối; biểu tình
+4141,Người biểu tình
+4142,Nghị định thư; quy thức
+4143,Tự hào; hãnh diện
+4144,Chứng minh; tỏ ra
+4145,Cung cấp; chu cấp
+4146,Tỉnh thành
+4147,Thuộc cấp tỉnh
+4148,Sự cung cấp; điều khoản
+4149,Khiêu khích; chọc giận
+4150,Thuộc tâm thần học
+4151,Thuộc tâm lý học
+4152,Nhà tâm lý học
+4153,Tâm lý học
+4154,Quán rượu; quán bia
+4155,Công cộng; chung
+4156,Công chúng
+4157,Ấn phẩm; sự xuất bản
+4158,Sự công khai; sự quảng bá
+4159,Xuất bản; phát hành
+4160,Ngành xuất bản
+4161,Lực kéo; sức hút
+4162,Kéo; lôi
+4163,Mạch đập; nhịp đập
+4164,Cái bơm
+4165,Bơm
+4166,Cú đấm
+4167,Đấm; bấm lỗ
+4168,Trừng phạt; xử phạt
+4169,Hình phạt
+4170,Nhạc păng; kẻ nổi loạn
+4171,Học sinh; con ngươi
+4172,Sự mua sắm; món hàng
+4173,Mua; sắm
+4174,Tinh khiết; thuần khiết
+4175,Hoàn toàn; chỉ là
+4176,Màu tím
+4177,Màu tím
+4178,Mục đích; ý định
+4179,Theo đuổi
+4180,Sự theo đuổi; đam mê
+4181,Cú đẩy
+4182,Đẩy
+4183,Đặt; để
+4184,Trò chơi câu đố; hóc húa
+4185,Bằng cấp; trình độ chuyên môn
+4186,Đủ điều kiện; đủ trình độ
+4187,Đủ điều kiện; đạt tiêu chuẩn
+4188,Chất lượng; phẩm chất
+4189,Số lượng
+4190,Một phần tư; quý
+4191,Nữ hoàng; hoàng hậu
+4192,Câu hỏi; sự thắc mắc
+4193,Cuộc tìm kiếm; sự truy tìm
+4194,Câu hỏi; vấn đề
+4195,Chất vấn; nghi ngờ
+4196,Bảng câu hỏi thăm dò
+4197,Hàng chờ
+4198,Xếp hàng
+4199,Nhanh chóng
+4200,Nhanh chóng
+4201,Yên tĩnh; lặng lẽ
+4202,Lặng lẽ; êm đềm
+4203,Thoát; bỏ; nghỉ việc
+4204,Khá là; hoàn toàn
+4205,Chỉ tiêu; hạn ngạch
+4206,Trích dẫn; bảng báo giá
+4207,Lời trích dẫn
+4208,Trích dẫn; báo giá
+4209,Cuộc đua; chủng tộc
+4210,Đua tranh
+4211,Thuộc chủng tộc
+4212,Môn đua xe; môn đua ngựa
+4213,Chủ nghĩa phân biệt chủng tộc
+4214,Phân biệt chủng tộc
+4215,Kẻ phân biệt chủng tộc
+4216,Ra-đa; sóng vô tuyến
+4217,Bức xạ; sự bức xạ
+4218,Triệt để; tận gốc
+4219,Đài phát thanh; vô tuyến
+4220,Cơn thịnh nộ
+4221,Cuộc đột kích
+4222,Đột kích
+4223,Đường ray; đường sắt
+4224,Đường sắt
+4225,Cơn mưa
+4226,Mưa
+4227,Nâng lên; nuôi dưỡng; gây quỹ
+4228,Cuộc tập hợp; cuộc đua xe
+4229,Thực hiện; hành động
+4230,Ngẫu nhiên
+4231,Phạm vi; dãy
+4232,Dao động trong phạm vi
+4233,Thứ hạng; cấp bậc
+4234,Xếp hạng
+4235,Bảng xếp hạng
+4236,Tội hiếp dâm
+4237,Thực hiện; hành động
+4238,Nhanh chóng; mau lẹ
+4239,Nhanh chóng
+4240,Hiếm có; quý hiếm
+4241,Hiếm khi
+4242,Con chuột cống
+4243,Tỷ lệ; mức giá
+4244,Đánh giá; xếp loại
+4245,Một cách tổng quát
+4246,Mức đánh giá; chỉ số xếp hạng
+4247,Tỷ lệ
+4248,Hợp lý; có lý trí
+4249,Sống; thô; chưa chế biến
+4250,Tia sáng; tia bức xạ
+4251,Tầm với; phạm vi
+4252,Đạt tới; chạm tới
+4253,Phản ứng
+4254,Sự phản ứng
+4255,Đọc
+4256,Độc giả; người đọc
+4257,Sẵn sàng; dễ dàng
+4258,Sự đọc; bài đọc
+4259,Sẵn sàng
+4260,Thực tế; có thật
+4261,Thực tế
+4262,Thực tế; thực tại
+4263,Sự nhận ra; sự thực hiện
+4264,Nhận ra; thực hiện hóa
+4265,Thực sự; quả thực
+4266,Vương quốc; lĩnh vực
+4267,Phía sau
+4268,Phía sau; phần sau
+4269,Lý do; nguyên nhân
+4270,Hợp lý; vừa phải
+4271,Một cách hợp lý
+4272,Lập luận; lý lẽ
+4273,Trấn an; làm yên lòng
+4274,Kẻ nổi loạn
+4275,Cuộc nổi dậy; sự phiến loạn
+4276,Thực hiện; hành động
+4277,Gợi nhớ; recall
+4278,Hóa đơn; biên lai
+4279,Nhận được
+4280,Người nhận; ống nghe
+4281,Gần đây
+4282,Gần đây; mới đây
+4283,Sự đón tiếp; bàn lễ tân
+4284,Cuộc suy thoái kinh tế
+4285,Công thức nấu ăn
+4286,Người nhận
+4287,Cho là; tính toán
+4288,Sự công nhận; sự nhận diện
+4289,Nhận ra; công nhận
+4290,Gợi ý; khuyên bảo
+4291,Lời giới thiệu; lời khuyên
+4292,Sự tái thiết; sự dựng lại
+4293,Kỷ lục; hồ sơ; đĩa hát
+4294,Ghi âm; ghi chép
+4295,Bản ghi âm; sự ghi hình
+4296,Kể lại; thuật lại
+4297,Hồi phục; phục hồi
+4298,Sự hồi phục; sự phục hồi
+4299,Tân binh; người mới tuyển
+4300,Tuyển dụng
+4301,Sự tuyển dụng
+4302,Tái chế
+4303,Màu đỏ
+4304,Màu đỏ
+4305,Giảm bớt; cắt giảm
+4306,Sự cắt giảm; sự giảm giá
+4307,Tham chiếu; ám chỉ
+4308,Trọng tài
+4309,Tài liệu tham khảo; sự tham chiếu
+4310,Cuộc trưng cầu dân ý
+4311,Phản chiếu; suy ngẫm
+4312,Sự phản chiếu; sự suy ngẫm
+4313,Cuộc cải cách
+4314,Cải cách
+4315,Nơi trú ẩn; sự ẩn nấp
+4316,Người tị nạn
+4317,Sự từ chối
+4318,Từ chối
+4319,Thực hiện; hành động
+4320,Sự quan tâm; lời chúc
+4321,Coi như; xem xét
+4322,Bất chấp; không quan tâm
+4323,Chế độ; chính thể
+4324,Vùng; khu vực
+4325,Thuộc vùng; thuộc khu vực
+4326,Sổ đăng ký
+4327,Đăng ký
+4328,Sự đăng ký
+4329,Sự hối tiếc
+4330,Hối tiếc; tiếc nuối
+4331,Thường xuyên; đều đặn
+4332,Thường xuyên; đều đặn
+4333,Quy định; điều chỉnh
+4334,Quy định; sự điều chỉnh
+4335,Cơ quan quản lý; máy điều chỉnh
+4336,Thuộc quy định; mang tính quản lý
+4337,Sự phục hồi chức năng
+4338,Triều đại; sự trị vì
+4339,Trị vì; thống trị
+4340,Củng cố; gia cố
+4341,Từ chối; bác bỏ
+4342,Sự từ chối; sự bác bỏ
+4343,Liên quan; liên kết
+4344,Có liên quan
+4345,Mối quan hệ; sự liên quan
+4346,Mối quan hệ
+4347,Tương đối
+4348,Họ hàng; người thân
+4349,Tương đối
+4350,Thư giãn; thả lỏng
+4351,Thư thái; thoải mái
+4352,Thư giãn; dễ chịu
+4353,Sự phát hành; sự giải thoát
+4354,Phát hành; giải phóng
+4355,Sự thích đáng; sự liên quan
+4356,Thích đáng; có liên quan
+4357,Độ tin cậy
+4358,Đáng tin cậy
+4359,Sự nhẹ nhõm; sự cứu trợ
+4360,Làm dịu đi; giải tỏa
+4361,Nhẹ nhõm; an tâm
+4362,Tôn giáo
+4363,Thuộc tôn giáo
+4364,Miễn cưỡng; lưỡng lự
+4365,Dựa vào; tin tưởng vào
+4366,Vẫn còn; duy trì
+4367,Phần còn lại
+4368,Hài cốt; tàn tích
+4369,Lời nhận xét
+4370,Nhận xét
+4371,Đáng chú ý; xuất sắc
+4372,Một cách đáng chú ý
+4373,Biện pháp khắc phục; phương thuốc
+4374,Ghi nhớ; nhớ lại
+4375,Nhắc nhở
+4376,Lời nhắc nhở
+4377,Xa xôi; hẻo lánh
+4378,Sự loại bỏ; sự di dời
+4379,Loại bỏ; di dời
+4380,Làm cho; cung cấp
+4381,Gia hạn; làm mới
+4382,Nổi tiếng; lừng danh
+4383,Tiền thuê nhà
+4384,Thuê; cho thuê
+4385,Sự cho thuê; tiền thuê
+4386,Sự sửa chữa
+4387,Sửa chữa
+4388,Sự lặp lại
+4389,Lặp lại
+4390,Lặp đi lặp lại
+4391,Thay thế
+4392,Sự thay thế; người thay thế
+4393,Câu trả lời; sự phản hồi
+4394,Trả lời; phản hồi
+4395,Bản báo cáo
+4396,Báo cáo; tường thuật
+4397,Theo như báo cáo
+4398,Phóng viên; nhà báo
+4399,Sự đưa tin; việc báo cáo
+4400,Đại diện; đại diện cho
+4401,Sự đại diện; hình ảnh đại diện
+4402,Mang tính đại diện
+4403,Người đại diện
+4404,Tái tạo; sinh sản
+4405,Sự sinh sản; sự tái tạo
+4406,Nước cộng hòa
+4407,Danh tiếng; uy tín
+4408,Yêu cầu; lời đề nghị
+4409,Yêu cầu; đề nghị
+4410,Yêu cầu; đòi hỏi
+4411,Yêu cầu; điều kiện cần
+4412,Sự giải cứu
+4413,Giải cứu; cứu hộ
+4414,Sự nghiên cứu
+4415,Nghiên cứu
+4416,Nhà nghiên cứu
+4417,Giống với; trông giống
+4418,Sự đặt chỗ trước
+4419,Khu bảo tồn; sự dự trữ
+4420,Đặt chỗ; dự trữ
+4421,Thực hiện; hành động
+4422,Nơi cư trú; nhà ở
+4423,Cư trú
+4424,Cư dân
+4425,Thuộc khu dân cư
+4426,Phần dư thừa; cặn lắng
+4427,Từ chức; xin thôi việc
+4428,Sự từ chức
+4429,Chống lại; kháng cự
+4430,Sự kháng cự; sự chống lại
+4431,Nghị quyết; độ phân giải; sự giải quyết
+4432,Giải quyết; quyết định
+4433,Khu nghỉ dưỡng
+4434,Tài nguyên; nguồn lực
+4435,Sự tôn trọng; khía cạnh
+4436,Tôn trọng
+4437,Tương ứng; riêng từng cái
+4438,Lần lượt; tương ứng
+4439,Phản hồi; trả lời
+4440,Sự phản hồi; câu trả lời
+4441,Trách nhiệm
+4442,Chịu trách nhiệm
+4443,Sự nghỉ ngơi; phần còn lại
+4444,Nghỉ ngơi
+4445,Nhà hàng
+4446,Sự phục hồi; sự trùng tu
+4447,Phục hồi; khôi phục
+4448,Sự kiềm chế
+4449,Hạn chế; thu hẹp
+4450,Sự hạn chế; quy định hạn chế
+4451,Kết quả
+4452,Dẫn đến; kết quả là
+4453,Tái bắt đầu; tiếp tục
+4454,Sự bán lẻ
+4455,Giữ lại; duy trì
+4456,Nghỉ hưu
+4457,Đã nghỉ hưu
+4458,Sự nghỉ hưu
+4459,Sự rút lui; nơi ẩn dật
+4460,Rút lui
+4461,Thực hiện; hành động
+4462,Sự trở về; lợi nhuận
+4463,Trở về; trả lại
+4464,Tiết lộ; bộc lộ
+4465,Sự tiết lộ; sự phát hiện
+4466,Sự trả thù
+4467,Doanh thu; thu nhập
+4468,Đảo ngược; trái ngược
+4469,Mặt ngược lại; sự lùi xe
+4470,Đảo ngược; lùi xe
+4471,Sự đánh giá; bài nhận xét
+4472,Đánh giá; ôn tập
+4473,Sửa đổi; ôn tập
+4474,Sự sửa đổi; sự ôn tập
+4475,Sự hồi sinh; sự phục hưng
+4476,Hồi sinh; làm sống lại
+4477,Cuộc cách mạng
+4478,Thuộc cách mạng
+4479,Phần thưởng
+4480,Thưởng; đền đáp
+4481,Thuật hùng biện; lời lẽ hoa mỹ
+4482,Nhịp điệu
+4483,Gạo; cơm
+4484,Giàu có; phong phú
+4485,Giải thoát; loại bỏ
+4486,Chuyến đi xe
+4487,Cưỡi; đi xe
+4488,Nực cười; mỉa mai
+4489,Súng trường
+4490,Đúng; Phải (hướng)
+4491,Ngay; chính xác
+4492,Quyền lợi; bên phải
+4493,Nhẫn; chiếc vòng; tiếng chuông
+4494,Rung chuông; gọi điện
+4495,Cuộc bạo động
+4496,Xé rách
+4497,Sự gia tăng; sự mọc lên
+4498,Gia tăng; mọc lên; đứng dậy
+4499,Rủi ro; nguy cơ
+4500,Thực hiện; hành động
+4501,Rủi ro; mạo hiểm
+4502,Nghi thức; nghi lễ
+4503,Cạnh tranh; đối thủ
+4504,Đối thủ cạnh tranh
+4505,Dòng sông
+4506,Con đường
+4507,Thực hiện; hành động
+4508,Vụ cướp; sự trộm cắp
+4509,Người máy
+4510,Mạnh mẽ; vững chắc
+4511,Hòn đá; nhạc rốc
+4512,Rung lắc; đu đưa
+4513,Tên lửa
+4514,Cần câu; thanh gậy
+4515,Vai trò
+4516,Cuộn; ổ bánh mì
+4517,Lăn; cuộn
+4518,Sự lãng mạn; chuyện tình lãng mạn
+4519,Lãng mạn
+4520,Mái nhà
+4521,Căn phòng; không gian
+4522,Rễ cây; gốc rễ
+4523,Dây thừng
+4524,Hoa hồng
+4525,Thực hiện; hành động
+4526,Sự quay tròn; sự luân phiên
+4527,Gồ ghề; thô ráp
+4528,Khoảng; đại thể
+4529,Tròn; hình cầu
+4530,Một cách tổng quát
+4531,Vòng đấu; hiệp
+4532,Giới từ quan hệ
+4533,Tuyến đường; lộ trình
+4534,Thường lệ; hàng ngày
+4535,Thói quen hàng ngày; quy trình
+4536,Hàng; dãy
+4537,Thuộc hoàng gia
+4538,Cọ xát; chà xát
+4539,Bằng cao su
+4540,Cao su; cục tẩy
+4541,Rác thải
+4542,Bất lịch sự; thô lỗ
+4543,Bóng bầu dục
+4544,Sự sụp đổ; tàn tích
+4545,Làm hỏng; phá hủy
+4546,Quy tắc; luật lệ
+4547,Cai trị; thống trị
+4548,Quyết định; phán quyết
+4549,Tin đồn
+4550,Chuyến chạy; sự vận hành
+4551,Chạy; vận hành; quản lý
+4552,Vận động viên chạy bộ
+4553,Môn chạy bộ; sự vận hành
+4554,Thuộc nông thôn
+4555,Sự vội vã; sự hối hả
+4556,Vội vã; lao tới
+4557,Thực hiện; hành động
+4558,Linh thiêng; thần thánh
+4559,Sự hy sinh
+4560,Hy sinh; cúng tế
+4561,Buồn bã
+4562,Đáng buồn thay
+4563,An toàn
+4564,Sự an toàn
+4565,Cánh buồm
+4566,Đi thuyền; giương buồm
+4567,Môn đi thuyền buồm
+4568,Thủy thủ
+4569,Vị thánh
+4570,Lợi ích; mục đích
+4571,Món rau trộn
+4572,Tiền lương
+4573,Việc bán hàng; sự giảm giá
+4574,Muối
+4575,Giống nhau; tương tự
+4576,Một cách tổng quát
+4577,Điều tương tự
+4578,Mẫu thử; mẫu vật
+4579,Thực hiện; hành động
+4580,Lệnh trừng phạt; sự phê chuẩn
+4581,Cát
+4582,Bánh mì kẹp
+4583,Vệ tinh
+4584,Sự hài lòng
+4585,Hài lòng
+4586,Làm hài lòng; đáp ứng
+4587,Thứ bảy
+4588,Nước sốt
+4589,Cứu; tiết kiệm; lưu trữ
+4590,Khoản tiết kiệm
+4591,Tiếng nói; quyền quyết định
+4592,Nói
+4593,Quy mô; cái cân; tỉ lệ
+4594,Quét; đọc lướt
+4595,Bê bối; tai tiếng
+4596,Sự sợ hãi; nỗi hoảng loạn
+4597,Thực hiện; hành động
+4598,Sợ hãi
+4599,Đáng sợ
+4600,Rải rác; thưa thớt
+4601,Kịch bản; viễn cảnh
+4602,Cảnh trí; hiện trường
+4603,Hoài nghi; ngờ vực
+4604,Lịch trình; thời gian biểu
+4605,Lên lịch
+4606,Kế hoạch; mưu đồ
+4607,Học giả
+4608,Học bổng
+4609,Trường học
+4610,Khoa học
+4611,Thuộc khoa học
+4612,Nhà khoa học
+4613,Phạm vi; quy mô
+4614,Điểm số
+4615,Ghi điểm
+4616,Vết cào; vết xước
+4617,Cào; gãi
+4618,Tiếng thét
+4619,La thét; kêu khóc
+4620,Màn hình; màn che
+4621,Sàng lọc; che chắn
+4622,Buổi chiếu phim; sự sàng lọc
+4623,Đinh ốc; ốc vít
+4624,Thực hiện; hành động
+4625,Kịch bản; chữ viết
+4626,Sự kiểm tra kỹ lưỡng
+4627,Tác phẩm điêu khắc
+4628,Biển
+4629,Con hải cẩu; con dấu
+4630,Niêm phong; đóng dấu
+4631,Sự tìm kiếm
+4632,Tìm kiếm
+4633,Mùa trong năm
+4634,Chỗ ngồi; ghế
+4635,Xếp chỗ ngồi
+4636,Một cách tổng quát
+4637,Ý nghĩa từ
+4638,Giây (thời gian)
+4639,Ý nghĩa từ
+4640,Thứ yếu; trung học
+4641,Một cách tổng quát
+4642,Bí mật
+4643,Điều bí mật
+4644,Thư ký
+4645,Phần; mục
+4646,Ngành; khu vực kinh tế
+4647,Phàm tục; thế tục
+4648,An toàn; chắc chắn
+4649,Bảo vệ; đạt được
+4650,An ninh; sự an toàn
+4651,Nhìn thấy; hiểu
+4652,Hạt giống
+4653,Tìm kiếm; theo đuổi
+4654,Người tìm kiếm
+4655,Dường như; có vẻ
+4656,Có vẻ như
+4657,Đoạn; phần; phân khúc
+4658,Nắm bắt; tịch thu
+4659,Hiếm khi
+4660,Lựa chọn; tuyển chọn
+4661,Sự lựa chọn; bộ sưu tập
+4662,Có chọn lọc
+4663,Bản thân; cái tôi
+4664,Bán; bán hàng
+4665,Hội thảo chuyên đề
+4666,Thượng nghị sĩ
+4667,Gửi đi
+4668,Lâu năm; cấp cao
+4669,Cảm giác; sự giật gân
+4670,Giác quan; cảm giác; ý nghĩa
+4671,Cảm nhận
+4672,Hợp lý; khôn khéo
+4673,Nhạy cảm
+4674,Sự nhạy cảm
+4675,Câu văn; bản án
+4676,Tuyên án
+4677,Tình cảm; quan điểm
+4678,Riêng biệt; tách rời
+4679,Phân tách; chia ra
+4680,Sự chia tách; sự ly thân
+4681,Tháng chín
+4682,Chuỗi; thứ tự liên tiếp
+4683,Hàng loạt; định kỳ
+4684,Chuỗi; loạt phim
+4685,Nghiêm trọng; nghiêm túc
+4686,Một cách nghiêm túc
+4687,Người người hầu; người phục vụ
+4688,Phục vụ; đáp ứng
+4689,Dịch vụ; sự phục vụ
+4690,Buổi họp; phiên làm việc
+4691,Bộ; tập hợp
+4692,Đặt; thiết lập
+4693,Sự thiết lập; cấu trúc
+4694,Bối cảnh; cài đặt
+4695,Giải quyết; định cư
+4696,Sự định cư; sự thỏa thuận
+4697,Người định cư
+4698,Số bảy
+4699,Mười bảy
+4700,Bảy mươi
+4701,Một số; vài
+4702,Ý nghĩa từ
+4703,Nghiêm trọng; khốc liệt
+4704,Nghiêm trọng; khốc liệt
+4705,Giới tính; tình dục
+4706,Thuộc giới tính; tình dục
+4707,Xu hướng tính dục
+4708,Gợi cảm; quyến rũ
+4709,Bóng râm; sắc thái
+4710,Bóng tối; cái bóng
+4711,Sự rung lắc; món sinh tố
+4712,Rung; lắc; bắt tay
+4713,Sẽ; nên
+4714,Nông; nông choèn
+4715,Sự xấu hổ; sự hổ thẹn
+4716,Hình dạng; vóc dáng
+4717,Định hình; tạo hình
+4718,Có hình dáng
+4719,Cổ phần; phần chia
+4720,Chia sẻ; dùng chung
+4721,Cổ đông
+4722,Sắc nhọn; đột ngột
+4723,Tan vỡ; làm tan vỡ
+4724,Ý nghĩa từ
+4725,Rụng; trút bỏ
+4726,Con cừu
+4727,Hoàn toàn; tuyệt đối
+4728,Tờ giấy; chăn ga trải giường
+4729,Kệ; giá sách
+4730,Vỏ; vỏ hến
+4731,Nơi trú ẩn; chỗ che chắn
+4732,Che chở; trú ẩn
+4733,Ca làm việc; sự thay đổi
+4734,Thay đổi; di chuyển
+4735,Tỏa sáng; chiếu sáng
+4736,Sáng bóng; bóng lẩy
+4737,Tàu thủy
+4738,Vận chuyển hàng
+4739,Ngành vận tải; việc giao hàng
+4740,Áo sơ mi
+4741,Sự cú sốc; sự bàng hoàng
+4742,Gây sốc; làm bàng hoàng
+4743,Bàng hoàng; ngạc nhiên
+4744,Gây bàng hoàng; gây sốc
+4745,Đôi giày
+4746,Búp non; buổi chụp hình
+4747,Bắn; chụp hình; quay phim
+4748,Cuộc nổ súng; sự quay phim
+4749,Cửa hàng
+4750,Mua sắm
+4751,Việc mua sắm
+4752,Bờ biển; bờ hồ
+4753,Ngắn; thấp
+4754,Ngắn hạn
+4755,Sự thiếu hụt
+4756,Sớm; trong thời gian ngắn
+4757,Cú bắn; phát súng; liều tiêm
+4758,Nên
+4759,Bờ vai
+4760,Tiếng tiếng la lớn
+4761,Hét lớn; la mắng
+4762,Buổi biểu diễn; chương trình
+4763,Cho xem; thể hiện
+4764,Vòi hoa sen; trận mưa rào
+4765,Co lại; thu nhỏ
+4766,Nhún vai
+4767,Đóng; khép
+4768,Đóng lại; khép lại
+4769,Nhút nhát; bỡ ngỡ
+4770,Anh chị em ruột
+4771,Ốm yếu; bệnh tật
+4772,Phía; mặt; bên
+4773,Tiếng thở dài
+4774,Thở dài
+4775,Thị lực; tầm nhìn; cảnh tượng
+4776,Biển hiệu; dấu hiệu
+4777,Ký tên
+4778,Tín hiệu; dấu hiệu
+4779,Ra tín hiệu
+4780,Chữ ký
+4781,Tầm quan trọng; ý nghĩa
+4782,Quan trọng; đáng kể
+4783,Một cách đáng kể
+4784,Sự im lặng; sự tĩnh lặng
+4785,Im lặng; yên tĩnh
+4786,Lụa; tơ lụa
+4787,Ngớ ngẩn; ngốc nghếch
+4788,Màu bạc
+4789,Bạc
+4790,Tương tự; giống nhau
+4791,Nét tương đồng; điểm giống
+4792,Tương tự như vậy
+4793,Đơn giản; dễ dàng
+4794,Chỉ là; đơn giản là
+4795,Mô phỏng
+4796,Sự mô phỏng
+4797,Đồng thời; cùng lúc
+4798,Tội lỗi
+4799,Một cách tổng quát
+4800,Từ khi; vì rằng
+4801,Từ lúc
+4802,Chân thành; thành thật
+4803,Hát
+4804,Ca sĩ
+4805,Tiếng hát; việc ca hát
+4806,Đơn lẻ; độc thân
+4807,Đĩa đơn; người độc thân
+4808,Chìm; đắm
+4809,Ngài; thưa ông
+4810,Chị em gái
+4811,Ngồi
+4812,Địa điểm; trang mạng
+4813,Nằm ở; tọa lạc ở
+4814,Tình huống; hoàn cảnh
+4815,Số sáu
+4816,Mười sáu
+4817,Sáu mươi
+4818,Kích cỡ; quy mô
+4819,Bản phác thảo
+4820,Thuộc trượt tuyết
+4821,Ván trượt tuyết
+4822,Trượt tuyết
+4823,Môn trượt tuyết
+4824,Kỹ năng; tay nghề
+4825,Lành nghề; có kỹ năng
+4826,Làn da; vỏ quả
+4827,Thực hiện; hành động
+4828,Chân váy
+4829,Hộp sọ
+4830,Bầu trời
+4831,Đóng sầm; đập mạnh
+4832,Tát; vỗ mạnh
+4833,Cắt giảm mạnh; chém
+4834,Nô lệ
+4835,Chế độ nô lệ
+4836,Giấc ngủ
+4837,Ngủ
+4838,Lát cắt; miếng
+4839,Cắt lát
+4840,Sự trượt; trang trình chiếu
+4841,Trượt; lướt
+4842,Nhẹ; không đáng kể
+4843,Hơi; một chút
+4844,Trượt chân; tuột ra
+4845,Khẩu hiệu
+4846,Dốc; sườn dốc
+4847,Thực hiện; hành động
+4848,Khe hở; chỗ trống
+4849,Chậm chạp
+4850,Làm chậm lại
+4851,Một cách chậm chạp
+4852,Nhỏ; bé
+4853,Thông minh; nhanh trí
+4854,Điện thoại thông minh
+4855,Đập vỡ; đập nát
+4856,Mùi hương; khứu giác
+4857,Ngửi; có mùi
+4858,Nụ cười
+4859,Mỉm cười
+4860,Khói
+4861,Hút thuốc; bốc khói
+4862,Việc hút thuốc
+4863,Mượt mà; trơn tru
+4864,Con rắn
+4865,Búng tay; gãy giòn
+4866,Tuyết
+4867,Tuyết rơi
+4868,Vì vậy; đến mức
+4869,Nên; cho nên
+4870,Cái gọi là
+4871,Ngâm; làm ướt đẫm
+4872,Xà phòng
+4873,Tăng vọt; bay cao
+4874,Môn bóng đá
+4875,Thuộc xã hội
+4876,Thuộc xã hội chủ nghĩa
+4877,Xã hội; hội đoàn
+4878,Chiếc tất; vớ
+4879,Mềm mại; nhẹ nhàng
+4880,Phần mềm
+4881,Đất trồng
+4882,Thuộc mặt trời
+4883,Người quân nhân; người lính
+4884,Duy nhất; đơn độc
+4885,Duy nhất; chỉ
+4886,Luật sư tư vấn
+4887,Rắn chắc; vững chắc
+4888,Chất rắn
+4889,Sự đoàn kết
+4890,Đơn độc; một mình
+4891,Màn biểu diễn đơn
+4892,Giải pháp; dung dịch
+4893,Giải quyết; tìm ra lời giải
+4894,Một vài; một số
+4895,Một vài
+4896,Mọi người; ai đó
+4897,Bằng cách nào đó
+4898,Ai đó; người nào đó
+4899,Cái gì đó; điều gì đó
+4900,Vào một lúc nào đó
+4901,Thỉnh thoảng; đôi khi
+4902,Hơi; có phần
+4903,Ở một nơi nào đó
+4904,Ý nghĩa từ
+4905,Con trai
+4906,Bài hát
+4907,Chẳng mấy chóc; sớm
+4908,Phức tạp; tinh tế
+4909,Lấy làm tiếc; xin lỗi
+4910,Ý nghĩa từ
+4911,Loại; thứ
+4912,Phân loại
+4913,Linh hồn; tâm hồn
+4914,Vững chắc; lành mạnh
+4915,Âm thanh
+4916,Nghe có vẻ
+4917,Món súp; canh
+4918,Nguồn; nguồn gốc
+4919,Thuộc hướng nam
+4920,Về phía nam
+4921,Phía nam
+4922,Thuộc phía nam
+4923,Chủ quyền
+4924,Không gian; vũ trụ
+4925,Thư rác; tin nhắn rác
+4926,Khoảng thời gian; quãng
+4927,Thực hiện; hành động
+4928,Dự phòng; dư thừa
+4929,Thực hiện; hành động
+4930,Khơi mào; phát ra tia lửa
+4931,Nói phát biểu
+4932,Diễn giả; cái loa
+4933,Đặc biệt
+4934,Chuyên khoa; chuyên môn
+4935,Chuyên gia
+4936,Chuyên môn hóa
+4937,Chuyên dụng; chuyên sâu
+4938,Loài; loài sinh vật
+4939,Cụ thể; đặc thù
+4940,Một cách cụ thể
+4941,Thông số kỹ thuật; sự ghi rõ
+4942,Chỉ rõ; ghi rõ
+4943,Mẫu vật
+4944,Quang cảnh; sự kiện kỳ thú
+4945,Đẹp mắt; ngoạn mục
+4946,Khán giả
+4947,Quang phổ; dải phổ
+4948,Dự đoán; suy đoán
+4949,Sự suy đoán; sự đầu cơ
+4950,Bài phát biểu; bài nói
+4951,Tốc độ; vận tốc
+4952,Chạy quá tốc độ; tăng tốc
+4953,Khoảng thời gian; câu chú
+4954,Đánh vần
+4955,Chính tả; việc đánh vần
+4956,Dành (thời gian); chi tiêu
+4957,Mức chi tiêu
+4958,Hình cầu; lĩnh vực
+4959,Gia vị
+4960,Cay; có gia vị cay
+4961,Con nhện
+4962,Tràn ra; làm đổ
+4963,Sự xoay tròn
+4964,Xoay tròn; quay
+4965,Cột sống
+4966,Tinh thần; tâm linh
+4967,Thuộc tâm linh; tinh thần
+4968,Sự giận dỗi; sự cố ý
+4969,Sự chia rẽ; sự rạn nứt
+4970,Chia rẽ; chia nhỏ
+4971,Làm hỏng; chiều chuộng
+4972,Nói; dạng nói
+4973,Người phát ngôn
+4974,Người đại diện phát ngôn
+4975,Nữ phát ngôn viên
+4976,Nhà tài trợ
+4977,Tài trợ
+4978,Sự tài trợ
+4979,Cái thìa; muỗng
+4980,Môn thể thao
+4981,Thuộc thể thao
+4982,Địa điểm; vết đốm
+4983,Nhận ra; phát hiện
+4984,Đèn chiếu điểm; sự chú ý
+4985,Vợ hoặc chồng
+4986,Sự lan rộng
+4987,Lan rộng; trải ra
+4988,Mùa xuân; suối nước; lò xo
+4989,Nhảy vọt; bung ra
+4990,Tình báo; gián điệp
+4991,Làm gián điệp; thám thính
+4992,Đội hình; tiểu đội
+4993,Hình vuông
+4994,Hình vuông; quảng trường
+4995,Ép; vắt; siết chặt
+4996,Đâm
+4997,Sự ổn định
+4998,Làm ổn định
+4999,Ổn định; vững chắc
+5000,Sân vận động
+5001,Đội ngũ nhân viên
+5002,Sân khấu; giai đoạn
+5003,Tổ chức; dàn dựng
+5004,Bậc cầu thang
+5005,Cổ phần; cọc
+5006,Gian hàng
+5007,Con tem; con dấu
+5008,Lập trường; quan điểm
+5009,Thái độ; gian hàng
+5010,Đứng; chịu đựng
+5011,Tiêu chuẩn
+5012,Tiêu chuẩn; chuẩn mực
+5013,Đang đứng; lâu năm
+5014,Ngôi sao
+5015,Đóng vai chính
+5016,Nhìn chằm chằm
+5017,Rõ rệt; hoàn toàn
+5018,Sự khởi đầu
+5019,Bắt đầu
+5020,Chết đói; làm đói
+5021,Thuộc nhà nước
+5022,Trạng thái; bang; nhà nước
+5023,Tuyên bố; phát biểu
+5024,Tuyên bố; lời phát biểu
+5025,Nhà ga; trạm
+5026,Con số thống kê
+5027,Thuộc thống kê
+5028,Bức tượng
+5029,Trạng thái; địa vị xã hội
+5030,Sự ở lại; chuyến lưu trú
+5031,Ở lại; duy trì
+5032,Một cách đều đặn; vững chắc
+5033,Đều đặn; ổn định
+5034,Đánh cắp; trộm
+5035,Hơi nước
+5036,Thép
+5037,Dốc; thẳng đứng
+5038,Lái xe; điều khiển
+5039,Thân cây
+5040,Bắt nguồn từ; ngăn chặn
+5041,Bước đi; biện pháp
+5042,Bước đi
+5043,Khuôn mẫu; định kiến
+5044,Cái gậy; cành cây nhỏ
+5045,Dán; dính; đâm
+5046,Dính; dính dấp
+5047,Cứng; đơ
+5048,Yên lặng; bất động
+5049,Vẫn; vẫn còn
+5050,Kích thích; khích lệ
+5051,Tác nhân kích thích
+5052,Khuấy; xáo trộn
+5053,Cổ phiếu; hàng tồn kho
+5054,Dạ dày; bụng
+5055,Hòn đá
+5056,Điểm dừng
+5057,Dừng lại; ngăn chặn
+5058,Sự lưu trữ; kho bãi
+5059,Cửa hàng; kho hàng
+5060,Lưu trữ; cất giữ
+5061,Cơn bão
+5062,Câu chuyện; tầng nhà
+5063,Thẳng; trực tiếp
+5064,Ngay lập tức; thẳng
+5065,Thẳng thắn; dễ hiểu
+5066,Sự căng thẳng; sự quá tải
+5067,Sợi dây; dải
+5068,Kỳ lạ; xa lạ
+5069,Người lạ
+5070,Thuộc chiến lược
+5071,Chiến lược
+5072,Dòng suối; dòng chảy
+5073,Con đường; phố
+5074,Sức mạnh; điểm mạnh
+5075,Tăng cường; củng cố
+5076,Căng thẳng; áp lực
+5077,Nhấn mạnh; gây căng thẳng
+5078,Sự kéo dãn; quãng đường dài
+5079,Kéo dãn; duỗi ra
+5080,Nghiêm khắc; nghiêm ngặt
+5081,Một cách nghiêm ngặt
+5082,Cuộc đình công; cú đánh
+5083,Đình công; đánh; bãi công
+5084,Nổi bật; gây ấn tượng
+5085,Sợi dây; chuỗi
+5086,Dải nhỏ; mảnh đất
+5087,Lột bỏ; cởi áo
+5088,Phấn đấu; nỗ lực
+5089,Cơn đột quỵ; cú đánh; nét vẽ
+5090,Mạnh mẽ; vững chắc
+5091,Mạnh mẽ; quyết liệt
+5092,Thuộc cấu trúc
+5093,Cấu trúc; công trình
+5094,Tạo cấu trúc; sắp xếp
+5095,Sự đấu tranh; cuộc vật lộn
+5096,Đấu tranh; vật lộn
+5097,Học sinh; sinh viên
+5098,Phòng thu hình; xưởng vẽ
+5099,Sự nghiên cứu; việc học
+5100,Học tập; nghiên cứu
+5101,Đồ đạc; vật dụng
+5102,Nhồi nhét; ních
+5103,Vấp ngã; vấp váp
+5104,Làm choáng váng; ngỡ ngàng
+5105,Tuyệt đẹp; lộng lẫy
+5106,Ngu ngốc; ngớ ngẩn
+5107,Phong cách; kiểu dáng
+5108,Phụ thuộc vào; chịu ảnh hưởng
+5109,Chủ đề; môn học; chủ ngữ
+5110,Sự nộp bài; sự khuất phục
+5111,Nộp; trình nộp
+5112,Thuê bao; người đặt mua
+5113,Sự đặt mua dài hạn; phí thuê bao
+5114,Theo sau; xảy ra sau
+5115,Sau đó
+5116,Tiền trợ cấp; tiền trợ giá
+5117,Chất; vật chất
+5118,Đáng kể; quan trọng
+5119,Một cách đáng kể
+5120,Người thay thế; vật thay thế
+5121,Thay thế
+5122,Sự thay thế
+5123,Tinh tế; tế nhị
+5124,Khu ngoại ô
+5125,Thuộc ngoại ô
+5126,Thành công; nối nghiệp
+5127,Sự thành công
+5128,Thành công
+5129,Một cách thành công
+5130,Sự kế thừa; chuỗi liên tiếp
+5131,Liên tiếp; kế tiếp
+5132,Người kế nhiệm
+5133,Như vậy; như thế
+5134,Điều như vậy
+5135,Bú; hút
+5136,Đột ngột; bất ngờ
+5137,Đột nhiên; bất ngờ
+5138,Kiện; khởi kiện
+5139,Chịu đựng; chịu tổn thất
+5140,Sự đau khổ; sự chịu đựng
+5141,Đầy đủ
+5142,Một cách đầy đủ
+5143,Đường
+5144,Đề xuất; gợi ý
+5145,Lời gợi ý; sự đề xuất
+5146,Sự tự tử
+5147,Bộ âu phục; bộ vest
+5148,Phù hợp với
+5149,Phù hợp; thích hợp
+5150,Dãy phòng khách sạn hạng sang
+5151,Tổng số; số tiền
+5152,Tổng kết; tóm tắt
+5153,Tóm tắt; tổng kết
+5154,Bản tóm tắt
+5155,Mùa hè
+5156,Hội nghị thượng đỉnh; đỉnh núi
+5157,Mặt trời
+5158,Chủ nhật
+5159,Siêu việt; tuyệt vời
+5160,Tuyệt hảo; xuất sắc
+5161,Cấp cao hơn; vượt trội
+5162,Siêu thị
+5163,Giám sát; quản lý
+5164,Sự giám sát
+5165,Người giám sát
+5166,Phần bổ sung; thực phẩm chức năng
+5167,Bổ sung
+5168,Nguồn cung cấp; sự cung ứng
+5169,Cung cấp; cung ứng
+5170,Sự hỗ trợ; sự ủng hộ
+5171,Hỗ trợ; ủng hộ
+5172,Người ủng hộ; người hâm mộ
+5173,Mang tính hỗ trợ; ủng hộ
+5174,Giả sử; cho là
+5175,Cho là; nghe nói là
+5176,Đàn áp; kìm hãm
+5177,Tối cao; cao nhất
+5178,Chắc chắn
+5179,Chắc chắn rồi
+5180,Chắc chắn
+5181,Bề mặt
+5182,Sự trào lên; sự tăng vọt
+5183,Trào lên; tăng vọt
+5184,Bác sĩ phẫu thuật
+5185,Ca phẫu thuật
+5186,Thuộc phẫu thuật
+5187,Số lượng thặng dư; sự dư thừa
+5188,Sự ngạc nhiên
+5189,Làm ngạc nhiên
+5190,Ngạc nhiên
+5191,Gây ngạc nhiên
+5192,Đầu hàng; từ bỏ
+5193,Bao quanh; vây quanh
+5194,Xung quanh
+5195,Sự giám sát; sự theo dõi
+5196,Cuộc khảo sát
+5197,Khảo sát; điều tra
+5198,Sự sinh tồn; sự sống sót
+5199,Sống sót; sinh tồn
+5200,Người sống sót
+5201,Nghi phạm
+5202,Nghi ngờ
+5203,Đình chỉ; treo
+5204,Sự đình chỉ; hệ thống treo
+5205,Sự nghi ngờ
+5206,Đáng nghi; nghi ngờ
+5207,Duy trì; chống đỡ
+5208,Bền vững
+5209,Nuốt
+5210,Thề nguyện; chửi thề
+5211,Áo len
+5212,Quét nhà; quét qua
+5213,Ngọt ngào; ngọt
+5214,Kẹo; món đồ ngọt
+5215,Buổi bơi lội
+5216,Bơi
+5217,Môn bơi lội
+5218,Sự đu đưa; xích đu
+5219,Đu đưa; xoay
+5220,Công tắc; sự chuyển đổi
+5221,Chuyển đổi; bật tắt
+5222,Thanh kiếm
+5223,Biểu tượng
+5224,Mang tính biểu tượng
+5225,Đồng cảm; thông cảm
+5226,Sự đồng cảm; sự thông cảm
+5227,Triệu chứng
+5228,Hội chứng
+5229,Sự tổng hợp
+5230,Hệ thống; cơ chế
+5231,Có hệ thống
+5232,Áo thun; áo phông
+5233,Cái bàn; bảng dữ liệu
+5234,Viên thuốc; máy tính bảng
+5235,Bộ dụng cụ; việc cản phá
+5236,Giải quyết; xử lý
+5237,Chiến thuật
+5238,Thuộc chiến thuật
+5239,Thẻ nhãn; nhãn mác
+5240,Đính nhãn; gắn thẻ
+5241,Cái đuôi
+5242,Cầm; lấy; chiếm
+5243,Câu chuyện cổ tích
+5244,Tài năng; năng khiếu
+5245,Tài năng; có năng khiếu
+5246,Cuộc trò chuyện; bài phát biểu
+5247,Nói chuyện; trò chuyện
+5248,Cao lớn
+5249,Bình chứa; xe tăng
+5250,Vòi nước; cú vỗ nhẹ
+5251,Chạm nhẹ; gõ nhẹ; vỗ nhẹ
+5252,Băng dính; cuộn băng
+5253,Mục tiêu; bia đỡ đạn
+5254,Nhắm vào mục tiêu
+5255,Nhiệm vụ; công việc
+5256,Vị giác; hương vị; sở thích
+5257,Nếm thử; có vị
+5258,Thuế; tiền thuế
+5259,Đánh thuế
+5260,Xe tắc-xi
+5261,Người nộp thuế
+5262,Trà; nước trà
+5263,Giảng dạy; dạy học
+5264,Giáo viên; thầy cô giáo
+5265,Việc giảng dạy; công tác dạy học
+5266,Đội; nhóm
+5267,Giọt nước mắt
+5268,Xé rách; làm rách
+5269,Thuộc kỹ thuật; chuyên môn
+5270,Kỹ thuật; phương pháp
+5271,Thuộc công nghệ
+5272,Công nghệ
+5273,Thuộc tuổi thanh thiếu niên
+5274,Thanh thiếu niên (13-19 tuổi)
+5275,Độ tuổi thanh thiếu niên
+5276,Điện thoại
+5277,Gọi điện thoại
+5278,Truyền hình; ti vi
+5279,Kể; nói; bảo
+5280,Nhiệt độ
+5281,Ngôi đền; thái dương
+5282,Tạm thời; nhất thời
+5283,Tạm thời; nhất thời
+5284,Cám dỗ; xúi giục
+5285,Mười
+5286,Người thuê nhà
+5287,Có xu hướng; chăm sóc
+5288,Xu hướng; thiên hướng
+5289,Mềm mại; dịu dàng
+5290,Môn quần vợt
+5291,Sự căng thẳng; sức kéo
+5292,Lều bạt
+5293,Nhiệm kỳ; sự bổ nhiệm chính thức
+5294,Thuật ngữ; kỳ hạn; học kỳ
+5295,Gọi là; đặt tên là
+5296,Giai đoạn cuối; mạn tính
+5297,Bến xe; nhà ga sân bay; thiết bị đầu cuối
+5298,Chấm dứt; kết thúc
+5299,Điều khoản; điều kiện
+5300,Địa hình
+5301,Khủng khiếp; tồi tệ
+5302,Rất nhiều; khủng khiếp
+5303,Tuyệt vời; xuất sắc
+5304,Làm khiếp sợ; làm hãi hùng
+5305,Lãnh thổ
+5306,Sự khủng bố; nỗi khiếp sợ
+5307,Chủ nghĩa khủng bố
+5308,Kẻ khủng bố
+5309,Bài kiểm tra; sự thử nghiệm
+5310,Kiểm tra; thử nghiệm
+5311,Làm chứng; khai báo
+5312,Lời khai; lời chứng
+5313,Sự kiểm tra; việc thử nghiệm
+5314,Văn bản; tin nhắn
+5315,Nhắn tin
+5316,Sách giáo khoa
+5317,Kết cấu; độ mịn
+5318,Hơn
+5319,So với; hơn
+5320,Cảm ơn
+5321,May mắn thay; thật may
+5322,Cảm ơn
+5323,Lời cảm ơn
+5324,Đến mức đó
+5325,Rằng; là
+5326,Đó; kia
+5327,Cái đó; điều đó
+5328,Mạo từ xác định
+5329,Nhà hát; rạp chiếu phim
+5330,Thuộc sân khấu kịch
+5331,Tội trộm cắp; sự trộm cắp
+5332,Của họ; của chúng
+5333,Cái của họ; cái của chúng
+5334,Họ; chúng
+5335,Chủ đề; đề tài
+5336,Chính họ; bản thân họ
+5337,Sau đó; khi đó
+5338,Thần học
+5339,Thuộc lý thuyết
+5340,Lý thuyết; học thuyết
+5341,Bác sĩ trị liệu; nhà trị liệu
+5342,Liệu pháp trị liệu
+5343,Ở đó; tại đó
+5344,Sau đó; về sau
+5345,Do đó; bằng cách đó
+5346,Vì vậy; do đó
+5347,Luận văn; luận án
+5348,Họ; chúng
+5349,Dày; đậm đặc
+5350,Kẻ trộm
+5351,Mỏng; gầy
+5352,Vật; điều; thứ
+5353,Suy nghĩ; cho rằng
+5354,Sự suy nghĩ; tư duy
+5355,Một phần ba
+5356,Thứ ba
+5357,Khát nước
+5358,Mười ba
+5359,Ba mươi
+5360,Đến mức này
+5361,Này; cái này
+5362,Cái này; việc này
+5363,Kỹ lưỡng; chi tiết
+5364,Một cách kỹ lưỡng
+5365,Tuy nhiên; mặc dù vậy
+5366,Mặc dù
+5367,Suy nghĩ; tư tưởng
+5368,Gợi nhiều suy ngẫm
+5369,Chu đáo; ân cần; trầm tư
+5370,Hàng ngàn; một ngàn
+5371,Sợi chỉ; luồng chủ đề
+5372,Mối đe dọa
+5373,Đe dọa
+5374,Số ba
+5375,Ngưỡng cửa; hạn mức
+5376,Rất phấn khích; vui sướng
+5377,Phát triển mạnh mẽ; phát đạt
+5378,Cổ họng
+5379,Xuyên qua; suốt
+5380,Thông qua; qua
+5381,Khắp nơi; suốt
+5382,Xuyên suốt; khắp
+5383,Ném; quăng
+5384,Ngón tay cái
+5385,Thứ năm
+5386,Do đó; như vậy
+5387,Vé
+5388,Thủy triều
+5389,Gọn gàng; ngăn nắp
+5390,Dọn dẹp
+5391,Cà vạt; trận hòa; dây buộc
+5392,Buộc; cột; hòa
+5393,Chặt; bó sát
+5394,Siết chặt
+5395,Cho đến khi
+5396,Cho đến
+5397,Gỗ xây dựng; gỗ tròn
+5398,Thời gian; thời điểm
+5399,Tính thời gian; bấm giờ
+5400,Kịp thời; đúng lúc
+5401,Thời điểm; sự chọn thời gian
+5402,Thiếc; hộp thiếc
+5403,Nhỏ xíu; tý hon
+5404,Mẹo; đầu nhọn; tiền boa
+5405,Cho tiền boa; làm nghiêng
+5406,Mệt mỏi
+5407,Mô tế bào; khăn giấy
+5408,Tiêu đề; danh hiệu
+5409,Đặt tiêu đề
+5410,Được dùng trước động từ nguyên thể
+5411,Đến; tới
+5412,Thuốc lá
+5413,Hôm nay; ngày nay
+5414,Hôm nay
+5415,Ngón chân
+5416,Cùng nhau
+5417,Nhà vệ sinh
+5418,Sự khoan dung; dung sai
+5419,Tha thứ; chịu đựng
+5420,Phí giao thông; số lượng thiệt hại
+5421,Quả cà chua
+5422,Ngày mai
+5423,Ngày mai
+5424,Tấn
+5425,Giọng điệu; tông màu
+5426,Cái lưỡi; ngôn ngữ
+5427,Tối nay
+5428,Tối nay
+5429,Tấn
+5430,Cũng; quá mức
+5431,Công cụ; dụng cụ
+5432,Răng
+5433,Hàng đầu; cao nhất
+5434,Đỉnh; phần trên cùng
+5435,Vượt qua; đứng đầu
+5436,Chủ đề
+5437,Sự tra tấn
+5438,Tra tấn
+5439,Quăng; tung lên
+5440,Tổng cộng; toàn bộ
+5441,Tổng số
+5442,Lên tới tổng số
+5443,Hoàn toàn
+5444,Sự chạm; xúc giác
+5445,Chạm vào; đụng
+5446,Cứng cỏi; khó khăn
+5447,Chuyến du lịch; tour
+5448,Đi du lịch; tham quan
+5449,Ngành du lịch
+5450,Khách du lịch
+5451,Giải đấu
+5452,Hướng về; về phía
+5453,Khăn tắm; khăn lau
+5454,Tòa tháp
+5455,Thị trấn; thị thành
+5456,Độc hại
+5457,Đồ chơi
+5458,Đồ chơi
+5459,Dấu vết
+5460,Theo vết; dò tìm
+5461,Đường ray; đường đua; vết chân
+5462,Theo dõi
+5463,Thương mại; sự buôn bán
+5464,Trao đổi; buôn bán
+5465,Nhãn hiệu thương mại
+5466,Hoạt động thương mại
+5467,Truyền thống
+5468,Thuộc truyền thống
+5469,Giao thông
+5470,Bi kịch
+5471,Thuộc bi kịch; thảm thương
+5472,Vệt dài; đường mòn
+5473,Theo dấu; lê bước
+5474,Đoạn phim giới thiệu; rơ-móoc
+5475,Tàu hỏa
+5476,Đào tạo; huấn luyện
+5477,Huấn luyện viên
+5478,Sự đào tạo; việc huấn luyện
+5479,Đặc điểm; nét tính cách
+5480,Giao dịch
+5481,Bản ghi lời; bảng điểm
+5482,Sự chuyển nhượng; sự di chuyển
+5483,Chuyển giao; di chuyển
+5484,Biến đổi; thay đổi
+5485,Sự biến đổi
+5486,Sự quá cảnh; sự vận chuyển
+5487,Sự chuyển tiếp; sự quá độ
+5488,Dịch thuật; biên dịch
+5489,Bản dịch; sự dịch thuật
+5490,Sự truyền phát; hộp số
+5491,Truyền phát; phát tín hiệu
+5492,Sự minh bạch; độ trong suốt
+5493,Trong suốt; minh bạch
+5494,Giao thông vận tải
+5495,Vận chuyển
+5496,Phương tiện giao thông; sự vận tải
+5497,Cạm bẫy
+5498,Bẫy; kẹt lại
+5499,Chấn thương; chấn động tâm lý
+5500,Sự đi du lịch
+5501,Du lịch; di chuyển
+5502,Khách du lịch; người đi đường
+5503,Kho báu
+5504,Đối xử; điều trị; chữa bệnh
+5505,Sự điều trị; sự đối xử
+5506,Hiệp ước; hòa ước
+5507,Cây cối
+5508,To lớn; ghê gớm
+5509,Xu hướng; mốt
+5510,Cuộc xét xử; sự thử nghiệm
+5511,Thuộc bộ lạc
+5512,Bộ lạc
+5513,Tòa án; tòa xét xử
+5514,Sự tri ân; vật cống nạp
+5515,Trò lừa đảo; mẹo
+5516,Lừa gạt
+5517,Cò súng; tác nhân kích hoạt
+5518,Kích hoạt; khơi mào
+5519,Một nghìn tỷ
+5520,Bộ ba
+5521,Chuyến đi
+5522,Vấp ngã
+5523,Chiến thắng lẫy lừng
+5524,Đội quân
+5525,Cúp chiến thắng; chiếc cúp
+5526,Thuộc nhiệt đới
+5527,Rắc rối; phiền phức
+5528,Làm phiền; gây rắc rối
+5529,Rắc rối; lo âu
+5530,Quần dài
+5531,Xe tải
+5532,Đúng; chân thật
+5533,Thực sự; quả thực
+5534,Sự tin tưởng
+5535,Tin tưởng
+5536,Người ủy thác; người quản lý tài sản
+5537,Sự thật
+5538,Sự cố gắng; lần thử
+5539,Thử; cố gắng
+5540,Sóng thần
+5541,Ống tuýp; đường hầm
+5542,Thứ ba
+5543,Học phí
+5544,Giai điệu
+5545,Đường hầm
+5546,Lượt; ngã rẽ
+5547,Quay; rẽ
+5548,Số lượng người tham dự; tỷ lệ cử tri
+5549,Doanh thu; tỷ lệ nghỉ việc
+5550,Truyền hình; ti vi
+5551,Mười hai
+5552,Hai mươi
+5553,Hai lần
+5554,Sinh đôi; cặp đôi
+5555,Anh chị em sinh đôi
+5556,Cú xoắn; ngã rẽ bất ngờ
+5557,Xoắn; vặn; bóp méo
+5558,Số hai
+5559,Loại; kiểu
+5560,Gõ máy tính; đánh máy
+5561,Điển hình; tiêu biểu
+5562,Thông thường; điển hình
+5563,Lốp xe
+5564,Xấu xí; xấu xí khó nhìn
+5565,Tối thượng; sau cùng
+5566,Cuối cùng thì
+5567,Cái ô; chiếc dù
+5568,Không thể; không có khả năng
+5569,Không thể chấp nhận được
+5570,Sự không chắc chắn; sự nghi ngờ
+5571,Chú; bác; cậu
+5572,Không thoải mái; khó chịu
+5573,Bất tỉnh; không nhận thức được
+5574,Ở phía dưới
+5575,Ở dưới; bên dưới
+5576,Trải qua; chịu đựng
+5577,Sinh viên chưa tốt nghiệp
+5578,Dưới lòng đất; ngầm
+5579,Ở dưới lòng đất
+5580,Cơ bản; ẩn đằng sau
+5581,Hủy hoại; làm suy yếu
+5582,Hiểu; hiểu rõ
+5583,Sự hiểu biết; sự thông cảm
+5584,Đảm nhận; thực hiện
+5585,Quần áo lót
+5586,Chắc chắn; không còn nghi ngờ gì
+5587,Thất nghiệp
+5588,Sự thất nghiệp; tình trạng thất nghiệp
+5589,Bất ngờ; không lường trước
+5590,Không công bằng; bất công
+5591,Bộc lộ; diễn ra; mở ra
+5592,Không may mắn; đáng tiếc
+5593,Đáng tiếc là; thật không may
+5594,Buồn bã; bất hạnh
+5595,Đồng phục
+5596,Thống nhất; hợp nhất
+5597,Liên minh; công đoàn
+5598,Độc nhất; độc đáo
+5599,Đơn vị; bài học
+5600,Đoàn kết; hợp nhất
+5601,Đoàn kết; liên hiệp
+5602,Sự đoàn kết; sự thống nhất
+5603,Phổ biến; toàn cầu
+5604,Vũ trụ
+5605,Trường đại học
+5606,Không rõ; chưa được biết đến
+5607,Trừ khi
+5608,Khác với
+5609,Không có khả năng xảy ra
+5610,Không cần thiết
+5611,Khó chịu; không dễ chịu
+5612,Chưa từng có tiền lệ
+5613,Cho đến khi
+5614,Cho đến
+5615,Bất thường; lạ kỳ
+5616,Công bố; tiết lộ
+5617,Lên trên; hướng lên
+5618,Lên theo; hướng lên
+5619,Sắp tới; sắp diễn ra
+5620,Bản cập nhật
+5621,Cập nhật
+5622,Sự nâng cấp
+5623,Nâng cấp
+5624,Duy trì; ủng hộ; giữ gìn
+5625,Ở trên; ngay khi
+5626,Phía trên; cấp cao hơn
+5627,Tức giận; buồn bực
+5628,Làm buồn bực; làm xáo trộn
+5629,Ở tầng trên
+5630,Lên tầng trên; ở tầng trên
+5631,Hướng lên trên
+5632,Thuộc đô thị; thành thị
+5633,Thúc giục; khuyến khích
+5634,Khẩn cấp; cấp bách
+5635,Chúng tôi; chúng ta (tân ngữ)
+5636,Cách sử dụng; sự dùng
+5637,Sự sử dụng; mục đích dùng
+5638,Sử dụng; dùng
+5639,Đã qua sử dụng; quen thuộc
+5640,Đã từng
+5641,Hữu ích; bổ ích
+5642,Vô ích; vô tích sự
+5643,Người dùng; người sử dụng
+5644,Thông thường; quen thuộc
+5645,Thông thường; thường lệ
+5646,Tiện ích; dịch vụ công cộng
+5647,Tận dụng; sử dụng hiệu quả
+5648,Hoàn toàn; tuyệt đối
+5649,Kỳ nghỉ
+5650,Máy hút bụi; khoảng chân không
+5651,Mơ hồ; mập mờ
+5652,Có hiệu lực; hợp lệ
+5653,Giá trị pháp lý; tính hiệu lực
+5654,Thung lũng
+5655,Có giá trị cao; quý giá
+5656,Giá trị
+5657,Định giá; coi trọng
+5658,Xe tải nhỏ; xe van
+5659,Biến mất hoàn toàn
+5660,Có thể thay đổi; biến đổi
+5661,Biến số
+5662,Sự biến đổi; biến thể
+5663,Đa dạng; phong phú
+5664,Sự đa dạng; nhiều loại
+5665,Khác nhau; đa dạng
+5666,Thay đổi; biến đổi
+5667,Rộng lớn; bao la
+5668,Rau củ
+5669,Phương tiện giao thông; xe cộ
+5670,Tĩnh mạch
+5671,Dự án kinh doanh mạo hiểm
+5672,Mạo hiểm thực hiện
+5673,Địa điểm tổ chức sự kiện
+5674,Bằng lời nói
+5675,Phán quyết của tòa án
+5676,Xác minh; kiểm chứng
+5677,Thơ; câu thơ; đoạn thơ
+5678,Phiên bản
+5679,Đấu với; chống lại
+5680,Thẳng đứng; dọc
+5681,Chính là; ngay cả
+5682,Rất; vô cùng
+5683,Tàu lớn; mạch máu
+5684,Cựu chiến binh; người lâu năm
+5685,Thông qua; qua đường
+5686,Khả thi; có thể thực hiện
+5687,Rực rỡ; sống động
+5688,Thói hư nết xấu; tội lỗi
+5689,Hung dữ; độc hại
+5690,Nạn nhân
+5691,Chiến thắng
+5692,Video; đoạn phim
+5693,Tầm nhìn; quan điểm
+5694,Nhìn; xem xét
+5695,Người xem
+5696,Quan điểm; góc nhìn
+5697,Làng mạc; thôn xóm
+5698,Dân làng
+5699,Vi phạm; xâm phạm
+5700,Sự vi phạm
+5701,Bạo lực
+5702,Bạo lực; hung dữ
+5703,Ảo; thực tế ảo
+5704,Đức hạnh; đức tính tốt
+5705,Vi-rút
+5706,Thị thực; vi-sa
+5707,Có thể nhìn thấy được
+5708,Tầm nhìn; thị giác
+5709,Chuyến thăm
+5710,Thăm viếng; ghé thăm
+5711,Khách tham quan; khách thăm
+5712,Thuộc thị giác; nhìn thấy
+5713,Quan trọng sống còn
+5714,Vi-ta-min
+5715,Thuộc giọng nói; bộc bạch rõ ràng
+5716,Giọng nói
+5717,Âm lượng; dung tích; tập sách
+5718,Tự nguyện; tự giác
+5719,Tình nguyện viên
+5720,Tình nguyện
+5721,Lá phiếu; sự bỏ phiếu
+5722,Bỏ phiếu; bầu chọn
+5723,Việc bỏ phiếu
+5724,Tuyên thệ; thề nguyện
+5725,Tính dễ bị tổn thương
+5726,Dễ bị tổn thương
+5727,Tiền công; tiền lương theo giờ
+5728,Sự chờ đợi
+5729,Chờ đợi
+5730,Bồi bàn nam; phục vụ nam
+5731,Thức dậy; đánh thức
+5732,Chuyến đi bộ
+5733,Đi bộ
+5734,Bức tường
+5735,Đi lang thang
+5736,Muốn
+5737,Chiến tranh
+5738,Phòng bệnh; khu bầu cử
+5739,Kho hàng; nhà kho
+5740,Cuộc chiến đấu; xung đột vũ trang
+5741,Ấm áp
+5742,Làm ấm
+5743,Sự nóng lên
+5744,Cảnh báo
+5745,Lời cảnh báo
+5746,Lệnh bắt giữ; sự đảm bảo
+5747,Đảm bảo; chứng minh là đúng
+5748,Chiến binh
+5749,Sự giặt giũ; việc rửa
+5750,Giặt; rửa
+5751,Việc giặt giũ
+5752,Bỏ đi; lãng phí
+5753,Rác thải; sự lãng phí
+5754,Lãng phí
+5755,Đồng hồ đeo tay; sự theo dõi
+5756,Xem; theo dõi
+5757,Nước
+5758,Tưới nước
+5759,Sóng biển; làn sóng; vẫy tay
+5760,Vẫy tay; đung đưa
+5761,Xa; rất nhiều
+5762,Con đường; cách thức
+5763,Chúng tôi; chúng ta
+5764,Yếu ớt
+5765,Làm suy yếu
+5766,Điểm yếu; sự yếu đuối
+5767,Sự giàu có; tài sản
+5768,Giàu có
+5769,Vũ khí
+5770,Mặc; mang; đeo
+5771,Thời tiết
+5772,Dệt; đan
+5773,Mạng nhện; trang web
+5774,Trang web
+5775,Đám cưới
+5776,Thứ tư
+5777,Cỏ dại
+5778,Tuần
+5779,Cuối tuần
+5780,Hàng tuần
+5781,Cân; nặng
+5782,Trọng lượng; cân nặng
+5783,Kỳ lạ; kỳ quặc
+5784,Được chào đón
+5785,Hoan nghênh; chào mừng
+5786,Sự đón tiếp
+5787,Chào đón
+5788,Phúc lợi xã hội; sự bình an
+5789,Khỏe mạnh; tốt
+5790,Tốt; giỏi
+5791,Chà; ồ
+5792,Giếng nước
+5793,Sự hạnh phúc và khỏe mạnh
+5794,Thuộc phía tây
+5795,Về phía tây
+5796,Phía tây
+5797,Thuộc phương tây; thuộc phía tây
+5798,Ướt
+5799,Cái gì; điều gì
+5800,Cái gì; điều gì
+5801,Dù sao đi nữa
+5802,Bất cứ cái gì
+5803,Bất cứ điều gì
+5804,Bất cứ điều gì (nhấn mạnh)
+5805,Lúa mì
+5806,Bánh xe
+5807,Khi nào
+5808,Khi; lúc mà
+5809,Lúc nào
+5810,Bất cứ khi nào
+5811,Ở đâu
+5812,Nơi mà
+5813,Trong khi đó
+5814,Bằng cách đó; nhờ đó
+5815,Bất cứ nơi đâu
+5816,Liệu rằng
+5817,Cái nào
+5818,Cái nào; điều mà
+5819,Trong khi
+5820,Khoảng thời gian ngắn
+5821,Trong khi
+5822,Đánh đòn; quất; đánh trứng
+5823,Lời thì thầm
+5824,Thì thầm
+5825,Màu trắng
+5826,Màu trắng; lòng trắng trứng
+5827,Ai; [người] mà
+5828,Bất kỳ ai
+5829,Toàn bộ; toàn thể
+5830,Toàn bộ
+5831,Hoàn toàn
+5832,Ai (tân ngữ)
+5833,Của ai
+5834,Của ai
+5835,Tại sao
+5836,Rộng rãi
+5837,Rộng rãi; phổ biến
+5838,Mở rộng
+5839,Lan rộng; phổ biến
+5840,Góa phụ
+5841,Chiều rộng
+5842,Vợ
+5843,Hoang dã
+5844,Động vật hoang dã
+5845,Ý chí; di chúc
+5846,Sẽ
+5847,Sẵn lòng; sẵn sàng
+5848,Sự sẵn lòng
+5849,Chiến thắng
+5850,Thắng; chiến thắng
+5851,Gió; luồng gió
+5852,Uốn lượn; cuộn; lên dây cót
+5853,Cửa sổ
+5854,Rượu vang
+5855,Cánh (chim
+5856,Người chiến thắng
+5857,Mùa đông
+5858,Lau chùi; lau sạch
+5859,Dây thép; dây điện
+5860,Sự khôn ngoan; trí tuệ
+5861,Khôn ngoan; sáng suốt
+5862,Điều ước; nguyện vọng
+5863,Ước; mong muốn
+5864,Sự hóm hỉnh; trí thông minh
+5865,Với; cùng với
+5866,Rút lui; rút tiền
+5867,Sự rút lui; sự rút tiền
+5868,Trong vòng; bên trong
+5869,Không có; thiếu
+5870,Nhân chứng; người chứng kiến
+5871,Chứng kiến
+5872,Người phụ nữ
+5873,Kỳ quan; sự ngạc nhiên
+5874,Tự hỏi; băn khoăn
+5875,Tuyệt vời; kỳ diệu
+5876,Gỗ; khu rừng nhỏ
+5877,Bằng gỗ
+5878,Len; sợi len
+5879,Từ ngữ; lời nói
+5880,Công việc; tác phẩm
+5881,Làm việc; hoạt động
+5882,Công nhân; người lao động
+5883,Lực lượng lao động
+5884,Đang làm việc; thuộc công việc
+5885,Buổi tập thể dục
+5886,Nơi làm việc
+5887,Buổi hội thảo; phân xưởng
+5888,Thế giới
+5889,Toàn thế giới; khắp thế giới
+5890,Trên toàn thế giới
+5891,Con giun; con sâu
+5892,Lo lắng; băn khoăn
+5893,Sự lo lắng; mối lo
+5894,Lo lắng; làm lo lắng
+5895,Tồi tệ hơn; xấu hơn
+5896,Tệ hơn
+5897,Điều tồi tệ hơn
+5898,Sự thờ phụng; sự tôn sùng
+5899,Thờ phụng; tôn sùng
+5900,Tồi tệ nhất; xấu nhất
+5901,Tệ nhất
+5902,Điều tồi tệ nhất
+5903,Đáng giá; có giá trị
+5904,Giá trị
+5905,Đáng giá; bõ công
+5906,Xứng đáng
+5907,Sẽ (thì quá khứ); thường hay
+5908,Vết thương
+5909,Gây thương tích; làm tổn thương
+5910,Chà; ồ (thể hiện sự ngạc nhiên)
+5911,Gói; bọc lại
+5912,Cổ tay
+5913,Viết
+5914,Nhà văn; tác giả
+5915,Bài viết; chữ viết
+5916,Dạng văn bản; dạng viết
+5917,Sai; sai trái
+5918,Sai; không đúng
+5919,Lỗi sai; điều sai trái
+5920,Sân nhà; thước (đơn vị đo)
+5921,Ừ; vâng
+5922,Năm
+5923,La hét; hét lớn
+5924,Màu vàng
+5925,Màu vàng
+5926,Vâng; dạ; đúng vậy
+5927,Hôm qua
+5928,Hôm qua; ngày hôm qua
+5929,Vẫn chưa; chưa
+5930,Nhưng; tuy nhiên
+5931,Sản lượng; hoa lợi
+5932,Sinh ra; nhường bước
+5933,Bạn; các bạn
+5934,Trẻ tuổi; trẻ
+5935,Giới trẻ; con non
+5936,Thanh thiếu niên; em nhỏ
+5937,Của bạn; của các bạn
+5938,Cái của bạn; cái của các bạn
+5939,Bản thân bạn
+5940,Tuổi trẻ; thanh xuân
+5941,Số không
+5942,Khu vực; vùng
