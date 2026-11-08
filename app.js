@@ -438,6 +438,13 @@
       '<div class="elo-grid">' + chk('guess', 'Tính đoán mò', 'Bật thì g = 1 / số lựa chọn.') +
       chk('firstOld', 'Lần đầu dùng cách cũ', 'Lần Tự kiểm tra trình độ đầu tiên xếp cấp bằng cách cũ.') +
       chk('seed', 'Gieo Elo sau lần đầu', 'Sau lần đầu, đặt R bằng D của cấp vừa xếp.') + '</div>' +
+      '<div class="stack" style="gap:0.6rem"><h3 style="margin:0">Máy tính thử</h3><p class="muted" style="margin:0">Dùng các giá trị đang nhập ở trên (chưa cần bấm Áp dụng). Cho biết một câu trả lời sẽ đổi điểm bao nhiêu.</p><div class="elo-grid">' +
+      '<label class="elo-f"><span><b>Điểm hiện tại</b> <code>R</code></span><input type="number" id="ecc-r" value="' + Math.round(ELO.r) + '"></label>' +
+      '<label class="elo-f"><span><b>Số câu đã làm</b> <code>n</code></span><input type="number" id="ecc-n" value="' + ELO.n + '"></label>' +
+      '<label class="elo-f"><span><b>Cấp của câu hỏi</b></span><select id="ecc-lv">' + Object.keys(ECFG.lv).map(function (l) { return '<option' + (l === 'C1' ? ' selected' : '') + '>' + l + '</option>'; }).join('') + '</select></label>' +
+      '<label class="elo-f"><span><b>Số lựa chọn</b></span><input type="number" id="ecc-o" value="4"></label>' +
+      '<label class="elo-f"><span><b>Kết quả</b></span><select id="ecc-ok"><option value="1">Đúng</option><option value="0">Sai</option></select></label></div>' +
+      '<div class="row">' + admBtn('adm-elo-calc', 'Tính') + '</div><pre class="elo-eq" id="ecc-out">Bấm Tính để xem kết quả.</pre></div>' +
       '<div class="row">' + admBtn('adm-elo-save', 'Áp dụng', undefined, '') + admBtn('adm-elo-defaults', 'Về mặc định') + '</div></section>';
   }
   function admVocabPanel() {
@@ -501,6 +508,17 @@
     admConfirm = '';
     if (a === 'adm-v-f') { admV.f = t.getAttribute('data-v'); admV.limit = 50; render(); window.scrollTo(0, sy); return; }
     if (a === 'adm-v-more') { admV.limit += 50; renderAdmVList(); return; }
+    if (a === 'adm-elo-calc') {
+      var fv = function (id, d) { var e = document.getElementById(id), v = e ? parseFloat(e.value) : NaN; return isFinite(v) ? v : d; };
+      var cR = fv('ecc-r', ELO.r), cN = Math.max(0, fv('ecc-n', 0)), cO = Math.max(2, fv('ecc-o', 4)), cLv = (document.getElementById('ecc-lv') || {}).value, cOk = fv('ecc-ok', 1);
+      var cS = fv('ec-scale', ECFG.scale) || ECFG.scale, cTau = fv('ec-tau', ECFG.tau) || ECFG.tau, cD = fv('ec-lv-' + cLv, ECFG.lv[cLv]);
+      var cG = (document.getElementById('ec-guess') ? document.getElementById('ec-guess').checked : ECFG.guess) ? 1 / cO : 0;
+      var cK = fv('ec-k0', ECFG.k0) + fv('ec-k1', ECFG.k1) * Math.exp(-cN / cTau), cP = cG + (1 - cG) / (1 + Math.pow(10, (cD - cR) / cS)), cNew = cR + cK * (cOk - cP);
+      var out = document.getElementById('ecc-out');
+      if (out) out.textContent = 'D (độ khó câu ' + cLv + ') = ' + cD + '\ng = ' + cG.toFixed(3) + '\np = ' + cG.toFixed(3) + ' + (1 − ' + cG.toFixed(3) + ') / (1 + 10^((' + cD + ' − ' + Math.round(cR) + ') / ' + cS + ')) = ' + cP.toFixed(4) +
+        '\nK = ' + cK.toFixed(1) + '\nthay đổi = K × (' + cOk + ' − p) = ' + (cK * (cOk - cP) >= 0 ? '+' : '') + (cK * (cOk - cP)).toFixed(1) + '\nR mới = ' + Math.round(cNew);
+      return;
+    }
     function input(id) { var e = document.getElementById(id); return e ? parseInt(e.value, 10) : NaN; }
     if (a === 'adm-exit') { ADMIN = false; LS.set('oel.admin', 0); syncAdminTab(); location.hash = '#home'; return; }
     else if (a === 'adm-xp') activity.bonus = (activity.bonus || 0) + n;

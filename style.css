@@ -344,3 +344,4 @@ textarea.export { font-family: var(--font-mono); font-size: 0.85rem; min-height:
 .elo-f input[type="checkbox"] { justify-self: start; width: 1.2rem; height: 1.2rem; }
 .elo-eq { font-family: var(--font-mono); font-size: 0.82rem; background: var(--bg, transparent); border: 1px solid var(--line); border-radius: 6px; padding: 0.7rem; overflow-x: auto; margin: 0; white-space: pre; }
 @media (max-width: 480px) { .ipa-pair .ipa-tile, .ipa-row > .ipa-tile, .ipa-gap { width: 4.2rem; } .ipa-pair { flex-wrap: wrap; } }
+.elo-f select { font: inherit; padding: 0.35rem 0.5rem; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--ink); width: 100%; box-sizing: border-box; }
