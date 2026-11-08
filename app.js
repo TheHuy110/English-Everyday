@@ -708,18 +708,11 @@
     var mid = lvs.indexOf('B1');
     quiz = newQuiz({ kind: 'placement', title: 'Tự kiểm tra trình độ', lvLabel: n + ' câu', qs: [], used: [], lvs: lvs,
       idx: mid > -1 ? mid : Math.floor(lvs.length / 2), total: n, open: {}, useElo: eloMode === 'elo' && !(ECFG.firstOld && !PLHIST.length) });
+    /* câu hỏi luôn theo kiểu bậc thang (đúng thì khó hơn, sai thì dễ hơn). Người đã có điểm Elo bắt đầu từ cấp gần điểm đó nhất. */
+    if (quiz.useElo) { var bi = 0; lvs.forEach(function (l, i) { if (Math.abs(LEVEL_ELO[l] - ELO.r) < Math.abs(LEVEL_ELO[lvs[bi]] - ELO.r)) bi = i; }); quiz.idx = bi; }
     placementNext();
   }
   function placementNext() {
-    if (quiz.useElo) {
-      /* chọn câu thuộc cấp có độ khó gần điểm Elo hiện tại nhất (còn câu chưa dùng) */
-      var order = quiz.lvs.slice().sort(function (a, b) { return Math.abs(LEVEL_ELO[a] - ELO.r) - Math.abs(LEVEL_ELO[b] - ELO.r) || Math.random() - 0.5; });
-      for (var oi = 0; oi < order.length; oi++) {
-        var ep = BANK.filter(function (q) { return q.lv === order[oi] && quiz.used.indexOf(q) < 0; });
-        if (ep.length) { var eq = ep[Math.floor(Math.random() * ep.length)]; quiz.used.push(eq); quiz.qs.push(shufQ(eq)); return true; }
-      }
-      return false;
-    }
     for (var d = 0; d < quiz.lvs.length; d++) {
       var tries = d === 0 ? [quiz.idx] : [quiz.idx + d, quiz.idx - d];
       for (var k = 0; k < tries.length; k++) {
