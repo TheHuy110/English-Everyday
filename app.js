@@ -1,7 +1,8 @@
 /* Tiếng Anh mỗi ngày - site code. Content lives in content/*.js */
 (function () {
   'use strict';
-  var OEL = window.OEL || {};
+  var OEL = window.OEL = window.OEL || {};
+  var MAN = OEL.manifest || {};   /* item counts (content/manifest.js) so the home page can show totals before the big files load */
 
   /* ---------- Lưu trữ (theo từng người dùng, không bắt buộc) ---------- */
   var LS = {
@@ -39,47 +40,60 @@
   /* ---------- Làm sạch dữ liệu nội dung ---------- */
   function idOf(v) { return v === undefined || v === null ? '' : String(v).trim(); }
   var MORE_TYPES = { extension: 'Mở rộng', advanced: 'Nâng cao', nuance: 'Sắc thái' };
-  var GRAMMAR = list(OEL.grammar).map(function (g) {
-    g = g || {};
-    return { t: str(g.title), lv: str(g.level).toUpperCase(), topic: str(g.topic) || str(g.category), gid: idOf(g.grammarId), rule: str(g.rule),
-      form: (Array.isArray(g.form) ? g.form : [g.form]).map(str).filter(Boolean),
-      more: list(g.more).map(function (m) { m = m || {}; return { type: MORE_TYPES[str(m.type)] ? str(m.type) : 'extension', text: str(m.text) }; }).filter(function (m) { return m.text; }),
-      ex: list(g.examples).map(String), no: str(g.wrong), yes: str(g.right) };
-  }).filter(function (g) { var ok = g.t && g.lv && g.rule; if (!ok) warn('ngữ pháp', g); return ok; });
+  var GRAMMAR = [], GBYID = Object.create(null), GDUP = [];
+  function initGrammar() {
+    GRAMMAR = list(OEL.grammar).map(function (g) {
+      g = g || {};
+      return { t: str(g.title), lv: str(g.level).toUpperCase(), topic: str(g.topic) || str(g.category), gid: idOf(g.grammarId), rule: str(g.rule),
+        form: (Array.isArray(g.form) ? g.form : [g.form]).map(str).filter(Boolean),
+        more: list(g.more).map(function (m) { m = m || {}; return { type: MORE_TYPES[str(m.type)] ? str(m.type) : 'extension', text: str(m.text) }; }).filter(function (m) { return m.text; }),
+        ex: list(g.examples).map(String), no: str(g.wrong), yes: str(g.right) };
+    }).filter(function (g) { var ok = g.t && g.lv && g.rule; if (!ok) warn('ngữ pháp', g); return ok; });
 
-  var GBYID = Object.create(null), GDUP = [];
-  GRAMMAR.forEach(function (g) {
-    if (!g.gid) return;
-    if (GBYID[g.gid]) { GDUP.push(g.gid); warn('ngữ pháp (grammarId bị trùng: ' + g.gid + ')', g); } else GBYID[g.gid] = g;
-  });
-  var BANK = list(OEL.questions).map(function (q) {
-    q = q || {};
-    var o = list(q.options).map(String), a = o.indexOf(String(q.answer));
-    var ok = q.question && o.length >= 2 && a > -1 && str(q.level);
-    if (!ok) { warn('câu hỏi (đáp án phải trùng đúng một lựa chọn)', q); return null; }
-    return { lv: str(q.level).toUpperCase(), topic: str(q.topic), q: String(q.question), o: o, a: a, why: str(q.explanation), gid: idOf(q.grammarId) };
-  }).filter(Boolean);
-
-  var LINKS = Object.create(null);   /* grammarId -> number of questions pointing at it */
-  BANK.forEach(function (q) { if (q.gid) LINKS[q.gid] = (LINKS[q.gid] || 0) + 1; });
-  var IPA_CFG = (OEL.ipa && OEL.ipa.audio) || {};
-  var IPA = list(OEL.ipa && OEL.ipa.sounds).map(function (s) {
-    s = s || {};
-    return { id: str(s.id), sym: str(s.symbol), type: str(s.type) || 'consonant', group: str(s.group), voice: str(s.voice), tip: str(s.tip), bad: str(s.mistake),
-      ex: list(s.examples).map(function (e) { e = e || {}; return { w: str(e.word), ipa: str(e.ipa) }; }).filter(function (e) { return e.w; }),
-      pairs: list(s.pairs).map(function (p) { p = p || {}; return { a: str(p.a), ai: str(p.aIpa), b: str(p.b), bi: str(p.bIpa) }; }).filter(function (p) { return p.a && p.b; }) };
-  }).filter(function (s) { var ok = s.id && s.sym; if (!ok) warn('âm IPA (cần id và symbol)', s); return ok; });
-  var seenSets = {};
-  var QSETS = list(OEL.tests).map(function (s) {
-    s = s || {};
-    var lvs = list(s.levels).map(function (l) { return String(l).toUpperCase(); });
-    return { id: str(s.id), title: str(s.title), lvs: lvs, lv: lvs.length > 1 ? lvs[0] + ' đến ' + lvs[lvs.length - 1] : (lvs[0] || ''),
-      blurb: str(s.blurb), qs: BANK.filter(function (q) { return lvs.indexOf(q.lv) > -1; }) };
-  }).filter(function (s) {
-    var ok = s.id && s.title && s.qs.length && !seenSets[s.id];
-    if (!ok) warn('bài kiểm tra (cần id riêng, tên và có câu hỏi thuộc cấp độ đã chọn)', s); else seenSets[s.id] = true;
-    return ok;
-  });
+    GBYID = Object.create(null); GDUP = [];
+    GRAMMAR.forEach(function (g) {
+      if (!g.gid) return;
+      if (GBYID[g.gid]) { GDUP.push(g.gid); warn('ngữ pháp (grammarId bị trùng: ' + g.gid + ')', g); } else GBYID[g.gid] = g;
+    });
+  }
+  var BANK = [], LINKS = Object.create(null);   /* LINKS: grammarId -> number of questions pointing at it */
+  var QSETS = [];
+  function initBank() {
+    BANK = list(OEL.questions).map(function (q) {
+      q = q || {};
+      var o = list(q.options).map(String), a = o.indexOf(String(q.answer));
+      var ok = q.question && o.length >= 2 && a > -1 && str(q.level);
+      if (!ok) { warn('câu hỏi (đáp án phải trùng đúng một lựa chọn)', q); return null; }
+      return { lv: str(q.level).toUpperCase(), topic: str(q.topic), q: String(q.question), o: o, a: a, why: str(q.explanation), gid: idOf(q.grammarId) };
+    }).filter(Boolean);
+    LINKS = Object.create(null);
+    BANK.forEach(function (q) { if (q.gid) LINKS[q.gid] = (LINKS[q.gid] || 0) + 1; });
+    initQsets();
+  }
+  var IPA_CFG = {}, IPA = [], IPAQ = {};
+  function initIpa() {
+    IPA_CFG = (OEL.ipa && OEL.ipa.audio) || {};
+    IPAQ = OEL.ipaQuick || {};
+    IPA = list(OEL.ipa && OEL.ipa.sounds).map(function (s) {
+      s = s || {};
+      return { id: str(s.id), sym: str(s.symbol), type: str(s.type) || 'consonant', group: str(s.group), voice: str(s.voice), tip: str(s.tip), bad: str(s.mistake),
+        ex: list(s.examples).map(function (e) { e = e || {}; return { w: str(e.word), ipa: str(e.ipa) }; }).filter(function (e) { return e.w; }),
+        pairs: list(s.pairs).map(function (p) { p = p || {}; return { a: str(p.a), ai: str(p.aIpa), b: str(p.b), bi: str(p.bIpa) }; }).filter(function (p) { return p.a && p.b; }) };
+    }).filter(function (s) { var ok = s.id && s.sym; if (!ok) warn('âm IPA (cần id và symbol)', s); return ok; });
+  }
+  function initQsets() {
+    var seenSets = {};
+    QSETS = list(OEL.tests).map(function (s) {
+      s = s || {};
+      var lvs = list(s.levels).map(function (l) { return String(l).toUpperCase(); });
+      return { id: str(s.id), title: str(s.title), lvs: lvs, lv: lvs.length > 1 ? lvs[0] + ' đến ' + lvs[lvs.length - 1] : (lvs[0] || ''),
+        blurb: str(s.blurb), qs: BANK.filter(function (q) { return lvs.indexOf(q.lv) > -1; }) };
+    }).filter(function (s) {
+      var ok = s.id && s.title && s.qs.length && !seenSets[s.id];
+      if (!ok) warn('bài kiểm tra (cần id riêng, tên và có câu hỏi thuộc cấp độ đã chọn)', s); else seenSets[s.id] = true;
+      return ok;
+    });
+  }
 
   var RESOURCES = list(OEL.resources).map(function (r) {
     r = r || {};
@@ -99,6 +113,43 @@
     p = p || {};
     return [str(p.pair), str(p.rule), str(p.example)];
   }).filter(function (p) { return p[0] && p[1]; });
+
+  /* ---------- Tải nội dung theo nhu cầu ---------- */
+  /* Four big content files are not in index.html. Each page asks for the groups it needs; a group is downloaded once, then parsed once. */
+  var GROUPS = {
+    grammar: { files: ['content/grammar.js'], init: initGrammar },
+    bank: { files: ['content/questions.js'], init: initBank },
+    vocab: { files: ['content/vocab.js', 'content/vocab-def.js'], init: initVocab },
+    ipa: { files: ['content/ipa.js'], init: initIpa }
+  };
+  var loaded = Object.create(null), pending = Object.create(null);
+  function loadScript(src) {
+    return new Promise(function (resolve, reject) {
+      var el = document.createElement('script');
+      el.src = src;
+      el.onload = function () { resolve(); };
+      el.onerror = function () { if (el.parentNode) el.parentNode.removeChild(el); reject(new Error(src)); };
+      document.head.appendChild(el);
+    });
+  }
+  function ensure(names) {
+    return Promise.all(names.map(function (n) {
+      if (loaded[n]) return null;
+      if (!pending[n]) {
+        pending[n] = Promise.all(GROUPS[n].files.map(loadScript)).then(function () {
+          GROUPS[n].init(); loaded[n] = true; delete pending[n];
+        }, function (e) { delete pending[n]; throw e; });   /* a failed download can be retried */
+      }
+      return pending[n];
+    }));
+  }
+  /* Totals for the home page and journal: the real numbers once a group is loaded, otherwise the manifest. */
+  function nGrammar() { return loaded.grammar ? GRAMMAR.length : (MAN.grammar || 0); }
+  function nGrammarAt(lv) { return loaded.grammar ? GRAMMAR.filter(function (g) { return g.lv === lv; }).length : ((MAN.grammarByLevel || {})[lv] || 0); }
+  function nQuestions() { return loaded.bank ? BANK.length : (MAN.questions || 0); }
+  function nVocab() { return loaded.vocab ? VOCAB.length : (MAN.vocab || 0); }
+  function nIpa() { return loaded.ipa ? IPA.length : (MAN.ipa || 0); }
+  function nSets() { return loaded.bank ? QSETS.length : (MAN.sets || 0); }
 
   /* ---------- Trạng thái ---------- */
   var ALL = 'Tất cả';
@@ -577,15 +628,15 @@
       tipPanel = '<div class="panel"><p class="call">Mẹo hôm nay / ' + esc(tip.g) + '</p><p style="font-size:1.2rem"><mark>' + esc(first) + '</mark>' + esc(rest) + '</p></div>';
     }
     var steps = LEVELS.map(function (l) {
-      var n = GRAMMAR.filter(function (g) { return g.lv === l.id; }).length;
+      var n = nGrammarAt(l.id);
       var ct = n ? n + ' quy tắc ngữ pháp' : 'Chỉ có tài nguyên';
       return '<button class="step" data-action="level" data-level="' + l.id + '" type="button"><b>' + l.id + '</b><span class="nm">' + l.name + '</span><span class="ds">' + l.d + '</span><span class="ct">' + ct + '</span></button>';
     }).join('');
     var shelf = [
-      ['#grammar', 'Ngữ pháp', 'Giải thích dễ hiểu, ví dụ và một lỗi thường gặp cho mỗi quy tắc.', GRAMMAR.length + ' quy tắc'],
-      ['#vocab', 'Từ vựng', 'Danh sách từ Oxford theo cấp độ CEFR, có phiên âm và giọng Anh, Mỹ. Đánh dấu từ cần học và ôn theo lịch lặp lại.', VOCAB.length + ' từ'],
-      ['#ipa', 'Phát âm', 'Bảng âm IPA tiếng Anh Mỹ: nghe âm, xem ví dụ, mẹo phát âm và các cặp âm dễ nhầm.', IPA.length + ' âm'],
-      ['#tests', 'Bài kiểm tra', 'Các bài trắc nghiệm ngắn, có giải thích cho từng đáp án.', BANK.length + ' câu hỏi'],
+      ['#grammar', 'Ngữ pháp', 'Giải thích dễ hiểu, ví dụ và một lỗi thường gặp cho mỗi quy tắc.', nGrammar() + ' quy tắc'],
+      ['#vocab', 'Từ vựng', 'Danh sách từ Oxford theo cấp độ CEFR, có phiên âm và giọng Anh, Mỹ. Đánh dấu từ cần học và ôn theo lịch lặp lại.', nVocab() + ' từ'],
+      ['#ipa', 'Phát âm', 'Bảng âm IPA tiếng Anh Mỹ: nghe âm, xem ví dụ, mẹo phát âm và các cặp âm dễ nhầm.', nIpa() + ' âm'],
+      ['#tests', 'Bài kiểm tra', 'Các bài trắc nghiệm ngắn, có giải thích cho từng đáp án.', nQuestions() + ' câu hỏi'],
       ['#resources', 'Tài nguyên', 'Các trang miễn phí để luyện nghe, đọc, viết và từ vựng.', RESOURCES.length + ' trang'],
       ['#tips', 'Mẹo học', 'Thói quen cho từng kỹ năng và các cặp từ ai cũng hay nhầm.', TIPS_FLAT.length + ' mẹo'],
       ['#journal', 'Nhật ký học tập', 'Tự ghi lại thời gian học, chuỗi ngày, XP, cấp độ và huy hiệu. Chỉ mình bạn xem được.', 'Cấp ' + pStats().level]
@@ -602,8 +653,8 @@
         '<div class="stat"><b>' + ps.streak + '</b><span>ngày liên tiếp</span></div>' +
         '<div class="stat"><b>' + ps.minutes + '</b><span>phút đã học</span></div>' +
         '<div class="stat"><b>' + ps.learned + '</b><span>từ đã đánh dấu</span></div>' +
-        '<div class="stat"><b>' + bestKeys.length + '/' + QSETS.length + '</b><span>bài đã làm</span></div>' +
-        (Object.keys(vstore).length ? '<div class="stat"><b>' + dueList().length + '</b><span>từ cần ôn</span></div>' : '') + '</div>'
+        '<div class="stat"><b>' + bestKeys.length + '/' + nSets() + '</b><span>bài đã làm</span></div>' +
+        (Object.keys(vstore).length ? '<div class="stat"><b>' + (loaded.vocab ? dueList().length : '…') + '</b><span>từ cần ôn</span></div>' : '') + '</div>'
       : '<p class="muted">Chưa có gì được ghi lại. Cứ học như bình thường, trang sẽ tự ghi lại thời gian, từ vựng và ngữ pháp của bạn.</p>';
     return '<div class="stack">' +
       '<section class="hero"><p class="call">Dành cho người Việt học tiếng Anh</p><h1>Học tiếng Anh từ chữ đầu tiên đến thành thạo.</h1>' +
@@ -950,20 +1001,26 @@
     'linking verb': 'động từ nối', 'indefinite article': 'mạo từ không xác định', 'definite article': 'mạo từ xác định', 'infinitive marker': 'to + động từ' };
 
   /* Danh sách từ Oxford: mỗi hàng [số thứ tự, từ, loại từ, cấp CEFR, phiên âm Mỹ, tệp âm thanh Anh, tệp âm thanh Mỹ]. Định nghĩa nằm riêng trong OEL.vocabDef (theo số thứ tự). */
-  var VDEF = OEL.vocabDef && typeof OEL.vocabDef === 'object' ? OEL.vocabDef : {};
+  var VDEF = {}, VREADY = false;   /* VREADY: vocabulary files are loaded and parsed */
   var VOCAB = [], VBY = Object.create(null), VLEVELS = [], VORD = Object.create(null), VDUP = [], VSKIP = 0;
-  list(OEL.vocab).forEach(function (r) {
-    var lv = Array.isArray(r) ? str(r[3]).toUpperCase() : '';
-    if (!Array.isArray(r) || !str(r[1]) || !LEVELS.some(function (l) { return l.id === lv; })) { VSKIP++; warn('từ vựng', r); return; }
-    if (VORD[r[0]]) VDUP.push(r[0]); else VORD[r[0]] = 1;
-    var id = String(r[1]) + '|' + String(r[2] || '');
-    if (VBY[id]) id += '|' + r[0];
-    if (VBY[id]) { warn('từ vựng bị trùng', r); return; }
-    var def = str(VDEF[r[0]]);
-    var w = { id: id, o: r[0], w: String(r[1]), pos: String(r[2] || ''), lv: lv, ph: str(r[4]), uk: str(r[5]), us: str(r[6]), vi: def, tp: -1 };
-    w.r = Math.random(); VBY[id] = w; VOCAB.push(w);
-  });
-  LEVELS.forEach(function (l) { if (VOCAB.some(function (w) { return w.lv === l.id; })) VLEVELS.push(l.id); });
+  function initVocab() {
+    VDEF = OEL.vocabDef && typeof OEL.vocabDef === 'object' ? OEL.vocabDef : {};
+    VOCAB = []; VBY = Object.create(null); VLEVELS = []; VORD = Object.create(null); VDUP = []; VSKIP = 0;
+    list(OEL.vocab).forEach(function (r) {
+      var lv = Array.isArray(r) ? str(r[3]).toUpperCase() : '';
+      if (!Array.isArray(r) || !str(r[1]) || !LEVELS.some(function (l) { return l.id === lv; })) { VSKIP++; warn('từ vựng', r); return; }
+      if (VORD[r[0]]) VDUP.push(r[0]); else VORD[r[0]] = 1;
+      var id = String(r[1]) + '|' + String(r[2] || '');
+      if (VBY[id]) id += '|' + r[0];
+      if (VBY[id]) { warn('từ vựng bị trùng', r); return; }
+      var def = str(VDEF[r[0]]);
+      var w = { id: id, o: r[0], w: String(r[1]), pos: String(r[2] || ''), lv: lv, ph: str(r[4]), uk: str(r[5]), us: str(r[6]), vi: def, tp: -1 };
+      w.r = Math.random(); VBY[id] = w; VOCAB.push(w);
+    });
+    LEVELS.forEach(function (l) { if (VOCAB.some(function (w) { return w.lv === l.id; })) VLEVELS.push(l.id); });
+    VREADY = true;
+    vstore = cleanStore(vstore);   /* the saved list could not be checked against the word list until now */
+  }
   function hasDef(w) { return !!w && !!w.vi; }
   function viText(w) { return hasDef(w) ? w.vi : '(chưa có nghĩa)'; }
 
@@ -1008,7 +1065,7 @@
         var w = typeof e.w === 'string' ? e.w.trim().slice(0, 80) : '', vi = typeof e.vi === 'string' ? e.vi.trim().slice(0, 200) : '';
         if (!w || !vi) return;
         r.w = w; r.vi = vi;
-      } else if (!VBY[id]) { return; }
+      } else if (VREADY && !VBY[id]) { return; }   /* before the word list is loaded, keep every saved id */
       out[id.slice(0, 200)] = r; n++;
     });
     return out;
@@ -1327,7 +1384,7 @@
     cons: [[['p', 'b'], ['t', 'd'], ['ch', 'j'], ['k', 'g']], [['f', 'v'], ['th', 'dh'], ['s', 'z'], ['sh', 'zh']], [['m', 'n', 'ng', 'y'], ['l', 'r', 'w', 'h']]]
   };
   var IPA_SHORT = ['ih', 'uh', 'eh', 'schwa', 'ae', 'uh2'];
-  var IPAQ = OEL.ipaQuick || {}, ipaRef = 'us';
+  var ipaRef = 'us';
   function ipaTile(s) {
     var cls = s.type === 'consonant' ? (s.voice === 'Vô thanh' ? 'unv' : 'vcd') : s.type === 'diphthong' ? 'dip' : IPA_SHORT.indexOf(s.id) > -1 ? 'sho' : 'lon';
     return '<button type="button" class="ipa-tile ' + cls + '" data-action="ipa-pick" data-v="' + esc(s.id) + '" aria-pressed="' + (ipaSel === s.id) + '"><b>' + esc(s.sym) + '</b><span>' + esc(s.ex[0] ? s.ex[0].w : '') + '</span></button>';
@@ -1416,7 +1473,7 @@
       '<div class="panel"><p class="call">Tổng cộng</p><div class="stats" style="margin-top:0.6rem">' +
       '<div class="stat"><b>' + st.streak + '</b><span>ngày liên tiếp</span></div><div class="stat"><b>' + st.minutes + '</b><span>phút</span></div>' +
       '<div class="stat"><b>' + st.days + '</b><span>ngày đã học</span></div><div class="stat"><b>' + st.learned + '</b><span>từ đã đánh dấu</span></div>' +
-      '<div class="stat"><b>' + st.grammar + '/' + GRAMMAR.length + '</b><span>quy tắc ngữ pháp</span></div><div class="stat"><b>' + st.tests + '</b><span>bài kiểm tra</span></div></div></div></section>';
+      '<div class="stat"><b>' + st.grammar + '/' + nGrammar() + '</b><span>quy tắc ngữ pháp</span></div><div class="stat"><b>' + st.tests + '</b><span>bài kiểm tra</span></div></div></div></section>';
   }
   function weekChart() {
     var cols = [], max = 1, d = new Date(), i;
@@ -1478,19 +1535,52 @@
     if (h === 'admin') return ADMIN ? 'admin' : 'home';
     return ROUTES.indexOf(h) > -1 ? h : 'home';
   }
-  function render() {
-    var r = current();
-    var html = r === 'home' ? viewHome() : r === 'grammar' ? viewGrammar() : r === 'vocab' ? viewVocab() : r === 'ipa' ? viewIpa() : r === 'tests' ? viewTests() :
-      r === 'resources' ? viewResources() : r === 'tips' ? viewTips() : r === 'admin' ? viewAdmin() : viewJournal();
-    view.innerHTML = html;
+  /* Content groups a page needs before it can be drawn (see GROUPS). */
+  function needs(r) {
+    var all = ['grammar', 'bank', 'vocab', 'ipa'];
+    if ((r === 'home' || r === 'journal') && !MAN.grammar) return all;   /* no manifest: fall back to real counts */
+    if (r === 'grammar') return ADMIN ? ['grammar', 'bank'] : ['grammar'];
+    if (r === 'tests') return ['bank', 'grammar'];   /* each question links to a grammar rule */
+    if (r === 'vocab') return ['vocab'];
+    if (r === 'ipa') return ['ipa', 'vocab'];   /* example-word audio looks up file names in the word list */
+    if (r === 'admin') return ['grammar', 'bank', 'vocab'];
+    return [];
+  }
+  function markTab(r) {
     var links = document.querySelectorAll('#tabs a');
     for (var i = 0; i < links.length; i++) {
       if (links[i].getAttribute('data-r') === r) links[i].setAttribute('aria-current', 'page');
       else links[i].removeAttribute('aria-current');
     }
+  }
+  function draw(r) {
+    var html = r === 'home' ? viewHome() : r === 'grammar' ? viewGrammar() : r === 'vocab' ? viewVocab() : r === 'ipa' ? viewIpa() : r === 'tests' ? viewTests() :
+      r === 'resources' ? viewResources() : r === 'tips' ? viewTips() : r === 'admin' ? viewAdmin() : viewJournal();
+    view.innerHTML = html;
     if (r === 'grammar') renderGList();
     if (r === 'vocab' && vSub === 'decks' && !vBrowse && !vReview) renderVList();
     if (r === 'admin') renderAdmVList();
+  }
+  var drawSeq = 0;
+  function render() {
+    var r = current(), seq = ++drawSeq;
+    markTab(r);
+    var miss = needs(r).filter(function (n) { return !loaded[n]; });
+    if (!miss.length) {
+      draw(r);
+      /* Home shows the number of words due for review, which needs the word list: fetch it in the background and redraw. */
+      if (r === 'home' && !loaded.vocab && !pending.vocab && Object.keys(vstore).length) {
+        ensure(['vocab']).then(function () { if (current() === 'home') render(); }, function () {});
+      }
+      return;
+    }
+    view.innerHTML = '<p class="muted" role="status">Đang tải nội dung…</p>';
+    ensure(miss).then(function () {
+      if (seq === drawSeq) draw(r);   /* ignore the result if the person has moved to another page */
+    }, function () {
+      if (seq === drawSeq) view.innerHTML = '<div class="empty" role="alert"><p>Không tải được nội dung. Hãy kiểm tra kết nối mạng rồi thử lại.</p>' +
+        '<p><button type="button" class="btn" data-action="retry">Thử lại</button></p></div>';
+    });
   }
 
   /* Giữ tiêu điểm bàn phím trên nút vừa bấm sau khi vẽ lại trang. */
@@ -1514,6 +1604,7 @@
     if (!t) return;
     var a = t.getAttribute('data-action');
     if (/^(v|b|r|m|card)-/.test(a)) vMsg = '';
+    if (a === 'retry') { render(); return; }
     if (a.indexOf('adm-') === 0) { if (ADMIN) adminAction(a, t); return; }
     if (a === 'level') {
       quiz = null;

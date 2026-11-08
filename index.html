@@ -8,7 +8,8 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230A6E6A'/%3E%3Ctext x='16' y='23' font-size='20' font-family='Georgia,serif' font-weight='700' text-anchor='middle' fill='white'%3EA%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap"></noscript>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -34,15 +35,12 @@
 </div>
 
 <noscript><p style="padding:1rem">Trang này cần bật JavaScript.</p></noscript>
-<script src="content/grammar.js"></script>
-<script src="content/questions.js"></script>
+<!-- Small files load now. grammar.js, questions.js, vocab.js, vocab-def.js and ipa.js are loaded by app.js only when a page needs them. -->
+<script src="content/manifest.js"></script>
 <script src="content/tests.js"></script>
 <script src="content/resources.js"></script>
 <script src="content/tips.js"></script>
 <script src="content/wordpairs.js"></script>
-<script src="content/vocab.js"></script>
-<script src="content/vocab-def.js"></script>
-<script src="content/ipa.js"></script>
 <script src="content/progress.js"></script>
 <script src="app.js"></script>
 <script data-goatcounter="https://thehuy110.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
