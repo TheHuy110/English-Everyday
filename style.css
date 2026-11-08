@@ -345,3 +345,17 @@ textarea.export { font-family: var(--font-mono); font-size: 0.85rem; min-height:
 .elo-eq { font-family: var(--font-mono); font-size: 0.82rem; background: var(--bg, transparent); border: 1px solid var(--line); border-radius: 6px; padding: 0.7rem; overflow-x: auto; margin: 0; white-space: pre; }
 @media (max-width: 480px) { .ipa-pair .ipa-tile, .ipa-row > .ipa-tile, .ipa-gap { width: 4.2rem; } .ipa-pair { flex-wrap: wrap; } }
 .elo-f select { font: inherit; padding: 0.35rem 0.5rem; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--ink); width: 100%; box-sizing: border-box; }
+
+/* Vocab grid: fewer, roomier cards; meaning scales with its length so nothing is cut off */
+.vgrid { grid-template-columns: repeat(auto-fill, minmax(13.5rem, 1fr)); gap: 1rem; }
+.vsq { aspect-ratio: auto; min-height: 11.5rem; display: flex; }
+.vsq-main { flex: 1; height: auto; min-height: 11.5rem; padding: 1.9rem 0.9rem 2.9rem; gap: 0.35rem; }
+.vsq-main .vw { font-size: 1.3rem; }
+.vsq-main .vph { font-size: 0.74rem; }
+.vsq-main .vpos { font-size: 0.6rem; letter-spacing: 0.1em; }
+.vsq-main .vm { display: block; -webkit-line-clamp: unset; overflow: visible; line-height: 1.3; overflow-wrap: anywhere; }
+.vsq-main .vm-1 { font-size: 1.1rem; } .vsq-main .vm-2 { font-size: 1rem; } .vsq-main .vm-3 { font-size: 0.9rem; } .vsq-main .vm-4 { font-size: 0.8rem; }
+.vsq-main .vst, .vsq-main .vlv { top: 0.65rem; }
+.ipa-w { font: inherit; background: none; border: 0; border-bottom: 1px dotted var(--muted); padding: 0; color: inherit; cursor: pointer; }
+.ipa-w:hover, .ipa-w:focus-visible { color: var(--accent); border-bottom-color: var(--accent); }
+@media (max-width: 560px) { .vgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; } .vsq-main { padding: 1.8rem 0.5rem 2.8rem; } }

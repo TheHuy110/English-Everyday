@@ -1171,12 +1171,13 @@
   }
 
   /* Square card: click anywhere on the card to mark / unmark the word. The speaker button is separate. */
+  function vmSize(t) { var n = String(t).length; return n <= 14 ? 'vm-1' : n <= 28 ? 'vm-2' : n <= 48 ? 'vm-3' : 'vm-4'; }
   function vsq(w) {
     var e = vstore[w.id], cls = 'vsq' + (e ? (e.k ? ' known' : ' learning') : ''), key = 'data-key="' + esc(w.id) + '" data-id="' + esc(w.id) + '"';
     var status = e ? (e.k ? 'Đã biết' : 'Đang học') : 'Bấm để học';
     return '<div class="' + cls + '"><button type="button" class="vsq-main" data-action="v-toggle" ' + key + ' aria-pressed="' + (e ? 'true' : 'false') + '" title="' + esc(viText(w)) + '">' +
       '<span class="vw">' + esc(w.w) + '</span>' + (w.ph ? '<span class="vph">' + esc(w.ph) + '</span>' : '') + (w.pos ? '<span class="vpos">' + esc(POS_VI[w.pos] || w.pos) + '</span>' : '') +
-      '<span class="vm">' + esc(viText(w)) + '</span><span class="vlv">' + esc(w.lv) + '</span>' + (ADMIN && w.o !== undefined ? '<span class="vid">ID ' + w.o + '</span>' : '') + '<span class="vst">' + status + '</span></button>' +
+      '<span class="vm ' + vmSize(viText(w)) + '">' + esc(viText(w)) + '</span><span class="vlv">' + esc(w.lv) + '</span>' + (ADMIN && w.o !== undefined ? '<span class="vid">ID ' + w.o + '</span>' : '') + '<span class="vst">' + status + '</span></button>' +
       '<span class="vsq-say-row">' + audioBtns(w, 'vsq-say') + '</span></div>';
   }
   function renderVList() {
@@ -1289,9 +1290,17 @@
       var p = au.play(); if (p && p.catch) p.catch(fallback);
     } catch (e) { fallback(); }
   }
+  /* Âm thanh từ ví dụ lấy từ thư viện audio của tab Từ vựng: ưu tiên tên tệp trong danh sách từ, nếu không có thì đoán theo <từ>_uk.mp3 / <từ>_us.mp3 (thiếu tệp thì đọc bằng giọng trình duyệt). */
+  var VWORD = null;
+  function vAudioFile(word, kind) {
+    if (!VWORD) { VWORD = Object.create(null); VOCAB.forEach(function (v) { var k = v.w.toLowerCase(); if (!VWORD[k]) VWORD[k] = {}; if (v.uk && !VWORD[k].uk) VWORD[k].uk = v.uk; if (v.us && !VWORD[k].us) VWORD[k].us = v.us; }); }
+    var e = VWORD[String(word).toLowerCase()];
+    return (e && e[kind]) || (String(word).toLowerCase().replace(/[^a-z0-9'-]+/g, '') + '_' + kind + '.mp3');
+  }
   function ipaWordBtn(w) {
-    if (!CAN_SPEAK && !IPA_CFG.words) return '';
-    return '<button type="button" class="btn ghost small" data-action="ipa-play" data-src="' + esc(ipaFile('w', wordSlug(w))) + '" data-w="' + esc(w) + '" aria-label="Nghe từ ' + esc(w) + '">Nghe</button>';
+    return ['uk', 'us'].map(function (k) {
+      return '<button type="button" class="btn ghost small" data-action="play" data-k="' + k + '" data-f="' + esc(vAudioFile(w, k)) + '" data-w="' + esc(w) + '" aria-label="Nghe giọng ' + (k === 'uk' ? 'Anh' : 'Mỹ') + ': ' + esc(w) + '">' + k.toUpperCase() + '</button>';
+    }).join(' ');
   }
   function ipaDetail() {
     var s = IPA.filter(function (x) { return x.id === ipaSel; })[0];
@@ -1325,7 +1334,13 @@
   }
   function ipaQuickHtml() {
     var q = IPAQ[ipaRef]; if (!q) return '';
-    function bold(t) { return esc(t).split('**').map(function (x, i) { return i % 2 ? '<b>' + x + '</b>' : x; }).join(''); }
+    function bold(t) {
+      return t.split(', ').map(function (wd) {
+        var plain = wd.replace(/\*\*/g, '');
+        return '<button type="button" class="ipa-w" data-action="play" data-k="' + ipaRef + '" data-f="' + esc(vAudioFile(plain, ipaRef)) + '" data-w="' + esc(plain) + '" aria-label="Nghe: ' + esc(plain) + '">' +
+          esc(wd).split('**').map(function (x, i) { return i % 2 ? '<b>' + x + '</b>' : x; }).join('') + '</button>';
+      }).join(', ');
+    }
     function tbl(h, rows) { return '<div class="table-wrap"><table style="min-width:0"><thead><tr><th colspan="2">' + h + '</th></tr></thead><tbody>' + rows.map(function (r) { return '<tr><td class="ipa-sym">' + esc(r[0]) + '</td><td>' + bold(r[1]) + '</td></tr>'; }).join('') + '</tbody></table></div>'; }
     var chips = ['us', 'uk'].filter(function (k) { return IPAQ[k]; }).map(function (k) { return chipBtn('ipa-ref', k, IPAQ[k].title, ipaRef === k); }).join('');
     return '<section class="stack" style="gap:0.8rem"><h3 style="margin:0">Bảng tra nhanh</h3><div class="chips" role="group" aria-label="Chọn giọng">' + chips + '</div>' +
