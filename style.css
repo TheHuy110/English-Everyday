@@ -317,3 +317,30 @@ textarea.export { font-family: var(--font-mono); font-size: 0.85rem; min-height:
 .vcard .vid { top: 0.85rem; bottom: auto; left: 0.9rem; font-size: 0.8rem; }
 
 .adm-ok { margin-left: auto; font-family: var(--font-mono); font-size: 0.72rem; color: var(--good); }
+
+.ipa-chart { display: grid; gap: 0.5rem; }
+.ipa-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.ipa-pair { display: flex; gap: 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); }
+.ipa-pair .ipa-tile { border: 0; border-radius: 0; width: 5.2rem; }
+.ipa-pair .ipa-tile + .ipa-tile { border-left: 1px solid var(--line); }
+.ipa-row > .ipa-tile { width: 5.2rem; }
+.ipa-gap { width: 5.2rem; }
+.ipa-vwrap { display: flex; flex-wrap: wrap; gap: 1.25rem 2rem; }
+.ipa-tile.sho { background: hsl(25 80% 60% / 0.1); }
+.ipa-tile.lon { background: hsl(25 80% 55% / 0.2); }
+.ipa-tile.dip { background: hsl(15 80% 50% / 0.3); }
+.ipa-tile.unv { background: hsl(110 45% 50% / 0.22); }
+.ipa-tile.vcd { background: hsl(215 60% 55% / 0.24); }
+.ipa-tile[aria-pressed="true"] { outline: 2px solid var(--accent); outline-offset: -2px; }
+.ipa-legend { display: flex; flex-wrap: wrap; gap: 0.4rem; font-size: 0.8rem; }
+.ipa-legend span { padding: 0.15rem 0.6rem; border-radius: 6px; border: 1px solid var(--line); }
+.ipa-legend .sho { background: hsl(25 80% 60% / 0.1); } .ipa-legend .lon { background: hsl(25 80% 55% / 0.2); } .ipa-legend .dip { background: hsl(15 80% 50% / 0.3); }
+.ipa-legend .unv { background: hsl(110 45% 50% / 0.22); } .ipa-legend .vcd { background: hsl(215 60% 55% / 0.24); }
+.ipa-ref { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1rem; align-items: start; }
+.ipa-sym { font-family: var(--font-display); font-size: 1.15rem; width: 3.5rem; }
+.elo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); gap: 0.8rem; }
+.elo-f { display: grid; gap: 0.25rem; align-content: start; }
+.elo-f input[type="number"] { font: inherit; padding: 0.35rem 0.5rem; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--ink); width: 100%; box-sizing: border-box; }
+.elo-f input[type="checkbox"] { justify-self: start; width: 1.2rem; height: 1.2rem; }
+.elo-eq { font-family: var(--font-mono); font-size: 0.82rem; background: var(--bg, transparent); border: 1px solid var(--line); border-radius: 6px; padding: 0.7rem; overflow-x: auto; margin: 0; white-space: pre; }
+@media (max-width: 480px) { .ipa-pair .ipa-tile, .ipa-row > .ipa-tile, .ipa-gap { width: 4.2rem; } .ipa-pair { flex-wrap: wrap; } }

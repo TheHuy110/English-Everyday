@@ -162,11 +162,23 @@
      Mỗi cấp CEFR có một độ khó cố định. Mỗi câu trả lời cập nhật điểm Elo của người học, và Elo quyết định cấp độ xếp loại.
      Có tính xác suất đoán mò (câu trắc nghiệm): kỳ vọng thắng không bao giờ thấp hơn 1 / số lựa chọn.
      Điểm Elo luôn được lưu nhưng chỉ chủ trang (admin) nhìn thấy. Admin có thể chuyển về cách xếp cấp cũ ở trang Admin. */
-  var LEVEL_ELO = { A1: 900, A2: 1100, B1: 1300, B2: 1500, C1: 1700, C2: 1900 };
-  var ELO_START = 1200, ELO_MIN = 400, ELO_MAX = 2400;
-  var ELO = (function () {
+  var ECFG_DEF = { start: 1200, min: 400, max: 2400, scale: 400, k0: 24, k1: 176, tau: 12, margin: 100, guess: 1, firstOld: 1, seed: 1,
+    lv: { A1: 900, A2: 1100, B1: 1300, B2: 1500, C1: 1700, C2: 1900 } };
+  var ECFG = (function () {
+    var c = JSON.parse(JSON.stringify(ECFG_DEF)), v = LS.get('oel.eloCfg', null);
+    if (v && typeof v === 'object') {
+      ['start', 'min', 'max', 'scale', 'k0', 'k1', 'tau', 'margin'].forEach(function (k) { if (typeof v[k] === 'number' && isFinite(v[k])) c[k] = v[k]; });
+      ['guess', 'firstOld', 'seed'].forEach(function (k) { if (v[k] === 0 || v[k] === 1) c[k] = v[k]; });
+      if (v.lv && typeof v.lv === 'object') Object.keys(c.lv).forEach(function (l) { if (typeof v.lv[l] === 'number' && isFinite(v.lv[l])) c.lv[l] = v.lv[l]; });
+    }
+    if (!(c.scale > 0)) c.scale = ECFG_DEF.scale;
+    if (!(c.tau > 0)) c.tau = ECFG_DEF.tau;
+    return c;
+  })();
+  var LEVEL_ELO = ECFG.lv;
+    var ELO = (function () {
     var e = LS.get('oel.elo', null);
-    if (!e || typeof e !== 'object' || !(e.r >= ELO_MIN && e.r <= ELO_MAX)) e = { r: ELO_START, n: 0, h: [] };
+    if (!e || typeof e !== 'object' || !(e.r >= ECFG.min && e.r <= ECFG.max)) e = { r: ECFG.start, n: 0, h: [] };
     e.n = e.n > 0 ? Math.floor(e.n) : 0;
     e.h = (Array.isArray(e.h) ? e.h : []).filter(function (x) { return x && x.r > 0; }).slice(-300);
     return e;
@@ -174,18 +186,18 @@
   function saveElo() { ELO.h = ELO.h.slice(-300); LS.set('oel.elo', ELO); }
   var eloMode = LS.get('oel.eloMode', 'elo') === 'old' ? 'old' : 'elo';
   /* K giảm dần: 200 ở câu đầu tiên, còn khoảng 24 sau vài chục câu (đã thử mô phỏng: K nhỏ làm kết quả bị kéo về 1200). */
-  function eloK() { return 24 + 176 * Math.exp(-ELO.n / 12); }
+  function eloK() { return ECFG.k0 + ECFG.k1 * Math.exp(-ELO.n / ECFG.tau); }
   function eloUpdate(q, right) {
     var d = LEVEL_ELO[q.lv]; if (!d) return;
-    var g = 1 / Math.max(2, (q.o || []).length), p = g + (1 - g) / (1 + Math.pow(10, (d - ELO.r) / 400));
-    ELO.r = Math.max(ELO_MIN, Math.min(ELO_MAX, ELO.r + eloK() * ((right ? 1 : 0) - p)));
+    var g = ECFG.guess ? 1 / Math.max(2, (q.o || []).length) : 0, p = g + (1 - g) / (1 + Math.pow(10, (d - ELO.r) / ECFG.scale));
+    ELO.r = Math.max(ECFG.min, Math.min(ECFG.max, ELO.r + eloK() * ((right ? 1 : 0) - p)));
     ELO.n++; ELO.h.push({ d: today(), r: Math.round(ELO.r * 10) / 10, q: q.lv, ok: right ? 1 : 0 });
     saveElo();
   }
   /* Cấp độ ứng với một điểm Elo: cấp cao nhất mà ngưỡng dưới (độ khó của cấp trừ 100) không vượt quá điểm. */
   function eloBand(r, lvs) {
     var est = lvs[0];
-    lvs.forEach(function (l) { if (LEVEL_ELO[l] && r >= LEVEL_ELO[l] - 100) est = l; });
+    lvs.forEach(function (l) { if (LEVEL_ELO[l] && r >= LEVEL_ELO[l] - ECFG.margin) est = l; });
     return est;
   }
   var delId = null, exportText = null, jOpen = false;
@@ -394,10 +406,39 @@
     var lv = Object.keys(LEVEL_ELO).map(function (l) { return '<span class="tag">' + l + ': ' + LEVEL_ELO[l] + '</span>'; }).join(' ');
     return '<section class="panel stack" style="gap:0.8rem"><h2>Elo (thử nghiệm)</h2>' +
       '<p>Điểm hiện tại: <strong>' + Math.round(ELO.r) + '</strong> · cấp theo Elo: <strong>' + esc(eloBand(ELO.r, bankLevels())) + '</strong> · câu đã tính: <strong>' + ELO.n + '</strong> (đúng ' + ok + '/' + ELO.h.length + ' trong ' + ELO.h.length + ' câu gần nhất) · K = ' + Math.round(eloK()) + '</p>' +
-      '<p class="muted">Độ khó mỗi cấp: ' + lv + '. Điểm bắt đầu ' + ELO_START + '. Chỉ admin thấy điểm này. Mọi câu trả lời trong mọi bài đều được tính.</p>' +
+      '<p class="muted">Độ khó mỗi cấp: ' + lv + '. Điểm bắt đầu ' + ECFG.start + '. Chỉ admin thấy điểm này. Mọi câu trả lời trong mọi bài đều được tính.</p>' +
       (pts ? '<svg viewBox="0 0 300 60" width="100%" height="60" role="img" aria-label="Biểu đồ Elo ' + h.length + ' câu gần nhất" preserveAspectRatio="none" style="max-width:30rem"><polyline fill="none" stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke" points="' + pts + '"/></svg>' : '') +
       '<p>Cách xếp cấp đang dùng: <strong>' + (eloMode === 'elo' ? 'Elo' : 'cách cũ (cấp có tỉ lệ đúng cao nhất)') + '</strong></p>' +
       '<div class="row">' + admBtn('adm-elo-mode', eloMode === 'elo' ? 'Chuyển về cách cũ' : 'Chuyển sang Elo') + admDanger('adm-reset-elo', 'Đặt lại Elo') + '</div></section>';
+  }
+  function admEloCfgPanel() {
+    function num(k, label, desc, step) { return '<label class="elo-f"><span><b>' + label + '</b> <code>' + k + '</code></span><input type="number" step="' + (step || 1) + '" id="ec-' + k + '" value="' + ECFG[k] + '"><small class="muted">' + desc + '</small></label>'; }
+    function chk(k, label, desc) { return '<label class="elo-f"><span><b>' + label + '</b> <code>' + k + '</code></span><input type="checkbox" id="ec-' + k + '"' + (ECFG[k] ? ' checked' : '') + '><small class="muted">' + desc + '</small></label>'; }
+    var lvF = Object.keys(ECFG.lv).map(function (l) { return '<label class="elo-f"><span><b>Độ khó ' + l + '</b> <code>D(' + l + ')</code></span><input type="number" step="10" id="ec-lv-' + l + '" value="' + ECFG.lv[l] + '"></label>'; }).join('');
+    return '<section class="panel stack" style="gap:0.8rem"><h2>Chỉnh công thức Elo</h2>' +
+      '<p class="muted">Sửa các ô rồi bấm Áp dụng. Thay đổi có hiệu lực ngay cho các câu trả lời tiếp theo và được lưu trong trình duyệt này. Khi ưng ý, hãy báo để cố định vào mã nguồn.</p>' +
+      '<pre class="elo-eq">Xác suất đúng kỳ vọng:  p = g + (1 − g) / (1 + 10^((D − R) / S))\n' +
+      'Xác suất đoán mò:       g = 1 / số lựa chọn   (g = 0 nếu tắt đoán mò)\n' +
+      'Hệ số K (giảm dần):     K = K0 + K1 · e^(−n / τ)\n' +
+      'Cập nhật sau mỗi câu:   R mới = R + K · (kết quả − p)      kết quả = 1 nếu đúng, 0 nếu sai\n' +
+      'Xếp cấp:                cấp cao nhất có  R ≥ D(cấp) − biên</pre>' +
+      '<div class="table-wrap"><table style="min-width:0"><thead><tr><th>Ký hiệu</th><th>Ý nghĩa</th></tr></thead><tbody>' +
+      '<tr><td><code>R</code></td><td>Điểm Elo hiện tại của người học.</td></tr>' +
+      '<tr><td><code>D</code></td><td>Độ khó của câu hỏi, lấy theo cấp CEFR của câu (xem các ô Độ khó bên dưới).</td></tr>' +
+      '<tr><td><code>S</code></td><td>Độ dốc: chênh lệch D − R bằng S thì xác suất đúng của người học còn khoảng 9%/91% (không tính đoán mò). S nhỏ thì đường cong dốc hơn.</td></tr>' +
+      '<tr><td><code>g</code></td><td>Xác suất đoán mò, là mức sàn của p.</td></tr>' +
+      '<tr><td><code>n</code></td><td>Số câu đã tính từ lúc bắt đầu (hoặc từ lần đặt lại).</td></tr>' +
+      '<tr><td><code>K</code></td><td>Bước thay đổi điểm. Câu đầu K = K0 + K1, càng nhiều câu K càng tiến gần K0.</td></tr>' +
+      '<tr><td><code>τ</code></td><td>Tốc độ K giảm: sau τ câu thì phần K1 còn khoảng 37%.</td></tr>' +
+      '<tr><td><code>biên</code></td><td>Cho phép lên cấp sớm hơn một chút: R chỉ cần đạt D − biên.</td></tr></tbody></table></div>' +
+      '<div class="elo-grid">' + num('start', 'Điểm bắt đầu', 'R ban đầu của người mới.', 10) + num('scale', 'Độ dốc', 'S trong công thức.', 10) +
+      num('k0', 'K thấp nhất', 'K0: bước nhỏ nhất khi đã làm nhiều câu.', 1) + num('k1', 'K thêm ở đầu', 'K1: phần cộng thêm ở những câu đầu.', 1) +
+      num('tau', 'Tốc độ giảm K', 'τ: số câu để phần K1 giảm còn ~37%.', 1) + num('margin', 'Biên xếp cấp', 'Trừ vào ngưỡng của mỗi cấp.', 10) +
+      num('min', 'Điểm tối thiểu', 'R không xuống dưới mức này.', 50) + num('max', 'Điểm tối đa', 'R không vượt mức này.', 50) + lvF + '</div>' +
+      '<div class="elo-grid">' + chk('guess', 'Tính đoán mò', 'Bật thì g = 1 / số lựa chọn.') +
+      chk('firstOld', 'Lần đầu dùng cách cũ', 'Lần Tự kiểm tra trình độ đầu tiên xếp cấp bằng cách cũ.') +
+      chk('seed', 'Gieo Elo sau lần đầu', 'Sau lần đầu, đặt R bằng D của cấp vừa xếp.') + '</div>' +
+      '<div class="row">' + admBtn('adm-elo-save', 'Áp dụng', undefined, '') + admBtn('adm-elo-defaults', 'Về mặc định') + '</div></section>';
   }
   function admVocabPanel() {
     var withDef = VOCAB.filter(hasDef).length, mIds = Object.keys(VDEF), orphan = mIds.filter(function (k) { return !VORD[k]; });
@@ -443,7 +484,7 @@
       '<p>grammarId bị trùng: <strong>' + GDUP.length + '</strong>' + (GDUP.length ? ' (' + esc(GDUP.join(', ')) + ')' : '') + '</p>' +
       '<p>Quy tắc chưa có câu hỏi nào: <strong>' + noQ.length + '</strong>' + (noQ.length ? ' (' + esc(noQ.slice(0, 12).map(function (g) { return g.gid; }).join(', ')) + (noQ.length > 12 ? '…' : '') + ')' : '') + '</p>' +
       orphanHtml + '<details><summary style="cursor:pointer;font-weight:600">Bảng quy tắc ngữ pháp (' + GRAMMAR.length + ')</summary><div class="table-wrap"><table style="min-width:0"><thead><tr><th>ID</th><th>Quy tắc</th><th>Cấp</th><th>Chủ đề</th><th>Số câu hỏi</th></tr></thead><tbody>' + rows + '</tbody></table></div></details></section>' +
-      admEloPanel() + admVocabPanel() +
+      admEloPanel() + admEloCfgPanel() + admVocabPanel() +
       '<section class="panel stack" style="gap:0.8rem"><h2>Tiến độ (thử nghiệm)</h2>' +
       '<p>XP hiện tại: <strong>' + ps.xp + '</strong> (đã cộng thêm ' + (activity.bonus || 0) + ') · Cấp <strong>' + ps.level + '</strong> / ' + PLEVELS.length + ' · chuỗi ' + ps.streak + ' ngày</p>' +
       '<div class="row">' + [10, 100, 1000].map(function (n) { return admBtn('adm-xp', '+' + n + ' XP', n); }).join('') + admBtn('adm-xp', '-100 XP', -100) + '</div>' +
@@ -479,12 +520,28 @@
     else if (a === 'adm-ach-all') ACHS.forEach(function (x) { if (!activity.ach[x.id]) activity.ach[x.id] = d; });
     else if (a === 'adm-ach-none') activity.ach = Object.create(null);
     else if (a === 'adm-reset-progress') { activity = cleanActivity({}); lastLevel = 0; }
-    else if (a === 'adm-reset-tests') { stats = { sets: {}, all: { sum: 0, cnt: 0 } }; LS.set('oel.stats', stats); PLHIST = []; savePl(); ELO = { r: ELO_START, n: 0, h: [] }; saveElo(); }
-    else if (a === 'adm-reset-elo') { ELO = { r: ELO_START, n: 0, h: [] }; saveElo(); }
+    else if (a === 'adm-reset-tests') { stats = { sets: {}, all: { sum: 0, cnt: 0 } }; LS.set('oel.stats', stats); PLHIST = []; savePl(); ELO = { r: ECFG.start, n: 0, h: [] }; saveElo(); }
+    else if (a === 'adm-elo-save') {
+      var f = function (id) { var e = document.getElementById(id); return e ? parseFloat(e.value) : NaN; }, c = JSON.parse(JSON.stringify(ECFG));
+      ['start', 'min', 'max', 'scale', 'k0', 'k1', 'tau', 'margin'].forEach(function (k) { var v = f('ec-' + k); if (isFinite(v)) c[k] = v; });
+      Object.keys(c.lv).forEach(function (l) { var v = f('ec-lv-' + l); if (isFinite(v)) c.lv[l] = v; });
+      ['guess', 'firstOld', 'seed'].forEach(function (k) { var e = document.getElementById('ec-' + k); if (e) c[k] = e.checked ? 1 : 0; });
+      if (!(c.scale > 0)) c.scale = ECFG_DEF.scale;
+      if (!(c.tau > 0)) c.tau = ECFG_DEF.tau;
+      if (c.min > c.max) { var sw = c.min; c.min = c.max; c.max = sw; }
+      Object.keys(c).forEach(function (k) { if (k === 'lv') Object.keys(c.lv).forEach(function (l) { ECFG.lv[l] = c.lv[l]; }); else ECFG[k] = c[k]; });
+      LS.set('oel.eloCfg', ECFG); ELO.r = Math.max(ECFG.min, Math.min(ECFG.max, ELO.r)); saveElo(); toast('Đã áp dụng công thức Elo');
+    }
+    else if (a === 'adm-elo-defaults') {
+      var dd = JSON.parse(JSON.stringify(ECFG_DEF));
+      Object.keys(dd).forEach(function (k) { if (k === 'lv') Object.keys(dd.lv).forEach(function (l) { ECFG.lv[l] = dd.lv[l]; }); else ECFG[k] = dd[k]; });
+      LS.set('oel.eloCfg', ECFG); toast('Đã về mặc định');
+    }
+    else if (a === 'adm-reset-elo') { ELO = { r: ECFG.start, n: 0, h: [] }; saveElo(); }
     else if (a === 'adm-elo-mode') { eloMode = eloMode === 'elo' ? 'old' : 'elo'; LS.set('oel.eloMode', eloMode); }
     else if (a === 'adm-reset-vocab') { vstore = cleanStore({}); saveV(); }
     else if (a === 'adm-reset-all') {
-      activity = cleanActivity({}); lastLevel = 0; stats = { sets: {}, all: { sum: 0, cnt: 0 } }; LS.set('oel.stats', stats); PLHIST = []; savePl(); ELO = { r: ELO_START, n: 0, h: [] }; saveElo();
+      activity = cleanActivity({}); lastLevel = 0; stats = { sets: {}, all: { sum: 0, cnt: 0 } }; LS.set('oel.stats', stats); PLHIST = []; savePl(); ELO = { r: ECFG.start, n: 0, h: [] }; saveElo();
       journal = []; LS.set('oel.journal', journal); vstore = cleanStore({}); saveV();
     }
     saveActivity(); lastLevel = levelOf(pStats().xp); checkAchievements(); saveActivity();
@@ -650,11 +707,11 @@
     if (!lvs.length) return;
     var mid = lvs.indexOf('B1');
     quiz = newQuiz({ kind: 'placement', title: 'Tự kiểm tra trình độ', lvLabel: n + ' câu', qs: [], used: [], lvs: lvs,
-      idx: mid > -1 ? mid : Math.floor(lvs.length / 2), total: n, open: {} });
+      idx: mid > -1 ? mid : Math.floor(lvs.length / 2), total: n, open: {}, useElo: eloMode === 'elo' && !(ECFG.firstOld && !PLHIST.length) });
     placementNext();
   }
   function placementNext() {
-    if (eloMode === 'elo') {
+    if (quiz.useElo) {
       /* chọn câu thuộc cấp có độ khó gần điểm Elo hiện tại nhất (còn câu chưa dùng) */
       var order = quiz.lvs.slice().sort(function (a, b) { return Math.abs(LEVEL_ELO[a] - ELO.r) - Math.abs(LEVEL_ELO[b] - ELO.r) || Math.random() - 0.5; });
       for (var oi = 0; oi < order.length; oi++) {
@@ -709,7 +766,9 @@
       /* điểm được ghi ở recordResult() bên dưới */
     } else if (quiz.kind === 'placement') {
       quiz.estOld = estimateLevel(); quiz.estElo = eloBand(ELO.r, quiz.lvs);
-      quiz.est = eloMode === 'elo' ? quiz.estElo : quiz.estOld;
+      quiz.est = quiz.useElo ? quiz.estElo : quiz.estOld;
+      /* lần kiểm tra đầu tiên dùng cách cũ, rồi gieo điểm Elo ở giữa cấp vừa xếp để Elo bắt đầu từ chỗ hợp lý */
+      if (!quiz.useElo && eloMode === 'elo' && ECFG.seed && LEVEL_ELO[quiz.est]) { ELO.r = LEVEL_ELO[quiz.est]; saveElo(); }
       PLHIST.push({ level: quiz.est, date: today(), score: quiz.score, total: quiz.qs.length, elo: Math.round(ELO.r) }); savePl();
     }
   }
@@ -795,7 +854,7 @@
     if (!ADMIN) return '';
     var d = ELO.r - (quiz.elo0 === undefined ? ELO.r : quiz.elo0);
     return '<p class="adm-note">[admin] Elo: ' + Math.round(ELO.r) + ' (' + (d >= 0 ? '+' : '') + Math.round(d) + ' trong bài này)' +
-      (quiz.kind === 'placement' ? ' · xếp theo Elo: ' + esc(quiz.estElo) + ' · xếp theo cách cũ: ' + esc(quiz.estOld) + ' · đang dùng: ' + (eloMode === 'elo' ? 'Elo' : 'cách cũ') : '') + '</p>';
+      (quiz.kind === 'placement' ? ' · xếp theo Elo: ' + esc(quiz.estElo) + ' · xếp theo cách cũ: ' + esc(quiz.estOld) + ' · đang dùng: ' + (quiz.useElo ? 'Elo' : 'cách cũ' + (eloMode === 'elo' ? ' (lần đầu)' : '')) : '') + '</p>';
   }
   function viewQuizResult() {
     var n = quiz.qs.length, pct = n ? quiz.score / n : 0;
@@ -803,7 +862,7 @@
        Right questions sit behind a button. Every item has a grammar-rule button. */
     function item(i, wrong) {
       var q = quiz.qs[i], g = q.gid ? GBYID[q.gid] : null, open = !!(quiz.open && quiz.open[i]), mine = quiz.answers ? quiz.answers[i] : undefined;
-      return '<div class="miss"><strong style="font-family:var(--font-display)">' + esc(q.q) + '</strong>' + admQInfo(q) +
+      return '<div class="miss"><span><span class="tag lvtag" style="justify-self:start">' + esc(q.lv) + '</span></span><strong style="font-family:var(--font-display)">' + esc(q.q) + '</strong>' + admQInfo(q) +
         (wrong && mine !== undefined ? '<span>Bạn chọn: <span class="no-way">' + esc(q.o[mine]) + '</span></span>' : '') +
         '<span>Đáp án: <mark>' + esc(q.o[q.a]) + '</mark></span><span class="muted">' + esc(q.why) + '</span>' +
         (g ? '<div><button class="btn ghost small" type="button" data-action="q-rule" data-v="' + i + '" aria-expanded="' + open + '">' + (open ? 'Ẩn quy tắc' : 'Xem quy tắc') + '</button></div>' +
@@ -824,7 +883,7 @@
       top = '<p class="muted" style="margin:0">Trình độ ước lượng</p><div class="score">' + esc(quiz.est) + '</div><p class="muted">Điểm: ' + s10(quiz.score, n) + ' / 10 (' + quiz.score + ' / ' + n + ' câu đúng)</p>';
       msg = 'Hãy bắt đầu từ ngữ pháp ở cấp ' + quiz.est + ' và luyện thêm ở cấp đó.';
       extra = '<div class="table-wrap"><table style="min-width:0"><thead><tr><th>Cấp độ</th><th>Đúng / Đã hỏi</th></tr></thead><tbody>' + rows + '</tbody></table></div>' +
-        '<p class="muted">Đây là kết quả ước lượng dựa trên ' + n + ' câu. ' + (eloMode === 'elo'
+        '<p class="muted">Đây là kết quả ước lượng dựa trên ' + n + ' câu. ' + (quiz.useElo
           ? 'Trình độ được tính từ độ khó của từng câu bạn trả lời đúng hay sai: đúng câu khó được cộng nhiều hơn, sai câu dễ bị trừ nhiều hơn. Bài dài (25 câu) cho kết quả chính xác hơn bài nhanh. Bạn vẫn nên tham khảo qua các cấp độ thấp hơn mà mình làm chưa tốt. Mục tiêu là không làm sai các bài tập dưới trình độ của mình.'
           : (quiz.total <= 10
           ? 'Bạn được xếp vào trình độ cao hơn cấp bạn làm tốt nhất một bậc (khi bạn đúng quá nửa số câu ở cấp đó) để thử sức với cấp độ cao hơn, nhưng bạn vẫn nên tham khảo qua các cấp độ thấp hơn mà mình làm chưa tốt. Mục tiêu là không làm sai các bài tập dưới trình độ của mình. Làm bài dài (25 câu) sẽ chính xác hơn.'
@@ -1241,25 +1300,41 @@
       (s.bad ? '<div><p class="lab">Lỗi thường gặp của người Việt</p><p>' + esc(s.bad) + '</p></div>' : '') +
       (pairs ? '<div><p class="lab">Cặp từ dễ nhầm</p><ul class="ipa-list">' + pairs + '</ul></div>' : '') + '</section>';
   }
+  /* Bảng âm xếp theo biểu đồ: phụ âm vô thanh / hữu thanh đứng thành cặp (p-b, t-d, k-g...). Id lấy từ content/ipa.js. */
+  var IPA_CHART = {
+    vowels: [['i', 'ih', 'uh', 'u'], ['eh', 'schwa', 'er', 'aw'], ['ae', 'uh2', 'ah']],
+    dip: [['ei', 'ai'], ['oi', 'au'], ['ou']],
+    cons: [[['p', 'b'], ['t', 'd'], ['ch', 'j'], ['k', 'g']], [['f', 'v'], ['th', 'dh'], ['s', 'z'], ['sh', 'zh']], [['m', 'n', 'ng', 'y'], ['l', 'r', 'w', 'h']]]
+  };
+  var IPA_SHORT = ['ih', 'uh', 'eh', 'schwa', 'ae', 'uh2'];
+  var IPAQ = OEL.ipaQuick || {}, ipaRef = 'us';
+  function ipaTile(s) {
+    var cls = s.type === 'consonant' ? (s.voice === 'Vô thanh' ? 'unv' : 'vcd') : s.type === 'diphthong' ? 'dip' : IPA_SHORT.indexOf(s.id) > -1 ? 'sho' : 'lon';
+    return '<button type="button" class="ipa-tile ' + cls + '" data-action="ipa-pick" data-v="' + esc(s.id) + '" aria-pressed="' + (ipaSel === s.id) + '"><b>' + esc(s.sym) + '</b><span>' + esc(s.ex[0] ? s.ex[0].w : '') + '</span></button>';
+  }
+  function ipaQuickHtml() {
+    var q = IPAQ[ipaRef]; if (!q) return '';
+    function bold(t) { return esc(t).split('**').map(function (x, i) { return i % 2 ? '<b>' + x + '</b>' : x; }).join(''); }
+    function tbl(h, rows) { return '<div class="table-wrap"><table style="min-width:0"><thead><tr><th colspan="2">' + h + '</th></tr></thead><tbody>' + rows.map(function (r) { return '<tr><td class="ipa-sym">' + esc(r[0]) + '</td><td>' + bold(r[1]) + '</td></tr>'; }).join('') + '</tbody></table></div>'; }
+    var chips = ['us', 'uk'].filter(function (k) { return IPAQ[k]; }).map(function (k) { return chipBtn('ipa-ref', k, IPAQ[k].title, ipaRef === k); }).join('');
+    return '<section class="stack" style="gap:0.8rem"><h3 style="margin:0">Bảng tra nhanh</h3><div class="chips" role="group" aria-label="Chọn giọng">' + chips + '</div>' +
+      '<div class="ipa-ref">' + tbl('Nguyên âm' + (ipaRef === 'uk' ? ' và nguyên âm đôi' : ' và nguyên âm đôi'), q.vowels) + tbl('Phụ âm', q.consonants) + '</div></section>';
+  }
   function viewIpa() {
     if (!IPA.length) return head('Phát âm', 'Bảng âm IPA tiếng Anh.') + '<div class="empty">Chưa có dữ liệu âm nào.</div>';
-    var filters = [['all', 'Tất cả'], ['vowel', 'Nguyên âm'], ['diphthong', 'Nguyên âm đôi'], ['consonant', 'Phụ âm']].map(function (f) {
-      return chipBtn('ipa-filter', f[0], f[1], ipaFilter === f[0]);
-    }).join('');
-    var groups = [], map = {};
-    IPA.forEach(function (s) {
-      if (ipaFilter !== 'all' && s.type !== ipaFilter) return;
-      var k = s.group || s.type;
-      if (!map[k]) { map[k] = []; groups.push(k); }
-      map[k].push(s);
-    });
-    var grid = groups.map(function (k) {
-      return '<section><h3 style="margin-bottom:0.6rem">' + esc(k) + '</h3><div class="ipa-grid">' + map[k].map(function (s) {
-        return '<button type="button" class="ipa-tile" data-action="ipa-pick" data-v="' + esc(s.id) + '" aria-pressed="' + (ipaSel === s.id) + '"><b>' + esc(s.sym) + '</b><span>' + esc(s.ex[0] ? s.ex[0].w : '') + '</span></button>';
-      }).join('') + '</div></section>';
-    }).join('');
-    return head('Phát âm', 'Bảng âm IPA tiếng Anh Mỹ. Bấm vào một âm để nghe, xem ví dụ, mẹo phát âm và các cặp từ dễ nhầm.') +
-      '<div class="stack" style="gap:1.25rem">' + ipaDetail() + '<div class="chips" role="group" aria-label="Lọc loại âm">' + filters + '</div>' + grid +
+    var by = {}, used = {};
+    IPA.forEach(function (s) { by[s.id] = s; });
+    function t(id) { if (!id) return '<span class="ipa-gap"></span>'; if (!by[id]) return ''; used[id] = 1; return ipaTile(by[id]); }
+    var vow = IPA_CHART.vowels.map(function (r) { return '<div class="ipa-row">' + r.map(t).join('') + '</div>'; }).join('');
+    var dip = IPA_CHART.dip.map(function (r) { return '<div class="ipa-row">' + r.map(t).join('') + '</div>'; }).join('');
+    var cons = IPA_CHART.cons.map(function (r) { return '<div class="ipa-row">' + r.map(function (pr) { return '<div class="ipa-pair">' + pr.map(t).join('') + '</div>'; }).join('') + '</div>'; }).join('');
+    var rest = IPA.filter(function (s) { return !used[s.id]; });
+    var restHtml = rest.length ? '<section><h3 style="margin-bottom:0.6rem">Âm khác</h3><div class="ipa-row">' + rest.map(ipaTile).join('') + '</div></section>' : '';
+    var legend = '<div class="ipa-legend"><span class="sho">Ngắn</span><span class="lon">Dài</span><span class="dip">Nguyên âm đôi</span><span class="unv">Vô thanh</span><span class="vcd">Hữu thanh</span></div>';
+    return head('Phát âm', 'Bảng âm IPA tiếng Anh Mỹ. Bấm vào một âm để nghe, xem ví dụ, mẹo phát âm và các cặp từ dễ nhầm. Các phụ âm vô thanh và hữu thanh đứng cạnh nhau thành cặp (p-b, t-d, k-g...).') +
+      '<div class="stack" style="gap:1.25rem">' + ipaDetail() + legend +
+      '<section><h3 style="margin-bottom:0.6rem">Nguyên âm</h3><div class="ipa-vwrap"><div class="ipa-chart">' + vow + '</div><div class="ipa-chart">' + dip + '</div></div></section>' +
+      '<section><h3 style="margin-bottom:0.6rem">Phụ âm</h3><div class="ipa-chart">' + cons + '</div></section>' + restHtml + ipaQuickHtml() +
       '<p class="muted" style="font-size:0.9rem">Phần giải thích đang được rà soát. Âm /ɚ/ trong ví dụ là /ɝ/ ở âm tiết không nhấn.</p></div>';
   }
 
@@ -1431,6 +1506,8 @@
       refocus(a, v);
     } else if (a === 'ipa-filter') {
       ipaFilter = t.getAttribute('data-v'); render(); refocus(a, ipaFilter);
+    } else if (a === 'ipa-ref') {
+      ipaRef = t.getAttribute('data-v'); render(); refocus(a, ipaRef);
     } else if (a === 'ipa-pick') {
       ipaSel = t.getAttribute('data-v'); render(); refocus(a, ipaSel);
       var dp = document.getElementById('ipa-detail'); if (dp && dp.scrollIntoView) dp.scrollIntoView({ block: 'start' });
