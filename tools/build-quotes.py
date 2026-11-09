@@ -22,7 +22,7 @@ ONSETS2 = {'p l', 'p r', 'b l', 'b r', 't r', 'd r', 'k l', 'k r', 'ɡ l', 'ɡ r
 ONSETS3 = {'s p l', 's p r', 's t r', 's k r', 's k l', 's k w', 's p j', 's t j', 's k j'}
 
 # Words the dictionary does not have: write the IPA by hand here.
-OVERRIDES = {'unexamined': 'ˌʌnɪɡˈzæmɪnd'}
+OVERRIDES = {'unexamined': 'ˌʌnɪɡˈzæmɪnd', 'droppeth': 'ˈdrɑːpəθ'}
 
 def vowel_ipa(p, stress):
     if p == 'AH': return 'ə' if stress == '0' else 'ʌ'
@@ -74,14 +74,17 @@ def main():
     for ln, line in enumerate(open(SRC, encoding='utf-8'), 1):
         line = line.strip()
         if not line or line.startswith('#'): continue
-        if '|' not in line: print('line %d: missing "|"' % ln); bad += 1; continue
-        author, text = [x.strip() for x in line.split('|', 1)]
+        parts = [x.strip() for x in line.split('|', 2)]
+        if len(parts) < 2: print('line %d: needs  author | quote | translation' % ln); bad += 1; continue
+        author, text = parts[0], parts[1]
+        vi = parts[2] if len(parts) > 2 else ''
+        if not vi: print('line %d: no Vietnamese translation' % ln); bad += 1
         ipa, miss = sentence_ipa(text)
         if ipa is None: print('line %d: no pronunciation for "%s", quote skipped' % (ln, miss)); bad += 1; continue
-        rows.append({'text': text, 'author': author, 'ipa': ipa})
+        rows.append({'text': text, 'author': author, 'ipa': ipa, 'vi': vi})
     body = ',\n'.join('  ' + json.dumps(r, ensure_ascii=False) for r in rows)
     with open(OUT, 'w', encoding='utf-8') as f:
-        f.write('/* HOW TO EDIT: Quotes for the IPA sentence test. Fields: text, author, ipa (American IPA, same style as the vocabulary list).\n'
+        f.write('/* HOW TO EDIT: Quotes for the IPA sentence test. Fields: text, author, ipa (American IPA, same style as the vocabulary list), vi (Vietnamese translation).\n'
                 '   Generated from tools/quotes-source.txt by tools/build-quotes.py. You can also edit this file by hand; the IPA is a draft that needs a native review. */\n'
                 'window.OEL = window.OEL || {};\nOEL.quotes = [\n' + body + '\n];\n')
     print('content/quotes.js written: %d quotes, %d problem(s).' % (len(rows), bad))

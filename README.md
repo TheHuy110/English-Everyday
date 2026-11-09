@@ -15,7 +15,10 @@ Trang chủ chỉ tải các tệp nhỏ. `grammar.js`, `questions.js`, `vocab.j
 Số liệu trên trang chủ lấy từ `content/manifest.js`. Sau khi sửa ngữ pháp, câu hỏi, bài kiểm tra, IPA hoặc từ vựng, chạy `node tools/build-manifest.js` để cập nhật tệp này.
 
 ## Câu trích dẫn cho bài “Phiên âm sang câu”
-Sửa danh sách ở `tools/quotes-source.txt` (mỗi dòng: `tác giả | câu`), rồi chạy `pip install cmudict` (một lần) và `python3 tools/build-quotes.py` để tạo lại `content/quotes.js` kèm phiên âm. Phiên âm tạo tự động nên cần đọc lại; có thể sửa tay trong `content/quotes.js`.
+Sửa danh sách ở `tools/quotes-source.txt` (mỗi dòng: `tác giả | câu | bản dịch tiếng Việt`; độ khó theo số từ: dễ đến 5, vừa 6 đến 13, khó từ 14), rồi chạy `pip install cmudict` (một lần) và `python3 tools/build-quotes.py` để tạo lại `content/quotes.js` kèm phiên âm. Phiên âm tạo tự động nên cần đọc lại; có thể sửa tay trong `content/quotes.js`.
 
 ## Phông chữ
 Đăng nhập chế độ quản trị rồi mở mục “Phông chữ” để thử 23 phông cho tiêu đề, nội dung và nhãn nhỏ. Lựa chọn chỉ lưu trong trình duyệt của bạn.
+
+## Bài “Chọn từ khác trọng âm”
+Dữ liệu ở `content/stress.js` (từ nhóm theo số âm tiết và vị trí trọng âm), tạo bằng `python3 tools/build-stress.py` từ danh sách từ và từ điển CMU, có đối chiếu với phiên âm Oxford. Chạy lại sau khi đổi `content/vocab.js`.

@@ -1,42 +1,50 @@
-# Famous quotes for the IPA sentence test. One per line:  author | quote
+# Famous quotes for the IPA sentence test. One per line:  author | quote | Vietnamese translation
 # After editing, run:  python3 tools/build-quotes.py   (needs:  pip install cmudict)
-# Keep quotes short, public domain or very widely quoted, and correctly attributed.
-René Descartes | I think, therefore I am.
-William Shakespeare, Hamlet | To be, or not to be, that is the question.
-William Shakespeare, Hamlet | Brevity is the soul of wit.
-William Shakespeare, Hamlet | There is nothing either good or bad, but thinking makes it so.
-William Shakespeare, As You Like It | All the world's a stage, and all the men and women merely players.
-William Shakespeare, Romeo and Juliet | A rose by any other name would smell as sweet.
-William Shakespeare, King Lear | Nothing will come of nothing.
-William Shakespeare, All's Well That Ends Well | Love all, trust a few, do wrong to none.
-Franklin D. Roosevelt, 1933 | The only thing we have to fear is fear itself.
-John F. Kennedy, 1961 | Ask not what your country can do for you.
-Winston Churchill, 1940 | We shall never surrender.
-Neil Armstrong, 1969 | That's one small step for man, one giant leap for mankind.
-Steve Jobs, 2005 | The only way to do great work is to love what you do.
-Steve Jobs, 2005 | Stay hungry, stay foolish.
-Albert Einstein | Imagination is more important than knowledge.
-Francis Bacon | Knowledge is power.
-Edward Bulwer-Lytton, 1839 | The pen is mightier than the sword.
-Patrick Henry, 1775 | Give me liberty, or give me death!
-Oscar Wilde | I can resist everything except temptation.
-Socrates | The unexamined life is not worth living.
-Lao Tzu | A journey of a thousand miles begins with a single step.
-Benjamin Franklin | Well done is better than well said.
-Muhammad Ali | Float like a butterfly, sting like a bee.
-Declaration of Independence, 1776 | We hold these truths to be self-evident, that all men are created equal.
-Charles Dickens, A Tale of Two Cities | It was the best of times, it was the worst of times.
-Herman Melville, Moby-Dick | Call me Ishmael.
-Jane Austen, Pride and Prejudice | It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.
-Tục ngữ tiếng Anh | Actions speak louder than words.
-Tục ngữ tiếng Anh | Rome was not built in a day.
-Tục ngữ tiếng Anh | Practice makes perfect.
-Tục ngữ tiếng Anh | Better late than never.
-Tục ngữ tiếng Anh | Where there is a will, there is a way.
-Tục ngữ tiếng Anh | Fortune favors the bold.
-Tục ngữ tiếng Anh | Time and tide wait for no man.
-Tục ngữ tiếng Anh | The early bird catches the worm.
-Tục ngữ tiếng Anh | Every cloud has a silver lining.
-Tục ngữ tiếng Anh | Honesty is the best policy.
-Tục ngữ tiếng Anh | Two wrongs don't make a right.
-Tục ngữ tiếng Anh | Seeing is believing.
+# Keep quotes public domain or very widely quoted, and correctly attributed. The translations are drafts: please review them.
+# Difficulty is by number of words: easy up to 5, medium 6 to 13, hard 14 or more.
+René Descartes | I think, therefore I am. | Tôi tư duy, vậy nên tôi tồn tại.
+Francis Bacon | Knowledge is power. | Tri thức là sức mạnh.
+Herman Melville, Moby-Dick | Call me Ishmael. | Cứ gọi tôi là Ishmael.
+Steve Jobs, 2005 | Stay hungry, stay foolish. | Hãy luôn khao khát, hãy luôn dại khờ.
+Winston Churchill, 1940 | We shall never surrender. | Chúng ta sẽ không bao giờ đầu hàng.
+William Shakespeare, King Lear | Nothing will come of nothing. | Không gì có thể sinh ra từ hư không.
+Tục ngữ tiếng Anh | Actions speak louder than words. | Việc làm có sức nặng hơn lời nói.
+Tục ngữ tiếng Anh | Practice makes perfect. | Luyện tập nhiều thì sẽ thành thạo. (Có công mài sắt, có ngày nên kim.)
+Tục ngữ tiếng Anh | Better late than never. | Thà muộn còn hơn không.
+Tục ngữ tiếng Anh | Seeing is believing. | Thấy tận mắt mới tin. (Tai nghe không bằng mắt thấy.)
+Tục ngữ tiếng Anh | Honesty is the best policy. | Trung thực là thượng sách.
+Tục ngữ tiếng Anh | Fortune favors the bold. | Vận may mỉm cười với người dám làm.
+William Shakespeare, Hamlet | Brevity is the soul of wit. | Ngắn gọn là linh hồn của trí tuệ.
+Albert Einstein | Imagination is more important than knowledge. | Trí tưởng tượng quan trọng hơn kiến thức.
+Socrates | The unexamined life is not worth living. | Một cuộc đời không được suy xét thì không đáng sống.
+Edward Bulwer-Lytton, 1839 | The pen is mightier than the sword. | Ngòi bút mạnh hơn lưỡi gươm.
+Patrick Henry, 1775 | Give me liberty, or give me death! | Hãy cho tôi tự do, nếu không thì cho tôi cái chết!
+Oscar Wilde | I can resist everything except temptation. | Tôi có thể cưỡng lại mọi thứ, trừ sự cám dỗ.
+Benjamin Franklin | Well done is better than well said. | Làm tốt còn hơn nói hay.
+Muhammad Ali | Float like a butterfly, sting like a bee. | Bay như bươm bướm, châm như ong.
+Lao Tzu | A journey of a thousand miles begins with a single step. | Hành trình ngàn dặm bắt đầu từ một bước chân.
+Tục ngữ tiếng Anh | Rome was not built in a day. | Thành Rome không xây xong trong một ngày. (Việc lớn cần có thời gian.)
+Tục ngữ tiếng Anh | Two wrongs don't make a right. | Hai điều sai không làm nên một điều đúng.
+Tục ngữ tiếng Anh | Time and tide wait for no man. | Thời gian không chờ đợi ai.
+Tục ngữ tiếng Anh | The early bird catches the worm. | Con chim dậy sớm thì bắt được sâu.
+Tục ngữ tiếng Anh | Every cloud has a silver lining. | Trong cái rủi có cái may.
+Tục ngữ tiếng Anh | Where there is a will, there is a way. | Có chí thì nên.
+William Shakespeare, Hamlet | To be, or not to be, that is the question. | Tồn tại hay không tồn tại, đó là vấn đề.
+William Shakespeare, Hamlet | There is nothing either good or bad, but thinking makes it so. | Vốn chẳng có gì là tốt hay xấu, chính suy nghĩ khiến nó thành như vậy.
+William Shakespeare, Romeo and Juliet | A rose by any other name would smell as sweet. | Đóa hồng mang tên nào khác thì vẫn thơm ngát như vậy.
+William Shakespeare, All's Well That Ends Well | Love all, trust a few, do wrong to none. | Hãy yêu thương tất cả, tin tưởng một vài người, và đừng làm hại ai.
+William Shakespeare, As You Like It | All the world's a stage, and all the men and women merely players. | Cả thế giới là một sân khấu, và mọi người đàn ông, đàn bà chỉ là những diễn viên.
+Franklin D. Roosevelt, 1933 | The only thing we have to fear is fear itself. | Điều duy nhất chúng ta phải sợ chính là nỗi sợ.
+John F. Kennedy, 1961 | Ask not what your country can do for you. | Đừng hỏi đất nước có thể làm gì cho bạn.
+Neil Armstrong, 1969 | That's one small step for man, one giant leap for mankind. | Đó là một bước chân nhỏ của một con người, nhưng là một bước nhảy vọt vĩ đại của nhân loại.
+Steve Jobs, 2005 | The only way to do great work is to love what you do. | Cách duy nhất để làm nên việc lớn là yêu những gì bạn làm.
+Declaration of Independence, 1776 | We hold these truths to be self-evident, that all men are created equal. | Chúng tôi coi những chân lý này là hiển nhiên: mọi người sinh ra đều bình đẳng.
+Charles Dickens, A Tale of Two Cities | It was the best of times, it was the worst of times. | Đó là thời đại tốt đẹp nhất, cũng là thời đại tồi tệ nhất.
+Abraham Lincoln, 1863 | Government of the people, by the people, for the people, shall not perish from the earth. | Một chính phủ của dân, do dân, vì dân sẽ không bao giờ biến mất khỏi trái đất này.
+Rudyard Kipling, If | If you can keep your head when all about you are losing theirs and blaming it on you. | Nếu bạn giữ được bình tĩnh khi mọi người quanh bạn mất bình tĩnh và đổ lỗi cho bạn.
+United States Constitution, 1787 | We the People of the United States, in order to form a more perfect union, establish justice, insure domestic tranquility. | Chúng tôi, Nhân dân Hợp chúng quốc, nhằm tạo nên một liên bang hoàn thiện hơn, thiết lập công lý và bảo đảm yên ổn trong nước.
+William Shakespeare, The Merchant of Venice | The quality of mercy is not strained; it droppeth as the gentle rain from heaven upon the place beneath. | Lòng khoan dung không thể cưỡng ép; nó rơi xuống như cơn mưa dịu nhẹ từ trời cao xuống mặt đất bên dưới.
+Winston Churchill, 1940 | We shall fight on the beaches, we shall fight on the landing grounds, we shall fight in the fields and in the streets. | Chúng ta sẽ chiến đấu trên các bãi biển, trên các bãi đáp, trên những cánh đồng và trên các đường phố.
+Charles Dickens, A Tale of Two Cities | It is a far, far better thing that I do, than I have ever done; it is a far, far better rest that I go to than I have ever known. | Việc tôi sắp làm tốt đẹp hơn xa mọi điều tôi từng làm; chốn nghỉ ngơi tôi sắp đến tốt đẹp hơn xa mọi nơi tôi từng biết.
+Abraham Lincoln, Gettysburg Address, 1863 | Four score and seven years ago our fathers brought forth on this continent, a new nation, conceived in liberty, and dedicated to the proposition that all men are created equal. | Tám mươi bảy năm trước, cha ông chúng ta đã lập nên trên lục địa này một quốc gia mới, thụ thai trong tự do và hiến dâng cho nguyên lý rằng mọi người sinh ra đều bình đẳng.
+Jane Austen, Pride and Prejudice | It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife. | Ai cũng công nhận một chân lý rằng: một người đàn ông độc thân có chút gia tài hẳn đang cần một người vợ.

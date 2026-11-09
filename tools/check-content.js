@@ -93,7 +93,7 @@ try {
     const qs = Array.isArray(sandbox.OEL.quotes) ? sandbox.OEL.quotes : (err('OEL.quotes is not a list'), []);
     const seenQ = new Set();
     qs.forEach((q, i) => { const t = 'quote #' + (i+1);
-      str(q.text) || err(t + ': missing text'); str(q.ipa) || err(t + ': missing ipa'); str(q.author) || warn(t + ': missing author');
+      str(q.text) || err(t + ': missing text'); str(q.ipa) || err(t + ': missing ipa'); str(q.author) || warn(t + ': missing author'); str(q.vi) || warn(t + ': missing Vietnamese translation');
       if (str(q.text) && seenQ.has(q.text)) warn(t + ': duplicate quote'); seenQ.add(q.text);
       if (str(q.text) && str(q.ipa) && q.text.replace(/[^A-Za-z' ]+/g, ' ').trim().split(/\s+/).length !== q.ipa.trim().split(/\s+/).length) warn(t + ': number of words and IPA words differ'); });
     console.log('Checked: ' + qs.length + ' quotes.');
