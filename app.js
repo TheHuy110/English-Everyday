@@ -70,6 +70,11 @@
     BANK.forEach(function (q) { if (q.gid) LINKS[q.gid] = (LINKS[q.gid] || 0) + 1; });
     initQsets();
   }
+  var QUOTES = [];
+  function initQuotes() {
+    QUOTES = list(OEL.quotes).map(function (q) { q = q || {}; return { t: str(q.text), a: str(q.author), ipa: str(q.ipa) }; })
+      .filter(function (q) { var ok = q.t && q.ipa; if (!ok) warn('câu trích dẫn (cần text và ipa)', q); return ok; });
+  }
   var IPA_CFG = {}, IPA = [], IPAQ = {};
   function initIpa() {
     IPA_CFG = (OEL.ipa && OEL.ipa.audio) || {};
@@ -120,7 +125,8 @@
     grammar: { files: ['content/grammar.js'], init: initGrammar },
     bank: { files: ['content/questions.js'], init: initBank },
     vocab: { files: ['content/vocab.js', 'content/vocab-def.js'], init: initVocab },
-    ipa: { files: ['content/ipa.js'], init: initIpa }
+    ipa: { files: ['content/ipa.js'], init: initIpa },
+    quotes: { files: ['content/quotes.js'], init: initQuotes }
   };
   var loaded = Object.create(null), pending = Object.create(null);
   function loadScript(src) {
@@ -542,7 +548,7 @@
       '<p>grammarId bị trùng: <strong>' + GDUP.length + '</strong>' + (GDUP.length ? ' (' + esc(GDUP.join(', ')) + ')' : '') + '</p>' +
       '<p>Quy tắc chưa có câu hỏi nào: <strong>' + noQ.length + '</strong>' + (noQ.length ? ' (' + esc(noQ.slice(0, 12).map(function (g) { return g.gid; }).join(', ')) + (noQ.length > 12 ? '…' : '') + ')' : '') + '</p>' +
       orphanHtml + '<details><summary style="cursor:pointer;font-weight:600">Bảng quy tắc ngữ pháp (' + GRAMMAR.length + ')</summary><div class="table-wrap"><table style="min-width:0"><thead><tr><th>ID</th><th>Quy tắc</th><th>Cấp</th><th>Chủ đề</th><th>Số câu hỏi</th></tr></thead><tbody>' + rows + '</tbody></table></div></details></section>' +
-      admEloPanel() + admEloCfgPanel() + admVocabPanel() +
+      admFontPanel() + admEloPanel() + admEloCfgPanel() + admVocabPanel() +
       '<section class="panel stack" style="gap:0.8rem"><h2>Tiến độ (thử nghiệm)</h2>' +
       '<p>XP hiện tại: <strong>' + ps.xp + '</strong> (đã cộng thêm ' + (activity.bonus || 0) + ') · Cấp <strong>' + ps.level + '</strong> / ' + PLEVELS.length + ' · chuỗi ' + ps.streak + ' ngày</p>' +
       '<div class="row">' + [10, 100, 1000].map(function (n) { return admBtn('adm-xp', '+' + n + ' XP', n); }).join('') + admBtn('adm-xp', '-100 XP', -100) + '</div>' +
@@ -553,10 +559,91 @@
       '<div class="row">' + admDanger('adm-reset-progress', 'Xóa tiến độ và XP') + admDanger('adm-reset-tests', 'Xóa điểm bài kiểm tra') + admDanger('adm-reset-vocab', 'Xóa danh sách từ') + admDanger('adm-reset-all', 'Xóa tất cả dữ liệu') + '</div></section>' +
       '<div><button type="button" class="btn ghost" data-action="adm-exit">Thoát chế độ quản trị</button></div></div>';
   }
+  /* ---------- Phông chữ (chọn thử trong trang Quản trị, lưu trong trình duyệt này) ---------- */
+  /* c = kiểu chữ dự phòng (sans, serif, hand, mono); w = các độ đậm xin từ Google Fonts; d = phông đang dùng sẵn trong index.html. */
+  var FONT_LIST = [
+    { n: 'Nunito', c: 'sans', w: '400;600;700', t: 'Tròn, ấm, dễ đọc' },
+    { n: 'Quicksand', c: 'sans', w: '400;600;700', t: 'Tròn, nhẹ, vui' },
+    { n: 'Baloo 2', c: 'sans', w: '400;600;700', t: 'Tròn đậm, thân thiện' },
+    { n: 'Be Vietnam Pro', c: 'sans', w: '400;600;700', t: 'Thiết kế cho tiếng Việt' },
+    { n: 'Lexend', c: 'sans', w: '400;600;700', t: 'Rộng rãi, dễ đọc' },
+    { n: 'Mulish', c: 'sans', w: '400;600;700', t: 'Sạch, mềm' },
+    { n: 'Varela Round', c: 'sans', w: '400', t: 'Tròn, gọn' },
+    { n: 'M PLUS Rounded 1c', c: 'sans', w: '400;700', t: 'Nét bo tròn' },
+    { n: 'Comfortaa', c: 'sans', w: '400;700', t: 'Hình học tròn, vui mắt' },
+    { n: 'Fredoka', c: 'sans', w: '400;600', t: 'Tròn mập, trẻ trung' },
+    { n: 'Plus Jakarta Sans', c: 'sans', w: '400;600;700', t: 'Hiện đại, dịu' },
+    { n: 'Josefin Sans', c: 'sans', w: '400;600', t: 'Thanh, hình học' },
+    { n: 'Patrick Hand', c: 'hand', w: '400', t: 'Chữ viết tay' },
+    { n: 'Itim', c: 'hand', w: '400', t: 'Viết tay tròn, gần gũi' },
+    { n: 'Lora', c: 'serif', w: '400;600;700', t: 'Có chân, ấm' },
+    { n: 'Literata', c: 'serif', w: '400;600;700', t: 'Có chân, dễ đọc lâu' },
+    { n: 'Merriweather', c: 'serif', w: '400;700', t: 'Có chân, rộng, rõ' },
+    { n: 'Crimson Pro', c: 'serif', w: '400;600', t: 'Có chân, thanh lịch' },
+    { n: 'Newsreader', c: 'serif', w: '400;600', t: 'Có chân, kiểu sách báo' },
+    { n: 'Bitter', c: 'serif', w: '400;600;700', t: 'Chân phẳng, thân thiện' },
+    { n: 'Bricolage Grotesque', c: 'sans', w: '500;700', t: 'Hiện tại (tiêu đề)', d: 1 },
+    { n: 'Source Serif 4', c: 'serif', w: '400;600', t: 'Hiện tại (nội dung)', d: 1 },
+    { n: 'IBM Plex Mono', c: 'mono', w: '400;500', t: 'Hiện tại (nhãn nhỏ)', d: 1 }
+  ];
+  var FONT_BY = Object.create(null);
+  FONT_LIST.forEach(function (f) { FONT_BY[f.n] = f; });
+  var FONT_ROLES = [['display', 'Tiêu đề, tab, nút'], ['body', 'Nội dung'], ['mono', 'Nhãn nhỏ, thẻ, dạng ngữ pháp, IPA']];
+  var FONT_DEF = { display: 'Bricolage Grotesque', body: 'Source Serif 4', mono: 'IBM Plex Mono' };
+  var FONTSEL = LS.get('oel.fonts', {});
+  if (!FONTSEL || typeof FONTSEL !== 'object' || Array.isArray(FONTSEL)) FONTSEL = {};
+  function fontCss(name) {
+    var f = FONT_BY[name], fb = !f ? 'sans-serif' : f.c === 'serif' ? "Georgia, 'Times New Roman', serif" : f.c === 'mono' ? "ui-monospace, Menlo, Consolas, monospace" :
+      f.c === 'hand' ? "'Segoe Print', 'Comic Sans MS', cursive" : "'Segoe UI', system-ui, sans-serif";
+    return "'" + name + "', " + fb;
+  }
+  function loadFont(name) {
+    var f = FONT_BY[name];
+    if (!f || f.d) return;
+    var id = 'font-' + name.replace(/\W+/g, '-');
+    if (document.getElementById(id)) return;
+    var l = document.createElement('link');
+    l.id = id; l.rel = 'stylesheet';
+    l.href = 'https://fonts.googleapis.com/css2?family=' + name.replace(/ /g, '+') + ':wght@' + f.w + '&display=swap';
+    document.head.appendChild(l);
+  }
+  function applyFonts() {
+    var root = document.documentElement.style;
+    FONT_ROLES.forEach(function (r) {
+      var n = FONTSEL[r[0]];
+      if (n && FONT_BY[n]) { loadFont(n); root.setProperty('--font-' + r[0], fontCss(n)); }
+      else root.removeProperty('--font-' + r[0]);
+    });
+  }
+  function admFontPanel() {
+    FONT_LIST.forEach(function (f) { loadFont(f.n); });
+    var cur = FONT_ROLES.map(function (r) {
+      return '<span class="tag">' + esc(r[1].split(',')[0]) + ': ' + esc(FONTSEL[r[0]] || FONT_DEF[r[0]] + ' (mặc định)') + '</span>';
+    }).join(' ');
+    var cards = FONT_LIST.map(function (f) {
+      var btns = FONT_ROLES.map(function (r) {
+        var on = (FONTSEL[r[0]] || FONT_DEF[r[0]]) === f.n;
+        return '<button type="button" class="chip" data-action="adm-font" data-role="' + r[0] + '" data-f="' + esc(f.n) + '" aria-pressed="' + on + '">' + esc(r[1].split(',')[0]) + '</button>';
+      }).join('');
+      return '<div class="fcard"><div style="font-family:' + esc(fontCss(f.n)) + '"><p class="fname">' + esc(f.n) + ' <span class="muted fnote">' + esc(f.t) + '</span></p>' +
+        '<p class="fh">Học tiếng Anh mỗi ngày</p><p class="fb">Ăn quả nhớ kẻ trồng cây. Ơ kìa, những ngôi sao sáng nhất.</p>' +
+        '<p class="fm">/ˈpɹɛfɹəbli/ · A1 B2 · Aa 0123</p></div><div class="chips" role="group" aria-label="Dùng ' + esc(f.n) + ' cho">' + btns + '</div></div>';
+    }).join('');
+    return '<section class="panel stack" style="gap:0.8rem"><h2>Phông chữ</h2>' +
+      '<p class="muted">Chọn một phông cho từng vai trò, trang đổi ngay. Lựa chọn chỉ lưu trong trình duyệt này; khi đã chọn xong, hãy báo để cố định vào style.css. Nếu chữ có dấu tiếng Việt trong thẻ nào bị đổi sang phông khác, phông đó chưa hỗ trợ tiếng Việt đầy đủ.</p>' +
+      '<p>' + cur + '</p><div class="row"><button type="button" class="btn ghost small" data-action="adm-font-reset">Về phông mặc định</button></div>' +
+      '<div class="fgrid">' + cards + '</div></section>';
+  }
   function adminAction(a, t) {
     var n = parseInt(t.getAttribute('data-n'), 10), sy = window.scrollY, d = today();
     if (a.indexOf('adm-reset') === 0 && admConfirm !== a) { admConfirm = a; render(); window.scrollTo(0, sy); return; }
     admConfirm = '';
+    if (a === 'adm-font') {
+      var fr = t.getAttribute('data-role'), fn = t.getAttribute('data-f');
+      if (FONT_DEF[fr] && FONT_BY[fn]) { if (fn === FONT_DEF[fr]) delete FONTSEL[fr]; else FONTSEL[fr] = fn; LS.set('oel.fonts', FONTSEL); applyFonts(); render(); window.scrollTo(0, sy); }
+      return;
+    }
+    if (a === 'adm-font-reset') { FONTSEL = {}; LS.set('oel.fonts', FONTSEL); applyFonts(); render(); window.scrollTo(0, sy); return; }
     if (a === 'adm-v-f') { admV.f = t.getAttribute('data-v'); admV.limit = 50; render(); window.scrollTo(0, sy); return; }
     if (a === 'adm-v-more') { admV.limit += 50; renderAdmVList(); return; }
     if (a === 'adm-elo-calc') {
@@ -1073,8 +1160,8 @@
   var vstore = cleanStore(LS.get('oel.vocab2', {}));
   function saveV() { LS.set('oel.vocab2', vstore); }
 
-  var vSub = 'decks', vLevel = '', vQuery = '', vLimit = 40, vMsg = '';
-  var vBrowse = null, vReview = null, mFilter = 'all', vExport = null, vPending = null;
+  var vSub = 'review', vLevel = '', vQuery = '', vLimit = 40, vMsg = '';   /* the vocabulary tab opens on review */
+  var vBrowse = null, vReview = null, vType = null, mFilter = 'all', vExport = null, vPending = null;
 
   function addDays(s, n) { var d = parseDay(s); d.setDate(d.getDate() + n); return fmt(d); }
   function niceShort(s) { var p = String(s).split('-'); return p.length === 3 ? p[2] + '/' + p[1] : s; }
@@ -1177,6 +1264,100 @@
     vReview.picked = null; vReview.shown = false;
     vReview.choice = buildChoices(vReview.queue[vReview.i]);
   }
+  /* ---------- Kiểm tra gõ từ: hiện nghĩa tiếng Việt, người học gõ từ tiếng Anh ---------- */
+  var TQ_MAX_HINTS = 3, TQ_SIZE = 10, TQ_TRIES = 2;
+  function tqTarget(w) { return String(w.w).split('/')[0].replace(/\([^)]*\)/g, '').replace(/\s+/g, ' ').trim(); }
+  function tqIsLetter(ch) { return !/[\s\-'’.,!?;:]/.test(ch); }
+  function tqNorm(t) { return String(t).toLowerCase().replace(/[\s\-'’.,!?;:]/g, ''); }
+  function tqSlots(target) { return target.split('').map(function (ch) { return { ch: ch, l: tqIsLetter(ch), rev: false }; }); }
+  function tqFree(c) { return c.slots.filter(function (x) { return x.l && !x.rev; }); }
+  function startTyping() {
+    var ws = storeIds().map(entryWord).filter(function (w) { return hasDef(w) && tqNorm(tqTarget(w)); });
+    if (!ws.length) { vMsg = 'Cần ít nhất một từ có nghĩa trong danh sách học để làm bài gõ từ.'; vType = null; return; }
+    var t = today(), due = shuffle(ws.filter(function (w) { var e = vstore[w.id]; return !e.k && e.d && e.d <= t; })), rest = shuffle(ws.filter(function (w) { return due.indexOf(w) < 0; }));
+    var q = due.concat(rest).slice(0, TQ_SIZE).map(function (w) { return w.id; });
+    vType = { queue: q, i: 0, right: 0, hinted: 0, wrong: 0, done: false, counted: false, cur: null };
+    prepType();
+  }
+  function prepType() {
+    var id = vType.queue[vType.i], w = entryWord(id), target = tqTarget(w), ok = {};
+    ok[tqNorm(target)] = 1;
+    VOCAB.forEach(function (x) { if (x.vi && x.vi === w.vi) ok[tqNorm(tqTarget(x))] = 1; });   /* another word with the same Vietnamese meaning is also accepted */
+    vType.cur = { id: id, target: target, slots: tqSlots(target), ok: ok, hints: 0, warned: false, ask: '', tries: 0, typed: '', msg: '', result: '' };
+  }
+  function tqReset(id) { var e = vstore[id]; if (e) { e.s = 0; e.d = today(); e.k = 0; saveV(); } }
+  function tqSquares(c) {
+    var f = 0, show = c.result !== '';
+    return c.slots.map(function (x) {
+      if (x.ch === ' ') return '<span class="sq-gap"></span>';
+      if (!x.l) return '<span class="sq-sep">' + esc(x.ch) + '</span>';
+      if (show) return '<span class="sq ' + (c.result === 'wrong' ? 'miss' : 'ok') + '">' + esc(x.ch) + '</span>';
+      if (x.rev) return '<span class="sq rev">' + esc(x.ch) + '</span>';
+      var ch = c.typed.charAt(f++);
+      return '<span class="sq' + (ch ? ' fill' : '') + '">' + esc(ch) + '</span>';
+    }).join('');
+  }
+  function tqHint(kind) {
+    var c = vType.cur, free = c.slots.map(function (x, i) { return x.l && !x.rev ? i : -1; }).filter(function (i) { return i > -1; });
+    if (free.length < 2 || c.hints >= TQ_MAX_HINTS) return;
+    var pick = kind === 'rand' ? free[Math.floor(Math.random() * free.length)] : free[0];
+    c.slots[pick].rev = true; c.hints++; c.ask = '';
+    c.typed = c.typed.slice(0, tqFree(c).length);
+  }
+  function tqFinish(result) {
+    var c = vType.cur, e = vstore[c.id];
+    c.result = result;
+    if (result === 'right') {
+      vType.right++; Act.review();
+      if (e && !e.k && e.d && e.d <= today()) {   /* a word that was due moves to its next review step, like in the multiple-choice review */
+        if (e.s >= INTERVALS.length) { e.k = 1; e.d = ''; } else { e.d = addDays(today(), INTERVALS[e.s]); e.s++; }
+        saveV();
+      }
+    } else {
+      if (result === 'hinted') vType.hinted++; else vType.wrong++;
+      tqReset(c.id);   /* hints or a miss mean the word has to be reviewed again */
+    }
+  }
+  function tqSubmit() {
+    var c = vType && vType.cur;
+    if (!c || c.result) return;
+    var f = tqFree(c), typed = c.typed.replace(/[^\S]/g, '');
+    if (typed.length < f.length) { c.msg = 'Hãy điền đủ ' + f.length + ' chữ cái còn lại.'; render(); return; }
+    var k = 0, full = c.slots.map(function (x) { return !x.l ? x.ch : x.rev ? x.ch : typed.charAt(k++); }).join('');
+    if (c.ok[tqNorm(full)]) { c.msg = ''; tqFinish(c.hints ? 'hinted' : 'right'); }
+    else { c.tries++; if (c.tries >= TQ_TRIES) { c.msg = ''; tqFinish('wrong'); } else c.msg = 'Chưa đúng. Thử lại, bạn còn ' + (TQ_TRIES - c.tries) + ' lần.'; }
+    render();
+  }
+  function viewTypeCard() {
+    var c = vType.cur, w = entryWord(c.id), top = sessionTop('Gõ từ', vType.i, vType.queue.length, 'tq-exit'), free = tqFree(c).length;
+    var canHint = !c.result && c.hints < TQ_MAX_HINTS && free > 1;
+    var hintBtns = c.result ? '' : '<div class="row"><button type="button" class="btn ghost small" data-action="tq-hint" data-k="next"' + (canHint ? '' : ' disabled') + '>Mở 1 chữ cái</button>' +
+      '<button type="button" class="btn ghost small" data-action="tq-hint" data-k="rand"' + (canHint ? '' : ' disabled') + '>Mở chữ cái ngẫu nhiên</button>' +
+      '<span class="muted" style="font-size:0.9rem">Gợi ý: ' + c.hints + '/' + TQ_MAX_HINTS + '</span></div>';
+    var warn = c.ask ? '<div class="feedback" role="alert"><strong>Dùng gợi ý thì từ này sẽ phải ôn lại.</strong><span>Lịch ôn của từ sẽ được đặt lại về hôm nay, dù bạn gõ đúng.</span>' +
+      '<div class="row" style="margin-top:0.4rem"><button type="button" class="btn" data-action="tq-hint-ok">Vẫn dùng gợi ý</button><button type="button" class="btn ghost" data-action="tq-hint-no">Thôi</button></div></div>' : '';
+    var body;
+    if (c.result) {
+      var head = c.result === 'right' ? 'Chính xác.' : c.result === 'hinted' ? 'Đúng, nhưng bạn đã dùng gợi ý.' : 'Chưa đúng.';
+      body = '<div class="feedback" aria-live="polite"><strong>' + head + '</strong><span>Đáp án: <b>' + esc(c.target) + '</b></span>' +
+        (c.result === 'right' ? '' : '<span class="muted">Từ này đã được đưa về lịch ôn hôm nay.</span>') +
+        '<div class="row">' + audioBtns(w) + '</div><div style="margin-top:0.4rem"><button class="btn" type="button" data-action="tq-next">Tiếp</button></div></div>';
+    } else {
+      body = '<form id="tqform" class="stack" style="gap:0.7rem" novalidate><label for="tq-in">Gõ ' + free + ' chữ cái còn lại</label>' +
+        '<input id="tq-in" type="text" maxlength="' + free + '" value="' + esc(c.typed) + '" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">' +
+        (c.msg ? '<p class="muted" role="status" style="margin:0;color:var(--bad)">' + esc(c.msg) + '</p>' : '') +
+        '<div class="row"><button class="btn" type="submit">Kiểm tra</button><button class="btn ghost" type="button" data-action="tq-giveup">Mình chưa biết</button></div></form>';
+    }
+    return '<div class="quiz">' + top + '<div class="vcard"><div class="row" style="justify-content:center">' + posTag(w) + (w.lv && !w.custom ? '<span class="tag">' + esc(w.lv) + '</span>' : '') + '</div>' +
+      '<p class="mean">' + esc(viText(w)) + '</p><div class="sqs" id="tq-sq" aria-label="' + free + ' chữ cái cần gõ">' + tqSquares(c) + '</div></div>' + hintBtns + warn + body + '</div>';
+  }
+  function viewTypeDone() {
+    return '<div class="quiz"><p class="call">Gõ từ</p><h1 style="font-size:2rem">Xong bài gõ từ</h1>' +
+      '<div class="stats"><div class="stat"><b>' + vType.right + '</b><span>đúng, không gợi ý</span></div><div class="stat"><b>' + vType.hinted + '</b><span>đúng, có gợi ý</span></div><div class="stat"><b>' + vType.wrong + '</b><span>chưa đúng</span></div></div>' +
+      ((vType.hinted + vType.wrong) ? '<p class="muted">' + (vType.hinted + vType.wrong) + ' từ đã được đưa về lịch ôn hôm nay.</p>' : '') +
+      '<div class="row"><button class="btn" type="button" data-action="tq-start">Làm bài mới</button><button class="btn ghost" type="button" data-action="tq-exit">Về mục ôn tập</button></div></div>';
+  }
+
   function cardHtml(w, shown) {
     return '<div class="vcard">' + (ADMIN && w.o !== undefined ? '<span class="vid">ID ' + w.o + '</span>' : '') + (w.lv && !w.custom ? '<span class="vband" title="Cấp độ CEFR">' + esc(w.lv) + '</span>' : '') + '<span class="big">' + esc(w.w) + '</span>' + (w.ph ? '<span class="vph">' + esc(w.ph) + '</span>' : '') +
       '<div class="row" style="justify-content:center">' + posTag(w) + speakBtn(w) + '</div>' +
@@ -1264,15 +1445,21 @@
   }
   function viewReviewHome(due) {
     var ids = storeIds();
-    if (!ids.length) return '<div class="empty">Bạn chưa chọn từ nào để học. Vào “Bộ từ”, bấm “Học từ này” hoặc dùng “Duyệt thẻ”, rồi quay lại đây để ôn.</div>';
-    if (!due) {
-      var next = ids.map(function (id) { return vstore[id]; }).filter(function (e) { return !e.k && e.d; }).map(function (e) { return e.d; }).sort()[0];
-      return '<div class="panel"><h2>Hôm nay không có từ cần ôn</h2><p class="muted" style="margin-top:0.5rem">' +
+    if (!ids.length) return '<div class="panel stack" style="gap:0.8rem"><h2>Chưa có từ nào để ôn</h2><p class="muted">Chọn vài từ để học trước, rồi quay lại đây để ôn.</p>' +
+      '<div class="row"><button class="btn" type="button" data-action="v-sub" data-v="decks">Chọn từ để học</button></div></div>';
+    var typable = ids.map(entryWord).filter(hasDef).length;
+    var next = ids.map(function (id) { return vstore[id]; }).filter(function (e) { return !e.k && e.d; }).map(function (e) { return e.d; }).sort()[0];
+    var mcq = due
+      ? '<div class="panel stack" style="gap:1rem"><div><p class="call">Ôn hôm nay</p><h2>' + due + ' từ cần ôn</h2></div>' +
+        '<p class="muted">Mỗi buổi ôn tối đa 20 từ, mỗi từ là một câu trắc nghiệm 4 lựa chọn. Trả lời đúng thì từ quay lại sau 1, 3 rồi 7 ngày. Trả lời sai thì từ trở lại từ đầu.</p>' +
+        '<div class="row"><button class="btn" type="button" data-action="r-start">Bắt đầu ôn</button></div></div>'
+      : '<div class="panel"><h2>Hôm nay không có từ cần ôn</h2><p class="muted" style="margin-top:0.5rem">' +
         (next ? 'Lần ôn kế tiếp: ngày ' + esc(niceShort(next)) + '.' : 'Tất cả từ trong danh sách đã thuộc. Hãy thêm từ mới ở “Bộ từ”.') + '</p></div>';
-    }
-    return '<div class="panel stack" style="gap:1rem"><div><p class="call">Ôn hôm nay</p><h2>' + due + ' từ cần ôn</h2></div>' +
-      '<p class="muted">Mỗi buổi ôn tối đa 20 từ, mỗi từ là một câu trắc nghiệm 4 lựa chọn. Trả lời đúng thì từ quay lại sau 1, 3 rồi 7 ngày. Trả lời sai thì từ trở lại từ đầu và xuất hiện lại ở cuối buổi.</p>' +
-      '<div class="row"><button class="btn" type="button" data-action="r-start">Bắt đầu ôn</button></div></div>';
+    var typing = '<div class="panel stack" style="gap:1rem"><div><p class="call">Kiểm tra gõ từ</p><h2>Gõ từ tiếng Anh theo nghĩa</h2></div>' +
+      '<p class="muted">Bạn thấy nghĩa tiếng Việt và các ô chữ, rồi gõ từ tiếng Anh. Có ' + TQ_MAX_HINTS + ' gợi ý mỗi từ: mở 1 chữ cái hoặc mở chữ cái ngẫu nhiên. Dùng gợi ý thì từ đó sẽ phải ôn lại.</p>' +
+      (typable ? '<div class="row"><button class="btn' + (due ? ' ghost' : '') + '" type="button" data-action="tq-start">Bắt đầu gõ từ</button><span class="muted">' + Math.min(TQ_SIZE, typable) + ' từ mỗi lượt, từ đến hạn ôn được ưu tiên</span></div>'
+        : '<p class="muted">Danh sách của bạn chưa có từ nào có nghĩa tiếng Việt.</p>') + '</div>';
+    return '<div class="stack" style="gap:1.25rem">' + mcq + typing + '</div>';
   }
   function statusText(e) { return e.k ? 'Đã thuộc' : (e.d <= today() ? 'Cần ôn hôm nay' : 'Ôn lại ngày ' + niceShort(e.d)); }
   function mrow(id) {
@@ -1313,8 +1500,9 @@
   function viewVocab() {
     if (vBrowse) return vBrowse.done ? viewBrowseDone() : viewBrowseCard();
     if (vReview) return vReview.done ? viewReviewDone() : viewReviewCard();
+    if (vType) return vType.done ? viewTypeDone() : viewTypeCard();
     var due = dueList().length, mine = storeIds().length;
-    var subs = [['decks', 'Bộ từ'], ['review', 'Ôn hôm nay (' + due + ')'], ['mine', 'Từ của tôi (' + mine + ')']].map(function (s) {
+    var subs = [['review', 'Ôn tập (' + due + ')'], ['mine', 'Từ của tôi (' + mine + ')'], ['decks', 'Bộ từ']].map(function (s) {
       return '<button type="button" class="subtab" data-action="v-sub" data-v="' + s[0] + '" aria-pressed="' + (vSub === s[0]) + '">' + esc(s[1]) + '</button>';
     }).join('');
     var body = vSub === 'review' ? viewReviewHome(due) : vSub === 'mine' ? viewMine() : viewDecks();
@@ -1403,8 +1591,194 @@
     return '<section class="stack" style="gap:0.8rem"><h3 style="margin:0">Bảng tra nhanh</h3><div class="chips" role="group" aria-label="Chọn giọng">' + chips + '</div>' +
       '<div class="ipa-ref">' + tbl('Nguyên âm' + (ipaRef === 'uk' ? ' và nguyên âm đôi' : ' và nguyên âm đôi'), q.vowels) + tbl('Phụ âm', q.consonants) + '</div></section>';
   }
+  /* ---------- Luyện phát âm: chọn từ khác âm, phiên âm sang từ, phiên âm sang câu ---------- */
+  var ipaSub = 'chart', ipaQ = null, ipaCat = 'both', ipaLv = '', ipaMsg = '';
+  var IP_N = 10, IP_SENT_N = 5, IP_TRIES = 2;
+  var IPA_TOK = ['tʃ', 'dʒ', 'eɪ', 'aɪ', 'ɔɪ', 'aʊ', 'əʊ', 'oʊ', 'ɜː', 'iː', 'uː', 'ɑː', 'ɔː'];
+  var IPA_SND = { 'iː': 'i', i: 'i', 'ɪ': 'ih', e: 'eh', 'æ': 'ae', 'ɑː': 'ah', 'ɔː': 'aw', 'ʊ': 'uh', 'uː': 'u', u: 'u', 'ʌ': 'uh2', 'ə': 'schwa', 'ɜː': 'er', 'eɪ': 'ei', 'aɪ': 'ai', 'ɔɪ': 'oi', 'aʊ': 'au', 'əʊ': 'ou', 'oʊ': 'ou',
+    p: 'p', b: 'b', t: 't', d: 'd', k: 'k', 'ɡ': 'g', g: 'g', f: 'f', v: 'v', 'θ': 'th', 'ð': 'dh', s: 's', z: 'z', 'ʃ': 'sh', 'ʒ': 'zh', h: 'h', 'tʃ': 'ch', 'dʒ': 'j', m: 'm', n: 'n', 'ŋ': 'ng', l: 'l', r: 'r', w: 'w', j: 'y' };
+  var IPA_VOWELS = ['i', 'ih', 'eh', 'ae', 'ah', 'aw', 'uh', 'u', 'uh2', 'er', 'ei', 'ai', 'oi', 'au', 'ou'];
+  var IPA_CONS = ['p', 'b', 't', 'd', 'k', 'g', 'f', 'v', 'th', 'dh', 's', 'z', 'sh', 'zh', 'h', 'ch', 'j', 'm', 'n', 'ng', 'l', 'r', 'w', 'y'];
+  /* Sounds that are easy to mix up with each other: wrong answers are taken from these first. */
+  var IPA_NEAR = { i: ['ih', 'ei'], ih: ['i', 'eh', 'schwa'], eh: ['ae', 'ih', 'ei'], ae: ['eh', 'ah', 'uh2'], ah: ['aw', 'uh2', 'ae'], aw: ['ou', 'ah', 'uh'], uh: ['u', 'uh2', 'aw'], u: ['uh', 'ou', 'i'], uh2: ['ah', 'schwa', 'aw'],
+    er: ['aw', 'eh', 'ah'], ei: ['eh', 'i', 'ai'], ai: ['ei', 'oi', 'ah'], oi: ['ai', 'aw', 'ou'], au: ['ou', 'ah', 'aw'], ou: ['aw', 'au', 'u'],
+    p: ['b', 'f'], b: ['p', 'v'], t: ['d', 'th'], d: ['t', 'dh'], k: ['g', 't'], g: ['k', 'j'], f: ['v', 'p', 'th'], v: ['f', 'b', 'w'], th: ['dh', 's', 'f', 't'], dh: ['th', 'z', 'd'], s: ['z', 'sh', 'th'], z: ['s', 'zh', 'dh'],
+    sh: ['s', 'ch', 'zh'], zh: ['sh', 'j', 'z'], h: ['k'], ch: ['sh', 'j', 't'], j: ['ch', 'zh', 'g'], m: ['n', 'ng'], n: ['m', 'ng', 'l'], ng: ['n', 'm', 'g'], l: ['r', 'n'], r: ['l', 'w'], w: ['v', 'r', 'y'], y: ['j', 'w'] };
+  /* Splits a phonetic string such as /əˈbaʊt/ into sounds: { id, a, b (position in the text without slashes), v (vowel), st (1 = main stress) }. Returns null for symbols it does not know. */
+  function ipaParse(ph) {
+    var p = String(ph).replace(/^\/|\/$/g, ''), toks = [], pend = 0, afterEr = false, i = 0, k;
+    while (i < p.length) {
+      var ch = p.charAt(i);
+      if (ch === 'ˈ') { pend = 1; i++; continue; }
+      if (ch === 'ˌ') { if (!pend) pend = 2; i++; continue; }
+      if (ch === ' ' || ch === '.') { i++; continue; }
+      var t = ch;
+      for (k = 0; k < IPA_TOK.length; k++) if (p.substr(i, IPA_TOK[k].length) === IPA_TOK[k]) { t = IPA_TOK[k]; break; }
+      var id = IPA_SND[t];
+      if (!id) return null;
+      var isV = IPA_VOWELS.indexOf(id) > -1 || id === 'schwa';
+      if (t === 'r' && afterEr) { afterEr = false; i += 1; continue; }   /* the r in /ɜːr/ belongs to the vowel */
+      toks.push({ id: id, a: i, b: i + t.length, v: isV, st: isV ? pend : 0 });
+      if (isV) pend = 0;
+      afterEr = t === 'ɜː'; i += t.length;
+    }
+    return toks;
+  }
+  var IPX = null;   /* index of words for the practice tests; built once the word list is loaded */
+  function ipaIndex() {
+    if (IPX) return IPX;
+    var seen = {}, homo = Object.create(null), list_ = [];
+    VOCAB.forEach(function (w) {
+      var ph = w.ph; if (!ph || /\s/.test(ph) || !/^[A-Za-z]+$/.test(w.w)) return;
+      (homo[ph] = homo[ph] || {})[w.w.toLowerCase()] = 1;
+      if (seen[ph]) return; seen[ph] = 1;
+      var toks = ipaParse(ph); if (!toks || !toks.length) return;
+      var vs = toks.filter(function (x) { return x.v; }), sv = toks.filter(function (x) { return x.v && x.st === 1; })[0] || (vs.length === 1 ? vs[0] : null), ids = {};
+      toks.forEach(function (x) { ids[x.id] = 1; });
+      list_.push({ w: w, ph: ph, toks: toks, sv: sv, ids: ids, lvi: LEVELS.map(function (l) { return l.id; }).indexOf(w.lv) });
+    });
+    IPX = { all: list_, homo: homo };
+    return IPX;
+  }
+  function ipaPool() { return ipaIndex().all.filter(function (e) { return !ipaLv || e.lvi <= LEVELS.map(function (l) { return l.id; }).indexOf(ipaLv); }); }
+  function ipaSym(id) { var s = IPA.filter(function (x) { return x.id === id; })[0]; return s ? s.sym : id === 'schwa' ? 'ə' : id; }
+  function ipaMarked(e, ranges) {
+    var p = e.ph.replace(/^\/|\/$/g, ''), out = '', pos = 0;
+    ranges.slice().sort(function (x, y) { return x[0] - y[0]; }).forEach(function (r) { out += esc(p.slice(pos, r[0])) + '<mark>' + esc(p.slice(r[0], r[1])) + '</mark>'; pos = r[1]; });
+    return '/' + out + esc(p.slice(pos)) + '/';
+  }
+  function related(a, b) { var x = a.w.w.toLowerCase(), y = b.w.w.toLowerCase(); return x.indexOf(y) === 0 || y.indexOf(x) === 0 || x.slice(0, 4) === y.slice(0, 4); }
+  function pickDistinct(arr, n, others) {
+    var out = [];
+    shuffle(arr).some(function (e) {
+      if (others.concat(out).some(function (o) { return related(e, o); })) return false;
+      out.push(e); return out.length >= n;
+    });
+    return out.length >= n ? out : null;
+  }
+  /* One "odd one out" question: three words share a sound and one does not. */
+  function genOdd() {
+    var pool = ipaPool(), tries, vowelQ = ipaCat === 'vowel' || (ipaCat === 'both' && Math.random() < 0.65);
+    for (tries = 0; tries < 60; tries++) {
+      var T = (vowelQ ? IPA_VOWELS : IPA_CONS)[Math.floor(Math.random() * (vowelQ ? IPA_VOWELS : IPA_CONS).length)];
+      var has = pool.filter(function (e) { return vowelQ ? (e.sv && e.sv.id === T) : !!e.ids[T]; });
+      if (has.length < 3) continue;
+      var three = pickDistinct(has, 3, []); if (!three) continue;
+      var near = IPA_NEAR[T] || [];
+      var lacking = pool.filter(function (e) { return !e.ids[T] && (!vowelQ || (e.sv && e.sv.id !== T)); });
+      var close = lacking.filter(function (e) { return vowelQ ? near.indexOf(e.sv.id) > -1 : near.some(function (n) { return e.ids[n]; }); });
+      var odd = pickDistinct(close.length ? close : lacking, 1, three); if (!odd) continue;
+      var opts = shuffle(three.concat(odd));
+      return { kind: vowelQ ? 'vowel' : 'cons', t: T, opts: opts, a: opts.indexOf(odd[0]), picked: null };
+    }
+    return null;
+  }
+  function startIpaSession(mode) {
+    ipaMsg = '';
+    var qs = [], n = mode === 'sent' ? IP_SENT_N : IP_N, i;
+    if (mode === 'odd') { for (i = 0; i < n; i++) { var q = genOdd(); if (q) qs.push(q); } }
+    else if (mode === 'word') {
+      shuffle(ipaPool().filter(function (e) { return e.w.w.length >= 3; })).slice(0, n).forEach(function (e) { qs.push({ e: e, tries: 0, typed: '', msg: '', result: '' }); });
+    } else {
+      shuffle(QUOTES).slice(0, n).forEach(function (q) { qs.push({ q: q, tries: 0, typed: '', msg: '', result: '', diff: null }); });
+    }
+    if (!qs.length) { ipaMsg = 'Không đủ từ để tạo bài ở cấp độ này. Hãy chọn cấp độ cao hơn.'; return; }
+    ipaQ = { mode: mode, qs: qs, i: 0, score: 0, done: false, counted: false };
+  }
+  function ipNormWord(t) { return String(t).toLowerCase().replace(/[^a-z]/g, ''); }
+  function ipNormSent(t) { return String(t).toLowerCase().replace(/[’‘]/g, "'").replace(/[^a-z0-9' ]+/g, ' ').replace(/(^|\s)'+|'+(?=\s|$)/g, '$1').replace(/\s+/g, ' ').trim(); }
+  function ipFinish(q, result) {
+    q.result = result; q.msg = '';
+    if (result === 'right') ipaQ.score++;
+  }
+  function ipSubmit() {
+    var q = ipaQ && ipaQ.qs[ipaQ.i];
+    if (!q || q.result || ipaQ.mode === 'odd') return;
+    var el = document.getElementById('ip-in'), typed = el ? el.value : q.typed;
+    q.typed = typed;
+    if (!ipNormSent(typed)) { q.msg = 'Hãy gõ câu trả lời của bạn.'; render(); return; }
+    var ok;
+    if (ipaQ.mode === 'word') ok = !!ipaIndex().homo[q.e.ph][ipNormWord(typed)];
+    else { ok = ipNormSent(typed) === ipNormSent(q.q.t); if (!ok) { var ta = ipNormSent(typed).split(' '), tb = ipNormSent(q.q.t).split(' '); q.diff = ta.map(function (w, i) { return { w: w, ok: w === tb[i] }; }); } }
+    if (ok) ipFinish(q, 'right');
+    else { q.tries++; if (q.tries >= IP_TRIES) ipFinish(q, 'wrong'); else q.msg = 'Chưa đúng. Thử lại, bạn còn ' + (IP_TRIES - q.tries) + ' lần.'; }
+    render();
+  }
+  function viewIpaOdd(q, c) {
+    var answered = c.picked !== null, letters = ['A', 'B', 'C', 'D'], sym = ipaSym(c.t);
+    var stem = c.kind === 'vowel' ? 'Chọn từ có nguyên âm ở âm tiết nhấn phát âm khác với ba từ còn lại.' : 'Chọn từ <b>không</b> có âm /' + esc(sym) + '/.';
+    var opts = c.opts.map(function (e, i) {
+      var cls = 'opt' + (answered ? (i === c.a ? ' right' : i === c.picked ? ' wrong' : '') : '');
+      return '<button type="button" class="' + cls + '" data-action="ip-pick" data-i="' + i + '"' + (answered ? ' disabled' : '') + '><i>' + letters[i] + '</i><span>' + esc(e.w.w) + '</span></button>';
+    }).join('');
+    var fb = '';
+    if (answered) {
+      var odd = c.opts[c.a], ok = c.picked === c.a;
+      var why = c.kind === 'vowel'
+        ? 'Ba từ còn lại có âm /' + esc(sym) + '/ ở âm tiết nhấn; “' + esc(odd.w.w) + '” có âm /' + esc(ipaSym(odd.sv.id)) + '/.'
+        : 'Ba từ còn lại có âm /' + esc(sym) + '/; “' + esc(odd.w.w) + '” không có.';
+      var rows = c.opts.map(function (e) {
+        var ranges = c.kind === 'vowel' ? [[e.sv.a, e.sv.b]] : e.toks.filter(function (x) { return x.id === c.t; }).map(function (x) { return [x.a, x.b]; });
+        return '<li class="ipa-row-w"><b>' + esc(e.w.w) + '</b> <span class="muted ipa-t">' + ipaMarked(e, ranges) + '</span> ' + audioBtns(e.w) + '</li>';
+      }).join('');
+      fb = '<div class="feedback" aria-live="polite"><strong>' + (ok ? 'Chính xác.' : 'Chưa đúng.') + '</strong><span>' + why + '</span><ul class="ipa-list">' + rows + '</ul>' +
+        '<div style="margin-top:0.5rem"><button class="btn" type="button" data-action="ip-next">Tiếp</button></div></div>';
+    }
+    return '<div class="quiz">' + sessionTop('Chọn từ khác âm', ipaQ.i, ipaQ.qs.length, 'ip-exit') + '<p style="font-size:1.15rem;margin:0">' + stem + '</p><div class="opts">' + opts + '</div>' + fb + '</div>';
+  }
+  function viewIpaType(q) {
+    var word = ipaQ.mode === 'word', top = sessionTop(word ? 'Phiên âm sang từ' : 'Phiên âm sang câu', ipaQ.i, ipaQ.qs.length, 'ip-exit');
+    var ipa = word ? '/' + esc(q.e.ph.replace(/^\/|\/$/g, '')) + '/' : '/' + esc(q.q.ipa) + '/';
+    var prompt = '<div class="vcard" style="min-height:0;padding:1.5rem 1.25rem"><p class="muted" style="margin:0">' + (word ? 'Gõ từ tiếng Anh có phiên âm này' : 'Gõ câu tiếng Anh có phiên âm này') + '</p><p class="ipa-prompt' + (word ? '' : ' sent') + '">' + ipa + '</p></div>';
+    var body;
+    if (q.result) {
+      var ok = q.result === 'right', ans = word ? q.e.w.w : q.q.t;
+      var diff = !ok && q.diff ? '<p style="margin:0">Bạn gõ: ' + q.diff.map(function (d) { return '<span class="' + (d.ok ? 'yes-way' : 'no-way') + '">' + esc(d.w) + '</span>'; }).join(' ') + '</p>' : '';
+      var more = word ? '<span>' + esc(q.e.w.w) + ' ' + posTag(q.e.w) + '— ' + esc(viText(q.e.w)) + '</span><div class="row">' + audioBtns(q.e.w) + '</div>'
+        : '<span class="muted">' + esc(q.q.a) + '</span>' + (CAN_SPEAK ? '<div class="row"><button type="button" class="btn ghost small" data-action="speak" data-w="' + esc(q.q.t) + '">Nghe cả câu</button></div>' : '');
+      body = '<div class="feedback" aria-live="polite"><strong>' + (ok ? 'Chính xác.' : 'Chưa đúng.') + '</strong><span>Đáp án: <b>' + esc(ans) + '</b></span>' + diff + more +
+        '<div style="margin-top:0.5rem"><button class="btn" type="button" data-action="ip-next">Tiếp</button></div></div>';
+    } else {
+      body = '<form id="ipform" class="stack" style="gap:0.7rem" novalidate><label for="ip-in">' + (word ? 'Từ tiếng Anh' : 'Câu tiếng Anh') + '</label>' +
+        (word ? '<input id="ip-in" type="text" value="' + esc(q.typed) + '" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">'
+          : '<textarea id="ip-in" rows="3" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">' + esc(q.typed) + '</textarea>') +
+        (q.msg ? '<p role="status" style="margin:0;color:var(--bad)">' + esc(q.msg) + '</p>' : '') +
+        '<div class="row"><button class="btn" type="submit">Kiểm tra</button><button class="btn ghost" type="button" data-action="ip-giveup">Mình chưa biết</button></div></form>';
+    }
+    return '<div class="quiz">' + top + prompt + body + '</div>';
+  }
+  function viewIpaDone() {
+    var n = ipaQ.qs.length;
+    return '<div class="quiz"><p class="call">Luyện phát âm</p><h1 style="font-size:2rem">Xong bài</h1>' +
+      '<div class="stats"><div class="stat"><b>' + ipaQ.score + '/' + n + '</b><span>câu đúng</span></div><div class="stat"><b>' + s10(ipaQ.score, n) + '/10</b><span>điểm</span></div></div>' +
+      '<div class="row"><button class="btn" type="button" data-action="ip-start" data-m="' + ipaQ.mode + '">Làm bài mới</button><button class="btn ghost" type="button" data-action="ip-exit">Về mục luyện tập</button></div></div>';
+  }
+  function viewIpaSession() {
+    if (ipaQ.done) return viewIpaDone();
+    var q = ipaQ.qs[ipaQ.i];
+    return ipaQ.mode === 'odd' ? viewIpaOdd(ipaQ, q) : viewIpaType(q);
+  }
+  function viewIpaPractice() {
+    var cat = [['both', 'Cả hai'], ['vowel', 'Nguyên âm'], ['cons', 'Phụ âm']].map(function (c) { return chipBtn('ip-cat', c[0], c[1], ipaCat === c[0]); }).join('');
+    var lv = [['', 'Tất cả']].concat(VLEVELS.map(function (l) { return [l, 'Đến ' + l]; })).map(function (c) { return chipBtn('ip-lv', c[0], c[1], ipaLv === c[0]); }).join('');
+    function card(title, call, text, extra, m, label) {
+      return '<div class="panel stack" style="gap:0.9rem"><div><p class="call">' + call + '</p><h2>' + title + '</h2></div><p class="muted">' + text + '</p>' + extra +
+        '<div class="row"><button class="btn" type="button" data-action="ip-start" data-m="' + m + '">' + label + '</button></div></div>';
+    }
+    return '<div class="stack" style="gap:1.25rem">' + (ipaMsg ? '<p class="panel" role="status">' + esc(ipaMsg) + '</p>' : '') +
+      '<div><p class="lab" style="margin-bottom:0.4rem">Cấp độ từ (cho bài 1 và 2)</p><div class="chips" role="group" aria-label="Cấp độ từ">' + lv + '</div></div>' +
+      card('Chọn từ khác âm', 'Bài 1', 'Bốn từ, ba từ chung một âm, một từ khác. Nguyên âm được xét ở âm tiết nhấn; với phụ âm, bạn chọn từ không có âm đó. Dữ liệu lấy từ phiên âm của danh sách Oxford.',
+        '<div><p class="lab" style="margin-bottom:0.4rem">Loại âm</p><div class="chips" role="group" aria-label="Loại âm">' + cat + '</div></div>', 'odd', 'Bắt đầu (' + IP_N + ' câu)') +
+      card('Phiên âm sang từ', 'Bài 2', 'Bạn thấy phiên âm của một từ và gõ từ tiếng Anh đó. Các từ đồng âm đều được chấp nhận.', '', 'word', 'Bắt đầu (' + IP_N + ' từ)') +
+      card('Phiên âm sang câu', 'Bài 3', 'Bạn thấy phiên âm của một câu trích dẫn nổi tiếng và gõ cả câu. Phiên âm tạo tự động từ từ điển CMU và đang chờ rà soát.', '', 'sent', 'Bắt đầu (' + IP_SENT_N + ' câu)') + '</div>';
+  }
   function viewIpa() {
     if (!IPA.length) return head('Phát âm', 'Bảng âm IPA tiếng Anh.') + '<div class="empty">Chưa có dữ liệu âm nào.</div>';
+    if (ipaQ) return viewIpaSession();
+    var subs = '<div class="subtabs" role="group" aria-label="Các phần của mục phát âm">' + [['chart', 'Bảng âm'], ['practice', 'Luyện tập']].map(function (x) {
+      return '<button type="button" class="subtab" data-action="ipa-sub" data-v="' + x[0] + '" aria-pressed="' + (ipaSub === x[0]) + '">' + x[1] + '</button>';
+    }).join('') + '</div>';
+    if (ipaSub === 'practice') return head('Phát âm', 'Luyện nghe phiên âm: chọn từ khác âm, đọc phiên âm rồi gõ lại từ hoặc cả câu.') + subs + viewIpaPractice();
     var by = {}, used = {};
     IPA.forEach(function (s) { by[s.id] = s; });
     function t(id) { if (!id) return '<span class="ipa-gap"></span>'; if (!by[id]) return ''; used[id] = 1; return ipaTile(by[id]); }
@@ -1414,7 +1788,7 @@
     var rest = IPA.filter(function (s) { return !used[s.id]; });
     var restHtml = rest.length ? '<section><h3 style="margin-bottom:0.6rem">Âm khác</h3><div class="ipa-row">' + rest.map(ipaTile).join('') + '</div></section>' : '';
     var legend = '<div class="ipa-legend"><span class="sho">Ngắn</span><span class="lon">Dài</span><span class="dip">Nguyên âm đôi</span><span class="unv">Vô thanh</span><span class="vcd">Hữu thanh</span></div>';
-    return head('Phát âm', 'Bảng âm IPA tiếng Anh Mỹ. Bấm vào một âm để nghe, xem ví dụ, mẹo phát âm và các cặp từ dễ nhầm. Các phụ âm vô thanh và hữu thanh đứng cạnh nhau thành cặp (p-b, t-d, k-g...).') +
+    return head('Phát âm', 'Bảng âm IPA tiếng Anh Mỹ. Bấm vào một âm để nghe, xem ví dụ, mẹo phát âm và các cặp từ dễ nhầm. Các phụ âm vô thanh và hữu thanh đứng cạnh nhau thành cặp (p-b, t-d, k-g...).') + subs +
       '<div class="stack" style="gap:1.25rem">' + ipaDetail() + legend +
       '<section><h3 style="margin-bottom:0.6rem">Nguyên âm</h3><div class="ipa-vwrap"><div class="ipa-chart">' + vow + '</div><div class="ipa-chart">' + dip + '</div></div></section>' +
       '<section><h3 style="margin-bottom:0.6rem">Phụ âm</h3><div class="ipa-chart">' + cons + '</div></section>' + restHtml + ipaQuickHtml() +
@@ -1560,6 +1934,14 @@
     if (r === 'grammar') renderGList();
     if (r === 'vocab' && vSub === 'decks' && !vBrowse && !vReview) renderVList();
     if (r === 'admin') renderAdmVList();
+    if (r === 'ipa' && ipaQ && !ipaQ.done && ipaQ.mode !== 'odd') {
+      var iq = ipaQ.qs[ipaQ.i], ifb = iq.result ? view.querySelector('[data-action="ip-next"]') : document.getElementById('ip-in');
+      if (ifb) ifb.focus();
+    }
+    if (r === 'vocab' && vType && !vType.done && vType.cur) {   /* keep the typing box ready */
+      var fb = vType.cur.result ? view.querySelector('[data-action="tq-next"]') : (vType.cur.ask ? null : document.getElementById('tq-in'));
+      if (fb) fb.focus();
+    }
   }
   var drawSeq = 0;
   function render() {
@@ -1621,6 +2003,36 @@
       if (p > -1) arr.splice(p, 1); else arr.push(v);
       render();
       refocus(a, v);
+    } else if (a === 'ipa-sub') {
+      ipaSub = t.getAttribute('data-v'); render(); refocus(a, ipaSub);
+    } else if (a === 'ip-cat') {
+      ipaCat = t.getAttribute('data-v'); render(); refocus(a, ipaCat);
+    } else if (a === 'ip-lv') {
+      ipaLv = t.getAttribute('data-v'); render(); refocus(a, ipaLv);
+    } else if (a === 'ip-start') {
+      var im = t.getAttribute('data-m');
+      if (im === 'sent' && !loaded.quotes) {
+        ensure(['quotes']).then(function () { startIpaSession('sent'); render(); window.scrollTo(0, 0); }, function () { ipaMsg = 'Không tải được thư viện câu trích dẫn. Hãy kiểm tra kết nối mạng rồi thử lại.'; render(); });
+        return;
+      }
+      ipaQ = null; startIpaSession(im); render(); window.scrollTo(0, 0);
+    } else if (a === 'ip-exit') {
+      ipaQ = null; ipaSub = 'practice'; render(); window.scrollTo(0, 0);
+    } else if (a === 'ip-pick') {
+      var oq = ipaQ && ipaQ.qs[ipaQ.i];
+      if (!oq || ipaQ.mode !== 'odd' || oq.picked !== null) return;
+      oq.picked = parseInt(t.getAttribute('data-i'), 10); if (oq.picked === oq.a) ipaQ.score++;
+      render(); var inb = view.querySelector('[data-action="ip-next"]'); if (inb) inb.focus();
+    } else if (a === 'ip-giveup') {
+      var gq = ipaQ && ipaQ.qs[ipaQ.i];
+      if (gq && !gq.result && ipaQ.mode !== 'odd') { gq.typed = (document.getElementById('ip-in') || {}).value || ''; ipFinish(gq, 'wrong'); render(); }
+    } else if (a === 'ip-next') {
+      if (!ipaQ || ipaQ.done) return;
+      var nq = ipaQ.qs[ipaQ.i];
+      if (ipaQ.mode === 'odd' ? nq.picked === null : !nq.result) return;
+      ipaQ.i++;
+      if (ipaQ.i >= ipaQ.qs.length) { ipaQ.done = true; if (!ipaQ.counted) { ipaQ.counted = true; Act.test(); } }
+      render(); window.scrollTo(0, 0);
     } else if (a === 'ipa-filter') {
       ipaFilter = t.getAttribute('data-v'); render(); refocus(a, ipaFilter);
     } else if (a === 'ipa-ref') {
@@ -1692,7 +2104,7 @@
     } else if (a === 'b-exit') {
       vBrowse = null; render();
     } else if (a === 'm-open') {
-      vBrowse = null; vReview = null; vSub = 'mine'; render(); window.scrollTo(0, 0);
+      vBrowse = null; vReview = null; vType = null; vSub = 'mine'; render(); window.scrollTo(0, 0);
     } else if (a === 'r-start') {
       vReview = null; startReview(); render(); window.scrollTo(0, 0);
     } else if (a === 'r-yes' || a === 'r-no') {
@@ -1708,6 +2120,29 @@
       nextReview(); render(); window.scrollTo(0, 0);
     } else if (a === 'r-exit') {
       vReview = null; render();
+    } else if (a === 'tq-start') {
+      vType = null; startTyping(); render(); window.scrollTo(0, 0);
+    } else if (a === 'tq-exit') {
+      vType = null; vSub = 'review'; render(); window.scrollTo(0, 0);
+    } else if (a === 'tq-hint') {
+      if (!vType || vType.done || vType.cur.result) return;
+      var tc = vType.cur;
+      if (tc.hints >= TQ_MAX_HINTS) return;
+      if (!tc.warned) { tc.ask = t.getAttribute('data-k'); render(); var okb = view.querySelector('[data-action="tq-hint-ok"]'); if (okb) okb.focus(); }
+      else { tqHint(t.getAttribute('data-k')); render(); }
+    } else if (a === 'tq-hint-ok') {
+      if (!vType || vType.done || !vType.cur.ask) return;
+      vType.cur.warned = true; tqHint(vType.cur.ask); render();
+    } else if (a === 'tq-hint-no') {
+      if (vType && vType.cur) { vType.cur.ask = ''; render(); }
+    } else if (a === 'tq-giveup') {
+      if (!vType || vType.done || vType.cur.result) return;
+      vType.cur.msg = ''; tqFinish('wrong'); render();
+    } else if (a === 'tq-next') {
+      if (!vType || vType.done || !vType.cur.result) return;
+      vType.i++;
+      if (vType.i >= vType.queue.length) { vType.done = true; if (!vType.counted) { vType.counted = true; Act.test(); } } else prepType();
+      render(); window.scrollTo(0, 0);
     } else if (a === 'm-filter') {
       mFilter = t.getAttribute('data-v'); render(); refocus(a, mFilter);
     } else if (a === 'm-remove') {
@@ -1774,14 +2209,23 @@
     }
     else if (ev.target.id === 'adm-v-search') { admV.q = ev.target.value; admV.limit = 50; renderAdmVList(); }
     else if (ev.target.id === 'v-search') { vQuery = ev.target.value; vLimit = 40; renderVList(); }
+    else if (ev.target.id === 'tq-in' && vType && vType.cur && !vType.cur.result) {
+      var tcur = vType.cur, tmax = tqFree(tcur).length, clean = ev.target.value.replace(/[\s\-'’.,!?;:]/g, '').slice(0, tmax);
+      if (clean !== ev.target.value) ev.target.value = clean;
+      tcur.typed = clean; tcur.msg = '';
+      var sqEl = document.getElementById('tq-sq'); if (sqEl) sqEl.innerHTML = tqSquares(tcur);
+    }
     else if (ev.target.id === 'j-conf') { var o = document.getElementById('j-conf-out'); if (o) o.textContent = ev.target.value; }
   });
   view.addEventListener('submit', function (ev) {
     if (ev.target.id === 'jform') { ev.preventDefault(); saveEntry(); }
     else if (ev.target.id === 'vform') { ev.preventDefault(); addCustomWord(); }
+    else if (ev.target.id === 'tqform') { ev.preventDefault(); tqSubmit(); }
+    else if (ev.target.id === 'ipform') { ev.preventDefault(); ipSubmit(); }
   });
   window.addEventListener('hashchange', function () { render(); window.scrollTo(0, 0); });
 
+  applyFonts();
   syncAdminTab();
   render();
 })();

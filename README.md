@@ -13,3 +13,9 @@ Danh sách từ: Oxford (phiên âm và âm thanh theo Oxford Learner’s Dictio
 ## Tải nội dung theo trang
 Trang chủ chỉ tải các tệp nhỏ. `grammar.js`, `questions.js`, `vocab.js`, `vocab-def.js` và `ipa.js` chỉ được tải khi mở trang cần đến chúng (xem `GROUPS` trong `app.js`).
 Số liệu trên trang chủ lấy từ `content/manifest.js`. Sau khi sửa ngữ pháp, câu hỏi, bài kiểm tra, IPA hoặc từ vựng, chạy `node tools/build-manifest.js` để cập nhật tệp này.
+
+## Câu trích dẫn cho bài “Phiên âm sang câu”
+Sửa danh sách ở `tools/quotes-source.txt` (mỗi dòng: `tác giả | câu`), rồi chạy `pip install cmudict` (một lần) và `python3 tools/build-quotes.py` để tạo lại `content/quotes.js` kèm phiên âm. Phiên âm tạo tự động nên cần đọc lại; có thể sửa tay trong `content/quotes.js`.
+
+## Phông chữ
+Đăng nhập chế độ quản trị rồi mở mục “Phông chữ” để thử 23 phông cho tiêu đề, nội dung và nhãn nhỏ. Lựa chọn chỉ lưu trong trình duyệt của bạn.

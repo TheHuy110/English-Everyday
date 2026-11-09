@@ -359,3 +359,30 @@ textarea.export { font-family: var(--font-mono); font-size: 0.85rem; min-height:
 .ipa-w { font: inherit; background: none; border: 0; border-bottom: 1px dotted var(--muted); padding: 0; color: inherit; cursor: pointer; }
 .ipa-w:hover, .ipa-w:focus-visible { color: var(--accent); border-bottom-color: var(--accent); }
 @media (max-width: 560px) { .vgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; } .vsq-main { padding: 1.8rem 0.5rem 2.8rem; } }
+
+/* Admin: font picker */
+.fgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 0.9rem; }
+.fcard { border: 1px solid var(--line); border-radius: 10px; padding: 0.9rem 1rem; display: grid; gap: 0.7rem; background: var(--bg); align-content: space-between; }
+.fcard .fname { font-weight: 700; font-size: 1rem; margin: 0 0 0.35rem; }
+.fcard .fnote { font-weight: 400; font-size: 0.8rem; }
+.fcard .fh { font-weight: 700; font-size: 1.35rem; line-height: 1.2; margin: 0 0 0.3rem; }
+.fcard .fb { font-size: 1rem; margin: 0 0 0.3rem; line-height: 1.45; }
+.fcard .fm { font-size: 0.85rem; margin: 0; color: var(--muted); }
+
+/* Typing test: one square per letter */
+.sqs { display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center; align-items: center; }
+.sq { width: clamp(1.9rem, 8vw, 2.6rem); height: clamp(2.3rem, 9vw, 3rem); display: grid; place-items: center; border: 2px solid var(--line); border-radius: 6px; background: var(--bg);
+  font-family: var(--font-mono); font-weight: 600; font-size: clamp(1.1rem, 4.5vw, 1.5rem); text-transform: uppercase; color: var(--ink); }
+.sq.fill { border-color: var(--ink); }
+.sq.rev { background: var(--mark); border-color: var(--mark); }
+.sq.ok { background: var(--good-bg); border-color: var(--good); color: var(--good); }
+.sq.miss { background: var(--bad-bg); border-color: var(--bad); color: var(--bad); }
+.sq-gap { width: 1.1rem; }
+.sq-sep { font-family: var(--font-mono); font-size: 1.4rem; color: var(--muted); }
+#tq-in { font-family: var(--font-mono); font-size: 1.3rem; letter-spacing: 0.15em; text-align: center; }
+
+/* IPA practice */
+.ipa-prompt { font-family: var(--font-mono); font-size: clamp(1.4rem, 5vw, 2rem); margin: 0; overflow-wrap: anywhere; text-align: center; }
+.ipa-prompt.sent { font-size: clamp(1.05rem, 3.6vw, 1.35rem); line-height: 1.7; }
+.ipa-row-w { display: flex; flex-wrap: wrap; gap: 0.4rem 0.7rem; align-items: center; }
+textarea#ip-in { width: 100%; font: inherit; padding: 0.7rem 0.8rem; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--ink); }

@@ -85,6 +85,20 @@ else {
     str(x.name) || err(n + ': missing name'); STATS.includes(x.stat) || err(n + ': stat must be one of ' + STATS.join(', '));
     (typeof x.goal === 'number' && x.goal > 0) || err(n + ': goal must be a number above 0'); });
 }
+// Quotes for the IPA sentence test (content/quotes.js is optional).
+try {
+  const qf = path.join(dir, 'quotes.js');
+  if (fs.existsSync(qf)) {
+    vm.runInContext(fs.readFileSync(qf, 'utf8'), sandbox, { filename: 'quotes.js' });
+    const qs = Array.isArray(sandbox.OEL.quotes) ? sandbox.OEL.quotes : (err('OEL.quotes is not a list'), []);
+    const seenQ = new Set();
+    qs.forEach((q, i) => { const t = 'quote #' + (i+1);
+      str(q.text) || err(t + ': missing text'); str(q.ipa) || err(t + ': missing ipa'); str(q.author) || warn(t + ': missing author');
+      if (str(q.text) && seenQ.has(q.text)) warn(t + ': duplicate quote'); seenQ.add(q.text);
+      if (str(q.text) && str(q.ipa) && q.text.replace(/[^A-Za-z' ]+/g, ' ').trim().split(/\s+/).length !== q.ipa.trim().split(/\s+/).length) warn(t + ': number of words and IPA words differ'); });
+    console.log('Checked: ' + qs.length + ' quotes.');
+  }
+} catch (e) { err('content/quotes.js cannot be loaded: ' + e.message); }
 console.log('Checked: ' + bank.length + ' questions, ' + arr('grammar').length + ' grammar rules, ' + total + ' vocabulary entries.');
 console.log(errors ? errors + ' error(s), ' + warns + ' warning(s).' : 'OK. ' + warns + ' warning(s).');
 process.exit(errors ? 1 : 0);

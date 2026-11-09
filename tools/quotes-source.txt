@@ -1,0 +1,42 @@
+# Famous quotes for the IPA sentence test. One per line:  author | quote
+# After editing, run:  python3 tools/build-quotes.py   (needs:  pip install cmudict)
+# Keep quotes short, public domain or very widely quoted, and correctly attributed.
+René Descartes | I think, therefore I am.
+William Shakespeare, Hamlet | To be, or not to be, that is the question.
+William Shakespeare, Hamlet | Brevity is the soul of wit.
+William Shakespeare, Hamlet | There is nothing either good or bad, but thinking makes it so.
+William Shakespeare, As You Like It | All the world's a stage, and all the men and women merely players.
+William Shakespeare, Romeo and Juliet | A rose by any other name would smell as sweet.
+William Shakespeare, King Lear | Nothing will come of nothing.
+William Shakespeare, All's Well That Ends Well | Love all, trust a few, do wrong to none.
+Franklin D. Roosevelt, 1933 | The only thing we have to fear is fear itself.
+John F. Kennedy, 1961 | Ask not what your country can do for you.
+Winston Churchill, 1940 | We shall never surrender.
+Neil Armstrong, 1969 | That's one small step for man, one giant leap for mankind.
+Steve Jobs, 2005 | The only way to do great work is to love what you do.
+Steve Jobs, 2005 | Stay hungry, stay foolish.
+Albert Einstein | Imagination is more important than knowledge.
+Francis Bacon | Knowledge is power.
+Edward Bulwer-Lytton, 1839 | The pen is mightier than the sword.
+Patrick Henry, 1775 | Give me liberty, or give me death!
+Oscar Wilde | I can resist everything except temptation.
+Socrates | The unexamined life is not worth living.
+Lao Tzu | A journey of a thousand miles begins with a single step.
+Benjamin Franklin | Well done is better than well said.
+Muhammad Ali | Float like a butterfly, sting like a bee.
+Declaration of Independence, 1776 | We hold these truths to be self-evident, that all men are created equal.
+Charles Dickens, A Tale of Two Cities | It was the best of times, it was the worst of times.
+Herman Melville, Moby-Dick | Call me Ishmael.
+Jane Austen, Pride and Prejudice | It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.
+Tục ngữ tiếng Anh | Actions speak louder than words.
+Tục ngữ tiếng Anh | Rome was not built in a day.
+Tục ngữ tiếng Anh | Practice makes perfect.
+Tục ngữ tiếng Anh | Better late than never.
+Tục ngữ tiếng Anh | Where there is a will, there is a way.
+Tục ngữ tiếng Anh | Fortune favors the bold.
+Tục ngữ tiếng Anh | Time and tide wait for no man.
+Tục ngữ tiếng Anh | The early bird catches the worm.
+Tục ngữ tiếng Anh | Every cloud has a silver lining.
+Tục ngữ tiếng Anh | Honesty is the best policy.
+Tục ngữ tiếng Anh | Two wrongs don't make a right.
+Tục ngữ tiếng Anh | Seeing is believing.
