@@ -1,10 +1,18 @@
 option 0,option 1,option 2,option 3,answer,Phonetic Focus
+c*a*t,m*a*p,c*a*r,b*a*g,2,
+s*u*n,r*u*n,b*u*s,p*u*t,3,
+sh*i*p,f*i*sh,k*i*te,p*i*g,2,
+b*e*d,p*e*n,h*e*n,h*e*re,3,
+l*oo*k,b*oo*k,f*oo*d,f*oo*t,2,
+*ch*air,*ch*ip,*ch*ef,*ch*alk,2,
+f*ir*st,b*ir*d,g*ir*l,f*ir*e,3,
+*th*ink,*th*ree,*th*is,*th*umb,2,
+c*o*ld,g*o*,h*o*t,n*o*,2,
 c*a*t,f*a*mily,f*a*ther,m*a*p,2,/æ/ vs /ɑː/ (father)
 s*u*n,s*u*mmer,s*u*dden,p*u*t,3,/ʌ/ vs /ʊ/ (put)
 k*i*tchen,s*i*mple,*i*sland,p*i*cture,2,/ɪ/ vs /aɪ/ (island)
 pr*i*vate,l*i*brary,l*i*on,*i*nnocent,3,/aɪ/ vs /ɪ/ (innocent)
 b*e*d,p*e*n,l*e*t,h*e*re,3,/e/ vs /ɪə/ (here)
-l*oo*k,b*oo*k,f*oo*d,f*oo*t,2,/ʊ/ vs /uː/ (food)
 c*a*ke,r*a*in,t*a*ble,c*a*t,3,/eɪ/ vs /æ/ (cat)
 h*ea*vy,f*ea*ther,w*ea*ther,t*ea*cher,3,/e/ vs /iː/ (teacher)
 v*a*cation,d*a*ngerous,n*a*ture,tr*a*gic,3,/eɪ/ vs /æ/ (tragic)
@@ -57,7 +65,6 @@ s*ee*d,k*ee*p,m*ee*t,h*ea*d,3,/iː/ vs /e/ (head)
 c*oo*l,r*oo*m,m*oo*n,b*oo*k,3,/uː/ vs /ʊ/ (book)
 b*oy*,t*oy*,j*oy*,c*ow*,3,/ɔɪ/ vs /aʊ/ (cow)
 c*ow*,h*ow*,n*ow*,sn*ow*,3,/aʊ/ vs /əʊ/ (snow)
-f*ir*st,b*ir*d,g*ir*l,f*ir*e,3,/ɜː/ vs /aɪə/ (fire)
 h*er*,t*er*m,p*er*son,h*e*ro,3,/ɜː/ vs /ɪər/ (hero)
 st*a*r,c*a*r,p*a*rk,w*a*rm,3,/ɑː/ vs /ɔː/ (warm)
 f*or*k,s*or*t,p*or*t,w*or*k,3,/ɔː/ vs /ɜː/ (work)
