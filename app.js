@@ -507,14 +507,24 @@
       '<div class="elo-grid">' + chk('guess', 'Tính đoán mò', 'Bật thì g = 1 / số lựa chọn.') +
       chk('firstOld', 'Lần đầu dùng cách cũ', 'Lần Tự kiểm tra trình độ đầu tiên xếp cấp bằng cách cũ.') +
       chk('seed', 'Gieo Elo sau lần đầu', 'Sau lần đầu, đặt R bằng D của cấp vừa xếp.') + '</div>' +
-      '<div class="stack" style="gap:0.6rem"><h3 style="margin:0">Máy tính thử</h3><p class="muted" style="margin:0">Dùng các giá trị đang nhập ở trên (chưa cần bấm Áp dụng). Cho biết một câu trả lời sẽ đổi điểm bao nhiêu.</p><div class="elo-grid">' +
+      '<div class="stack" style="gap:0.6rem"><h3 style="margin:0">Máy tính thử</h3><p class="muted" style="margin:0">Kết quả tự cập nhật khi bạn sửa bất kỳ ô nào ở trên hoặc ở dưới (chưa cần bấm Áp dụng). Cho biết một câu trả lời sẽ đổi điểm bao nhiêu.</p><div class="elo-grid">' +
       '<label class="elo-f"><span><b>Điểm hiện tại</b> <code>R</code></span><input type="number" id="ecc-r" value="' + Math.round(ELO.r) + '"></label>' +
       '<label class="elo-f"><span><b>Số câu đã làm</b> <code>n</code></span><input type="number" id="ecc-n" value="' + ELO.n + '"></label>' +
       '<label class="elo-f"><span><b>Cấp của câu hỏi</b></span><select id="ecc-lv">' + Object.keys(ECFG.lv).map(function (l) { return '<option' + (l === 'C1' ? ' selected' : '') + '>' + l + '</option>'; }).join('') + '</select></label>' +
       '<label class="elo-f"><span><b>Số lựa chọn</b></span><input type="number" id="ecc-o" value="4"></label>' +
       '<label class="elo-f"><span><b>Kết quả</b></span><select id="ecc-ok"><option value="1">Đúng</option><option value="0">Sai</option></select></label></div>' +
-      '<div class="row">' + admBtn('adm-elo-calc', 'Tính') + '</div><pre class="elo-eq" id="ecc-out">Bấm Tính để xem kết quả.</pre></div>' +
+      '<pre class="elo-eq" id="ecc-out"></pre></div>' +
       '<div class="row">' + admBtn('adm-elo-save', 'Áp dụng', undefined, '') + admBtn('adm-elo-defaults', 'Về mặc định') + '</div></section>';
+  }
+  function eloCalcOut() {
+      var fv = function (id, d) { var e = document.getElementById(id), v = e ? parseFloat(e.value) : NaN; return isFinite(v) ? v : d; };
+      var cR = fv('ecc-r', ELO.r), cN = Math.max(0, fv('ecc-n', 0)), cO = Math.max(2, fv('ecc-o', 4)), cLv = (document.getElementById('ecc-lv') || {}).value, cOk = fv('ecc-ok', 1);
+      var cS = fv('ec-scale', ECFG.scale) || ECFG.scale, cTau = fv('ec-tau', ECFG.tau) || ECFG.tau, cD = fv('ec-lv-' + cLv, ECFG.lv[cLv]);
+      var cG = (document.getElementById('ec-guess') ? document.getElementById('ec-guess').checked : ECFG.guess) ? 1 / cO : 0;
+      var cK = fv('ec-k0', ECFG.k0) + fv('ec-k1', ECFG.k1) * Math.exp(-cN / cTau), cP = cG + (1 - cG) / (1 + Math.pow(10, (cD - cR) / cS)), cNew = cR + cK * (cOk - cP);
+      var out = document.getElementById('ecc-out');
+      if (out) out.textContent = 'D (độ khó câu ' + cLv + ') = ' + cD + '\ng = ' + cG.toFixed(3) + '\np = ' + cG.toFixed(3) + ' + (1 − ' + cG.toFixed(3) + ') / (1 + 10^((' + cD + ' − ' + Math.round(cR) + ') / ' + cS + ')) = ' + cP.toFixed(4) +
+        '\nK = ' + cK.toFixed(1) + '\nthay đổi = K × (' + cOk + ' − p) = ' + (cK * (cOk - cP) >= 0 ? '+' : '') + (cK * (cOk - cP)).toFixed(1) + '\nR mới = ' + Math.round(cNew);
   }
   function admVocabPanel() {
     var withDef = VOCAB.filter(hasDef).length, mIds = Object.keys(VDEF), orphan = mIds.filter(function (k) { return !VORD[k]; });
@@ -578,30 +588,30 @@
     { n: 'Quicksand', c: 'sans', w: '400;600;700', t: 'Tròn, nhẹ, vui' },
     { n: 'Baloo 2', c: 'sans', w: '400;600;700', t: 'Tròn đậm, thân thiện' },
     { n: 'Be Vietnam Pro', c: 'sans', w: '400;600;700', t: 'Thiết kế cho tiếng Việt' },
-    { n: 'Lexend', c: 'sans', w: '400;600;700', t: 'Rộng rãi, dễ đọc' },
+    { n: 'Lexend', c: 'sans', w: '400;500;700', t: 'Hiện tại (tiêu đề)', d: 1 },
     { n: 'Mulish', c: 'sans', w: '400;600;700', t: 'Sạch, mềm' },
     { n: 'Varela Round', c: 'sans', w: '400', t: 'Tròn, gọn' },
     { n: 'M PLUS Rounded 1c', c: 'sans', w: '400;700', t: 'Nét bo tròn' },
     { n: 'Comfortaa', c: 'sans', w: '400;700', t: 'Hình học tròn, vui mắt' },
-    { n: 'Fredoka', c: 'sans', w: '400;600', t: 'Tròn mập, trẻ trung' },
+    { n: 'Fredoka', c: 'sans', w: '400;500;600;700', t: 'Hiện tại (nội dung)', d: 1 },
     { n: 'Plus Jakarta Sans', c: 'sans', w: '400;600;700', t: 'Hiện đại, dịu' },
     { n: 'Josefin Sans', c: 'sans', w: '400;600', t: 'Thanh, hình học' },
     { n: 'Patrick Hand', c: 'hand', w: '400', t: 'Chữ viết tay' },
-    { n: 'Itim', c: 'hand', w: '400', t: 'Viết tay tròn, gần gũi' },
+    { n: 'Itim', c: 'hand', w: '400', t: 'Hiện tại (nhãn nhỏ)', d: 1 },
     { n: 'Lora', c: 'serif', w: '400;600;700', t: 'Có chân, ấm' },
     { n: 'Literata', c: 'serif', w: '400;600;700', t: 'Có chân, dễ đọc lâu' },
     { n: 'Merriweather', c: 'serif', w: '400;700', t: 'Có chân, rộng, rõ' },
     { n: 'Crimson Pro', c: 'serif', w: '400;600', t: 'Có chân, thanh lịch' },
     { n: 'Newsreader', c: 'serif', w: '400;600', t: 'Có chân, kiểu sách báo' },
     { n: 'Bitter', c: 'serif', w: '400;600;700', t: 'Chân phẳng, thân thiện' },
-    { n: 'Bricolage Grotesque', c: 'sans', w: '500;700', t: 'Hiện tại (tiêu đề)', d: 1 },
-    { n: 'Source Serif 4', c: 'serif', w: '400;600', t: 'Hiện tại (nội dung)', d: 1 },
-    { n: 'IBM Plex Mono', c: 'mono', w: '400;500', t: 'Hiện tại (nhãn nhỏ)', d: 1 }
+    { n: 'Bricolage Grotesque', c: 'sans', w: '500;700', t: 'Cũ (tiêu đề)' },
+    { n: 'Source Serif 4', c: 'serif', w: '400;600', t: 'Cũ (nội dung)' },
+    { n: 'IBM Plex Mono', c: 'mono', w: '400;500', t: 'Cũ (nhãn nhỏ)' }
   ];
   var FONT_BY = Object.create(null);
   FONT_LIST.forEach(function (f) { FONT_BY[f.n] = f; });
   var FONT_ROLES = [['display', 'Tiêu đề, tab, nút'], ['body', 'Nội dung'], ['mono', 'Nhãn nhỏ, thẻ, dạng ngữ pháp, IPA']];
-  var FONT_DEF = { display: 'Bricolage Grotesque', body: 'Source Serif 4', mono: 'IBM Plex Mono' };
+  var FONT_DEF = { display: 'Lexend', body: 'Fredoka', mono: 'Itim' };
   var FONTSEL = LS.get('oel.fonts', {});
   if (!FONTSEL || typeof FONTSEL !== 'object' || Array.isArray(FONTSEL)) FONTSEL = {};
   function fontCss(name) {
@@ -658,17 +668,7 @@
     if (a === 'adm-font-reset') { FONTSEL = {}; LS.set('oel.fonts', FONTSEL); applyFonts(); render(); window.scrollTo(0, sy); return; }
     if (a === 'adm-v-f') { admV.f = t.getAttribute('data-v'); admV.limit = 50; render(); window.scrollTo(0, sy); return; }
     if (a === 'adm-v-more') { admV.limit += 50; renderAdmVList(); return; }
-    if (a === 'adm-elo-calc') {
-      var fv = function (id, d) { var e = document.getElementById(id), v = e ? parseFloat(e.value) : NaN; return isFinite(v) ? v : d; };
-      var cR = fv('ecc-r', ELO.r), cN = Math.max(0, fv('ecc-n', 0)), cO = Math.max(2, fv('ecc-o', 4)), cLv = (document.getElementById('ecc-lv') || {}).value, cOk = fv('ecc-ok', 1);
-      var cS = fv('ec-scale', ECFG.scale) || ECFG.scale, cTau = fv('ec-tau', ECFG.tau) || ECFG.tau, cD = fv('ec-lv-' + cLv, ECFG.lv[cLv]);
-      var cG = (document.getElementById('ec-guess') ? document.getElementById('ec-guess').checked : ECFG.guess) ? 1 / cO : 0;
-      var cK = fv('ec-k0', ECFG.k0) + fv('ec-k1', ECFG.k1) * Math.exp(-cN / cTau), cP = cG + (1 - cG) / (1 + Math.pow(10, (cD - cR) / cS)), cNew = cR + cK * (cOk - cP);
-      var out = document.getElementById('ecc-out');
-      if (out) out.textContent = 'D (độ khó câu ' + cLv + ') = ' + cD + '\ng = ' + cG.toFixed(3) + '\np = ' + cG.toFixed(3) + ' + (1 − ' + cG.toFixed(3) + ') / (1 + 10^((' + cD + ' − ' + Math.round(cR) + ') / ' + cS + ')) = ' + cP.toFixed(4) +
-        '\nK = ' + cK.toFixed(1) + '\nthay đổi = K × (' + cOk + ' − p) = ' + (cK * (cOk - cP) >= 0 ? '+' : '') + (cK * (cOk - cP)).toFixed(1) + '\nR mới = ' + Math.round(cNew);
-      return;
-    }
+    if (a === 'adm-elo-calc') { eloCalcOut(); return; }
     function input(id) { var e = document.getElementById(id); return e ? parseInt(e.value, 10) : NaN; }
     if (a === 'adm-exit') { ADMIN = false; LS.set('oel.admin', 0); syncAdminTab(); location.hash = '#home'; return; }
     else if (a === 'adm-xp') activity.bonus = (activity.bonus || 0) + n;
@@ -1976,7 +1976,7 @@
     view.innerHTML = html;
     if (r === 'grammar') renderGList();
     if (r === 'vocab' && vSub === 'decks' && !vBrowse && !vReview) renderVList();
-    if (r === 'admin') renderAdmVList();
+    if (r === 'admin') { renderAdmVList(); eloCalcOut(); }
     if (r === 'ipa' && ipaQ && !ipaQ.done && !ipIsPick()) {
       var iq = ipaQ.qs[ipaQ.i], ifb = iq.result ? view.querySelector('[data-action="ip-next"]') : document.getElementById('ip-in');
       if (ifb) ifb.focus();
@@ -2250,7 +2250,11 @@
       tcur.typed = clean; tcur.msg = '';
       var sqEl = document.getElementById('tq-sq'); if (sqEl) sqEl.innerHTML = tqSquares(tcur);
     }
+    else if (/^ecc?-/.test(ev.target.id)) eloCalcOut();
     else if (ev.target.id === 'j-conf') { var o = document.getElementById('j-conf-out'); if (o) o.textContent = ev.target.value; }
+  });
+  view.addEventListener('keydown', function (ev) {   /* Enter sends the sentence answer; Shift+Enter makes a new line */
+    if (ev.target.id === 'ip-in' && ev.target.tagName === 'TEXTAREA' && ev.key === 'Enter' && !ev.shiftKey && !ev.isComposing) { ev.preventDefault(); ipSubmit(); }
   });
   view.addEventListener('submit', function (ev) {
     if (ev.target.id === 'jform') { ev.preventDefault(); saveEntry(); }

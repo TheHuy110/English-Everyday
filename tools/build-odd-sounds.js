@@ -1,6 +1,6 @@
 // Run:  node tools/build-odd-sounds.js
 // Builds content/odd-sounds.js from content/odd-sounds.csv for the test "choose the word whose underlined part sounds different".
-// CSV: header row, then  option 0,option 1,option 2,option 3,answer
+// CSV: header row, then  option 0,option 1,option 2,option 3,answer[,note]  (extra columns after answer are ignored)
 //   - In each option, put the underlined letters between asterisks:  c*a*t,  *ch*air,  f*ir*st
 //   - answer = the number of the odd option, counting from 0 (0, 1, 2 or 3).
 const fs = require('fs'), path = require('path');
