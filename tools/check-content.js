@@ -99,6 +99,18 @@ try {
     console.log('Checked: ' + qs.length + ' quotes.');
   }
 } catch (e) { err('content/quotes.js cannot be loaded: ' + e.message); }
+try {
+  const of = path.join(dir, 'odd-sounds.js');
+  if (fs.existsSync(of)) {
+    vm.runInContext(fs.readFileSync(of, 'utf8'), sandbox, { filename: 'odd-sounds.js' });
+    const os = Array.isArray(sandbox.OEL.oddSounds) ? sandbox.OEL.oddSounds : (err('OEL.oddSounds is not a list'), []);
+    os.forEach((q, i) => { const t = 'odd-sounds #' + (i + 1);
+      if (!Array.isArray(q.options) || q.options.length !== 4) return err(t + ': needs 4 options');
+      q.options.forEach((o, j) => { const n = (String(o).match(/\*/g) || []).length; (n >= 2 && n % 2 === 0) || err(t + ': option ' + j + ' needs underlined letters between asterisks'); });
+      (Number.isInteger(q.answer) && q.answer >= 0 && q.answer <= 3) || err(t + ': answer must be 0 to 3'); });
+    console.log('Checked: ' + os.length + ' odd-sounds questions.');
+  }
+} catch (e) { err('content/odd-sounds.js cannot be loaded: ' + e.message); }
 console.log('Checked: ' + bank.length + ' questions, ' + arr('grammar').length + ' grammar rules, ' + total + ' vocabulary entries.');
 console.log(errors ? errors + ' error(s), ' + warns + ' warning(s).' : 'OK. ' + warns + ' warning(s).');
 process.exit(errors ? 1 : 0);

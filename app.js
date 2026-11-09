@@ -70,6 +70,16 @@
     BANK.forEach(function (q) { if (q.gid) LINKS[q.gid] = (LINKS[q.gid] || 0) + 1; });
     initQsets();
   }
+  var ODDS = [];   /* questions for the test "which underlined part sounds different" (content/odd-sounds.js) */
+  function initOddSounds() {
+    ODDS = list(OEL.oddSounds).map(function (q) {
+      q = q || {};
+      var o = list(q.options).map(String), a = parseInt(q.answer, 10);
+      var ok = o.length === 4 && a >= 0 && a < 4 && o.every(function (x) { return x.split('*').length > 2 && x.split('*').length % 2 === 1; });
+      if (!ok) { warn('câu hỏi khác âm (cần 4 từ có phần gạch chân giữa hai dấu *, và đáp án từ 0 đến 3)', q); return null; }
+      return { o: o, a: a };
+    }).filter(Boolean);
+  }
   var QUOTES = [];
   function initQuotes() {
     QUOTES = list(OEL.quotes).map(function (q) { q = q || {}; return { t: str(q.text), a: str(q.author), ipa: str(q.ipa), vi: str(q.vi) }; })
@@ -127,7 +137,8 @@
     vocab: { files: ['content/vocab.js', 'content/vocab-def.js'], init: initVocab },
     ipa: { files: ['content/ipa.js'], init: initIpa },
     quotes: { files: ['content/quotes.js'], init: initQuotes },
-    stress: { files: ['content/stress.js'], init: function () {} }
+    stress: { files: ['content/stress.js'], init: function () {} },
+    oddsounds: { files: ['content/odd-sounds.js'], init: initOddSounds }
   };
   var loaded = Object.create(null), pending = Object.create(null);
   function loadScript(src) {
@@ -1635,7 +1646,22 @@
     });
     return out.length >= n ? out : null;
   }
-  function stressDots(n, p) { var d = '', i; for (i = 0; i < n; i++) d += i === p ? '●' : '○'; return d; }
+  function stressDots(n, p) {
+    var d = '', i;
+    for (i = 0; i < n; i++) d += '<i class="d' + (i === p ? ' on' : '') + '"></i>';
+    return '<span class="dots" role="img" aria-label="Trọng âm ở âm tiết thứ ' + (p + 1) + ' trong ' + n + ' âm tiết">' + d + '</span>';
+  }
+  /* "c*a*t" -> { plain: 'cat', html: 'c<u>a</u>t' }: the letters between asterisks are underlined. */
+  function markedWord(t) {
+    var parts = String(t).split('*');
+    return { plain: parts.join(''), html: parts.map(function (x, i) { return i % 2 ? '<u>' + esc(x) + '</u>' : esc(x); }).join('') };
+  }
+  var WMAP = null;
+  function wordEntry(plain) {
+    if (!WMAP) { WMAP = Object.create(null); VOCAB.forEach(function (w) { var k = w.w.toLowerCase(); if (!WMAP[k] && w.ph) WMAP[k] = w; }); }
+    return WMAP[String(plain).toLowerCase()] || null;
+  }
+  function ipIsPick() { return ipaQ && (ipaQ.mode === 'odd' || ipaQ.mode === 'sound'); }
   /* One question: four words with the same number of syllables; three share the stressed syllable, one does not. */
   function genStress() {
     var ix = stressIndex(), max = ipaLv ? LV_IDS.indexOf(ipaLv) : 99, tries;
@@ -1665,6 +1691,11 @@
         var q = genStress();
         if (q && !q.opts.some(function (e) { return seen[e.w.w]; })) { q.opts.forEach(function (e) { seen[e.w.w] = 1; }); qs.push(q); }
       }
+    } else if (mode === 'sound') {
+      shuffle(ODDS).slice(0, n).forEach(function (q) {
+        var order = shuffle([0, 1, 2, 3]);
+        qs.push({ sound: true, opts: order.map(function (i) { return markedWord(q.o[i]); }), a: order.indexOf(q.a), picked: null });
+      });
     } else if (mode === 'word') {
       shuffle(ipaPool().filter(function (e) { return e.w.w.length >= 3; })).slice(0, n).forEach(function (e) { qs.push({ e: e, tries: 0, typed: '', msg: '', result: '' }); });
     } else {
@@ -1681,7 +1712,7 @@
   }
   function ipSubmit() {
     var q = ipaQ && ipaQ.qs[ipaQ.i];
-    if (!q || q.result || ipaQ.mode === 'odd') return;
+    if (!q || q.result || ipIsPick()) return;
     var el = document.getElementById('ip-in'), typed = el ? el.value : q.typed;
     q.typed = typed;
     if (!ipNormSent(typed)) { q.msg = 'Hãy gõ câu trả lời của bạn.'; render(); return; }
@@ -1704,15 +1735,35 @@
       var odd = c.opts[c.a], ok = c.picked === c.a;
       var rows = c.opts.map(function (e, i) {
         var pp = i === c.a ? c.po : c.p;
-        return '<li class="ipa-row-w' + (i === c.a ? ' odd' : '') + '"><b>' + esc(e.w.w) + '</b> <span class="ipa-dots" title="Âm tiết được nhấn">' + stressDots(c.n, pp) + '</span> <span class="muted ipa-t">' + esc(e.ph) + '</span> ' + audioBtns(e.w) + '</li>';
+        return '<li class="ipa-row-w"><b' + (i === c.a ? ' class="oddw"' : '') + '>' + esc(e.w.w) + '</b>' + stressDots(c.n, pp) + '<span class="muted ipa-t">' + esc(e.ph) + '</span><span class="au">' + audioBtns(e.w) + '</span></li>';
       }).join('');
       fb = '<div class="feedback" aria-live="polite"><strong>' + (ok ? 'Chính xác.' : 'Chưa đúng.') + '</strong>' +
-        '<span>Ba từ còn lại nhấn âm tiết thứ ' + ORD_VI[c.p] + '; “' + esc(odd.w.w) + '” nhấn âm tiết thứ ' + ORD_VI[c.po] + '. Dấu ● là âm tiết được nhấn.</span><ul class="ipa-list">' + rows + '</ul>' +
+        '<span>Ba từ còn lại nhấn âm tiết thứ ' + ORD_VI[c.p] + '; “' + esc(odd.w.w) + '” nhấn âm tiết thứ ' + ORD_VI[c.po] + '. Chấm đặc là âm tiết được nhấn.</span><ul class="ipa-grid c4">' + rows + '</ul>' +
         '<div style="margin-top:0.5rem"><button class="btn" type="button" data-action="ip-next">Tiếp</button></div></div>';
     }
     return '<div class="quiz">' + sessionTop('Chọn từ khác trọng âm', ipaQ.i, ipaQ.qs.length, 'ip-exit') +
       '<p style="font-size:1.15rem;margin:0">Chọn từ có <b>trọng âm</b> rơi vào âm tiết khác với ba từ còn lại.</p><p class="muted" style="margin:0">Cả bốn từ đều có ' + c.n + ' âm tiết.</p>' +
       '<div class="opts">' + opts + '</div>' + fb + '</div>';
+  }
+  function viewIpaSound(c) {
+    var answered = c.picked !== null, letters = ['A', 'B', 'C', 'D'];
+    var opts = c.opts.map(function (e, i) {
+      var cls = 'opt' + (answered ? (i === c.a ? ' right' : i === c.picked ? ' wrong' : '') : '');
+      return '<button type="button" class="' + cls + '" data-action="ip-pick" data-i="' + i + '"' + (answered ? ' disabled' : '') + '><i>' + letters[i] + '</i><span>' + e.html + '</span></button>';
+    }).join('');
+    var fb = '';
+    if (answered) {
+      var ok = c.picked === c.a, odd = c.opts[c.a];
+      var rows = c.opts.map(function (e, i) {
+        var w = wordEntry(e.plain);
+        return '<li class="ipa-row-w"><b' + (i === c.a ? ' class="oddw"' : '') + '>' + e.html + '</b><span class="muted ipa-t">' + (w ? esc(w.ph) : '') + '</span><span class="au">' +
+          (w ? audioBtns(w) : (CAN_SPEAK ? '<button type="button" class="btn ghost small" data-action="speak" data-w="' + esc(e.plain) + '">Nghe</button>' : '')) + '</span></li>';
+      }).join('');
+      fb = '<div class="feedback" aria-live="polite"><strong>' + (ok ? 'Chính xác.' : 'Chưa đúng.') + '</strong><span>Từ khác biệt là “' + odd.html + '”: phần gạch chân của nó phát âm khác với ba từ còn lại.</span>' +
+        '<ul class="ipa-grid c3">' + rows + '</ul><div style="margin-top:0.5rem"><button class="btn" type="button" data-action="ip-next">Tiếp</button></div></div>';
+    }
+    return '<div class="quiz">' + sessionTop('Chọn từ khác âm', ipaQ.i, ipaQ.qs.length, 'ip-exit') +
+      '<p style="font-size:1.15rem;margin:0">Chọn từ có phần <u>gạch chân</u> phát âm khác với ba từ còn lại.</p><div class="opts">' + opts + '</div>' + fb + '</div>';
   }
   function viewIpaType(q) {
     var word = ipaQ.mode === 'word', top = sessionTop(word ? 'Phiên âm sang từ' : 'Phiên âm sang câu', ipaQ.i, ipaQ.qs.length, 'ip-exit');
@@ -1745,7 +1796,7 @@
   function viewIpaSession() {
     if (ipaQ.done) return viewIpaDone();
     var q = ipaQ.qs[ipaQ.i];
-    return ipaQ.mode === 'odd' ? viewIpaOdd(q) : viewIpaType(q);
+    return ipaQ.mode === 'odd' ? viewIpaOdd(q) : ipaQ.mode === 'sound' ? viewIpaSound(q) : viewIpaType(q);
   }
   function viewIpaPractice() {
     var lv = [['', 'Tất cả']].concat(VLEVELS.map(function (l) { return [l, 'Đến ' + l]; })).map(function (c) { return chipBtn('ip-lv', c[0], c[1], ipaLv === c[0]); }).join('');
@@ -1756,9 +1807,12 @@
     }
     return '<div class="stack" style="gap:1.25rem">' + (ipaMsg ? '<p class="panel" role="status">' + esc(ipaMsg) + '</p>' : '') +
       '<div><p class="lab" style="margin-bottom:0.4rem">Cấp độ từ (cho bài 1 và 2)</p><div class="chips" role="group" aria-label="Cấp độ từ">' + lv + '</div></div>' +
-      card('Chọn từ khác trọng âm', 'Bài 1', 'Bốn từ có cùng số âm tiết: ba từ nhấn cùng một âm tiết, một từ nhấn âm tiết khác. Sau khi trả lời bạn thấy âm tiết được nhấn của từng từ. Trọng âm lấy từ từ điển CMU và đã đối chiếu với phiên âm Oxford.', '', 'odd', 'Bắt đầu (' + IP_N + ' câu)') +
+      '<div class="panel stack" style="gap:0.9rem"><div><p class="call">Bài 1</p><h2>Chọn từ khác</h2></div>' +
+        '<p class="muted">Bốn từ, ba từ giống nhau và một từ khác. “Khác trọng âm”: cả bốn từ có cùng số âm tiết, ba từ nhấn cùng một âm tiết. “Khác âm”: chọn từ có phần gạch chân phát âm khác với ba từ còn lại.</p>' +
+        '<div class="row"><button class="btn" type="button" data-action="ip-start" data-m="odd">Khác trọng âm (' + IP_N + ' câu)</button>' +
+        '<button class="btn" type="button" data-action="ip-start" data-m="sound">Khác âm (câu mẫu)</button></div></div>' +
       card('Phiên âm sang từ', 'Bài 2', 'Bạn thấy phiên âm của một từ và gõ từ tiếng Anh đó. Các từ đồng âm đều được chấp nhận.', '', 'word', 'Bắt đầu (' + IP_N + ' từ)') +
-      card('Phiên âm sang câu', 'Bài 3', 'Bạn thấy phiên âm của một câu trích dẫn nổi tiếng và gõ cả câu. Đáp án có kèm nghĩa tiếng Việt. Phiên âm tạo tự động từ từ điển CMU và đang chờ rà soát.',
+      card('Phiên âm sang câu', 'Bài 3', 'Bạn thấy phiên âm của một câu trích dẫn nổi tiếng và gõ cả câu. Đáp án có kèm nghĩa tiếng Việt.',
         '<div><p class="lab" style="margin-bottom:0.4rem">Độ dài câu</p><div class="chips" role="group" aria-label="Độ dài câu">' + tiers + '</div></div>', 'sent', 'Bắt đầu (' + IP_SENT_N + ' câu)') + '</div>';
   }
   function viewIpa() {
@@ -1923,7 +1977,7 @@
     if (r === 'grammar') renderGList();
     if (r === 'vocab' && vSub === 'decks' && !vBrowse && !vReview) renderVList();
     if (r === 'admin') renderAdmVList();
-    if (r === 'ipa' && ipaQ && !ipaQ.done && ipaQ.mode !== 'odd') {
+    if (r === 'ipa' && ipaQ && !ipaQ.done && !ipIsPick()) {
       var iq = ipaQ.qs[ipaQ.i], ifb = iq.result ? view.querySelector('[data-action="ip-next"]') : document.getElementById('ip-in');
       if (ifb) ifb.focus();
     }
@@ -1999,7 +2053,7 @@
     } else if (a === 'ip-lv') {
       ipaLv = t.getAttribute('data-v'); render(); refocus(a, ipaLv);
     } else if (a === 'ip-start') {
-      var im = t.getAttribute('data-m'), grp = im === 'odd' ? 'stress' : im === 'sent' ? 'quotes' : '';
+      var im = t.getAttribute('data-m'), grp = im === 'odd' ? 'stress' : im === 'sent' ? 'quotes' : im === 'sound' ? 'oddsounds' : '';
       if (grp && !loaded[grp]) {
         ensure([grp]).then(function () { ipaQ = null; startIpaSession(im); render(); window.scrollTo(0, 0); }, function () { ipaMsg = 'Không tải được dữ liệu bài tập. Hãy kiểm tra kết nối mạng rồi thử lại.'; render(); });
         return;
@@ -2009,16 +2063,16 @@
       ipaQ = null; ipaSub = 'practice'; render(); window.scrollTo(0, 0);
     } else if (a === 'ip-pick') {
       var oq = ipaQ && ipaQ.qs[ipaQ.i];
-      if (!oq || ipaQ.mode !== 'odd' || oq.picked !== null) return;
+      if (!oq || !ipIsPick() || oq.picked !== null) return;
       oq.picked = parseInt(t.getAttribute('data-i'), 10); if (oq.picked === oq.a) ipaQ.score++;
       render(); var inb = view.querySelector('[data-action="ip-next"]'); if (inb) inb.focus();
     } else if (a === 'ip-giveup') {
       var gq = ipaQ && ipaQ.qs[ipaQ.i];
-      if (gq && !gq.result && ipaQ.mode !== 'odd') { gq.typed = (document.getElementById('ip-in') || {}).value || ''; ipFinish(gq, 'wrong'); render(); }
+      if (gq && !gq.result && !ipIsPick()) { gq.typed = (document.getElementById('ip-in') || {}).value || ''; ipFinish(gq, 'wrong'); render(); }
     } else if (a === 'ip-next') {
       if (!ipaQ || ipaQ.done) return;
       var nq = ipaQ.qs[ipaQ.i];
-      if (ipaQ.mode === 'odd' ? nq.picked === null : !nq.result) return;
+      if (ipIsPick() ? nq.picked === null : !nq.result) return;
       ipaQ.i++;
       if (ipaQ.i >= ipaQ.qs.length) { ipaQ.done = true; if (!ipaQ.counted) { ipaQ.counted = true; Act.test(); } }
       render(); window.scrollTo(0, 0);
