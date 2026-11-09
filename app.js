@@ -72,17 +72,18 @@
   }
   var ODDS = [];   /* questions for the test "which underlined part sounds different" (content/odd-sounds.js) */
   function initOddSounds() {
-    ODDS = list(OEL.oddSounds).map(function (q) {
+    ODDS = list(OEL.oddSounds).map(function (q, qi) {
       q = q || {};
       var o = list(q.options).map(String), a = parseInt(q.answer, 10);
       var ok = o.length === 4 && a >= 0 && a < 4 && o.every(function (x) { return x.split('*').length > 2 && x.split('*').length % 2 === 1; });
       if (!ok) { warn('câu hỏi khác âm (cần 4 từ có phần gạch chân giữa hai dấu *, và đáp án từ 0 đến 3)', q); return null; }
-      return { o: o, a: a };
+      return { o: o, a: a, row: parseInt(q.row, 10) || qi + 2, note: str(q.note) };   /* row = line in content/odd-sounds.csv */
     }).filter(Boolean);
   }
   var QUOTES = [];
   function initQuotes() {
-    QUOTES = list(OEL.quotes).map(function (q) { q = q || {}; return { t: str(q.text), a: str(q.author), ipa: str(q.ipa), vi: str(q.vi) }; })
+    QUOTES = list(OEL.quotes).map(function (q, qi) { q = q || {}; return { t: str(q.text), a: str(q.author), ipa: str(q.ipa), vi: str(q.vi), n: qi + 1 }; })   /* n = position in content/quotes.js */
+     
       .filter(function (q) { var ok = q.t && q.ipa; if (!ok) warn('câu trích dẫn (cần text và ipa)', q); return ok; });
   }
   var IPA_CFG = {}, IPA = [], IPAQ = {};
@@ -141,10 +142,11 @@
     oddsounds: { files: ['content/odd-sounds.js'], init: initOddSounds }
   };
   var loaded = Object.create(null), pending = Object.create(null);
+  var APP_V = (document.querySelector('meta[name="oel-version"]') || {}).content || '';   /* site version, set in index.html (node tools/bump-version.js) */
   function loadScript(src) {
     return new Promise(function (resolve, reject) {
       var el = document.createElement('script');
-      el.src = src;
+      el.src = APP_V ? src + '?v=' + APP_V : src;   /* new version = new URL = no stale cached copy */
       el.onload = function () { resolve(); };
       el.onerror = function () { if (el.parentNode) el.parentNode.removeChild(el); reject(new Error(src)); };
       document.head.appendChild(el);
@@ -437,6 +439,18 @@
   }
   /* Vocabulary admin: words and meanings are matched by ID (the order number in oxford.csv / meanings.csv), never by row position. */
   var admV = { q: '', f: 'all', limit: 50 };
+  /* Untranslated leftovers such as "cheap" -> "Một cách cheap": the meaning still contains the English headword as a whole word. */
+  function engHit(w) {
+    if (!hasDef(w) || !w.w) return null;
+    try { return new RegExp('(^|[^\\p{L}])(' + w.w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')(?![\\p{L}])', 'iu').exec(w.vi); } catch (e) { return null; }
+  }
+  function admViHtml(w) {
+    if (!hasDef(w)) return '<span class="muted">—</span>';
+    var m = admV.f === 'eng' ? engHit(w) : null;
+    if (!m) return esc(w.vi);
+    var at = m.index + m[1].length;
+    return esc(w.vi.slice(0, at)) + '<mark>' + esc(m[2]) + '</mark>' + esc(w.vi.slice(at + m[2].length));
+  }
   function admVRows() {
     var q = admV.q.trim().toLowerCase(), rows = [];
     if (admV.f === 'orphan') {
@@ -445,6 +459,7 @@
       VOCAB.forEach(function (w) {
         if (admV.f === 'nomean' && hasDef(w)) return;
         if (admV.f === 'noaudio' && w.uk && w.us) return;
+        if (admV.f === 'eng' && !engHit(w)) return;
         rows.push(w);
       });
     }
@@ -461,10 +476,62 @@
     el.innerHTML = '<div class="table-wrap"><table style="min-width:0"><thead><tr><th>ID</th><th>Từ</th><th>Loại</th><th>Cấp</th><th>Phiên âm</th><th>Nghĩa</th><th>Anh</th><th>Mỹ</th></tr></thead><tbody>' +
       shown.map(function (w) {
         if (w.orphan) return '<tr><td>' + w.o + '</td><td colspan="4"><span class="adm-note">⚠ không có từ nào mang ID này</span></td><td>' + esc(w.vi) + '</td><td></td><td></td></tr>';
-        return '<tr><td>' + w.o + '</td><td>' + esc(w.w) + '</td><td>' + esc(w.pos) + '</td><td>' + esc(w.lv) + '</td><td>' + esc(w.ph) + '</td><td>' + (hasDef(w) ? esc(w.vi) : '<span class="muted">—</span>') +
+        return '<tr><td>' + w.o + '</td><td>' + esc(w.w) + '</td><td>' + esc(w.pos) + '</td><td>' + esc(w.lv) + '</td><td>' + esc(w.ph) + '</td><td>' + admViHtml(w) +
           '</td><td>' + (w.uk ? '✓' : '—') + '</td><td>' + (w.us ? '✓' : '—') + '</td></tr>';
       }).join('') + '</tbody></table></div>' +
       (rows.length > shown.length ? '<div style="margin-top:0.8rem">' + admBtn('adm-v-more', 'Xem thêm 50 dòng') + '</div>' : '');
+  }
+  /* IPA tests admin: these tests have no IDs, so each question is shown as the row it comes from
+     (line in odd-sounds.csv, position in quotes.js, "syllables:stressed syllable" group in stress.js). */
+  var admI = { q: '', f: 'sound', limit: 50 };
+  function admIRows() {
+    var q = admI.q.trim().toLowerCase(), rows = [];
+    if (admI.f === 'quotes') {
+      return QUOTES.filter(function (x) { return !q || String(x.n) === q || (x.t + ' ' + x.a + ' ' + x.ipa + ' ' + x.vi).toLowerCase().indexOf(q) > -1; });
+    }
+    if (admI.f === 'stress') {
+      var st = OEL.stress || {};
+      Object.keys(st).sort().forEach(function (k) {
+        var ws = list(st[k]).map(String);
+        if (!q) rows.push({ k: k, words: ws, all: ws.length });
+        else { var hit = ws.filter(function (w) { return w.toLowerCase().indexOf(q) > -1; }); if (hit.length) rows.push({ k: k, words: hit, all: ws.length, hit: true }); }
+      });
+      return rows;
+    }
+    return ODDS.filter(function (x) { return !q || String(x.row) === q || (x.o.join(' ').replace(/\*/g, '') + ' ' + x.note).toLowerCase().indexOf(q) > -1; });
+  }
+  function renderAdmIList() {
+    var el = document.getElementById('adm-ilist'), cnt = document.getElementById('adm-icount');
+    if (!el) return;
+    var rows = admIRows(), shown = admI.f === 'stress' ? rows : rows.slice(0, admI.limit), body, headRow;
+    cnt.textContent = rows.length + (admI.f === 'stress' ? ' nhóm' : ' dòng') + (rows.length > shown.length ? ', đang hiện ' + shown.length : '');
+    if (!rows.length) { el.innerHTML = '<div class="empty">Không có dòng nào phù hợp.</div>'; return; }
+    if (admI.f === 'quotes') {
+      headRow = '<th>#</th><th>Câu</th><th>Tác giả</th><th>Phiên âm</th><th>Nghĩa</th>';
+      body = shown.map(function (x) { return '<tr><td>' + x.n + '</td><td>' + esc(x.t) + '</td><td>' + esc(x.a) + '</td><td>' + esc(x.ipa) + '</td><td>' + esc(x.vi) + '</td></tr>'; }).join('');
+    } else if (admI.f === 'stress') {
+      headRow = '<th>Nhóm</th><th>Số âm tiết</th><th>Nhấn âm tiết</th><th>Số từ</th><th>Từ</th>';
+      body = shown.map(function (x) {
+        var p = x.k.split(':'), ws = x.hit ? x.words : x.words.slice(0, 12);
+        return '<tr><td>' + esc(x.k) + '</td><td>' + esc(p[0]) + '</td><td>' + ((+p[1]) + 1) + '</td><td>' + x.all + '</td><td>' + esc(ws.join(', ')) + (!x.hit && x.words.length > 12 ? '…' : '') + '</td></tr>';
+      }).join('');
+    } else {
+      headRow = '<th>Dòng CSV</th><th>A</th><th>B</th><th>C</th><th>D</th><th>Ghi chú</th>';
+      body = shown.map(function (x) {
+        return '<tr><td>' + x.row + '</td>' + x.o.map(function (o, i) { return '<td' + (i === x.a ? ' class="adm-ok"' : '') + '>' + markedWord(o).html + (i === x.a ? ' ✓' : '') + '</td>'; }).join('') + '<td>' + esc(x.note) + '</td></tr>';
+      }).join('');
+    }
+    el.innerHTML = '<div class="table-wrap"><table style="min-width:0"><thead><tr>' + headRow + '</tr></thead><tbody>' + body + '</tbody></table></div>' +
+      (rows.length > shown.length ? '<div style="margin-top:0.8rem">' + admBtn('adm-i-more', 'Xem thêm 50 dòng') + '</div>' : '');
+  }
+  function admIpaPanel() {
+    var fl = [['sound', 'Khác âm (' + ODDS.length + ')'], ['quotes', 'Câu trích dẫn (' + QUOTES.length + ')'], ['stress', 'Trọng âm (' + Object.keys(OEL.stress || {}).length + ' nhóm)']]
+      .map(function (f) { return chipBtn('adm-i-f', f[0], f[1], admI.f === f[0]); }).join('');
+    return '<section class="panel stack" style="gap:0.8rem"><h2>Kiểm tra bài phát âm</h2>' +
+      '<p class="muted">Các bài phát âm không dùng ID, nên mỗi câu hỏi được hiện theo dòng nó nằm trong tệp nguồn. “Khác âm”: dòng trong content/odd-sounds.csv (đáp án đánh dấu ✓). “Câu trích dẫn”: số thứ tự trong content/quotes.js. “Trọng âm”: bài ghép ngẫu nhiên từ các nhóm “số âm tiết:vị trí âm tiết nhấn” trong content/stress.js, gõ một từ để biết nó nằm ở nhóm nào. Bài “Phiên âm sang từ” lấy từ danh sách từ vựng (xem theo ID ở mục từ vựng). Khi bạn làm bài ở chế độ admin, nguồn của câu đang làm cũng hiện ngay dưới đề.</p>' +
+      '<div class="chips" role="group" aria-label="Chọn bài phát âm">' + fl + '</div>' +
+      '<div><label for="adm-i-search">Tìm theo số dòng, từ hoặc ghi chú</label><input id="adm-i-search" type="search" autocomplete="off" value="' + esc(admI.q) + '"></div>' +
+      '<p class="muted" id="adm-icount" aria-live="polite"></p><div id="adm-ilist"></div></section>';
   }
   function admEloPanel() {
     var h = ELO.h.slice(-100), pts = '', ok = ELO.h.filter(function (x) { return x.ok; }).length;
@@ -530,7 +597,7 @@
     var withDef = VOCAB.filter(hasDef).length, mIds = Object.keys(VDEF), orphan = mIds.filter(function (k) { return !VORD[k]; });
     var noUk = VOCAB.filter(function (w) { return !w.uk; }).length, noUs = VOCAB.filter(function (w) { return !w.us; }).length;
     function ids(a, n) { return a.length ? ' (' + esc(a.slice(0, n).join(', ')) + (a.length > n ? '…' : '') + ')' : ''; }
-    var fl = [['all', 'Tất cả'], ['nomean', 'Chưa có nghĩa'], ['noaudio', 'Thiếu âm thanh'], ['orphan', 'ID nghĩa không có từ']].map(function (f) { return chipBtn('adm-v-f', f[0], f[1], admV.f === f[0]); }).join('');
+    var fl = [['all', 'Tất cả'], ['nomean', 'Chưa có nghĩa'], ['noaudio', 'Thiếu âm thanh'], ['eng', 'Nghĩa còn từ tiếng Anh (' + VOCAB.filter(engHit).length + ')'], ['orphan', 'ID nghĩa không có từ']].map(function (f) { return chipBtn('adm-v-f', f[0], f[1], admV.f === f[0]); }).join('');
     return '<section class="panel stack" style="gap:0.8rem"><h2>Kiểm tra từ vựng (theo ID)</h2>' +
       '<p>Từ: <strong>' + VOCAB.length + '</strong> · ID nghĩa: <strong>' + mIds.length + '</strong> · từ đã có nghĩa: <strong>' + withDef + '</strong> · chưa có nghĩa: <strong>' + (VOCAB.length - withDef) + '</strong></p>' +
       '<p>ID nghĩa không có từ tương ứng: <strong>' + orphan.length + '</strong>' + ids(orphan, 12) + '</p>' +
@@ -561,6 +628,7 @@
     var setInfo = QSETS.map(function (s) { return '<span class="tag">' + esc(s.id) + ' (' + esc(s.lv) + '): ' + s.qs.length + ' câu</span>'; }).join(' ');
     return head('Quản trị', 'Chế độ ẩn dành cho chủ trang. Mọi thay đổi chỉ nằm trong trình duyệt này.') + '<div class="stack" style="gap:1.5rem">' +
       '<section class="panel stack" style="gap:0.8rem"><h2>Nội dung</h2>' +
+      '<p>Phiên bản trang: <strong>' + esc(APP_V || '?') + '</strong> (đang chạy)</p>' +
       '<p>Ngữ pháp: <strong>' + GRAMMAR.length + '</strong> quy tắc ' + kv(gLv) + '</p>' +
       '<p>Câu hỏi: <strong>' + BANK.length + '</strong> ' + kv(byLv) + '</p><p>Chủ đề câu hỏi: ' + kv(byTopic) + '</p>' +
       '<p>Từ vựng: ' + vocabInfo + '</p><p>Bài luyện: ' + setInfo + '</p></section>' +
@@ -570,7 +638,7 @@
       '<p>grammarId bị trùng: <strong>' + GDUP.length + '</strong>' + (GDUP.length ? ' (' + esc(GDUP.join(', ')) + ')' : '') + '</p>' +
       '<p>Quy tắc chưa có câu hỏi nào: <strong>' + noQ.length + '</strong>' + (noQ.length ? ' (' + esc(noQ.slice(0, 12).map(function (g) { return g.gid; }).join(', ')) + (noQ.length > 12 ? '…' : '') + ')' : '') + '</p>' +
       orphanHtml + '<details><summary style="cursor:pointer;font-weight:600">Bảng quy tắc ngữ pháp (' + GRAMMAR.length + ')</summary><div class="table-wrap"><table style="min-width:0"><thead><tr><th>ID</th><th>Quy tắc</th><th>Cấp</th><th>Chủ đề</th><th>Số câu hỏi</th></tr></thead><tbody>' + rows + '</tbody></table></div></details></section>' +
-      admFontPanel() + admEloPanel() + admEloCfgPanel() + admVocabPanel() +
+      admFontPanel() + admEloPanel() + admEloCfgPanel() + admVocabPanel() + admIpaPanel() +
       '<section class="panel stack" style="gap:0.8rem"><h2>Tiến độ (thử nghiệm)</h2>' +
       '<p>XP hiện tại: <strong>' + ps.xp + '</strong> (đã cộng thêm ' + (activity.bonus || 0) + ') · Cấp <strong>' + ps.level + '</strong> / ' + PLEVELS.length + ' · chuỗi ' + ps.streak + ' ngày</p>' +
       '<div class="row">' + [10, 100, 1000].map(function (n) { return admBtn('adm-xp', '+' + n + ' XP', n); }).join('') + admBtn('adm-xp', '-100 XP', -100) + '</div>' +
@@ -668,6 +736,8 @@
     if (a === 'adm-font-reset') { FONTSEL = {}; LS.set('oel.fonts', FONTSEL); applyFonts(); render(); window.scrollTo(0, sy); return; }
     if (a === 'adm-v-f') { admV.f = t.getAttribute('data-v'); admV.limit = 50; render(); window.scrollTo(0, sy); return; }
     if (a === 'adm-v-more') { admV.limit += 50; renderAdmVList(); return; }
+    if (a === 'adm-i-f') { admI.f = t.getAttribute('data-v'); admI.limit = 50; render(); window.scrollTo(0, sy); return; }
+    if (a === 'adm-i-more') { admI.limit += 50; renderAdmIList(); return; }
     if (a === 'adm-elo-calc') { eloCalcOut(); return; }
     function input(id) { var e = document.getElementById(id); return e ? parseInt(e.value, 10) : NaN; }
     if (a === 'adm-exit') { ADMIN = false; LS.set('oel.admin', 0); syncAdminTab(); location.hash = '#home'; return; }
@@ -1694,7 +1764,7 @@
     } else if (mode === 'sound') {
       shuffle(ODDS).slice(0, n).forEach(function (q) {
         var order = shuffle([0, 1, 2, 3]);
-        qs.push({ sound: true, opts: order.map(function (i) { return markedWord(q.o[i]); }), a: order.indexOf(q.a), picked: null });
+        qs.push({ sound: true, row: q.row, note: q.note, opts: order.map(function (i) { return markedWord(q.o[i]); }), a: order.indexOf(q.a), picked: null });
       });
     } else if (mode === 'word') {
       shuffle(ipaPool().filter(function (e) { return e.w.w.length >= 3; })).slice(0, n).forEach(function (e) { qs.push({ e: e, tries: 0, typed: '', msg: '', result: '' }); });
@@ -1743,6 +1813,7 @@
     }
     return '<div class="quiz">' + sessionTop('Chọn từ khác trọng âm', ipaQ.i, ipaQ.qs.length, 'ip-exit') +
       '<p style="font-size:1.15rem;margin:0">Chọn từ có <b>trọng âm</b> rơi vào âm tiết khác với ba từ còn lại.</p><p class="muted" style="margin:0">Cả bốn từ đều có ' + c.n + ' âm tiết.</p>' +
+      (ADMIN ? '<p class="adm-note">[admin] Ba từ thuộc nhóm ' + c.n + ':' + c.p + ', từ khác thuộc nhóm ' + c.n + ':' + c.po + ' (content/stress.js, dạng số âm tiết:vị trí âm tiết nhấn tính từ 0)</p>' : '') +
       '<div class="opts">' + opts + '</div>' + fb + '</div>';
   }
   function viewIpaSound(c) {
@@ -1763,7 +1834,8 @@
         '<ul class="ipa-grid c3">' + rows + '</ul><div style="margin-top:0.5rem"><button class="btn" type="button" data-action="ip-next">Tiếp</button></div></div>';
     }
     return '<div class="quiz">' + sessionTop('Chọn từ khác âm', ipaQ.i, ipaQ.qs.length, 'ip-exit') +
-      '<p style="font-size:1.15rem;margin:0">Chọn từ có phần <u>gạch chân</u> phát âm khác với ba từ còn lại.</p><div class="opts">' + opts + '</div>' + fb + '</div>';
+      '<p style="font-size:1.15rem;margin:0">Chọn từ có phần <u>gạch chân</u> phát âm khác với ba từ còn lại.</p>' +
+      (ADMIN ? '<p class="adm-note">[admin] Dòng ' + c.row + ' trong content/odd-sounds.csv' + (c.note ? ' · ' + esc(c.note) : '') + '</p>' : '') + '<div class="opts">' + opts + '</div>' + fb + '</div>';
   }
   function viewIpaType(q) {
     var word = ipaQ.mode === 'word', top = sessionTop(word ? 'Phiên âm sang từ' : 'Phiên âm sang câu', ipaQ.i, ipaQ.qs.length, 'ip-exit');
@@ -1785,7 +1857,8 @@
         (q.msg ? '<p role="status" style="margin:0;color:var(--bad)">' + esc(q.msg) + '</p>' : '') +
         '<div class="row"><button class="btn" type="submit">Kiểm tra</button><button class="btn ghost" type="button" data-action="ip-giveup">Mình chưa biết</button></div></form>';
     }
-    return '<div class="quiz">' + top + prompt + body + '</div>';
+    var admNote = ADMIN ? '<p class="adm-note">[admin] ' + (word ? 'Từ vựng ID ' + q.e.w.o : 'Câu số ' + q.q.n + ' trong content/quotes.js') + '</p>' : '';
+    return '<div class="quiz">' + top + admNote + prompt + body + '</div>';
   }
   function viewIpaDone() {
     var n = ipaQ.qs.length;
@@ -1960,7 +2033,7 @@
     if (r === 'tests') return ['bank', 'grammar'];   /* each question links to a grammar rule */
     if (r === 'vocab') return ['vocab'];
     if (r === 'ipa') return ['ipa', 'vocab'];   /* example-word audio looks up file names in the word list */
-    if (r === 'admin') return ['grammar', 'bank', 'vocab'];
+    if (r === 'admin') return ['grammar', 'bank', 'vocab', 'oddsounds', 'quotes', 'stress'];
     return [];
   }
   function markTab(r) {
@@ -1976,7 +2049,7 @@
     view.innerHTML = html;
     if (r === 'grammar') renderGList();
     if (r === 'vocab' && vSub === 'decks' && !vBrowse && !vReview) renderVList();
-    if (r === 'admin') { renderAdmVList(); eloCalcOut(); }
+    if (r === 'admin') { renderAdmVList(); renderAdmIList(); eloCalcOut(); }
     if (r === 'ipa' && ipaQ && !ipaQ.done && !ipIsPick()) {
       var iq = ipaQ.qs[ipaQ.i], ifb = iq.result ? view.querySelector('[data-action="ip-next"]') : document.getElementById('ip-in');
       if (ifb) ifb.focus();
@@ -2243,6 +2316,7 @@
       gQuery = ev.target.value; renderGList();
     }
     else if (ev.target.id === 'adm-v-search') { admV.q = ev.target.value; admV.limit = 50; renderAdmVList(); }
+    else if (ev.target.id === 'adm-i-search') { admI.q = ev.target.value; admI.limit = 50; renderAdmIList(); }
     else if (ev.target.id === 'v-search') { vQuery = ev.target.value; vLimit = 40; renderVList(); }
     else if (ev.target.id === 'tq-in' && vType && vType.cur && !vType.cur.result) {
       var tcur = vType.cur, tmax = tqFree(tcur).length, clean = ev.target.value.replace(/[\s\-'’.,!?;:]/g, '').slice(0, tmax);
