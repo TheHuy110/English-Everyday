@@ -39,7 +39,7 @@
 
   /* ---------- Làm sạch dữ liệu nội dung ---------- */
   function idOf(v) { return v === undefined || v === null ? '' : String(v).trim(); }
-  var MORE_TYPES = { extension: 'Mở rộng', advanced: 'Nâng cao', nuance: 'Sắc thái' };
+  var MORE_TYPES = { extension: 'Mở rộng', nuance: 'Sắc thái', advanced: 'Nâng cao', mistake: 'Lỗi thường gặp' };
   var GRAMMAR = [], GBYID = Object.create(null), GDUP = [];
   function initGrammar() {
     GRAMMAR = list(OEL.grammar).map(function (g) {

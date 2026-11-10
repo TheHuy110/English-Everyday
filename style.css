@@ -419,3 +419,7 @@ textarea#ip-in { width: 100%; font: inherit; padding: 0.7rem 0.8rem; border: 1px
 .adm-ok { background: var(--good-bg); font-weight: 600; }
 #adm-ilist td, #adm-vlist td { vertical-align: top; }
 mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 0.15rem; }
+
+/* Grammar "more": common mistakes get the warning colour */
+.more-item.t-mistake { border-left-color: var(--bad); }
+.more-item.t-mistake .mtag { color: var(--bad); }

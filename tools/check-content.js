@@ -19,7 +19,7 @@ arr('grammar').forEach((g, i) => { const t = 'grammar #' + (i+1) + ' (' + (g.tit
   ['title','category','rule'].forEach(k => str(g[k]) || err(t + ': missing ' + k));
   Array.isArray(g.form) && g.form.length && g.form.every(str) || err(t + ': form must be a list of non-empty lines');
   (g.more === undefined || Array.isArray(g.more)) || err(t + ': more must be a list');
-  (g.more || []).forEach((m, j) => { ['extension','advanced','nuance'].includes(m && m.type) || err(t + ': more #' + (j+1) + ' type must be extension, advanced or nuance'); str(m && m.text) || err(t + ': more #' + (j+1) + ' has no text'); });
+  (g.more || []).forEach((m, j) => { ['extension','advanced','nuance','mistake'].includes(m && m.type) || err(t + ': more #' + (j+1) + ' type must be extension, advanced, nuance or mistake'); str(m && m.text) || err(t + ': more #' + (j+1) + ' has no text'); });
   LV.includes(g.level) || err(t + ': level must be one of ' + LV.join(', '));
   Array.isArray(g.examples) && g.examples.length || warn(t + ': no examples'); });
 
