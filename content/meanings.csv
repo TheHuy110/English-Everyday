@@ -175,7 +175,7 @@ Id,Meaning
 173,Giống nhau
 174,Tương tự như nhau
 175,Còn sống; sống động
-176,Một cách all
+176,Hoàn toàn; trọn vẹn
 177,Tất cả
 178,Tất cả mọi thứ
 179,Ổn; tốt
@@ -218,7 +218,7 @@ Id,Meaning
 216,Ở giữa; trong lúc
 217,Trong số; giữa
 218,Số lượng; lượng
-219,Làm amount; amount
+219,Lên tới, rốt cuộc là
 220,Vui nhộn; gây cười
 221,Sự tương tự; so sánh
 222,Phân tích
@@ -251,7 +251,7 @@ Id,Meaning
 249,Dự đoán; mong đợi
 250,Sự lo âu; trăn trở
 251,Lo âu; hồi hộp
-252,Một cách any
+252,Chút nào, tí nào
 253,Bất kỳ
 254,Bất kỳ cái nào
 255,Nữa; không còn nữa
@@ -444,7 +444,7 @@ Id,Meaning
 442,Ngân hàng; bờ sông
 443,Biểu ngữ; băng rôn
 444,Quán bar; thanh chắn
-445,Làm bar; bar
+445,Ngăn cản; loại trừ
 446,Trần trụi; trọc
 447,Vừa đủ; suýt soát
 448,Món hời; thỏa thuận
@@ -462,12 +462,12 @@ Id,Meaning
 460,Bóng rổ
 461,Âm trầm; đàn bass
 462,Gậy đánh bóng; con dơi
-463,Làm bat; bat
+463,Đánh bằng gậy; nháy mắt
 464,Bồn tắm; sự tắm
 465,Phòng tắm
 466,Pin; ắc quy
 467,Trận chiến
-468,Làm battle; battle
+468,chiến đấu; vật lộn
 469,Chiến trường
 470,Vịnh biển
 471,Thì; là; ở
@@ -542,7 +542,7 @@ Id,Meaning
 540,To lớn
 541,Xe đạp
 542,Hóa đơn; tiền giấy
-543,Làm bill; bill
+543,Lập hóa đơn; niêm yết
 544,Một tỷ
 545,Thùng rác
 546,Ràng buộc; trói buộc
@@ -568,7 +568,7 @@ Id,Meaning
 566,Khoảng trống; chỗ trống
 567,Cái chăn
 568,Vụ nổ; luồng gió
-569,Làm blast; blast
+569,Làm nổ tung; chỉ trích gay gắt
 570,Chảy máu
 571,Hỗn hợp pha trộn
 572,Pha trộn; hòa trộn
@@ -830,7 +830,7 @@ Id,Meaning
 828,Gian lận; lừa dối
 829,Sự kiểm tra; séc
 830,Kiểm tra
-831,Mái má
+831,Má, sự táo tợn
 832,Tiếng reo hò
 833,Reo hò; cổ vũ
 834,Vui vẻ; hân hoan
