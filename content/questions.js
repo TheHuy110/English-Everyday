@@ -743,7 +743,7 @@ OEL.questions = [
   { level: "A2", topic: "Câu điều kiện", grammarId: "023", question: "If you boil water, it ___ steam.", options: ["produce", "produces", "produced", "will produce"], answer: "produces", explanation: "Sự thật hóa học/vật lý dùng 'produces'." },
   { level: "A2", topic: "Câu điều kiện", grammarId: "023", question: "Iron rusts if it gets wet with ___.", options: ["water", "waters", "a water", "the water"], answer: "water", explanation: "Sự thật về sắt gỉ khi gặp nước." },
   { level: "A2", topic: "Câu điều kiện", grammarId: "023", question: "If you press the brake, the car ___ down.", options: ["slow", "slows", "slowed", "will slow"], answer: "slows", explanation: "Quy luật vận hành xe dùng 'slows down'." },
-  { level: "A2", topic: "Câu điều kiện", grammarId: "023", question: "Leaves fall off trees if autumn ___.", options: ["come", "comes", "came", "will come"], explanation: "comes", rule: "Sự thay đổi theo mùa dùng 'comes'." },
+  { level: "A2", topic: "Câu điều kiện", grammarId: "023", question: "Leaves fall off trees if autumn ___.", options: ["come", "comes", "came", "will come"], answer: "comes", explanation: "Sự thay đổi theo mùa dùng 'comes'." },
   { level: "A2", topic: "Câu điều kiện", grammarId: "023", question: "If you jump off a cliff, you ___ hurt.", options: ["get", "gets", "got", "will get"], answer: "get", explanation: "Hậu quả vật lý tất yếu dùng 'get'." },
 
   // 24. Câu điều kiện hỗn hợp (Mixed conditional) - 30 câu
@@ -3021,7 +3021,7 @@ OEL.questions = [
   { level: "A1", topic: "Giới từ", grammarId: "094", question: "Her flight is ___ Friday.", options: ["on", "in", "at", "by"], answer: "on", explanation: "Thứ 'on Friday'." },
   { level: "A1", topic: "Giới từ", grammarId: "094", question: "The castle was constructed ___ the Middle Ages.", options: ["in", "on", "at", "by"], answer: "in", explanation: "Thời kỳ lịch sử 'in the Middle Ages'." },
   { level: "A1", topic: "Giới từ", grammarId: "094", question: "I usually wake up ___ sunrise.", options: ["at", "on", "in", "by"], answer: "at", explanation: "Mốc thời gian 'at sunrise'." },
-  { level: "A1", topic: "Giới từ", grammarId: "094", question: "The class finishes ___ ten minutes.", options: ["in", "on", "at", "by"], answer: "Sau 10 phút nữa 'in ten minutes'." },
+  { level: "A1", topic: "Giới từ", grammarId: "094", question: "The class finishes ___ ten minutes.", options: ["in", "on", "at", "by"], answer: "in", explanation: "Sau 10 phút nữa 'in ten minutes'." },
   { level: "A1", topic: "Giới từ", grammarId: "094", question: "We have a party ___ New Year's Eve.", options: ["on", "in", "at", "by"], answer: "on", explanation: "Đêm giao thừa có 'Eve/Day' dùng 'on'." },
   { level: "A1", topic: "Giới từ", grammarId: "094", question: "He works best ___ midnight.", options: ["at", "on", "in", "by"], answer: "at", explanation: "Mốc thời gian 'at midnight'." },
   { level: "A1", topic: "Giới từ", grammarId: "094", question: "She was born ___ 2005.", options: ["in", "on", "at", "by"], answer: "in", explanation: "Năm 'in 2005'." },
