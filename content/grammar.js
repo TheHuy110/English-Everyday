@@ -106,7 +106,7 @@ OEL.grammar = [
     examples: ["The bridge was built in 1998.", "English is spoken in many countries.", "The report is being written now."],
     wrong: "The report is writing now.", right: "The report is being written now.",
     more: [
-      { type: "nuance", text: "Vị trí trạng từ: Trạng từ chỉ nơi chốn đứng *trước* **by + tác nhân**, trạng từ chỉ thời gian đứng *sau* **by + tác nhân**." },
+      { type: "nuance", text: "Vị trí trạng từ: Trạng từ chỉ nơi chốn đứng **trước** **by + tác nhân**, trạng từ chỉ thời gian đứng **sau** **by + tác nhân**." },
       { type: "advanced", text: "Các nội động từ (**intransitive verbs** như **happen**, **arrive**, **die**, **disappear**) không có tân ngữ nên KHÔNG BAO GIỜ được chia ở dạng bị động." }
     ]
   },
@@ -127,8 +127,8 @@ OEL.grammar = [
     examples: ["“I am tired,” she said. -> She said she was tired.", "He asked me where I lived.", "They said they had finished."],
     wrong: "He asked me where do I live.", right: "He asked me where I lived.",
     more: [
-      { type: "nuance", text: "Không lùi thì trong câu gián tiếp khi nội dung đó vẫn là **chân lý hiển nhiên** hoặc sự thật ở hiện tại (*He said that water boils at 100 degrees Celsius*)." },
-      { type: "advanced", text: "Các động từ tường thuật nâng cao giúp câu văn phong phú hơn thay vì chỉ dùng *said/asked*: **denied**, **admitted**, **suggested**, **promised**, **warned**." }
+      { type: "nuance", text: "Không lùi thì trong câu gián tiếp khi nội dung đó vẫn là **chân lý hiển nhiên** hoặc sự thật ở hiện tại (**He said that water boils at 100 degrees Celsius**)." },
+      { type: "advanced", text: "Các động từ tường thuật nâng cao giúp câu văn phong phú hơn thay vì chỉ dùng **said/asked**: **denied**, **admitted**, **suggested**, **promised**, **warned**." }
     ]
   },
   { title: "Câu điều kiện loại ba", grammarId: "013", level: "B2", category: "Câu điều kiện",
@@ -157,7 +157,7 @@ OEL.grammar = [
     examples: ["It has been raining since this morning.", "They have been working here for three hours.", "How long have you been waiting?"],
     wrong: "She has learning English for two years.", right: "She has been learning English for two years.",
     more: [
-      { type: "nuance", text: "Phân biệt với hiện tại hoàn thành đơn: Hiện tại hoàn thành đơn nhấn mạnh **kết quả/số lượng** (*I have written 3 letters*), còn hiện tại hoàn thành tiếp diễn nhấn mạnh **thời gian/quá trình** (*I have been writing letters for 2 hours*)." }
+      { type: "nuance", text: "Phân biệt với hiện tại hoàn thành đơn: Hiện tại hoàn thành đơn nhấn mạnh **kết quả/số lượng** (**I have written 3 letters**), còn hiện tại hoàn thành tiếp diễn nhấn mạnh **thời gian/quá trình** (**I have been writing letters for 2 hours**)." }
     ]
   },
   { title: "Thì quá khứ tiếp diễn", grammarId: "016", level: "A2", category: "Thì",
@@ -202,7 +202,7 @@ OEL.grammar = [
     examples: ["At this time tomorrow, I will be flying to Tokyo.", "Don't call me at 8 PM because I will be having dinner.", "Will you be using your computer this afternoon?"],
     wrong: "They will be study at the library tomorrow morning.", right: "They will be studying at the library tomorrow morning.",
     more: [
-      { type: "nuance", text: "Còn được dùng để hỏi lịch trình của người khác một cách lịch sự, không mang sắc thái ép buộc (*Will you be staying for dinner?*)." }
+      { type: "nuance", text: "Còn được dùng để hỏi lịch trình của người khác một cách lịch sự, không mang sắc thái ép buộc (**Will you be staying for dinner?**)." }
     ]
   },
   { title: "Thì tương lai hoàn thành", grammarId: "021", level: "B2", category: "Thì",
@@ -211,7 +211,7 @@ OEL.grammar = [
     examples: ["By next month, I will have finished this book.", "They will have built the bridge by the end of this year.", "Will you have completed the report by 5 PM?"],
     wrong: "She will have wrote the letter by tomorrow.", right: "She will have written the letter by tomorrow.",
     more: [
-      { type: "nuance", text: "Luôn đi kèm với các trạng từ chỉ thời gian bắt đầu bằng chữ **by** như *by tomorrow*, *by next year*, *by the time*." }
+      { type: "nuance", text: "Luôn đi kèm với các trạng từ chỉ thời gian bắt đầu bằng chữ **by** như **by tomorrow**, **by next year**, **by the time**." }
     ]
   },
   { title: "Thì tương lai hoàn thành tiếp diễn", grammarId: "022", level: "C1", category: "Thì",
@@ -226,7 +226,7 @@ OEL.grammar = [
     examples: ["If you heat ice, it melts.", "Water boils if it reaches 100 degrees Celsius.", "If plants don't get enough water, they die."],
     wrong: "If you heat ice, it will melt.", right: "If you heat ice, it melts.",
     more: [
-      { type: "nuance", text: "Có thể thay thế từ **if** bằng từ **when** mà cấu trúc và ý nghĩa không thay đổi (*When you heat ice, it melts*)." }
+      { type: "nuance", text: "Có thể thay thế từ **if** bằng từ **when** mà cấu trúc và ý nghĩa không thay đổi (**When you heat ice, it melts**)." }
     ]
   },
   { title: "Câu điều kiện hỗn hợp", grammarId: "024", level: "C1", category: "Câu điều kiện",
@@ -248,7 +248,7 @@ OEL.grammar = [
     wrong: "My father, that is a doctor, loves reading.", right: "My father, who is a doctor, loves reading."
   },
   { title: "Động từ khuyết thiếu bắt buộc", grammarId: "027", level: "A2", category: "Động từ",
-    rule: "**Must** thể hiện sự bắt buộc chủ quan từ người nói; **have to** chỉ sự bắt buộc khách quan từ quy định ngoại cảnh. *Mẹo chính tả/ngữ pháp:* **Mustn't** mang nghĩa cấm đoán, còn **don't have to** mang nghĩa không bắt buộc.",
+    rule: "**Must** thể hiện sự bắt buộc chủ quan từ người nói; **have to** chỉ sự bắt buộc khách quan từ quy định ngoại cảnh. **Mẹo chính tả/ngữ pháp:** **Mustn't** mang nghĩa cấm đoán, còn **don't have to** mang nghĩa không bắt buộc.",
     form: ["S + must / have to + V-bare"],
     examples: ["You must wear a helmet when riding a motorbike.", "I have to submit this report by 5 PM today.", "You don't have to pay; it's free."],
     wrong: "She must has to go now.", right: "She has to go now."
@@ -376,7 +376,7 @@ OEL.grammar = [
     examples: ["This math problem is too difficult for me to solve.", "The coffee was too hot for him to drink.", "The box was too heavy for her to lift."],
     wrong: "This box is too heavy for she to lift.", right: "This box is too heavy for her to lift.",
     more: [
-      { type: "nuance", text: "Khi viết lại câu với **too... to**, tuyệt đối không lặp lại tân ngữ ở cuối mệnh đề (**This box is too heavy to lift**, không viết *lift it*)." }
+      { type: "nuance", text: "Khi viết lại câu với **too... to**, tuyệt đối không lặp lại tân ngữ ở cuối mệnh đề (**This box is too heavy to lift**, không viết **lift it**)." }
     ]
   },
   { title: "Cấu trúc Enough... for someone to do something", grammarId: "046", level: "B1", category: "Cấu trúc câu",
@@ -403,7 +403,7 @@ OEL.grammar = [
     examples: ["She spends two hours reading books every day.", "They spent a lot of money on renovating their house.", "He spends too much time playing video games."],
     wrong: "I spend two hours to read books.", right: "I spend two hours reading books.",
     more: [
-      { type: "nuance", text: "Sau **spend** là **V-ing** trực tiếp (**spend hours reading**), không dùng *to-V*." }
+      { type: "nuance", text: "Sau **spend** là **V-ing** trực tiếp (**spend hours reading**), không dùng **to-V**." }
     ]
   },
   { title: "Cấu trúc Prefer A to B", grammarId: "049", level: "B1", category: "Cấu trúc câu",
@@ -412,7 +412,7 @@ OEL.grammar = [
     examples: ["I prefer drinking tea to drinking coffee.", "She prefers movies to books.", "He prefers walking to driving in rush hour."],
     wrong: "I prefer tea than coffee.", right: "I prefer tea to coffee.",
     more: [
-      { type: "extension", text: "Khi dùng cấu trúc **would prefer**, đi kèm với **to-V** thay vì *V-ing*: **S + would prefer + to-V + rather than + V-bare**." }
+      { type: "extension", text: "Khi dùng cấu trúc **would prefer**, đi kèm với **to-V** thay vì **V-ing**: **S + would prefer + to-V + rather than + V-bare**." }
     ]
   },
   { title: "Cấu trúc Would rather", grammarId: "050", level: "B2", category: "Cấu trúc câu",
@@ -556,7 +556,7 @@ OEL.grammar = [
     examples: ["He got up early in order to catch the first bus to work.", "He woke up early so that he could catch the first bus."],
     wrong: "He got up early in order that catching the bus.", right: "He got up early in order to catch the first bus to work.",
     more: [
-      { type: "nuance", text: "Dạng phủ định chỉ dùng **in order not to** hoặc **so as not to** + V-bare, tuyệt đối không dùng *not to V* ở đầu câu để chỉ mục đích." }
+      { type: "nuance", text: "Dạng phủ định chỉ dùng **in order not to** hoặc **so as not to** + V-bare, tuyệt đối không dùng **not to V** ở đầu câu để chỉ mục đích." }
     ]
   },
   { title: "Mệnh đề chỉ sự nhượng bộ", grammarId: "066", level: "B1", category: "Mệnh đề",
@@ -565,7 +565,7 @@ OEL.grammar = [
     examples: ["Although it was raining heavily, they went for a hike.", "Despite the heavy rain, they went for a hike."],
     wrong: "Despite it was raining, they went for a hike.", right: "Despite the heavy rain, they went for a hike.",
     more: [
-      { type: "nuance", text: "Tuyệt đối không dùng *despite of* (chỉ dùng **despite** hoặc **in spite of**). Nếu muốn dùng mệnh đề sau **despite**, dùng cụm **despite the fact that + clause**." }
+      { type: "nuance", text: "Tuyệt đối không dùng **despite of** (chỉ dùng **despite** hoặc **in spite of**). Nếu muốn dùng mệnh đề sau **despite**, dùng cụm **despite the fact that + clause**." }
     ]
   },
   { title: "Cấu trúc nhượng bộ nâng cao với As và Though", grammarId: "067", level: "C1", category: "Cấu trúc câu",
@@ -574,7 +574,7 @@ OEL.grammar = [
     examples: ["Hard as he tried, he couldn't lift the heavy weight.", "Rich as they are, they live very simply."],
     wrong: "Although hard as he tried, he failed.", right: "Hard as he tried, he couldn't lift the heavy weight.",
     more: [
-      { type: "nuance", text: "Chỉ dùng **as** hoặc **though** trong cấu trúc đảo nhượng bộ này, không dùng *although*." }
+      { type: "nuance", text: "Chỉ dùng **as** hoặc **though** trong cấu trúc đảo nhượng bộ này, không dùng **although**." }
     ]
   },
   { title: "Mệnh đề giả định với As if và As though", grammarId: "068", level: "B2", category: "Mệnh đề",
@@ -606,7 +606,7 @@ OEL.grammar = [
   },
 
   { title: "So sánh hơn với tính từ và trạng từ", grammarId: "071", level: "A1", category: "So sánh",
-    rule: "Thêm đuôi **-er + than** cho tính từ/trạng từ ngắn (1 âm tiết) và **more + adj/adv + than** cho từ dài (2 âm tiết trở lên). *Mẹo chính tả:* Tính từ ngắn kết thúc bằng một phụ âm đứng sau một nguyên âm thì gấp đôi phụ âm cuối trước khi thêm **-er** (**big** -> **bigger**).",
+    rule: "Thêm đuôi **-er + than** cho tính từ/trạng từ ngắn (1 âm tiết) và **more + adj/adv + than** cho từ dài (2 âm tiết trở lên). **Mẹo chính tả:** Tính từ ngắn kết thúc bằng một phụ âm đứng sau một nguyên âm thì gấp đôi phụ âm cuối trước khi thêm **-er** (**big** -> **bigger**).",
     form: ["S + V + adj/adv-er + than + N / pronoun", "S + V + more + adj/adv + than + N / pronoun"],
     examples: ["This building is taller than that one.", "This exercise is more difficult than the previous one.", "He runs faster than me."],
     wrong: "This building is more tall than that one.", right: "This building is taller than that one.",
@@ -665,7 +665,7 @@ OEL.grammar = [
     examples: ["Take an umbrella with you in case it rains later.", "In case of emergency, please break the glass.", "I brought extra money in case we need it."],
     wrong: "In case of it rains, take an umbrella.", right: "In case it rains, take an umbrella.",
     more: [
-      { type: "nuance", text: "Phân biệt **In case** và **If**: **In case** là hành động chuẩn bị làm trước *để phòng ngừa* (mang dù trước); **If** là hành động chỉ thực hiện *sau khi* điều kiện xảy ra (mưa mới mở dù)." }
+      { type: "nuance", text: "Phân biệt **In case** và **If**: **In case** là hành động chuẩn bị làm trước **để phòng ngừa** (mang dù trước); **If** là hành động chỉ thực hiện **sau khi** điều kiện xảy ra (mưa mới mở dù)." }
     ]
   },
   { title: "Cấu trúc Provided that và As long as", grammarId: "078", level: "B2", category: "Liên từ",
@@ -683,7 +683,7 @@ OEL.grammar = [
     examples: ["You can sit wherever you like in the auditorium.", "Put the keys where everyone can see them.", "Wherever she goes, she makes friends easily."],
     wrong: "You can sit everywhere you like.", right: "You can sit wherever you like in the auditorium.",
     more: [
-      { type: "nuance", text: "Phân biệt **Where** và **Wherever**: **Where** chỉ một địa điểm xác định cụ thể (*where I was born*); **Wherever** mang tính mở rộng, vô định (*bất kỳ chỗ nào*)." }
+      { type: "nuance", text: "Phân biệt **Where** và **Wherever**: **Where** chỉ một địa điểm xác định cụ thể (**where I was born**); **Wherever** mang tính mở rộng, vô định (**bất kỳ chỗ nào**)." }
     ]
   },
   { title: "Câu mệnh lệnh kết hợp and hoặc or", grammarId: "080", level: "A2", category: "Cấu trúc câu",
@@ -692,7 +692,7 @@ OEL.grammar = [
     examples: ["Study hard, and you will pass the upcoming examination.", "Hurry up, or you will miss the train.", "Listen carefully, and you will understand."],
     wrong: "Study hard, and you pass the exam.", right: "Study hard, and you will pass the upcoming examination.",
     more: [
-      { type: "nuance", text: "Phân biệt tương đương với câu điều kiện: **V-bare..., and...** tương đương mệnh đề **If + khẳng định**; **V-bare..., or...** tương đương mệnh đề **If + phủ định** (*If you don't hurry...*)." }
+      { type: "nuance", text: "Phân biệt tương đương với câu điều kiện: **V-bare..., and...** tương đương mệnh đề **If + khẳng định**; **V-bare..., or...** tương đương mệnh đề **If + phủ định** (**If you don't hurry...**)." }
     ]
   },
   { title: "Danh từ đếm được và không đếm được nâng cao", grammarId: "081", level: "A1", category: "Danh từ",
@@ -701,7 +701,7 @@ OEL.grammar = [
     examples: ["She gave me a great piece of advice.", "How much water do you drink every day?", "I need to buy some furniture for my new apartment."],
     wrong: "She gave me a great advice.", right: "She gave me a great piece of advice.",
     more: [
-      { type: "nuance", text: "Phân biệt các từ có hai dạng nghĩa: **Hair** chỉ toàn bộ mái tóc là không đếm được (*Her hair is dark*), nhưng chỉ các sợi tóc riêng lẻ là đếm được (*There are two hairs on your shirt*)." }
+      { type: "nuance", text: "Phân biệt các từ có hai dạng nghĩa: **Hair** chỉ toàn bộ mái tóc là không đếm được (**Her hair is dark**), nhưng chỉ các sợi tóc riêng lẻ là đếm được (**There are two hairs on your shirt**)." }
     ]
   },
   { title: "Danh từ ghép và sở hữu cách", grammarId: "082", level: "A2", category: "Danh từ",
@@ -710,7 +710,7 @@ OEL.grammar = [
     examples: ["This is my brother's laptop; he left it on the table.", "We visited the girls' dormitory yesterday.", "He bought a new bus ticket."],
     wrong: "This is my brothers laptop.", right: "This is my brother's laptop.",
     more: [
-      { type: "nuance", text: "Phân biệt sở hữu với vật/thực thể vô sinh: Với đồ vật, dùng cấu trúc **N + of + N** (*the leg of the table*) chứ ít khi dùng sở hữu cách *'s* (*the table's leg*)." }
+      { type: "nuance", text: "Phân biệt sở hữu với vật/thực thể vô sinh: Với đồ vật, dùng cấu trúc **N + of + N** (**the leg of the table**) chứ ít khi dùng sở hữu cách **'s** (**the table's leg**)." }
     ]
   },
   { title: "Sử dụng mạo từ nâng cao", grammarId: "083", level: "A1", category: "Mạo từ",
@@ -746,7 +746,7 @@ OEL.grammar = [
     examples: ["Neither of the two candidates was qualified for the job.", "Both of my parents are teachers.", "None of the students failed the final examination."],
     wrong: "Neither of the two candidates were qualified.", right: "Neither of the two candidates was qualified.",
     more: [
-      { type: "nuance", text: "Phân biệt hòa hợp chủ vị: **Neither of / Either of** theo sau bởi danh từ số nhiều nhưng động từ trong ngữ pháp trang trọng luôn chia ở **số ít** (*Neither of them was present*)." }
+      { type: "nuance", text: "Phân biệt hòa hợp chủ vị: **Neither of / Either of** theo sau bởi danh từ số nhiều nhưng động từ trong ngữ pháp trang trọng luôn chia ở **số ít** (**Neither of them was present**)." }
     ]
   },
   { title: "Phân biệt Every và Each", grammarId: "087", level: "B2", category: "Từ chỉ số lượng",
@@ -755,7 +755,7 @@ OEL.grammar = [
     examples: ["Each student in the class was given a unique project topic.", "Every room in this hotel has an ocean view.", "She spoke to each participant individually."],
     wrong: "Every students received a gift.", right: "Each student received a gift.",
     more: [
-      { type: "nuance", text: "Phân biệt cấu trúc: **Each** có thể đứng một mình hoặc đi với *of* (**Each of the boys**), nhưng **Every** bắt buộc phải có danh từ đứng ngay sau (không dùng *Every of*)." }
+      { type: "nuance", text: "Phân biệt cấu trúc: **Each** có thể đứng một mình hoặc đi với **of** (**Each of the boys**), nhưng **Every** bắt buộc phải có danh từ đứng ngay sau (không dùng **Every of**)." }
     ]
   },
   { title: "Đại từ phản thân", grammarId: "088", level: "A2", category: "Đại từ",
@@ -773,7 +773,7 @@ OEL.grammar = [
     examples: ["This isn't my jacket; mine is blue.", "Her hair is long, but his is short.", "Is this umbrella yours or ours?"],
     wrong: "This jacket is my.", right: "This jacket is mine.",
     more: [
-      { type: "nuance", text: "Phân biệt **its** và **it's**: **Its** là tính từ sở hữu (*The dog wagged its tail*); **It's** là dạng viết tắt của *It is* hoặc *It has*." }
+      { type: "nuance", text: "Phân biệt **its** và **it's**: **Its** là tính từ sở hữu (**The dog wagged its tail**); **It's** là dạng viết tắt của **It is** hoặc **It has**." }
     ]
   },
   { title: "Trật tự của tính từ trước danh từ", grammarId: "090", level: "B1", category: "Tính từ",
@@ -836,7 +836,7 @@ OEL.grammar = [
     examples: ["She walked into the dark room and switched on the lights.", "They swam across the wide river.", "The train went through a long tunnel."],
     wrong: "She walked in the dark room from outside.", right: "She walked into the dark room.",
     more: [
-      { type: "nuance", text: "Phân biệt **in** và **into**: **In** chỉ vị trí tĩnh bên trong (*She is in the room*); **Into** chỉ hướng di chuyển từ ngoài vào trong (*She walked into the room*)." }
+      { type: "nuance", text: "Phân biệt **in** và **into**: **In** chỉ vị trí tĩnh bên trong (**She is in the room**); **Into** chỉ hướng di chuyển từ ngoài vào trong (**She walked into the room**)." }
     ]
   },
   { title: "Giới từ chỉ phương tiện và công cụ", grammarId: "097", level: "B1", category: "Giới từ",
@@ -863,7 +863,7 @@ OEL.grammar = [
     examples: ["Please put on your coat; the room is quite chilly.", "Can you turn down the music, please?", "She is looking forward to meeting you."],
     wrong: "Please put on your coat off.", right: "Please put on your coat.",
     more: [
-      { type: "nuance", text: "Phân biệt cấu trúc đặc biệt: **Look forward to** bắt buộc theo sau bởi danh từ hoặc danh động từ **V-ing** (**looking forward to seeing you**), không dùng *to V-bare*." }
+      { type: "nuance", text: "Phân biệt cấu trúc đặc biệt: **Look forward to** bắt buộc theo sau bởi danh từ hoặc danh động từ **V-ing** (**looking forward to seeing you**), không dùng **to V-bare**." }
     ]
   },
   { title: "Câu cảm thán với What và How nâng cao", grammarId: "100", level: "A2", category: "Câu cảm thán",
@@ -872,18 +872,18 @@ OEL.grammar = [
     examples: ["What a wonderful painting this is!", "How brilliantly she played the piano tonight!", "What delicious food they prepared!"],
     wrong: "How a wonderful painting this is!", right: "What a wonderful painting this is!",
     more: [
-      { type: "nuance", text: "Phân biệt mạo từ với danh từ không đếm được trong câu cảm thán **What**: Tuyệt đối không thêm **a/an** trước danh từ không đếm được (**What bad weather!**, không viết *What a bad weather!*)." }
+      { type: "nuance", text: "Phân biệt mạo từ với danh từ không đếm được trong câu cảm thán **What**: Tuyệt đối không thêm **a/an** trước danh từ không đếm được (**What bad weather!**, không viết **What a bad weather!**)." }
     ]
   },
   
   { title: "Câu hỏi đuôi nâng cao", grammarId: "101", level: "B2", category: "Cấu trúc câu",
-    rule: "Các trường hợp ngoại lệ trong câu hỏi đuôi (**tag questions**): Rủ rê với **Let's** dùng **shall we**; câu mệnh lệnh dùng **will you**; chủ ngữ là đại từ bất định chỉ người (**everyone**, **nobody**) dùng **they** ở vế đuôi. *Lỗi tinh tế hay gặp:* Khi câu có các từ mang nghĩa phủ định ẩn (**hardly**, **seldom**, **never**, **nobody**), vế đuôi bắt buộc phải ở dạng **khẳng định**.",
+    rule: "Các trường hợp ngoại lệ trong câu hỏi đuôi (**tag questions**): Rủ rê với **Let's** dùng **shall we**; câu mệnh lệnh dùng **will you**; chủ ngữ là đại từ bất định chỉ người (**everyone**, **nobody**) dùng **they** ở vế đuôi. **Lỗi tinh tế hay gặp:** Khi câu có các từ mang nghĩa phủ định ẩn (**hardly**, **seldom**, **never**, **nobody**), vế đuôi bắt buộc phải ở dạng **khẳng định**.",
     form: ["Let's + V-bare..., shall we?", "Imperative sentence..., will you?", "Everyone / Nobody + V..., ... + they?"],
     examples: ["Let's organize a surprise birthday party for her, shall we?", "Open the door, will you?", "Nobody called while I was out, did they?"],
     wrong: "Let's go out, will us?", right: "Let's go out, shall we?",
     more: [
-      { type: "nuance", text: "Với mệnh đề **I am...**, câu hỏi đuôi phủ định chuẩn xác là **aren't I?** (*I am late, aren't I?*). Tuy nhiên, nếu ở thể phủ định **I am not...**, câu hỏi đuôi lại giữ nguyên dạng **am I?** (*I am not wrong, am I?*)." },
-      { type: "advanced", text: "Khi phát biểu ý kiến với **I think / I believe + clause**, câu hỏi đuôi được chia theo mệnh đề phụ đằng sau (*I think she will pass, won't she?*). Nhưng nếu chủ ngữ không phải là **I** (*She thinks...*), vế đuôi lại tính theo mệnh đề chính (*She thinks he is smart, doesn't she?*)." }
+      { type: "nuance", text: "Với mệnh đề **I am...**, câu hỏi đuôi phủ định chuẩn xác là **aren't I?** (**I am late, aren't I?**). Tuy nhiên, nếu ở thể phủ định **I am not...**, câu hỏi đuôi lại giữ nguyên dạng **am I?** (**I am not wrong, am I?**)." },
+      { type: "advanced", text: "Khi phát biểu ý kiến với **I think / I believe + clause**, câu hỏi đuôi được chia theo mệnh đề phụ đằng sau (**I think she will pass, won't she?**). Nhưng nếu chủ ngữ không phải là **I** (**She thinks...**), vế đuôi lại tính theo mệnh đề chính (**She thinks he is smart, doesn't she?**)." }
     ]
   },
   { title: "Thức giả định nâng cao sau tính từ mạnh", grammarId: "102", level: "C1", category: "Cấu trúc câu",
@@ -892,8 +892,8 @@ OEL.grammar = [
     examples: ["It is vital that every single applicant complete the security clearance form.", "It is crucial that he be present at the ceremony.", "It is imperative that the decision be made today."],
     wrong: "It is vital that every applicant completes the form.", right: "It is vital that every applicant complete the form.",
     more: [
-      { type: "nuance", text: "Dạng phủ định của thức giả định chỉ đơn giản là đặt **not** ngay trước động từ nguyên mẫu (**not complete**, **not be**), tuyệt đối không dùng trợ động từ *doesn't* hay *don't* (*It is essential that he not arrive late*)." },
-      { type: "advanced", text: "Trong Anh - Anh trang trọng, người nói có thể thêm **should** trước động từ nguyên mẫu (*It is vital that every applicant should complete the form*). Tuy nhiên, văn phong học thuật chuẩn mực quốc tế (Anh - Mỹ) ưu tiên dùng trực tiếp động từ nguyên mẫu câm." }
+      { type: "nuance", text: "Dạng phủ định của thức giả định chỉ đơn giản là đặt **not** ngay trước động từ nguyên mẫu (**not complete**, **not be**), tuyệt đối không dùng trợ động từ **doesn't** hay **don't** (**It is essential that he not arrive late**)." },
+      { type: "advanced", text: "Trong Anh - Anh trang trọng, người nói có thể thêm **should** trước động từ nguyên mẫu (**It is vital that every applicant should complete the form**). Tuy nhiên, văn phong học thuật chuẩn mực quốc tế (Anh - Mỹ) ưu tiên dùng trực tiếp động từ nguyên mẫu câm." }
     ]
   },
   { title: "Đảo ngữ nâng cao với Not until", grammarId: "103", level: "C1", category: "Đảo ngữ",
@@ -903,7 +903,7 @@ OEL.grammar = [
     wrong: "Not until the manager arrived the employees were allowed to leave.", right: "Not until the manager arrived were the employees allowed to leave.",
     more: [
       { type: "nuance", text: "Bẫy ngữ pháp cực kỳ phổ biến: Mệnh đề ngay sau **Not until** giữ nguyên trật tự chủ-vị bình thường (**Not until the manager arrived**), chỉ đảo ngữ ở mệnh đề đứng đằng sau (**were the employees allowed...**)." },
-      { type: "extension", text: "Cấu trúc này tương đương với cấu trúc câu chẻ nhấn mạnh: **It was not until + time/clause + that + S + V** (*It was not until the manager arrived that the employees were allowed to leave*)." }
+      { type: "extension", text: "Cấu trúc này tương đương với cấu trúc câu chẻ nhấn mạnh: **It was not until + time/clause + that + S + V** (**It was not until the manager arrived that the employees were allowed to leave**)." }
     ]
   },
   { title: "Câu chẻ nhấn mạnh", grammarId: "104", level: "C1", category: "Cấu trúc câu",
@@ -912,8 +912,8 @@ OEL.grammar = [
     examples: ["It was Mary who solved the difficult quantum physics puzzle.", "It was in this quiet café that they first met.", "It is his arrogance that annoys everyone."],
     wrong: "It was Mary whom solved the puzzle.", right: "It was Mary who solved the puzzle.",
     more: [
-      { type: "nuance", text: "Dùng **who** hoặc **that** khi nhấn mạnh chủ ngữ chỉ người. Tuy nhiên, khi thành phần nhấn mạnh là trạng ngữ (chỉ thời gian, địa điểm, nguyên nhân), bắt buộc dùng **that**, tuyệt đối không dùng *where* hay *when* (*It was in Hanoi THAT we met*, không dùng *where*)." },
-      { type: "advanced", text: "Dạng câu chẻ mở rộng với **Wh-** (**Wh-cleft / Pseudo-cleft**): **What + S + V + is/was + focused element** (*What I need right now is a long vacation*). Dạng này giúp tạo nhịp điệu diễn thuyết cực kỳ ấn tượng trong bài viết C1/C2." }
+      { type: "nuance", text: "Dùng **who** hoặc **that** khi nhấn mạnh chủ ngữ chỉ người. Tuy nhiên, khi thành phần nhấn mạnh là trạng ngữ (chỉ thời gian, địa điểm, nguyên nhân), bắt buộc dùng **that**, tuyệt đối không dùng **where** hay **when** (**It was in Hanoi THAT we met**, không dùng **where**)." },
+      { type: "advanced", text: "Dạng câu chẻ mở rộng với **Wh-** (**Wh-cleft / Pseudo-cleft**): **What + S + V + is/was + focused element** (**What I need right now is a long vacation**). Dạng này giúp tạo nhịp điệu diễn thuyết cực kỳ ấn tượng trong bài viết C1/C2." }
     ]
   },
   { title: "Đảo ngữ câu điều kiện ẩn If nâng cao", grammarId: "105", level: "C2", category: "Đảo ngữ",
@@ -923,7 +923,7 @@ OEL.grammar = [
     wrong: "If should any problems arise, contact us.", right: "Should any further technical problems arise, please contact our support team immediately.",
     more: [
       { type: "nuance", text: "Với đảo ngữ loại 2 của động từ thường: Đưa **Were** lên đầu câu và chuyển động từ chính về dạng **to-V** (**Were the government to raise taxes, public protest would follow**)." },
-      { type: "advanced", text: "Đảo ngữ câu điều kiện phủ định: Khi phủ định câu đảo ngữ, từ **not** đứng ngay sau chủ ngữ, tuyệt đối không viết tắt trợ động từ lên đầu (**Had it not been for your help...**, không viết *Hadn't it been...*)." }
+      { type: "advanced", text: "Đảo ngữ câu điều kiện phủ định: Khi phủ định câu đảo ngữ, từ **not** đứng ngay sau chủ ngữ, tuyệt đối không viết tắt trợ động từ lên đầu (**Had it not been for your help...**, không viết **Hadn't it been...**)." }
     ]
   },
   { title: "Lược bỏ cấu trúc và từ thay thế", grammarId: "106", level: "C2", category: "Văn phong",
@@ -933,7 +933,7 @@ OEL.grammar = [
     wrong: "I hope that they will not lower taxes.", right: "I hope not.",
     more: [
       { type: "nuance", text: "Phân biệt **I hope so** và **I guess so**: **I hope so** thể hiện mong muốn tích cực của người nói; **I guess so** thể hiện sự đồng ý miễn cưỡng hoặc thiếu chắc chắn." },
-      { type: "advanced", text: "Sử dụng cụm **do so** để thay thế cho một cụm động từ hành động đã được nhắc đến ở vế trước (*If you wish to apply, please do so before Friday*). **Do so** trang trọng hơn nhiều so với việc chỉ dùng *do it*." }
+      { type: "advanced", text: "Sử dụng cụm **do so** để thay thế cho một cụm động từ hành động đã được nhắc đến ở vế trước (**If you wish to apply, please do so before Friday**). **Do so** trang trọng hơn nhiều so với việc chỉ dùng **do it**." }
     ]
   },
   { title: "Đảo ngữ vị trí học thuật", grammarId: "107", level: "C2", category: "Đảo ngữ",
@@ -943,7 +943,7 @@ OEL.grammar = [
     wrong: "On the top of the mountain did stand a monastery.", right: "On the top of the snow-capped mountain stood an ancient monastery.",
     more: [
       { type: "nuance", text: "Điều kiện bắt buộc: Động từ chính phải là nội động từ chỉ trạng thái hoặc chuyển động (**stand**, **lie**, **sit**, **come**, **go**), và chủ ngữ phải là **danh từ**." },
-      { type: "advanced", text: "Lỗi bẫy C2: Nếu chủ ngữ là một **đại từ nhân xưng** (**he**, **she**, **it**, **they**), tuyệt đối KHÔNG thực hiện đảo ngữ (*Down it came*, không viết *Down came it*)." }
+      { type: "advanced", text: "Lỗi bẫy C2: Nếu chủ ngữ là một **đại từ nhân xưng** (**he**, **she**, **it**, **they**), tuyệt đối KHÔNG thực hiện đảo ngữ (**Down it came**, không viết **Down came it**)." }
     ]
   },
   { title: "Thức giả định hiện tại trong câu trang trọng", grammarId: "108", level: "C2", category: "Thức giả định",
@@ -952,7 +952,7 @@ OEL.grammar = [
     examples: ["The board of directors insisted that the chief executive officer resign immediately.", "The judge ordered that the suspect be remanded in custody.", "The law stipulates that every citizen pay taxes."],
     wrong: "The board insisted that the CEO resigns.", right: "The board insisted that the CEO resign.",
     more: [
-      { type: "nuance", text: "Dạng bị động của thức giả định hiện tại có cấu trúc là **be + V3/ed** (*It is required that the documents be submitted on time*), không chia *is/are/was/were*." },
+      { type: "nuance", text: "Dạng bị động của thức giả định hiện tại có cấu trúc là **be + V3/ed** (**It is required that the documents be submitted on time**), không chia **is/are/was/were**." },
       { type: "advanced", text: "Thức giả định cố định trong các thành ngữ cổ trang trọng (**fixed subjunctive phrases**): **Be that as it may** (Dù có như thế đi nữa), **Far be it from me to...** (Tôi đâu dám...), **God forbid** (Trời phật phù hộ / Đừng để xảy ra), **Come what may** (Dù có chuyện gì xảy ra)." }
     ]
   },
@@ -962,18 +962,18 @@ OEL.grammar = [
     examples: ["Weather permitting, the annual open-air festival will take place tomorrow afternoon.", "All tickets having been sold out, we couldn't enter the concert hall.", "The task finished, they walked out of the room happily."],
     wrong: "Weather permits, the festival will take place.", right: "Weather permitting, the annual open-air festival will take place tomorrow afternoon.",
     more: [
-      { type: "nuance", text: "Phân biệt với rút gọn mệnh đề thông thường: Rút gọn thông thường bắt buộc hai vế phải **chủ ngữ trùng nhau**. Mệnh đề độc lập dùng khi hai vế có **hai chủ ngữ hoàn toàn khác nhau** (*Weather* vs *The festival*)." },
-      { type: "advanced", text: "Cấu trúc độc lập đi với giới từ **With**: **With + N + V-ing / V3/ed / Prep phrase** diễn tả nguyên nhân hoặc hoàn cảnh kèm theo (*With night coming on, we decided to set up camp*)." }
+      { type: "nuance", text: "Phân biệt với rút gọn mệnh đề thông thường: Rút gọn thông thường bắt buộc hai vế phải **chủ ngữ trùng nhau**. Mệnh đề độc lập dùng khi hai vế có **hai chủ ngữ hoàn toàn khác nhau** (**Weather** vs **The festival**)." },
+      { type: "advanced", text: "Cấu trúc độc lập đi với giới từ **With**: **With + N + V-ing / V3/ed / Prep phrase** diễn tả nguyên nhân hoặc hoàn cảnh kèm theo (**With night coming on, we decided to set up camp**)." }
     ]
   },
   { title: "Đảo ngữ nhượng bộ với As và Though", grammarId: "110", level: "C2", category: "Mệnh đề",
-    rule: "Đưa tính từ, trạng từ, hoặc động từ phân từ lên đầu câu đi liền với **as** hoặc **though** nhằm tạo sự nhấn mạnh cực đại vào tính chất nhượng bộ (tương đương với *Although + S + be + adj*).",
+    rule: "Đưa tính từ, trạng từ, hoặc động từ phân từ lên đầu câu đi liền với **as** hoặc **though** nhằm tạo sự nhấn mạnh cực đại vào tính chất nhượng bộ (tương đương với **Although + S + be + adj**).",
     form: ["Adj / Adv / Participle + as / though + S + be / verb, + main clause"],
     examples: ["Exhausted as she was after the long journey, she managed to finish her report.", "Defeated though they were, the team never lost their fighting spirit.", "Much as I respect him, I cannot agree with his decision."],
     wrong: "Although exhausted as she was, she finished her report.", right: "Exhausted as she was after the long journey, she managed to finish her report.",
     more: [
-      { type: "nuance", text: "Khi đảo ngữ với danh từ đếm được số ít, mạo từ **a/an** phải bị loại bỏ tuyệt đối (*Child as he is, he speaks like an adult*, không dùng *A child as he is*)." },
-      { type: "advanced", text: "Biến thể nhượng bộ với trạng từ **Much**: **Much as + S + V** mang nghĩa 'Mặc dù rất...' (*Much as I would like to help, I have no time*). Cấu trúc này xuất hiện dày đặc trong bài thi Writing C1/C2." }
+      { type: "nuance", text: "Khi đảo ngữ với danh từ đếm được số ít, mạo từ **a/an** phải bị loại bỏ tuyệt đối (**Child as he is, he speaks like an adult**, không dùng **A child as he is**)." },
+      { type: "advanced", text: "Biến thể nhượng bộ với trạng từ **Much**: **Much as + S + V** mang nghĩa 'Mặc dù rất...' (**Much as I would like to help, I have no time**). Cấu trúc này xuất hiện dày đặc trong bài thi Writing C1/C2." }
     ]
   },
   { title: "Danh từ hóa trong tiếng Anh học thuật", grammarId: "111", level: "C2", category: "Văn phong",
@@ -982,7 +982,7 @@ OEL.grammar = [
     examples: ["Because the city expanded rapidly, it caused severe environmental issues. -> The rapid expansion of the city caused severe environmental issues.", "We analyzed the data carefully. -> A careful analysis of the data was conducted."],
     wrong: "The city expanding rapidly caused issues.", right: "The rapid expansion of the city caused severe environmental issues.",
     more: [
-      { type: "nuance", text: "Lợi ích của danh từ hóa: Loại bỏ bớt các đại từ xưng hô cá nhân (**I**, **we**, **you**), chuyển góc nhìn từ 'người thực hiện hành động' sang 'bản thân sự việc/nguyện lý' (*We discovered... -> The discovery of...*)." },
+      { type: "nuance", text: "Lợi ích của danh từ hóa: Loại bỏ bớt các đại từ xưng hô cá nhân (**I**, **we**, **you**), chuyển góc nhìn từ 'người thực hiện hành động' sang 'bản thân sự việc/nguyện lý' (**We discovered... -> The discovery of...**)." },
       { type: "advanced", text: "Bẫy lạm dụng danh từ hóa (**zombie nouns**): Mặc dù danh từ hóa nâng tầm văn phong học thuật, việc lạm dụng quá nhiều cụm danh từ phức tạp liên tiếp có thể khiến câu văn trở nên nặng nề, trì trệ và khó đọc. Cần phối hợp hài hòa giữa danh từ hóa và động từ mạnh." }
     ]
   }
