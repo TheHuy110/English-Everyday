@@ -1,5 +1,7 @@
 // Run:  node tools/build-odd-sounds.js
 // Builds content/odd-sounds.js from content/odd-sounds.csv for the test "choose the word whose underlined part sounds different".
+// Run:  node tools/build-odd-sounds.js --rebalance   to also spread the correct answer evenly over A, B, C and D in the CSV itself (the site already
+//        shuffles the order on screen every time; this only makes the file, and the Admin table, balanced).
 // CSV: header row, then  option 0,option 1,option 2,option 3,answer[,note]  (extra columns after answer are ignored)
 //   - In each option, put the underlined letters between asterisks:  c*a*t,  *ch*air,  f*ir*st
 //   - answer = the number of the odd option, counting from 0 (0, 1, 2 or 3).
@@ -21,7 +23,7 @@ function parseLine(line) {            // small CSV reader: commas, "quoted field
 }
 
 const lines = text.split(/\r?\n/).filter(l => l.trim());
-const rows = [];
+const rows = [], raw = [];
 let problems = 0;
 lines.slice(1).forEach((line, i) => {
   const n = i + 2, c = parseLine(line);
@@ -31,8 +33,24 @@ lines.slice(1).forEach((line, i) => {
   const bad = options.findIndex(o => (o.match(/\*/g) || []).length < 2 || (o.match(/\*/g) || []).length % 2);
   if (bad > -1) { console.error('line ' + n + ': option ' + bad + ' ("' + options[bad] + '") needs the underlined letters between two asterisks'); problems++; return; }
   const note = c[5] || '';
-  rows.push(note ? { options, answer, row: n, note } : { options, answer, row: n });   // row = line number in odd-sounds.csv, so the Admin page can point you to it
+  rows.push(note ? { options, answer, row: n, note } : { options, answer, row: n });
+  raw.push(c);   // row = line number in odd-sounds.csv, so the Admin page can point you to it
 });
+
+if (process.argv.includes('--rebalance') && !problems) {
+  const shuffle = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  let deck = [];
+  rows.forEach((r, i) => {
+    if (!deck.length) deck = shuffle([0, 1, 2, 3]);
+    const t = deck.pop(), c = raw[i], o = r.options;
+    [o[r.answer], o[t]] = [o[t], o[r.answer]]; r.answer = t;      // swap the odd word into the target slot
+    c[0] = o[0]; c[1] = o[1]; c[2] = o[2]; c[3] = o[3]; c[4] = String(t);
+  });
+  const q = v => /[",]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v;
+  fs.writeFileSync(path.join(dir, 'odd-sounds.csv'), [lines[0]].concat(raw.map(c => c.map(q).join(','))).join('\n') + '\n');
+  const cnt = [0, 0, 0, 0]; rows.forEach(r => cnt[r.answer]++);
+  console.log('odd-sounds.csv rebalanced. Answers A/B/C/D: ' + cnt.join(' / '));
+}
 
 const body = rows.map(r => '  ' + JSON.stringify(r)).join(',\n');
 fs.writeFileSync(path.join(dir, 'odd-sounds.js'),

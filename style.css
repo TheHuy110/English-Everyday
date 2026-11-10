@@ -17,8 +17,8 @@ img { max-width: 100%; }
   --good-bg: #E3F4EA;
   --bad: #B3321F;
   --bad-bg: #FBE9E6;
-  --font-display: 'Lexend', 'Segoe UI', system-ui, sans-serif;
-  --font-body: 'Fredoka', 'Segoe UI', system-ui, sans-serif;
+  --font-display: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --font-body: 'Bitter', Georgia, 'Times New Roman', serif;
   --font-mono: 'Itim', 'Segoe Print', 'Comic Sans MS', cursive;
 }
 @media (prefers-color-scheme: dark) {

@@ -233,8 +233,8 @@
      Mỗi cấp CEFR có một độ khó cố định. Mỗi câu trả lời cập nhật điểm Elo của người học, và Elo quyết định cấp độ xếp loại.
      Có tính xác suất đoán mò (câu trắc nghiệm): kỳ vọng thắng không bao giờ thấp hơn 1 / số lựa chọn.
      Điểm Elo luôn được lưu nhưng chỉ chủ trang (admin) nhìn thấy. Admin có thể chuyển về cách xếp cấp cũ ở trang Admin. */
-  var ECFG_DEF = { start: 1200, min: 400, max: 2400, scale: 400, k0: 24, k1: 176, tau: 12, margin: 100, guess: 1, firstOld: 1, seed: 1,
-    lv: { A1: 900, A2: 1100, B1: 1300, B2: 1500, C1: 1700, C2: 1900 } };
+  var ECFG_DEF = { start: 1000, min: 400, max: 2800, scale: 500, k0: 200, k1: 400, tau: 16, margin: 100, guess: 1, firstOld: 1, seed: 1,   /* fixed numbers under test; "Về mặc định" in Admin returns to these */
+    lv: { A1: 900, A2: 1200, B1: 1400, B2: 1800, C1: 2200, C2: 2600 } };
   var ECFG = (function () {
     var c = JSON.parse(JSON.stringify(ECFG_DEF)), v = LS.get('oel.eloCfg', null);
     if (v && typeof v === 'object') {
@@ -256,7 +256,7 @@
   })();
   function saveElo() { ELO.h = ELO.h.slice(-300); LS.set('oel.elo', ELO); }
   var eloMode = LS.get('oel.eloMode', 'elo') === 'old' ? 'old' : 'elo';
-  /* K giảm dần: 200 ở câu đầu tiên, còn khoảng 24 sau vài chục câu (đã thử mô phỏng: K nhỏ làm kết quả bị kéo về 1200). */
+  /* K giảm dần: K0 + K1 ở câu đầu tiên, tiến về K0 sau vài chục câu. */
   function eloK() { return ECFG.k0 + ECFG.k1 * Math.exp(-ELO.n / ECFG.tau); }
   function eloUpdate(q, right) {
     var d = LEVEL_ELO[q.lv]; if (!d) return;
@@ -656,12 +656,12 @@
     { n: 'Quicksand', c: 'sans', w: '400;600;700', t: 'Tròn, nhẹ, vui' },
     { n: 'Baloo 2', c: 'sans', w: '400;600;700', t: 'Tròn đậm, thân thiện' },
     { n: 'Be Vietnam Pro', c: 'sans', w: '400;600;700', t: 'Thiết kế cho tiếng Việt' },
-    { n: 'Lexend', c: 'sans', w: '400;500;700', t: 'Hiện tại (tiêu đề)', d: 1 },
+    { n: 'Lexend', c: 'sans', w: '400;500;700', t: 'Cũ (tiêu đề)' },
     { n: 'Mulish', c: 'sans', w: '400;600;700', t: 'Sạch, mềm' },
     { n: 'Varela Round', c: 'sans', w: '400', t: 'Tròn, gọn' },
     { n: 'M PLUS Rounded 1c', c: 'sans', w: '400;700', t: 'Nét bo tròn' },
     { n: 'Comfortaa', c: 'sans', w: '400;700', t: 'Hình học tròn, vui mắt' },
-    { n: 'Fredoka', c: 'sans', w: '400;500;600;700', t: 'Hiện tại (nội dung)', d: 1 },
+    { n: 'Fredoka', c: 'sans', w: '400;500;600;700', t: 'Cũ (nội dung)' },
     { n: 'Plus Jakarta Sans', c: 'sans', w: '400;600;700', t: 'Hiện đại, dịu' },
     { n: 'Josefin Sans', c: 'sans', w: '400;600', t: 'Thanh, hình học' },
     { n: 'Patrick Hand', c: 'hand', w: '400', t: 'Chữ viết tay' },
@@ -670,8 +670,8 @@
     { n: 'Literata', c: 'serif', w: '400;600;700', t: 'Có chân, dễ đọc lâu' },
     { n: 'Merriweather', c: 'serif', w: '400;700', t: 'Có chân, rộng, rõ' },
     { n: 'Crimson Pro', c: 'serif', w: '400;600', t: 'Có chân, thanh lịch' },
-    { n: 'Newsreader', c: 'serif', w: '400;600', t: 'Có chân, kiểu sách báo' },
-    { n: 'Bitter', c: 'serif', w: '400;600;700', t: 'Chân phẳng, thân thiện' },
+    { n: 'Newsreader', c: 'serif', w: '400;500;600;700', t: 'Hiện tại (tiêu đề)', d: 1 },
+    { n: 'Bitter', c: 'serif', w: '400;500;600;700', t: 'Hiện tại (nội dung)', d: 1 },
     { n: 'Bricolage Grotesque', c: 'sans', w: '500;700', t: 'Cũ (tiêu đề)' },
     { n: 'Source Serif 4', c: 'serif', w: '400;600', t: 'Cũ (nội dung)' },
     { n: 'IBM Plex Mono', c: 'mono', w: '400;500', t: 'Cũ (nhãn nhỏ)' }
@@ -679,7 +679,7 @@
   var FONT_BY = Object.create(null);
   FONT_LIST.forEach(function (f) { FONT_BY[f.n] = f; });
   var FONT_ROLES = [['display', 'Tiêu đề, tab, nút'], ['body', 'Nội dung'], ['mono', 'Nhãn nhỏ, thẻ, dạng ngữ pháp, IPA']];
-  var FONT_DEF = { display: 'Lexend', body: 'Fredoka', mono: 'Itim' };
+  var FONT_DEF = { display: 'Newsreader', body: 'Bitter', mono: 'Itim' };
   var FONTSEL = LS.get('oel.fonts', {});
   if (!FONTSEL || typeof FONTSEL !== 'object' || Array.isArray(FONTSEL)) FONTSEL = {};
   function fontCss(name) {
@@ -1756,16 +1756,24 @@
   function startIpaSession(mode) {
     ipaMsg = '';
     var qs = [], n = mode === 'sent' ? IP_SENT_N : IP_N, i, seen = {};
-    if (mode === 'odd') {
-      for (i = 0; i < n * 3 && qs.length < n; i++) {
-        var q = genStress();
-        if (q && !q.opts.some(function (e) { return seen[e.w.w]; })) { q.opts.forEach(function (e) { seen[e.w.w] = 1; }); qs.push(q); }
+    function soundQ(q) {   /* the position of the odd word is shuffled every time, whatever order the CSV row has */
+      var order = shuffle([0, 1, 2, 3]);
+      return { sound: true, row: q.row, note: q.note, opts: order.map(function (i) { return markedWord(q.o[i]); }), a: order.indexOf(q.a), picked: null };
+    }
+    if (mode === 'odd') {   /* one mixed test: each question is randomly "different stress" or "different sound" */
+      var soundPool = shuffle(ODDS), sp = 0;
+      for (i = 0; i < n * 4 && qs.length < n; i++) {
+        var q = null;
+        if (sp < soundPool.length && (Math.random() < 0.5 || !Object.keys(OEL.stress || {}).length)) q = soundQ(soundPool[sp++]);
+        else {
+          q = genStress();
+          if (q && q.opts.some(function (e) { return seen[e.w.w]; })) q = null;
+          else if (q) q.opts.forEach(function (e) { seen[e.w.w] = 1; });
+        }
+        if (q) qs.push(q);
       }
     } else if (mode === 'sound') {
-      shuffle(ODDS).slice(0, n).forEach(function (q) {
-        var order = shuffle([0, 1, 2, 3]);
-        qs.push({ sound: true, row: q.row, note: q.note, opts: order.map(function (i) { return markedWord(q.o[i]); }), a: order.indexOf(q.a), picked: null });
-      });
+      shuffle(ODDS).slice(0, n).forEach(function (q) { qs.push(soundQ(q)); });
     } else if (mode === 'word') {
       shuffle(ipaPool().filter(function (e) { return e.w.w.length >= 3; })).slice(0, n).forEach(function (e) { qs.push({ e: e, tries: 0, typed: '', msg: '', result: '' }); });
     } else {
@@ -1869,7 +1877,7 @@
   function viewIpaSession() {
     if (ipaQ.done) return viewIpaDone();
     var q = ipaQ.qs[ipaQ.i];
-    return ipaQ.mode === 'odd' ? viewIpaOdd(q) : ipaQ.mode === 'sound' ? viewIpaSound(q) : viewIpaType(q);
+    return (ipaQ.mode === 'odd' || ipaQ.mode === 'sound') ? (q.sound ? viewIpaSound(q) : viewIpaOdd(q)) : viewIpaType(q);
   }
   function viewIpaPractice() {
     var lv = [['', 'Tất cả']].concat(VLEVELS.map(function (l) { return [l, 'Đến ' + l]; })).map(function (c) { return chipBtn('ip-lv', c[0], c[1], ipaLv === c[0]); }).join('');
@@ -1879,11 +1887,10 @@
         '<div class="row"><button class="btn" type="button" data-action="ip-start" data-m="' + m + '">' + label + '</button></div></div>';
     }
     return '<div class="stack" style="gap:1.25rem">' + (ipaMsg ? '<p class="panel" role="status">' + esc(ipaMsg) + '</p>' : '') +
-      '<div><p class="lab" style="margin-bottom:0.4rem">Cấp độ từ (cho bài 1 và 2)</p><div class="chips" role="group" aria-label="Cấp độ từ">' + lv + '</div></div>' +
+      '<div><p class="lab" style="margin-bottom:0.4rem">Cấp độ từ (cho câu trọng âm và bài 2)</p><div class="chips" role="group" aria-label="Cấp độ từ">' + lv + '</div></div>' +
       '<div class="panel stack" style="gap:0.9rem"><div><p class="call">Bài 1</p><h2>Chọn từ khác</h2></div>' +
-        '<p class="muted">Bốn từ, ba từ giống nhau và một từ khác. “Khác trọng âm”: cả bốn từ có cùng số âm tiết, ba từ nhấn cùng một âm tiết. “Khác âm”: chọn từ có phần gạch chân phát âm khác với ba từ còn lại.</p>' +
-        '<div class="row"><button class="btn" type="button" data-action="ip-start" data-m="odd">Khác trọng âm (' + IP_N + ' câu)</button>' +
-        '<button class="btn" type="button" data-action="ip-start" data-m="sound">Khác âm (câu mẫu)</button></div></div>' +
+        '<p class="muted">Bốn từ, ba từ giống nhau và một từ khác. Mỗi bài trộn hai kiểu câu: “khác trọng âm” (cả bốn từ cùng số âm tiết, ba từ nhấn cùng một âm tiết) và “khác âm” (chọn từ có phần gạch chân phát âm khác với ba từ còn lại).</p>' +
+        '<div class="row"><button class="btn" type="button" data-action="ip-start" data-m="odd">Bắt đầu (' + IP_N + ' câu)</button></div></div>' +
       card('Phiên âm sang từ', 'Bài 2', 'Bạn thấy phiên âm của một từ và gõ từ tiếng Anh đó. Các từ đồng âm đều được chấp nhận.', '', 'word', 'Bắt đầu (' + IP_N + ' từ)') +
       card('Phiên âm sang câu', 'Bài 3', 'Bạn thấy phiên âm của một câu trích dẫn nổi tiếng và gõ cả câu. Đáp án có kèm nghĩa tiếng Việt.',
         '<div><p class="lab" style="margin-bottom:0.4rem">Độ dài câu</p><div class="chips" role="group" aria-label="Độ dài câu">' + tiers + '</div></div>', 'sent', 'Bắt đầu (' + IP_SENT_N + ' câu)') + '</div>';
@@ -2126,9 +2133,9 @@
     } else if (a === 'ip-lv') {
       ipaLv = t.getAttribute('data-v'); render(); refocus(a, ipaLv);
     } else if (a === 'ip-start') {
-      var im = t.getAttribute('data-m'), grp = im === 'odd' ? 'stress' : im === 'sent' ? 'quotes' : im === 'sound' ? 'oddsounds' : '';
-      if (grp && !loaded[grp]) {
-        ensure([grp]).then(function () { ipaQ = null; startIpaSession(im); render(); window.scrollTo(0, 0); }, function () { ipaMsg = 'Không tải được dữ liệu bài tập. Hãy kiểm tra kết nối mạng rồi thử lại.'; render(); });
+      var im = t.getAttribute('data-m'), grp = im === 'odd' ? ['stress', 'oddsounds'] : im === 'sent' ? ['quotes'] : im === 'sound' ? ['oddsounds'] : [];
+      if (grp.some(function (g) { return !loaded[g]; })) {
+        ensure(grp).then(function () { ipaQ = null; startIpaSession(im); render(); window.scrollTo(0, 0); }, function () { ipaMsg = 'Không tải được dữ liệu bài tập. Hãy kiểm tra kết nối mạng rồi thử lại.'; render(); });
         return;
       }
       ipaQ = null; startIpaSession(im); render(); window.scrollTo(0, 0);
