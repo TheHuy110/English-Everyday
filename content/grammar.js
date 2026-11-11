@@ -925,129 +925,180 @@ OEL.grammar = [
   },
 
   { title: "So sánh hơn với tính từ và trạng từ", grammarId: "071", level: "A1", category: "So sánh",
-    rule: "Thêm đuôi **-er + than** cho tính từ/trạng từ ngắn (1 âm tiết) và **more + adj/adv + than** cho từ dài (2 âm tiết trở lên). **Mẹo chính tả:** Tính từ ngắn kết thúc bằng một phụ âm đứng sau một nguyên âm thì gấp đôi phụ âm cuối trước khi thêm **-er** (**big** -> **bigger**).",
-    form: ["S + V + adj/adv-er + than + N / pronoun", "S + V + more + adj/adv + than + N / pronoun"],
-    examples: ["This building is taller than that one.", "This exercise is more difficult than the previous one.", "He runs faster than me."],
+    rule: "So sánh hơn dùng để nói người/vật này hơn người/vật kia về một đặc điểm (cao hơn, nhanh hơn, khó hơn). Với tính từ/trạng từ ngắn (1 âm tiết) thêm **-er + than**: **tall -> taller than**. Với từ dài (2 âm tiết trở lên) dùng **more + adj/adv + than**: **more difficult than**. **Mẹo chính tả:** từ ngắn kết thúc bằng một nguyên âm + một phụ âm thì gấp đôi phụ âm cuối trước khi thêm **-er** (**big -> bigger**). Chỉ dùng MỘT cách: **-er** hoặc **more**, không dùng cả hai.",
+    form: ["S + V + adj/adv-er + than + N / pronoun (từ ngắn)","S + V + more + adj/adv + than + N / pronoun (từ dài)","S + be + not + as + adj + as + N (ít hơn / không bằng)","Bất quy tắc: good / well -> better, bad / badly -> worse"],
+    examples: ["This building is taller than that one.","This exercise is more difficult than the previous one.","He runs faster than me.","My sister is older than my brother.","Is the bus more expensive than the train?"],
     wrong: "This building is more tall than that one.", right: "This building is taller than that one.",
     more: [
-      { type: "nuance", text: "Phân biệt sắc thái: Dùng **more** với tính từ/trạng từ dài thể hiện sự tăng tiến tổng quát, nhưng có thể nhấn mạnh sự chênh lệch nhỏ bằng **slightly/a bit** hoặc chênh lệch lớn bằng **much/far** trước hình thức so sánh." }
+      { type: "extension", text: "Tính từ 2 âm tiết tận cùng bằng **-y** đổi **y** thành **i** rồi thêm **-er**: **happy -> happier**, **easy -> easier** (dễ hơn). Một số từ bất quy tắc phải học thuộc: **good -> better** (tốt hơn), **bad -> worse** (tệ hơn), **far -> farther / further** (xa hơn)." },
+      { type: "nuance", text: "Muốn nói hơn nhiều hay hơn một chút, đặt **much / far / a lot** hoặc **slightly / a bit** trước dạng so sánh: **much taller than** (cao hơn nhiều), **a bit more expensive** (đắt hơn một chút). Không dùng **very** trước dạng so sánh hơn." },
+      { type: "nuance", text: "Sau **than** có thể dùng đại từ tân ngữ trong văn nói (**taller than me**) hoặc chủ ngữ + trợ động từ trong văn trang trọng (**taller than I am**). Cả hai đều được chấp nhận." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **more better** hoặc **more bigger** thay vì **better** / **bigger**. Dạng so sánh hơn đã có **-er** rồi thì không thêm **more** nữa (tiếng Việt hay nói thêm chữ 'hơn' cho chắc nghĩa)." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **He runs fast than me** thay vì **He runs faster than me**. Quên đuôi **-er** vì tiếng Việt không biến đổi từ khi so sánh, chỉ thêm 'hơn'." }
     ]
   },
   { title: "So sánh nhất với tính từ và trạng từ", grammarId: "072", level: "A1", category: "So sánh",
-    rule: "Dùng để so sánh một đối tượng với toàn bộ tập hợp (từ 3 đối tượng trở lên). Thêm **the + adj/adv-est** cho từ ngắn và **the most + adj/adv** cho từ dài.",
-    form: ["S + V + the + adj/adv-est + (in/of...)", "S + V + the most + adj/adv + (in/of...)"],
-    examples: ["Mount Everest is the highest mountain in the world.", "He is the most intelligent student in our class.", "She ran the fastest of all."],
+    rule: "So sánh nhất dùng để nói một người/vật nổi bật nhất trong một nhóm từ 3 đối tượng trở lên (cao nhất, thông minh nhất). Với từ ngắn thêm **the + adj/adv-est**: **the tallest**. Với từ dài dùng **the most + adj/adv**: **the most intelligent**. Luôn có **the** đứng trước. Từ ngắn kết thúc bằng nguyên âm + phụ âm thì gấp đôi phụ âm (**big -> the biggest**), tận cùng **-y** đổi thành **-iest** (**happy -> the happiest**). Sau so sánh nhất thường có nhóm để so sánh, mở đầu bằng **in** hoặc **of**.",
+    form: ["S + be + the + adj-est + (in / of ...) (từ ngắn)","S + V + the most + adj/adv + (in / of ...) (từ dài)","S + V + the + adv-est + (of all) (trạng từ ngắn)","Bất quy tắc: good -> the best, bad -> the worst, far -> the farthest"],
+    examples: ["Mount Everest is the highest mountain in the world.","He is the most intelligent student in our class.","She ran the fastest of all.","This is the best phở in Hanoi.","Which is the cheapest hotel in Saigon?"],
     wrong: "He is the more intelligent student in our class.", right: "He is the most intelligent student in our class.",
     more: [
-      { type: "nuance", text: "Phân biệt giới từ theo sau: Dùng **in** khi chỉ một địa điểm hoặc tập hợp danh từ số ít (**in the world**, **in the team**); dùng **of** khi đi với khoảng thời gian hoặc danh từ số nhiều (**of the three**, **of all time**)." }
+      { type: "nuance", text: "Chọn giới từ theo nhóm so sánh: dùng **in** với nơi chốn hoặc tập thể số ít (**in the world**, **in the class**, **in my family**); dùng **of** với danh từ số nhiều hoặc con số (**of the three**, **of all**, **of the students**)." },
+      { type: "extension", text: "Rất hay đi cùng **ever** và hiện tại hoàn thành để nói kinh nghiệm: **This is the best film I have ever seen** (Đây là bộ phim hay nhất tôi từng xem). Cũng có **one of the + dạng nhất + danh từ số nhiều**: **one of the tallest buildings**." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **She is tallest girl in the class** thay vì **She is the tallest girl in the class**. Tiếng Việt không có mạo từ nên người học hay quên **the** trước so sánh nhất." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **the most tall** hoặc **the most easy** thay vì **the tallest** / **the easiest**. Từ ngắn thì thêm **-est**, đừng dùng **most**." },
+      { type: "advanced", text: "Khi so sánh chỉ giữa 2 đối tượng, dạng so sánh hơn được dùng chứ không phải so sánh nhất: **Lan is the taller of the two** (trong văn trang trọng). Trong giao tiếp, nhiều người cũng nói **the tallest of the two**, nhưng sách ngữ pháp coi đó là kém chuẩn." }
     ]
   },
   { title: "So sánh kép The comparative, the comparative", grammarId: "073", level: "B2", category: "So sánh",
-    rule: "Diễn tả mối quan hệ nguyên nhân - kết quả đồng tiến ('càng... thì càng...'). Cả hai vế đều đảo hình thức so sánh hơn lên đầu mệnh đề và bắt buộc có mạo từ **the**.",
-    form: ["The + comparative + S + V, the + comparative + S + V"],
-    examples: ["The more you practice, the better you will play.", "The higher we climbed, the colder it became.", "The sooner you start, the earlier you will finish."],
+    rule: "So sánh kép diễn tả hai sự thay đổi đi cùng nhau: cái này tăng/giảm thì cái kia cũng tăng/giảm theo ('càng... thì càng...'). Mỗi vế bắt đầu bằng **the + dạng so sánh hơn** (**the more**, **the harder**, **the better**), rồi mới đến chủ ngữ và động từ. Chữ **the** là bắt buộc ở cả hai vế. Vế đầu thường là điều kiện/nguyên nhân, vế sau là kết quả. Với tính từ/trạng từ dài dùng **the more + adj/adv**; với danh từ dùng **the more/less + N**.",
+    form: ["The + comparative + S + V, the + comparative + S + V","The more + S + V, the + comparative + S + V","The more / less + N + S + V, the more / less + N + S + V","The + comparative, the + comparative (rút gọn)"],
+    examples: ["The more you practice, the better you will play.","The higher we climbed, the colder it became.","The sooner you start, the earlier you will finish.","The less she worried, the happier she felt.","The more money he earns, the more he spends."],
     wrong: "More you practice, better you will play.", right: "The more you practice, the better you will play.",
     more: [
-      { type: "nuance", text: "Phân biệt sắc thái với cấu trúc ngắn: Trong giao tiếp có thể rút gọn tối đa mệnh đề thành các cụm từ ngắn như **The more, the merrier** (Càng đông càng vui) mà không cần chủ ngữ và động từ." }
+      { type: "extension", text: "Có thể rút gọn thành thành ngữ không cần chủ ngữ và động từ, rất hay gặp trong giao tiếp: **The more, the merrier** (Càng đông càng vui), **The sooner, the better** (Càng sớm càng tốt), **The bigger the better**." },
+      { type: "nuance", text: "Thì của hai vế vẫn theo quy tắc thông thường: nói về tương lai thì vế phụ không dùng **will** mà dùng hiện tại đơn, ví dụ **The harder you work, the more you will earn**. Vế sau mới dùng **will**." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **The more you practice, the you will play better** thay vì **the better you will play**. Phải đưa dạng so sánh lên ngay sau **the**, không để nguyên vị trí như tiếng Việt ('càng... thì... giỏi hơn')." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **The more you study, the more better you are** thay vì **the better you are**. Đã có **the better** thì không thêm **more**." },
+      { type: "advanced", text: "Với động từ **be**, có thể lược bỏ ở dạng rút gọn: **The sooner the meeting is over, the better** hoặc **The sooner the better**. Văn viết trang trọng ưu tiên dạng đầy đủ để rõ nghĩa." }
     ]
   },
   { title: "So sánh lũy tiến", grammarId: "074", level: "B1", category: "So sánh",
-    rule: "Diễn tả sự thay đổi liên tục theo chiều hướng tăng lên hoặc giảm đi của một đặc tính ('ngày càng...'). Tính từ ngắn nối bằng **and**, tính từ dài lặp lại từ **more**.",
-    form: ["adj/adv-er + and + adj/adv-er", "more and more + adj/adv dài"],
-    examples: ["Computers are getting smaller and cheaper every year.", "Traffic is becoming more and more congested.", "She worked harder and harder."],
+    rule: "So sánh lũy tiến diễn tả một đặc điểm cứ tăng dần hoặc giảm dần theo thời gian ('ngày càng...'). Với tính từ/trạng từ ngắn, lặp lại dạng so sánh hơn và nối bằng **and**: **bigger and bigger**, **colder and colder**. Với từ dài, lặp lại **more**: **more and more expensive**. Nghĩa giảm dần dùng **less and less** cho mọi loại từ. Thường đi sau các động từ chỉ sự thay đổi như **get**, **become**, **grow**.",
+    form: ["S + get / become / grow + adj-er + and + adj-er (từ ngắn)","S + get / become / grow + more and more + adj (từ dài)","S + V + adv-er + and + adv-er / more and more + adv","S + V + less and less + adj / adv (giảm dần)"],
+    examples: ["Computers are getting smaller and cheaper every year.","Traffic is becoming more and more congested.","She worked harder and harder.","The weather is getting colder and colder.","More and more people are learning English online."],
     wrong: "Computers are getting smaller and cheap.", right: "Computers are getting smaller and cheaper every year.",
     more: [
-      { type: "nuance", text: "Phân biệt với dạng giảm dần: Khi muốn diễn tả 'ngày càng kém/ít đi', dùng cấu trúc **less and less + adj/adv** cho cả từ ngắn lẫn từ dài (**less and less clear**)." }
+      { type: "nuance", text: "Hai dạng so sánh được nối bằng **and** phải là cùng một từ: **bigger and bigger** (ngày càng to), không phải hai từ khác nhau. Còn **smaller and cheaper** là hai tính từ khác nhau, mỗi từ có dạng so sánh riêng, không phải so sánh lũy tiến của một từ." },
+      { type: "extension", text: "Dùng được với danh từ: **more and more people / fewer and fewer jobs** (ngày càng nhiều người / ngày càng ít việc). Dạng giảm dần: **less and less clear** (ngày càng kém rõ), **less and less money**." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **more and more cheap** hoặc **bigger and more big** thay vì **cheaper and cheaper** / **bigger and bigger**. Từ ngắn dùng **-er and -er**, từ dài mới dùng **more and more**." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **It is getting more cold** thay vì **It is getting colder and colder**. Ngoài ra thiếu động từ chỉ thay đổi như **get** / **become** thì câu mất ý 'ngày càng'." },
+      { type: "advanced", text: "Có thể dùng **better and better**, **worse and worse**, **farther and farther** cho các dạng bất quy tắc: **Her English is getting better and better**." }
     ]
   },
   { title: "Từ nối chỉ sự bổ sung", grammarId: "075", level: "B2", category: "Từ nối",
-    rule: "Dùng **In addition**, **Moreover**, **Furthermore**, **Besides** để bổ sung thông tin hoặc luận điểm mới vào câu trước. Thường đứng đầu câu hoặc sau dấu chấm phẩy và ngăn cách bằng dấu phẩy.",
-    form: ["Clause; moreover / furthermore / in addition / besides, + clause"],
-    examples: ["He is fluent in French; moreover, he speaks German and Italian.", "The apartment is spacious; furthermore, it is centrally located.", "In addition to his salary, he gets bonuses."],
+    rule: "Các từ nối bổ sung **moreover**, **furthermore**, **in addition**, **besides** dùng để thêm một ý mới cùng hướng với ý trước. Chúng là trạng từ nối câu chứ không phải liên từ, nên không thể nối hai mệnh đề chỉ bằng dấu phẩy. Cách dùng đúng: đứng đầu câu mới sau dấu chấm, hoặc sau dấu chấm phẩy; luôn có dấu phẩy ngay sau từ nối. **In addition to** và **besides** khi đứng trước danh từ/V-ing thì là giới từ.",
+    form: ["Clause. Moreover / Furthermore / In addition / Besides, + clause","Clause; moreover / furthermore / in addition / besides, + clause","S, moreover / furthermore, + V (giữa câu, có hai dấu phẩy)","In addition to / Besides + N / V-ing, + clause"],
+    examples: ["He is fluent in French; moreover, he speaks German and Italian.","The apartment is spacious; furthermore, it is centrally located.","In addition to his salary, he gets bonuses.","The plan is too expensive. Besides, it would take years to finish.","The company cut its costs. Moreover, it hired more staff."],
     wrong: "He is fluent in French moreover he speaks German.", right: "He is fluent in French; moreover, he speaks German.",
     more: [
-      { type: "nuance", text: "Phân biệt sắc thái giữa các từ: **Moreover** và **Furthermore** mang văn phong trang trọng/học thuật cao dùng trong luận điểm; **Besides** vừa là trạng từ vừa là giới từ (**besides + N/V-ing**) mang tính thân mật hơn trong giao tiếp." }
+      { type: "nuance", text: "**Moreover** và **furthermore** mang văn phong trang trọng, hay gặp trong bài luận và văn bản học thuật. **Besides** thân mật hơn và thường thêm lý do phụ có sức nặng, nhất là trong văn nói: **I don't want to go. Besides, it's late.**" },
+      { type: "extension", text: "Trong giao tiếp còn có các lựa chọn thân mật hơn như **also**, **what is more**, **on top of that**: **He is smart, and on top of that, he is hard-working**." },
+      { type: "mistake", text: "Lỗi hay gặp: nối hai mệnh đề bằng dấu phẩy: nói **He is fluent in French, moreover he speaks German** thay vì **He is fluent in French; moreover, he speaks German** (hoặc tách thành hai câu). Dùng dấu phẩy ở chỗ này gọi là lỗi nối câu bằng dấu phẩy (comma splice)." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **In addition of his salary** thay vì **In addition to his salary**. Cụm cố định là **in addition to**, đi với danh từ hoặc V-ing." },
+      { type: "advanced", text: "Khi đứng giữa câu, **moreover** / **furthermore** được đặt giữa hai dấu phẩy để làm nhẹ nhịp điệu: **The proposal, moreover, has the support of the board**. Cách này thường gặp trong văn viết trang trọng." }
     ]
   },
   { title: "Liên từ chỉ sự tương phản", grammarId: "076", level: "B2", category: "Từ nối",
-    rule: "Dùng **However**, **Nevertheless**, **On the other hand** để đưa ra ý kiến hoặc sự việc tương phản với mệnh đề trước đó.",
-    form: ["Clause; however / nevertheless / on the other hand, + clause"],
-    examples: ["The team worked hard; however, they could not secure the contract.", "It was raining; nevertheless, they went out for a walk.", "On the one hand..., on the other hand..."],
+    rule: "**However**, **nevertheless**, **on the other hand** là trạng từ nối câu, dùng để đưa ra ý tương phản với ý trước ('tuy nhiên', 'dù vậy'). Giống các từ nối bổ sung, chúng không phải liên từ như **but**, nên không nối hai mệnh đề chỉ bằng dấu phẩy. Cách dùng đúng: dấu chấm hoặc dấu chấm phẩy đứng trước, dấu phẩy đứng sau. **On the other hand** thường đi cặp với **on the one hand** để cân nhắc hai mặt của một vấn đề.",
+    form: ["Clause. However / Nevertheless, + clause","Clause; however / nevertheless, + clause","S, however, + V (giữa câu, có hai dấu phẩy)","On the one hand, + clause; on the other hand, + clause"],
+    examples: ["The team worked hard; however, they could not secure the contract.","It was raining; nevertheless, they went out for a walk.","The flat is cheap. On the other hand, it is far from the city centre.","On the one hand, cars are fast; on the other hand, they cause pollution.","The test was difficult. She, however, passed with a high score."],
     wrong: "The team worked hard, however they could not secure it.", right: "The team worked hard; however, they could not secure it.",
     more: [
-      { type: "nuance", text: "Phân biệt mức độ trang trọng: **Nevertheless** mang sắc thái cực kỳ trang trọng và trang nghiêm hơn **However**; **On the other hand** dùng khi cân nhắc hai mặt đối lập của một vấn đề." }
+      { type: "nuance", text: "**Nevertheless** trang trọng hơn **however** và có nghĩa gần như 'dù vậy / dù thế đi nữa' (**even so**). **On the other hand** không nhất thiết phủ định ý trước mà thêm một khía cạnh đối lập khi cân nhắc." },
+      { type: "extension", text: "Còn có **nonetheless**, **even so**, **still**, **yet** (tương phản), và **in contrast** để đối chiếu hai đối tượng khác nhau. **However** cũng có thể đứng cuối câu hoặc giữa câu: **He was tired, however, and went on.**" },
+      { type: "mistake", text: "Lỗi hay gặp: nối hai mệnh đề bằng dấu phẩy, nói **It was raining, nevertheless they went out** thay vì **It was raining; nevertheless, they went out**. Hoặc dùng **but** nếu muốn nối bằng dấu phẩy: **It was raining, but they went out**." },
+      { type: "mistake", text: "Lỗi hay gặp: dùng hai từ nối cùng lúc: nói **Although it was raining, however they went out** hoặc **But however** thay vì chỉ một từ: **Although it was raining, they went out** hoặc **It was raining; however, they went out**." },
+      { type: "advanced", text: "Khác với từ nối, **however + adj / adv + S + V** có nghĩa là 'dù... đến đâu': **However hard he tried, he could not open the door** (Dù cố gắng thế nào, anh ấy cũng không mở được cửa)." }
     ]
   },
   { title: "Cấu trúc In case và In case of", grammarId: "077", level: "B1", category: "Liên từ",
-    rule: "Dùng để diễn tả sự chuẩn bị, phòng ngừa một khả năng có thể xảy ra trong tương lai. **In case** đi với mệnh đề (S + V); **In case of** đi với danh từ hoặc cụm danh từ.",
-    form: ["In case + clause", "In case of + N / V-ing"],
-    examples: ["Take an umbrella with you in case it rains later.", "In case of emergency, please break the glass.", "I brought extra money in case we need it."],
+    rule: "**In case** diễn tả sự phòng ngừa: bạn làm một việc TRƯỚC, phòng khi có chuyện xảy ra sau đó. **In case** đi với một mệnh đề (S + V), thường dùng hiện tại đơn cho ý tương lai. **In case of** là giới từ nên chỉ đi với danh từ hoặc V-ing, không đi với mệnh đề; nghĩa là 'nếu có... xảy ra' và thường thấy trong biển báo, hướng dẫn an toàn. Phân biệt: **in case it rains** (có thể mưa), còn **in case of rain** (nếu có mưa) dùng với danh từ.",
+    form: ["S + V + in case + S + V (hiện tại đơn)","In case + S + V (hiện tại đơn), S + V","In case of + N / V-ing, + clause","S + V2 + in case + S + V2 (tường thuật quá khứ)"],
+    examples: ["Take an umbrella with you in case it rains later.","In case of emergency, please break the glass.","I brought extra money in case we need it.","She wrote down the address in case she forgot it.","In case of fire, use the stairs, not the lift."],
     wrong: "In case of it rains, take an umbrella.", right: "In case it rains, take an umbrella.",
     more: [
-      { type: "nuance", text: "Phân biệt **In case** và **If**: **In case** là hành động chuẩn bị làm trước **để phòng ngừa** (mang dù trước); **If** là hành động chỉ thực hiện **sau khi** điều kiện xảy ra (mưa mới mở dù)." }
+      { type: "nuance", text: "Phân biệt **in case** và **if**: **I'll take an umbrella in case it rains** là mang dù trước, phòng mưa; **I'll take an umbrella if it rains** là chỉ mang khi mưa đã xảy ra. Vì vậy **in case** diễn tả sự chuẩn bị làm trước, còn **if** diễn tả điều kiện." },
+      { type: "extension", text: "Kể về quá khứ thì dùng quá khứ đơn: **I took a coat in case it got cold** (Tôi mang áo khoác phòng khi trời lạnh). Có cách nói quen thuộc **just in case** (cho chắc ăn): **Take some cash, just in case.**" },
+      { type: "mistake", text: "Lỗi hay gặp: nói **in case it will rain** thay vì **in case it rains**. Giống **if**, **in case** không dùng **will** ở mệnh đề của nó khi nói về tương lai." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **in case of fire breaks out** thay vì **in case of fire** hoặc **in case a fire breaks out**. **In case of** cần danh từ; muốn dùng mệnh đề thì bỏ **of**." },
+      { type: "advanced", text: "Trong tiếng Anh-Anh trang trọng, có thể dùng **should** để nhấn mạnh khả năng ít xảy ra: **Leave a number in case he should call** (phòng khi anh ấy gọi). Văn nói bình thường chỉ dùng hiện tại đơn." }
     ]
   },
   { title: "Cấu trúc Provided that và As long as", grammarId: "078", level: "B2", category: "Liên từ",
-    rule: "Dùng để đặt ra điều kiện bắt buộc để một sự việc khác được phép diễn ra ('miễn là', 'với điều kiện là'). Mệnh đề chứa điều kiện tuyệt đối không chia thì tương lai đơn.",
-    form: ["Provided that / Providing that / As long as + S + V (hiện tại đơn), clause"],
-    examples: ["You can borrow my car as long as you return it with a full tank.", "Provided that you study hard, you will pass the exam.", "Providing that weather is fine, we leave tomorrow."],
+    rule: "**Provided that**, **providing that** và **as long as** nghĩa là 'miễn là / với điều kiện là': điều kiện phải được đáp ứng thì việc ở vế kia mới được phép hoặc mới xảy ra. Mệnh đề chứa từ nối ở thì hiện tại đơn khi nói về tương lai (không dùng **will**), còn mệnh đề chính dùng **will** hoặc **can**. Từ **that** có thể bỏ: **provided you...**. Các từ này mạnh hơn **if** ở chỗ nhấn mạnh rằng đó là điều kiện bắt buộc, duy nhất.",
+    form: ["S + will / can + V-bare + as long as + S + V (hiện tại đơn)","As long as + S + V (hiện tại đơn), S + will + V-bare","Provided (that) / Providing (that) + S + V (hiện tại đơn), S + will + V-bare","S + would + V-bare + provided (that) + S + V2 (điều kiện giả định)"],
+    examples: ["You can borrow my car as long as you return it with a full tank.","Provided that you study hard, you will pass the exam.","Providing that the weather is fine, we will leave tomorrow.","As long as you keep quiet, you can stay in the room.","I would lend you the money provided you paid it back soon."],
     wrong: "You can borrow my car as long as you will return it.", right: "You can borrow my car as long as you return it.",
     more: [
-      { type: "nuance", text: "Phân biệt sắc thái: **Provided that** / **Providing that** thường dùng trong văn phong viết, hợp đồng hoặc quy định trang trọng; **As long as** dùng phổ biến trong giao tiếp hàng ngày." }
+      { type: "nuance", text: "**Provided that** và **providing that** thường gặp trong văn viết, hợp đồng, quy định hoặc câu nói trang trọng. **As long as** là cách nói phổ biến nhất trong đời sống hằng ngày." },
+      { type: "extension", text: "**As long as** còn có nghĩa chỉ thời gian: 'bao lâu mà' hoặc 'trong suốt khoảng thời gian': **You can stay as long as you like** (bạn có thể ở bao lâu tùy thích). Biến thể gần nghĩa là **so long as**." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **Provided that you will study hard, you will pass** thay vì **Provided that you study hard, you will pass**. Giống câu điều kiện **if**, mệnh đề điều kiện không dùng **will**." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **Provide that** hoặc **Provided to** thay vì **Provided that** / **Providing that**. Cụm cố định gồm dạng **-ed / -ing** của **provide** + **that**." },
+      { type: "advanced", text: "Với điều kiện giả định không có thật ở hiện tại, mệnh đề điều kiện chuyển sang quá khứ đơn, giống câu điều kiện loại 2: **I would go provided they paid me well**." }
     ]
   },
   { title: "Mệnh đề trạng ngữ chỉ vị trí", grammarId: "079", level: "B1", category: "Mệnh đề",
-    rule: "Dùng **where** (nơi mà) hoặc **wherever** (bất cứ nơi đâu) để bổ nghĩa cho động từ chính về vị trí/địa điểm diễn ra hành động.",
-    form: ["Where / Wherever + clause, clause", "S + V + where / wherever + clause"],
-    examples: ["You can sit wherever you like in the auditorium.", "Put the keys where everyone can see them.", "Wherever she goes, she makes friends easily."],
+    rule: "Mệnh đề trạng ngữ chỉ vị trí cho biết hành động xảy ra ở đâu. **Where** nghĩa là 'ở nơi mà', chỉ một nơi cụ thể đã biết. **Wherever** nghĩa là 'bất cứ nơi nào / dù ở đâu', chỉ nơi bất kỳ. Mệnh đề này có đủ chủ ngữ và động từ của riêng nó, và có thể đứng đầu hoặc cuối câu. Khi đứng đầu câu, thêm dấu phẩy sau mệnh đề. Lưu ý **where** và **wherever** đã mang nghĩa 'ở nơi' nên không cần giới từ **in / at** đứng trước.",
+    form: ["S + V + where + S + V (nơi mà)","S + V + wherever + S + V (bất cứ nơi nào)","Where + S + V, S + V","Wherever + S + V (hiện tại đơn), S + will + V-bare"],
+    examples: ["You can sit wherever you like in the auditorium.","Put the keys where everyone can see them.","Wherever she goes, she makes friends easily.","Lan lives where she can see the river.","This is the town where I was born."],
     wrong: "You can sit everywhere you like.", right: "You can sit wherever you like in the auditorium.",
     more: [
-      { type: "nuance", text: "Phân biệt **Where** và **Wherever**: **Where** chỉ một địa điểm xác định cụ thể (**where I was born**); **Wherever** mang tính mở rộng, vô định (**bất kỳ chỗ nào**)." }
+      { type: "nuance", text: "**Where** nói về chỗ xác định (**the school where I studied**), còn **wherever** nói về chỗ không xác định hoặc 'dù là chỗ nào' (**Wherever you are, call me**). **Wherever** cũng có sắc thái nhấn mạnh sự bao quát: ở đâu cũng đúng." },
+      { type: "extension", text: "**Where** còn dùng cho tình huống, hoàn cảnh: **Where possible, use public transport** (Nếu có thể thì dùng phương tiện công cộng). Cũng có thành ngữ **Where there's a will, there's a way** (Có chí thì nên)." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **This is the town where I was born in** thay vì **This is the town where I was born**. **Where** đã thay thế cho 'in the town' nên không lặp thêm giới từ ở cuối." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **Wherever you will go, I will follow** thay vì **Wherever you go, I will follow**. Mệnh đề trạng ngữ về tương lai dùng hiện tại đơn, không dùng **will**." },
+      { type: "advanced", text: "**Wherever** cũng dùng được để nói 'ở đâu đó (không rõ)' trong văn nói: **She lives in Da Lat or wherever** (Cô ấy sống ở Đà Lạt hay đâu đó). Với nghĩa 'bất cứ nơi nào' thì viết liền thành một từ." }
     ]
   },
   { title: "Câu mệnh lệnh kết hợp and hoặc or", grammarId: "080", level: "A2", category: "Cấu trúc câu",
-    rule: "Đưa ra lời khuyên hoặc cảnh báo bằng cách dùng câu mệnh lệnh đứng đầu (**V-bare**), nối với vế sau bằng **and** (kết quả tích cực) hoặc **or / or else** (hậu quả tiêu cực).",
-    form: ["V-bare..., and + S + will + V-bare", "V-bare..., or / or else + S + will + V-bare"],
-    examples: ["Study hard, and you will pass the upcoming examination.", "Hurry up, or you will miss the train.", "Listen carefully, and you will understand."],
-    wrong: "Study hard, and you pass the exam.", right: "Study hard, and you will pass the upcoming examination.",
+    rule: "Câu mệnh lệnh nối bằng **and** hoặc **or** dùng để khuyên hoặc cảnh báo. Câu đầu là mệnh lệnh (động từ nguyên mẫu **V-bare**, giống như ra lệnh). Nối bằng **and** khi kết quả là điều tốt: **Study hard, and you will pass** (Học chăm đi, rồi bạn sẽ đỗ). Nối bằng **or** hoặc **or else** khi kết quả là điều xấu nếu không làm theo: **Hurry up, or you will miss the train** (Nhanh lên, không thì bạn sẽ lỡ tàu). Vế sau thường dùng **will** hoặc **'ll** cho kết quả trong tương lai.",
+    form: ["V-bare ..., and + S + will + V-bare (kết quả tốt)","V-bare ..., or / or else + S + will + V-bare (hậu quả xấu)","Don't + V-bare ..., or + S + will + V-bare","V-bare ..., otherwise + S + will + V-bare (trang trọng hơn)"],
+    examples: ["Study hard, and you will pass the upcoming examination.","Hurry up, or you will miss the train.","Listen carefully, and you will understand.","Don't touch that wire, or you will get a shock.","Leave now, or else we'll be late."],
+    wrong: "Study hard, and you pass the exam.", right: "Study hard, and you will pass the exam.",
     more: [
-      { type: "nuance", text: "Phân biệt tương đương với câu điều kiện: **V-bare..., and...** tương đương mệnh đề **If + khẳng định**; **V-bare..., or...** tương đương mệnh đề **If + phủ định** (**If you don't hurry...**)." }
+      { type: "nuance", text: "Cấu trúc này tương đương câu điều kiện loại 1: **Study hard, and you will pass** = **If you study hard, you will pass** (Nếu bạn học chăm, bạn sẽ đỗ). **Hurry up, or you will miss it** = **If you don't hurry up, you will miss it**." },
+      { type: "extension", text: "**Or else** nghe mạnh hơn **or**, như một lời đe dọa nhẹ: **Be quiet, or else!** Từ **otherwise** nghĩa tương tự và trang trọng hơn: **Take a taxi, otherwise you will be late**." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **Hurry up, and you will miss the train** thay vì **Hurry up, or you will miss the train**. Kết quả xấu khi không làm theo thì phải dùng **or**, không dùng **and** (tiếng Việt chỉ nói 'nếu không thì' nên dễ chọn nhầm)." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **Study hard, and you will to pass** hoặc **you passing** thay vì **you will pass**. Sau **will** là động từ nguyên mẫu không có **to**." }
     ]
   },
   { title: "Danh từ đếm được và không đếm được nâng cao", grammarId: "081", level: "A1", category: "Danh từ",
-    rule: "Danh từ đếm được có thể đếm bằng số và có dạng số nhiều; danh từ không đếm được không thể đếm trực tiếp mà phải thông qua các cụm từ định lượng (**a piece of**, **a glass of**).",
-    form: ["Countable N (singular/plural)", "Uncountable N (+ a piece of / a bottle of / a cup of)"],
-    examples: ["She gave me a great piece of advice.", "How much water do you drink every day?", "I need to buy some furniture for my new apartment."],
+    rule: "Danh từ đếm được là những thứ ta đếm trực tiếp bằng số: **a book, two books**. Chúng có dạng số ít và số nhiều (thêm **-s / -es**). Danh từ không đếm được là những thứ không đếm trực tiếp được, như chất lỏng, vật liệu hoặc khái niệm trừu tượng: **water, rice, advice, information, furniture, homework, news**. Chúng không có dạng số nhiều và không dùng **a / an**. Muốn đếm, dùng đơn vị đo lường: **a glass of water**, **a piece of advice**. Danh từ không đếm được đi với động từ số ít: **The news is good.**",
+    form: ["a / an + countable N (số ít); countable N-s (số nhiều)","some / much / a lot of + uncountable N (không thêm -s)","a piece of / a glass of / a bottle of + uncountable N","uncountable N + V số ít (The news is ...)"],
+    examples: ["She gave me a great piece of advice.","How much water do you drink every day?","I need to buy some furniture for my new apartment.","The news is very good today.","Nam drinks two glasses of milk every morning."],
     wrong: "She gave me a great advice.", right: "She gave me a great piece of advice.",
     more: [
-      { type: "nuance", text: "Phân biệt các từ có hai dạng nghĩa: **Hair** chỉ toàn bộ mái tóc là không đếm được (**Her hair is dark**), nhưng chỉ các sợi tóc riêng lẻ là đếm được (**There are two hairs on your shirt**)." }
+      { type: "nuance", text: "Một số danh từ có thể đếm được hoặc không đếm được tùy nghĩa. **Hair** chỉ cả mái tóc thì không đếm được (**Her hair is dark**), chỉ từng sợi thì đếm được (**There are two hairs on your shirt**). Tương tự: **paper** (giấy) và **a paper** (một bài báo/bài luận), **coffee** và **two coffees** (hai ly cà phê khi gọi món)." },
+      { type: "extension", text: "Mỗi loại danh từ không đếm được có đơn vị riêng: **a slice of bread**, **a bar of chocolate**, **a bowl of rice**, **a piece of news / furniture / information**. Không dùng **a / an** trực tiếp trước chúng." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **informations**, **furnitures**, **advices**, **homeworks** thay vì **information**, **furniture**, **advice**, **homework**. Trong tiếng Việt các từ này đếm được ('những lời khuyên') nên người học tự thêm **-s**." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **The news are good** thay vì **The news is good**. **News** có đuôi **-s** nhưng là danh từ không đếm được nên dùng động từ số ít." }
     ]
   },
   { title: "Danh từ ghép và sở hữu cách", grammarId: "082", level: "A2", category: "Danh từ",
-    rule: "Dùng danh từ ghép để chỉ tên loại đối tượng (**noun + noun**). Dùng sở hữu cách (**'s** cho danh từ số ít hoặc số nhiều bất quy tắc; **'** cho danh từ số nhiều tận cùng bằng s) để chỉ quyền sở hữu của người/động vật.",
-    form: ["Noun + Noun (danh từ ghép)", "N (số ít) + 's + N", "N (số nhiều có s) + ' + N"],
-    examples: ["This is my brother's laptop; he left it on the table.", "We visited the girls' dormitory yesterday.", "He bought a new bus ticket."],
+    rule: "Danh từ ghép là hai danh từ đứng cạnh nhau, danh từ đầu bổ nghĩa cho danh từ sau, cho biết loại: **a bus ticket** (vé xe buýt). Danh từ đầu thường ở dạng số ít. Sở hữu cách cho biết ai sở hữu gì, chủ yếu với người và động vật: danh từ số ít + **'s** (**my brother's laptop**); danh từ số nhiều đã có **-s** chỉ thêm dấu nháy đơn **'** (**the girls' dormitory**); danh từ số nhiều bất quy tắc thêm **'s** (**children's toys**). Vật sở hữu đứng sau.",
+    form: ["Noun + Noun (danh từ ghép: bus ticket)","N (số ít) + 's + N (my brother's laptop)","N (số nhiều có -s) + ' + N (the girls' dormitory)","N (số nhiều bất quy tắc) + 's + N (children's toys)"],
+    examples: ["This is my brother's laptop; he left it on the table.","We visited the girls' dormitory yesterday.","He bought a new bus ticket.","The children's toys are on the floor.","Is this Lan's phone or Nam's phone?"],
     wrong: "This is my brothers laptop.", right: "This is my brother's laptop.",
     more: [
-      { type: "nuance", text: "Phân biệt sở hữu với vật/thực thể vô sinh: Với đồ vật, dùng cấu trúc **N + of + N** (**the leg of the table**) chứ ít khi dùng sở hữu cách **'s** (**the table's leg**)." }
+      { type: "nuance", text: "Với đồ vật, ít dùng **'s**, thường dùng danh từ ghép hoặc **of**: **the table leg** hoặc **the leg of the table** (chân bàn) tự nhiên hơn **the table's leg**. Còn **'s** vẫn quen thuộc với thời gian và địa điểm: **today's news**, **yesterday's meeting**, **the world's population**." },
+      { type: "extension", text: "Dùng **'s** không có danh từ sau để chỉ nơi: **I'm going to the doctor's** (đến phòng khám), **at my aunt's** (ở nhà dì). Hai người cùng sở hữu một thứ thì thêm **'s** ở người sau: **Lan and Nam's house**." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **a buses ticket**, **a vegetables shop** thay vì **a bus ticket**, **a vegetable shop**. Trong danh từ ghép, danh từ đầu ở dạng số ít, dù nghĩa có thể là nhiều." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **childrens toys** hoặc **childrens' toys** thay vì **children's toys**. **Children** đã là số nhiều bất quy tắc, nên thêm **'s**, không thêm **s'**." }
     ]
   },
   { title: "Sử dụng mạo từ nâng cao", grammarId: "083", level: "A1", category: "Mạo từ",
-    rule: "Dùng **a/an** cho danh từ số ít nhắc tới lần đầu; **the** cho danh từ đã xác định/duy nhất; không dùng mạo từ (**zero article**) trước danh từ số nhiều/không đếm được khi phát biểu chung.",
-    form: ["a / an + N (số ít, chưa xác định)", "the + N (đã xác định / duy nhất)", "Ø + N (số nhiều / không đếm được nghĩa chung)"],
-    examples: ["She wants to buy a new car next month.", "The moon orbits around the Earth.", "Children love playing video games."],
+    rule: "Mạo từ là những từ nhỏ đứng trước danh từ. Dùng **a / an** với danh từ đếm được số ít khi nhắc lần đầu hoặc nói về một thứ nào đó chưa xác định: **a car** (**an** trước âm nguyên âm: **an apple**). Dùng **the** khi người nghe biết đó là thứ nào: đã nhắc rồi, duy nhất (**the sun**, **the moon**) hoặc rõ từ ngữ cảnh. Không dùng mạo từ (zero article) với danh từ số nhiều hoặc không đếm được khi nói chung: **Children love games. Music is fun.**",
+    form: ["a / an + N (đếm được số ít, chưa xác định)","the + N (đã xác định / duy nhất / người nghe biết)","Ø + N số nhiều (nói chung)","Ø + N không đếm được (nói chung)"],
+    examples: ["She wants to buy a new car next month.","The moon orbits around the Earth.","Children love playing video games.","I saw a dog in the park. The dog was very big.","Life is short, so enjoy it."],
     wrong: "She wants to buy new car.", right: "She wants to buy a new car.",
     more: [
-      { type: "nuance", text: "Phân biệt danh từ có và không có **the**: **Go to hospital** (đến bệnh viện để chữa bệnh với tư cách bệnh nhân); **Go to the hospital** (đến bệnh viện với tư cách người thăm nuôi/khách)." }
+      { type: "nuance", text: "Chọn **a / an** theo ÂM, không theo chữ cái: **an hour** (h câm), **a university** (đọc /ju/), **an MBA**. Trong tiếng Anh-Anh, **go to hospital** nói chung về việc là bệnh nhân, còn **go to the hospital** là đến tòa nhà (thăm người bệnh). Tiếng Anh-Mỹ thường dùng **the hospital** cho cả hai nghĩa." },
+      { type: "extension", text: "**The** còn dùng với dạng so sánh nhất (**the best**), tên sông, biển, dãy núi (**the Mekong**, **the Pacific**), và các nhóm người (**the rich**). Nhưng không dùng với bữa ăn, môn học, và các nơi chốn quen thuộc: **have breakfast**, **go to school**, **go to bed**." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **The life is beautiful** khi nói chung. Đúng là **Life is beautiful**, vì nói chung về một khái niệm thì không có mạo từ (người học thường thêm **the** theo tiếng Việt 'cuộc sống')." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **an university** hoặc **a hour** thay vì **a university**, **an hour**. Chữ cái đầu không quan trọng bằng âm đầu." }
     ]
   },
   { title: "Từ chỉ số lượng Much Many A lot of Plenty of", grammarId: "084", level: "A2", category: "Từ chỉ số lượng",
-    rule: "**Many** đi với danh từ đếm được số nhiều; **Much** đi với danh từ không đếm được. **A lot of** / **Plenty of** dùng linh hoạt cho cả hai loại danh từ trong câu khẳng định.",
-    form: ["many + N (đếm được số nhiều)", "much + N (không đếm được)", "a lot of / plenty of + N (cả hai loại)"],
-    examples: ["How much sugar did you put in my coffee?", "There are many students in the library today.", "We have a lot of time before the train departs."],
+    rule: "**Many** đi với danh từ đếm được số nhiều (**many students**). **Much** đi với danh từ không đếm được (**much time**). Cả hai thường dùng trong câu phủ định và câu hỏi: **I don't have much time. Do you have many friends?** Trong câu khẳng định, nói **a lot of** (hoặc **lots of**, **plenty of**) cho tự nhiên hơn, vì dùng được với cả hai loại danh từ: **a lot of students**, **a lot of time**. Hỏi số lượng: **How many + N số nhiều?** và **How much + N không đếm được?**",
+    form: ["many + countable N số nhiều (câu hỏi / phủ định)","much + uncountable N (câu hỏi / phủ định)","a lot of / lots of / plenty of + N (cả hai loại)","How many + plural N ...? / How much + uncountable N ...?"],
+    examples: ["How much sugar did you put in my coffee?","There are many students in the library today.","We have a lot of time before the train departs.","I don't have much homework tonight.","Is there plenty of food for everyone?"],
     wrong: "How many sugar do you need?", right: "How much sugar do you need?",
     more: [
-      { type: "nuance", text: "Phân biệt sắc thái: **Plenty of** mang ý nghĩa 'đủ và thừa thãi cho nhu cầu', trong khi **a lot of** chỉ đơn thuần là 'số lượng nhiều'." }
+      { type: "nuance", text: "**Plenty of** nghĩa là 'đủ và còn dư', còn **a lot of** chỉ đơn giản là 'nhiều': **We have plenty of time** (còn rất dư thời gian) nghe thoải mái hơn **a lot of time**. Cả hai đều thân mật, nên dùng được trong giao tiếp hằng ngày." },
+      { type: "extension", text: "Thêm **too** hoặc **so** để nhấn mạnh: **too many people** (quá nhiều người), **so much noise** (ồn quá). **A lot** không có **of** dùng khi không có danh từ phía sau: **I like it a lot** (Tôi rất thích nó)." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **I have much friends** hoặc **She has much homework** thay vì **I have many friends** / **She has a lot of homework**. Trong câu khẳng định, **much** nghe không tự nhiên; hãy dùng **a lot of**, và **friends** đếm được thì dùng **many**." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **How many money do you have?** thay vì **How much money do you have?**. **Money** là danh từ không đếm được nên đi với **much**." }
     ]
   },
   { title: "Từ chỉ số lượng Few A few Little A little", grammarId: "085", level: "B1", category: "Từ chỉ số lượng",
