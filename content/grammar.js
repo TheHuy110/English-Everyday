@@ -1032,7 +1032,7 @@ OEL.grammar = [
     rule: "Mệnh đề trạng ngữ chỉ vị trí cho biết hành động xảy ra ở đâu. **Where** nghĩa là 'ở nơi mà', chỉ một nơi cụ thể đã biết. **Wherever** nghĩa là 'bất cứ nơi nào / dù ở đâu', chỉ nơi bất kỳ. Mệnh đề này có đủ chủ ngữ và động từ của riêng nó, và có thể đứng đầu hoặc cuối câu. Khi đứng đầu câu, thêm dấu phẩy sau mệnh đề. Lưu ý **where** và **wherever** đã mang nghĩa 'ở nơi' nên không cần giới từ **in / at** đứng trước.",
     form: ["S + V + where + S + V (nơi mà)","S + V + wherever + S + V (bất cứ nơi nào)","Where + S + V, S + V","Wherever + S + V (hiện tại đơn), S + will + V-bare"],
     examples: ["You can sit wherever you like in the auditorium.","Put the keys where everyone can see them.","Wherever she goes, she makes friends easily.","Lan lives where she can see the river.","This is the town where I was born."],
-    wrong: "You can sit everywhere you like.", right: "You can sit wherever you like in the auditorium.",
+    wrong: "You can sit everywhere you like in the auditorium.", right: "You can sit wherever you like in the auditorium.",
     more: [
       { type: "nuance", text: "**Where** nói về chỗ xác định (**the school where I studied**), còn **wherever** nói về chỗ không xác định hoặc 'dù là chỗ nào' (**Wherever you are, call me**). **Wherever** cũng có sắc thái nhấn mạnh sự bao quát: ở đâu cũng đúng." },
       { type: "extension", text: "**Where** còn dùng cho tình huống, hoàn cảnh: **Where possible, use public transport** (Nếu có thể thì dùng phương tiện công cộng). Cũng có thành ngữ **Where there's a will, there's a way** (Có chí thì nên)." },
@@ -1102,129 +1102,175 @@ OEL.grammar = [
     ]
   },
   { title: "Từ chỉ số lượng Few A few Little A little", grammarId: "085", level: "B1", category: "Từ chỉ số lượng",
-    rule: "**A few** / **A little** mang nghĩa tích cực (còn một ít, đủ dùng). **Few** / **Little** mang nghĩa phủ định (rất ít, hầu như không có, không đủ dùng).",
-    form: ["a few / few + N (đếm được số nhiều)", "a little / little + N (không đếm được)"],
-    examples: ["I have a few friends in this city, so I rarely feel lonely.", "He has little experience in marketing, so he failed to get the job.", "We have a little time left before the deadline."],
-    wrong: "I have few friends so I feel very happy.", right: "I have a few friends so I feel quite happy.",
+    rule: "**Few** và **little** đều nghĩa là \"rất ít\", hàm ý không đủ, gần như không có (nghĩa tiêu cực). **A few** và **a little** nghĩa là \"một vài / một ít\", hàm ý vẫn có và đủ dùng (nghĩa tích cực). Chọn giữa hai nhóm theo loại danh từ: **few / a few** đi với danh từ đếm được số nhiều (friends, books), còn **little / a little** đi với danh từ không đếm được (time, money, water). Điểm cần nhớ: có mạo từ **a** thì ý tích cực, không có **a** thì ý tiêu cực.",
+    form: ["Đếm được: a few + N (số nhiều) + V (số nhiều)","Đếm được: few + N (số nhiều) + V (số nhiều) (hầu như không có)","Không đếm được: a little + N (không đếm được) + V (số ít)","Không đếm được: little + N (không đếm được) + V (số ít) (hầu như không có)"],
+    examples: ["I have a few friends in this city, so I rarely feel lonely.","He has little experience in marketing, so he failed to get the job.","We have a little time left before the deadline.","Few people in my village speak French.","Is there a little milk in the fridge, or should I buy some?"],
+    wrong: "We have few time left, so we must hurry.", right: "We have little time left, so we must hurry.",
     more: [
-      { type: "nuance", text: "Phân biệt thái độ người nói: **I have a little money** (Vui vì vẫn còn tiền tiêu); **I have little money** (Buồn/lo lắng vì sắp hết tiền)." }
+      { type: "nuance", text: "Phân biệt thái độ người nói: **I have a little money** (vui vì vẫn còn tiền tiêu); **I have little money** (buồn/lo lắng vì sắp hết tiền). Tương tự, **a few** nhấn mạnh \"có\", còn **few** nhấn mạnh \"thiếu\"." },
+      { type: "extension", text: "Có thể thêm **very**, **only** hoặc **quite** để đổi sắc thái: **very few / very little** (cực kỳ ít), **only a few / only a little** (chỉ có một chút thôi), **quite a few** (khá nhiều, nghĩa là nhiều hơn bạn nghĩ), ví dụ **quite a few students passed**." },
+      { type: "advanced", text: "Trong văn phong trang trọng, **few** và **little** thường đứng một mình hoặc với **of**: **Few of the proposals were accepted.** Trong giao tiếp hằng ngày, người bản ngữ hay dùng **not many / not much** thay cho **few / little**: **I don't have much time.**" },
+      { type: "mistake", text: "Lỗi hay gặp: nói **a few water** hoặc **a little books** thay vì **a little water** và **a few books**. Tiếng Việt không phân biệt đếm được/không đếm được, nên hãy kiểm tra danh từ trước: **water** không đếm được dùng **little**, **books** đếm được dùng **few**." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **I have few friends, so I feel happy** thay vì **I have a few friends, so I feel happy**. Nếu ý của bạn là tích cực, phải có **a**; thiếu **a** làm câu mang nghĩa \"gần như không có bạn\"." }
     ]
   },
   { title: "Đại từ phân bổ All Both Neither Either None", grammarId: "086", level: "B2", category: "Đại từ",
-    rule: "Dùng để chỉ tổng thể hoặc phân loại nhóm đối tượng. **Both / Neither / Either** dùng cho nhóm 2 đối tượng; **All / None** dùng cho nhóm từ 3 đối tượng trở lên.",
-    form: ["Both / Neither / Either + of + the + N (2 đối tượng)", "All / None + of + the + N (>= 3 đối tượng)"],
-    examples: ["Neither of the two candidates was qualified for the job.", "Both of my parents are teachers.", "None of the students failed the final examination."],
-    wrong: "Neither of the two candidates were qualified.", right: "Neither of the two candidates was qualified.",
+    rule: "Các từ này đứng trước **of + the/my/these + danh từ số nhiều** để nói về cả nhóm hoặc một phần của nhóm. **Both** (cả hai), **neither** (không ai trong hai) và **either** (một trong hai) dùng cho nhóm 2 đối tượng. **All** (tất cả) và **none** (không ai/không cái nào) dùng cho nhóm từ 3 đối tượng trở lên. Sau **both** và **all**, động từ chia số nhiều; sau **neither of**, **either of**, động từ trang trọng chia số ít; sau **none of**, có thể chia số ít hoặc số nhiều.",
+    form: ["Both + of + the / my + N (số nhiều) + V (số nhiều)","Neither / Either + of + the / my + N (số nhiều) + V (số ít, trang trọng)","All + of + the / my + N (số nhiều) + V (số nhiều)","None + of + the / my + N (số nhiều) + V (số ít hoặc số nhiều)","Neither / Either + N (số ít) + V (số ít) (không có of)"],
+    examples: ["Neither of the two candidates was qualified for the job.","Both of my parents are teachers.","None of the students failed the final examination.","Is either of these two phones cheaper than that one?","All of the guests have already arrived."],
+    wrong: "Both of my parents is teachers.", right: "Both of my parents are teachers.",
     more: [
-      { type: "nuance", text: "Phân biệt hòa hợp chủ vị: **Neither of / Either of** theo sau bởi danh từ số nhiều nhưng động từ trong ngữ pháp trang trọng luôn chia ở **số ít** (**Neither of them was present**)." }
+      { type: "nuance", text: "Với **neither of / either of / none of** + danh từ số nhiều, văn viết trang trọng dùng động từ số ít (**Neither of them was present**), nhưng trong giao tiếp thân mật người bản ngữ thường dùng động từ số nhiều (**Neither of them were present**) và cách này khá phổ biến. Khi đi thi, hãy chọn dạng số ít." },
+      { type: "extension", text: "Có thể bỏ **of** khi chỉ có một danh từ thường, không có **the/my**: **Both parents work**, **All students must register**, **Either answer is correct**, **Neither team won**. Khi đi với đại từ thì vẫn cần **of**: **both of them**, **all of us**." },
+      { type: "advanced", text: "**Both** có thể đứng sau chủ ngữ hoặc sau trợ động từ: **They both like jazz**, **We have all finished**. Với nhóm 2 đối tượng, người bản ngữ thích **both** hơn **all**; **all** chủ yếu dùng khi từ 3 đối tượng trở lên." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **Both of them are not ready** hoặc **Neither of them isn't ready** thay vì **Neither of them is ready**. **Neither** và **none** đã mang nghĩa phủ định, nên động từ giữ ở dạng khẳng định; chỉ dùng một lần phủ định trong câu." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **All of students passed** thay vì **All of the students passed** (hoặc **All students passed**). Sau **of** phải có từ xác định như **the, my, these, them**." }
     ]
   },
   { title: "Phân biệt Every và Each", grammarId: "087", level: "B2", category: "Từ chỉ số lượng",
-    rule: "**Each** dùng cho nhóm từ 2 đối tượng trở lên, nhấn mạnh tính riêng biệt từng cá thể. **Every** dùng cho nhóm từ 3 đối tượng trở lên, nhấn mạnh tính tổng thể của cả tập hợp.",
-    form: ["Each / Every + N (đếm được số ít) + V (số ít)"],
-    examples: ["Each student in the class was given a unique project topic.", "Every room in this hotel has an ocean view.", "She spoke to each participant individually."],
-    wrong: "Every students received a gift.", right: "Each student received a gift.",
+    rule: "**Each** và **every** đều đi với danh từ đếm được số ít và động từ số ít, nghĩa là \"mỗi / mọi\". **Each** nhìn từng cá thể một cách riêng lẻ và dùng được cho nhóm từ 2 đối tượng trở lên (**each of my hands**). **Every** nhìn cả tập hợp như một tổng thể và thường dùng cho nhóm từ 3 đối tượng trở lên, hàm ý \"tất cả, không sót ai\". **Each** có thể đứng một mình hoặc đi với **of**, còn **every** luôn cần danh từ theo sau.",
+    form: ["Each / Every + N (đếm được số ít) + V (số ít)","Each + of + the / my / these + N (số nhiều) + V (số ít)","Each + V (đứng một mình, thay cho danh từ đã nhắc trước đó)","Every + one + of + the + N (số nhiều) + V (số ít)","Every + số + N (số nhiều) (every two weeks)"],
+    examples: ["Each student in the class was given a unique project topic.","Every room in this hotel has an ocean view.","She spoke to each participant individually.","Each of the boys has his own bike.","Every child in Lan's village goes to school."],
+    wrong: "Every student have a textbook.", right: "Every student has a textbook.",
     more: [
-      { type: "nuance", text: "Phân biệt cấu trúc: **Each** có thể đứng một mình hoặc đi với **of** (**Each of the boys**), nhưng **Every** bắt buộc phải có danh từ đứng ngay sau (không dùng **Every of**)." }
+      { type: "nuance", text: "Chọn **each** khi bạn nghĩ đến từng người/vật riêng lẻ (giáo viên nói chuyện với từng em), chọn **every** khi nói chung cả nhóm (**Every student must wear a uniform**). Với số lượng đã xác định và nhỏ, **each** tự nhiên hơn: **She held a flower in each hand**." },
+      { type: "extension", text: "**Every** còn dùng với các cụm thời gian lặp lại: **every day**, **every Monday**, **every two weeks**; và với **almost / nearly**: **almost every student**. Các đại từ **everyone, everybody, everything** cũng đi với động từ số ít: **Everyone is here.**" },
+      { type: "advanced", text: "**Every one of** + danh từ số nhiều nhấn mạnh từng cá thể trong tập hợp: **Every one of the players was tired.** Sau **each** hoặc **every**, đại từ thay thế ở số ít (**Each student brought his or her own book**), nhưng trong tiếng Anh hiện đại **their** cũng rất phổ biến." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **every students** hoặc **each students** thay vì **every student** và **each student**. Tiếng Việt dùng \"mỗi/mọi\" trước danh từ mà không đổi dạng, nhưng tiếng Anh bắt buộc dùng danh từ số ít." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **Every of the students** thay vì **Each of the students** hoặc **Every one of the students**. **Every** không đi trực tiếp với **of**; muốn dùng **of**, hãy đổi thành **each** hoặc thành **every one**." }
     ]
   },
   { title: "Đại từ phản thân", grammarId: "088", level: "A2", category: "Đại từ",
-    rule: "Dùng khi chủ ngữ và tân ngữ chỉ cùng một đối tượng (**myself**, **yourself**, **himself**...), hoặc kết hợp cụm **by + reflexive pronoun** để diễn tả việc tự làm không có người giúp.",
-    form: ["S + V + reflexive pronoun", "by + reflexive pronoun (tự mình làm)"],
-    examples: ["He built the bookshelf all by himself without any help.", "She looked at herself in the mirror.", "Children, you must take care of yourselves."],
-    wrong: "He looked at him in the mirror.", right: "He looked at himself in the mirror.",
+    rule: "Đại từ phản thân là các từ **myself, yourself, himself, herself, itself, ourselves, yourselves, themselves**. Ta dùng chúng khi chủ ngữ và tân ngữ là cùng một người hay vật, ví dụ **I cut myself**. Nếu hai người khác nhau, ta dùng đại từ thường: **He saw him** (hai người khác nhau). Cụm **by + đại từ phản thân** nghĩa là \"tự mình, không ai giúp\": **I did it by myself**. Chú ý: số ít kết thúc bằng **-self**, số nhiều kết thúc bằng **-selves**.",
+    form: ["S + V + myself / yourself / himself / herself / itself","S + V + ourselves / yourselves / themselves (chủ ngữ số nhiều)","S + V + O + by + reflexive pronoun (tự mình làm, không ai giúp)","S (người A) + V + O (người B, đại từ thường, không dùng -self)"],
+    examples: ["He built the bookshelf all by himself without any help.","She looked at herself in the mirror.","Children, you must take care of yourselves.","I burned myself while I was cooking dinner.","We enjoyed ourselves at the party."],
+    wrong: "I cut me while I was cooking.", right: "I cut myself while I was cooking.",
     more: [
-      { type: "nuance", text: "Phân biệt tân ngữ thường và đại từ phản thân: **He saw him** (Anh ấy nhìn thấy người đàn ông khác); **He saw himself** (Anh ấy nhìn chính mình trong gương)." }
+      { type: "nuance", text: "Phân biệt đại từ thường và đại từ phản thân: **He saw him** (anh ấy nhìn thấy một người đàn ông khác); **He saw himself** (anh ấy nhìn thấy chính mình, ví dụ trong gương). Chỉ cần đổi một từ là đổi người được nói đến." },
+      { type: "extension", text: "Đại từ phản thân còn dùng để nhấn mạnh: **I made the cake myself** (chính tôi làm, nhấn mạnh) hoặc **The teacher himself was surprised** (chính thầy giáo cũng ngạc nhiên). Cụm hay gặp: **enjoy yourself** (chúc vui vẻ), **help yourself** (cứ tự nhiên lấy), **introduce myself** (giới thiệu bản thân)." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **hisself** hoặc **themself**/**theirselves** thay vì **himself** và **themselves**. Hãy nhớ: **him** + self, **them** + selves, nhưng **his** không dùng. Số nhiều luôn là **-selves**: **ourselves, yourselves, themselves**." },
+      { type: "mistake", text: "Lỗi hay gặp: thêm đại từ phản thân sau động từ không cần, như **I feel myself tired**, **I concentrated myself** thay vì **I feel tired**, **I concentrated**. Tiếng Việt hay nói \"tự thấy mình mệt\", nhưng tiếng Anh thường bỏ đại từ ở các động từ này, ví dụ **wake up, relax, feel, concentrate**." }
     ]
   },
   { title: "Đại từ sở hữu và tính từ sở hữu", grammarId: "089", level: "A1", category: "Đại từ",
-    rule: "Tính từ sở hữu (**my**, **your**, **his**...) phải đứng trước danh từ. Đại từ sở hữu (**mine**, **yours**, **his**...) đứng độc lập thay thế cho cả 'tính từ sở hữu + danh từ' để tránh lặp từ.",
-    form: ["Possessive adj + N", "Possessive pronoun (mine / yours / his / hers / ours / theirs)"],
-    examples: ["This isn't my jacket; mine is blue.", "Her hair is long, but his is short.", "Is this umbrella yours or ours?"],
+    rule: "Tính từ sở hữu (**my, your, his, her, its, our, their**) luôn đứng ngay trước danh từ: **my book**. Đại từ sở hữu (**mine, yours, his, hers, ours, theirs**) đứng một mình, thay cho \"tính từ sở hữu + danh từ\" để khỏi nhắc lại: **This book is mine** (= my book). Hai loại này không dùng cùng nhau: không nói \"my mine book\". Lưu ý: **his** có cả hai vai trò, còn **its** chỉ là tính từ sở hữu và không có dạng đại từ thông dụng.",
+    form: ["my / your / his / her / its / our / their + N","S + be + mine / yours / his / hers / ours / theirs","mine / yours / his / hers / ours / theirs (thay cho adj sở hữu + N)","a / this / that + N + of + mine / yours / his / hers (a friend of mine)"],
+    examples: ["This isn't my jacket; mine is blue.","Her hair is long, but his is short.","Is this umbrella yours or ours?","Our house is small, but theirs is very big.","My phone is new, and Lan's is old."],
     wrong: "This jacket is my.", right: "This jacket is mine.",
     more: [
-      { type: "nuance", text: "Phân biệt **its** và **it's**: **Its** là tính từ sở hữu (**The dog wagged its tail**); **It's** là dạng viết tắt của **It is** hoặc **It has**." }
+      { type: "nuance", text: "Phân biệt **its** và **it's**: **Its** là tính từ sở hữu (**The dog wagged its tail** - con chó vẫy đuôi của nó), còn **it's** là viết tắt của **it is** hoặc **it has** (**It's cold** - trời lạnh). Không bao giờ có dấu nháy trong tính từ sở hữu." },
+      { type: "extension", text: "Với tên riêng, thêm **'s**: **Lan's bag**, và dùng một mình khi không cần nhắc lại: **That bag is Lan's** (túi đó của Lan). Cấu trúc **a friend of mine** (một người bạn của tôi) dùng đại từ sở hữu, không nói **a friend of me**." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **This is mine book** hoặc **Where is yours bag?** thay vì **This is my book** và **Where is your bag?**. Trước danh từ phải dùng tính từ sở hữu (**my, your**), còn **mine, yours** không bao giờ đi cùng danh từ." },
+      { type: "mistake", text: "Lỗi hay gặp: viết **her's**, **our's**, **their's** hoặc **yours'** thay vì **hers**, **ours**, **theirs**, **yours**. Đại từ sở hữu không có dấu nháy; dấu nháy chỉ dùng cho danh từ: **Lan's**." }
     ]
   },
   { title: "Trật tự của tính từ trước danh từ", grammarId: "090", level: "B1", category: "Tính từ",
-    rule: "Khi nhiều tính từ cùng bổ nghĩa cho một danh từ, sắp xếp theo thứ tự **OSASCOMP**: Opinion (Ý kiến) -> Size (Kích thước) -> Age (Tuổi) -> Shape (Hình dáng) -> Color (Màu sắc) -> Origin (Nguồn gốc) -> Material (Chất liệu) -> Purpose (Mục đích).",
-    form: ["Opinion -> Size -> Age -> Shape -> Color -> Origin -> Material -> Purpose + N"],
-    examples: ["She was wearing a beautiful long red silk dress at the wedding.", "He bought an old small wooden house.", "They gave me a wonderful round golden ring."],
-    wrong: "She wore a red long beautiful silk dress.", right: "She was wearing a beautiful long red silk dress.",
+    rule: "Khi có nhiều tính từ cùng bổ nghĩa cho một danh từ, tiếng Anh sắp xếp chúng theo thứ tự khá cố định, có thể nhớ bằng **OSASCOMP**: Opinion (ý kiến) -> Size (kích thước) -> Age (tuổi) -> Shape (hình dáng) -> Color (màu sắc) -> Origin (nguồn gốc) -> Material (chất liệu) -> Purpose (mục đích). Tính từ đứng trước danh từ, không cần dấu phẩy khi thuộc các nhóm khác nhau, và không đổi dạng theo số nhiều. Điểm khác tiếng Việt: tính từ đứng trước danh từ, không phải sau.",
+    form: ["Det + Opinion + Size + Age + Shape + Color + Origin + Material + Purpose + N","a / the / my + adj + adj + N (thường dùng 2-3 tính từ)","S + be + adj + and + adj (sau động từ be, nối bằng and)","adj, adj + N (cùng nhóm nghĩa thì ngăn bằng dấu phẩy: a long, thin tail)"],
+    examples: ["She was wearing a beautiful long red silk dress at the wedding.","He bought a small old wooden house.","They gave me a wonderful round golden ring.","My grandmother has a lovely little Vietnamese tea set.","I saw a huge black dog near the gate."],
+    wrong: "She wore a red long beautiful silk dress.", right: "She wore a beautiful long red silk dress.",
     more: [
-      { type: "nuance", text: "Phân biệt tính từ ý kiến chủ quan và khách quan: Tính từ thể hiện quan điểm chủ quan (**beautiful**, **lovely**) luôn đứng trước các tính từ miêu tả thực tế khách quan (**long**, **red**)." }
+      { type: "nuance", text: "Tính từ chỉ quan điểm chủ quan (**beautiful, lovely, terrible**) luôn đứng trước tính từ miêu tả sự thật khách quan (**long, red, wooden**). Danh từ dùng như tính từ (**silk, tea, school**) thường đứng sát danh từ chính nhất: **a leather school bag**." },
+      { type: "extension", text: "Khi tính từ đứng sau động từ **be**, ta thường nối bằng **and**, và thứ tự bớt chặt hơn: **The room was big and bright.** Với hai tính từ màu, dùng **and**: **a black and white photo**. Trong thực tế, người bản ngữ ít khi dùng hơn ba tính từ liền nhau." },
+      { type: "mistake", text: "Lỗi hay gặp: đặt tính từ sau danh từ theo thói quen tiếng Việt, như **a dress red**, **a house big** thay vì **a red dress**, **a big house**. Tính từ tiếng Anh đứng trước danh từ." },
+      { type: "mistake", text: "Lỗi hay gặp: thêm **s** cho tính từ khi danh từ số nhiều, như **reds roses**, **beautifuls girls** thay vì **red roses**, **beautiful girls**. Tính từ tiếng Anh không đổi dạng, chỉ danh từ mới có **-s**." }
     ]
   },
   { title: "Tính từ tận cùng bằng ED và ING", grammarId: "091", level: "B1", category: "Tính từ",
-    rule: "Tính từ đuôi **-ed** diễn tả cảm xúc/bị tác động của con người. Tính từ đuôi **-ing** mô tả bản chất, tính chất gây ra cảm xúc của sự vật, sự việc hoặc người khác.",
-    form: ["S (người) + be + adj-ed (cảm xúc)", "S (sự vật/sự việc) + be + adj-ing (tính chất)"],
-    examples: ["The long lecture was so boring that half the audience fell asleep.", "I am bored with this routine.", "She was surprised by the sudden news."],
+    rule: "Nhiều tính từ có hai dạng: đuôi **-ed** (**bored, interested, surprised**) và đuôi **-ing** (**boring, interesting, surprising**). Tính từ **-ed** diễn tả cảm xúc của người cảm nhận: **I am bored**. Tính từ **-ing** mô tả tính chất của sự vật, sự việc hay người gây ra cảm xúc đó: **The lecture is boring**. Mẹo nhớ: hỏi \"ai cảm thấy?\" thì dùng **-ed**, hỏi \"cái gì gây cảm xúc?\" thì dùng **-ing**.",
+    form: ["S (người) + be / feel + adj-ed (cảm xúc của người đó)","S (sự vật / sự việc) + be + adj-ing (tính chất gây ra cảm xúc)","adj-ing + N (an exciting game) / adj-ed + N (an excited fan)","be + adj-ed + preposition (bored with, interested in, surprised at / by)"],
+    examples: ["The long lecture was so boring that half the audience fell asleep.","I am bored with this routine.","She was surprised by the sudden news.","Minh is very interested in Vietnamese history.","Is the new movie exciting, or are you just excited about the holiday?"],
     wrong: "The lecture was so bored.", right: "The lecture was so boring.",
     more: [
-      { type: "nuance", text: "Phân biệt khi mô tả người: **He is bored** (Anh ấy đang cảm thấy chán nản); **He is boring** (Anh ấy là một người tẻ nhạt, làm người khác phát chán)." }
+      { type: "nuance", text: "Khi mô tả người, hai dạng có nghĩa khác nhau: **He is bored** (anh ấy đang cảm thấy chán) và **He is boring** (anh ấy là người tẻ nhạt, khiến người khác chán). Tương tự **She is annoyed** (cô ấy bực) và **She is annoying** (cô ấy gây khó chịu)." },
+      { type: "extension", text: "Các cặp thường gặp: **excited / exciting**, **tired / tiring**, **confused / confusing**, **interested / interesting**, **worried / worrying**, **shocked / shocking**. Cả hai dạng đều đứng được trước danh từ: **a tiring day** (ngày mệt mỏi), **a tired child** (đứa trẻ mệt)." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **I am boring** hoặc **I am interesting in music** thay vì **I am bored** và **I am interested in music**. Khi nói về cảm giác của bản thân, dùng **-ed**; **interested** còn đi với giới từ **in**." },
+      { type: "mistake", text: "Lỗi hay gặp: dùng **very** hoặc **much** không đúng trước tính từ cảm xúc, như **I am very interest** thay vì **I am very interested**. Phải có đuôi **-ed** vì đây là tính từ, không phải danh từ **interest**." }
     ]
   },
   { title: "Vị trí và dạng của trạng từ", grammarId: "092", level: "A2", category: "Trạng từ",
-    rule: "Trạng từ thể cách diễn tả cách thức hành động diễn ra (thêm **-ly** vào tính từ). Đứng sau động từ chính hoặc sau tân ngữ, tuyệt đối không đứng giữa động từ và tân ngữ.",
-    form: ["S + V + (O) + adv (-ly)"],
-    examples: ["She speaks English extremely fluently.", "He quickly finished his homework before dinner.", "Please drive carefully on this slippery road."],
+    rule: "Trạng từ thể cách cho biết hành động diễn ra như thế nào. Phần lớn được tạo bằng cách thêm **-ly** vào tính từ: **slow -> slowly**, **careful -> carefully**. Câu hỏi để kiểm tra: nếu bổ nghĩa cho động từ thì dùng trạng từ, nếu bổ nghĩa cho danh từ thì dùng tính từ. Trạng từ thường đứng cuối câu, sau động từ hoặc sau tân ngữ; không đặt giữa động từ và tân ngữ (không nói \"speaks fluently English\"). Cũng có thể đặt trước động từ chính: **He quickly finished his homework**.",
+    form: ["S + V + adv (She sings beautifully)","S + V + O + adv (She speaks English fluently)","S + adv + V + O (He quickly finished his homework)","adj + ly = adv (careful -> carefully); y -> ily (happy -> happily)"],
+    examples: ["She speaks English extremely fluently.","He quickly finished his homework before dinner.","Please drive carefully on this slippery road.","Nam works hard every day.","Does your brother play the guitar well?"],
     wrong: "She speaks English fluent.", right: "She speaks English fluently.",
     more: [
-      { type: "nuance", text: "Phân biệt tính từ/trạng từ bất quy tắc: **Hard** (chăm chỉ/cứng) -> trạng từ vẫn là **hard**; còn **hardly** mang nghĩa hoàn toàn khác là 'hầu như không'." }
+      { type: "nuance", text: "Một số từ không đổi dạng hoặc khác nghĩa khi thêm **-ly**: **fast** (nhanh, vừa là tính từ vừa là trạng từ), **hard** (chăm chỉ / cứng, trạng từ vẫn là **hard**), nhưng **hardly** nghĩa là \"hầu như không\" (**I hardly know him**). Trạng từ của **good** là **well**, không phải **goodly**." },
+      { type: "extension", text: "Quy tắc chính tả: tính từ tận cùng **-y** đổi thành **-ily** (**easy -> easily**); tận cùng **-le** bỏ **e** thêm **-y** (**gentle -> gently**); tận cùng **-ic** thêm **-ally** (**basic -> basically**). Lưu ý: **friendly, lovely, lonely** tận cùng **-ly** nhưng là tính từ." },
+      { type: "mistake", text: "Lỗi hay gặp: đặt trạng từ giữa động từ và tân ngữ, như **She speaks fluently English** thay vì **She speaks English fluently**. Ta có thể nói **She speaks fluently** (không có tân ngữ) hoặc **She speaks English fluently**." },
+      { type: "mistake", text: "Lỗi hay gặp: dùng tính từ thay cho trạng từ vì tiếng Việt dùng chung một từ, như **He drives careful** hoặc **She sings beautiful** thay vì **He drives carefully** và **She sings beautifully**. Bổ nghĩa cho động từ phải dùng trạng từ." }
     ]
   },
   { title: "Trạng từ chỉ nơi chốn phủ định đứng đầu câu", grammarId: "093", level: "B2", category: "Trạng từ",
-    rule: "Khi trạng từ chỉ nơi chốn mang tính phủ định hoặc giới hạn (**Nowhere**, **On no hill**) đứng đầu câu để nhấn mạnh, ta thực hiện đảo trợ động từ lên trước chủ ngữ.",
-    form: ["Nowhere / Locative phrase + trợ động từ + S + V-bare"],
-    examples: ["Nowhere will you find such breathtaking scenery as in the Alps.", "On the hilltop stood an ancient castle."],
-    wrong: "Nowhere you will find such scenery.", right: "Nowhere will you find such breathtaking scenery.",
+    rule: "Trong văn phong trang trọng hoặc văn viết, khi một trạng từ phủ định hoặc giới hạn (**Nowhere, Never, Rarely, Under no circumstances**) đứng đầu câu để nhấn mạnh, ta đảo trợ động từ lên trước chủ ngữ như trong câu hỏi: **Nowhere will you find such scenery.** Nếu không có sẵn trợ động từ, ta mượn **do / does / did**: **Nowhere did I feel more welcome.** Ngoài ra, khi cụm chỉ nơi chốn (**On the hill, Here, There**) đứng đầu câu, ta đảo thẳng động từ lên trước chủ ngữ, không cần trợ động từ: **On the hilltop stood a castle.**",
+    form: ["Nowhere / Never / Under no circumstances + trợ động từ + S + V-bare","Nowhere + do / does / did + S + V-bare (khi câu thường không có trợ động từ)","Nowhere + be + S + ... (Nowhere is the food better than in Hanoi)","On the hill / In the corner / Here / There + V + N (đảo thẳng động từ, S là danh từ)"],
+    examples: ["Nowhere will you find such breathtaking scenery as in the Alps.","On the hilltop stood an ancient castle.","Nowhere did I feel more welcome than in Hue.","Nowhere is the food better than in Hanoi.","Here comes the bus, so hurry up."],
+    wrong: "Nowhere you will find such scenery.", right: "Nowhere will you find such scenery.",
     more: [
-      { type: "nuance", text: "Phân biệt đảo ngữ toàn bộ và đảo trợ động từ: Khi cụm trạng từ chỉ vị trí đứng đầu câu trong văn mô tả, động từ chính được đảo thẳng lên trước chủ ngữ không mượn trợ động từ (**On the table sat a black cat**)." }
+      { type: "nuance", text: "Đảo ngữ với cụm chỉ nơi chốn chỉ dùng khi chủ ngữ là danh từ: **Here comes the bus**, nhưng với đại từ thì không đảo: **Here it comes** (không nói **Here comes it**). Kiểu đảo thẳng động từ này thường dùng với **stand, sit, lie, come, go**, và mang sắc thái văn chương, miêu tả." },
+      { type: "extension", text: "Các trạng từ phủ định khác cũng gây đảo ngữ: **Never have I seen such a view**, **Rarely does he complain**, **Under no circumstances should you open this door**. Cấu trúc này thường dùng trong văn viết trang trọng, hiếm gặp trong giao tiếp thường ngày." },
+      { type: "mistake", text: "Lỗi hay gặp: không đảo, như **Nowhere you can find** thay vì **Nowhere can you find**. Tiếng Việt giữ nguyên trật tự chủ ngữ - động từ, nhưng tiếng Anh phải đảo trợ động từ lên trước chủ ngữ." },
+      { type: "mistake", text: "Lỗi hay gặp: chia động từ chính sau khi đã mượn trợ động từ, như **Nowhere did she found** hoặc **Nowhere does he knows** thay vì **Nowhere did she find** và **Nowhere does he know**. Sau **do / does / did**, động từ chính luôn ở dạng nguyên mẫu." }
     ]
   },
   { title: "Giới từ chỉ thời gian In On At", grammarId: "094", level: "A1", category: "Giới từ",
-    rule: "Dùng **at** cho mốc giờ cụ thể, dịp lễ; **on** cho các ngày trong tuần, ngày tháng cụ thể; **in** cho tháng, năm, mùa, thế kỷ và các buổi trong ngày.",
-    form: ["at + giờ / mốc thời gian cụ thể", "on + thứ / ngày tháng", "in + tháng / năm / mùa / thế kỷ"],
-    examples: ["The concert starts at 7:30 PM sharp tonight.", "My birthday is on October 15th.", "We love traveling in summer."],
+    rule: "Ba giới từ **at, on, in** đều có nghĩa \"vào lúc\", nhưng mỗi từ dùng cho một loại thời gian khác nhau. Dùng **at** cho giờ và mốc thời gian cụ thể (at 7 o'clock, at noon, at night, at Christmas). Dùng **on** cho thứ và ngày (on Monday, on October 15th). Dùng **in** cho tháng, năm, mùa, thế kỷ và các buổi trong ngày (in July, in 2025, in summer, in the morning). Mẹo: **at** là một điểm nhỏ, **on** là một ngày, **in** là một khoảng dài.",
+    form: ["at + giờ / mốc thời gian (at 7:30, at noon, at night)","on + thứ / ngày tháng (on Monday, on 15th October)","in + tháng / năm / mùa / thế kỷ (in July, in 2025, in summer)","in + the morning / afternoon / evening (nhưng at night)","không dùng giới từ: this / next / last / every + thời gian"],
+    examples: ["The concert starts at 7:30 PM sharp tonight.","My birthday is on October 15th.","We love traveling in summer.","Lan has English class on Monday morning.","What do you usually do in the evening?"],
     wrong: "The concert starts in 7:30 PM.", right: "The concert starts at 7:30 PM.",
     more: [
-      { type: "nuance", text: "Phân biệt **at night** và **in the night**: **At night** nói chung về thời gian ban đêm; **In the night** chỉ một thời điểm cụ thể trong một đêm nhất định." }
+      { type: "nuance", text: "Các buổi trong ngày dùng **in**: **in the morning** (vào buổi sáng), **in the afternoon**, **in the evening**, nhưng ban đêm lại dùng **at night** (vào ban đêm). Khi chỉ rõ ngày, dùng **on**: **on Monday morning** (sáng thứ Hai)." },
+      { type: "extension", text: "Không dùng giới từ trước **this, next, last, every, tomorrow, yesterday**: **I will see you next Monday** (tôi sẽ gặp bạn thứ Hai tới), **We study every day** (chúng tôi học mỗi ngày). Anh-Anh nói **at the weekend**, còn Anh-Mỹ thường nói **on the weekend**." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **in Monday** hoặc **at Sunday** thay vì **on Monday** và **on Sunday**. Tiếng Việt dùng \"vào\" cho mọi thời điểm, nhưng tiếng Anh phải chọn giữa **at, on, in**: thứ và ngày dùng **on**." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **at the morning** hoặc **in 15th October** thay vì **in the morning** và **on 15th October**. Buổi trong ngày dùng **in**, còn ngày cụ thể có số ngày thì dùng **on**." }
     ]
   },
   { title: "Giới từ chỉ nơi chốn In On At", grammarId: "095", level: "A1", category: "Giới từ",
-    rule: "Dùng **at** cho vị trí địa điểm/sự kiện cụ thể, địa chỉ nhà; **on** cho bề mặt, tầng nhà, tên đường; **in** cho không gian kín, thành phố, quốc gia.",
-    form: ["at + điểm cụ thể / địa chỉ nhà", "on + bề mặt / tên đường / tầng", "in + không gian kín / thành phố / quốc gia"],
-    examples: ["She is currently studying at the library.", "There is a poster on the wall.", "They live in Hanoi, Vietnam."],
+    rule: "Ba giới từ **at, on, in** cũng dùng để chỉ nơi chốn. Dùng **at** cho một điểm hoặc địa điểm cụ thể, số nhà, sự kiện (at the bus stop, at 25 Tran Phu Street, at a party). Dùng **on** cho bề mặt, tên đường, tầng nhà (on the wall, on Tran Phu Street, on the second floor). Dùng **in** cho không gian khép kín hoặc khu vực lớn như phòng, thành phố, quốc gia (in a room, in Hanoi, in Vietnam). Mẹo: **at** là một điểm, **on** là một mặt phẳng, **in** là bên trong.",
+    form: ["at + điểm cụ thể / số nhà / sự kiện (at the station, at 25 Tran Phu Street)","on + bề mặt / tên đường / tầng (on the table, on Tran Phu Street)","in + không gian kín / thành phố / quốc gia (in the room, in Hanoi)","at home / at school / at work (cụm cố định, không có the)"],
+    examples: ["She is currently studying at the library.","There is a poster on the wall.","They live in Hanoi, Vietnam.","My mother is at home, but my father is at work.","Nam lives on the third floor."],
     wrong: "She is studying on the library.", right: "She is studying at the library.",
     more: [
-      { type: "nuance", text: "Phân biệt **at the corner** (ở góc đường/ngã tư bên ngoài) và **in the corner** (ở góc bên trong một căn phòng)." }
+      { type: "nuance", text: "Phân biệt **at the corner** (ở góc đường, ngã tư bên ngoài) và **in the corner** (ở góc bên trong một căn phòng). Ví dụ: **The cafe is at the corner of the street** (quán cà phê ở góc phố), **The chair is in the corner of the room** (cái ghế ở góc phòng)." },
+      { type: "extension", text: "Các cụm cố định nên học thuộc: **at home, at school, at work, at the airport, at the bus stop** (ở nhà, ở trường, ở chỗ làm, ở sân bay, ở trạm xe buýt); **in bed, in the car, in a taxi**; **on the bus, on the train, on the plane**. Cụm **at** thường gắn với chức năng của nơi đó, ví dụ **at school** nghĩa là đang đi học." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **I am in home** hoặc **I am at the home** thay vì **I am at home**. **At home** là cụm cố định, không cần **the** và không dùng **in**." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **I live in 25 Tran Phu Street** thay vì **I live at 25 Tran Phu Street** (có số nhà) hoặc **I live on Tran Phu Street** (chỉ tên đường). Khi không có số nhà, dùng **on**; có số nhà, dùng **at**." }
     ]
   },
   { title: "Giới từ chỉ phương hướng và chuyển động", grammarId: "096", level: "A2", category: "Giới từ",
-    rule: "Dùng các giới từ như **to**, **into**, **out of**, **through**, **across** để chỉ hướng di chuyển của đối tượng từ vị trí này sang vị trí khác.",
-    form: ["S + V (chuyển động) + into / out of / across / through + N"],
-    examples: ["She walked into the dark room and switched on the lights.", "They swam across the wide river.", "The train went through a long tunnel."],
-    wrong: "She walked in the dark room from outside.", right: "She walked into the dark room.",
+    rule: "Giới từ chuyển động cho biết người hoặc vật đi theo hướng nào. **To** chỉ điểm đến (go to school), **into** chỉ đi từ ngoài vào trong (walk into the room), **out of** chỉ đi từ trong ra ngoài (come out of the house), **through** chỉ đi xuyên qua (a tunnel), **across** chỉ đi ngang từ bên này sang bên kia (a river, a road). Còn **onto, along, up, down, over, past, towards** cũng thường gặp. Các giới từ này đứng ngay trước danh từ chỉ nơi chốn.",
+    form: ["S + V (chuyển động) + to / towards + N (đến, hướng về)","S + V + into / onto + N (vào trong / lên trên)","S + V + out of / off + N (ra khỏi / xuống khỏi)","S + V + through / across / along / over / past + N (đi qua, đi dọc)"],
+    examples: ["She walked into the dark room and switched on the lights.","They swam across the wide river.","The train went through a long tunnel.","Why did Minh run out of the classroom?","Please walk along this road until you reach the bridge."],
+    wrong: "They swam cross the wide river.", right: "They swam across the wide river.",
     more: [
-      { type: "nuance", text: "Phân biệt **in** và **into**: **In** chỉ vị trí tĩnh bên trong (**She is in the room**); **Into** chỉ hướng di chuyển từ ngoài vào trong (**She walked into the room**)." }
+      { type: "nuance", text: "Phân biệt **in** và **into**: **in** chỉ vị trí đang ở bên trong (**She is in the room** - cô ấy đang ở trong phòng), còn **into** chỉ hướng đi từ ngoài vào trong (**She walked into the room** - cô ấy đi vào phòng). Với **out of**, ta nói **She walked out of the room** (đi ra khỏi phòng)." },
+      { type: "extension", text: "Một số cặp đối lập hay gặp: **up / down** (lên / xuống), **onto / off** (lên / xuống khỏi bề mặt), **into / out of** (vào / ra), **towards / away from** (về phía / ra xa). Ví dụ: **The cat jumped onto the table and then off it.**" },
+      { type: "mistake", text: "Lỗi hay gặp: nói **go to home** hoặc **come to home** thay vì **go home** và **come home**. **Home** ở đây là trạng từ, không cần **to**. Tương tự: **go abroad**, **go upstairs**, **go there**." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **arrive to Hanoi** thay vì **arrive in Hanoi** (thành phố, nước) hoặc **arrive at the station** (địa điểm nhỏ). Động từ **arrive** không đi với **to**, mặc dù trong tiếng Việt ta nói \"đến\"." }
     ]
   },
   { title: "Giới từ chỉ phương tiện và công cụ", grammarId: "097", level: "B1", category: "Giới từ",
-    rule: "Dùng **by** trước phương tiện giao thông chung chung (không mạo từ). Dùng **on/in** khi phương tiện có mạo từ/tính từ sở hữu. Dùng **with** chỉ công cụ, dụng cụ cụ thể.",
-    form: ["by + phương tiện (by bus, by train)", "in / on + a/my + phương tiện", "with + công cụ (with a pen, with a knife)"],
-    examples: ["He usually travels to work by train to avoid traffic jams.", "She signed the official document with a golden pen.", "They went there in my car."],
+    rule: "**By** + phương tiện chung chung, không có mạo từ hay tính từ sở hữu: **by bus, by train, by car, by plane**. Khi có mạo từ hoặc tính từ sở hữu, đổi sang **in** hoặc **on**: **in my car, on the bus**. Dùng **in** cho xe nhỏ ngồi gọn (car, taxi) và **on** cho phương tiện lớn có thể đi lại bên trong (bus, train, plane) hoặc ngồi trên (bike, motorbike). Đi bộ nói **on foot**. Dụng cụ tay cầm dùng **with**: **with a pen, with a knife**.",
+    form: ["by + phương tiện (không mạo từ): by bus, by train, by car, by plane","in + a / my + car / taxi (xe nhỏ)","on + the / a / my + bus / train / plane / bike","on foot (đi bộ, không dùng by foot)","with + a / the + công cụ (with a pen, with a knife)"],
+    examples: ["He usually travels to work by train to avoid traffic jams.","She signed the official document with a golden pen.","They went there in my car.","Nam goes to school on his bike.","Do you go to work on foot or by bus?"],
     wrong: "He travels to work by the train.", right: "He travels to work by train.",
     more: [
-      { type: "nuance", text: "Phân biệt **in** và **on** với phương tiện riêng: Dùng **on** cho phương tiện có thể đi lại đứng thẳng bên trong (**on the bus/plane/train**); dùng **in** cho phương tiện nhỏ phải ngồi xếp chân (**in a car/taxi**)." }
+      { type: "nuance", text: "Phân biệt **by** và **with**: **by** thường chỉ cách thức, phương tiện nói chung (**by email, by phone, by hand**), còn **with** chỉ công cụ cụ thể mà ta cầm hoặc dùng (**cut with a knife, write with a pencil**). Cũng dùng **by** để chỉ người làm trong câu bị động: **The book was written by Lan.**" },
+      { type: "extension", text: "Các cụm cố định với **by** không có mạo từ: **by email, by phone, by post, by hand, by credit card, by mistake** (do nhầm). Khi nói về phương tiện riêng, có thể chọn **in my car** (xe tôi) hoặc **by car** (đi bằng ô tô nói chung); **by car** chỉ phương tiện đi lại, còn **in my car** nhấn mạnh xe cụ thể." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **by foot** thay vì **on foot**. Cụm cố định này không dùng **by**, dù nghĩa là \"bằng chân\"." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **I cut the cake by a knife** hoặc **by my bike** thay vì **with a knife** và **on my bike**. Công cụ cầm tay dùng **with**; phương tiện có tính từ sở hữu dùng **on** hoặc **in**, không dùng **by**." }
     ]
   },
   { title: "Cụm động từ với Take Give Make Do", grammarId: "098", level: "B1", category: "Cụm động từ",
-    rule: "Cụm động từ (**phrasal verbs**) gồm động từ chính kết hợp với một hoặc hai tiểu từ, tạo ra ý nghĩa hoàn toàn mới khác biệt so với động từ gốc.",
-    form: ["Verb + particle (take off, give up, make up, do away with)"],
-    examples: ["Please take off your shoes before entering the temple.", "She decided to give up smoking for good.", "The plane took off on time despite the fog."],
-    wrong: "Please take away your shoes.", right: "Please take off your shoes.",
+    rule: "Cụm động từ (**phrasal verb**) gồm động từ + một hoặc hai tiểu từ (**off, up, away, with**...) và thường tạo ra nghĩa mới khác nghĩa gốc: **take off** (cởi, cất cánh), **give up** (từ bỏ), **make up** (bịa ra, làm hòa), **do away with** (loại bỏ). Nhiều cụm có tân ngữ có thể tách: **take off your shoes** hoặc **take your shoes off**. Nhưng khi tân ngữ là đại từ (**it, them, him**), bắt buộc đặt đại từ ở giữa: **take them off**, không nói **take off them**.",
+    form: ["V + particle + N (take off your shoes, give up smoking)","V + N + particle (take your shoes off) (tách được)","V + pronoun + particle (take them off, không nói take off them)","V + particle + preposition + N (do away with plastic bags) (không tách)","give up + V-ing (give up smoking)"],
+    examples: ["Please take off your shoes before entering the temple.","She decided to give up smoking for good.","The plane took off on time despite the fog.","Did Minh make up the whole story?","Nam is trying to do away with plastic bags in his shop."],
+    wrong: "Please take off them before entering the temple.", right: "Please take them off before entering the temple.",
     more: [
-      { type: "nuance", text: "Phân biệt đa nghĩa của **take off**: Mang nghĩa cởi (quần áo/giày dép), máy bay cất cánh, hoặc sự nghiệp bắt đầu khởi sắc nhanh chóng." }
+      { type: "nuance", text: "Nhiều cụm có nhiều nghĩa tuỳ ngữ cảnh. **Take off** có thể là cởi (quần áo, giày), máy bay cất cánh, hoặc việc kinh doanh bắt đầu phát triển nhanh (**Her career took off**). Khi gặp cụm mới, hãy đoán nghĩa từ ngữ cảnh rồi tra từ điển." },
+      { type: "extension", text: "Thêm một số cụm hay gặp: **take after** (giống ai trong gia đình), **give back** (trả lại), **give in** (chịu thua), **make up one's mind** (quyết định), **do up** (cài, buộc chặt). Ví dụ: **She takes after her mother.**" },
+      { type: "advanced", text: "Cụm động từ thường mang sắc thái thân mật hơn từ đơn trang trọng tương đương: **give up** gần với **abandon / quit**, **do away with** gần với **abolish**, **make up** (bịa chuyện) gần với **invent / fabricate**. Trong văn học thuật, người ta ưu tiên các động từ đơn." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **give up to smoke** hoặc **give up smoke** thay vì **give up smoking**. Sau **give up**, dùng danh động từ (V-ing), không dùng **to + V** hay động từ nguyên mẫu." },
+      { type: "mistake", text: "Lỗi hay gặp: dịch từng từ rồi chọn sai tiểu từ, như **take away your shoes** hoặc **take out your shoes** thay vì **take off your shoes**. Mỗi cụm động từ phải học như một khối; đổi tiểu từ là đổi nghĩa." }
     ]
   },
   { title: "Cụm động từ với Look Bring Turn Put", grammarId: "099", level: "B1", category: "Cụm động từ",
