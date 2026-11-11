@@ -8,7 +8,7 @@ OEL.grammar = [
   
   { title: "Thì hiện tại đơn", grammarId: "001", level: "A1", category: "Thì",
     rule: "Thì hiện tại đơn dùng để nói về thói quen, việc lặp đi lặp lại, sự thật hiển nhiên và lịch trình cố định. Ví dụ: **She walks to work every day.** (Cô ấy đi bộ đi làm mỗi ngày.) Với chủ ngữ số ít (**he**, **she**, **it**, tên một người, danh từ không đếm được), động từ thêm **-s** hoặc **-es**. Với **I**, **you**, **we**, **they** thì giữ nguyên động từ. Mẹo chính tả: động từ tận cùng bằng phụ âm + **y** đổi thành **-ies** (**fly** -> **flies**), nhưng nguyên âm + **y** chỉ thêm **-s** (**play** -> **plays**). Câu phủ định và câu hỏi dùng **do / does**, và động từ chính trở về dạng nguyên mẫu.",
-    form: ["S + V(s/es)", "S + do / does + not + V-bare", "Do / Does + S + V-bare?"],
+    form: ["S (I / you / we / they) + V-bare","S (he / she / it) + V-s / V-es","S + do / does + not + V-bare","Do / Does + S + V-bare?"],
     examples: ["She walks to work every day.", "Water boils at 100 degrees Celsius.", "The train leaves at 7:15."],
     wrong: "He go to school by bus.", right: "He goes to school by bus.",
     more: [
@@ -22,7 +22,7 @@ OEL.grammar = [
   },
   { title: "Thì hiện tại tiếp diễn", grammarId: "002", level: "A1", category: "Thì",
     rule: "Thì hiện tại tiếp diễn dùng cho hành động đang diễn ra ngay lúc nói, hoặc quanh thời điểm hiện tại, và cho tình huống tạm thời. Ví dụ: **I'm reading a book right now.** (Tôi đang đọc sách.) Cách tạo câu: **am / is / are** + động từ thêm **-ing**. Một số động từ chỉ trạng thái, như **know**, **like**, **want**, **believe**, thường không dùng với **-ing**. Ta nói **I know the answer**, không nói **I am knowing the answer**. Dấu hiệu hay gặp: **now**, **right now**, **at the moment**, **this week**.",
-    form: ["S + am / is / are + V-ing", "S + am / is / are + not + V-ing", "Am / Is / Are + S + V-ing?"],
+    form: ["S + am / is / are + V-ing","S + am / is / are + not + V-ing","Am / Is / Are + S + V-ing?"],
     examples: ["I'm reading a book right now.", "They are staying with friends this week.", "Is it raining?"],
     wrong: "I am knowing the answer.", right: "I know the answer.",
     more: [
@@ -35,7 +35,7 @@ OEL.grammar = [
   },
   { title: "Mạo từ", grammarId: "003", level: "A1", category: "Mạo từ",
     rule: "Mạo từ là những từ nhỏ đứng trước danh từ. Dùng **a / an** cho người hoặc vật chưa xác định, hoặc khi nhắc đến lần đầu: **I saw a dog.** (Tôi thấy một con chó.) Dùng **the** khi người nói và người nghe đều biết đó là cái nào: **The dog was huge.** Không dùng mạo từ với danh từ số nhiều nói chung và danh từ không đếm được: **I love music.** Mẹo chính tả: chọn **a** hay **an** theo âm đọc chứ không theo chữ viết. Ví dụ **an hour** (h câm, đọc /aʊ/) nhưng **a university** (bắt đầu bằng âm /j/).",
-    form: ["a + N (bắt đầu bằng âm phụ âm)", "an + N (bắt đầu bằng âm nguyên âm)", "the + N (xác định / duy nhất)"],
+    form: ["a + N đếm được số ít (bắt đầu bằng âm phụ âm)","an + N đếm được số ít (bắt đầu bằng âm nguyên âm)","the + N (xác định / duy nhất)","Ø + N số nhiều / không đếm được (nói chung, không dùng mạo từ)"],
     examples: ["I saw a dog. The dog was huge.", "She is an engineer.", "I love music."],
     wrong: "She is engineer.", right: "She is an engineer.",
     more: [
@@ -49,7 +49,7 @@ OEL.grammar = [
   },
   { title: "Thì quá khứ đơn", grammarId: "004", level: "A2", category: "Thì",
     rule: "Thì quá khứ đơn dùng cho hành động đã xảy ra và kết thúc tại một thời điểm xác định trong quá khứ, ví dụ với **yesterday**, **last summer**, **in 2019**, **ago**. Động từ có quy tắc thêm **-ed** (**visit** -> **visited**). Động từ bất quy tắc đổi dạng và cần học thuộc (**go** -> **went**, **see** -> **saw**). Câu phủ định và câu hỏi dùng **did / didn't**. Sau **did** hoặc **didn't**, động từ luôn ở dạng nguyên mẫu (**V-bare**), vì **did** đã mang thì quá khứ rồi.",
-    form: ["S + V-ed / V2", "S + did + not + V-bare", "Did + S + V-bare?"],
+    form: ["S + V-ed / V2","S + did + not + V-bare","Did + S + V-bare?"],
     examples: ["We visited my grandparents last summer.", "I didn't see him yesterday.", "Did you call her?"],
     wrong: "I didn't went to the party.", right: "I didn't go to the party.",
     more: [
@@ -63,7 +63,7 @@ OEL.grammar = [
   },
   { title: "Danh từ đếm được và không đếm được", grammarId: "005", level: "A2", category: "Danh từ",
     rule: "Danh từ đếm được có thể đếm bằng số và có dạng số nhiều: **one chair**, **two chairs**. Danh từ không đếm được thì không đếm bằng số và không thêm **-s**: **water**, **advice**, **information**. Dùng **many / few** với danh từ đếm được số nhiều và **much / little** với danh từ không đếm được. **A lot of** dùng được với cả hai loại. Câu hỏi số lượng cũng khác nhau: **How many bottles?** (đếm được) và **How much water?** (không đếm được).",
-    form: ["many / few + N (số nhiều)", "much / little + N (không đếm được)", "a lot of / plenty of + N (cả hai loại)"],
+    form: ["many / few + N (đếm được số nhiều)","much / little + N (không đếm được)","a lot of / plenty of + N (cả hai loại)","How many + N số nhiều + ...? / How much + N không đếm được + ...?"],
     examples: ["How many bottles do we need?", "How much water is left?", "She gave me some good advice."],
     wrong: "He gave me many informations.", right: "He gave me a lot of information.",
     more: [
@@ -76,7 +76,7 @@ OEL.grammar = [
   },
   { title: "So sánh hơn và so sánh nhất", grammarId: "006", level: "A2", category: "Tính từ",
     rule: "So sánh hơn dùng để so hai người hoặc vật, so sánh nhất dùng để chọn một trong nhóm từ ba trở lên. Với tính từ ngắn (một âm tiết), thêm **-er / -est**: **cheap** -> **cheaper** -> **the cheapest**. Với tính từ dài, dùng **more / most**: **more interesting**, **the most interesting**. Không dùng lặp cả hai cùng lúc (**more cheaper** là lỗi thừa từ). Mẹo chính tả: tính từ 2 âm tiết tận cùng bằng **-y** (**happy**, **easy**) đổi **y** -> **i** rồi thêm **-er / -est**. So sánh hơn đi với **than**, so sánh nhất đi với **the**.",
-    form: ["S + V + adj-er + than + N", "S + V + the + adj-est", "S + V + more + adj + than + N", "S + V + the most + adj"],
+    form: ["So sánh hơn (adj ngắn): S + V + adj-er + than + N","So sánh hơn (adj dài): S + V + more + adj + than + N","So sánh nhất (adj ngắn): S + V + the + adj-est","So sánh nhất (adj dài): S + V + the most + adj"],
     examples: ["This bag is cheaper than that one.", "It was the most interesting film of the year.", "She is taller than her brother."],
     wrong: "This bag is more cheaper.", right: "This bag is cheaper.",
     more: [
@@ -90,7 +90,7 @@ OEL.grammar = [
   },
   { title: "Thì hiện tại hoàn thành", grammarId: "007", level: "B1", category: "Thì",
     rule: "Thì hiện tại hoàn thành nối quá khứ với hiện tại. Dùng để nói về trải nghiệm (**ever**, **never**), tin mới hoặc việc vừa xảy ra có kết quả ở hiện tại (**just**, **already**, **yet**), và tình huống bắt đầu trong quá khứ còn tiếp tục đến nay. Cách tạo: **have / has** + quá khứ phân từ (**V3/ed**). Điểm mấu chốt: không dùng với mốc thời gian đã kết thúc như **yesterday**, **last week** hoặc **in 2019**. Khi có mốc như vậy, hãy dùng quá khứ đơn.",
-    form: ["S + have / has + V3/ed", "S + have / has + not + V3/ed", "Have / Has + S + V3/ed?"],
+    form: ["S + have / has + V3/ed","S + have / has + not + V3/ed","Have / Has + S + V3/ed?"],
     examples: ["I have lived here for five years.", "She has just left.", "Have you ever tried sushi?"],
     wrong: "I have seen him yesterday.", right: "I saw him yesterday.",
     more: [
@@ -104,7 +104,7 @@ OEL.grammar = [
   },
   { title: "Động từ khuyết thiếu", grammarId: "008", level: "B1", category: "Động từ",
     rule: "Động từ khuyết thiếu (modal verbs) như **can**, **could**, **must**, **should**, **might**, **will** thêm nghĩa cho động từ chính: khả năng, sự cho phép, bắt buộc, lời khuyên, phỏng đoán. Chúng đi trực tiếp với động từ nguyên mẫu không **to** (**V-bare**): **You should rest.** Chúng không thêm **-s** ở ngôi thứ ba (**she can**, không phải **she cans**). Phủ định thêm **not** (**cannot**, **must not**) và câu hỏi đảo modal lên trước chủ ngữ (**Can you swim?**), không mượn **do**. Ngoại lệ: **ought to** có **to**.",
-    form: ["S + modal verb + V-bare", "S + ought to + V-bare"],
+    form: ["S + modal verb + V-bare","S + modal verb + not + V-bare","Modal verb + S + V-bare?","S + ought to + V-bare (riêng ought có to)"],
     examples: ["You should rest.", "It might rain later.", "You must wear a seat belt."],
     wrong: "She can to swim.", right: "She can swim.",
     more: [
@@ -117,7 +117,7 @@ OEL.grammar = [
   },
   { title: "Câu điều kiện loại 1 và loại 2", grammarId: "009", level: "B1", category: "Câu điều kiện",
     rule: "Câu điều kiện loại 1 nói về tình huống có thật hoặc có khả năng xảy ra ở tương lai: **If it rains, we'll stay home.** Loại 2 nói về tình huống không có thật hoặc khó xảy ra ở hiện tại: **If I had more time, I would learn the piano.** Mệnh đề **if** của loại 1 dùng hiện tại đơn, của loại 2 dùng quá khứ đơn (nhưng nghĩa là hiện tại, không phải quá khứ). Thường không dùng **will** hoặc **would** ngay trong mệnh đề **if**. Dấu phẩy ngăn cách hai mệnh đề khi mệnh đề **if** đứng đầu.",
-    form: ["Loại 1: If + S + hiện tại đơn, S + will + V-bare", "Loại 2: If + S + quá khứ đơn (were cho mọi ngôi), S + would + V-bare"],
+    form: ["Loại 1: If + S + V (hiện tại đơn), S + will + V-bare","Loại 2: If + S + V2 / were, S + would + V-bare (were cho mọi ngôi)","S + will / would + V-bare + if + S + V (đảo vế, bỏ dấu phẩy)"],
     examples: ["If it rains, we'll stay home.", "If I had more time, I would learn the piano.", "If I were you, I would apologise."],
     wrong: "If I will see him, I tell him.", right: "If I see him, I'll tell him.",
     more: [
@@ -131,7 +131,7 @@ OEL.grammar = [
   },
   { title: "Câu bị động", grammarId: "010", level: "B1", category: "Động từ",
     rule: "Câu bị động dùng khi hành động hoặc đối tượng chịu tác động quan trọng hơn người thực hiện, hoặc khi không biết hay không cần nói người thực hiện. Cách tạo: chia động từ **be** đúng thì của câu gốc, rồi thêm quá khứ phân từ (**V3/ed**). Tân ngữ của câu chủ động trở thành chủ ngữ của câu bị động: **They built the bridge** -> **The bridge was built**. Nếu cần nêu người thực hiện, thêm **by + tác nhân**.",
-    form: ["S + be (chia đúng thì) + V3/ed + (by + tác nhân)"],
+    form: ["S + be (chia đúng thì) + V3/ed + (by + tác nhân)","S + be + not + V3/ed","Be + S + V3/ed?"],
     examples: ["The bridge was built in 1998.", "English is spoken in many countries.", "The report is being written now."],
     wrong: "The report is writing now.", right: "The report is being written now.",
     more: [
@@ -145,7 +145,7 @@ OEL.grammar = [
 
   { title: "Mệnh đề quan hệ", grammarId: "011", level: "B2", category: "Mệnh đề",
     rule: "Mệnh đề quan hệ là mệnh đề bổ nghĩa cho danh từ đứng ngay trước, nối bằng đại từ hoặc trạng từ quan hệ. **Who** chỉ người; **which** chỉ vật; **that** thay cho **who / which** trong mệnh đề xác định; **whose** chỉ sở hữu; **where** chỉ nơi chốn. Mệnh đề xác định (**defining**) cho biết đang nói đến người hoặc vật nào, nên không có dấu phẩy. Mệnh đề không xác định (**non-defining**) chỉ thêm thông tin, đặt giữa dấu phẩy và không dùng **that**. Đại từ quan hệ đã thay thế danh từ nên không lặp lại đại từ đó trong mệnh đề.",
-    form: ["N + who / which / that / whose / where + clause"],
+    form: ["Người: N + who / that + clause","Vật: N + which / that + clause","Sở hữu: N + whose + N + clause","Nơi chốn: N + where + clause","Không xác định: N, + who / which + clause, (không dùng that)"],
     examples: ["The woman who called is my aunt.", "My aunt, who lives abroad, is visiting.", "The book that I bought was expensive."],
     wrong: "The book which I bought it was expensive.", right: "The book which I bought was expensive.",
     more: [
@@ -158,7 +158,7 @@ OEL.grammar = [
   },
   { title: "Câu gián tiếp", grammarId: "012", level: "B2", category: "Mệnh đề",
     rule: "Câu gián tiếp thuật lại lời người khác mà không trích nguyên văn. Khi động từ tường thuật ở quá khứ (**said**, **asked**), thường lùi một bậc thì (**am** -> **was**, hiện tại đơn -> quá khứ đơn, quá khứ đơn -> quá khứ hoàn thành) và đổi đại từ, trạng từ chỉ thời gian hoặc nơi chốn (**now** -> **then**, **here** -> **there**). Trong câu hỏi gián tiếp, giữ trật tự câu khẳng định (S + V), không mượn **do / does / did** và không có dấu hỏi: **He asked me where I lived.** Câu hỏi Yes/No dùng **if** hoặc **whether**.",
-    form: ["S + said (that) + clause (lùi thì)", "S + asked + wh-word / if / whether + S + V"],
+    form: ["S + said (that) + clause (lùi thì)","S + asked + wh-word + S + V (không đảo trợ động từ)","S + asked + if / whether + S + V"],
     examples: ["“I am tired,” she said. -> She said she was tired.", "He asked me where I lived.", "They said they had finished."],
     wrong: "He asked me where do I live.", right: "He asked me where I lived.",
     more: [
@@ -171,7 +171,7 @@ OEL.grammar = [
   },
   { title: "Câu điều kiện loại ba", grammarId: "013", level: "B2", category: "Câu điều kiện",
     rule: "Câu điều kiện loại 3 diễn tả giả định không có thật trong quá khứ, trái ngược với điều đã xảy ra, thường để bày tỏ sự tiếc nuối hoặc phê bình. Mệnh đề **if** chia ở quá khứ hoàn thành (**had + V3/ed**), mệnh đề chính dùng **would have + V3/ed**. Ví dụ: **If I had studied, I would have passed** nghĩa là thực tế là tôi đã không học và đã không đậu. Không đặt **would have** trong mệnh đề **if**.",
-    form: ["If + S + had + V3/ed, S + would / could / might have + V3/ed"],
+    form: ["If + S + had + V3/ed, S + would / could / might have + V3/ed","S + would have + V3/ed + if + S + had + V3/ed (đảo vế, bỏ dấu phẩy)"],
     examples: ["If I had studied, I would have passed.", "If she hadn't missed the bus, she would have arrived on time."],
     wrong: "If I would have studied, I would have passed.", right: "If I had studied, I would have passed.",
     more: [
@@ -184,7 +184,7 @@ OEL.grammar = [
   },
   { title: "Đảo ngữ để nhấn mạnh", grammarId: "014", level: "C1", category: "Văn phong",
     rule: "Đảo ngữ để nhấn mạnh là cấu trúc trang trọng, thường gặp trong văn viết, diễn văn, văn học. Khi trạng từ phủ định hoặc hạn chế (**never**, **hardly**, **rarely**, **seldom**, **not only**, **little**, **no sooner**) đứng đầu câu, ta đảo trợ động từ (hoặc **be**) lên trước chủ ngữ. Nếu câu không có trợ động từ, mượn **do / does / did**: **Rarely does he complain.** Sau trợ động từ, động từ chính ở dạng nguyên mẫu hoặc quá khứ phân từ tùy thì.",
-    form: ["Negative adverb + trợ động từ / be + S + V-bare"],
+    form: ["Never / Rarely / Seldom / Little + trợ động từ + S + V","Hardly / No sooner + had + S + V3/ed + when / than + S + V2","Not only + trợ động từ + S + V, but + S + also + V","Câu gốc chỉ có V thường: Rarely + do / does / did + S + V-bare"],
     examples: ["Never have I seen such a beautiful sunset.", "Not only did she win, but she also broke the record.", "Hardly had we arrived when it started to rain."],
     wrong: "Never I have seen such a sunset.", right: "Never have I seen such a sunset.",
     more: [
@@ -197,7 +197,7 @@ OEL.grammar = [
   },
   { title: "Thì hiện tại hoàn thành tiếp diễn", grammarId: "015", level: "B1", category: "Thì",
     rule: "Thì hiện tại hoàn thành tiếp diễn nhấn mạnh quá trình kéo dài của một hành động: hành động bắt đầu trong quá khứ và vẫn đang tiếp diễn đến bây giờ, hoặc vừa mới dừng lại nhưng để lại kết quả có thể thấy ngay (ví dụ: **I'm wet because I have been walking in the rain**). Cấu trúc: **have / has + been + V-ing**. Thường đi với **for** (khoảng thời gian) và **since** (mốc thời gian), và dùng nhiều trong câu hỏi **How long...?**. Điểm cần nhớ: thì này quan tâm đến thời gian và sự liên tục của hành động, không quan tâm hành động đã xong hay chưa.",
-    form: ["S + have / has + been + V-ing"],
+    form: ["S + have / has + been + V-ing","S + have / has + not + been + V-ing","Have / Has + S + been + V-ing?","How long + have / has + S + been + V-ing?"],
     examples: ["It has been raining since this morning.", "They have been working here for three hours.", "How long have you been waiting?"],
     wrong: "She has learning English for two years.", right: "She has been learning English for two years.",
     more: [
@@ -210,7 +210,7 @@ OEL.grammar = [
   },
   { title: "Thì quá khứ tiếp diễn", grammarId: "016", level: "A2", category: "Thì",
     rule: "Thì quá khứ tiếp diễn diễn tả một hành động đang diễn ra tại một thời điểm cụ thể trong quá khứ. Ví dụ: **At 8 PM last night, I was reading a book** (lúc 8 giờ tối qua, tôi đang đọc sách). Cấu trúc: **was / were + V-ing**. Dùng **was** với I, he, she, it và **were** với you, we, they. Thì này cũng dùng khi hai hành động xảy ra song song cùng lúc, hoặc khi một hành động đang diễn ra thì có hành động khác xen vào. Hành động đang diễn ra dùng quá khứ tiếp diễn, hành động xen vào dùng quá khứ đơn.",
-    form: ["S + was / were + V-ing"],
+    form: ["S + was / were + V-ing","S + was / were + not + V-ing","Was / Were + S + V-ing?"],
     examples: ["I was reading a book at 8 PM last night.", "They were playing tennis when it started to rain.", "What were you doing at this time yesterday?"],
     wrong: "She was cook dinner when I arrived.", right: "She was cooking dinner when I arrived.",
     more: [
@@ -223,7 +223,7 @@ OEL.grammar = [
   },
   { title: "Thì quá khứ hoàn thành", grammarId: "017", level: "B1", category: "Thì",
     rule: "Thì quá khứ hoàn thành diễn tả một hành động đã xảy ra và hoàn tất trước một hành động khác, hoặc trước một mốc thời gian trong quá khứ. Cấu trúc: **had + V3/ed**, dùng được với mọi chủ ngữ. Thì này giúp người nghe biết rõ hành động nào xảy ra trước: **When I got to the station, the train had left** (tàu đi rồi, sau đó tôi mới đến). Hành động xảy ra sau thường chia quá khứ đơn, hành động xảy ra trước chia quá khứ hoàn thành. Thì này còn dùng để giải thích nguyên nhân của một việc trong quá khứ.",
-    form: ["S + had + V3/ed"],
+    form: ["S + had + V3/ed","S + had + not + V3/ed","Had + S + V3/ed?"],
     examples: ["By the time we arrived, the train had left.", "She had already eaten before her friends came.", "He passed the exam because he had studied hard."],
     wrong: "They had finish the project before the deadline.", right: "They had finished the project before the deadline.",
     more: [
@@ -236,7 +236,7 @@ OEL.grammar = [
   },
   { title: "Thì quá khứ hoàn thành tiếp diễn", grammarId: "018", level: "B2", category: "Thì",
     rule: "Thì quá khứ hoàn thành tiếp diễn nhấn mạnh tính liên tục, kéo dài của một hành động đã diễn ra cho đến một mốc trong quá khứ, thường là ngay trước một hành động hoặc sự việc khác trong quá khứ. Cấu trúc: **had been + V-ing**, dùng với mọi chủ ngữ. Thì này thường đi với **for** (khoảng thời gian) và **since** (mốc thời gian), và hay dùng để giải thích nguyên nhân của một trạng thái hay kết quả trong quá khứ: **She was tired because she had been working all night.** Điểm khác với quá khứ hoàn thành đơn: thì này nhìn vào quá trình, còn quá khứ hoàn thành đơn nhìn vào việc đã hoàn tất.",
-    form: ["S + had + been + V-ing"],
+    form: ["S + had + been + V-ing","S + had + not + been + V-ing","Had + S + been + V-ing?"],
     examples: ["They had been playing football for two hours before it started to rain.", "She was tired because she had been working all night.", "He had been living in Hanoi for five years before he moved."],
     wrong: "We had playing games when the lights went out.", right: "We had been playing games when the lights went out.",
     more: [
@@ -249,7 +249,7 @@ OEL.grammar = [
   },
   { title: "Thì tương lai đơn", grammarId: "019", level: "A2", category: "Thì",
     rule: "Thì tương lai đơn dùng **will + động từ nguyên mẫu** (không có **to**). Dùng khi: quyết định ngay lúc nói (**I'll answer the phone**), lời hứa (**I will call you**), lời đề nghị giúp đỡ (**I will help you**), hoặc dự đoán dựa trên ý kiến cá nhân (**I think it will rain**). Dạng rút gọn: **I'll**, **she'll**, **won't** (= will not). Với mọi chủ ngữ, **will** không đổi dạng và động từ phía sau cũng không thêm **s**. Câu hỏi: đảo **will** lên trước chủ ngữ (**Will you come?**).",
-    form: ["S + will + V-bare"],
+    form: ["S + will + V-bare","S + will + not (won't) + V-bare","Will + S + V-bare?"],
     examples: ["I will help you with your heavy bag.", "I think it will rain tomorrow.", "Don't worry, I will call you later."],
     wrong: "She will goes to the party.", right: "She will go to the party.",
     more: [
@@ -262,7 +262,7 @@ OEL.grammar = [
   },
   { title: "Thì tương lai tiếp diễn", grammarId: "020", level: "B1", category: "Thì",
     rule: "Thì tương lai tiếp diễn diễn tả một hành động sẽ đang diễn ra tại một thời điểm hoặc trong một khoảng thời gian cụ thể trong tương lai. Cấu trúc: **will be + V-ing**, dùng với mọi chủ ngữ. Ví dụ: **At 9 AM tomorrow, I will be sitting in an exam** (9 giờ sáng mai tôi sẽ đang ngồi thi). Thì này hay đi với các mốc thời gian như **at this time tomorrow**, **at 8 PM**, **this time next week**. Khác với tương lai đơn, nó nhìn hành động như đang diễn ra ở thời điểm đó, không phải một việc sẽ xảy ra rồi kết thúc.",
-    form: ["S + will + be + V-ing"],
+    form: ["S + will + be + V-ing","S + will + not + be + V-ing","Will + S + be + V-ing?"],
     examples: ["At this time tomorrow, I will be flying to Tokyo.", "Don't call me at 8 PM because I will be having dinner.", "Will you be using your computer this afternoon?"],
     wrong: "They will be study at the library tomorrow morning.", right: "They will be studying at the library tomorrow morning.",
     more: [
@@ -275,7 +275,7 @@ OEL.grammar = [
   },
   { title: "Thì tương lai hoàn thành", grammarId: "021", level: "B2", category: "Thì",
     rule: "Thì tương lai hoàn thành diễn tả một hành động sẽ hoàn tất trước một mốc thời gian, hoặc trước một hành động khác, trong tương lai. Cấu trúc: **will have + V3/ed**, dùng với mọi chủ ngữ. Ví dụ: **By next month, I will have finished this book** (đến tháng sau, tôi sẽ đã đọc xong cuốn sách này). Thì này thường đi với các cụm chỉ hạn chót như **by + mốc thời gian** (**by tomorrow**, **by 5 PM**), **by the time + mệnh đề** hoặc **before**. Điểm chính: nhấn mạnh việc đã xong tại một thời điểm trong tương lai.",
-    form: ["S + will + have + V3/ed"],
+    form: ["S + will + have + V3/ed","S + will + not + have + V3/ed","Will + S + have + V3/ed?"],
     examples: ["By next month, I will have finished this book.", "They will have built the bridge by the end of this year.", "Will you have completed the report by 5 PM?"],
     wrong: "She will have wrote the letter by tomorrow.", right: "She will have written the letter by tomorrow.",
     more: [
@@ -288,7 +288,7 @@ OEL.grammar = [
   },
   { title: "Thì tương lai hoàn thành tiếp diễn", grammarId: "022", level: "C1", category: "Thì",
     rule: "Thì tương lai hoàn thành tiếp diễn nhấn mạnh khoảng thời gian một hành động đã và đang diễn ra tính đến một mốc xác định trong tương lai. Cấu trúc: **will have been + V-ing**. Thì này thường đi với **for + khoảng thời gian** và **by + mốc thời gian** hoặc **by the time + mệnh đề**: **By June, she will have been working here for five years.** Người nói đứng ở tương lai và nhìn lại quá trình kéo dài từ trước đó. Đây là thì khá hiếm trong giao tiếp, chủ yếu xuất hiện khi cần nói chính xác về độ dài của một quá trình.",
-    form: ["S + will + have + been + V-ing"],
+    form: ["S + will + have + been + V-ing","S + will + not + have + been + V-ing","Will + S + have + been + V-ing?"],
     examples: ["By next year, I will have been living here for ten years.", "By the time you arrive, we will have been waiting for two hours.", "She will have been working at this company for five years by June."],
     wrong: "By next week, he will have been work here for a year.", right: "By next week, he will have been working here for a year.",
     more: [
@@ -301,7 +301,7 @@ OEL.grammar = [
   },
   { title: "Câu điều kiện loại không", grammarId: "023", level: "A2", category: "Câu điều kiện",
     rule: "Câu điều kiện loại 0 diễn tả điều luôn luôn đúng: quy luật tự nhiên, sự thật khoa học và thói quen chắc chắn xảy ra khi điều kiện xảy ra. Cấu trúc: **If + hiện tại đơn, hiện tại đơn**. Ví dụ: **If you heat ice, it melts** (nếu đun nóng đá thì nó tan). Hai vế đều dùng hiện tại đơn và không có **will**. Có thể đảo vế: **Water boils if it reaches 100 degrees.** Khi đảo vế, bỏ dấu phẩy. Cũng nhớ: chủ ngữ ngôi thứ ba số ít thì động từ thêm **s** (**it melts**).",
-    form: ["If + S + hiện tại đơn, S + hiện tại đơn"],
+    form: ["If + S + V (hiện tại đơn), S + V (hiện tại đơn)","S + V (hiện tại đơn) + if + S + V (hiện tại đơn) (đảo vế, bỏ dấu phẩy)"],
     examples: ["If you heat ice, it melts.", "Water boils if it reaches 100 degrees Celsius.", "If plants don't get enough water, they die."],
     wrong: "If you heat ice, it will melt.", right: "If you heat ice, it melts.",
     more: [
@@ -314,7 +314,7 @@ OEL.grammar = [
   },
   { title: "Câu điều kiện hỗn hợp", grammarId: "024", level: "C1", category: "Câu điều kiện",
     rule: "Câu điều kiện hỗn hợp trộn hai loại: vế **if** là giả định trái ngược ở quá khứ (loại 3: **if + had + V3/ed**), vế kết quả ở hiện tại (loại 2: **would / could / might + V-bare**). Dùng khi một việc không xảy ra trong quá khứ, và điều đó đang ảnh hưởng đến hiện tại: **If I had studied medicine, I would be a doctor now.** Cần chú ý mốc thời gian: **had + V3/ed** chỉ về quá khứ, còn **would + V-bare** chỉ về hiện tại hoặc tương lai. Các trạng từ như **now**, **today**, **still** thường giúp xác định vế kết quả.",
-    form: ["If + S + had + V3/ed, S + would / could / might + V-bare"],
+    form: ["If + S + had + V3/ed, S + would / could / might + V-bare (kết quả ở hiện tại)","If + S + had + not + V3/ed, S + would / could / might + V-bare"],
     examples: ["If I had studied medicine, I would be a doctor now.", "If she had saved money, she could buy the car today.", "If we had left last night, we would be home now."],
     wrong: "If I had studied medicine, I would have been a doctor now.", right: "If I had studied medicine, I would be a doctor now.",
     more: [
@@ -327,7 +327,7 @@ OEL.grammar = [
   },
   { title: "Mệnh đề quan hệ xác định", grammarId: "025", level: "B1", category: "Mệnh đề",
     rule: "Mệnh đề quan hệ xác định cung cấp thông tin cần thiết để biết chính xác danh từ phía trước là ai hay cái gì; bỏ đi thì câu không rõ nghĩa. Cấu trúc: **danh từ + who / which / that + mệnh đề**. Dùng **who** cho người, **which** cho vật, **that** cho cả người lẫn vật. Mệnh đề này không có dấu phẩy ngăn cách. **The man who stole my bag was caught** cho biết đó là người đàn ông nào. Khi đại từ quan hệ là tân ngữ của mệnh đề, có thể bỏ đi: **This is the book (that) I bought.** Khi nó là chủ ngữ (**who stole**) thì không được bỏ.",
-    form: ["N + who / which / that + clause"],
+    form: ["Người: N + who / that + clause","Vật: N + which / that + clause","Tân ngữ: N + (who / which / that) + S + V (có thể bỏ đại từ)"],
     examples: ["The man who stole my bag was caught by the police.", "This is the book that I bought yesterday.", "She likes the teacher who teaches English."],
     wrong: "The man, who stole my bag, was caught.", right: "The man who stole my bag was caught.",
     more: [
@@ -340,7 +340,7 @@ OEL.grammar = [
   },
   { title: "Mệnh đề quan hệ không xác định", grammarId: "026", level: "B2", category: "Mệnh đề",
     rule: "Mệnh đề quan hệ không xác định thêm thông tin phụ cho danh từ vốn đã rõ (tên riêng, người hay vật duy nhất, hoặc đã được xác định bởi ngữ cảnh). Bỏ mệnh đề đi thì câu vẫn đủ nghĩa. Mệnh đề luôn nằm **giữa hai dấu phẩy**, hoặc sau một dấu phẩy nếu ở cuối câu. Dùng **who** (người), **which** (vật), **whose**, **where**, **when**; **không dùng that** và **không được bỏ** đại từ quan hệ, kể cả khi nó là tân ngữ. **Hanoi, which is the capital of Vietnam, is very bustling.**",
-    form: ["N (xác định), + who / which / where + clause, + ..."],
+    form: ["N (đã xác định), + who / which / whose / where / when + clause, + ...","N + ... , + who / which + clause. (mệnh đề ở cuối câu)","Không dùng that; không bỏ đại từ quan hệ"],
     examples: ["Hanoi, which is the capital of Vietnam, is very bustling.", "My father, who is a doctor, loves reading books.", "Mr. Smith, whom you met yesterday, is our new manager."],
     wrong: "My father, that is a doctor, loves reading.", right: "My father, who is a doctor, loves reading.",
     more: [
@@ -353,7 +353,7 @@ OEL.grammar = [
   },
   { title: "Động từ khuyết thiếu bắt buộc", grammarId: "027", level: "A2", category: "Động từ",
     rule: "**Must** và **have to** đều chỉ sự bắt buộc, nhưng khác nhau một chút. **Must** là sự bắt buộc xuất phát từ cảm nhận hoặc ý kiến của người nói (**I must study harder**). **Have to** là sự bắt buộc do quy định, hoàn cảnh bên ngoài (**I have to wear a uniform**). Sau **must** là động từ nguyên mẫu không **to** (**must go**); **have to** thì có sẵn **to** rồi đi tiếp với động từ nguyên mẫu (**have to go**). **Mẹo quan trọng:** **mustn't** nghĩa là cấm (**You mustn't smoke here**), còn **don't have to** nghĩa là không cần (**You don't have to pay**). Hai cụm này rất dễ nhầm.",
-    form: ["S + must / have to + V-bare"],
+    form: ["S + must + V-bare","S + have / has to + V-bare","S + mustn't + V-bare (cấm)","S + don't / doesn't have to + V-bare (không cần)"],
     examples: ["You must wear a helmet when riding a motorbike.", "I have to submit this report by 5 PM today.", "You don't have to pay; it's free."],
     wrong: "She must has to go now.", right: "She has to go now.",
     more: [
@@ -366,7 +366,7 @@ OEL.grammar = [
   },
   { title: "Động từ khuyết thiếu lời khuyên", grammarId: "028", level: "A2", category: "Động từ",
     rule: "**Should** và **ought to** dùng để đưa ra lời khuyên hoặc nói điều nên làm (nhưng không bắt buộc). **Should** thường mang ý kiến cá nhân: **You should study harder** (bạn nên học chăm hơn). **Ought to** nghe trang trọng hơn một chút và thường nói về bổn phận, đạo đức hoặc quy tắc xã hội: **You ought to apologize.** Sau cả hai là động từ nguyên mẫu: **should + V**, **ought to + V**. Với **should**, không có **to**; với **ought**, luôn có **to**. Câu hỏi thường dùng **should**: **Should we go now?**",
-    form: ["S + should / ought to + V-bare"],
+    form: ["S + should + V-bare","S + ought to + V-bare","S + should not (shouldn't) + V-bare","Should + S + V-bare?"],
     examples: ["You should study harder for the final exam.", "You ought to apologize to her for your mistake.", "Should we book the tickets in advance?"],
     wrong: "You should to go to bed early.", right: "You should go to bed early.",
     more: [
@@ -379,7 +379,7 @@ OEL.grammar = [
   },
   { title: "Động từ khuyết thiếu năng lực", grammarId: "029", level: "A1", category: "Động từ",
     rule: "Dùng **can** để nói ai đó có khả năng làm gì ở hiện tại (She can swim: Cô ấy biết bơi). Dùng **could** cho khả năng trong quá khứ. Dùng **be able to** khi cần nói ở các thì khác, ví dụ tương lai (**will be able to**). Sau **can** và **could** luôn là động từ nguyên mẫu không **to** (V-bare), và **can** không thêm -s với **he/she/it**. Câu phủ định là **cannot** (hoặc **can't**), câu hỏi đảo **can** lên trước chủ ngữ: **Can you swim?**",
-    form: ["S + can / could / be able to + V-bare"],
+    form: ["S + can / could + V-bare","S + can't / cannot / couldn't + V-bare","Can / Could + S + V-bare?","S + be able to + V-bare (dùng ở các thì khác)"],
     examples: ["She can speak three languages fluently.", "When I was young, I could run very fast.", "He will be able to finish the task tomorrow."],
     wrong: "She can speaks English very well.", right: "She can speak English very well.",
     more: [
@@ -392,7 +392,7 @@ OEL.grammar = [
   },
   { title: "Động từ khuyết thiếu suy đoán", grammarId: "030", level: "B2", category: "Động từ",
     rule: "Động từ khuyết thiếu dùng để suy đoán logic, dựa trên bằng chứng hoặc điều ta biết, về những gì đang xảy ra ở hiện tại. **Must** nghĩa là gần như chắc chắn đúng (chắc là); **might / may / could** nghĩa là có thể đúng, không chắc (có lẽ); **can't** nghĩa là gần như chắc chắn không đúng (chắc không thể). Sau chúng là động từ nguyên mẫu không **to**: **be** với trạng thái (**must be tired**), **be + V-ing** với việc đang diễn ra (**must be working**). Lưu ý: dạng phủ định của **must** để suy đoán là **can't**, không phải **mustn't**.",
-    form: ["S + must / might / can't + V-bare"],
+    form: ["S + must + be / V-bare (chắc chắn đúng)","S + might / may / could + be / V-bare (có thể)","S + can't + be / V-bare (chắc chắn không)","S + must / might / can't + be + V-ing (việc đang diễn ra)"],
     examples: ["He has a new car and a big house; he must be very rich.", "She isn't answering her phone; she might be busy.", "That can't be true; I saw it with my own eyes."],
     wrong: "He must is very rich.", right: "He must be very rich.",
     more: [
@@ -405,7 +405,7 @@ OEL.grammar = [
   },
   { title: "Danh động từ", grammarId: "031", level: "B1", category: "Danh từ & Động từ",
     rule: "**Gerund** là động từ thêm **-ing** nhưng dùng như một danh từ. Có ba chỗ dùng chính: làm chủ ngữ (**Swimming is fun.**), đứng sau giới từ (**good at playing**, **before leaving**), và đứng sau một số động từ như **enjoy**, **mind**, **finish**, **avoid**, **keep**, **suggest**, **practise**, **admit**. Phủ định bằng **not** đặt trước: **I regret not going.** Mẹo chính tả: bỏ **e** cuối (**make - making**), gấp đôi phụ âm cuối với từ ngắn có một nguyên âm (**run - running**), **lie - lying**.",
-    form: ["S + verb (enjoy/mind/finish) + V-ing"],
+    form: ["V-ing + V (làm chủ ngữ): Swimming + is + adj","Giới từ + V-ing: be good at + V-ing","S + enjoy / mind / finish / avoid + V-ing","not + V-ing (phủ định)"],
     examples: ["She enjoys listening to classical music in her free time.", "Would you mind closing the door, please?", "He is good at playing football."],
     wrong: "She enjoys listen to music.", right: "She enjoys listening to music.",
     more: [
@@ -418,7 +418,7 @@ OEL.grammar = [
   },
   { title: "Động từ nguyên mẫu có to", grammarId: "032", level: "B1", category: "Động từ",
     rule: "**To-infinitive** (**to + V-bare**) có hai cách dùng chính. Thứ nhất, đứng sau các động từ chỉ mong muốn, dự định, quyết định như **want**, **hope**, **decide**, **plan**, **need**, **promise**, **agree**, **refuse**, **learn**. Thứ hai, chỉ mục đích, trả lời câu hỏi \"để làm gì\": **He went to the library to borrow books.** Phủ định đặt **not** trước **to**: **I decided not to go.** Mẹo: mục đích còn có thể nói **in order to** hoặc **so as to**, trang trọng hơn.",
-    form: ["S + want / hope / decide + to-V"],
+    form: ["S + want / hope / decide + to-V","S + verb + not + to-V (phủ định)","S + V + (in order / so as) to-V (chỉ mục đích)"],
     examples: ["I want to buy a new smartphone next week.", "She decided to study abroad in Canada.", "He went to the library to borrow some books."],
     wrong: "I want buying a new car.", right: "I want to buy a new car.",
     more: [
@@ -431,7 +431,7 @@ OEL.grammar = [
   },
   { title: "Động từ nguyên mẫu không to", grammarId: "033", level: "B2", category: "Động từ",
     rule: "**Bare infinitive** là động từ nguyên mẫu không **to**. Nó đứng sau động từ khuyết thiếu (**can**, **must**, **should**), sau **make** và **let** kèm tân ngữ (**make/let + object + V**), và sau động từ giác quan như **see**, **hear**, **watch**, **feel** kèm tân ngữ khi thấy trọn hành động: **I saw him cross the street.** Với **help**, có thể dùng cả hai: **help her (to) carry**. Còn **have + object + V** cũng dùng V-bare, nghĩa là nhờ ai làm gì.",
-    form: ["S + let / make / see + object + V-bare"],
+    form: ["S + modal verb + V-bare","S + let / make + O + V-bare","S + see / hear / watch / feel + O + V-bare (thấy trọn hành động)","S + have + O + V-bare (nhờ ai làm gì)"],
     examples: ["Her parents let her stay out late on weekends.", "The teacher made us rewrite the whole essay.", "I saw him cross the street and enter the shop."],
     wrong: "Her parents let her to stay out late.", right: "Her parents let her stay out late.",
     more: [
@@ -444,7 +444,7 @@ OEL.grammar = [
   },
   { title: "Câu cầu khiến", grammarId: "034", level: "B2", category: "Cấu trúc câu",
     rule: "Câu cầu khiến (**causative**) nói về việc ta nhờ, thuê hoặc để người khác làm giúp mình. Có hai kiểu. Kiểu chủ động: **have + person + V-bare** (**I had the mechanic check my car.**) và **get + person + to-V** (**I got him to check it.**). Kiểu bị động, hay dùng hơn khi người làm không quan trọng: **have / get + thing + V3/ed** (**I had my car repaired.**). Chú ý chia **have / get** theo thì, còn quá khứ phân từ giữ nguyên.",
-    form: ["S + have / get + object (thing) + V3/ed"],
+    form: ["Chủ động: S + have + person + V-bare","Chủ động: S + get + person + to-V","Bị động: S + have / get + thing + V3/ed"],
     examples: ["I need to have my laptop repaired before tomorrow.", "She got her house cleaned by a professional service last week.", "He had his passport renewed yesterday."],
     wrong: "I had my car repair yesterday.", right: "I had my car repaired yesterday.",
     more: [
@@ -457,7 +457,7 @@ OEL.grammar = [
   },
   { title: "Câu ước ở hiện tại", grammarId: "035", level: "B1", category: "Câu ước",
     rule: "Dùng **wish + quá khứ đơn** để nói ước điều gì đó khác với thực tế ở hiện tại (hoặc điều đang đúng bây giờ): **I wish I knew the answer.** (Thực tế: tôi không biết.) Thì quá khứ ở đây không chỉ quá khứ mà chỉ sự \"không có thật\". Với động từ **be**, thường dùng **were** cho mọi ngôi: **I wish I were taller.** Dạng **was** cũng gặp trong văn nói. Muốn ước về việc ai đó làm gì, hay dùng **would** (**I wish you would listen.**), còn khả năng dùng **could** (**I wish I could swim.**).",
-    form: ["S + wish(es) + S + V-ed/V2 (were cho mọi ngôi)"],
+    form: ["S + wish(es) + S + V2 / were (ước điều trái hiện tại)","S + wish(es) + S + could + V-bare","S + wish(es) + S + would + V-bare (mong ai đó làm gì)"],
     examples: ["I wish I knew the answer to this question.", "She wishes she lived closer to her workplace.", "He wishes he had more free time today."],
     wrong: "I wish I know the answer.", right: "I wish I knew the answer.",
     more: [
@@ -470,7 +470,7 @@ OEL.grammar = [
   },
   { title: "Câu ước ở quá khứ", grammarId: "036", level: "B2", category: "Câu ước",
     rule: "Dùng **wish + had + V3/ed** để nói tiếc nuối về một điều đã xảy ra hoặc không xảy ra trong quá khứ, nghĩa là ước quá khứ khác đi. **I wish I had studied harder.** nghĩa là thực tế bạn đã không học chăm. Thì quá khứ hoàn thành \"lùi\" thêm một bậc so với **wish + quá khứ đơn**. Phủ định: **I wish I hadn't said that.** (Thực tế: bạn đã nói.) Câu này chỉ nói về điều không thể thay đổi nữa, nên mang sắc thái tiếc nuối.",
-    form: ["S + wish(es) + S + had + V3/ed"],
+    form: ["S + wish(es) + S + had + V3/ed","S + wish(es) + S + had + not + V3/ed"],
     examples: ["I wish I had studied harder for yesterday's test.", "She wishes she hadn't said those rude words to him.", "They wish they had bought the tickets earlier."],
     wrong: "I wish I studied harder yesterday.", right: "I wish I had studied harder yesterday.",
     more: [
@@ -483,7 +483,7 @@ OEL.grammar = [
   },
   { title: "Thì hiện tại đơn với tương lai", grammarId: "037", level: "A2", category: "Thì",
     rule: "Thì hiện tại đơn có thể nói về tương lai khi đó là lịch trình hoặc thời gian biểu cố định, do tổ chức hay hệ thống đặt ra, không phải do cá nhân quyết định. Ví dụ giờ tàu xe, chuyến bay, giờ học, giờ chiếu phim, lịch sự kiện công cộng. Câu thường có mốc thời gian tương lai: **The train leaves at 8 p.m.** (Tàu khởi hành lúc 8 giờ tối.) Dạng hỏi và phủ định dùng **do / does**: **What time does the film start?**",
-    form: ["S + V(s/es) (chỉ lịch trình/thời gian biểu cố định)"],
+    form: ["S + V-s / V-es + (mốc thời gian tương lai) (lịch trình cố định)","S + do / does + not + V-bare","Wh-word + do / does + S + V-bare?"],
     examples: ["The plane departs at 6:00 AM tomorrow.", "Our classes start next Monday.", "What time does the movie finish tonight?"],
     wrong: "The plane will depart at 6:00 AM tomorrow.", right: "The plane departs at 6:00 AM tomorrow.",
     more: [
@@ -496,7 +496,7 @@ OEL.grammar = [
   },
   { title: "Thì hiện tại tiếp diễn chỉ kế hoạch tương lai", grammarId: "038", level: "B1", category: "Thì",
     rule: "Dùng thì hiện tại tiếp diễn (**am/is/are + V-ing**) với mốc thời gian tương lai để nói về một kế hoạch cá nhân đã được sắp xếp cụ thể, thường đã có thời gian, địa điểm hoặc có người khác liên quan, nên khá chắc chắn sẽ xảy ra. **We are flying to Tokyo next week.** (Chúng tôi đã đặt vé.) Cần có mốc tương lai như **tomorrow**, **next week**, **at 3 PM**, **this Saturday** để người nghe hiểu đây không phải việc đang diễn ra.",
-    form: ["S + am/is/are + V-ing (có mốc thời gian tương lai)"],
+    form: ["S + am / is / are + V-ing + (mốc thời gian tương lai)","S + am / is / are + not + V-ing + (mốc thời gian tương lai)","Am / Is / Are + S + V-ing + (mốc thời gian tương lai)?"],
     examples: ["I am seeing my dentist at 3 PM tomorrow.", "We are flying to Tokyo next week.", "What are you doing this Saturday evening?"],
     wrong: "I see my dentist tomorrow.", right: "I am seeing my dentist tomorrow.",
     more: [
@@ -509,7 +509,7 @@ OEL.grammar = [
   },
   { title: "Tương lai gần với be going to", grammarId: "039", level: "A1", category: "Thì",
     rule: "**Be going to + V** dùng để nói về tương lai gần. Có hai cách dùng chính. Thứ nhất, dự định đã có từ trước khi nói: **We are going to buy a house.** (Chúng tôi đã tính mua nhà.) Thứ hai, dự đoán dựa trên dấu hiệu ta thấy ngay lúc nói: **Look at the clouds! It is going to rain.** Ghép **am / is / are** theo chủ ngữ. Phủ định: **I'm not going to go.** Câu hỏi: **Are you going to come?** Sau **going to** luôn là động từ nguyên mẫu.",
-    form: ["S + am/is/are + going to + V-bare"],
+    form: ["S + am / is / are + going to + V-bare","S + am / is / are + not + going to + V-bare","Am / Is / Are + S + going to + V-bare?"],
     examples: ["Look at those dark clouds! It is going to rain.", "We are going to buy a new house next year.", "Are you going to watch the match tonight?"],
     wrong: "I will buy a new car, I planned it.", right: "I am going to buy a new car, I planned it.",
     more: [
@@ -522,7 +522,7 @@ OEL.grammar = [
   },
   { title: "Động từ chỉ trạng thái", grammarId: "040", level: "B1", category: "Động từ",
     rule: "**Stative verbs** (động từ chỉ trạng thái) diễn tả trạng thái hoặc cảm nhận bên trong chứ không phải hành động đang diễn ra. Nhóm chính gồm: suy nghĩ (**know**, **understand**, **believe**), cảm xúc (**love**, **hate**, **like**, **want**), sở hữu (**have**, **own**, **belong**) và giác quan (**see**, **hear**, **smell**). Các động từ này thường dùng thì đơn, không dùng thì tiếp diễn: **I understand.**, không nói **I am understanding.** Mẹo: nếu động từ không thể \"đang làm\" từng giây, nó thường là stative verb.",
-    form: ["S + stative verb (thường dùng thì đơn, không dùng V-ing)"],
+    form: ["S + stative verb (thì đơn)","S + do / does + not + stative verb","S + am / is / are + V-ing (không dùng với stative verb)"],
     examples: ["I understand your problem right now.", "This jacket belongs to my brother.", "She loves listening to classical music."],
     wrong: "I am understanding the lesson now.", right: "I understand the lesson now.",
     more: [
@@ -537,7 +537,7 @@ OEL.grammar = [
 
   { title: "Cách dùng Make và Let", grammarId: "041", level: "B1", category: "Động từ",
     rule: "**Make** và **let** đều đi với tân ngữ rồi đến động từ nguyên mẫu không **to** (**V-bare**). **Make** nghĩa là bắt buộc hoặc khiến ai đó làm gì: **The teacher made us rewrite the essay.** **Let** nghĩa là cho phép: **My parents let me stay out late.** **Make** còn nghĩa là khiến ai có cảm xúc: **The film made me cry.** Cả hai không dùng **to** ở thể chủ động. Câu hỏi: **Did she let you go?**",
-    form: ["S + make / let + object + V-bare"],
+    form: ["S + make + O + V-bare (bắt buộc / khiến)","S + let + O + V-bare (cho phép)","S + make + O + adj / V-bare (khiến ai có cảm xúc)","Did / Do / Does + S + let + O + V-bare?"],
     examples: ["My parents let me stay out late on weekends.", "The teacher made us rewrite the whole essay.", "Nothing can make me change my mind."],
     wrong: "She made me to cry yesterday.", right: "She made me cry yesterday.",
     more: [
@@ -550,7 +550,7 @@ OEL.grammar = [
   },
   { title: "Động từ theo sau bởi To-V hoặc V-ing thay đổi nghĩa", grammarId: "042", level: "B2", category: "Động từ",
     rule: "Một số động từ đổi nghĩa tùy theo theo sau là **to-V** hay **V-ing**. Quy tắc chung: **to-V** hướng về tương lai, mục đích hoặc việc chưa làm; **V-ing** nói về điều đã diễn ra hoặc đang diễn ra. **Stop to do** = dừng lại để làm việc khác; **stop doing** = ngừng hẳn việc đang làm. **Remember / forget to do** = nhớ / quên phải làm; **remember / forget doing** = nhớ / quên đã làm. **Try to do** = cố gắng; **try doing** = thử xem sao.",
-    form: ["S + verb + to-V (hướng tới tương lai / mục đích)", "S + verb + V-ing (việc đã làm hoặc đang làm; riêng stop: ngừng hẳn)"],
+    form: ["S + verb + to-V (hướng tới tương lai / mục đích)","S + verb + V-ing (việc đã làm hoặc đang làm; riêng stop: ngừng hẳn)","stop + to-V (dừng lại để làm việc khác) / stop + V-ing (ngừng hẳn)","remember / forget + to-V (phải làm) / + V-ing (đã làm)","try + to-V (cố gắng) / try + V-ing (thử xem sao)"],
     examples: ["I stopped working because I was feeling exhausted.", "Please remember to lock the door.", "She stopped to take a short break."],
     wrong: "I stopped to work because I was tired.", right: "I stopped working because I was tired.",
     more: [
@@ -562,129 +562,187 @@ OEL.grammar = [
     ]
   },
   { title: "Câu hỏi với từ để hỏi đóng vai trò chủ ngữ", grammarId: "043", level: "A2", category: "Câu hỏi",
-    rule: "Khi từ để hỏi như **Who**, **What**, **Which** chính là chủ ngữ thực hiện hành động trong câu hỏi (**subject questions**), ta chia trực tiếp động từ theo ngôi thứ ba số ít mà không mượn trợ động từ **do/does/did**.",
-    form: ["Who / What / Which + V (chia số ít) + O?"],
+    rule: "Câu hỏi bình thường cần trợ động từ **do / does / did** (ví dụ: **What did you break?**). Nhưng khi từ để hỏi **Who**, **What**, **Which** chính là chủ ngữ, tức là hỏi xem AI hoặc CÁI GÌ làm hành động, ta không mượn trợ động từ. Ta đặt từ để hỏi ngay trước động từ chính và chia động từ như câu khẳng định. Ở hiện tại đơn, động từ chia theo ngôi thứ ba số ít (**Who lives here?**); ở quá khứ, dùng V2/ed (**Who called you?**).",
+    form: ["Who / What / Which + V(s/es) + O?   (hiện tại đơn)","Who / What / Which + V2/ed + O?   (quá khứ đơn)","Which + N + V + O?   (ví dụ: Which team won?)","Câu hỏi tân ngữ: Who / What + do / does / did + S + V-bare?"],
     examples: ["Who broke this expensive glass window yesterday?", "What caused the massive traffic jam?", "Which team won the championship last year?"],
     wrong: "Who did break this window?", right: "Who broke this window?",
     more: [
-      { type: "nuance", text: "Phân biệt với câu hỏi tân ngữ (**object questions**): Khi từ để hỏi đóng vai trò làm tân ngữ, bắt buộc phải mượn trợ động từ (**Who did you see yesterday?**)." }
+      { type: "nuance", text: "Hãy phân biệt với câu hỏi tân ngữ (**object question**): khi từ để hỏi là tân ngữ thì phải mượn trợ động từ, ví dụ **Who did you see yesterday?** (bạn đã gặp ai?). So sánh: **Who saw you?** (ai đã nhìn thấy bạn?)." },
+      { type: "extension", text: "Với **Who**, **What**, **Which** làm chủ ngữ, ta có thể có động từ **be** hoặc trợ động từ khác: **Who is calling?**, **What has happened?**, **Who can help me?** Trợ động từ **be / have / can** vẫn dùng bình thường, chỉ **do / does / did** là không cần." },
+      { type: "nuance", text: "**Who** hỏi về người, **What** hỏi về vật hoặc sự việc, còn **Which** dùng khi có một nhóm lựa chọn rõ ràng: **Which student won the prize?** Cả ba đều dùng động từ số ít ở hiện tại đơn, kể cả khi câu trả lời có thể là nhiều người: **Who lives here?**" },
+      { type: "mistake", text: "Lỗi hay gặp: nói **Who does live here?** hoặc **What did cause the problem?** thay vì **Who lives here?** và **What caused the problem?** Tiếng Việt không có trợ động từ nên học viên hay thêm **do/does/did** cho \"đủ câu hỏi\"; thực ra từ để hỏi đã là chủ ngữ." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **Who live here?** thay vì **Who lives here?** Dù người hỏi nghĩ đến nhiều người, **Who** vẫn đi với động từ số ít ở hiện tại đơn, nên phải thêm **-s**." }
     ]
   },
   { title: "Câu cảm thán với What và How", grammarId: "044", level: "A2", category: "Cấu trúc câu",
-    rule: "Dùng **What** trước danh từ hoặc cụm danh từ để cảm thán; dùng **How** trước tính từ hoặc trạng từ đứng độc lập.",
-    form: ["What + (a/an) + adj + N + S + V!", "How + adj / adv + S + V!"],
+    rule: "Câu cảm thán dùng để bày tỏ cảm xúc mạnh như ngạc nhiên, thích thú hay bực bội. Có hai mẫu chính. **What** đứng trước một cụm danh từ: **What a lovely day!** (Hôm nay đẹp quá!). **How** đứng trước tính từ hoặc trạng từ đứng một mình: **How lovely!** hoặc **How fast he runs!** Nhớ: có danh từ thì dùng **What**, chỉ có tính từ hoặc trạng từ thì dùng **How**. Chủ ngữ và động từ ở cuối câu có thể bỏ nếu người nghe đã hiểu.",
+    form: ["What + a / an + adj + N (đếm được, số ít) + (S + V)!","What + adj + N (số nhiều / không đếm được) + (S + V)!","How + adj / adv + (S + V)!"],
     examples: ["What a wonderful day it is!", "What delicious food!", "How fast he runs!"],
     wrong: "How a beautiful girl she is!", right: "What a beautiful girl she is!",
     more: [
-      { type: "nuance", text: "Trong **What...!**, nếu danh từ là số nhiều hoặc không đếm được, tuyệt đối không dùng mạo từ **a/an** (**What beautiful weather!**)." }
+      { type: "nuance", text: "Với **What** + danh từ số nhiều hoặc không đếm được thì không có **a/an**: **What beautiful flowers!** (Những bông hoa đẹp quá!), **What terrible weather!** (Thời tiết tệ quá!). Chỉ danh từ đếm được số ít mới cần **a/an**." },
+      { type: "extension", text: "Câu cảm thán thường được rút gọn trong lời nói: **What a pity!**, **How nice!**, **What a surprise!** Cả chủ ngữ và động từ đều có thể bỏ. Khi viết, ta thường kết thúc bằng dấu chấm than." },
+      { type: "nuance", text: "**How** đi với tính từ và trạng từ, còn **What** đi với danh từ. Cùng một ý có thể nói hai cách: **What a tall boy!** và **How tall the boy is!** Ở mẫu **How**, chủ ngữ đứng trước động từ như câu khẳng định, không đảo." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **How a beautiful girl she is!** thay vì **What a beautiful girl she is!** hoặc **How beautiful she is!** Khi có danh từ (**girl**) thì phải dùng **What**; **How** chỉ đi trực tiếp với tính từ hoặc trạng từ." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **What a beautiful weather!** hoặc **What beautiful flower!** thay vì **What beautiful weather!** và **What beautiful flowers!** **weather** là danh từ không đếm được nên không dùng **a**, còn danh từ đếm được số nhiều cần thêm **-s**." }
     ]
   },
   { title: "Cấu trúc Too... for someone to do something", grammarId: "045", level: "B1", category: "Cấu trúc câu",
-    rule: "Dùng để chỉ mức độ quá mức khiến cho ai đó không thể thực hiện được một hành động nào đó.",
-    form: ["S + be + too + adj + for + object + to-V"],
+    rule: "Cấu trúc **too... to** diễn tả mức độ QUÁ MỨC nên không thể làm được việc gì: **too + adj / adv + to-V** mang nghĩa phủ định dù câu không có **not**. Muốn nói rõ ai là người không làm được, thêm **for + người** trước **to-V**: **The tea is too hot for me to drink.** (Trà nóng quá, tôi không uống được.) Nếu người đó đã rõ qua ngữ cảnh thì có thể bỏ **for + người**: **It is too late to go.** Điểm quan trọng: sau **for** là tân ngữ (**me, him, her, us, them**), không phải chủ ngữ.",
+    form: ["S + be + too + adj + (for + O) + to-V","S + V + too + adv + (for + O) + to-V","Tương đương: S + be + so + adj + that + S + cannot / could not + V-bare","Tương đương: S + be + not + adj + enough + (for + O) + to-V"],
     examples: ["This math problem is too difficult for me to solve.", "The coffee was too hot for him to drink.", "The box was too heavy for her to lift."],
     wrong: "This box is too heavy for she to lift.", right: "This box is too heavy for her to lift.",
     more: [
-      { type: "nuance", text: "Khi viết lại câu với **too... to**, tuyệt đối không lặp lại tân ngữ ở cuối mệnh đề (**This box is too heavy to lift**, không viết **lift it**)." }
+      { type: "nuance", text: "**too** mang nghĩa tiêu cực là quá nhiều đến mức không thể, khác với **very** chỉ là rất. So sánh: **The tea is very hot.** (nóng, nhưng vẫn có thể uống được) và **The tea is too hot to drink.** (nóng đến mức không uống được)." },
+      { type: "extension", text: "Có thể viết lại câu với **so... that** hoặc **enough** có nghĩa tương đương: **The box is too heavy for her to lift.** = **The box is so heavy that she cannot lift it.** Chú ý trong mẫu **so... that** ta phải có tân ngữ **it**, còn trong mẫu **too... to** thì không." },
+      { type: "nuance", text: "Không lặp lại tân ngữ ở cuối câu **too... to**: nói **This box is too heavy to lift**, không nói **to lift it**. Vì **box** là chủ ngữ của câu nhưng cũng chính là vật được nâng, nên **it** thừa." },
+      { type: "advanced", text: "**too** có thể đứng trước **much / many** hoặc danh từ: **There are too many people to count.** Còn **too + adj + a + N** là cách nói trang trọng: **It is too good a chance to miss.**" },
+      { type: "mistake", text: "Lỗi hay gặp: nói **too heavy for she to lift** hoặc **for I to lift** thay vì **for her to lift**, **for me to lift**. Sau **for** phải dùng tân ngữ (**me, him, her, us, them**), không dùng đại từ chủ ngữ." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **too much heavy** hoặc **very too heavy** thay vì **too heavy**. **too** đã đủ để nhấn mạnh, không thêm **much** hay **very** trước tính từ." }
     ]
   },
   { title: "Cấu trúc Enough... for someone to do something", grammarId: "046", level: "B1", category: "Cấu trúc câu",
-    rule: "Dùng để chỉ mức độ đủ điều kiện cho ai đó thực hiện thành công một hành động. Tính từ/trạng từ bắt buộc phải đứng **trước enough**, còn danh từ đứng **sau enough**.",
-    form: ["S + be + adj + enough + for + object + to-V", "S + V + enough + N + to-V"],
+    rule: "**Enough** có nghĩa là ĐỦ để làm được việc gì. Vị trí của **enough** phụ thuộc vào từ đi cùng: với tính từ và trạng từ thì **enough** đứng SAU (**tall enough**, **fast enough**), còn với danh từ thì **enough** đứng TRƯỚC (**enough money**, **enough time**). Sau đó ta có thể thêm **for + người** và **to-V** để nói đủ để làm gì: **The room is big enough for us to dance.** Nếu không có **to-V**, câu vẫn đúng: **He is old enough.**",
+    form: ["S + be + adj + enough + (for + O) + (to-V)","S + V + adv + enough + (for + O) + (to-V)","S + V + enough + N + (for + O) + (to-V)","Phủ định: S + be + not + adj + enough + (for + O) + to-V"],
     examples: ["The weather is warm enough for us to go swimming.", "He has enough money to buy the car.", "The room is large enough for everyone."],
     wrong: "He is enough tall for me to see.", right: "He is tall enough for me to see.",
     more: [
-      { type: "nuance", text: "Chú ý vị trí từ loại: Tính từ đứng trước (**tall enough**), nhưng danh từ lại đứng sau (**enough time**)." }
+      { type: "nuance", text: "Hãy nhớ vị trí: tính từ đứng trước (**tall enough**), danh từ đứng sau (**enough time**). Tiếng Việt nói \"đủ cao\", \"đủ tiền\" đều có \"đủ\" ở trước, nên đây là chỗ học viên rất dễ nhầm." },
+      { type: "extension", text: "Có thể chuyển sang dạng phủ định để diễn tả ý ngược lại với **too**: **The soup is not hot enough to burn you.** Ngoài ra **enough** còn đứng một mình làm đại từ: **Is that enough?** hoặc **I have had enough.** (Tôi chịu hết nổi rồi.)" },
+      { type: "nuance", text: "**too** và **enough** thường có nghĩa tương đương nhau nếu đổi nghĩa tính từ: **He is too short to reach it.** = **He is not tall enough to reach it.** Lưu ý **enough** nghĩa khẳng định (đủ để làm), còn **too** nghĩa phủ định (quá nên không làm được)." },
+      { type: "advanced", text: "Với **enough** làm đại từ, ta có thể dùng **of**: **enough of the food**, **not enough of them**. Cũng có thể gặp **sure enough**, **funnily enough**, **strangely enough** với nghĩa \"thật vậy\" hoặc \"thật lạ là\"." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **He is enough tall** hoặc **I have time enough** thay vì **He is tall enough** và **I have enough time**. Tính từ đi trước **enough**, danh từ đi sau **enough**." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **big enough for to dance** hoặc **enough for me to doing** thay vì **big enough to dance** hoặc **big enough for me to dance**. Sau **for + O** hoặc ngay sau **enough** chỉ dùng **to-V**, không dùng V-ing hay **for to**." }
     ]
   },
   { title: "Cấu trúc It takes / took someone time to do something", grammarId: "047", level: "A2", category: "Cấu trúc câu",
-    rule: "Dùng cấu trúc chủ ngữ giả **It** để diễn tả khoảng thời gian cần thiết hoặc tiêu tốn để ai đó hoàn thành một hành động.",
-    form: ["It takes / took + object + time + to-V"],
+    rule: "**It takes** dùng để nói một việc cần bao nhiêu thời gian. **It** ở đây chỉ là chủ ngữ giả, không chỉ vật gì cụ thể. Ta thêm người thực hiện (**me, you, him, her...**) và khoảng thời gian, rồi **to + động từ nguyên mẫu**: **It takes me ten minutes to get to work.** (Tôi mất 10 phút để đến chỗ làm.) Ở quá khứ dùng **took**: **It took her two hours to finish.** Hỏi bao lâu dùng **How long does it take (+ O) to-V?**",
+    form: ["It + takes / took + O + time + to-V","It + takes / took + time + to-V   (không nói rõ người)","It + doesn't take / didn't take + O + time + to-V","How long + does / did + it + take + (O) + to-V?"],
     examples: ["It takes me twenty minutes to walk to school every morning.", "It took her two hours to finish the project.", "How long does it take to fly to Paris?"],
     wrong: "It takes me walking to school.", right: "It takes me twenty minutes to walk to school.",
     more: [
-      { type: "extension", text: "Có thể chuyển đổi tương đương với cấu trúc **spend**: **S + spend + time + V-ing** (**I spend twenty minutes walking to school**)." }
+      { type: "extension", text: "Có thể viết lại bằng **spend**: **It takes me twenty minutes to walk to school.** = **I spend twenty minutes walking to school.** Chú ý chủ ngữ đổi từ **It** sang **I**, và sau **spend** dùng **V-ing**, không dùng **to-V**." },
+      { type: "nuance", text: "**take** còn có thể dùng với thứ cần thiết, không chỉ thời gian: **It takes courage to say sorry.** (Cần có dũng khí để xin lỗi.) **It takes two to tango.** là một thành ngữ quen thuộc. Khi nói về thời gian, nhớ dùng thì đúng: **took** cho quá khứ, **takes** cho thói quen hoặc sự thật." },
+      { type: "advanced", text: "Có thể bỏ người thực hiện khi nói chung chung: **It takes about an hour to get there.** Cũng có thể dùng thì hiện tại hoàn thành hoặc tương lai: **It will take me a week to finish.**" },
+      { type: "mistake", text: "Lỗi hay gặp: nói **It takes me walking to school** hoặc **It takes me twenty minutes walking** thay vì **It takes me twenty minutes to walk to school**. Sau cụm thời gian phải dùng **to-V**, không dùng V-ing." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **I take twenty minutes to walk** hoặc **It spends me twenty minutes** thay vì **It takes me twenty minutes** hoặc **I spend twenty minutes**. Chủ ngữ của **take** là **It**, chủ ngữ của **spend** là người." }
     ]
   },
   { title: "Cấu trúc Spend time / money", grammarId: "048", level: "A2", category: "Cấu trúc câu",
-    rule: "Dùng để diễn tả việc dành ra khoảng thời gian hoặc tiền bạc vào việc gì đó hoặc để làm việc gì đó, theo sau bởi giới từ **on** + danh từ hoặc danh động từ (**V-ing**).",
-    form: ["S + spend(s) / spent + time / money + V-ing / on + N"],
+    rule: "**Spend** nghĩa là dành thời gian hoặc tiêu tiền. Ai đó **spend** thời gian hoặc tiền vào việc gì. Có hai cách nói điều đó: **spend + time / money + V-ing** (cho hành động) và **spend + time / money + on + N** (cho một vật hoặc hoạt động). Ví dụ: **I spend an hour reading.** và **I spend an hour on homework.** Quá khứ của **spend** là **spent**. Sau **spend** không dùng **to-V**.",
+    form: ["S + spend(s) / spent + time + V-ing","S + spend(s) / spent + money + on + N / V-ing","S + spend(s) / spent + time / money + on + N","S + don't / doesn't / didn't + spend + time / money + V-ing / on + N"],
     examples: ["She spends two hours reading books every day.", "They spent a lot of money on renovating their house.", "He spends too much time playing video games."],
     wrong: "I spend two hours to read books.", right: "I spend two hours reading books.",
     more: [
-      { type: "nuance", text: "Sau **spend** là **V-ing** trực tiếp (**spend hours reading**), không dùng **to-V**." }
+      { type: "nuance", text: "Sau **spend** là **V-ing** trực tiếp (**spend hours reading**), không dùng **to-V**. Còn **on** thì theo sau là danh từ: **spend money on clothes**. Cả hai cách đều dùng được với tiền, nhưng với thời gian ta thường dùng **V-ing** trực tiếp." },
+      { type: "extension", text: "**spend** còn đi với khoảng thời gian cụ thể và địa điểm: **We spent the weekend at the beach.** (Chúng tôi đã dành cuối tuần ở bãi biển.) Cũng dùng được trong câu bị động: **A lot of money was spent on this.**" },
+      { type: "nuance", text: "Khác với **spend**, **waste** (lãng phí) có cùng cấu trúc: **I wasted two hours waiting.** Cũng nên nhớ **spend** dùng cho thời gian và tiền, còn **take** (ở cấu trúc **It takes**) chỉ dùng cho thời gian: **It takes me two hours to read.** = **I spend two hours reading.**" },
+      { type: "mistake", text: "Lỗi hay gặp: nói **I spend two hours to read books** thay vì **I spend two hours reading books**. Tiếng Việt nói \"dành hai giờ để đọc\" nên học viên dịch thành **to read**; trong tiếng Anh phải dùng **V-ing**." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **I spend a lot of money buy clothes** hoặc **spend money for clothes** thay vì **spend a lot of money buying clothes** hoặc **spend money on clothes**. Sau **spend + money** cần **V-ing** hoặc **on + N**, không dùng động từ nguyên mẫu hay **for**." }
     ]
   },
   { title: "Cấu trúc Prefer A to B", grammarId: "049", level: "B1", category: "Cấu trúc câu",
-    rule: "Dùng để diễn tả sự yêu thích một sự vật hay hoạt động này hơn một sự vật hay hoạt động khác. Bắt buộc dùng giới từ **to** để nối hai đối tượng so sánh.",
-    form: ["S + prefer + N / V-ing + to + N / V-ing"],
+    rule: "**Prefer A to B** dùng để nói thích A hơn B. Điều quan trọng nhất là dùng giới từ **to** để nối hai vế, không dùng **than** như trong so sánh hơn. Hai vế A và B phải cùng dạng: cùng là danh từ (**tea to coffee**) hoặc cùng là **V-ing** (**walking to driving**). Dạng quá khứ là **preferred**, ngôi thứ ba hiện tại là **prefers**.",
+    form: ["S + prefer(s) + N + to + N","S + prefer(s) + V-ing + to + V-ing","S + would prefer + to-V + (rather than + V-bare)","S + would prefer + N + to + N"],
     examples: ["I prefer drinking tea to drinking coffee.", "She prefers movies to books.", "He prefers walking to driving in rush hour."],
     wrong: "I prefer tea than coffee.", right: "I prefer tea to coffee.",
     more: [
-      { type: "extension", text: "Khi dùng cấu trúc **would prefer**, đi kèm với **to-V** thay vì **V-ing**: **S + would prefer + to-V + rather than + V-bare**." }
+      { type: "extension", text: "Với ý thích chung chung, dùng **prefer + V-ing + to + V-ing**. Với một lựa chọn cụ thể ở một thời điểm nhất định, dùng **would prefer + to-V**: **I would prefer to stay home tonight.** (Tối nay tôi muốn ở nhà hơn.) Có thể thêm **rather than + V-bare**." },
+      { type: "nuance", text: "**prefer** diễn tả sở thích chung (**I prefer tea**), còn **would prefer** nói về lựa chọn lúc này và lịch sự hơn: **Would you prefer tea or coffee?** Có thể nói **prefer to-V** thay cho **V-ing** khi nói về một lựa chọn cụ thể: **I prefer to walk.**" },
+      { type: "advanced", text: "Tương đương với **would rather**: **I would rather walk than drive.** Chú ý **would rather** đi với động từ nguyên mẫu không **to** và dùng **than**, còn **prefer** dùng **to** để nối hai vế; hai mẫu này không được trộn lẫn." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **I prefer tea than coffee** thay vì **I prefer tea to coffee**. Tiếng Việt nói \"hơn\" cho mọi so sánh nên học viên dùng **than**; với **prefer** phải dùng **to**." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **I prefer to walk to drive** hoặc **prefer walking to drive** thay vì **I prefer walking to driving**. Hai vế sau **prefer** phải cùng dạng, và vì **to** là giới từ nên sau nó là **V-ing**." }
     ]
   },
   { title: "Cấu trúc Would rather", grammarId: "050", level: "B2", category: "Cấu trúc câu",
-    rule: "Dùng để diễn tả sở thích làm việc này hơn việc khác ở hiện tại hoặc tương lai, theo sau trực tiếp bởi động từ nguyên mẫu không **to** (**V-bare**).",
-    form: ["S + would rather + V-bare + (than + V-bare)"],
+    rule: "**Would rather** nghĩa là \"thà... còn hơn\" hoặc \"thích... hơn\" khi nói về sở thích ở hiện tại hoặc tương lai. Sau **would rather** là động từ nguyên mẫu KHÔNG có **to**. Nếu so sánh hai việc, nối bằng **than** (không dùng **to**): **I would rather stay home than go out.** Dạng rút gọn thường nói là **I'd rather**. Phủ định đặt **not** sau **rather**: **I'd rather not go.** Khi hai chủ ngữ khác nhau, mệnh đề sau lùi về quá khứ đơn nhưng vẫn nói về hiện tại hoặc tương lai: **I'd rather you stayed.**",
+    form: ["S + would rather + V-bare + (than + V-bare)","S + would rather + not + V-bare","Would + S + rather + V-bare + (or + V-bare)?","Hai chủ ngữ (hiện tại / tương lai): S1 + would rather + S2 + V2/ed","Hai chủ ngữ (quá khứ): S1 + would rather + S2 + had + V3/ed"],
     examples: ["I would rather stay at home than go out tonight.", "She would rather read a book than watch TV.", "Would you rather have coffee or juice?"],
     wrong: "I would rather to stay at home.", right: "I would rather stay at home.",
     more: [
-      { type: "nuance", text: "Khi **would rather** có hai chủ ngữ khác nhau chỉ mong muốn ở hiện tại (**S1 + would rather + S2 + V2/ed**), mệnh đề sau lùi về thì quá khứ đơn (**I'd rather you stayed home**)." }
+      { type: "nuance", text: "Khi có hai chủ ngữ khác nhau, mệnh đề sau dùng quá khứ đơn để nói về hiện tại hoặc tương lai: **I'd rather you stayed home.** (Tôi muốn bạn ở nhà hơn.) Đây là dạng giả định; không có nghĩa quá khứ thật sự. Với quá khứ thật sự dùng quá khứ hoàn thành: **I'd rather you had stayed home.**" },
+      { type: "extension", text: "Có thể dùng trong câu hỏi lịch sự hoặc đề nghị: **Would you rather have tea or coffee?** Câu trả lời ngắn: **I'd rather have tea.** Câu phủ định: **I'd rather not talk about it.** (Tôi không muốn nói về chuyện đó.)" },
+      { type: "nuance", text: "**would rather** có nghĩa gần giống **would prefer** nhưng cấu trúc khác: **I would rather stay home than go out.** = **I would prefer to stay home rather than go out.** Một bên không có **to**, một bên có **to**." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **I would rather to stay home** hoặc **I would rather staying home** thay vì **I would rather stay home**. **would rather** hoạt động như động từ khuyết thiếu nên theo sau là động từ nguyên mẫu không **to**." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **I would rather tea to coffee** hoặc **I'd rather walk to drive** thay vì **I'd rather walk than drive**. Ở đây dùng **than**, không dùng **to**; **to** chỉ dùng với **prefer**." }
     ]
   },
   { title: "Cấu trúc It is time", grammarId: "051", level: "B2", category: "Cấu trúc câu",
-    rule: "Dùng để diễn tả rằng đã đến lúc một việc gì đó nên được thực hiện ngay lập tức. Mệnh đề có chủ ngữ theo sau bắt buộc phải chia ở thì **quá khứ đơn**.",
-    form: ["It is (high / about) time + S + V2/ed", "It is time + for + object + to-V"],
+    rule: "**It is time** dùng để nói đã đến lúc làm gì đó. Có hai cách dùng. Khi nói chung, hoặc có người thực hiện với **for**, dùng **to-V**: **It is time to go.** hoặc **It is time for you to go.** Khi muốn có chủ ngữ riêng và nhấn mạnh rằng việc đó đáng ra phải làm rồi, dùng mệnh đề với động từ ở quá khứ đơn: **It is time you went.** Dù dùng quá khứ, nghĩa vẫn là hiện tại. Thêm **high** hoặc **about** để nhấn mạnh là đã trễ: **It is high time you went to bed.**",
+    form: ["It is time + to-V","It is time + for + O + to-V","It is (high / about) time + S + V2/ed","It's time + S + didn't + V-bare   (phủ định, ít dùng)"],
     examples: ["It is high time you went to bed; it's almost midnight.", "It is time we started our meeting.", "It is about time he apologized to her."],
     wrong: "It is time you go to bed.", right: "It is time you went to bed.",
     more: [
-      { type: "nuance", text: "Nếu không có chủ ngữ **S** theo sau, ta dùng động từ nguyên mẫu có **to**: **It is time to go to bed**." }
+      { type: "nuance", text: "**It is time you went** mang sắc thái hơi trách móc hoặc thúc giục: việc đó đáng ra đã phải làm rồi. Còn **It is time for you to go** chỉ đơn giản nói đã đến lúc. Thêm **high** (**high time**) làm câu mạnh hơn nữa, thường để phàn nàn." },
+      { type: "extension", text: "Có thể bỏ **It is** trong văn nói: **Time to go!** **Time for bed!** Trong đó **time** có thể đứng đầu câu. Có thể dùng **was** khi kể lại: **It was time to leave.**" },
+      { type: "advanced", text: "Cũng có thể dùng thể tiếp diễn ở mệnh đề sau: **It is time we were leaving.** Khi chỉ muốn nói đã đến lúc mà không trách móc, **It is time to leave.** hoặc **It is time for us to leave.** là lựa chọn trung tính nhất." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **It is time you go to bed** thay vì **It is time you went to bed**. Mệnh đề sau **It is time + S** phải dùng quá khứ đơn, dù đang nói về hiện tại." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **It is time to you go** hoặc **It is time you to go** thay vì **It is time for you to go**. Khi dùng **to-V** với người thực hiện, phải có **for** trước người đó." }
     ]
   },
   { title: "Mệnh đề trạng ngữ chỉ thời gian với When, While, As", grammarId: "052", level: "B1", category: "Mệnh đề",
-    rule: "Dùng để nối các hành động xảy ra đồng thời hoặc có hành động ngắn xen vào hành động dài đang diễn ra trong quá khứ.",
-    form: ["When / While / As + clause, clause"],
+    rule: "**When**, **while** và **as** nối hai hành động trong cùng một khoảng thời gian, tương ứng với \"khi\" hoặc \"trong khi\". Mệnh đề thời gian có thể đứng đầu câu (có dấu phẩy) hoặc cuối câu (không có dấu phẩy). Mẫu hay gặp nhất ở quá khứ: hành động dài đang diễn ra dùng quá khứ tiếp diễn, hành động ngắn xen vào dùng quá khứ đơn: **While I was cooking, the phone rang.** **While** và **as** thường đi với hành động kéo dài; **when** dùng linh hoạt hơn và có thể đi với cả hành động ngắn hoặc nối tiếp: **When she arrived, everyone was waiting.**",
+    form: ["When / While / As + S + V, S + V","S + V + when / while / as + S + V","While / As + S + was / were + V-ing, S + V2/ed","When + S + V2/ed, S + was / were + V-ing"],
     examples: ["While I was cooking dinner, the phone rang.", "When she arrived, everyone was waiting.", "As he walked down the street, he met an old friend."],
     wrong: "While I cooked, the phone rang.", right: "While I was cooking, the phone rang.",
     more: [
-      { type: "nuance", text: "**While** và **as** thường đi với thì tiếp diễn (hành động kéo dài), còn **when** thường đi với thì đơn (hành động cắt ngang hoặc nối tiếp)." }
+      { type: "nuance", text: "**while** nhấn mạnh hai hành động kéo dài cùng lúc: **While I was studying, she was cooking.** **as** có thể nói về hai việc thay đổi dần cùng nhau: **As it got darker, it got colder.** **when** đơn giản nối hai thời điểm: **When I got home, I called her.**" },
+      { type: "extension", text: "**when** có thể dùng cho cả thì hiện tại và tương lai, nhưng sau **when / while / as** không dùng **will** để nói về tương lai: **When she arrives, I will call you.** Dùng hiện tại đơn trong mệnh đề thời gian." },
+      { type: "nuance", text: "Thứ tự hành động khác nhau tùy thì: **When I arrived, she left.** (tôi đến rồi cô ấy mới đi) và **When I arrived, she was leaving.** (cô ấy đang đi thì tôi đến). Thì của mệnh đề chính thay đổi nghĩa của câu." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **While I cooked, the phone rang** thay vì **While I was cooking, the phone rang** khi muốn nói hành động đang diễn ra thì bị cắt ngang. Với **while**, hành động kéo dài thường dùng quá khứ tiếp diễn." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **When she will arrive, I will call** thay vì **When she arrives, I will call**. Sau **when / while / as** không dùng **will** cho tương lai; dùng hiện tại đơn." }
     ]
   },
   { title: "Cấu trúc Hardly... when và No sooner... than", grammarId: "053", level: "C1", category: "Cấu trúc câu",
-    rule: "Diễn tả hành động này vừa mới xảy ra thì hành động khác nối tiếp ngay lập tức. Mệnh đề đầu bắt buộc phải **đảo ngữ** với thì quá khứ hoàn thành.",
-    form: ["Hardly / Scarcely + had + S + V3/ed + when + S + V2/ed", "No sooner + had + S + V3/ed + than + S + V2/ed"],
+    rule: "**Hardly... when** và **No sooner... than** diễn tả một việc vừa xảy ra thì việc khác xảy ra ngay, nghĩa là \"vừa mới... thì...\". Cả hai thường đặt ở đầu câu để nhấn mạnh, và khi đó mệnh đề đầu phải đảo ngữ: trợ động từ **had** đứng trước chủ ngữ. Mệnh đề đầu dùng quá khứ hoàn thành (**had + V3/ed**), mệnh đề sau dùng quá khứ đơn. Cặp từ đi kèm cố định: **Hardly / Scarcely... when**, và **No sooner... than**.",
+    form: ["Hardly / Scarcely + had + S + V3/ed + when + S + V2/ed","No sooner + had + S + V3/ed + than + S + V2/ed","Không đảo ngữ: S + had + hardly / scarcely + V3/ed + when + S + V2/ed","Không đảo ngữ: S + had + no sooner + V3/ed + than + S + V2/ed"],
     examples: ["Hardly had I opened the door when a cat jumped out.", "No sooner had we reached the station than the train left."],
     wrong: "Hardly I had opened the door when a cat jumped out.", right: "Hardly had I opened the door when a cat jumped out.",
     more: [
-      { type: "nuance", text: "Chú ý đi cặp liên từ chính xác: **Hardly / Scarcely** đi với **when**, còn **No sooner** bắt buộc đi với **than**." }
+      { type: "nuance", text: "Cặp từ phải đúng: **Hardly / Scarcely** đi với **when**, còn **No sooner** đi với **than**. Nói **No sooner... when** hoặc **Hardly... than** là sai trong văn viết chuẩn, dù đôi khi nghe thấy trong lời nói." },
+      { type: "advanced", text: "Cấu trúc này mang tính trang trọng và văn viết nhiều. Khi không đảo ngữ, trợ động từ đứng sau chủ ngữ: **I had hardly opened the door when a cat jumped out.** Cả hai dạng đều đúng; dạng đảo ngữ nhấn mạnh hơn." },
+      { type: "extension", text: "Có thể gặp với **Barely** thay cho **Hardly**: **Barely had she sat down when the phone rang.** Ý nghĩa giống nhau. Trong lời nói hằng ngày, người ta thường nói **As soon as** hoặc **The moment**: **As soon as I opened the door, a cat jumped out.**" },
+      { type: "mistake", text: "Lỗi hay gặp: nói **Hardly I had opened the door when...** thay vì **Hardly had I opened the door when...**. Khi **Hardly** ở đầu câu, bắt buộc phải đảo trợ động từ **had** lên trước chủ ngữ." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **No sooner had I opened the door, a cat jumped out** thay vì **No sooner had I opened the door than a cat jumped out**. Thiếu từ nối **than** (hoặc **when** với **Hardly**) làm câu sai." }
     ]
   },
   { title: "Cấu trúc Not only... but also", grammarId: "054", level: "B2", category: "Liên từ",
-    rule: "Dùng liên từ sóng đôi **not only... but also** để nối hai từ loại hoặc hai mệnh đề cùng chức năng nhằm nhấn mạnh ý 'không những... mà còn...'.",
-    form: ["S + V + not only + A + but also + B"],
+    rule: "**Not only... but also** nghĩa là \"không những... mà còn...\", nhấn mạnh rằng có cả hai điều. Hai vế được nối phải cùng dạng ngữ pháp (cùng là tính từ, danh từ, động từ hoặc mệnh đề), đây gọi là cấu trúc song song: **She is not only smart but also kind.** Khi đặt **Not only** ở đầu câu để nhấn mạnh, mệnh đề đầu đảo ngữ như câu hỏi: **Not only did he pass, but he also won a prize.** Khi nối hai chủ ngữ, động từ chia theo chủ ngữ gần nhất: **Not only the students but also the teacher was late.**",
+    form: ["S + V + not only + A + but also + B   (A, B cùng dạng)","S + be + not only + adj + but also + adj","Not only + trợ động từ + S + V, + but + S + also + V   (đảo ngữ)","Not only + N1 + but also + N2 + V (chia theo N2)"],
     examples: ["She is not only intelligent but also extremely hardworking.", "Not only did he pass the exam, but he also got a scholarship."],
     wrong: "He not only is smart, but also kind.", right: "He is not only smart, but also kind.",
     more: [
-      { type: "advanced", text: "Khi đưa **Not only** lên đầu câu để nhấn mạnh, vế đầu tiên phải thực hiện đảo ngữ trợ động từ (**Not only did he pass...**)." }
+      { type: "advanced", text: "Khi đưa **Not only** lên đầu câu, mệnh đề đầu đảo trợ động từ: **Not only did he pass...** Với động từ **be**, đảo **be** lên trước: **Not only is she smart, but she is also kind.** Mệnh đề sau không đảo ngữ." },
+      { type: "nuance", text: "Có thể bỏ **also** hoặc đổi thành **as well**: **He is not only smart but kind as well.** Cấu trúc này trang trọng hơn **both... and**: **She is both smart and kind.** Cả hai cùng nghĩa nhưng **not only... but also** nhấn mạnh hơn." },
+      { type: "extension", text: "Cặp từ này có thể nối cụm động từ, danh từ hay trạng từ: **He not only sings but also dances.** **She speaks not only English but also French.** Điều quan trọng là A và B cùng loại từ." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **He not only is smart, but also kind** thay vì **He is not only smart, but also kind**. Đặt **not only** ngay trước phần được so sánh (tính từ **smart**), không đặt trước động từ **is**; hai vế phải song song." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **Not only he passed, but he also won** thay vì **Not only did he pass, but he also won**. Khi **Not only** ở đầu câu phải đảo ngữ với trợ động từ **did**; học viên hay quên vì tiếng Việt không đảo ngữ." }
     ]
   },
   { title: "Cấu trúc Either... or và Neither... nor", grammarId: "055", level: "B1", category: "Liên từ",
-    rule: "**Either... or** (hoặc... hoặc...); **Neither... nor** (không... mà cũng không...). Động từ chính được chia theo chủ ngữ **N2** (chủ ngữ đứng gần động từ nhất).",
-    form: ["Either / Neither + S1 + or / nor + S2 + V (chia theo S2)"],
+    rule: "**Either... or** nghĩa là \"hoặc... hoặc...\", chọn một trong hai. **Neither... nor** nghĩa là \"không... cũng không...\", phủ định cả hai. Cả hai cặp nối hai thành phần cùng loại (hai chủ ngữ, hai động từ, hai tính từ...). Khi nối hai chủ ngữ, động từ chia theo chủ ngữ gần động từ nhất (**S2**): **Either you or I am wrong.** **Neither the teacher nor the students were present.** Chỉ dùng một lần phủ định: **Neither... nor** đã mang nghĩa phủ định nên không thêm **not**.",
+    form: ["Either + S1 + or + S2 + V (chia theo S2)","Neither + S1 + nor + S2 + V (chia theo S2)","S + V + either + A + or + B","S + V + neither + A + nor + B   (không thêm not)"],
     examples: ["Either you or I am responsible for this mistake.", "Neither the teacher nor the students were present.", "You can either stay here or come with us."],
     wrong: "Neither he nor I is ready.", right: "Neither he nor I am ready.",
     more: [
-      { type: "nuance", text: "Quy tắc ngữ pháp chuẩn quy định động từ phải hòa hợp với chủ ngữ nằm gần nó nhất (**S2**)." }
+      { type: "nuance", text: "Động từ hòa hợp với chủ ngữ đứng gần nhất (**S2**): **Neither he nor I am ready.** nhưng **Neither I nor he is ready.** Trong văn nói thân mật, người bản ngữ đôi khi dùng động từ số nhiều với chủ ngữ số nhiều ở S2; tuy vậy luật hòa hợp theo S2 vẫn là chuẩn." },
+      { type: "extension", text: "Ngoài việc nối chủ ngữ, có thể nối động từ, tính từ hoặc cụm giới từ: **You can either stay or leave.** **The soup was neither hot nor tasty.** **She lives either in Hanoi or in Hue.** Các thành phần song song phải cùng loại." },
+      { type: "nuance", text: "**Neither** đã mang nghĩa phủ định, nên không thêm **not**: nói **I like neither tea nor coffee**, không nói **I don't like neither tea nor coffee**. Có thể diễn đạt khác: **I don't like either tea or coffee.**" },
+      { type: "mistake", text: "Lỗi hay gặp: nói **Neither he nor I is ready** thay vì **Neither he nor I am ready**. Động từ phải khớp với chủ ngữ gần nhất; ở đây là **I** nên dùng **am**, không phải chủ ngữ đầu." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **Either you and I** hoặc **Neither he or I** thay vì **Either you or I** và **Neither he nor I**. **Either** đi với **or**, **neither** đi với **nor**; không trộn lẫn với **and** hay nối sai cặp." }
     ]
   },
   { title: "Mệnh đề quan hệ rút gọn bằng V-ing và V3/ed", grammarId: "056", level: "B2", category: "Mệnh đề",
-    rule: "Khi mệnh đề quan hệ ở thể chủ động, ta rút gọn bằng cách bỏ đại từ quan hệ và to-be, giữ lại **V-ing**. Nếu ở thể bị động, rút gọn giữ lại quá khứ phân từ (**V3/ed**).",
-    form: ["N + V-ing + ... (chủ động)", "N + V3/ed + ... (bị động)"],
+    rule: "Mệnh đề quan hệ rút gọn giúp câu gọn hơn bằng cách bỏ đại từ quan hệ (**who / which / that**) và dạng của **be**. Với nghĩa chủ động, ta giữ **V-ing**: **the girl who is standing there** thành **the girl standing there**. Với nghĩa bị động, ta giữ **V3/ed**: **the letter which was written by Mary** thành **the letter written by Mary**. Chỉ rút gọn được khi đại từ quan hệ là chủ ngữ của mệnh đề đó. Rút gọn xong, cụm đứng ngay sau danh từ mà nó bổ nghĩa.",
+    form: ["N + who / which / that + V ...   →   N + V-ing ...   (chủ động)","N + who / which / that + be + V3/ed ...   →   N + V3/ed ...   (bị động)","N + who / which / that + be + adj / prep phrase   →   N + adj / prep phrase","N + that + have / has + V3/ed   →   N + having + V3/ed   (hoàn thành, trang trọng)"],
     examples: ["The girl standing next to my sister in the photograph is my cousin.", "The letter written by Mary yesterday is on the table."],
     wrong: "The girl stands next to my sister is my cousin.", right: "The girl standing next to my sister in the photograph is my cousin.",
     more: [
-      { type: "nuance", text: "Chỉ rút gọn được mệnh đề quan hệ khi đại từ quan hệ (**who/which/that**) làm **chủ ngữ** trong mệnh đề đó." }
+      { type: "nuance", text: "Chỉ rút gọn khi đại từ quan hệ là chủ ngữ. Khi nó là tân ngữ, ta có thể bỏ đại từ nhưng không đổi động từ thành V-ing: **the book (which) I read** là đúng, còn **the book reading by me** sai." },
+      { type: "extension", text: "Cũng có thể rút gọn mệnh đề với **be + tính từ** hoặc **be + cụm giới từ**: **the man who is in the car** thành **the man in the car**. Với **to-V**, dùng sau **the first / the last / the only**: **the first person to arrive**." },
+      { type: "nuance", text: "Rút gọn bằng **V-ing** hợp với hành động đang diễn ra hoặc trạng thái thường xuyên: **the man living next door**. Với hành động đã xong, nên giữ mệnh đề đầy đủ: **the man who lived here** thường tự nhiên hơn **the man living here**." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **The girl stands next to my sister** thay vì **The girl standing next to my sister** (hoặc **who stands**). Sau khi bỏ đại từ quan hệ, không giữ động từ chia thì mà phải dùng **V-ing**." },
+      { type: "mistake", text: "Lỗi hay gặp: nói **The letter writing by Mary** thay vì **The letter written by Mary**. Nghĩa bị động (thư được viết) phải dùng **V3/ed**; **V-ing** chỉ dùng khi danh từ thực hiện hành động." }
     ]
   },
   { title: "Mệnh đề quan hệ rút gọn bằng To-V", grammarId: "057", level: "B2", category: "Mệnh đề",
