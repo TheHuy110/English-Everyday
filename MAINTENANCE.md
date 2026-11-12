@@ -72,11 +72,6 @@ All commands run from the repo root. Node tools need Node.js; the two `.py` tool
 - Checks grammar rules, questions (the answer must equal one option), tests, resources, tips, word pairs, vocab, meanings, quotes and odd-sounds.
 - `ERROR` = fix it. `warn` = look at it (for example a missing audio file).
 
-### `fix-answer-spoilers.js`: answers that repeat the word next to the blank
-- **Command:** `node tools/fix-answer-spoilers.js` (dry run, prints what it would change) then `node tools/fix-answer-spoilers.js --apply`.
-- **Reads/writes:** `content/questions.js`. Finds questions where an option repeats the word(s) written directly before or after the blank, e.g. "They ___ getting their dog..." with "are getting", and removes the repeated word from the correct answer and from any other option that repeats it ("are getting" becomes "are").
-- It leaves a question alone, and lists it, when the fix is not clean (more than one blank, an option that would become empty, two options that would become identical). The same remaining questions show in Admin, "Kiểm tra đáp án lộ từ trong câu hỏi", filter "Sát chỗ trống". Fix those by hand.
-
 ### `bump-version.js`: site version
 - **Command:** `node tools/bump-version.js` (adds 1) or `node tools/bump-version.js 10` (sets 10).
 - Updates the number in `index.html`: the `oel-version` meta tag, `?v=N` on every script and stylesheet, and the footer text. The same number shows on the Admin page.
@@ -110,7 +105,7 @@ All commands run from the repo root. Node tools need Node.js; the two `.py` tool
 
 ## 6. Admin mode
 
-Hidden, local to the browser. Type the secret code into the grammar search box to switch it on; an "Admin" tab appears. It shows content statistics, grammarId checks, the vocab and IPA test row viewers, the "answer repeats a word from the question" checker (lists questions whose correct answer repeats a word right next to the blank, with the shared words highlighted and the question's number in `questions.js`; a second filter shows every shared word, mostly false alarms), Elo and font tools, and progress test buttons. It stores things only in your own browser (`localStorage`), so it does not protect or change anything for other visitors, and anyone can switch it on in their own browser by editing local storage.
+Hidden, local to the browser. Type the secret code into the grammar search box to switch it on; an "Admin" tab appears. It shows content statistics, grammarId checks, the vocab and IPA test row viewers, the "answer repeats a word from the question" checker (lists every question whose correct answer shares a word with the question text, with the shared words highlighted and the question's number in `questions.js`), Elo and font tools, and progress test buttons. It stores things only in your own browser (`localStorage`), so it does not protect or change anything for other visitors, and anyone can switch it on in their own browser by editing local storage.
 
 ## 7. Hosting and troubleshooting
 
