@@ -59,12 +59,12 @@
   var BANK = [], LINKS = Object.create(null);   /* LINKS: grammarId -> number of questions pointing at it */
   var QSETS = [];
   function initBank() {
-    BANK = list(OEL.questions).map(function (q) {
+    BANK = list(OEL.questions).map(function (q, qi) {
       q = q || {};
       var o = list(q.options).map(String), a = o.indexOf(String(q.answer));
       var ok = q.question && o.length >= 2 && a > -1 && str(q.level);
       if (!ok) { warn('câu hỏi (đáp án phải trùng đúng một lựa chọn)', q); return null; }
-      return { lv: str(q.level).toUpperCase(), topic: str(q.topic), q: String(q.question), o: o, a: a, why: str(q.explanation), gid: idOf(q.grammarId) };
+      return { lv: str(q.level).toUpperCase(), topic: str(q.topic), q: String(q.question), o: o, a: a, why: str(q.explanation), gid: idOf(q.grammarId), n: qi + 1 };   /* n = position in content/questions.js (same number check-content.js prints) */
     }).filter(Boolean);
     LINKS = Object.create(null);
     BANK.forEach(function (q) { if (q.gid) LINKS[q.gid] = (LINKS[q.gid] || 0) + 1; });
@@ -481,6 +481,62 @@
       }).join('') + '</tbody></table></div>' +
       (rows.length > shown.length ? '<div style="margin-top:0.8rem">' + admBtn('adm-v-more', 'Xem thêm 50 dòng') + '</div>' : '');
   }
+  /* Questions whose correct answer repeats a word that is already in the question text (the answer is partly given away),
+     e.g. "They ___ getting their dog to the vet." with the answer "are getting". 'key' ignores very common little words. */
+  var admS = { f: 'key', q: '', limit: 50 };
+  var SPOIL_STOP = {}; 'a an the to of in on at for and or is are am was were be been i you he she it we they not no do does did'.split(' ').forEach(function (w) { SPOIL_STOP[w] = 1; });
+  function spoilWords(t) { return (String(t).toLowerCase().replace(/[’‘]/g, "'").match(/[a-z0-9]+(?:'[a-z]+)*/g) || []); }
+  function spoilHits() {   /* all questions with at least one shared word; each row says which words and whether any is not a common little word */
+    var out = [];
+    BANK.forEach(function (q) {
+      var ans = q.o[q.a], qs = {}, seen = {}, hits = [], key = false;
+      spoilWords(q.q).forEach(function (w) { qs[w] = 1; });
+      spoilWords(ans).forEach(function (w) { if (qs[w] && !seen[w]) { seen[w] = 1; hits.push(w); if (!SPOIL_STOP[w]) key = true; } });
+      if (hits.length) out.push({ q: q, ans: ans, hits: hits, key: key });
+    });
+    return out;
+  }
+  function hlShared(text, words) {   /* escape text and mark the whole words that are in 'words' */
+    var set = {}, re = /[A-Za-z0-9]+(?:['’][A-Za-z]+)*/g, out = '', last = 0, m;
+    words.forEach(function (w) { set[w] = 1; });
+    text = String(text);
+    while ((m = re.exec(text))) {
+      out += esc(text.slice(last, m.index));
+      out += set[m[0].toLowerCase().replace(/[’‘]/g, "'")] ? '<mark>' + esc(m[0]) + '</mark>' : esc(m[0]);
+      last = m.index + m[0].length;
+    }
+    return out + esc(text.slice(last));
+  }
+  function admSRows() {
+    var q = admS.q.trim().toLowerCase();
+    return spoilHits().filter(function (r) {
+      if (admS.f === 'key' && !r.key) return false;
+      if (!q) return true;
+      return String(r.q.n) === q || (r.q.q + ' ' + r.ans + ' ' + r.q.gid + ' ' + r.q.topic).toLowerCase().indexOf(q) > -1;
+    });
+  }
+  function renderAdmSList() {
+    var el = document.getElementById('adm-slist'), cnt = document.getElementById('adm-scount');
+    if (!el) return;
+    var rows = admSRows(), shown = rows.slice(0, admS.limit);
+    cnt.textContent = rows.length + ' câu' + (rows.length > shown.length ? ', đang hiện ' + shown.length : '');
+    if (!rows.length) { el.innerHTML = '<div class="empty">Không có câu nào phù hợp.</div>'; return; }
+    el.innerHTML = '<div class="table-wrap"><table style="min-width:0"><thead><tr><th>#</th><th>Cấp</th><th>Câu hỏi</th><th>Đáp án đúng</th><th>Từ trùng</th><th>Các lựa chọn</th><th>grammarId</th></tr></thead><tbody>' +
+      shown.map(function (r) {
+        var q = r.q, opts = q.o.map(function (o, i) { return i === q.a ? '<b>' + hlShared(o, r.hits) + '</b>' : esc(o); }).join(' · ');
+        return '<tr><td>' + q.n + '</td><td>' + esc(q.lv) + '</td><td>' + hlShared(q.q, r.hits) + '</td><td>' + hlShared(r.ans, r.hits) + '</td><td>' + esc(r.hits.join(', ')) + '</td><td>' + opts + '</td><td>' + esc(q.gid || '—') + '</td></tr>';
+      }).join('') + '</tbody></table></div>' +
+      (rows.length > shown.length ? '<div style="margin-top:0.8rem">' + admBtn('adm-s-more', 'Xem thêm 50 câu') + '</div>' : '');
+  }
+  function admSpoilPanel() {
+    var all = spoilHits(), key = all.filter(function (r) { return r.key; }).length;
+    var fl = [['key', 'Từ quan trọng trùng (' + key + ')'], ['all', 'Mọi từ trùng (' + all.length + ')']].map(function (f) { return chipBtn('adm-s-f', f[0], f[1], admS.f === f[0]); }).join('');
+    return '<section class="panel stack" style="gap:0.8rem"><h2>Kiểm tra đáp án lộ từ trong câu hỏi</h2>' +
+      '<p class="muted">Đáp án đúng không nên chứa từ đã có trong câu hỏi (ví dụ câu “They ___ getting their dog…” mà đáp án là “are getting”). Bảng liệt kê các câu có từ trùng, tô vàng từ trùng ở câu hỏi và đáp án. Số # là vị trí câu trong content/questions.js (cùng số mà check-content.js in ra). “Từ quan trọng trùng” bỏ qua các từ rất thường gặp (a, an, the, to, of, in, on, at, for, and, or, is, are, am, was, were, be, been, i, you, he, she, it, we, they, not, no, do, does, did), nên ít nhiễu hơn; “Mọi từ trùng” hiện tất cả. Có thể có câu trùng hợp lý, ví dụ cố ý lặp từ. Hãy xem từng câu rồi sửa trong questions.js.</p>' +
+      '<div class="chips" role="group" aria-label="Lọc câu trùng từ">' + fl + '</div>' +
+      '<div><label for="adm-s-search">Tìm theo số câu, chữ, grammarId hoặc chủ đề</label><input id="adm-s-search" type="search" autocomplete="off" value="' + esc(admS.q) + '"></div>' +
+      '<p class="muted" id="adm-scount" aria-live="polite"></p><div id="adm-slist"></div></section>';
+  }
   /* IPA tests admin: these tests have no IDs, so each question is shown as the row it comes from
      (line in odd-sounds.csv, position in quotes.js, "syllables:stressed syllable" group in stress.js). */
   var admI = { q: '', f: 'sound', limit: 50 };
@@ -638,7 +694,7 @@
       '<p>grammarId bị trùng: <strong>' + GDUP.length + '</strong>' + (GDUP.length ? ' (' + esc(GDUP.join(', ')) + ')' : '') + '</p>' +
       '<p>Quy tắc chưa có câu hỏi nào: <strong>' + noQ.length + '</strong>' + (noQ.length ? ' (' + esc(noQ.slice(0, 12).map(function (g) { return g.gid; }).join(', ')) + (noQ.length > 12 ? '…' : '') + ')' : '') + '</p>' +
       orphanHtml + '<details><summary style="cursor:pointer;font-weight:600">Bảng quy tắc ngữ pháp (' + GRAMMAR.length + ')</summary><div class="table-wrap"><table style="min-width:0"><thead><tr><th>ID</th><th>Quy tắc</th><th>Cấp</th><th>Chủ đề</th><th>Số câu hỏi</th></tr></thead><tbody>' + rows + '</tbody></table></div></details></section>' +
-      admFontPanel() + admEloPanel() + admEloCfgPanel() + admVocabPanel() + admIpaPanel() +
+      admFontPanel() + admEloPanel() + admEloCfgPanel() + admVocabPanel() + admSpoilPanel() + admIpaPanel() +
       '<section class="panel stack" style="gap:0.8rem"><h2>Tiến độ (thử nghiệm)</h2>' +
       '<p>XP hiện tại: <strong>' + ps.xp + '</strong> (đã cộng thêm ' + (activity.bonus || 0) + ') · Cấp <strong>' + ps.level + '</strong> / ' + PLEVELS.length + ' · chuỗi ' + ps.streak + ' ngày</p>' +
       '<div class="row">' + [10, 100, 1000].map(function (n) { return admBtn('adm-xp', '+' + n + ' XP', n); }).join('') + admBtn('adm-xp', '-100 XP', -100) + '</div>' +
@@ -738,6 +794,8 @@
     if (a === 'adm-v-more') { admV.limit += 50; renderAdmVList(); return; }
     if (a === 'adm-i-f') { admI.f = t.getAttribute('data-v'); admI.limit = 50; render(); window.scrollTo(0, sy); return; }
     if (a === 'adm-i-more') { admI.limit += 50; renderAdmIList(); return; }
+    if (a === 'adm-s-f') { admS.f = t.getAttribute('data-v'); admS.limit = 50; render(); window.scrollTo(0, sy); return; }
+    if (a === 'adm-s-more') { admS.limit += 50; renderAdmSList(); return; }
     if (a === 'adm-elo-calc') { eloCalcOut(); return; }
     function input(id) { var e = document.getElementById(id); return e ? parseInt(e.value, 10) : NaN; }
     if (a === 'adm-exit') { ADMIN = false; LS.set('oel.admin', 0); syncAdminTab(); location.hash = '#home'; return; }
@@ -2056,7 +2114,7 @@
     view.innerHTML = html;
     if (r === 'grammar') renderGList();
     if (r === 'vocab' && vSub === 'decks' && !vBrowse && !vReview) renderVList();
-    if (r === 'admin') { renderAdmVList(); renderAdmIList(); eloCalcOut(); }
+    if (r === 'admin') { renderAdmVList(); renderAdmSList(); renderAdmIList(); eloCalcOut(); }
     if (r === 'ipa' && ipaQ && !ipaQ.done && !ipIsPick()) {
       var iq = ipaQ.qs[ipaQ.i], ifb = iq.result ? view.querySelector('[data-action="ip-next"]') : document.getElementById('ip-in');
       if (ifb) ifb.focus();
@@ -2324,6 +2382,7 @@
     }
     else if (ev.target.id === 'adm-v-search') { admV.q = ev.target.value; admV.limit = 50; renderAdmVList(); }
     else if (ev.target.id === 'adm-i-search') { admI.q = ev.target.value; admI.limit = 50; renderAdmIList(); }
+    else if (ev.target.id === 'adm-s-search') { admS.q = ev.target.value; admS.limit = 50; renderAdmSList(); }
     else if (ev.target.id === 'v-search') { vQuery = ev.target.value; vLimit = 40; renderVList(); }
     else if (ev.target.id === 'tq-in' && vType && vType.cur && !vType.cur.result) {
       var tcur = vType.cur, tmax = tqFree(tcur).length, clean = ev.target.value.replace(/[\s\-'’.,!?;:]/g, '').slice(0, tmax);

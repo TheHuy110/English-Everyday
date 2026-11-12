@@ -105,7 +105,7 @@ All commands run from the repo root. Node tools need Node.js; the two `.py` tool
 
 ## 6. Admin mode
 
-Hidden, local to the browser. Type the secret code into the grammar search box to switch it on; an "Admin" tab appears. It shows content statistics, grammarId checks, the vocab and IPA test row viewers, Elo and font tools, and progress test buttons. It stores things only in your own browser (`localStorage`), so it does not protect or change anything for other visitors, and anyone can switch it on in their own browser by editing local storage.
+Hidden, local to the browser. Type the secret code into the grammar search box to switch it on; an "Admin" tab appears. It shows content statistics, grammarId checks, the vocab and IPA test row viewers, the "answer repeats a word from the question" checker (lists every question whose correct answer shares a word with the question text, with the shared words highlighted and the question's number in `questions.js`), Elo and font tools, and progress test buttons. It stores things only in your own browser (`localStorage`), so it does not protect or change anything for other visitors, and anyone can switch it on in their own browser by editing local storage.
 
 ## 7. Hosting and troubleshooting
 
