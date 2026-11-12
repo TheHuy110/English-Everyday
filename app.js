@@ -482,17 +482,24 @@
       (rows.length > shown.length ? '<div style="margin-top:0.8rem">' + admBtn('adm-v-more', 'Xem thêm 50 dòng') + '</div>' : '');
   }
   /* Questions whose correct answer repeats a word that is already in the question text (the answer is partly given away),
-     e.g. "They ___ getting their dog to the vet." with the answer "are getting". 'key' ignores very common little words. */
-  var admS = { f: 'key', q: '', limit: 50 };
-  var SPOIL_STOP = {}; 'a an the to of in on at for and or is are am was were be been i you he she it we they not no do does did'.split(' ').forEach(function (w) { SPOIL_STOP[w] = 1; });
-  function spoilWords(t) { return (String(t).toLowerCase().replace(/[’‘]/g, "'").match(/[a-z0-9]+(?:'[a-z]+)*/g) || []); }
-  function spoilHits() {   /* all questions with at least one shared word; each row says which words and whether any is not a common little word */
+     e.g. "They ___ getting their dog to the vet." with the answer "are getting". Only a word right before or right after the blank
+     is a real hit ('adj'); 'all' also lists words that merely appear somewhere else in the question (mostly false alarms). */
+  var admS = { f: 'adj', q: '', limit: 50 };
+  function spoilNorm(w) { return String(w).toLowerCase().replace(/[’‘]/g, "'").replace(/^[^a-z0-9']+|[^a-z0-9']+$/g, ''); }
+  function spoilWords(t) { return String(t).split(/\s+/).map(spoilNorm).filter(Boolean); }
+  function spoilHits() {
     var out = [];
     BANK.forEach(function (q) {
-      var ans = q.o[q.a], qs = {}, seen = {}, hits = [], key = false;
+      var ans = q.o[q.a], aw = spoilWords(ans), adj = [], parts = String(q.q).split(/_{2,}/), k;
+      if (parts.length === 2) {   /* exactly one blank */
+        var before = spoilWords(parts[0]), after = spoilWords(parts[1]);
+        for (k = Math.min(aw.length, after.length); k >= 1; k--) { if (aw.slice(aw.length - k).join(' ') === after.slice(0, k).join(' ')) { adj = adj.concat(aw.slice(aw.length - k)); break; } }
+        for (k = Math.min(aw.length, before.length); k >= 1; k--) { if (aw.slice(0, k).join(' ') === before.slice(before.length - k).join(' ')) { adj = adj.concat(aw.slice(0, k)); break; } }
+      }
+      var qs = {}, seen = {}, any = [];
       spoilWords(q.q).forEach(function (w) { qs[w] = 1; });
-      spoilWords(ans).forEach(function (w) { if (qs[w] && !seen[w]) { seen[w] = 1; hits.push(w); if (!SPOIL_STOP[w]) key = true; } });
-      if (hits.length) out.push({ q: q, ans: ans, hits: hits, key: key });
+      aw.forEach(function (w) { if (qs[w] && !seen[w]) { seen[w] = 1; any.push(w); } });
+      if (any.length) out.push({ q: q, ans: ans, hits: adj.length ? adj.filter(function (w, i) { return adj.indexOf(w) === i; }) : any, adj: adj.length > 0 });
     });
     return out;
   }
@@ -510,7 +517,7 @@
   function admSRows() {
     var q = admS.q.trim().toLowerCase();
     return spoilHits().filter(function (r) {
-      if (admS.f === 'key' && !r.key) return false;
+      if (admS.f === 'adj' && !r.adj) return false;
       if (!q) return true;
       return String(r.q.n) === q || (r.q.q + ' ' + r.ans + ' ' + r.q.gid + ' ' + r.q.topic).toLowerCase().indexOf(q) > -1;
     });
@@ -529,10 +536,10 @@
       (rows.length > shown.length ? '<div style="margin-top:0.8rem">' + admBtn('adm-s-more', 'Xem thêm 50 câu') + '</div>' : '');
   }
   function admSpoilPanel() {
-    var all = spoilHits(), key = all.filter(function (r) { return r.key; }).length;
-    var fl = [['key', 'Từ quan trọng trùng (' + key + ')'], ['all', 'Mọi từ trùng (' + all.length + ')']].map(function (f) { return chipBtn('adm-s-f', f[0], f[1], admS.f === f[0]); }).join('');
+    var all = spoilHits(), adjN = all.filter(function (r) { return r.adj; }).length;
+    var fl = [['adj', 'Sát chỗ trống (' + adjN + ')'], ['all', 'Mọi từ trùng (' + all.length + ')']].map(function (f) { return chipBtn('adm-s-f', f[0], f[1], admS.f === f[0]); }).join('');
     return '<section class="panel stack" style="gap:0.8rem"><h2>Kiểm tra đáp án lộ từ trong câu hỏi</h2>' +
-      '<p class="muted">Đáp án đúng không nên chứa từ đã có trong câu hỏi (ví dụ câu “They ___ getting their dog…” mà đáp án là “are getting”). Bảng liệt kê các câu có từ trùng, tô vàng từ trùng ở câu hỏi và đáp án. Số # là vị trí câu trong content/questions.js (cùng số mà check-content.js in ra). “Từ quan trọng trùng” bỏ qua các từ rất thường gặp (a, an, the, to, of, in, on, at, for, and, or, is, are, am, was, were, be, been, i, you, he, she, it, we, they, not, no, do, does, did), nên ít nhiễu hơn; “Mọi từ trùng” hiện tất cả. Có thể có câu trùng hợp lý, ví dụ cố ý lặp từ. Hãy xem từng câu rồi sửa trong questions.js.</p>' +
+      '<p class="muted">Đáp án đúng không nên lặp từ đã nằm ngay cạnh chỗ trống (ví dụ “They ___ getting their dog…” mà đáp án là “are getting”). “Sát chỗ trống” chỉ tính từ đứng ngay trước hoặc ngay sau chỗ trống, đây là lỗi thật; “Mọi từ trùng” còn hiện cả từ trùng ở chỗ khác trong câu, phần lớn là báo nhầm. Từ trùng được tô vàng. Số # là vị trí câu trong content/questions.js. Các câu đơn giản có thể sửa hàng loạt bằng <code>node tools/fix-answer-spoilers.js --apply</code>; những câu còn lại cần xem từng câu (ví dụ các câu to + động từ mà một lựa chọn chỉ là động từ).</p>' +
       '<div class="chips" role="group" aria-label="Lọc câu trùng từ">' + fl + '</div>' +
       '<div><label for="adm-s-search">Tìm theo số câu, chữ, grammarId hoặc chủ đề</label><input id="adm-s-search" type="search" autocomplete="off" value="' + esc(admS.q) + '"></div>' +
       '<p class="muted" id="adm-scount" aria-live="polite"></p><div id="adm-slist"></div></section>';
