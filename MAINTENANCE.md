@@ -87,7 +87,7 @@ All commands run from the repo root. Node tools need Node.js; the two `.py` tool
 
 **Add a quote.** Add a line to `tools/quotes-source.txt`, run `build-quotes.py`, review the IPA.
 
-**Add a grammar rule or test question.** Edit `content/grammar.js` / `content/questions.js` by hand. Each question links to one rule with `grammarId`; each rule needs a unique id. `check-content.js` lists exactly which fields are required. Then run `build-manifest.js`.
+**Add a grammar rule or test question.** Edit `content/grammar.js` / `content/questions.js` by hand. A grammar entry has `rule`, `form` (one pattern per line), `examples`, one `wrong`/`right` pair (a true minimal pair: `wrong` must really be an error) and `more` notes. Note types: `extension` (Mở rộng), `nuance` (Sắc thái), `advanced` (Nâng cao) and `mistake` (Lỗi thường gặp, common errors of Vietnamese learners). Use `**double asterisks**` for highlights; a single asterisk is never valid. Each question links to one rule with `grammarId`; each rule needs a unique id. `check-content.js` lists exactly which fields are required. Then run `build-manifest.js`.
 
 **Change the test sets.** `content/tests.js` (each set picks questions by level).
 
