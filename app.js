@@ -1867,11 +1867,17 @@
     render();
   }
   var ORD_VI = ['nhất', 'hai', 'ba', 'tư'];
+  /* Personal notes: one row of tickable dots per word (one dot per syllable), so the learner does not have to remember which syllable they heard as stressed. Not graded, kept only for the current question. */
+  function noteDots(c, i) {
+    var cur = c.notes && c.notes[i] != null ? c.notes[i] : -1, d = '', k;
+    for (k = 0; k < c.n; k++) d += '<button type="button" class="nd" data-action="ip-note" data-i="' + i + '" data-s="' + k + '" aria-pressed="' + (k === cur) + '" aria-label="Ghi chú: từ ' + 'ABCD'.charAt(i) + ', nhấn âm tiết thứ ' + (k + 1) + '"></button>';
+    return '<span class="notedots" role="group" aria-label="Ghi chú của bạn cho từ ' + 'ABCD'.charAt(i) + '">' + d + '</span>';
+  }
   function viewIpaOdd(c) {
     var answered = c.picked !== null, letters = ['A', 'B', 'C', 'D'];
     var opts = c.opts.map(function (e, i) {
       var cls = 'opt' + (answered ? (i === c.a ? ' right' : i === c.picked ? ' wrong' : '') : '');
-      return '<button type="button" class="' + cls + '" data-action="ip-pick" data-i="' + i + '"' + (answered ? ' disabled' : '') + '><i>' + letters[i] + '</i><span>' + esc(e.w.w) + '</span></button>';
+      return '<div class="optrow"><button type="button" class="' + cls + '" data-action="ip-pick" data-i="' + i + '"' + (answered ? ' disabled' : '') + '><i>' + letters[i] + '</i><span>' + esc(e.w.w) + '</span></button>' + noteDots(c, i) + '</div>';
     }).join('');
     var fb = '';
     if (answered) {
@@ -1887,7 +1893,7 @@
     return '<div class="quiz">' + sessionTop('Chọn từ khác trọng âm', ipaQ.i, ipaQ.qs.length, 'ip-exit') +
       '<p style="font-size:1.15rem;margin:0">Chọn từ có <b>trọng âm</b> rơi vào âm tiết khác với ba từ còn lại.</p><p class="muted" style="margin:0">Cả bốn từ đều có ' + c.n + ' âm tiết.</p>' +
       (ADMIN ? '<p class="adm-note">[admin] Ba từ thuộc nhóm ' + c.n + ':' + c.p + ', từ khác thuộc nhóm ' + c.n + ':' + c.po + ' (content/stress.js, dạng số âm tiết:vị trí âm tiết nhấn tính từ 0)</p>' : '') +
-      '<div class="opts">' + opts + '</div>' + fb + '</div>';
+      '<p class="note-head" aria-hidden="true">Ghi chú của bạn</p><div class="opts">' + opts + '</div>' + fb + '</div>';
   }
   function viewIpaSound(c) {
     var answered = c.picked !== null, letters = ['A', 'B', 'C', 'D'];
@@ -2206,6 +2212,13 @@
       ipaQ = null; startIpaSession(im); render(); window.scrollTo(0, 0);
     } else if (a === 'ip-exit') {
       ipaQ = null; ipaSub = 'practice'; render(); window.scrollTo(0, 0);
+    } else if (a === 'ip-note') {
+      var nq0 = ipaQ && ipaQ.qs[ipaQ.i];
+      if (!nq0 || !nq0.opts || nq0.sound) return;
+      var wi = parseInt(t.getAttribute('data-i'), 10), si = parseInt(t.getAttribute('data-s'), 10);
+      nq0.notes = nq0.notes || [null, null, null, null];
+      nq0.notes[wi] = nq0.notes[wi] === si ? null : si;   /* tap again to clear */
+      Array.prototype.forEach.call(t.parentNode.children, function (b, k) { b.setAttribute('aria-pressed', String(nq0.notes[wi] === k)); });
     } else if (a === 'ip-pick') {
       var oq = ipaQ && ipaQ.qs[ipaQ.i];
       if (!oq || !ipIsPick() || oq.picked !== null) return;
