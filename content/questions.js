@@ -3729,7 +3729,6 @@ OEL.questions = [
     ], answer: "Successful negotiations brought about an end to the conflict.", explanation: "Danh từ hóa thành 'Successful negotiations' và 'an end'." },
 
 
-//============================================================================================================================================================
 
   { level: "A1", topic: "Thì",grammarId: "001", question: "She ___ to school every day.", options: ["go", "goes", "going", "gone"], answer: "goes", explanation: "Có 'every day' → Hiện tại đơn. Chủ ngữ she (ngôi 3 số ít) nên động từ thêm -s/-es: goes." },
   { level: "A1", topic: "Thì",grammarId: "001", question: "They ___ football on Sundays.", options: ["play", "plays", "playing", "played"], answer: "play", explanation: "'On Sundays' chỉ thói quen → Hiện tại đơn. Chủ ngữ they (số nhiều) dùng động từ nguyên mẫu: play." },
