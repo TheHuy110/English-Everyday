@@ -1854,7 +1854,7 @@
   /* Help button ("Gợi ý"): stress question -> the word type of each word; generated sound question -> every sound the underlined letters can have. Using it halves the point. */
   function helpHtml(c, hint) {
     if (c.picked !== null) return '';
-    if (c.help) return '<p class="hint" role="status">' + hint + '</p>';
+    if (c.help) return hint ? '<p class="hint" role="status">' + hint + '</p>' : '';
     return '<div class="row"><button type="button" class="btn ghost small" data-action="ip-help">Gợi ý</button><span class="muted" style="font-size:0.9rem">Dùng gợi ý thì trả lời đúng chỉ được 0.5 điểm.</span></div>';
   }
   function verdict(c, ok) { return ok ? (c.help ? 'Chính xác (có dùng gợi ý: 0.5 điểm).' : 'Chính xác.') : 'Chưa đúng.'; }
@@ -1982,9 +1982,9 @@
     var answered = c.picked !== null, letters = ['A', 'B', 'C', 'D'];
     var opts = c.opts.map(function (e, i) {
       var cls = 'opt' + (answered ? (i === c.a ? ' right' : i === c.picked ? ' wrong' : '') : '');
-      return '<div class="optrow"><button type="button" class="' + cls + '" data-action="ip-pick" data-i="' + i + '"' + (answered ? ' disabled' : '') + '><i>' + letters[i] + '</i><span>' + esc(e.w.w) + '</span></button>' + noteDots(c, i) + '</div>';
+      return '<div class="optrow"><button type="button" class="' + cls + '" data-action="ip-pick" data-i="' + i + '"' + (answered ? ' disabled' : '') + '><i>' + letters[i] + '</i><span>' + esc(e.w.w) + '</span>' + (c.help ? '<span class="optpos">(' + esc(POS_VI[e.w.pos] || e.w.pos || 'không rõ') + ')</span>' : '') + '</button>' + noteDots(c, i) + '</div>';
     }).join('');
-    var help = helpHtml(c, '<b>Loại từ:</b> ' + c.opts.map(function (e, i) { return letters[i] + ' ' + esc(POS_VI[e.w.pos] || e.w.pos || 'không rõ'); }).join(' · '));
+    var help = helpHtml(c, '');   /* the word types are written on the answer bars themselves */
     var fb = '';
     if (answered) {
       var odd = c.opts[c.a], ok = c.picked === c.a;
