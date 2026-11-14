@@ -2140,26 +2140,25 @@
       card('Phiên âm sang câu', 'Bài 3', 'Bạn thấy phiên âm của một câu trích dẫn nổi tiếng và gõ cả câu. Đáp án có kèm nghĩa tiếng Việt.',
         '<div><p class="lab" style="margin-bottom:0.4rem">Độ dài câu</p><div class="chips" role="group" aria-label="Độ dài câu">' + tiers + '</div></div>', 'sent', 'Bắt đầu (' + IP_SENT_N + ' câu)') + '</div>';
   }
-  /* Tip panel "Mẹo chọn trọng âm" under the quick-reference tables (text in content/ipa.js, OEL.ipaTips). **x** = bold. */
-  var ipaTipsOpen = false;
+  /* Tab "Mẹo trọng âm" between "Bảng âm" and "Luyện tập" (text in content/ipa.js, OEL.ipaTips). **x** = bold. */
   function rich(t) { return esc(t).split('**').map(function (x, i) { return i % 2 ? '<b>' + x + '</b>' : x; }).join(''); }
   function ipaTipsHtml() {
     var T = OEL.ipaTips;
-    if (!T || !list(T.sections).length) return '';
+    if (!T || !list(T.sections).length) return '<div class="empty">Chưa có mẹo nào.</div>';
     var body = list(T.sections).map(function (sec) {
-      return '<section class="stack" style="gap:0.5rem"><h3 style="margin:0">' + esc(str(sec.h)) + '</h3>' + list(sec.blocks).map(function (b) {
+      return '<section class="panel stack" style="gap:0.6rem"><h2 style="margin:0">' + esc(str(sec.h)) + '</h2>' + list(sec.blocks).map(function (b) {
         return b[0] === 'ul' ? '<ul class="tip-list">' + list(b[1]).map(function (x) { return '<li>' + rich(String(x)) + '</li>'; }).join('') + '</ul>' : '<p style="margin:0">' + rich(String(b[1])) + '</p>';
       }).join('') + '</section>';
     }).join('');
-    return '<details class="panel jbook ipa-tips"' + (ipaTipsOpen ? ' open' : '') + '><summary><h2>' + esc(str(T.title) || 'Mẹo chọn trọng âm') + '</h2></summary><div class="stack" style="gap:1.25rem;margin-top:1rem">' +
-      (T.intro ? '<p style="margin:0">' + rich(String(T.intro)) + '</p>' : '') + body + '</div></details>';
+    return '<div class="stack" style="gap:1rem">' + (T.intro ? '<p style="margin:0">' + rich(String(T.intro)) + '</p>' : '') + body + '</div>';
   }
   function viewIpa() {
     if (!IPA.length) return head('Phát âm', 'Bảng âm IPA tiếng Anh.') + '<div class="empty">Chưa có dữ liệu âm nào.</div>';
     if (ipaQ) return viewIpaSession();
-    var subs = '<div class="subtabs" role="group" aria-label="Các phần của mục phát âm">' + [['chart', 'Bảng âm'], ['practice', 'Luyện tập']].map(function (x) {
+    var subs = '<div class="subtabs" role="group" aria-label="Các phần của mục phát âm">' + [['chart', 'Bảng âm'], ['tips', 'Mẹo trọng âm'], ['practice', 'Luyện tập']].map(function (x) {
       return '<button type="button" class="subtab" data-action="ipa-sub" data-v="' + x[0] + '" aria-pressed="' + (ipaSub === x[0]) + '">' + x[1] + '</button>';
     }).join('') + '</div>';
+    if (ipaSub === 'tips') return head('Mẹo chọn trọng âm', 'Các quy tắc giúp đoán trọng âm của từ mà không cần tra từ điển mỗi lần.') + subs + ipaTipsHtml();
     if (ipaSub === 'practice') return head('Phát âm', 'Luyện nghe phiên âm: chọn từ khác âm, đọc phiên âm rồi gõ lại từ hoặc cả câu.') + subs + viewIpaPractice();
     var by = {}, used = {};
     IPA.forEach(function (s) { by[s.id] = s; });
@@ -2173,7 +2172,7 @@
     return head('Phát âm', 'Bảng âm IPA tiếng Anh Mỹ. Bấm vào một âm để nghe, xem ví dụ, mẹo phát âm và các cặp từ dễ nhầm. Các phụ âm vô thanh và hữu thanh đứng cạnh nhau thành cặp (p-b, t-d, k-g...).') + subs +
       '<div class="stack" style="gap:1.25rem">' + ipaDetail() + legend +
       '<section><h3 style="margin-bottom:0.6rem">Nguyên âm</h3><div class="ipa-vwrap"><div class="ipa-chart">' + vow + '</div><div class="ipa-chart">' + dip + '</div></div></section>' +
-      '<section><h3 style="margin-bottom:0.6rem">Phụ âm</h3><div class="ipa-chart">' + cons + '</div></section>' + restHtml + ipaQuickHtml() + ipaTipsHtml() +
+      '<section><h3 style="margin-bottom:0.6rem">Phụ âm</h3><div class="ipa-chart">' + cons + '</div></section>' + restHtml + ipaQuickHtml() +
       '<p class="muted" style="font-size:0.9rem">Phần giải thích đang được rà soát. Âm /ɚ/ trong ví dụ là /ɝ/ ở âm tiết không nhấn.</p></div>';
   }
 
@@ -2360,8 +2359,7 @@
   view.addEventListener('toggle', function (ev) {
     var d = ev.target;
     if (!d || d.tagName !== 'DETAILS') return;
-    if (d.classList.contains('ipa-tips')) ipaTipsOpen = d.open;
-    else if (d.classList.contains('jbook')) jOpen = d.open;
+    if (d.classList.contains('jbook')) jOpen = d.open;
     else if (d.classList.contains('rule') && d.open) { var h = d.querySelector('h3'); if (h) Act.grammar(h.textContent); }
   }, true);
   view.addEventListener('click', function (ev) {
