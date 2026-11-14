@@ -405,7 +405,7 @@ textarea#ip-in { width: 100%; font: inherit; padding: 0.7rem 0.8rem; border: 1px
 .ipa-grid li { display: contents; }
 .ipa-grid .au { display: flex; gap: 0.4rem; justify-content: flex-end; }
 .ipa-grid .oddw { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
-.ipa-grid u, .opt u { text-decoration-thickness: 2px; text-underline-offset: 3px; text-decoration-color: var(--accent); }
+.ipa-grid u, .opt u { text-decoration-thickness: 2px; text-underline-offset: 3px; text-decoration-color: var(--accent); font-variant-ligatures: none; }   /* no "fi" / "fl" ligature, or the underline under the "i" disappears */
 .dots { display: inline-flex; gap: 0.35rem; align-items: center; }
 .dots .d { width: 0.85rem; height: 0.85rem; border-radius: 50%; border: 2px solid var(--muted); display: inline-block; }
 .dots .d.on { background: var(--accent); border-color: var(--accent); }
@@ -424,6 +424,13 @@ textarea#ip-in { width: 100%; font: inherit; padding: 0.7rem 0.8rem; border: 1px
 .nd:hover::before { border-color: var(--ink); }
 .nd[aria-pressed="true"]::before { background: var(--ink); border-color: var(--ink); }
 .nd:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+/* Sound links in the answer feedback and the sound panel that pops up over the question */
+.snd-link { font: inherit; font-family: var(--font-mono); color: var(--accent); background: none; border: 0; border-bottom: 1px dashed var(--accent); padding: 0 0.1rem; cursor: pointer; }
+.snd-link:hover { background: var(--bg); }
+.modal { position: fixed; inset: 0; z-index: 50; display: flex; align-items: flex-start; justify-content: center; padding: 1rem; overflow-y: auto; overscroll-behavior: contain; }
+.modal-bg { position: fixed; inset: 0; background: rgba(10, 20, 30, 0.55); }
+.modal-box { position: relative; width: 100%; max-width: 34rem; margin: 2rem 0; padding: 0.75rem; display: grid; gap: 0.75rem; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; }
 
 /* Admin: IPA test rows */
 .adm-ok { background: var(--good-bg); font-weight: 600; }

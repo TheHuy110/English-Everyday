@@ -1698,6 +1698,9 @@
   }
   function ipaDetail() {
     var s = IPA.filter(function (x) { return x.id === ipaSel; })[0];
+    return s ? ipaDetailFor(s, false) : ipaDetailFor(null, false);
+  }
+  function ipaDetailFor(s, inPop) {
     if (!s) return '<section class="panel ipa-detail" id="ipa-detail"><p class="muted">Bấm vào một âm bên dưới để nghe, xem ví dụ và mẹo phát âm.</p></section>';
     var kind = { vowel: 'Nguyên âm', diphthong: 'Nguyên âm đôi', consonant: 'Phụ âm' }[s.type] || '';
     var label = [kind, s.type === 'consonant' ? s.group : '', s.voice].filter(Boolean).join(' · ');
@@ -1708,7 +1711,7 @@
     var pairs = s.pairs.map(function (p) {
       return '<li><b>' + esc(p.a) + '</b> <span class="muted ipa-t">/' + esc(p.ai) + '/</span> ' + ipaWordBtn(p.a) + ' <span class="muted">≠</span> <b>' + esc(p.b) + '</b> <span class="muted ipa-t">/' + esc(p.bi) + '/</span> ' + ipaWordBtn(p.b) + '</li>';
     }).join('');
-    return '<section class="panel ipa-detail stack" id="ipa-detail" style="gap:1rem"><div class="ipa-head"><span class="ipa-big">/' + esc(s.sym) + '/</span><div class="stack" style="gap:0.5rem"><p class="call" style="margin:0">' + esc(label) + '</p>' + soundBtn + '</div></div>' +
+    return '<section class="panel ipa-detail stack"' + (inPop ? '' : ' id="ipa-detail"') + ' style="gap:1rem"><div class="ipa-head"><span class="ipa-big">/' + esc(s.sym) + '/</span><div class="stack" style="gap:0.5rem"><p class="call" style="margin:0">' + esc(label) + '</p>' + soundBtn + '</div></div>' +
       (words ? '<div><p class="lab">Ví dụ</p><ul class="ipa-list">' + words + '</ul></div>' : '') +
       (s.tip ? '<div><p class="lab">Cách phát âm</p><p>' + esc(s.tip) + '</p></div>' : '') +
       (s.bad ? '<div><p class="lab">Lỗi thường gặp của người Việt</p><p>' + esc(s.bad) + '</p></div>' : '') +
@@ -1813,6 +1816,30 @@
       });
     });
     return SG;
+  }
+  /* A sound label such as "aɪ" or "ɑːr" -> the sound panels of the Bảng âm tab (several panels when the label is a combination, e.g. ɑː + r). */
+  var SND_IDS = { 'iː': 'i', 'ɪ': 'ih', 'e': 'eh', 'æ': 'ae', 'ɑː': 'ah', 'ɔː': 'aw', 'ʊ': 'uh', 'uː': 'u', 'ʌ': 'uh2', 'ɜːr': 'er', 'eɪ': 'ei', 'aɪ': 'ai', 'ɔɪ': 'oi', 'aʊ': 'au', 'oʊ': 'ou',
+    'p': 'p', 'b': 'b', 't': 't', 'd': 'd', 'k': 'k', 'ɡ': 'g', 'f': 'f', 'v': 'v', 'θ': 'th', 'ð': 'dh', 's': 's', 'z': 'z', 'ʃ': 'sh', 'ʒ': 'zh', 'h': 'h', 'tʃ': 'ch', 'dʒ': 'j', 'm': 'm', 'n': 'n', 'ŋ': 'ng', 'l': 'l', 'r': 'r', 'w': 'w', 'j': 'y' };
+  var SND_TOK = Object.keys(SND_IDS).sort(function (a, b) { return b.length - a.length; });
+  function soundParts(label) {
+    var out = [], i = 0, k;
+    while (i < label.length) {
+      var tok = SND_TOK.filter(function (t) { return label.substr(i, t.length) === t; })[0];
+      if (!tok) { i++; continue; }
+      k = SND_IDS[tok]; if (out.indexOf(k) < 0) out.push(k);
+      i += tok.length;
+    }
+    return IPA.filter(function (x) { return out.indexOf(x.id) > -1; }).sort(function (a, b) { return out.indexOf(a.id) - out.indexOf(b.id); });
+  }
+  var ipaPop = '';
+  function soundLink(label) {
+    return soundParts(label).length ? '<button type="button" class="snd-link" data-action="ip-snd" data-l="' + esc(label) + '" aria-haspopup="dialog">/' + esc(label) + '/</button>' : '/' + esc(label) + '/';
+  }
+  function soundPopup() {
+    var parts = ipaPop ? soundParts(ipaPop) : [];
+    if (!parts.length) return '';
+    return '<div class="modal" role="dialog" aria-modal="true" aria-label="Thông tin về âm /' + esc(ipaPop) + '/"><div class="modal-bg" data-action="ip-snd-close"></div><div class="modal-box"><div class="row" style="justify-content:flex-end"><button type="button" class="btn ghost small" id="snd-close" data-action="ip-snd-close">Đóng</button></div>' +
+      parts.map(function (x) { return ipaDetailFor(x, true); }).join('') + '</div></div>';
   }
   function nearSound(a, b) { return NEAR_SOUNDS.some(function (p) { return (p[0] === a && p[1] === b) || (p[0] === b && p[1] === a); }); }
   /* One question: four words with the same spelling underlined; three read it the same way, one reads it differently. */
@@ -1961,12 +1988,12 @@
         return '<li class="ipa-row-w"><b' + (i === c.a ? ' class="oddw"' : '') + '>' + e.html + '</b><span class="muted ipa-t">' + (w ? esc(w.ph) : '') + '</span><span class="au">' +
           (w ? audioBtns(w) : (CAN_SPEAK ? '<button type="button" class="btn ghost small" data-action="speak" data-w="' + esc(e.plain) + '">Nghe</button>' : '')) + '</span></li>';
       }).join('');
-      fb = '<div class="feedback" aria-live="polite"><strong>' + (ok ? 'Chính xác.' : 'Chưa đúng.') + '</strong><span>' + (c.gen ? 'Ba từ còn lại đọc “' + esc(c.g) + '” là /' + esc(c.lm) + '/; từ khác biệt là “' + odd.html + '”, đọc là /' + esc(c.lo) + '/.' : 'Từ khác biệt là “' + odd.html + '”: phần gạch chân của nó phát âm khác với ba từ còn lại.') + '</span>' +
+      fb = '<div class="feedback" aria-live="polite"><strong>' + (ok ? 'Chính xác.' : 'Chưa đúng.') + '</strong><span>' + (c.gen ? 'Ba từ còn lại đọc “' + esc(c.g) + '” là ' + soundLink(c.lm) + '; từ khác biệt là “' + odd.html + '”, đọc là ' + soundLink(c.lo) + '. Bấm vào âm để xem cách phát âm.' : 'Từ khác biệt là “' + odd.html + '”: phần gạch chân của nó phát âm khác với ba từ còn lại.') + '</span>' +
         '<ul class="ipa-grid c3">' + rows + '</ul><div style="margin-top:0.5rem"><button class="btn" type="button" data-action="ip-next">Tiếp</button></div></div>';
     }
     return '<div class="quiz">' + sessionTop('Chọn từ khác âm', ipaQ.i, ipaQ.qs.length, 'ip-exit') +
       '<p style="font-size:1.15rem;margin:0">Chọn từ có phần <u>gạch chân</u> phát âm khác với ba từ còn lại.</p>' +
-      (ADMIN ? '<p class="adm-note">[admin] ' + (c.gen ? 'Nhóm “' + esc(c.g) + '”: ba từ /' + esc(c.lm) + '/, từ khác /' + esc(c.lo) + '/ (content/sound-groups.js)' : 'Dòng ' + c.row + ' trong content/odd-sounds.csv' + (c.note ? ' · ' + esc(c.note) : '')) + '</p>' : '') + '<div class="opts">' + opts + '</div>' + fb + '</div>';
+      (ADMIN ? '<p class="adm-note">[admin] ' + (c.gen ? 'Nhóm “' + esc(c.g) + '”: ba từ /' + esc(c.lm) + '/, từ khác /' + esc(c.lo) + '/ (content/sound-groups.js)' : 'Dòng ' + c.row + ' trong content/odd-sounds.csv' + (c.note ? ' · ' + esc(c.note) : '')) + '</p>' : '') + '<div class="opts">' + opts + '</div>' + fb + soundPopup() + '</div>';
   }
   function viewIpaType(q) {
     var word = ipaQ.mode === 'word', top = sessionTop(word ? 'Phiên âm sang từ' : 'Phiên âm sang câu', ipaQ.i, ipaQ.qs.length, 'ip-exit');
@@ -2255,7 +2282,14 @@
       ipaSd = t.getAttribute('data-v'); render(); refocus(a, ipaSd);
     } else if (a === 'ip-lv') {
       ipaLv = t.getAttribute('data-v'); render(); refocus(a, ipaLv);
+    } else if (a === 'ip-snd') {
+      ipaPop = t.getAttribute('data-l') || ''; render();
+      var sc = document.getElementById('snd-close'); if (sc) sc.focus();
+    } else if (a === 'ip-snd-close') {
+      var was = ipaPop; ipaPop = ''; render();
+      var back = Array.prototype.filter.call(view.querySelectorAll('[data-action="ip-snd"]'), function (b) { return b.getAttribute('data-l') === was; })[0]; if (back) back.focus();
     } else if (a === 'ip-start') {
+      ipaPop = '';
       var im = t.getAttribute('data-m'), grp = im === 'odd' ? ['stress', 'oddsounds', 'sounds'] : im === 'stress' ? ['stress'] : im === 'sent' ? ['quotes'] : im === 'sound' ? ['oddsounds', 'sounds'] : [];
       if (grp.some(function (g) { return !loaded[g]; })) {
         ensure(grp).then(function () { ipaQ = null; startIpaSession(im); render(); window.scrollTo(0, 0); }, function () { ipaMsg = 'Không tải được dữ liệu bài tập. Hãy kiểm tra kết nối mạng rồi thử lại.'; render(); });
@@ -2263,7 +2297,7 @@
       }
       ipaQ = null; startIpaSession(im); render(); window.scrollTo(0, 0);
     } else if (a === 'ip-exit') {
-      ipaQ = null; ipaSub = 'practice'; render(); window.scrollTo(0, 0);
+      ipaPop = ''; ipaQ = null; ipaSub = 'practice'; render(); window.scrollTo(0, 0);
     } else if (a === 'ip-note') {
       var nq0 = ipaQ && ipaQ.qs[ipaQ.i];
       if (!nq0 || !nq0.opts || nq0.sound) return;
@@ -2283,7 +2317,7 @@
       if (!ipaQ || ipaQ.done) return;
       var nq = ipaQ.qs[ipaQ.i];
       if (ipIsPick() ? nq.picked === null : !nq.result) return;
-      ipaQ.i++;
+      ipaPop = ''; ipaQ.i++;
       if (ipaQ.i >= ipaQ.qs.length) { ipaQ.done = true; if (!ipaQ.counted) { ipaQ.counted = true; Act.test(); } }
       render(); window.scrollTo(0, 0);
     } else if (a === 'ipa-filter') {
@@ -2464,6 +2498,9 @@
     }
     else if (/^ecc?-/.test(ev.target.id)) eloCalcOut();
     else if (ev.target.id === 'j-conf') { var o = document.getElementById('j-conf-out'); if (o) o.textContent = ev.target.value; }
+  });
+  document.addEventListener('keydown', function (ev) {   /* Esc closes the sound panel in the sound questions */
+    if (ev.key === 'Escape' && ipaPop) { var cb = document.getElementById('snd-close'); if (cb) cb.click(); }
   });
   view.addEventListener('keydown', function (ev) {   /* Enter sends the sentence answer; Shift+Enter makes a new line */
     if (ev.target.id === 'ip-in' && ev.target.tagName === 'TEXTAREA' && ev.key === 'Enter' && !ev.shiftKey && !ev.isComposing) { ev.preventDefault(); ipSubmit(); }
