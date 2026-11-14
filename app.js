@@ -1853,8 +1853,8 @@
   }
   /* Help button ("Gợi ý"): stress question -> the word type of each word; generated sound question -> every sound the underlined letters can have. Using it halves the point. */
   function helpHtml(c, hint) {
+    if (c.help) return hint ? '<div class="hint"' + (c.picked === null ? ' role="status"' : '') + '>' + hint + '</div>' : '';   /* stays after the answer, to compare with the result */
     if (c.picked !== null) return '';
-    if (c.help) return hint ? '<div class="hint" role="status">' + hint + '</div>' : '';
     return '<div class="row"><button type="button" class="btn ghost small" data-action="ip-help">Gợi ý</button><span class="muted" style="font-size:0.9rem">Dùng gợi ý thì trả lời đúng chỉ được 0.5 điểm.</span></div>';
   }
   function verdict(c, ok) { return ok ? (c.help ? 'Chính xác (có dùng gợi ý: 0.5 điểm).' : 'Chính xác.') : 'Chưa đúng.'; }
