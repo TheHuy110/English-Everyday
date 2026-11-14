@@ -415,6 +415,16 @@ textarea#ip-in { width: 100%; font: inherit; padding: 0.7rem 0.8rem; border: 1px
   .ipa-grid .au { grid-column: 1 / -1; justify-content: flex-start; padding-bottom: 0.4rem; }
 }
 
+/* Personal note dots beside each option of the stress question (one tickable dot per syllable) */
+.note-head { margin: 0 0 -0.25rem; text-align: right; font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); }
+.optrow { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.5rem; align-items: center; }
+.notedots { display: inline-flex; gap: 0.15rem; padding: 0 0.25rem; }
+.nd { width: 1.9rem; height: 1.9rem; padding: 0; background: none; border: 0; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; }
+.nd::before { content: ""; width: 0.85rem; height: 0.85rem; border-radius: 50%; border: 2px solid var(--muted); box-sizing: border-box; }
+.nd:hover::before { border-color: var(--ink); }
+.nd[aria-pressed="true"]::before { background: var(--ink); border-color: var(--ink); }
+.nd:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
 /* Admin: IPA test rows */
 .adm-ok { background: var(--good-bg); font-weight: 600; }
 #adm-ilist td, #adm-vlist td { vertical-align: top; }
