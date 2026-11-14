@@ -1836,12 +1836,28 @@
   function soundLink(label) {
     return soundParts(label).length ? '<button type="button" class="snd-link" data-action="ip-snd" data-l="' + esc(label) + '" aria-haspopup="dialog">/' + esc(label) + '/</button>' : '/' + esc(label) + '/';
   }
+  /* Popup over the question: a sound panel (ipaPop = sound label) or the vocabulary flashcard of a word (ipaCard = vocab entry). */
+  var ipaCard = null, ipaWords = Object.create(null);
+  function wordBtn(entry, html) {   /* the word itself becomes the button: no extra drawing, the hint line tells the learner to click */
+    ipaWords[entry.w.toLowerCase()] = entry;
+    return '<button type="button" class="wlink" data-action="ip-word" data-w="' + esc(entry.w) + '">' + html + '</button>';
+  }
+  function popBox(label, inner) {
+    return '<div class="modal" role="dialog" aria-modal="true" aria-label="' + esc(label) + '"><div class="modal-bg" data-action="ip-snd-close"></div><div class="modal-box"><div class="row" style="justify-content:flex-end"><button type="button" class="btn ghost small" id="snd-close" data-action="ip-snd-close">Đóng</button></div>' + inner + '</div></div>';
+  }
   function soundPopup() {
+    if (ipaCard) return popBox('Thẻ từ vựng: ' + ipaCard.w, cardHtml(ipaCard, true));
     var parts = ipaPop ? soundParts(ipaPop) : [];
     if (!parts.length) return '';
-    return '<div class="modal" role="dialog" aria-modal="true" aria-label="Thông tin về âm /' + esc(ipaPop) + '/"><div class="modal-bg" data-action="ip-snd-close"></div><div class="modal-box"><div class="row" style="justify-content:flex-end"><button type="button" class="btn ghost small" id="snd-close" data-action="ip-snd-close">Đóng</button></div>' +
-      parts.map(function (x) { return ipaDetailFor(x, true); }).join('') + '</div></div>';
+    return popBox('Thông tin về âm /' + ipaPop + '/', parts.map(function (x) { return ipaDetailFor(x, true); }).join(''));
   }
+  /* Help button ("Gợi ý"): stress question -> the word type of each word; generated sound question -> every sound the underlined letters can have. Using it halves the point. */
+  function helpHtml(c, hint) {
+    if (c.picked !== null) return '';
+    if (c.help) return '<p class="hint" role="status">' + hint + '</p>';
+    return '<div class="row"><button type="button" class="btn ghost small" data-action="ip-help">Gợi ý</button><span class="muted" style="font-size:0.9rem">Dùng gợi ý thì trả lời đúng chỉ được 0.5 điểm.</span></div>';
+  }
+  function verdict(c, ok) { return ok ? (c.help ? 'Chính xác (có dùng gợi ý: 0.5 điểm).' : 'Chính xác.') : 'Chưa đúng.'; }
   /* Words that look alike must not share a question: same root (related), same ending from the underlined letters on (could / would / should, light / night / knight, day / bay / pay),
      or the same beginning up to the underlined letters (man / map, bread / breakfast). */
   function relatedSound(a, b) {
@@ -1968,21 +1984,22 @@
       var cls = 'opt' + (answered ? (i === c.a ? ' right' : i === c.picked ? ' wrong' : '') : '');
       return '<div class="optrow"><button type="button" class="' + cls + '" data-action="ip-pick" data-i="' + i + '"' + (answered ? ' disabled' : '') + '><i>' + letters[i] + '</i><span>' + esc(e.w.w) + '</span></button>' + noteDots(c, i) + '</div>';
     }).join('');
+    var help = helpHtml(c, '<b>Loại từ:</b> ' + c.opts.map(function (e, i) { return letters[i] + ' ' + esc(POS_VI[e.w.pos] || e.w.pos || 'không rõ'); }).join(' · '));
     var fb = '';
     if (answered) {
       var odd = c.opts[c.a], ok = c.picked === c.a;
       var rows = c.opts.map(function (e, i) {
         var pp = i === c.a ? c.po : c.p;
-        return '<li class="ipa-row-w"><b' + (i === c.a ? ' class="oddw"' : '') + '>' + esc(e.w.w) + '</b>' + stressDots(c.n, pp) + '<span class="muted ipa-t">' + esc(e.ph) + '</span><span class="au">' + audioBtns(e.w) + '</span></li>';
+        return '<li class="ipa-row-w"><b' + (i === c.a ? ' class="oddw"' : '') + '>' + wordBtn(e.w, esc(e.w.w)) + '</b>' + stressDots(c.n, pp) + '<span class="muted ipa-t">' + esc(e.ph) + '</span><span class="au">' + audioBtns(e.w) + '</span></li>';
       }).join('');
-      fb = '<div class="feedback" aria-live="polite"><strong>' + (ok ? 'Chính xác.' : 'Chưa đúng.') + '</strong>' +
-        '<span>Ba từ còn lại nhấn âm tiết thứ ' + ORD_VI[c.p] + '; “' + esc(odd.w.w) + '” nhấn âm tiết thứ ' + ORD_VI[c.po] + '. Chấm đặc là âm tiết được nhấn.</span><ul class="ipa-grid c4">' + rows + '</ul>' +
+      fb = '<div class="feedback" aria-live="polite"><strong>' + verdict(c, ok) + '</strong>' +
+        '<span>Ba từ còn lại nhấn âm tiết thứ ' + ORD_VI[c.p] + '; “' + esc(odd.w.w) + '” nhấn âm tiết thứ ' + ORD_VI[c.po] + '. Chấm đặc là âm tiết được nhấn. Bấm vào từ để xem nghĩa.</span><ul class="ipa-grid c4">' + rows + '</ul>' +
         '<div style="margin-top:0.5rem"><button class="btn" type="button" data-action="ip-next">Tiếp</button></div></div>';
     }
     return '<div class="quiz">' + sessionTop('Chọn từ khác trọng âm', ipaQ.i, ipaQ.qs.length, 'ip-exit') +
       '<p style="font-size:1.15rem;margin:0">Chọn từ có <b>trọng âm</b> rơi vào âm tiết khác với ba từ còn lại.</p><p class="muted" style="margin:0">Cả bốn từ đều có ' + c.n + ' âm tiết.</p>' +
       (ADMIN ? '<p class="adm-note">[admin] Ba từ thuộc nhóm ' + c.n + ':' + c.p + ', từ khác thuộc nhóm ' + c.n + ':' + c.po + ' (content/stress.js, dạng số âm tiết:vị trí âm tiết nhấn tính từ 0)</p>' : '') +
-      '<p class="note-head" aria-hidden="true">Ghi chú của bạn</p><div class="opts">' + opts + '</div>' + fb + '</div>';
+      '<p class="note-head" aria-hidden="true">Ghi chú của bạn</p><div class="opts">' + opts + '</div>' + help + fb + soundPopup() + '</div>';
   }
   function viewIpaSound(c) {
     var answered = c.picked !== null, letters = ['A', 'B', 'C', 'D'];
@@ -1990,20 +2007,21 @@
       var cls = 'opt' + (answered ? (i === c.a ? ' right' : i === c.picked ? ' wrong' : '') : '');
       return '<button type="button" class="' + cls + '" data-action="ip-pick" data-i="' + i + '"' + (answered ? ' disabled' : '') + '><i>' + letters[i] + '</i><span>' + e.html + '</span></button>';
     }).join('');
+    var help = c.gen ? helpHtml(c, 'Phần gạch chân “' + esc(c.g) + '” có thể đọc là: ' + Object.keys(soundIndex()[c.g] || {}).map(function (l) { return '<span style="white-space:nowrap">/' + esc(l) + '/</span>'; }).join(', ') + '.') : '';
     var fb = '';
     if (answered) {
       var ok = c.picked === c.a, odd = c.opts[c.a];
       var rows = c.opts.map(function (e, i) {
         var w = wordEntry(e.plain);
-        return '<li class="ipa-row-w"><b' + (i === c.a ? ' class="oddw"' : '') + '>' + e.html + '</b><span class="muted ipa-t">' + (w ? esc(w.ph) : '') + '</span><span class="au">' +
+        return '<li class="ipa-row-w"><b' + (i === c.a ? ' class="oddw"' : '') + '>' + (w ? wordBtn(w, e.html) : e.html) + '</b><span class="muted ipa-t">' + (w ? esc(w.ph) : '') + '</span><span class="au">' +
           (w ? audioBtns(w) : (CAN_SPEAK ? '<button type="button" class="btn ghost small" data-action="speak" data-w="' + esc(e.plain) + '">Nghe</button>' : '')) + '</span></li>';
       }).join('');
-      fb = '<div class="feedback" aria-live="polite"><strong>' + (ok ? 'Chính xác.' : 'Chưa đúng.') + '</strong><span>' + (c.gen ? 'Ba từ còn lại đọc “' + esc(c.g) + '” là ' + soundLink(c.lm) + '; từ khác biệt là “' + odd.html + '”, đọc là ' + soundLink(c.lo) + '. Bấm vào âm để xem cách phát âm.' : 'Từ khác biệt là “' + odd.html + '”: phần gạch chân của nó phát âm khác với ba từ còn lại.') + '</span>' +
+      fb = '<div class="feedback" aria-live="polite"><strong>' + verdict(c, ok) + '</strong><span>' + (c.gen ? 'Ba từ còn lại đọc “' + esc(c.g) + '” là ' + soundLink(c.lm) + '; từ khác biệt là “' + odd.html + '”, đọc là ' + soundLink(c.lo) + '. Bấm vào âm để xem cách phát âm, bấm vào từ để xem nghĩa.' : 'Từ khác biệt là “' + odd.html + '”: phần gạch chân của nó phát âm khác với ba từ còn lại. Bấm vào từ để xem nghĩa.') + '</span>' +
         '<ul class="ipa-grid c3">' + rows + '</ul><div style="margin-top:0.5rem"><button class="btn" type="button" data-action="ip-next">Tiếp</button></div></div>';
     }
     return '<div class="quiz">' + sessionTop('Chọn từ khác âm', ipaQ.i, ipaQ.qs.length, 'ip-exit') +
       '<p style="font-size:1.15rem;margin:0">Chọn từ có phần <u>gạch chân</u> phát âm khác với ba từ còn lại.</p>' +
-      (ADMIN ? '<p class="adm-note">[admin] ' + (c.gen ? 'Nhóm “' + esc(c.g) + '”: ba từ /' + esc(c.lm) + '/, từ khác /' + esc(c.lo) + '/ (content/sound-groups.js)' : 'Dòng ' + c.row + ' trong content/odd-sounds.csv' + (c.note ? ' · ' + esc(c.note) : '')) + '</p>' : '') + '<div class="opts">' + opts + '</div>' + fb + soundPopup() + '</div>';
+      (ADMIN ? '<p class="adm-note">[admin] ' + (c.gen ? 'Nhóm “' + esc(c.g) + '”: ba từ /' + esc(c.lm) + '/, từ khác /' + esc(c.lo) + '/ (content/sound-groups.js)' : 'Dòng ' + c.row + ' trong content/odd-sounds.csv' + (c.note ? ' · ' + esc(c.note) : '')) + '</p>' : '') + '<div class="opts">' + opts + '</div>' + help + fb + soundPopup() + '</div>';
   }
   function viewIpaType(q) {
     var word = ipaQ.mode === 'word', top = sessionTop(word ? 'Phiên âm sang từ' : 'Phiên âm sang câu', ipaQ.i, ipaQ.qs.length, 'ip-exit');
@@ -2031,7 +2049,7 @@
   function viewIpaDone() {
     var n = ipaQ.qs.length;
     return '<div class="quiz"><p class="call">Luyện phát âm</p><h1 style="font-size:2rem">Xong bài</h1>' +
-      '<div class="stats"><div class="stat"><b>' + ipaQ.score + '/' + n + '</b><span>câu đúng</span></div><div class="stat"><b>' + s10(ipaQ.score, n) + '/10</b><span>điểm</span></div></div>' +
+      '<div class="stats"><div class="stat"><b>' + num1(ipaQ.score) + '/' + n + '</b><span>câu đúng' + (ipaQ.helped ? ' (câu dùng gợi ý tính 0.5)' : '') + '</span></div><div class="stat"><b>' + s10(ipaQ.score, n) + '/10</b><span>điểm</span></div></div>' +
       '<div class="row"><button class="btn" type="button" data-action="ip-start" data-m="' + ipaQ.mode + '">Làm bài mới</button><button class="btn ghost" type="button" data-action="ip-exit">Về mục luyện tập</button></div></div>';
   }
   function viewIpaSession() {
@@ -2292,14 +2310,20 @@
       ipaSd = t.getAttribute('data-v'); render(); refocus(a, ipaSd);
     } else if (a === 'ip-lv') {
       ipaLv = t.getAttribute('data-v'); render(); refocus(a, ipaLv);
-    } else if (a === 'ip-snd') {
-      ipaPop = t.getAttribute('data-l') || ''; render();
+    } else if (a === 'ip-snd' || a === 'ip-word') {
+      if (a === 'ip-snd') { ipaPop = t.getAttribute('data-l') || ''; ipaCard = null; }
+      else { ipaCard = ipaWords[(t.getAttribute('data-w') || '').toLowerCase()] || null; ipaPop = ''; if (!ipaCard) return; }
+      render();
       var sc = document.getElementById('snd-close'); if (sc) sc.focus();
     } else if (a === 'ip-snd-close') {
-      var was = ipaPop; ipaPop = ''; render();
-      var back = Array.prototype.filter.call(view.querySelectorAll('[data-action="ip-snd"]'), function (b) { return b.getAttribute('data-l') === was; })[0]; if (back) back.focus();
+      var was = ipaPop, wasW = ipaCard ? ipaCard.w : ''; ipaPop = ''; ipaCard = null; render();
+      var back = Array.prototype.filter.call(view.querySelectorAll('[data-action="ip-snd"],[data-action="ip-word"]'), function (b) { return was ? b.getAttribute('data-l') === was : b.getAttribute('data-w') === wasW; })[0]; if (back) back.focus();
+    } else if (a === 'ip-help') {
+      var hq = ipaQ && ipaQ.qs[ipaQ.i];
+      if (!hq || hq.picked !== null || hq.help) return;
+      hq.help = true; render();
     } else if (a === 'ip-start') {
-      ipaPop = '';
+      ipaPop = ''; ipaCard = null;
       var im = t.getAttribute('data-m'), grp = im === 'odd' ? ['stress', 'oddsounds', 'sounds'] : im === 'stress' ? ['stress'] : im === 'sent' ? ['quotes'] : im === 'sound' ? ['oddsounds', 'sounds'] : [];
       if (grp.some(function (g) { return !loaded[g]; })) {
         ensure(grp).then(function () { ipaQ = null; startIpaSession(im); render(); window.scrollTo(0, 0); }, function () { ipaMsg = 'Không tải được dữ liệu bài tập. Hãy kiểm tra kết nối mạng rồi thử lại.'; render(); });
@@ -2307,7 +2331,7 @@
       }
       ipaQ = null; startIpaSession(im); render(); window.scrollTo(0, 0);
     } else if (a === 'ip-exit') {
-      ipaPop = ''; ipaQ = null; ipaSub = 'practice'; render(); window.scrollTo(0, 0);
+      ipaPop = ''; ipaCard = null; ipaQ = null; ipaSub = 'practice'; render(); window.scrollTo(0, 0);
     } else if (a === 'ip-note') {
       var nq0 = ipaQ && ipaQ.qs[ipaQ.i];
       if (!nq0 || !nq0.opts || nq0.sound) return;
@@ -2318,7 +2342,7 @@
     } else if (a === 'ip-pick') {
       var oq = ipaQ && ipaQ.qs[ipaQ.i];
       if (!oq || !ipIsPick() || oq.picked !== null) return;
-      oq.picked = parseInt(t.getAttribute('data-i'), 10); if (oq.picked === oq.a) ipaQ.score++;
+      oq.picked = parseInt(t.getAttribute('data-i'), 10); if (oq.picked === oq.a) { ipaQ.score += oq.help ? 0.5 : 1; if (oq.help) ipaQ.helped = true; }
       render(); var inb = view.querySelector('[data-action="ip-next"]'); if (inb) inb.focus();
     } else if (a === 'ip-giveup') {
       var gq = ipaQ && ipaQ.qs[ipaQ.i];
@@ -2327,7 +2351,7 @@
       if (!ipaQ || ipaQ.done) return;
       var nq = ipaQ.qs[ipaQ.i];
       if (ipIsPick() ? nq.picked === null : !nq.result) return;
-      ipaPop = ''; ipaQ.i++;
+      ipaPop = ''; ipaCard = null; ipaQ.i++;
       if (ipaQ.i >= ipaQ.qs.length) { ipaQ.done = true; if (!ipaQ.counted) { ipaQ.counted = true; Act.test(); } }
       render(); window.scrollTo(0, 0);
     } else if (a === 'ipa-filter') {
@@ -2510,7 +2534,7 @@
     else if (ev.target.id === 'j-conf') { var o = document.getElementById('j-conf-out'); if (o) o.textContent = ev.target.value; }
   });
   document.addEventListener('keydown', function (ev) {   /* Esc closes the sound panel in the sound questions */
-    if (ev.key === 'Escape' && ipaPop) { var cb = document.getElementById('snd-close'); if (cb) cb.click(); }
+    if (ev.key === 'Escape' && (ipaPop || ipaCard)) { var cb = document.getElementById('snd-close'); if (cb) cb.click(); }
   });
   view.addEventListener('keydown', function (ev) {   /* Enter sends the sentence answer; Shift+Enter makes a new line */
     if (ev.target.id === 'ip-in' && ev.target.tagName === 'TEXTAREA' && ev.key === 'Enter' && !ev.shiftKey && !ev.isComposing) { ev.preventDefault(); ipSubmit(); }

@@ -432,6 +432,9 @@ textarea#ip-in { width: 100%; font: inherit; padding: 0.7rem 0.8rem; border: 1px
 .modal-bg { position: fixed; inset: 0; background: rgba(10, 20, 30, 0.55); }
 .modal-box { position: relative; width: 100%; max-width: 34rem; margin: 2rem 0; padding: 0.75rem; display: grid; gap: 0.75rem; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; }
 
+.wlink { font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; text-align: left; cursor: pointer; }   /* a clickable word that looks exactly like the plain word */
+.hint { margin: 0; padding: 0.6rem 0.8rem; border-left: 3px solid var(--accent); background: var(--surface); border-radius: 4px; }
+
 /* Admin: IPA test rows */
 .adm-ok { background: var(--good-bg); font-weight: 600; }
 #adm-ilist td, #adm-vlist td { vertical-align: top; }
