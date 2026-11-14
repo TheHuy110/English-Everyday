@@ -1854,7 +1854,7 @@
   /* Help button ("Gợi ý"): stress question -> the word type of each word; generated sound question -> every sound the underlined letters can have. Using it halves the point. */
   function helpHtml(c, hint) {
     if (c.picked !== null) return '';
-    if (c.help) return hint ? '<p class="hint" role="status">' + hint + '</p>' : '';
+    if (c.help) return hint ? '<div class="hint" role="status">' + hint + '</div>' : '';
     return '<div class="row"><button type="button" class="btn ghost small" data-action="ip-help">Gợi ý</button><span class="muted" style="font-size:0.9rem">Dùng gợi ý thì trả lời đúng chỉ được 0.5 điểm.</span></div>';
   }
   function verdict(c, ok) { return ok ? (c.help ? 'Chính xác (có dùng gợi ý: 0.5 điểm).' : 'Chính xác.') : 'Chưa đúng.'; }
@@ -1866,6 +1866,72 @@
     if (x[1] + x[2] === y[1] + y[2]) return true;
     var hx = x[0] + x[1], hy = y[0] + y[1];
     return hx === hy && hx.length >= 3;
+  }
+  /* Stress help: signs of the four rules of the tip panel, found automatically from the vocabulary list. The learner decides which rule applies. */
+  var SXH = null;
+  function phNorm(ph) { return String(ph || '').replace(/[\/ˈˌ.\s]/g, ''); }
+  function stressIdx() {
+    if (SXH) return SXH;
+    SXH = Object.create(null);
+    VOCAB.forEach(function (v) {
+      var k = v.w.toLowerCase(), e = SXH[k] || (SXH[k] = { pos: [], ph: [] }), n = phNorm(v.ph);
+      if (v.pos && e.pos.indexOf(v.pos) < 0) e.pos.push(v.pos);
+      if (n && e.ph.indexOf(n) < 0) e.ph.push(n);
+    });
+    return SXH;
+  }
+  function commonLen(a, b) { var i = 0; while (i < a.length && i < b.length && a[i] === b[i]) i++; return i; }
+  /* suffix: [letters, 'stem' or 0, word types the whole word must have, word types the stem must have]; 'stem' = the rest must be a word that starts to sound the same (care + less) */
+  var HX_SUF = [['eous', 0, ['adjective']], ['ious', 0, ['adjective']], ['ical', 0, ['adjective']], ['less', 'stem', ['adjective'], ['noun']], ['ness', 'stem', ['noun'], ['adjective']], ['ment', 'stem', ['noun'], ['verb']], ['hood', 'stem', ['noun'], ['noun']],
+    ['eer', 0, ['noun']], ['ese', 0, null], ['ain', 0, null], ['ial', 0, ['adjective', 'noun']], ['ion', 0, ['noun']], ['ive', 0, ['adjective']], ['ful', 'stem', ['adjective'], ['noun', 'verb']],
+    ['ee', 0, ['noun']], ['ic', 0, ['adjective', 'noun']], ['ly', 'stem', ['adverb'], ['adjective']], ['er', 'stem', ['noun'], ['verb']], ['or', 'stem', ['noun'], ['verb']]];
+  var HX_NOCOMP = ['for', 'per', 'man'];   /* look like the first half of a compound but are not (forget, perform, mandate) */
+  var HX_PRE = [['non', ['nɑːn']], ['mis', ['mɪs']], ['dis', ['dɪs']], ['pre', ['priː', 'prɪ']], ['un', ['ʌn']], ['re', ['riː', 'rɪ']], ['in', ['ɪn']], ['im', ['ɪm']], ['il', ['ɪl']], ['ir', ['ɪr']]];
+  function stemForms(st) {
+    var f = [st, st + 'e'];
+    if (/i$/.test(st)) f.push(st.slice(0, -1) + 'y');
+    if (/(.)\1$/.test(st)) f.push(st.slice(0, -1));
+    return f;
+  }
+  function affixOf(word, e, ix) {
+    var out = [], i, j;
+    for (i = 0; i < HX_PRE.length && !out.length; i++) {
+      var pre = HX_PRE[i], rest = word.slice(pre[0].length);
+      if (word.indexOf(pre[0]) === 0 && rest.length >= 3 && ix[rest] && e.ph.some(function (w) { return pre[1].some(function (pi) { return ix[rest].ph.some(function (r) { return w === pi + r; }); }); })) out.push('tiền tố ' + pre[0] + '-');
+    }
+    for (i = 0; i < HX_SUF.length; i++) {
+      var sf = HX_SUF[i], suf = sf[0];
+      if (word.length - suf.length < 2 || word.slice(-suf.length) !== suf) continue;
+      if (sf[2] && !e.pos.some(function (p) { return sf[2].indexOf(p) > -1; })) continue;
+      if (sf[1] === 'stem') {
+        var stem = word.slice(0, -suf.length), ok = false;
+        if (stem.length < 3) continue;
+        stemForms(stem).forEach(function (f) { if (ix[f] && ix[f].pos.some(function (p) { return sf[3].indexOf(p) > -1; }) && e.ph.some(function (w) { return ix[f].ph.some(function (r) { return commonLen(w, r) >= 3; }); })) ok = true; });
+        if (!ok) continue;
+      }
+      out.push('hậu tố -' + suf); break;
+    }
+    return out;
+  }
+  function compoundOf(word, e, ix) {
+    for (var i = 3; i <= word.length - 3; i++) {
+      var a = word.slice(0, i), b = word.slice(i);
+      if (HX_NOCOMP.indexOf(a) < 0 && ix[a] && ix[b] && e.ph.some(function (w) { return ix[a].ph.some(function (pa) { return ix[b].ph.some(function (pb) { return w === pa + pb; }); }); })) return a + ' + ' + b;
+    }
+    return '';
+  }
+  function stressSigns(entry, syl) {
+    var ix = stressIdx(), word = entry.w.toLowerCase(), e = ix[word], bits = [];
+    if (!e) return bits;
+    bits = bits.concat(affixOf(word, e, ix));
+    var cp = compoundOf(word, e, ix); if (cp) bits.push('từ ghép: ' + cp);
+    if (e.ph.some(function (p) { return p.indexOf('ə') > -1; })) bits.push('có âm schwa /ə/');
+    var m = syl >= 3 ? /(ate|ize|fy)$/.exec(word) : null; if (m) bits.push('đuôi -' + m[1]);
+    return bits;
+  }
+  function stressTypes(entry) {
+    var e = stressIdx()[entry.w.toLowerCase()];
+    return (e && e.pos.length ? e.pos : [entry.pos]).map(function (p) { return POS_VI[p] || p || 'không rõ'; });
   }
   function nearSound(a, b) { return NEAR_SOUNDS.some(function (p) { return (p[0] === a && p[1] === b) || (p[0] === b && p[1] === a); }); }
   /* One question: four words with the same spelling underlined; three read it the same way, one reads it differently. */
@@ -1982,9 +2048,10 @@
     var answered = c.picked !== null, letters = ['A', 'B', 'C', 'D'];
     var opts = c.opts.map(function (e, i) {
       var cls = 'opt' + (answered ? (i === c.a ? ' right' : i === c.picked ? ' wrong' : '') : '');
-      return '<div class="optrow"><button type="button" class="' + cls + '" data-action="ip-pick" data-i="' + i + '"' + (answered ? ' disabled' : '') + '><i>' + letters[i] + '</i><span>' + esc(e.w.w) + '</span>' + (c.help ? '<span class="optpos">(' + esc(POS_VI[e.w.pos] || e.w.pos || 'không rõ') + ')</span>' : '') + '</button>' + noteDots(c, i) + '</div>';
+      return '<div class="optrow"><button type="button" class="' + cls + '" data-action="ip-pick" data-i="' + i + '"' + (answered ? ' disabled' : '') + '><i>' + letters[i] + '</i><span>' + esc(e.w.w) + '</span>' + (c.help ? '<span class="optpos">(' + esc(stressTypes(e.w).join(', ')) + ')</span>' : '') + '</button>' + noteDots(c, i) + '</div>';
     }).join('');
-    var help = helpHtml(c, '');   /* the word types are written on the answer bars themselves */
+    var signs = c.help ? c.opts.map(function (e, i) { var b = stressSigns(e.w, c.n); return b.length ? '<li><b>' + letters[i] + '</b> ' + esc(e.w.w) + ': ' + esc(b.join(' · ')) + '</li>' : ''; }).join('') : '';
+    var help = helpHtml(c, '<b>Gợi ý thêm</b> (loại từ ghi ở cuối mỗi đáp án; bạn tự quyết định quy tắc nào áp dụng):' + (signs ? '<ul class="tip-list">' + signs + '</ul>' : ' không có tiền tố, hậu tố, từ ghép hay âm schwa nào đáng chú ý.'));
     var fb = '';
     if (answered) {
       var odd = c.opts[c.a], ok = c.picked === c.a;
@@ -2073,6 +2140,20 @@
       card('Phiên âm sang câu', 'Bài 3', 'Bạn thấy phiên âm của một câu trích dẫn nổi tiếng và gõ cả câu. Đáp án có kèm nghĩa tiếng Việt.',
         '<div><p class="lab" style="margin-bottom:0.4rem">Độ dài câu</p><div class="chips" role="group" aria-label="Độ dài câu">' + tiers + '</div></div>', 'sent', 'Bắt đầu (' + IP_SENT_N + ' câu)') + '</div>';
   }
+  /* Tip panel "Mẹo chọn trọng âm" under the quick-reference tables (text in content/ipa.js, OEL.ipaTips). **x** = bold. */
+  var ipaTipsOpen = false;
+  function rich(t) { return esc(t).split('**').map(function (x, i) { return i % 2 ? '<b>' + x + '</b>' : x; }).join(''); }
+  function ipaTipsHtml() {
+    var T = OEL.ipaTips;
+    if (!T || !list(T.sections).length) return '';
+    var body = list(T.sections).map(function (sec) {
+      return '<section class="stack" style="gap:0.5rem"><h3 style="margin:0">' + esc(str(sec.h)) + '</h3>' + list(sec.blocks).map(function (b) {
+        return b[0] === 'ul' ? '<ul class="tip-list">' + list(b[1]).map(function (x) { return '<li>' + rich(String(x)) + '</li>'; }).join('') + '</ul>' : '<p style="margin:0">' + rich(String(b[1])) + '</p>';
+      }).join('') + '</section>';
+    }).join('');
+    return '<details class="panel jbook ipa-tips"' + (ipaTipsOpen ? ' open' : '') + '><summary><h2>' + esc(str(T.title) || 'Mẹo chọn trọng âm') + '</h2></summary><div class="stack" style="gap:1.25rem;margin-top:1rem">' +
+      (T.intro ? '<p style="margin:0">' + rich(String(T.intro)) + '</p>' : '') + body + '</div></details>';
+  }
   function viewIpa() {
     if (!IPA.length) return head('Phát âm', 'Bảng âm IPA tiếng Anh.') + '<div class="empty">Chưa có dữ liệu âm nào.</div>';
     if (ipaQ) return viewIpaSession();
@@ -2092,7 +2173,7 @@
     return head('Phát âm', 'Bảng âm IPA tiếng Anh Mỹ. Bấm vào một âm để nghe, xem ví dụ, mẹo phát âm và các cặp từ dễ nhầm. Các phụ âm vô thanh và hữu thanh đứng cạnh nhau thành cặp (p-b, t-d, k-g...).') + subs +
       '<div class="stack" style="gap:1.25rem">' + ipaDetail() + legend +
       '<section><h3 style="margin-bottom:0.6rem">Nguyên âm</h3><div class="ipa-vwrap"><div class="ipa-chart">' + vow + '</div><div class="ipa-chart">' + dip + '</div></div></section>' +
-      '<section><h3 style="margin-bottom:0.6rem">Phụ âm</h3><div class="ipa-chart">' + cons + '</div></section>' + restHtml + ipaQuickHtml() +
+      '<section><h3 style="margin-bottom:0.6rem">Phụ âm</h3><div class="ipa-chart">' + cons + '</div></section>' + restHtml + ipaQuickHtml() + ipaTipsHtml() +
       '<p class="muted" style="font-size:0.9rem">Phần giải thích đang được rà soát. Âm /ɚ/ trong ví dụ là /ɝ/ ở âm tiết không nhấn.</p></div>';
   }
 
@@ -2279,7 +2360,8 @@
   view.addEventListener('toggle', function (ev) {
     var d = ev.target;
     if (!d || d.tagName !== 'DETAILS') return;
-    if (d.classList.contains('jbook')) jOpen = d.open;
+    if (d.classList.contains('ipa-tips')) ipaTipsOpen = d.open;
+    else if (d.classList.contains('jbook')) jOpen = d.open;
     else if (d.classList.contains('rule') && d.open) { var h = d.querySelector('h3'); if (h) Act.grammar(h.textContent); }
   }, true);
   view.addEventListener('click', function (ev) {

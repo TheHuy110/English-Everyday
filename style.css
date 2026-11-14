@@ -239,6 +239,8 @@ textarea.export { font-family: var(--font-mono); font-size: 0.95rem; min-height:
 .ach.got em { color: var(--accent); }
 .jbook > summary { cursor: pointer; list-style: none; }
 .jbook > summary::-webkit-details-marker { display: none; }
+.tip-list { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.5rem; }
+.hint .tip-list { margin-top: 0.4rem; gap: 0.25rem; }
 .jbook > summary h2::before { content: "+ "; color: var(--accent); }
 .jbook[open] > summary h2::before { content: "\2212  "; }
 .toast { position: fixed; left: 50%; bottom: max(1rem, env(safe-area-inset-bottom)); transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 0.7rem 1.1rem; border-radius: 8px; z-index: 50; max-width: calc(100vw - 2rem); box-shadow: 0 4px 14px rgba(0,0,0,0.25); }

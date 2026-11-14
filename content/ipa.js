@@ -66,3 +66,58 @@ OEL.ipaQuick = {
     consonants: [["b","**b**ook, cu**b**"],["d","**d**esk, sa**d**"],["f","**f**amily, lea**f**, lau**gh**, **ph**one"],["g","**g**irl, bi**g**"],["h","**h**ead, **h**and"],["j","**y**awn, **y**oghurt"],["k","**k**ing, **c**at, ca**k**e, roc**k**, s**ch**ool"],["l","**l**ion, pencil"],["m","**m**oon, ar**m**, cli**mb**"],["n","**n**est, lio**n**"],["p","**p**en, ma**p**"],["r","**r**un, **r**oom"],["s","**s**un, nuts, de**s**k, fa**c**e"],["t","**t**en, goa**t**"],["v","**v**an, lo**v**e"],["w","**w**ater, **wh**ale"],["z","**z**ebra, qui**z**, bean**s**, noodle**s**"],["ŋ","wi**ng**, runni**ng**"],["ʒ","mea**s**ure"],["dʒ","**g**ym, hu**g**e, **j**et"],["ʃ","**sh**oes, fi**sh**"],["tʃ","**ch**eese, lun**ch**"],["θ","**th**ree, mou**th**"],["ð","**th**is, mo**th**er"]]
   }
 };
+
+/* HOW TO EDIT: the tip panel "Mẹo chọn trọng âm" shown under the quick-reference tables of the IPA tab.
+   sections = list of { h: heading, blocks: [...] }; a block is ["p", text] (paragraph) or ["ul", [text, ...]] (bullet list).
+   **word** = bold. The stressed syllable is written in CAPITAL letters (PRE-sent), as explained in the intro. */
+OEL.ipaTips = {
+  title: "Mẹo chọn trọng âm",
+  intro: "Trọng âm là âm tiết được đọc to hơn, dài hơn và cao hơn các âm tiết còn lại. Ở đây âm tiết được nhấn viết **HOA**, ví dụ **PRE**-sent. Các quy tắc dưới đây đúng với phần lớn từ nhưng luôn có ngoại lệ, nên hãy dùng chúng để đoán thông minh rồi kiểm tra lại bằng phiên âm hoặc nghe audio. Nút “Gợi ý” trong bài “Chọn từ khác trọng âm” sẽ chỉ ra các dấu hiệu theo đúng 4 nhóm quy tắc này, còn bạn tự quyết định quy tắc nào áp dụng.",
+  sections: [
+    { h: "1. Theo từ loại", blocks: [
+      ["p", "Nhiều từ có 2 âm tiết đổi trọng âm tùy từ đó là danh từ, tính từ hay động từ."],
+      ["ul", [
+        "**Danh từ và tính từ:** thường nhấn âm tiết **thứ nhất**. Ví dụ: **TA**-ble (cái bàn), **HAP**-py (vui vẻ), **PRE**-sent (món quà).",
+        "**Động từ:** thường nhấn âm tiết **thứ hai**. Ví dụ: ex-**PLAIN** (giải thích), be-**GIN** (bắt đầu), pre-**SENT** (tặng, trình bày).",
+        "**Ngoại lệ của động từ:** khi âm tiết thứ hai yếu và ngắn (đọc /ə/ hoặc /ɪ/, chỉ có một phụ âm cuối) thì động từ vẫn nhấn âm đầu. Ví dụ: **VI**-sit, **LIS**-ten, **EN**-ter, **OF**-fer, **O**-pen. Vài động từ vẫn nhấn âm sau dù âm cuối ngắn, như be-**GIN**, for-**GET**, ad-**MIT**.",
+        "**Ngoại lệ của danh từ và tính từ:** ho-**TEL**, po-**LICE**, ma-**CHINE**, a-**LONE** nhấn âm thứ hai.",
+        "**Cặp từ viết giống nhau nhưng khác từ loại** (danh từ nhấn âm 1, động từ nhấn âm 2): **RE**-cord (bản ghi) và re-**CORD** (ghi lại); **IM**-port và im-**PORT**; **IN**-crease và in-**CREASE**; **OB**-ject (vật thể) và ob-**JECT** (phản đối); **PER**-mit (giấy phép) và per-**MIT** (cho phép).",
+        "Một từ có thể có nhiều từ loại. Khi đó hãy xem câu hoặc nghĩa để biết từ đang dùng như thế nào, rồi mới chọn trọng âm.",
+        "Với từ có **3 âm tiết trở lên**, quy tắc từ loại kém ổn định hơn. Hãy dùng thêm các quy tắc 2, 3 và 4 bên dưới."
+      ]]
+    ] },
+    { h: "2. Theo hậu tố và tiền tố", blocks: [
+      ["ul", [
+        "**Hậu tố không làm đổi trọng âm** của từ gốc: -ful, -less, -ly, -ness, -er/-or, -ment, -hood (và cả -ing, -ed, -s). Ví dụ: **BEAU**-ti-ful (← **BEAU**-ty), **CARE**-less (← care), **HAP**-pi-ness (← **HAP**-py), em-**PLOY**-ment (← em-**PLOY**).",
+        "**Hậu tố tự nhận trọng âm:** -ee, -eer, -ese, -ain (động từ). Ví dụ: employ-**EE**, engi-**NEER**, Vietna-**MESE**, main-**TAIN**. Ngoại lệ: **COF**-fee, **MOUN**-tain, **CAP**-tain.",
+        "**Hậu tố kéo trọng âm về âm tiết ngay trước nó:** -ic, -ical, -ial, -ious, -eous, -ion, -ive. Ví dụ: eco-**NO**-mic (← eco-no-my), spe-**CI**-fic, **TECH**-ni-cal, **SPE**-cial, **SE**-ri-ous, at-**TEN**-tion, cre-**A**-tive.",
+        "**Tiền tố thông thường không nhận trọng âm,** trọng âm vẫn ở từ gốc: un-, dis-, re-, in-/im-/il-/ir-, mis-, non-, pre-. Ví dụ: un-**HAP**-py, dis-a-**GREE**, mis-**TAKE**, re-**TURN**, in-**FORM**.",
+        "Cẩn thận: không phải chữ nào trông giống tiền tố hay hậu tố cũng là tiền tố hay hậu tố thật. Ví dụ **RE**-cent không phải “re” + “cent”, nên nhấn âm đầu."
+      ]]
+    ] },
+    { h: "3. Từ ghép", blocks: [
+      ["ul", [
+        "**Danh từ ghép** (danh từ + danh từ, hoặc tính từ + danh từ): nhấn **từ đầu**. Ví dụ: **GREEN**-house (nhà kính), **SUN**-flower (hoa hướng dương), **NOTE**-book (vở ghi chép), **AIR**-port (sân bay), **BIRTH**-day (sinh nhật).",
+        "So sánh: **GREEN**-house (nhà kính) khác với green **HOUSE** (một ngôi nhà sơn màu xanh): từ ghép nhấn từ đầu, còn cụm “tính từ + danh từ” thông thường nhấn danh từ.",
+        "**Tính từ ghép** (thường có dấu gạch nối): nhấn **từ thứ hai**. Ví dụ: well-**KNOWN** (nổi tiếng), bad-**TEM**-pered (nóng tính), old-**FASH**-ioned (lỗi thời).",
+        "**Động từ ghép:** cũng nhấn **từ thứ hai**. Ví dụ: over-**FLOW** (tràn), under-**STAND** (hiểu), over-**COME** (vượt qua).",
+        "Có nhiều từ ghép viết dính liền như highway hay afternoon. Hãy thử tách ra hai từ nhỏ: nếu cả hai đều là từ có nghĩa và cách đọc ghép lại đúng bằng cách đọc cả từ, thì rất có thể đó là từ ghép."
+      ]]
+    ] },
+    { h: "4. Mẹo nhận nhanh qua cách đọc và đuôi từ", blocks: [
+      ["ul", [
+        "**Âm schwa /ə/ không bao giờ nhận trọng âm.** Âm tiết đọc /ə/ có thể loại ngay khỏi danh sách. Ví dụ: a-**BOUT**, ba-**NA**-na (âm đầu và âm cuối đều là /ə/). Nguyên âm yếu /ɪ/ ở âm tiết không nhấn cũng hiếm khi nhận trọng âm. Trọng âm hay rơi vào âm tiết có nguyên âm dài hoặc nguyên âm đôi như /iː/, /uː/, /eɪ/, /aɪ/.",
+        "**Đuôi -ate, -ize (-ise), -fy ở từ có 3 âm tiết trở lên:** trọng âm thường là âm tiết **thứ ba tính từ cuối lên**. Ví dụ: e-**LU**-ci-date, com-**PU**-ter-ize, i-**DEN**-ti-fy, **OR**-ga-nize, com-**MU**-ni-cate, **SIM**-pli-fy."
+      ]]
+    ] },
+    { h: "Cách làm khi gặp một từ lạ", blocks: [
+      ["ul", [
+        "**Bước 1:** đếm số âm tiết.",
+        "**Bước 2:** xem từ loại (và nhớ các cặp danh từ / động từ).",
+        "**Bước 3:** tìm tiền tố hoặc hậu tố quen thuộc.",
+        "**Bước 4:** xem có phải từ ghép không.",
+        "**Bước 5:** loại các âm tiết đọc /ə/ rồi chọn âm tiết còn lại, và nghe audio để kiểm tra."
+      ]]
+    ] }
+  ]
+};
