@@ -25,5 +25,7 @@ Sửa danh sách ở `tools/quotes-source.txt` (mỗi dòng: `tác giả | câu 
 ## Bài “Chọn từ khác trọng âm”
 Dữ liệu ở `content/stress.js` (từ nhóm theo số âm tiết và vị trí trọng âm), tạo bằng `python3 tools/build-stress.py` từ danh sách từ và từ điển CMU, có đối chiếu với phiên âm Oxford. Chạy lại sau khi đổi `content/vocab.js`.
 
+Câu “khác âm” được tạo tự động từ `content/sound-groups.js` (nhóm từ theo cách viết và âm của cách viết đó), tạo bằng `python3 tools/build-sounds.py` từ danh sách từ và từ điển CMU. Khoảng một phần tư câu vẫn lấy từ `content/odd-sounds.csv` soạn tay.
+
 ## Bài “Chọn từ khác âm” (Bài 1)
 Câu hỏi nằm trong `content/odd-sounds.csv`: mỗi dòng có 4 từ và số thứ tự (từ 0) của từ khác biệt. Đặt phần được gạch chân giữa hai dấu `*`, ví dụ `c*a*t`. Sau khi sửa, chạy `node tools/build-odd-sounds.js` để tạo lại `content/odd-sounds.js`.

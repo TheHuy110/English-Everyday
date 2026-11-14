@@ -139,7 +139,8 @@
     ipa: { files: ['content/ipa.js'], init: initIpa },
     quotes: { files: ['content/quotes.js'], init: initQuotes },
     stress: { files: ['content/stress.js'], init: function () {} },
-    oddsounds: { files: ['content/odd-sounds.js'], init: initOddSounds }
+    oddsounds: { files: ['content/odd-sounds.js'], init: initOddSounds },
+    sounds: { files: ['content/sound-groups.js'], init: function () {} }
   };
   var loaded = Object.create(null), pending = Object.create(null);
   var APP_V = (document.querySelector('meta[name="oel-version"]') || {}).content || '';   /* site version, set in index.html (node tools/bump-version.js) */
@@ -1796,7 +1797,43 @@
     if (!WMAP) { WMAP = Object.create(null); VOCAB.forEach(function (w) { var k = w.w.toLowerCase(); if (!WMAP[k] && w.ph) WMAP[k] = w; }); }
     return WMAP[String(plain).toLowerCase()] || null;
   }
-  function ipIsPick() { return ipaQ && (ipaQ.mode === 'odd' || ipaQ.mode === 'sound'); }
+  function ipIsPick() { return ipaQ && (ipaQ.mode === 'odd' || ipaQ.mode === 'sound' || ipaQ.mode === 'stress'); }
+  /* Sound groups from content/sound-groups.js (tools/build-sounds.py): spelling -> sound label -> words with the spelling marked, e.g. { ea: { "iː": ["t*ea*"], "e": ["br*ea*d"] } }. */
+  var SG = null, NEAR_SOUNDS = [['ɑː', 'ɔː'], ['ɑːr', 'ɔːr']];
+  function soundIndex() {
+    if (SG) return SG;
+    var first = Object.create(null);
+    VOCAB.forEach(function (w) { var k = w.w.toLowerCase(); if (!first[k]) first[k] = w; });
+    SG = {};
+    var src = OEL.soundGroups || {};
+    Object.keys(src).forEach(function (g) {
+      SG[g] = {};
+      Object.keys(src[g]).forEach(function (lab) {
+        SG[g][lab] = list(src[g][lab]).map(function (m) { var mw = markedWord(m), w = first[mw.plain]; return w ? { w: w, ph: w.ph, lvi: LV_IDS.indexOf(w.lv), m: m } : null; }).filter(Boolean);
+      });
+    });
+    return SG;
+  }
+  function nearSound(a, b) { return NEAR_SOUNDS.some(function (p) { return (p[0] === a && p[1] === b) || (p[0] === b && p[1] === a); }); }
+  /* One question: four words with the same spelling underlined; three read it the same way, one reads it differently. */
+  function genSound() {
+    var ix = soundIndex(), max = ipaLv ? LV_IDS.indexOf(ipaLv) : 99, gs = Object.keys(ix), tries;
+    for (tries = 0; tries < 80 && gs.length; tries++) {
+      var g = gs[Math.floor(Math.random() * gs.length)], by = {}, labs = [];
+      Object.keys(ix[g]).forEach(function (l) { var arr = ix[g][l].filter(function (e) { return e.lvi <= max; }); if (arr.length) { by[l] = arr; labs.push(l); } });
+      var mains = labs.filter(function (l) { return by[l].length >= 3; });
+      if (!mains.length || labs.length < 2) continue;
+      var lm = mains[Math.floor(Math.random() * mains.length)], three = pickDistinct(by[lm], 3, []);
+      if (!three) continue;
+      var others = labs.filter(function (l) { return l !== lm && !nearSound(l, lm); });
+      if (!others.length) continue;
+      var lo = others[Math.floor(Math.random() * others.length)], odd = pickDistinct(by[lo], 1, three);
+      if (!odd) continue;
+      var opts = shuffle(three.concat(odd)).map(function (x) { var mw = markedWord(x.m); return { plain: mw.plain, html: mw.html }; });
+      return { sound: true, gen: true, g: g, lm: lm, lo: lo, opts: opts, a: opts.map(function (o) { return o.plain; }).indexOf(markedWord(odd[0].m).plain), picked: null };
+    }
+    return null;
+  }
   /* One question: four words with the same number of syllables; three share the stressed syllable, one does not. */
   function genStress() {
     var ix = stressIndex(), max = ipaLv ? LV_IDS.indexOf(ipaLv) : 99, tries;
@@ -1825,20 +1862,35 @@
       var order = shuffle([0, 1, 2, 3]);
       return { sound: true, row: q.row, note: q.note, opts: order.map(function (i) { return markedWord(q.o[i]); }), a: order.indexOf(q.a), picked: null };
     }
+    var hasGen = Object.keys(OEL.soundGroups || {}).length > 0, hasStress = Object.keys(OEL.stress || {}).length > 0, seenS = {};
+    function genUnique(fn) {   /* a question whose words have not appeared yet in this test */
+      var q = fn();
+      if (!q) return null;
+      var ws = q.opts.map(function (e) { return e.plain || e.w.w; });
+      if (ws.some(function (w) { return seen[w] || seenS[w]; })) return null;
+      ws.forEach(function (w) { seenS[w] = 1; });
+      return q;
+    }
+    var soundPool = shuffle(ODDS), sp = 0;
+    function nextSound() {   /* mostly generated questions, sometimes a hand-made one from odd-sounds.csv */
+      if (hasGen && (sp >= soundPool.length || Math.random() < 0.75)) return genUnique(genSound);
+      return sp < soundPool.length ? soundQ(soundPool[sp++]) : null;
+    }
+    function nextStress() {
+      var q = hasStress ? genStress() : null;
+      if (q && q.opts.some(function (e) { return seen[e.w.w] || seenS[e.w.w]; })) return null;
+      if (q) q.opts.forEach(function (e) { seen[e.w.w] = 1; });
+      return q;
+    }
     if (mode === 'odd') {   /* one mixed test: each question is randomly "different stress" or "different sound" */
-      var soundPool = shuffle(ODDS), sp = 0;
-      for (i = 0; i < n * 4 && qs.length < n; i++) {
-        var q = null;
-        if (sp < soundPool.length && (Math.random() < 0.5 || !Object.keys(OEL.stress || {}).length)) q = soundQ(soundPool[sp++]);
-        else {
-          q = genStress();
-          if (q && q.opts.some(function (e) { return seen[e.w.w]; })) q = null;
-          else if (q) q.opts.forEach(function (e) { seen[e.w.w] = 1; });
-        }
+      for (i = 0; i < n * 8 && qs.length < n; i++) {
+        var q = (Math.random() < 0.5 || !hasStress) ? nextSound() : nextStress();
         if (q) qs.push(q);
       }
+    } else if (mode === 'stress') {
+      for (i = 0; i < n * 8 && qs.length < n; i++) { var qt = nextStress(); if (qt) qs.push(qt); }
     } else if (mode === 'sound') {
-      shuffle(ODDS).slice(0, n).forEach(function (q) { qs.push(soundQ(q)); });
+      for (i = 0; i < n * 8 && qs.length < n; i++) { var qd = nextSound(); if (qd) qs.push(qd); }
     } else if (mode === 'word') {
       shuffle(ipaPool().filter(function (e) { return e.w.w.length >= 3; })).slice(0, n).forEach(function (e) { qs.push({ e: e, tries: 0, typed: '', msg: '', result: '' }); });
     } else {
@@ -1909,12 +1961,12 @@
         return '<li class="ipa-row-w"><b' + (i === c.a ? ' class="oddw"' : '') + '>' + e.html + '</b><span class="muted ipa-t">' + (w ? esc(w.ph) : '') + '</span><span class="au">' +
           (w ? audioBtns(w) : (CAN_SPEAK ? '<button type="button" class="btn ghost small" data-action="speak" data-w="' + esc(e.plain) + '">Nghe</button>' : '')) + '</span></li>';
       }).join('');
-      fb = '<div class="feedback" aria-live="polite"><strong>' + (ok ? 'Chính xác.' : 'Chưa đúng.') + '</strong><span>Từ khác biệt là “' + odd.html + '”: phần gạch chân của nó phát âm khác với ba từ còn lại.</span>' +
+      fb = '<div class="feedback" aria-live="polite"><strong>' + (ok ? 'Chính xác.' : 'Chưa đúng.') + '</strong><span>' + (c.gen ? 'Ba từ còn lại đọc “' + esc(c.g) + '” là /' + esc(c.lm) + '/; từ khác biệt là “' + odd.html + '”, đọc là /' + esc(c.lo) + '/.' : 'Từ khác biệt là “' + odd.html + '”: phần gạch chân của nó phát âm khác với ba từ còn lại.') + '</span>' +
         '<ul class="ipa-grid c3">' + rows + '</ul><div style="margin-top:0.5rem"><button class="btn" type="button" data-action="ip-next">Tiếp</button></div></div>';
     }
     return '<div class="quiz">' + sessionTop('Chọn từ khác âm', ipaQ.i, ipaQ.qs.length, 'ip-exit') +
       '<p style="font-size:1.15rem;margin:0">Chọn từ có phần <u>gạch chân</u> phát âm khác với ba từ còn lại.</p>' +
-      (ADMIN ? '<p class="adm-note">[admin] Dòng ' + c.row + ' trong content/odd-sounds.csv' + (c.note ? ' · ' + esc(c.note) : '') + '</p>' : '') + '<div class="opts">' + opts + '</div>' + fb + '</div>';
+      (ADMIN ? '<p class="adm-note">[admin] ' + (c.gen ? 'Nhóm “' + esc(c.g) + '”: ba từ /' + esc(c.lm) + '/, từ khác /' + esc(c.lo) + '/ (content/sound-groups.js)' : 'Dòng ' + c.row + ' trong content/odd-sounds.csv' + (c.note ? ' · ' + esc(c.note) : '')) + '</p>' : '') + '<div class="opts">' + opts + '</div>' + fb + '</div>';
   }
   function viewIpaType(q) {
     var word = ipaQ.mode === 'word', top = sessionTop(word ? 'Phiên âm sang từ' : 'Phiên âm sang câu', ipaQ.i, ipaQ.qs.length, 'ip-exit');
@@ -1948,7 +2000,7 @@
   function viewIpaSession() {
     if (ipaQ.done) return viewIpaDone();
     var q = ipaQ.qs[ipaQ.i];
-    return (ipaQ.mode === 'odd' || ipaQ.mode === 'sound') ? (q.sound ? viewIpaSound(q) : viewIpaOdd(q)) : viewIpaType(q);
+    return ipIsPick() ? (q.sound ? viewIpaSound(q) : viewIpaOdd(q)) : viewIpaType(q);
   }
   function viewIpaPractice() {
     var lv = [['', 'Tất cả']].concat(VLEVELS.map(function (l) { return [l, 'Đến ' + l]; })).map(function (c) { return chipBtn('ip-lv', c[0], c[1], ipaLv === c[0]); }).join('');
@@ -1958,10 +2010,10 @@
         '<div class="row"><button class="btn" type="button" data-action="ip-start" data-m="' + m + '">' + label + '</button></div></div>';
     }
     return '<div class="stack" style="gap:1.25rem">' + (ipaMsg ? '<p class="panel" role="status">' + esc(ipaMsg) + '</p>' : '') +
-      '<div><p class="lab" style="margin-bottom:0.4rem">Cấp độ từ (cho câu trọng âm và bài 2)</p><div class="chips" role="group" aria-label="Cấp độ từ">' + lv + '</div></div>' +
+      '<div><p class="lab" style="margin-bottom:0.4rem">Cấp độ từ (cho Bài 1 và Bài 2)</p><div class="chips" role="group" aria-label="Cấp độ từ">' + lv + '</div></div>' +
       '<div class="panel stack" style="gap:0.9rem"><div><p class="call">Bài 1</p><h2>Chọn từ khác</h2></div>' +
         '<p class="muted">Bốn từ, ba từ giống nhau và một từ khác. Mỗi bài trộn hai kiểu câu: “khác trọng âm” (cả bốn từ cùng số âm tiết, ba từ nhấn cùng một âm tiết) và “khác âm” (chọn từ có phần gạch chân phát âm khác với ba từ còn lại).</p>' +
-        '<div class="row"><button class="btn" type="button" data-action="ip-start" data-m="odd">Bắt đầu (' + IP_N + ' câu)</button></div></div>' +
+        '<div class="row"><button class="btn" type="button" data-action="ip-start" data-m="odd">Trộn cả hai (' + IP_N + ' câu)</button><button class="btn ghost" type="button" data-action="ip-start" data-m="stress">Chỉ khác trọng âm</button><button class="btn ghost" type="button" data-action="ip-start" data-m="sound">Chỉ khác âm</button></div></div>' +
       card('Phiên âm sang từ', 'Bài 2', 'Bạn thấy phiên âm của một từ và gõ từ tiếng Anh đó. Các từ đồng âm đều được chấp nhận.', '', 'word', 'Bắt đầu (' + IP_N + ' từ)') +
       card('Phiên âm sang câu', 'Bài 3', 'Bạn thấy phiên âm của một câu trích dẫn nổi tiếng và gõ cả câu. Đáp án có kèm nghĩa tiếng Việt.',
         '<div><p class="lab" style="margin-bottom:0.4rem">Độ dài câu</p><div class="chips" role="group" aria-label="Độ dài câu">' + tiers + '</div></div>', 'sent', 'Bắt đầu (' + IP_SENT_N + ' câu)') + '</div>';
@@ -2204,7 +2256,7 @@
     } else if (a === 'ip-lv') {
       ipaLv = t.getAttribute('data-v'); render(); refocus(a, ipaLv);
     } else if (a === 'ip-start') {
-      var im = t.getAttribute('data-m'), grp = im === 'odd' ? ['stress', 'oddsounds'] : im === 'sent' ? ['quotes'] : im === 'sound' ? ['oddsounds'] : [];
+      var im = t.getAttribute('data-m'), grp = im === 'odd' ? ['stress', 'oddsounds', 'sounds'] : im === 'stress' ? ['stress'] : im === 'sent' ? ['quotes'] : im === 'sound' ? ['oddsounds', 'sounds'] : [];
       if (grp.some(function (g) { return !loaded[g]; })) {
         ensure(grp).then(function () { ipaQ = null; startIpaSession(im); render(); window.scrollTo(0, 0); }, function () { ipaMsg = 'Không tải được dữ liệu bài tập. Hãy kiểm tra kết nối mạng rồi thử lại.'; render(); });
         return;

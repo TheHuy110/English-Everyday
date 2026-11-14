@@ -9,7 +9,7 @@ A static site (no server, no build step for the site itself). The browser loads 
 | `index.html`, `style.css`, `app.js` | The site | Yes |
 | `content/grammar.js`, `questions.js`, `tests.js`, `resources.js`, `tips.js`, `wordpairs.js`, `progress.js`, `ipa.js` | Content and settings | Yes |
 | `content/oxford.csv`, `meanings.csv`, `odd-sounds.csv` | **Sources** for generated files | Yes (these are what you edit) |
-| `content/vocab.js`, `vocab-def.js`, `odd-sounds.js`, `manifest.js`, `stress.js`, `quotes.js` | **Generated** | No. Re-run the tool instead |
+| `content/vocab.js`, `vocab-def.js`, `odd-sounds.js`, `manifest.js`, `stress.js`, `sound-groups.js`, `quotes.js` | **Generated** | No. Re-run the tool instead |
 | `content/word-notes.csv` | Notes for you only; the site never reads it | No (generated) |
 | `tools/quotes-source.txt` | Source for `quotes.js` | Yes |
 | `audio/uk_audio/`, `audio/us_audio/` | Word audio, `<word>_uk.mp3` / `<word>_us.mp3` | Add files |
@@ -56,6 +56,12 @@ All commands run from the repo root. Node tools need Node.js; the two `.py` tool
 - **Reads:** `content/vocab.js` plus the CMU dictionary. **Writes:** `content/stress.js` (words grouped as `syllables:stressed-syllable`, counted from 0).
 - **Use when:** the Oxford word list changes. Words whose CMU and Oxford pronunciations disagree are left out on purpose.
 - The stress questions are generated at random from these groups (3 words from one group, 1 from another).
+
+### `build-sounds.py`: "different sound" word groups
+- **Command:** `python3 tools/build-sounds.py` (add `--audit` to print sample words per group). Needs `pip install cmudict`.
+- **Reads:** `content/vocab.js` plus the CMU dictionary. **Writes:** `content/sound-groups.js` (spelling -> sound -> words, the underlined letters between `*`).
+- Each word is aligned letter by letter with its pronunciation using the spelling rules in `RULES` at the top of the tool. To teach it a new spelling or a new way of reading one, edit `RULES` and run it again. Words with an unclear alignment are left out.
+- The "different sound" questions are generated from these groups (3 words read the spelling one way, 1 another way). About a quarter still come from the hand-made `odd-sounds.csv`.
 
 ### `build-quotes.py`: quotes for "Phiên âm sang câu"
 - **Command:** `python3 tools/build-quotes.py`
