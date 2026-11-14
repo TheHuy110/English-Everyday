@@ -1777,10 +1777,11 @@
     return SX;
   }
   function related(a, b) { var x = a.w.w.toLowerCase(), y = b.w.w.toLowerCase(); return x.indexOf(y) === 0 || y.indexOf(x) === 0 || x.slice(0, 4) === y.slice(0, 4); }
-  function pickDistinct(arr, n, others) {
+  function pickDistinct(arr, n, others, rel) {
     var out = [];
+    rel = rel || related;
     shuffle(arr).some(function (e) {
-      if (others.concat(out).some(function (o) { return related(e, o); })) return false;
+      if (others.concat(out).some(function (o) { return rel(e, o); })) return false;
       out.push(e); return out.length >= n;
     });
     return out.length >= n ? out : null;
@@ -1841,6 +1842,15 @@
     return '<div class="modal" role="dialog" aria-modal="true" aria-label="Thông tin về âm /' + esc(ipaPop) + '/"><div class="modal-bg" data-action="ip-snd-close"></div><div class="modal-box"><div class="row" style="justify-content:flex-end"><button type="button" class="btn ghost small" id="snd-close" data-action="ip-snd-close">Đóng</button></div>' +
       parts.map(function (x) { return ipaDetailFor(x, true); }).join('') + '</div></div>';
   }
+  /* Words that look alike must not share a question: same root (related), same ending from the underlined letters on (could / would / should, light / night / knight, day / bay / pay),
+     or the same beginning up to the underlined letters (man / map, bread / breakfast). */
+  function relatedSound(a, b) {
+    if (related(a, b)) return true;
+    var x = a.m.toLowerCase().split('*'), y = b.m.toLowerCase().split('*');
+    if (x[1] + x[2] === y[1] + y[2]) return true;
+    var hx = x[0] + x[1], hy = y[0] + y[1];
+    return hx === hy && hx.length >= 3;
+  }
   function nearSound(a, b) { return NEAR_SOUNDS.some(function (p) { return (p[0] === a && p[1] === b) || (p[0] === b && p[1] === a); }); }
   /* One question: four words with the same spelling underlined; three read it the same way, one reads it differently. */
   function genSound() {
@@ -1850,11 +1860,11 @@
       Object.keys(ix[g]).forEach(function (l) { var arr = ix[g][l].filter(function (e) { return e.lvi <= max; }); if (arr.length) { by[l] = arr; labs.push(l); } });
       var mains = labs.filter(function (l) { return by[l].length >= 3; });
       if (!mains.length || labs.length < 2) continue;
-      var lm = mains[Math.floor(Math.random() * mains.length)], three = pickDistinct(by[lm], 3, []);
+      var lm = mains[Math.floor(Math.random() * mains.length)], three = pickDistinct(by[lm], 3, [], relatedSound);
       if (!three) continue;
       var others = labs.filter(function (l) { return l !== lm && !nearSound(l, lm); });
       if (!others.length) continue;
-      var lo = others[Math.floor(Math.random() * others.length)], odd = pickDistinct(by[lo], 1, three);
+      var lo = others[Math.floor(Math.random() * others.length)], odd = pickDistinct(by[lo], 1, three, relatedSound);
       if (!odd) continue;
       var opts = shuffle(three.concat(odd)).map(function (x) { var mw = markedWord(x.m); return { plain: mw.plain, html: mw.html }; });
       return { sound: true, gen: true, g: g, lm: lm, lo: lo, opts: opts, a: opts.map(function (o) { return o.plain; }).indexOf(markedWord(odd[0].m).plain), picked: null };
