@@ -407,7 +407,7 @@ textarea#ip-in { width: 100%; font: inherit; padding: 0.7rem 0.8rem; border: 1px
 .ipa-grid li { display: contents; }
 .ipa-grid .au { display: flex; gap: 0.4rem; justify-content: flex-end; }
 .ipa-grid .oddw { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
-.ipa-grid u, .opt u { text-decoration-thickness: 2px; text-underline-offset: 3px; text-decoration-color: var(--accent); font-variant-ligatures: none; }   /* no "fi" / "fl" ligature, or the underline under the "i" disappears */
+.ipa-grid u, .opt u { text-decoration: none; border-bottom: 2px solid var(--accent); font-variant-ligatures: none; }   /* a border, not text-decoration: an underline is not drawn under the tails of g, y, p, q, j ("skip-ink"), and a "fi" / "fl" ligature loses it too */
 .dots { display: inline-flex; gap: 0.35rem; align-items: center; }
 .dots .d { width: 0.85rem; height: 0.85rem; border-radius: 50%; border: 2px solid var(--muted); display: inline-block; }
 .dots .d.on { background: var(--accent); border-color: var(--accent); }

@@ -2117,7 +2117,8 @@
     var n = ipaQ.qs.length;
     return '<div class="quiz"><p class="call">Luyện phát âm</p><h1 style="font-size:2rem">Xong bài</h1>' +
       '<div class="stats"><div class="stat"><b>' + num1(ipaQ.score) + '/' + n + '</b><span>câu đúng' + (ipaQ.helped ? ' (câu dùng gợi ý tính 0.5)' : '') + '</span></div><div class="stat"><b>' + s10(ipaQ.score, n) + '/10</b><span>điểm</span></div></div>' +
-      '<div class="row"><button class="btn" type="button" data-action="ip-start" data-m="' + ipaQ.mode + '">Làm bài mới</button><button class="btn ghost" type="button" data-action="ip-exit">Về mục luyện tập</button></div></div>';
+      '<div class="row"><button class="btn" type="button" data-action="ip-start" data-m="' + ipaQ.mode + '">Làm bài mới</button><button class="btn ghost" type="button" data-action="ip-exit">Về mục luyện tập</button></div>' +
+      (ipaQ.qs.some(function (q) { return !q.sound && q.opts && q.n; }) ? '<section class="stack" style="gap:1rem"><div><h2 style="margin-bottom:0.3rem">Mẹo chọn trọng âm</h2><p class="muted" style="margin:0">Xem miễn phí sau khi làm xong bài, không bị trừ điểm.</p></div>' + ipaTipsHtml() + '</section>' : '') + '</div>';
   }
   function viewIpaSession() {
     if (ipaQ.done) return viewIpaDone();
