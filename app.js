@@ -2048,10 +2048,13 @@
     var answered = c.picked !== null, letters = ['A', 'B', 'C', 'D'];
     var opts = c.opts.map(function (e, i) {
       var cls = 'opt' + (answered ? (i === c.a ? ' right' : i === c.picked ? ' wrong' : '') : '');
-      return '<div class="optrow"><button type="button" class="' + cls + '" data-action="ip-pick" data-i="' + i + '"' + (answered ? ' disabled' : '') + '><i>' + letters[i] + '</i><span>' + esc(e.w.w) + '</span>' + (c.help ? '<span class="optpos">(' + esc(stressTypes(e.w).join(', ')) + ')</span>' : '') + '</button>' + noteDots(c, i) + '</div>';
+      return '<div class="optrow"><button type="button" class="' + cls + '" data-action="ip-pick" data-i="' + i + '"' + (answered ? ' disabled' : '') + '><i>' + letters[i] + '</i><span>' + esc(e.w.w) + '</span>' + ((c.help || answered) ? '<span class="optpos">(' + esc(stressTypes(e.w).join(', ')) + ')</span>' : '') + '</button>' + noteDots(c, i) + '</div>';
     }).join('');
-    var signs = c.help ? c.opts.map(function (e, i) { var b = stressSigns(e.w, c.n); return b.length ? '<li><b>' + letters[i] + '</b> ' + esc(e.w.w) + ': ' + esc(b.join(' · ')) + '</li>' : ''; }).join('') : '';
-    var help = helpHtml(c, '<b>Gợi ý thêm</b> (loại từ ghi ở cuối mỗi đáp án; bạn tự quyết định quy tắc nào áp dụng):' + (signs ? '<ul class="tip-list">' + signs + '</ul>' : ' không có tiền tố, hậu tố, từ ghép hay âm schwa nào đáng chú ý.'));
+    var signs = (c.help || answered) ? c.opts.map(function (e, i) { var b = stressSigns(e.w, c.n); return b.length ? '<li><b>' + letters[i] + '</b> ' + esc(e.w.w) + ': ' + esc(b.join(' · ')) + '</li>' : ''; }).join('') : '';
+    var signText = signs ? '<ul class="tip-list">' + signs + '</ul>' : ' không có tiền tố, hậu tố, từ ghép hay âm schwa nào đáng chú ý.';
+    /* after the answer the signs are always shown, free: with help used they stay for comparison, without help they are a free tip */
+    var help = answered && !c.help ? '<div class="hint"><b>Mẹo cho các từ này</b> (miễn phí sau khi trả lời; loại từ ghi ở cuối mỗi đáp án):' + signText + '</div>'
+      : helpHtml(c, '<b>Gợi ý thêm</b> (loại từ ghi ở cuối mỗi đáp án; bạn tự quyết định quy tắc nào áp dụng):' + signText);
     var fb = '';
     if (answered) {
       var odd = c.opts[c.a], ok = c.picked === c.a;
