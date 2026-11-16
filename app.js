@@ -1646,15 +1646,200 @@
       '<div><label for="v-restore">Dán bản sao lưu để khôi phục</label><textarea id="v-restore" class="export" placeholder="Dán nội dung đã sao lưu vào đây"></textarea></div>' +
       '<div class="row"><button class="btn ghost" type="button" data-action="m-restore">Khôi phục</button></div>' + pending + '</section></div>';
   }
+  /* ---------- Ước lượng vốn từ ---------- */
+  /* Bộ máy ước lượng: mô hình Rasch một tham số trộn với tỉ lệ đúng thực tế của từng cấp, có hiệu chỉnh đoán mò và hiệu chỉnh quần thể hữu hạn. Điểm xuất phát lấy theo trình độ của người dùng. */
+  var EST_B = [-2.2, -1.1, 0, 1.1, 2.2];            /* difficulty of A1..C1 */
+  var EST_QUOTA = [5, 5, 5, 7, 8];                  /* first 30 questions */
+  var EST_Z = 1.645 * 1.5, EST_TH_VAR = 6.25, EST_CRED = 12, EST_A0 = 0.25;
+  function estSig(x) { return 1 / (1 + Math.exp(-Math.max(-20, Math.min(20, x)))); }
+  /* bands: [{N: words still unknown-or-untested in the band, t: tested, c: correct, w: wrong guesses}]; mu0: starting ability (difficulty of the user's level); known: words marked known (counted as known) */
+  function estEstimate(bands, mu0, known, avail) {
+    var kadj = bands.map(function (s) { return Math.max(0, Math.min(s.t, s.c - s.w / 4)); });
+    var th = mu0, info = 1 / EST_TH_VAR, it, i;
+    for (it = 0; it < 12; it++) {
+      var g = -(th - mu0) / EST_TH_VAR, h = -1 / EST_TH_VAR;
+      for (i = 0; i < bands.length; i++) {
+        if (!bands[i].t) continue;
+        var p = estSig(th - EST_B[i]);
+        g += kadj[i] - bands[i].t * p; h -= bands[i].t * p * (1 - p);
+      }
+      info = -h; var step = g / h; th -= step;
+      if (Math.abs(step) < 1e-5) break;
+    }
+    var thVar = 1 / Math.max(info, 1e-6), total = known || 0, tv = 0, best = -1, bw = -1, wrong = 0, nonc = 0;
+    var rows = bands.map(function (s, i) {
+      var N = s.N, n = s.t;
+      wrong += s.w; nonc += Math.max(0, n - s.c);
+      if (N <= 0) return { p: 0, words: 0, varW: 0 };
+      var pI = estSig(th - EST_B[i]), d = pI * (1 - pI), vI = d * d * thVar;
+      var a = kadj[i] + EST_A0, be = Math.max(0, n - kadj[i]) + EST_A0, ab = a + be;
+      var pE = a / ab, gf = 1 + 0.25 * (s.w / Math.max(n, 1)), vE = (a * be) / (ab * ab * (ab + 1)) * gf;
+      var wc = n / (n + EST_CRED), p2 = (1 - wc) * pI + wc * pE, v2 = (1 - wc) * (1 - wc) * vI + wc * wc * vE;
+      var fpc = N > 1 ? Math.max(0, (N - n) / (N - 1)) : 0, vw = N * N * v2 * fpc;
+      tv += vw; if (!avail || avail[i] > 0) { var wt = Math.sqrt(vw); if (wt > bw) { bw = wt; best = i; } }
+      return { p: p2, words: N * p2, varW: vw };
+    });
+    var V = total + rows.reduce(function (a, r) { return a + r.words; }, 0), moe = EST_Z * Math.sqrt(tv), rel = V > 0 ? moe / V : 1;
+    return { theta: th, V: V, moe: moe, rel: rel, tier: rel <= 0.10 ? 'HIGH' : rel <= 0.20 ? 'MEDIUM' : 'LOW', rows: rows, next: best, guessPct: nonc > 0 ? Math.round(wrong / nonc * 100) : 0 };
+  }
+  /* which band to draw from next: quotas for the first 30 questions, then the band that adds most uncertainty */
+  function estNextBand(bands, mu0, known, avail) {
+    var tot = bands.reduce(function (a, s) { return a + s.t; }, 0), i;
+    if (tot < 30) {
+      var defs = [], sum = 0;
+      for (i = 0; i < bands.length; i++) { var d = EST_QUOTA[i] - bands[i].t; if (d > 0 && avail[i] > 0 && bands[i].N > 0) { defs.push([i, d]); sum += d; } }
+      if (sum > 0) { var r = Math.random() * sum; for (i = 0; i < defs.length; i++) { r -= defs[i][1]; if (r <= 0) return defs[i][0]; } return defs[0][0]; }
+    }
+    return estEstimate(bands, mu0, known, avail).next;
+  }
+  var EST_MIN = 30, EST_MAX = 150;
+  var VEST = (function () {
+    var v = LS.get('oel.vest', {}); v = v && typeof v === 'object' ? v : {};
+    return {
+      sid: +v.sid || 0,
+      a: (Array.isArray(v.a) ? v.a : []).filter(function (x) { return Array.isArray(x) && typeof x[0] === 'string' && 'cws'.indexOf(x[1]) > -1 && x[1].length === 1; }).slice(0, 400),
+      h: (Array.isArray(v.h) ? v.h : []).filter(function (x) { return x && x.V > 0 && typeof x.d === 'string'; }).slice(-30)
+    };
+  })();
+  function saveEst() { LS.set('oel.vest', VEST); }
+  var vEst = null;   /* null, or { screen: 'test' | 'result', q, nostop, msg } */
+  function estBand(w) { var b = LV_IDS.indexOf(w.lv); return b < 0 ? -1 : Math.min(4, b); }
+  function isKnown(id) { return !!(vstore[id] && vstore[id].k); }
+  function estSenses(w) { return w.vi.toLowerCase().split(';').map(function (s) { return s.trim(); }).filter(Boolean); }
+  /* Chỉ dùng nghĩa đủ rõ để làm đáp án: ngoặc cân, không chứa chính từ tiếng Anh, không quá dài. */
+  function estUsable(w) {
+    if (w._eu === undefined) {
+      var m = w.vi, open = (m.match(/\(/g) || []).length, close = (m.match(/\)/g) || []).length;
+      w._eu = hasDef(w) && open === close && m.length <= 70 && (w.w.length < 3 || m.toLowerCase().indexOf(w.w.toLowerCase()) < 0);
+    }
+    return w._eu;
+  }
+  function estStart() {
+    var id = 'B1', found = false;
+    if (eloMode === 'elo' && ELO.s) { id = eloBand(ELO.r, bankLevels()); found = true; }
+    else if (PLHIST.length) { id = PLHIST[PLHIST.length - 1].level; found = true; }
+    var idx = Math.max(0, Math.min(4, lvIdx(id)));
+    return { id: LV_IDS[idx] === id ? id : LV_IDS[idx], mu: EST_B[idx], found: found };
+  }
+  function estData() {
+    var N = [0, 0, 0, 0, 0], kb = [0, 0, 0, 0, 0], av = [0, 0, 0, 0, 0], pools = [[], [], [], [], []], bands = [], known = 0, done = Object.create(null), i;
+    VOCAB.forEach(function (w) { var b = estBand(w); if (b < 0) return; if (isKnown(w.id)) { known++; kb[b]++; } else N[b]++; });
+    for (i = 0; i < 5; i++) bands.push({ N: N[i], t: 0, c: 0, w: 0 });
+    VEST.a.forEach(function (x) {
+      done[x[0]] = 1; var w = VBY[x[0]]; if (!w || isKnown(w.id)) return;
+      var b = estBand(w); if (b < 0) return;
+      bands[b].t++; if (x[1] === 'c') bands[b].c++; else if (x[1] === 'w') bands[b].w++;
+    });
+    VOCAB.forEach(function (w) { var b = estBand(w); if (b >= 0 && !done[w.id] && !isKnown(w.id) && estUsable(w)) { pools[b].push(w); av[b]++; } });
+    return { bands: bands, known: known, kb: kb, av: av, pools: pools, N: N };
+  }
+  function estQuestion(w) {
+    var b = estBand(w), senses = estSenses(w), picked = [], used = senses.slice();
+    function ok(x, strict) {
+      if (x.id === w.id || !estUsable(x) || related({ w: w }, { w: x })) return false;
+      if (strict && (x.pos !== w.pos || Math.abs(estBand(x) - b) > 1)) return false;
+      if (x.vi.toLowerCase() === w.vi.toLowerCase()) return false;
+      return !estSenses(x).some(function (s) { return used.indexOf(s) > -1; });
+    }
+    [true, false].forEach(function (strict) {
+      if (picked.length >= 4) return;
+      shuffle(VOCAB.slice()).some(function (x) {
+        if (!ok(x, strict)) return false;
+        picked.push(x); used = used.concat(estSenses(x));
+        return picked.length >= 4;
+      });
+    });
+    var opts = shuffle([{ m: w.vi, c: 1 }].concat(picked.map(function (x) { return { m: x.vi, c: 0 }; })));
+    return { w: w, o: opts, a: opts.map(function (o) { return o.c; }).indexOf(1) };
+  }
+  function estFinish() {
+    var d = estData(), e = estEstimate(d.bands, estStart().mu, d.known, d.av);
+    vEst.screen = 'result'; vEst.q = null;
+    var rec = { sid: VEST.sid, d: today(), V: Math.round(e.V), moe: Math.round(e.moe), tier: e.tier, n: VEST.a.length }, at = -1;
+    VEST.h.forEach(function (x, i) { if (x.sid === VEST.sid) at = i; });
+    if (at > -1) VEST.h[at] = rec; else VEST.h.push(rec);
+    saveEst(); Act.test();
+  }
+  function estNext() {
+    var d = estData(), n = VEST.a.length, st = estStart(), e = estEstimate(d.bands, st.mu, d.known, d.av);
+    var left = d.av.reduce(function (a, b) { return a + b; }, 0);
+    if (!left || n >= EST_MAX || (n >= EST_MIN && n >= (vEst.nostop || 0) && e.tier === 'HIGH')) { estFinish(); return; }
+    var b = estNextBand(d.bands, st.mu, d.known, d.av);
+    if (b < 0 || !d.pools[b].length) { for (b = 0; b < 5 && !d.pools[b].length; b++); }
+    var pool = d.pools[b], w = pool[Math.floor(Math.random() * pool.length)];
+    vEst.q = estQuestion(w);
+  }
+  function estOpen(fresh) {
+    if (fresh || !VEST.sid) { VEST.a = []; VEST.sid = Date.now(); saveEst(); }
+    vEst = { screen: 'test', q: null, nostop: 0, msg: '' };
+    estNext();
+  }
+  function estAnswer(i) {
+    if (!vEst || vEst.screen !== 'test' || !vEst.q) return;
+    var q = vEst.q;
+    VEST.a.push([q.w.id, i < 0 ? 's' : i === q.a ? 'c' : 'w']); saveEst();
+    estNext();
+  }
+  function estIds(kind) {
+    return VEST.a.filter(function (x) { return VBY[x[0]] && (kind === 'c' ? x[1] === 'c' && !isKnown(x[0]) : x[1] !== 'c' && !vstore[x[0]]); }).map(function (x) { return x[0]; });
+  }
+  function fmtN(x) { return String(Math.round(x)).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
+  function estTop(n) {
+    var shown = Math.min(n, EST_MIN);
+    return '<div class="row" style="justify-content:space-between"><p class="call" style="margin:0">Ước lượng vốn từ</p><button class="btn ghost small" type="button" data-action="est-exit">Thoát</button></div>' +
+      '<div><p class="muted" style="font-size:0.9rem;margin-bottom:0.4rem">Câu ' + (n + 1) + (n < EST_MIN ? ' · cần ít nhất ' + EST_MIN + ' câu' : ' · đã đủ ' + EST_MIN + ' câu, bạn có thể dừng bất cứ lúc nào') + '</p><div class="bar"><i style="width:' + (shown / EST_MIN * 100) + '%"></i></div></div>';
+  }
+  function viewEstTest() {
+    var q = vEst.q, n = VEST.a.length, letters = ['A', 'B', 'C', 'D', 'E'];
+    var opts = q.o.map(function (o, i) { return '<button type="button" class="opt" data-action="est-pick" data-i="' + i + '"><i>' + letters[i] + '</i><span>' + esc(o.m) + '</span></button>'; }).join('');
+    return '<div class="quiz est">' + estTop(n) +
+      '<p class="qtext">Từ này có nghĩa là gì?</p>' + cardHtml(q.w, 'quiz') + '<div class="opts">' + opts + '</div>' +
+      '<button class="btn ghost est-skip" type="button" data-action="est-skip">Tôi không biết từ này</button>' +
+      '<p class="muted" style="font-size:0.9rem">Chưa chắc thì bấm “Tôi không biết”, đừng đoán: đoán mò làm kết quả kém chính xác. Hệ thống không báo đúng sai từng câu.</p>' +
+      (n >= EST_MIN ? '<div class="row"><button class="btn" type="button" data-action="est-finish">Dừng và xem kết quả</button></div>' : '') + '</div>';
+  }
+  function viewEstResult() {
+    var d = estData(), st = estStart(), e = estEstimate(d.bands, st.mu, d.known, d.av), n = VEST.a.length;
+    var total = VOCAB.length, r10 = function (x) { return Math.round(x / 10) * 10; };
+    var lo = Math.max(d.known, r10(e.V - e.moe)), hi = Math.min(total, r10(e.V + e.moe));
+    var tiers = { HIGH: ['Cao', 'Kết quả khá đáng tin.'], MEDIUM: ['Vừa', 'Kết quả tương đối ổn. Làm thêm câu hỏi sẽ chính xác hơn.'], LOW: ['Thấp', 'Còn nhiều sai số. Hãy làm thêm câu hỏi để kết quả chính xác hơn.'] };
+    var c = 0, w = 0, s = 0; VEST.a.forEach(function (x) { if (x[1] === 'c') c++; else if (x[1] === 'w') w++; else s++; });
+    var rows = LV_IDS.slice(0, 5).map(function (id, i) {
+      var tot = d.N[i] + d.kb[i], est = d.kb[i] + e.rows[i].words;
+      return '<tr><td>' + id + '</td><td>' + fmtN(tot) + '</td><td>' + fmtN(r10(est)) + ' (' + Math.round(tot ? est / tot * 100 : 0) + '%)</td><td>' + d.bands[i].t + '</td></tr>';
+    }).join('');
+    var hist = VEST.h.filter(function (x) { return x.sid !== VEST.sid; }).slice(-5).reverse().map(function (x) { return '<li>' + niceShort(x.d) + ': khoảng ' + fmtN(r10(x.V)) + ' từ (±' + fmtN(r10(x.moe)) + ', ' + x.n + ' câu)</li>'; }).join('');
+    var ki = estIds('c').length, li = estIds('u').length;
+    return '<div class="quiz est"><p class="call">Ước lượng vốn từ</p><p class="muted" style="margin:0">Bạn biết khoảng</p><div class="score">' + fmtN(r10(e.V)) + ' từ</div>' +
+      '<p class="muted">Trong khoảng ' + fmtN(lo) + ' đến ' + fmtN(hi) + ' từ (độ tin cậy 90%), trên tổng ' + fmtN(total) + ' từ trong thư viện. Độ chính xác: <strong>' + tiers[e.tier][0] + '</strong>. ' + tiers[e.tier][1] + '</p>' +
+      '<div class="stats"><div class="stat"><b>' + c + '</b><span>chọn đúng</span></div><div class="stat"><b>' + w + '</b><span>chọn sai</span></div><div class="stat"><b>' + s + '</b><span>không biết</span></div><div class="stat"><b>' + fmtN(d.known) + '</b><span>đã đánh dấu biết</span></div></div>' +
+      (n >= EST_MIN && e.guessPct > 60 ? '<p class="panel">Bạn chọn sai nhiều hơn bấm “Tôi không biết”. Lần sau, khi chưa chắc hãy bấm “Tôi không biết” để kết quả chính xác hơn.</p>' : '') +
+      '<div class="table-wrap"><table style="min-width:0"><thead><tr><th>Cấp</th><th>Số từ</th><th>Bạn biết (ước lượng)</th><th>Đã hỏi</th></tr></thead><tbody>' + rows + '</tbody></table></div>' +
+      '<p class="muted">Điểm xuất phát: cấp ' + st.id + (st.found ? ' (trình độ từ mục Kiểm tra)' : ' (chưa có trình độ, mặc định B1)') + '. Các từ bạn đã đánh dấu “đã biết” được tính là biết và không đưa vào câu hỏi.</p>' +
+      (hist ? '<div><p class="lab">Các lần trước</p><ul>' + hist + '</ul></div>' : '') +
+      (vEst.msg ? '<p class="panel" role="status">' + esc(vEst.msg) + '</p>' : '') +
+      '<div class="row">' + (ki ? '<button class="btn" type="button" data-action="est-mark-k">Đánh dấu ' + ki + ' từ đúng là “đã biết”</button>' : '') + (li ? '<button class="btn" type="button" data-action="est-mark-l">Thêm ' + li + ' từ chưa biết vào “cần học”</button>' : '') + '</div>' +
+      '<div class="row"><button class="btn ghost" type="button" data-action="est-more">Làm thêm câu hỏi</button><button class="btn ghost" type="button" data-action="est-new">Bài mới</button><button class="btn ghost" type="button" data-action="est-exit">Về mục Từ vựng</button></div></div>';
+  }
+  function viewEstHome() {
+    var st = estStart(), n = VEST.a.length, last = VEST.h.length ? VEST.h[VEST.h.length - 1] : null, known = Object.keys(vstore).filter(function (id) { return VBY[id] && vstore[id].k; }).length;
+    return '<section class="panel est-home"><h2>Bạn biết bao nhiêu từ?</h2>' +
+      '<p>Trả lời ít nhất ' + EST_MIN + ' câu chọn nghĩa của từ. Hệ thống ước lượng số từ bạn biết trong thư viện ' + fmtN(VOCAB.length) + ' từ, kèm sai số.</p>' +
+      '<div class="stats"><div class="stat"><b>' + st.id + '</b><span>điểm xuất phát' + (st.found ? '' : ' (mặc định)') + '</span></div><div class="stat"><b>' + known + '</b><span>từ đã biết, không hỏi lại</span></div>' +
+      (last ? '<div class="stat"><b>' + fmtN(Math.round(last.V / 10) * 10) + '</b><span>lần gần nhất (' + niceShort(last.d) + ')</span></div>' : '') + '</div>' +
+      '<p class="muted">Từ nào chưa chắc, hãy bấm “Tôi không biết”, đừng đoán. Bài làm được lưu, bạn có thể thoát và làm tiếp.</p>' +
+      '<div class="row"><button class="btn" type="button" data-action="est-open">' + (n ? 'Tiếp tục (' + n + ' câu đã làm)' : 'Bắt đầu ước lượng') + '</button>' + (n ? '<button class="btn ghost" type="button" data-action="est-new">Làm bài mới</button>' : '') + '</div></section>';
+  }
   function viewVocab() {
+    if (vEst) return vEst.screen === 'result' ? viewEstResult() : viewEstTest();
     if (vBrowse) return vBrowse.done ? viewBrowseDone() : viewBrowseCard();
     if (vReview) return vReview.done ? viewReviewDone() : viewReviewCard();
     if (vType) return vType.done ? viewTypeDone() : viewTypeCard();
     var due = dueList().length, mine = storeIds().length;
-    var subs = [['review', 'Ôn tập (' + due + ')'], ['mine', 'Từ của tôi (' + mine + ')'], ['decks', 'Bộ từ']].map(function (s) {
+    var subs = [['review', 'Ôn tập (' + due + ')'], ['mine', 'Từ của tôi (' + mine + ')'], ['est', 'Ước lượng vốn từ'], ['decks', 'Bộ từ']].map(function (s) {
       return '<button type="button" class="subtab" data-action="v-sub" data-v="' + s[0] + '" aria-pressed="' + (vSub === s[0]) + '">' + esc(s[1]) + '</button>';
     }).join('');
-    var body = vSub === 'review' ? viewReviewHome(due) : vSub === 'mine' ? viewMine() : viewDecks();
+    var body = vSub === 'review' ? viewReviewHome(due) : vSub === 'mine' ? viewMine() : vSub === 'est' ? viewEstHome() : viewDecks();
     return head('Từ vựng', 'Học từ theo danh sách Oxford. Đánh dấu từ cần học rồi ôn lại đúng lúc: sau 1 ngày, 3 ngày, 7 ngày.') +
       '<div class="subtabs" role="group" aria-label="Các phần của mục từ vựng">' + subs + '</div>' +
       (vMsg ? '<p class="panel" role="status" style="margin-bottom:1rem">' + esc(vMsg) + '</p>' : '') + body +
@@ -2471,6 +2656,20 @@
       render(); window.scrollTo(0, 0);
     } else if (a === 'auto-random' || a === 'auto-c1') {
       if (ADMIN && quiz && !quiz.done) { autoRun(a === 'auto-random' ? 'random' : 'c1'); render(); window.scrollTo(0, 0); }
+    } else if (a === 'est-open' || a === 'est-new') {
+      estOpen(a === 'est-new'); render(); window.scrollTo(0, 0);
+    } else if (a === 'est-pick' || a === 'est-skip') {
+      estAnswer(a === 'est-skip' ? -1 : parseInt(t.getAttribute('data-i'), 10)); render(); window.scrollTo(0, 0);
+    } else if (a === 'est-finish') {
+      if (vEst) { estFinish(); render(); window.scrollTo(0, 0); }
+    } else if (a === 'est-more') {
+      if (vEst) { vEst.screen = 'test'; vEst.nostop = VEST.a.length + 15; estNext(); render(); window.scrollTo(0, 0); }
+    } else if (a === 'est-exit') {
+      vEst = null; render(); window.scrollTo(0, 0);
+    } else if (a === 'est-mark-k' || a === 'est-mark-l') {
+      var mk = a === 'est-mark-k', mids = estIds(mk ? 'c' : 'u');
+      mids.forEach(function (id) { if (mk) vstore[id] = { s: 0, d: '', k: 1 }; else { vstore[id] = { s: 0, d: today(), k: 0 }; Act.learn(id); } });
+      saveV(); vEst.msg = mk ? 'Đã đánh dấu ' + mids.length + ' từ là “đã biết”.' : 'Đã thêm ' + mids.length + ' từ vào danh sách cần học.'; render();
     } else if (a === 'v-sub') {
       vSub = t.getAttribute('data-v'); render(); refocus(a, vSub);
     } else if (a === 'v-level') {

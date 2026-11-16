@@ -447,3 +447,9 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 0
 /* Grammar "more": common mistakes get the warning colour */
 .more-item.t-mistake { border-left-color: var(--bad); }
 .more-item.t-mistake .mtag { color: var(--bad); }
+.est .qtext { text-align: center; margin: 0; }
+.est .vcard .big { font-size: 2.6rem; }
+.est .opt { padding: 1rem 1.1rem; font-size: 1.05rem; }
+.est-skip { width: 100%; padding: 0.9rem; font-size: 1.05rem; }
+.est .score { font-size: 3.4rem; }
+.est-home h2 { font-size: 1.6rem; }

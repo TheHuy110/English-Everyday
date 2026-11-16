@@ -131,3 +131,9 @@ Hidden, local to the browser. Type the secret code into the grammar search box t
 
 - `check-content.js` currently reports two old question errors (questions #689 and #2815: the answer is not one of the options). Fix them in `content/questions.js`.
 - The root-level `Progress.js` is a leftover duplicate of `content/progress.js`; the site only reads the one in `content/`.
+
+## Vocabulary size estimator (Từ vựng > Ước lượng vốn từ)
+- Code: block "Ước lượng vốn từ" in `app.js` (engine `estEstimate`/`estNextBand`, session `VEST` in `oel.vest`).
+- Start level = same level as the Test section (Elo if active, else latest placement, else B1); words marked "đã biết" are excluded from questions and counted as known.
+- Model: Rasch + empirical per-band blend, guess correction, finite-population correction; the margin of error is inflated ×1.5 (`EST_Z`), calibrated by simulation (90% interval covers ~90%). Minimum 30 questions, auto-stop at ≤10% margin, cap 150.
+- Meanings are skipped as answers when parentheses are unbalanced, they contain the English word, or exceed 70 characters (`estUsable`).
