@@ -135,5 +135,5 @@ Hidden, local to the browser. Type the secret code into the grammar search box t
 ## Vocabulary size estimator (Từ vựng > Ước lượng vốn từ)
 - Code: block "Ước lượng vốn từ" in `app.js` (engine `estEstimate`/`estNextBand`, session `VEST` in `oel.vest`).
 - Start level = same level as the Test section (Elo if active, else latest placement, else B1); words marked "đã biết" are excluded from questions and counted as known.
-- Model: Rasch + empirical per-band blend, guess correction, finite-population correction; the margin of error is inflated ×1.5 (`EST_Z`), calibrated by simulation (90% interval covers ~90%). Minimum 30 questions, auto-stop at ≤10% margin, cap 150.
+- Model: Rasch + empirical per-band blend, guess correction, finite-population correction; the margin of error is inflated ×1.5 (`EST_Z`), calibrated by simulation (90% interval covers ~90%). Shown as a big card at the top of Từ vựng. Auto-stops at 30 questions, then offers +15 batches (cap 150). Reset is hidden under "Tùy chọn khác" with a confirm warning.
 - Meanings are skipped as answers when parentheses are unbalanced, they contain the English word, or exceed 70 characters (`estUsable`).

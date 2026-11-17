@@ -1763,7 +1763,7 @@
   function estNext() {
     var d = estData(), n = VEST.a.length, st = estStart(), e = estEstimate(d.bands, st.mu, d.known, d.av);
     var left = d.av.reduce(function (a, b) { return a + b; }, 0);
-    if (!left || n >= EST_MAX || (n >= EST_MIN && n >= (vEst.nostop || 0) && e.tier === 'HIGH')) { estFinish(); return; }
+    if (!left || n >= EST_MAX || n >= (vEst.stopAt || EST_MIN)) { estFinish(); return; }
     var b = estNextBand(d.bands, st.mu, d.known, d.av);
     if (b < 0 || !d.pools[b].length) { for (b = 0; b < 5 && !d.pools[b].length; b++); }
     var pool = d.pools[b], w = pool[Math.floor(Math.random() * pool.length)];
@@ -1771,7 +1771,7 @@
   }
   function estOpen(fresh) {
     if (fresh || !VEST.sid) { VEST.a = []; VEST.sid = Date.now(); saveEst(); }
-    vEst = { screen: 'test', q: null, nostop: 0, msg: '' };
+    vEst = { screen: 'test', q: null, stopAt: EST_MIN, msg: '' };
     estNext();
   }
   function estAnswer(i) {
@@ -1785,9 +1785,9 @@
   }
   function fmtN(x) { return String(Math.round(x)).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
   function estTop(n) {
-    var shown = Math.min(n, EST_MIN);
+    var tot = vEst.stopAt || EST_MIN, shown = Math.min(n, tot);
     return '<div class="row" style="justify-content:space-between"><p class="call" style="margin:0">Ước lượng vốn từ</p><button class="btn ghost small" type="button" data-action="est-exit">Thoát</button></div>' +
-      '<div><p class="muted" style="font-size:0.9rem;margin-bottom:0.4rem">Câu ' + (n + 1) + (n < EST_MIN ? ' · cần ít nhất ' + EST_MIN + ' câu' : ' · đã đủ ' + EST_MIN + ' câu, bạn có thể dừng bất cứ lúc nào') + '</p><div class="bar"><i style="width:' + (shown / EST_MIN * 100) + '%"></i></div></div>';
+      '<div><p class="muted" style="font-size:0.9rem;margin-bottom:0.4rem">Câu ' + (n + 1) + ' · bài này gồm ' + (vEst.stopAt || EST_MIN) + ' câu' + '</p><div class="bar"><i style="width:' + (shown / tot * 100) + '%"></i></div></div>';
   }
   function viewEstTest() {
     var q = vEst.q, n = VEST.a.length, letters = ['A', 'B', 'C', 'D', 'E'];
@@ -1796,7 +1796,7 @@
       '<p class="qtext">Từ này có nghĩa là gì?</p>' + cardHtml(q.w, 'quiz') + '<div class="opts">' + opts + '</div>' +
       '<button class="btn ghost est-skip" type="button" data-action="est-skip">Tôi không biết từ này</button>' +
       '<p class="muted" style="font-size:0.9rem">Chưa chắc thì bấm “Tôi không biết”, đừng đoán: đoán mò làm kết quả kém chính xác. Hệ thống không báo đúng sai từng câu.</p>' +
-      (n >= EST_MIN ? '<div class="row"><button class="btn" type="button" data-action="est-finish">Dừng và xem kết quả</button></div>' : '') + '</div>';
+      '</div>';
   }
   function viewEstResult() {
     var d = estData(), st = estStart(), e = estEstimate(d.bands, st.mu, d.known, d.av), n = VEST.a.length;
@@ -1818,8 +1818,9 @@
       '<p class="muted">Điểm xuất phát: cấp ' + st.id + (st.found ? ' (trình độ từ mục Kiểm tra)' : ' (chưa có trình độ, mặc định B1)') + '. Các từ bạn đã đánh dấu “đã biết” được tính là biết và không đưa vào câu hỏi.</p>' +
       (hist ? '<div><p class="lab">Các lần trước</p><ul>' + hist + '</ul></div>' : '') +
       (vEst.msg ? '<p class="panel" role="status">' + esc(vEst.msg) + '</p>' : '') +
+      '<p class="panel">Bạn càng trả lời nhiều câu, ước lượng càng chính xác' + (e.tier === 'HIGH' ? '' : ' (hiện độ chính xác: ' + tiers[e.tier][0].toLowerCase() + ')') + '. Hãy làm thêm 15 câu, hoặc quay lại làm tiếp vào hôm khác.</p>' +
       '<div class="row">' + (ki ? '<button class="btn" type="button" data-action="est-mark-k">Đánh dấu ' + ki + ' từ đúng là “đã biết”</button>' : '') + (li ? '<button class="btn" type="button" data-action="est-mark-l">Thêm ' + li + ' từ chưa biết vào “cần học”</button>' : '') + '</div>' +
-      '<div class="row"><button class="btn ghost" type="button" data-action="est-more">Làm thêm câu hỏi</button><button class="btn ghost" type="button" data-action="est-new">Bài mới</button><button class="btn ghost" type="button" data-action="est-exit">Về mục Từ vựng</button></div></div>';
+      '<div class="row"><button class="btn" type="button" data-action="est-more">Làm thêm 15 câu</button><button class="btn ghost" type="button" data-action="est-exit">Về mục Từ vựng</button></div></div>';
   }
   function viewEstHome() {
     var st = estStart(), n = VEST.a.length, last = VEST.h.length ? VEST.h[VEST.h.length - 1] : null, known = Object.keys(vstore).filter(function (id) { return VBY[id] && vstore[id].k; }).length;
@@ -1828,7 +1829,7 @@
       '<div class="stats"><div class="stat"><b>' + st.id + '</b><span>điểm xuất phát' + (st.found ? '' : ' (mặc định)') + '</span></div><div class="stat"><b>' + known + '</b><span>từ đã biết, không hỏi lại</span></div>' +
       (last ? '<div class="stat"><b>' + fmtN(Math.round(last.V / 10) * 10) + '</b><span>lần gần nhất (' + niceShort(last.d) + ')</span></div>' : '') + '</div>' +
       '<p class="muted">Từ nào chưa chắc, hãy bấm “Tôi không biết”, đừng đoán. Bài làm được lưu, bạn có thể thoát và làm tiếp.</p>' +
-      '<div class="row"><button class="btn" type="button" data-action="est-open">' + (n ? 'Tiếp tục (' + n + ' câu đã làm)' : 'Bắt đầu ước lượng') + '</button>' + (n ? '<button class="btn ghost" type="button" data-action="est-new">Làm bài mới</button>' : '') + '</div></section>';
+      '<div class="row"><button class="btn" type="button" data-action="est-open">' + (n ? 'Tiếp tục (' + n + ' câu đã làm)' : 'Bắt đầu ước lượng') + '</button>' + '</div>' + (n ? '<details class="est-reset"><summary>Tùy chọn khác</summary><p class="muted">Xóa bài đang làm và bắt đầu lại từ đầu. Không nên làm thường xuyên: càng nhiều dữ liệu, ước lượng càng chính xác.</p><button class="btn ghost small" type="button" data-action="est-new">Xóa và làm lại từ đầu</button></details>' : '') + '</section>';
   }
   function viewVocab() {
     if (vEst) return vEst.screen === 'result' ? viewEstResult() : viewEstTest();
@@ -1836,11 +1837,11 @@
     if (vReview) return vReview.done ? viewReviewDone() : viewReviewCard();
     if (vType) return vType.done ? viewTypeDone() : viewTypeCard();
     var due = dueList().length, mine = storeIds().length;
-    var subs = [['review', 'Ôn tập (' + due + ')'], ['mine', 'Từ của tôi (' + mine + ')'], ['est', 'Ước lượng vốn từ'], ['decks', 'Bộ từ']].map(function (s) {
+    var subs = [['review', 'Ôn tập (' + due + ')'], ['mine', 'Từ của tôi (' + mine + ')'], ['decks', 'Bộ từ']].map(function (s) {
       return '<button type="button" class="subtab" data-action="v-sub" data-v="' + s[0] + '" aria-pressed="' + (vSub === s[0]) + '">' + esc(s[1]) + '</button>';
     }).join('');
-    var body = vSub === 'review' ? viewReviewHome(due) : vSub === 'mine' ? viewMine() : vSub === 'est' ? viewEstHome() : viewDecks();
-    return head('Từ vựng', 'Học từ theo danh sách Oxford. Đánh dấu từ cần học rồi ôn lại đúng lúc: sau 1 ngày, 3 ngày, 7 ngày.') +
+    var body = vSub === 'review' ? viewReviewHome(due) : vSub === 'mine' ? viewMine() : viewDecks();
+    return head('Từ vựng', 'Học từ theo danh sách Oxford. Đánh dấu từ cần học rồi ôn lại đúng lúc: sau 1 ngày, 3 ngày, 7 ngày.') + viewEstHome() +
       '<div class="subtabs" role="group" aria-label="Các phần của mục từ vựng">' + subs + '</div>' +
       (vMsg ? '<p class="panel" role="status" style="margin-bottom:1rem">' + esc(vMsg) + '</p>' : '') + body +
       '<p class="muted" style="margin-top:2rem;font-size:0.9rem">Danh sách từ, phiên âm và âm thanh theo Oxford Learner’s Dictionaries. Phần giải nghĩa do Tiếng Anh mỗi ngày biên soạn và đang được bổ sung.</p>';
@@ -2657,13 +2658,14 @@
     } else if (a === 'auto-random' || a === 'auto-c1') {
       if (ADMIN && quiz && !quiz.done) { autoRun(a === 'auto-random' ? 'random' : 'c1'); render(); window.scrollTo(0, 0); }
     } else if (a === 'est-open' || a === 'est-new') {
+      if (a === 'est-new' && !confirm('Bài đang làm sẽ bị xóa và bạn phải bắt đầu lại từ đầu. Ước lượng sẽ kém chính xác hơn khi có ít dữ liệu. Bạn chắc chắn muốn làm lại?')) return;
       estOpen(a === 'est-new'); render(); window.scrollTo(0, 0);
     } else if (a === 'est-pick' || a === 'est-skip') {
       estAnswer(a === 'est-skip' ? -1 : parseInt(t.getAttribute('data-i'), 10)); render(); window.scrollTo(0, 0);
     } else if (a === 'est-finish') {
       if (vEst) { estFinish(); render(); window.scrollTo(0, 0); }
     } else if (a === 'est-more') {
-      if (vEst) { vEst.screen = 'test'; vEst.nostop = VEST.a.length + 15; estNext(); render(); window.scrollTo(0, 0); }
+      if (vEst) { vEst.screen = 'test'; vEst.stopAt = VEST.a.length + 15; estNext(); render(); window.scrollTo(0, 0); }
     } else if (a === 'est-exit') {
       vEst = null; render(); window.scrollTo(0, 0);
     } else if (a === 'est-mark-k' || a === 'est-mark-l') {
