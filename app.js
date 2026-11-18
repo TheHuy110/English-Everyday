@@ -1649,12 +1649,13 @@
   /* ---------- Ước lượng vốn từ ---------- */
   /* Bộ máy ước lượng: mô hình Rasch một tham số trộn với tỉ lệ đúng thực tế của từng cấp, có hiệu chỉnh đoán mò và hiệu chỉnh quần thể hữu hạn. Điểm xuất phát lấy theo trình độ của người dùng. */
   var EST_B = [-2.2, -1.1, 0, 1.1, 2.2];            /* difficulty of A1..C1 */
-  var EST_QUOTA = [5, 5, 5, 7, 8];                  /* first 30 questions */
+  var EST_SLIP = 0.06, EST_BIAS = 0.05, EST_BMIN = 10;   /* assumed share of known words answered wrongly; leftover bias allowance in the certainty; minimum questions per band */
+var EST_QUOTA = [5, 5, 5, 7, 8];                  /* first 30 questions */
   var EST_Z = 1.645 * 1.5, EST_TH_VAR = 6.25, EST_CRED = 12, EST_A0 = 0.25;
   function estSig(x) { return 1 / (1 + Math.exp(-Math.max(-20, Math.min(20, x)))); }
   /* bands: [{N: words still unknown-or-untested in the band, t: tested, c: correct, w: wrong guesses}]; mu0: starting ability (difficulty of the user's level); known: words marked known (counted as known) */
   function estEstimate(bands, mu0, known, avail) {
-    var kadj = bands.map(function (s) { return Math.max(0, Math.min(s.t, s.c - s.w / 4)); });
+    var kadj = bands.map(function (s) { return Math.max(0, Math.min(s.t, (s.c - s.w / 4) / (1 - EST_SLIP))); });
     var th = mu0, info = 1 / EST_TH_VAR, it, i;
     for (it = 0; it < 12; it++) {
       var g = -(th - mu0) / EST_TH_VAR, h = -1 / EST_TH_VAR;
@@ -1690,6 +1691,9 @@
       for (i = 0; i < bands.length; i++) { var d = EST_QUOTA[i] - bands[i].t; if (d > 0 && avail[i] > 0 && bands[i].N > 0) { defs.push([i, d]); sum += d; } }
       if (sum > 0) { var r = Math.random() * sum; for (i = 0; i < defs.length; i++) { r -= defs[i][1]; if (r <= 0) return defs[i][0]; } return defs[0][0]; }
     }
+    var low = -1;
+    for (i = 0; i < bands.length; i++) if (bands[i].t < EST_BMIN && avail[i] > 0 && bands[i].N > 0 && (low < 0 || bands[i].t < bands[low].t)) low = i;
+    if (low >= 0) return low;   /* every band gets a minimum number of questions before the allocation turns adaptive */
     return estEstimate(bands, mu0, known, avail).next;
   }
   var EST_MIN = 30, EST_STEP = 30, EST_MAX = 150, EST_TOL = 0.10, EST_BF = 1.15;
@@ -1727,7 +1731,7 @@
   }
   /* Xác suất chuẩn và "mức độ chắc chắn": khả năng số từ thật nằm trong khoảng ±10% đang hiển thị. */
   function estPhi(z) { var s = z < 0 ? -1 : 1, x = Math.abs(z) / Math.SQRT2, t = 1 / (1 + 0.3275911 * x); return 0.5 * (1 + s * (1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-x * x))); }
-  function estConf(h, se) { if (!(se > 0)) return 99; return Math.max(5, Math.min(99, Math.round((2 * estPhi(h / se) - 1) * 20) * 5)); }
+  function estConf(h, se, est) { se = Math.sqrt((se || 0) * (se || 0) + Math.pow(EST_BIAS * (est || 0), 2)); if (!(se > 0)) return 99; return Math.max(5, Math.min(99, Math.round((2 * estPhi(h / se) - 1) * 20) * 5)); }
   function estData() {
     var N = [0, 0, 0, 0, 0], kb = [0, 0, 0, 0, 0], av = [0, 0, 0, 0, 0], pools = [[], [], [], [], []], bands = [], known = 0, done = Object.create(null), i;
     VEST.a.forEach(function (x) { done[x[0]] = 1; });
@@ -1758,7 +1762,7 @@
     return { N: N, kb: kb, t: t, c: c, w: w, pool: pool };
   }
   function estBandEst(d) {
-    var k = Math.max(0, Math.min(d.t, d.c - d.w / 4)), a = k + EST_A0, b = Math.max(0, d.t - k) + EST_A0, ab = a + b;
+    var k = Math.max(0, Math.min(d.t, (d.c - d.w / 4) / (1 - EST_SLIP))), a = k + EST_A0, b = Math.max(0, d.t - k) + EST_A0, ab = a + b;
     var gf = 1 + 0.25 * (d.w / Math.max(d.t, 1)), v = (a * b) / (ab * ab * (ab + 1)) * gf, fpc = d.N > 1 ? Math.max(0, (d.N - d.t) / (d.N - 1)) : 0;
     return { p: a / ab, se: EST_BF * Math.sqrt(v * fpc) };
   }
@@ -1866,14 +1870,14 @@
     var stats = '<div class="stats"><div class="stat"><b>' + c + '</b><span>chọn đúng</span></div><div class="stat"><b>' + w + '</b><span>chọn sai</span></div><div class="stat"><b>' + s + '</b><span>không biết</span></div></div>';
     var more = '<button class="btn" type="button" data-action="est-more">Làm thêm ' + EST_STEP + ' câu</button>';
     if (vEst.band !== null) {
-      var b = vEst.band, bd = estBandData(b), be = estBandEst(bd), tot = bd.N + bd.kb, V = bd.kb + bd.N * be.p, h = EST_TOL * tot, conf = estConf(h, bd.N * be.se);
+      var b = vEst.band, bd = estBandData(b), be = estBandEst(bd), tot = bd.N + bd.kb, V = bd.kb + bd.N * be.p, h = EST_TOL * tot, conf = estConf(h, bd.N * be.se, V);
       return '<div class="quiz est"><p class="call">Kiểm tra cấp ' + LV_IDS[b] + '</p><p class="muted" style="margin:0">Ở cấp ' + LV_IDS[b] + ', bạn biết khoảng</p><div class="score">' + estRange(V, h, 10, bd.kb, tot) + ' từ</div>' +
         '<p class="muted">trong tổng ' + fmtN(tot) + ' từ của cấp này. Mức độ chắc chắn: <strong>' + conf + '%</strong>.</p>' + stats +
         '<p class="panel">Làm thêm bài kiểm tra để tăng mức độ chắc chắn. Kết quả riêng của cấp này sẽ được dùng trong bài ước lượng tổng nếu chính xác hơn.</p>' +
         estMarkRows() + '<div class="row">' + more + '<button class="btn ghost" type="button" data-action="est-exit">Về mục Từ vựng</button></div></div>';
     }
     var d = estData(), st = estStart(), e = estEstimate(d.bands, st.mu, d.known, d.av), cb = estCombine(d, e), total = VOCAB.length;
-    var h = EST_TOL * cb.V, conf = estConf(h, cb.se);
+    var h = EST_TOL * cb.V, conf = estConf(h, cb.se, cb.V);
     var rows = LV_IDS.slice(0, 5).map(function (id, i) {
       var tt = d.N[i] + d.kb[i], est = d.kb[i] + cb.words[i];
       return '<tr><td>' + id + '</td><td>' + fmtN(tt) + '</td><td>' + fmtN(Math.round(est / 10) * 10) + ' (' + Math.round(tt ? est / tt * 100 : 0) + '%)' + (cb.used[i] ? ' *' : '') + '</td><td>' + d.bands[i].t + '</td></tr>';
@@ -1919,10 +1923,10 @@
         var row;
         if (bandMode !== null) {
           var bd = estBandData(bandMode), be = estBandEst(bd), tot = bd.N + bd.kb, V = bd.kb + bd.N * be.p, h = EST_TOL * tot;
-          row = { truth: tb[bandMode], est: V, conf: estConf(h, bd.N * be.se), inr: Math.abs(V - tb[bandMode]) <= h, n: bd.t };
+          row = { truth: tb[bandMode], est: V, conf: estConf(h, bd.N * be.se, V), inr: Math.abs(V - tb[bandMode]) <= h, n: bd.t };
         } else {
           var d = estData(), e = estEstimate(d.bands, estStart().mu, d.known, d.av), cb = estCombine(d, e), h2 = EST_TOL * cb.V, truth = tb.reduce(function (a, b) { return a + b; }, 0);
-          row = { truth: truth, est: cb.V, conf: estConf(h2, cb.se), inr: Math.abs(cb.V - truth) <= h2, n: VEST.a.length, bands: cb.words.map(function (x, j) { return x - tb[j]; }) };
+          row = { truth: truth, est: cb.V, conf: estConf(h2, cb.se, cb.V), inr: Math.abs(cb.V - truth) <= h2, n: VEST.a.length, bands: cb.words.map(function (x, j) { return x - tb[j]; }) };
         }
         res.push(row);
       }
@@ -1951,12 +1955,12 @@
       var tt = d.N[i] + d.kb[i], has = d.bands[i].t > 0 || VEST.bh[i];
       if (!has) return '<tr><td>' + id + '</td><td class="muted">chưa có dữ liệu</td><td class="muted">–</td></tr>';
       any = true; var h = EST_TOL * tt, V = d.kb[i] + cb.words[i];
-      return '<tr><td>' + id + '</td><td>' + estRange(V, h, 10, d.kb[i], tt) + ' / ' + fmtN(tt) + '</td><td>' + estConf(h, cb.ses[i]) + '%</td></tr>';
+      return '<tr><td>' + id + '</td><td>' + estRange(V, h, 10, d.kb[i], tt) + ' / ' + fmtN(tt) + '</td><td>' + estConf(h, cb.ses[i], V) + '%</td></tr>';
     }).join('');
     if (!any) return '';
     var h2 = EST_TOL * cb.V;
     return '<div class="table-wrap"><table style="min-width:0"><thead><tr><th>Cấp</th><th>Số từ bạn biết</th><th>Mức độ chắc chắn</th></tr></thead><tbody>' + rows +
-      '<tr><td><strong>Tổng</strong></td><td><strong>' + estRange(cb.V, h2, 50, d.known, total) + ' / ' + fmtN(total) + '</strong></td><td><strong>' + estConf(h2, cb.se) + '%</strong></td></tr></tbody></table></div>';
+      '<tr><td><strong>Tổng</strong></td><td><strong>' + estRange(cb.V, h2, 50, d.known, total) + ' / ' + fmtN(total) + '</strong></td><td><strong>' + estConf(h2, cb.se, cb.V) + '%</strong></td></tr></tbody></table></div>';
   }
   function viewEstHome() {
     var st = estStart(), n = VEST.a.length;
