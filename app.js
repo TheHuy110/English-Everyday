@@ -1650,7 +1650,7 @@
   /* Bộ máy ước lượng: mô hình Rasch một tham số trộn với tỉ lệ đúng thực tế của từng cấp, có hiệu chỉnh đoán mò và hiệu chỉnh quần thể hữu hạn. Điểm xuất phát lấy theo trình độ của người dùng. */
   var EST_B = [-2.2, -1.1, 0, 1.1, 2.2];            /* difficulty of A1..C1 */
   var EST_SLIP = 0.06, EST_BIAS = 0.05, EST_BMIN = 10;   /* assumed share of known words answered wrongly; leftover bias allowance in the certainty; minimum questions per band */
-var EST_QUOTA = [5, 5, 5, 7, 8];                  /* first 30 questions */
+var EST_QUOTA = [5, 5, 5, 7, 8], EST_QUOTA_LOW = [8, 8, 6, 5, 3], EST_CRED_LOW = 3;   /* starting at A1/A2: more questions in the low bands and more weight on each band's own answers */                  /* first 30 questions */
   var EST_Z = 1.645 * 1.5, EST_TH_VAR = 6.25, EST_CRED = 12, EST_A0 = 0.25;
   function estSig(x) { return 1 / (1 + Math.exp(-Math.max(-20, Math.min(20, x)))); }
   /* bands: [{N: words still unknown-or-untested in the band, t: tested, c: correct, w: wrong guesses}]; mu0: starting ability (difficulty of the user's level); known: words marked known (counted as known) */
@@ -1675,7 +1675,7 @@ var EST_QUOTA = [5, 5, 5, 7, 8];                  /* first 30 questions */
       var pI = estSig(th - EST_B[i]), d = pI * (1 - pI), vI = d * d * thVar;
       var a = kadj[i] + EST_A0, be = Math.max(0, n - kadj[i]) + EST_A0, ab = a + be;
       var pE = a / ab, gf = 1 + 0.25 * (s.w / Math.max(n, 1)), vE = (a * be) / (ab * ab * (ab + 1)) * gf;
-      var wc = n / (n + EST_CRED), p2 = (1 - wc) * pI + wc * pE, v2 = (1 - wc) * (1 - wc) * vI + wc * wc * vE;
+      var wc = n / (n + (mu0 <= EST_B[1] ? EST_CRED_LOW : EST_CRED)), p2 = (1 - wc) * pI + wc * pE, v2 = (1 - wc) * (1 - wc) * vI + wc * wc * vE;
       var fpc = N > 1 ? Math.max(0, (N - n) / (N - 1)) : 0, vw = N * N * v2 * fpc;
       tv += vw; if (!avail || avail[i] > 0) { var wt = Math.sqrt(vw); if (wt > bw) { bw = wt; best = i; } }
       return { p: p2, words: N * p2, varW: vw };
@@ -1688,7 +1688,7 @@ var EST_QUOTA = [5, 5, 5, 7, 8];                  /* first 30 questions */
     var tot = bands.reduce(function (a, s) { return a + s.t; }, 0), i;
     if (tot < 30) {
       var defs = [], sum = 0;
-      for (i = 0; i < bands.length; i++) { var d = EST_QUOTA[i] - bands[i].t; if (d > 0 && avail[i] > 0 && bands[i].N > 0) { defs.push([i, d]); sum += d; } }
+      for (i = 0; i < bands.length; i++) { var d = (mu0 <= EST_B[1] ? EST_QUOTA_LOW : EST_QUOTA)[i] - bands[i].t; if (d > 0 && avail[i] > 0 && bands[i].N > 0) { defs.push([i, d]); sum += d; } }
       if (sum > 0) { var r = Math.random() * sum; for (i = 0; i < defs.length; i++) { r -= defs[i][1]; if (r <= 0) return defs[i][0]; } return defs[0][0]; }
     }
     var low = -1;
@@ -1707,7 +1707,7 @@ var EST_QUOTA = [5, 5, 5, 7, 8];                  /* first 30 questions */
     }
     return out;
   })();
-  var EST_SIM = false;   /* admin simulator: nothing is saved while it runs */
+  var EST_SIM = false, estSimStart = -1;   /* admin simulator: nothing is saved while it runs */
   function saveEst() { if (!EST_SIM) LS.set('oel.vest', VEST); }
   var vEst = null;   /* null, or { screen: 'test' | 'result', band: null | 0..4, q, stopAt, msg } */
   function estArr() { if (vEst && vEst.band !== null) { if (!VEST.bs[vEst.band]) VEST.bs[vEst.band] = []; return VEST.bs[vEst.band]; } return VEST.a; }
@@ -1727,6 +1727,7 @@ var EST_QUOTA = [5, 5, 5, 7, 8];                  /* first 30 questions */
     if (eloMode === 'elo' && ELO.s) { id = eloBand(ELO.r, bankLevels()); found = true; }
     else if (PLHIST.length) { id = PLHIST[PLHIST.length - 1].level; found = true; }
     var idx = Math.max(0, Math.min(4, lvIdx(id)));
+    if (EST_SIM && estSimStart >= 0) idx = estSimStart;
     return { id: LV_IDS[idx], mu: EST_B[idx], found: found };
   }
   /* Xác suất chuẩn và "mức độ chắc chắn": khả năng số từ thật nằm trong khoảng ±10% đang hiển thị. */
@@ -1896,10 +1897,10 @@ var EST_QUOTA = [5, 5, 5, 7, 8];                  /* first 30 questions */
   }
 
   /* ---------- Admin: simulate a learner who finishes the estimator by himself, to see the error rate ---------- */
-  var estSimCfg = { K: [900, 800, 400, 100, 20], n: 30, runs: 10, band: 'all', skip: 85, slip: 5, guess: 20 }, estSimOut = '';
+  var estSimCfg = { K: [900, 800, 400, 100, 20], start: 'auto', n: 30, runs: 10, band: 'all', skip: 85, slip: 5, guess: 20 }, estSimOut = '';
   function estSimRun(cfg) {
     var oldV = VEST, oldS = vstore, res = [];
-    EST_SIM = true;
+    EST_SIM = true; estSimStart = cfg.start === 'auto' ? -1 : +cfg.start;
     try {
       for (var r = 0; r < cfg.runs; r++) {
         VEST = { sid: 1, a: [], h: [], bs: {}, bh: {} }; vstore = {};
@@ -1930,7 +1931,7 @@ var EST_QUOTA = [5, 5, 5, 7, 8];                  /* first 30 questions */
         }
         res.push(row);
       }
-    } finally { EST_SIM = false; VEST = oldV; vstore = oldS; vEst = null; }
+    } finally { EST_SIM = false; estSimStart = -1; VEST = oldV; vstore = oldS; vEst = null; }
     return res;
   }
   function estSimReport(cfg, res) {
@@ -1946,7 +1947,7 @@ var EST_QUOTA = [5, 5, 5, 7, 8];                  /* first 30 questions */
     var bandOpts = '<option value="all"' + (c.band === 'all' ? ' selected' : '') + '>Bài tổng hợp</option>' + LV_IDS.slice(0, 5).map(function (id, i) { return '<option value="' + i + '"' + (String(c.band) === String(i) ? ' selected' : '') + '>Riêng cấp ' + id + '</option>'; }).join('');
     return '<details class="est-reset" open><summary>[admin] Mô phỏng người dùng tự làm bài</summary><p class="muted">Không lưu gì vào bài thật. Nhập số từ người học biết ở từng cấp, rồi để hệ thống tự trả lời và so với số thật.</p>' +
       '<div class="row">' + LV_IDS.slice(0, 5).map(function (id, i) { return inp('k' + i, c.K[i], 'Biết ' + id, 80); }).join('') + '</div>' +
-      '<div class="row">' + inp('n', c.n, 'Số câu') + inp('runs', c.runs, 'Số lần chạy') + inp('skip', c.skip, '% bỏ qua khi không biết') + inp('slip', c.slip, '% lỡ tay (biết nhưng trả lời sai hoặc bỏ qua; thường 0–10)') + inp('guess', c.guess, '% đoán trúng') + '<label class="elo-f"><span>Loại bài</span><select id="es-band">' + bandOpts + '</select></label></div>' +
+      '<div class="row">' + inp('n', c.n, 'Số câu') + inp('runs', c.runs, 'Số lần chạy') + inp('skip', c.skip, '% bỏ qua khi không biết') + inp('slip', c.slip, '% lỡ tay (biết nhưng trả lời sai hoặc bỏ qua; thường 0–10)') + inp('guess', c.guess, '% đoán trúng') + '<label class="elo-f"><span>Cấp xuất phát</span><select id="es-start">' + ['auto'].concat(LV_IDS.slice(0, 5)).map(function (id, i) { var v = i === 0 ? 'auto' : String(i - 1); return '<option value="' + v + '"' + (String(c.start) === v ? ' selected' : '') + '>' + (i === 0 ? 'Theo hệ thống' : id) + '</option>'; }).join('') + '</select></label><label class="elo-f"><span>Loại bài</span><select id="es-band">' + bandOpts + '</select></label></div>' +
       '<div class="row"><button class="btn small" type="button" data-action="est-sim">Tự động làm bài</button></div>' + (estSimOut ? '<div>' + estSimOut + '</div>' : '') + '</details>';
   }
   function estBandTable() {
@@ -2806,7 +2807,7 @@ var EST_QUOTA = [5, 5, 5, 7, 8];                  /* first 30 questions */
     } else if (a === 'est-sim') {
       var gv = function (id, d) { var v = parseFloat((document.getElementById('es-' + id) || {}).value); return isNaN(v) ? d : v; };
       estSimCfg = { K: [0, 1, 2, 3, 4].map(function (i) { return Math.max(0, Math.round(gv('k' + i, 0))); }), n: Math.max(5, Math.min(150, Math.round(gv('n', 30)))), runs: Math.max(1, Math.min(30, Math.round(gv('runs', 10)))),
-        skip: Math.max(0, Math.min(100, gv('skip', 85))), slip: Math.max(0, Math.min(100, gv('slip', 5))), guess: Math.max(0, Math.min(100, gv('guess', 20))), band: (document.getElementById('es-band') || {}).value || 'all' };
+        skip: Math.max(0, Math.min(100, gv('skip', 85))), slip: Math.max(0, Math.min(100, gv('slip', 5))), guess: Math.max(0, Math.min(100, gv('guess', 20))), band: (document.getElementById('es-band') || {}).value || 'all', start: (document.getElementById('es-start') || {}).value || 'auto' };
       estSimOut = estSimReport(estSimCfg, estSimRun(estSimCfg)); render();
     } else if (a === 'est-band') {
       estOpen(false, parseInt(t.getAttribute('data-v'), 10)); render(); window.scrollTo(0, 0);
