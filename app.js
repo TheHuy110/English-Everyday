@@ -1649,9 +1649,9 @@
   /* ---------- Ước lượng vốn từ ---------- */
   /* Bộ máy ước lượng: mô hình Rasch một tham số trộn với tỉ lệ đúng thực tế của từng cấp, có hiệu chỉnh đoán mò và hiệu chỉnh quần thể hữu hạn. Điểm xuất phát lấy theo trình độ của người dùng. */
   var EST_B = [-2.2, -1.1, 0, 1.1, 2.2];            /* difficulty of A1..C1 */
-  var EST_SLIP = 0.06, EST_BIAS = 0.05, EST_BMIN = 10;   /* assumed share of known words answered wrongly; leftover bias allowance in the certainty; minimum questions per band */
-var EST_QUOTA = [5, 5, 5, 7, 8], EST_QUOTA_LOW = [8, 8, 6, 5, 3], EST_CRED_LOW = 3;   /* starting at A1/A2: more questions in the low bands and more weight on each band's own answers */                  /* first 30 questions */
-  var EST_Z = 1.645 * 1.5, EST_TH_VAR = 6.25, EST_CRED = 12, EST_A0 = 0.25;
+  var EST_SLIP = 0.06, EST_BIAS = 0.05, EST_BMIN = 6;   /* assumed share of known words answered wrongly; leftover bias allowance in the certainty; minimum questions per band */
+var EST_PH1 = 15, EST_QUOTA = [3,3,3,3,3], EST_QUOTA_LOW = [8, 8, 6, 5, 3], EST_CRED_LOW = 3;   /* starting at A1/A2: more questions in the low bands and more weight on each band's own answers */                  /* first 30 questions */
+  var EST_Z = 1.645 * 1.5, EST_TH_VAR = 6.25, EST_CRED = 6, EST_A0 = 0.25;
   function estSig(x) { return 1 / (1 + Math.exp(-Math.max(-20, Math.min(20, x)))); }
   /* bands: [{N: words still unknown-or-untested in the band, t: tested, c: correct, w: wrong guesses}]; mu0: starting ability (difficulty of the user's level); known: words marked known (counted as known) */
   function estEstimate(bands, mu0, known, avail) {
@@ -1686,7 +1686,7 @@ var EST_QUOTA = [5, 5, 5, 7, 8], EST_QUOTA_LOW = [8, 8, 6, 5, 3], EST_CRED_LOW =
   /* which band to draw from next: quotas for the first 30 questions, then the band that adds most uncertainty */
   function estNextBand(bands, mu0, known, avail) {
     var tot = bands.reduce(function (a, s) { return a + s.t; }, 0), i;
-    if (tot < 30) {
+    if (tot < EST_PH1) {
       var defs = [], sum = 0;
       for (i = 0; i < bands.length; i++) { var d = (mu0 <= EST_B[1] ? EST_QUOTA_LOW : EST_QUOTA)[i] - bands[i].t; if (d > 0 && avail[i] > 0 && bands[i].N > 0) { defs.push([i, d]); sum += d; } }
       if (sum > 0) { var r = Math.random() * sum; for (i = 0; i < defs.length; i++) { r -= defs[i][1]; if (r <= 0) return defs[i][0]; } return defs[0][0]; }
