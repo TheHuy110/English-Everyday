@@ -1946,7 +1946,7 @@ var EST_QUOTA = [5, 5, 5, 7, 8];                  /* first 30 questions */
     var bandOpts = '<option value="all"' + (c.band === 'all' ? ' selected' : '') + '>Bài tổng hợp</option>' + LV_IDS.slice(0, 5).map(function (id, i) { return '<option value="' + i + '"' + (String(c.band) === String(i) ? ' selected' : '') + '>Riêng cấp ' + id + '</option>'; }).join('');
     return '<details class="est-reset" open><summary>[admin] Mô phỏng người dùng tự làm bài</summary><p class="muted">Không lưu gì vào bài thật. Nhập số từ người học biết ở từng cấp, rồi để hệ thống tự trả lời và so với số thật.</p>' +
       '<div class="row">' + LV_IDS.slice(0, 5).map(function (id, i) { return inp('k' + i, c.K[i], 'Biết ' + id, 80); }).join('') + '</div>' +
-      '<div class="row">' + inp('n', c.n, 'Số câu') + inp('runs', c.runs, 'Số lần chạy') + inp('skip', c.skip, '% bỏ qua khi không biết') + inp('slip', c.slip, '% sai khi biết') + inp('guess', c.guess, '% đoán trúng') + '<label class="elo-f"><span>Loại bài</span><select id="es-band">' + bandOpts + '</select></label></div>' +
+      '<div class="row">' + inp('n', c.n, 'Số câu') + inp('runs', c.runs, 'Số lần chạy') + inp('skip', c.skip, '% bỏ qua khi không biết') + inp('slip', c.slip, '% lỡ tay (biết nhưng trả lời sai hoặc bỏ qua; thường 0–10)') + inp('guess', c.guess, '% đoán trúng') + '<label class="elo-f"><span>Loại bài</span><select id="es-band">' + bandOpts + '</select></label></div>' +
       '<div class="row"><button class="btn small" type="button" data-action="est-sim">Tự động làm bài</button></div>' + (estSimOut ? '<div>' + estSimOut + '</div>' : '') + '</details>';
   }
   function estBandTable() {
