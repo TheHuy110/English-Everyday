@@ -1696,10 +1696,10 @@ var EST_PH1 = 15, EST_QUOTA = [3,3,3,3,3], EST_QUOTA_LOW = [8, 8, 6, 5, 3], EST_
     if (low >= 0) return low;   /* every band gets a minimum number of questions before the allocation turns adaptive */
     return estEstimate(bands, mu0, known, avail).next;
   }
-  var EST_MIN = 30, EST_STEP = 30, EST_MAX = 300, EST_TOL = 0.10, EST_BF = 1.15;
+  var EST_MIN = 30, EST_STEP = 30, EST_MAX = 1e9, EST_TOL = 0.10, EST_BF = 1.15;
   var VEST = (function () {
     var v = LS.get('oel.vest', {}); v = v && typeof v === 'object' ? v : {};
-    function okA(arr) { return (Array.isArray(arr) ? arr : []).filter(function (x) { return Array.isArray(x) && typeof x[0] === 'string' && 'cws'.indexOf(x[1]) > -1 && x[1].length === 1; }).slice(0, 700); }
+    function okA(arr) { return (Array.isArray(arr) ? arr : []).filter(function (x) { return Array.isArray(x) && typeof x[0] === 'string' && 'cws'.indexOf(x[1]) > -1 && x[1].length === 1; }).slice(0, 7000); }
     var out = { sid: +v.sid || 0, a: okA(v.a), h: (Array.isArray(v.h) ? v.h : []).filter(function (x) { return x && x.V > 0 && typeof x.d === 'string'; }).slice(-30), bs: {}, bh: {} };
     for (var i = 0; i < 5; i++) {
       if (v.bs && v.bs[i]) out.bs[i] = okA(v.bs[i]);
@@ -1871,7 +1871,7 @@ var EST_PH1 = 15, EST_QUOTA = [3,3,3,3,3], EST_QUOTA_LOW = [8, 8, 6, 5, 3], EST_
     var stats = '<div class="stats"><div class="stat"><b>' + c + '</b><span>chọn đúng</span></div><div class="stat"><b>' + w + '</b><span>chọn sai</span></div><div class="stat"><b>' + s + '</b><span>không biết</span></div></div>';
     var more;   /* set below once we know whether there are questions left */
     var capped = n >= EST_MAX || (vEst.band !== null ? !estBandData(vEst.band).pool.length : !estData().av.some(function (x) { return x > 0; }));
-    more = capped ? '<p class="muted">Bạn đã trả lời đủ số câu tối đa cho bài này, kết quả đã dùng toàn bộ dữ liệu.</p>' : '<button class="btn" type="button" data-action="est-more">Làm thêm ' + EST_STEP + ' câu</button>';
+    more = capped ? '<p class="muted">Bạn đã làm hết các từ có thể hỏi, kết quả đã dùng toàn bộ dữ liệu.</p>' : '<button class="btn" type="button" data-action="est-more">Làm thêm ' + EST_STEP + ' câu</button>';
     if (vEst.band !== null) {
       var b = vEst.band, bd = estBandData(b), be = estBandEst(bd), tot = bd.N + bd.kb, V = bd.kb + bd.N * be.p, h = EST_TOL * tot, conf = estConf(h, bd.N * be.se, V);
       return '<div class="quiz est"><p class="call">Kiểm tra cấp ' + LV_IDS[b] + '</p><p class="muted" style="margin:0">Ở cấp ' + LV_IDS[b] + ', bạn biết khoảng</p><div class="score">' + estRange(V, h, 10, bd.kb, tot) + ' từ</div>' +
