@@ -1729,10 +1729,12 @@
   function estConf(h, se) { if (!(se > 0)) return 99; return Math.max(5, Math.min(99, Math.round((2 * estPhi(h / se) - 1) * 20) * 5)); }
   function estData() {
     var N = [0, 0, 0, 0, 0], kb = [0, 0, 0, 0, 0], av = [0, 0, 0, 0, 0], pools = [[], [], [], [], []], bands = [], known = 0, done = Object.create(null), i;
-    VOCAB.forEach(function (w) { var b = estBand(w); if (b < 0) return; if (isKnown(w.id)) { known++; kb[b]++; } else N[b]++; });
+    VEST.a.forEach(function (x) { done[x[0]] = 1; });
+    /* Từ đã làm trong bài này vẫn thuộc mẫu dù sau đó được đánh dấu “đã biết”: nếu không, kết quả sẽ tụt khi thêm từ vào danh sách biết. */
+    VOCAB.forEach(function (w) { var b = estBand(w); if (b < 0) return; if (isKnown(w.id) && !done[w.id]) { known++; kb[b]++; } else N[b]++; });
     for (i = 0; i < 5; i++) bands.push({ N: N[i], t: 0, c: 0, w: 0 });
     VEST.a.forEach(function (x) {
-      done[x[0]] = 1; var w = VBY[x[0]]; if (!w || isKnown(w.id)) return;
+      var w = VBY[x[0]]; if (!w) return;
       var b = estBand(w); if (b < 0) return;
       bands[b].t++; if (x[1] === 'c') bands[b].c++; else if (x[1] === 'w') bands[b].w++;
     });
@@ -1742,14 +1744,15 @@
   /* Kiểm tra riêng một cấp: lấy mẫu ngẫu nhiên trong cấp đó, tỉ lệ đúng có hiệu chỉnh đoán mò (Beta-Binomial) và hiệu chỉnh quần thể hữu hạn. */
   function estBandData(b) {
     var N = 0, kb = 0, t = 0, c = 0, w = 0, pool = [], done = Object.create(null);
+    (VEST.bs[b] || []).forEach(function (x) { done[x[0]] = 1; });
     (VEST.bs[b] || []).forEach(function (x) {
-      done[x[0]] = 1; var wd = VBY[x[0]]; if (!wd || isKnown(wd.id)) return;
+      var wd = VBY[x[0]]; if (!wd) return;
       t++; if (x[1] === 'c') c++; else if (x[1] === 'w') w++;
     });
     VOCAB.forEach(function (wd) {
       if (estBand(wd) !== b) return;
-      if (isKnown(wd.id)) { kb++; return; }
-      N++; if (!done[wd.id] && estUsable(wd)) pool.push(wd);
+      if (isKnown(wd.id) && !done[wd.id]) { kb++; return; }
+      N++; if (!done[wd.id] && !isKnown(wd.id) && estUsable(wd)) pool.push(wd);
     });
     return { N: N, kb: kb, t: t, c: c, w: w, pool: pool };
   }
@@ -1760,13 +1763,13 @@
   }
   /* Ghép kết quả: với mỗi cấp, dùng bài kiểm tra riêng của cấp đó nếu sai số nhỏ hơn bài tổng hợp. */
   function estCombine(d, e) {
-    var V = d.known, v2 = 0, used = [], words = [];
+    var V = d.known, v2 = 0, used = [], words = [], ses = [];
     for (var i = 0; i < 5; i++) {
       var w = e.rows[i].words, se = 1.5 * Math.sqrt(e.rows[i].varW), r = VEST.bh[i];
       if (r && d.N[i] > 0 && d.N[i] * r.se < se) { w = d.N[i] * r.p; se = d.N[i] * r.se; used[i] = true; }
-      words.push(w); V += w; v2 += se * se;
+      words.push(w); ses.push(se); V += w; v2 += se * se;
     }
-    return { V: V, se: Math.sqrt(v2), words: words, used: used };
+    return { V: V, se: Math.sqrt(v2), words: words, ses: ses, used: used };
   }
   function estQuestion(w) {
     var b = estBand(w), senses = estSenses(w), picked = [], used = senses.slice();
@@ -1885,16 +1888,28 @@
       (hist ? '<div><p class="lab">Các lần trước</p><ul>' + hist + '</ul></div>' : '') +
       estMarkRows() + '<div class="row"><button class="btn ghost" type="button" data-action="est-exit">Về mục Từ vựng</button></div></div>';
   }
+  function estBandTable() {
+    var d = estData(), st = estStart(), e = estEstimate(d.bands, st.mu, d.known, d.av), cb = estCombine(d, e), total = VOCAB.length, any = false;
+    var rows = LV_IDS.slice(0, 5).map(function (id, i) {
+      var tt = d.N[i] + d.kb[i], has = d.bands[i].t > 0 || VEST.bh[i];
+      if (!has) return '<tr><td>' + id + '</td><td class="muted">chưa có dữ liệu</td><td class="muted">–</td></tr>';
+      any = true; var h = EST_TOL * tt, V = d.kb[i] + cb.words[i];
+      return '<tr><td>' + id + '</td><td>' + estRange(V, h, 10, d.kb[i], tt) + ' / ' + fmtN(tt) + '</td><td>' + estConf(h, cb.ses[i]) + '%</td></tr>';
+    }).join('');
+    if (!any) return '';
+    var h2 = EST_TOL * cb.V;
+    return '<div class="table-wrap"><table style="min-width:0"><thead><tr><th>Cấp</th><th>Số từ bạn biết</th><th>Mức độ chắc chắn</th></tr></thead><tbody>' + rows +
+      '<tr><td><strong>Tổng</strong></td><td><strong>' + estRange(cb.V, h2, 50, d.known, total) + ' / ' + fmtN(total) + '</strong></td><td><strong>' + estConf(h2, cb.se) + '%</strong></td></tr></tbody></table></div>';
+  }
   function viewEstHome() {
-    var st = estStart(), n = VEST.a.length, last = VEST.h.length ? VEST.h[VEST.h.length - 1] : null, known = Object.keys(vstore).filter(function (id) { return VBY[id] && vstore[id].k; }).length;
+    var st = estStart(), n = VEST.a.length;
     return '<section class="panel est-home"><h2>Bạn biết bao nhiêu từ?</h2>' +
       '<p>Trả lời ' + EST_MIN + ' câu chọn nghĩa của từ. Hệ thống ước lượng số từ bạn biết trong thư viện ' + fmtN(VOCAB.length) + ' từ. Làm thêm càng nhiều, kết quả càng chắc chắn.</p>' +
-      '<div class="stats"><div class="stat"><b>' + st.id + '</b><span>điểm xuất phát' + (st.found ? '' : ' (mặc định)') + '</span></div><div class="stat"><b>' + known + '</b><span>từ đã biết, không hỏi lại</span></div>' +
-      (last ? '<div class="stat"><b>' + fmtN(Math.round(last.V / 10) * 10) + '</b><span>lần gần nhất (' + niceShort(last.d) + ')</span></div>' : '') + '</div>' +
-      '<p class="muted">Từ nào chưa chắc, hãy bấm “Tôi không biết”, đừng đoán. Bài làm được lưu, bạn có thể thoát và làm tiếp.</p>' +
+      estBandTable() +
+      '<p class="muted">Điểm xuất phát: cấp ' + st.id + (st.found ? ' (theo mục Kiểm tra)' : ' (mặc định)') + '. Từ nào chưa chắc, hãy bấm “Tôi không biết”, đừng đoán. Bài làm được lưu, bạn có thể thoát và làm tiếp.</p>' +
       '<div class="row"><button class="btn" type="button" data-action="est-open">' + (n ? 'Tiếp tục (' + n + ' câu đã làm)' : 'Bắt đầu ước lượng') + '</button></div>' +
       '<div><p class="lab">Hoặc kiểm tra riêng một cấp (chính xác hơn cho cấp đó)</p><div class="row">' + estBandChips() + '</div></div>' +
-      (n ? '<details class="est-reset"><summary>Tùy chọn khác</summary><p class="muted">Xóa bài tổng hợp đang làm và bắt đầu lại từ đầu. Không nên làm thường xuyên: càng nhiều dữ liệu, ước lượng càng chính xác.</p><button class="btn ghost small" type="button" data-action="est-new">Xóa và làm lại từ đầu</button></details>' : '') + '</section>';
+      (n ? '<details class="est-reset"><summary>Tùy chọn khác</summary><p class="muted">Xóa bài tổng hợp đang làm và bắt đầu lại từ đầu. Không nên làm thường xuyên: càng nhiều dữ liệu, ước lượng càng chắc chắn.</p><button class="btn ghost small" type="button" data-action="est-new">Xóa và làm lại từ đầu</button></details>' : '') + '</section>';
   }
   function viewVocab() {
     if (vEst) return vEst.screen === 'result' ? viewEstResult() : viewEstTest();
