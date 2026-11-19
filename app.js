@@ -1826,7 +1826,7 @@ var EST_PH1 = 15, EST_QUOTA = [3,3,3,3,3], EST_QUOTA_LOW = [8, 8, 6, 5, 3], EST_
     vEst.q = estQuestion(w);
   }
   function estOpen(fresh, band) {
-    vEst = { screen: 'test', band: band === undefined ? null : band, q: null, stopAt: EST_MIN, msg: '' };
+    vEst = { screen: 'test', band: band === undefined ? null : band, q: null, stopAt: EST_MIN, msg: '', prev: null };
     if (vEst.band === null && (fresh || !VEST.sid)) { VEST.a = []; VEST.sid = Date.now(); saveEst(); }
     vEst.stopAt = Math.max(EST_MIN, Math.ceil(estArr().length / EST_STEP) * EST_STEP);
     estNext();
@@ -1835,7 +1835,14 @@ var EST_PH1 = 15, EST_QUOTA = [3,3,3,3,3], EST_QUOTA_LOW = [8, 8, 6, 5, 3], EST_
     if (!vEst || vEst.screen !== 'test' || !vEst.q) return;
     var q = vEst.q;
     estArr().push([q.w.id, i < 0 ? 's' : i === q.a ? 'c' : 'w']); saveEst();
+    vEst.prev = q.w;   /* allows undoing this one answer, and only this one */
     estNext();
+  }
+  function estBack() {
+    var arr = estArr(), pw = vEst && vEst.prev;
+    if (!pw || vEst.screen !== 'test' || !arr.length || arr[arr.length - 1][0] !== pw.id) return;
+    arr.pop(); saveEst();
+    vEst.q = estQuestion(pw); vEst.prev = null;
   }
   function estIds(kind) {
     return estArr().filter(function (x) { return VBY[x[0]] && (kind === 'c' ? x[1] === 'c' && !isKnown(x[0]) : x[1] !== 'c' && !vstore[x[0]]); }).map(function (x) { return x[0]; });
@@ -1853,6 +1860,7 @@ var EST_PH1 = 15, EST_QUOTA = [3,3,3,3,3], EST_QUOTA_LOW = [8, 8, 6, 5, 3], EST_
     return '<div class="quiz est">' + estTop(n) +
       '<p class="qtext">Từ này có nghĩa là gì?</p>' + cardHtml(q.w, 'quiz') + '<div class="opts">' + opts + '</div>' +
       '<button class="btn ghost est-skip" type="button" data-action="est-skip">Tôi không biết từ này</button>' +
+      (vEst.prev ? '<button class="btn ghost small" type="button" data-action="est-back">← Sửa câu trước: ' + esc(vEst.prev.w) + '</button>' : '') +
       '<p class="muted" style="font-size:0.9rem">Chưa chắc thì bấm “Tôi không biết”, đừng đoán: đoán mò làm kết quả kém chính xác. Hệ thống không báo đúng sai từng câu.</p></div>';
   }
   function estBandChips() {
@@ -2811,12 +2819,14 @@ var EST_PH1 = 15, EST_QUOTA = [3,3,3,3,3], EST_QUOTA_LOW = [8, 8, 6, 5, 3], EST_
       estSimCfg = { K: [0, 1, 2, 3, 4].map(function (i) { return Math.max(0, Math.round(gv('k' + i, 0))); }), n: Math.max(5, Math.min(150, Math.round(gv('n', 30)))), runs: Math.max(1, Math.min(30, Math.round(gv('runs', 10)))),
         skip: Math.max(0, Math.min(100, gv('skip', 85))), slip: Math.max(0, Math.min(100, gv('slip', 5))), guess: Math.max(0, Math.min(100, gv('guess', 20))), band: (document.getElementById('es-band') || {}).value || 'all', start: (document.getElementById('es-start') || {}).value || 'auto' };
       estSimOut = estSimReport(estSimCfg, estSimRun(estSimCfg)); render();
+    } else if (a === 'est-back') {
+      estBack(); render(); window.scrollTo(0, 0);
     } else if (a === 'est-band') {
       estOpen(false, parseInt(t.getAttribute('data-v'), 10)); render(); window.scrollTo(0, 0);
     } else if (a === 'est-finish') {
       if (vEst) { estFinish(); render(); window.scrollTo(0, 0); }
     } else if (a === 'est-more') {
-      if (vEst) { vEst.screen = 'test'; vEst.stopAt = estArr().length + EST_STEP; estNext(); render(); window.scrollTo(0, 0); }
+      if (vEst) { vEst.screen = 'test'; vEst.prev = null; vEst.stopAt = estArr().length + EST_STEP; estNext(); render(); window.scrollTo(0, 0); }
     } else if (a === 'est-exit') {
       vEst = null; render(); window.scrollTo(0, 0);
     } else if (a === 'est-mark-k' || a === 'est-mark-l') {
