@@ -11,9 +11,9 @@ OEL.settings = {
 
   /* ---- Elo: used by rank mode. lv = difficulty of a question of each CEFR level ----
      start/min/max = first, lowest and highest score. scale = steepness of the expected-score curve.
-     k0, k1, tau = step size K = k0 + k1 * e^(-answers / tau). margin = band slack. guess = 1 counts blind guessing.
+     k0, k1, tau = step size K = (k0 + k1 * e^(-answers / tau)) * mult. mult = overall multiplier of every answer's Elo change (0.1 = ten times smaller). margin = band slack. guess = 1 counts blind guessing.
      firstOld / seed only matter for the old placement test. */
-  elo: { start: 1000, min: 400, max: 2800, scale: 500, k0: 200, k1: 400, tau: 16, margin: 100, guess: 1, firstOld: 1, seed: 1,
+  elo: { start: 1000, min: 400, max: 2800, scale: 500, k0: 200, k1: 400, tau: 16, margin: 100, mult: 0.1, guess: 1, firstOld: 1, seed: 1,
     lv: { A1: 900, A2: 1200, B1: 1400, B2: 1800, C1: 2200, C2: 2600 } },
 
   /* ---- Ranks: a player has the highest rank whose "elo" they reach. Below the first rank still counts as rank 1. ---- */

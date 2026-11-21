@@ -77,6 +77,7 @@ else {
   const S = OEL.settings || (err('OEL.settings is missing (content/settings.js)'), {});
   ['minute','learned','reviewed','grammar','test'].forEach(k => (typeof (S.xp||{})[k] === 'number') || err('settings.xp.' + k + ' must be a number'));
   const cv = S.curve || {}; (cv.base > 0 && cv.power > 0) || err('settings.curve needs base and power above 0');
+  (S.elo && S.elo.mult > 0) || err('settings.elo.mult must be above 0');
   const rk = S.ranks || []; (rk.length >= 2 && rk.every((r, i) => str(r.name) && typeof r.elo === 'number' && (i === 0 || r.elo > rk[i-1].elo))) || err('settings.ranks needs 2+ ranks with a name and rising elo');
   const rr = S.rank || {}; (rr.questions > 0 && rr.minutes > 0) || err('settings.rank needs questions and minutes above 0');
   LV.includes(rr.ipaDefault) || err('settings.rank.ipaDefault must be one of ' + LV.join(', '));

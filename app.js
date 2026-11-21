@@ -271,17 +271,18 @@
   if (!RANKS.length) RANKS = SET_BUILTIN.ranks.slice();
   /* Rank of an Elo score: the highest rank reached; below the first rank still counts as the first. */
   function rankOf(r) { var k = 0; RANKS.forEach(function (x, i) { if (r >= x.elo) k = i; }); return { i: k, r: RANKS[k], next: RANKS[k + 1] || null }; }
-  var ECFG_DEF = mergeSet({ start: 1000, min: 400, max: 2800, scale: 500, k0: 200, k1: 400, tau: 16, margin: 100, guess: 1, firstOld: 1, seed: 1,
+  var ECFG_DEF = mergeSet({ start: 1000, min: 400, max: 2800, scale: 500, k0: 200, k1: 400, tau: 16, margin: 100, mult: 0.1, guess: 1, firstOld: 1, seed: 1,
     lv: { A1: 900, A2: 1200, B1: 1400, B2: 1800, C1: 2200, C2: 2600 } }, SET.elo);   /* "Về mặc định" in Admin returns to these */
   var ECFG = (function () {
     var c = JSON.parse(JSON.stringify(ECFG_DEF)), v = LS.get('oel.eloCfg', null);
     if (v && typeof v === 'object') {
-      ['start', 'min', 'max', 'scale', 'k0', 'k1', 'tau', 'margin'].forEach(function (k) { if (typeof v[k] === 'number' && isFinite(v[k])) c[k] = v[k]; });
+      ['start', 'min', 'max', 'scale', 'k0', 'k1', 'tau', 'margin', 'mult'].forEach(function (k) { if (typeof v[k] === 'number' && isFinite(v[k])) c[k] = v[k]; });
       ['guess', 'firstOld', 'seed'].forEach(function (k) { if (v[k] === 0 || v[k] === 1) c[k] = v[k]; });
       if (v.lv && typeof v.lv === 'object') Object.keys(c.lv).forEach(function (l) { if (typeof v.lv[l] === 'number' && isFinite(v.lv[l])) c.lv[l] = v.lv[l]; });
     }
     if (!(c.scale > 0)) c.scale = ECFG_DEF.scale;
     if (!(c.tau > 0)) c.tau = ECFG_DEF.tau;
+    if (!(c.mult > 0)) c.mult = ECFG_DEF.mult;
     return c;
   })();
   var LEVEL_ELO = ECFG.lv;
@@ -296,7 +297,7 @@
   })();
   function saveElo() { ELO.t = ELO.t.slice(-200); LS.set('oel.elo2', ELO); }
   /* K giảm dần: K0 + K1 ở câu đầu tiên, tiến về K0 sau vài chục câu. */
-  function eloK() { return ECFG.k0 + ECFG.k1 * Math.exp(-ELO.n / ECFG.tau); }
+  function eloK() { return (ECFG.k0 + ECFG.k1 * Math.exp(-ELO.n / ECFG.tau)) * ECFG.mult; }   /* mult scales every answer's Elo change (hot fix: 0.1) */
   function eloClamp(r) { return Math.max(ECFG.min, Math.min(ECFG.max, r)); }
   /* Một câu trả lời: d = độ khó của câu, nOpts = số lựa chọn. Trả về số điểm Elo thay đổi. */
   function rkAnswerElo(d, nOpts, right) {
@@ -671,7 +672,7 @@
       '<tr><td><code>biên</code></td><td>Cho phép lên cấp sớm hơn một chút: R chỉ cần đạt D − biên.</td></tr></tbody></table></div>' +
       '<div class="elo-grid">' + num('start', 'Điểm bắt đầu', 'R ban đầu của người mới.', 10) + num('scale', 'Độ dốc', 'S trong công thức.', 10) +
       num('k0', 'K thấp nhất', 'K0: bước nhỏ nhất khi đã làm nhiều câu.', 1) + num('k1', 'K thêm ở đầu', 'K1: phần cộng thêm ở những câu đầu.', 1) +
-      num('tau', 'Tốc độ giảm K', 'τ: số câu để phần K1 giảm còn ~37%.', 1) + num('margin', 'Biên xếp cấp', 'Trừ vào ngưỡng của mỗi cấp.', 10) +
+      num('tau', 'Tốc độ giảm K', 'τ: số câu để phần K1 giảm còn ~37%.', 1) + num('margin', 'Biên xếp cấp', 'Trừ vào ngưỡng của mỗi cấp.', 10) + num('mult', 'Nhân thay đổi Elo', 'Nhân K cho mọi câu (0.1 = giảm mười lần).', 0.05) +
       num('min', 'Điểm tối thiểu', 'R không xuống dưới mức này.', 50) + num('max', 'Điểm tối đa', 'R không vượt mức này.', 50) + lvF + '</div>' +
       '<div class="elo-grid">' + chk('guess', 'Tính đoán mò', 'Bật thì g = 1 / số lựa chọn.') +
       chk('firstOld', 'Lần đầu dùng cách cũ', 'Lần Tự kiểm tra trình độ đầu tiên xếp cấp bằng cách cũ.') +
@@ -690,7 +691,7 @@
       var cR = fv('ecc-r', ELO.r), cN = Math.max(0, fv('ecc-n', 0)), cO = Math.max(2, fv('ecc-o', 4)), cLv = (document.getElementById('ecc-lv') || {}).value, cOk = fv('ecc-ok', 1);
       var cS = fv('ec-scale', ECFG.scale) || ECFG.scale, cTau = fv('ec-tau', ECFG.tau) || ECFG.tau, cD = fv('ec-lv-' + cLv, ECFG.lv[cLv]);
       var cG = (document.getElementById('ec-guess') ? document.getElementById('ec-guess').checked : ECFG.guess) ? 1 / cO : 0;
-      var cK = fv('ec-k0', ECFG.k0) + fv('ec-k1', ECFG.k1) * Math.exp(-cN / cTau), cP = cG + (1 - cG) / (1 + Math.pow(10, (cD - cR) / cS)), cNew = cR + cK * (cOk - cP);
+      var cK = (fv('ec-k0', ECFG.k0) + fv('ec-k1', ECFG.k1) * Math.exp(-cN / cTau)) * (fv('ec-mult', ECFG.mult) > 0 ? fv('ec-mult', ECFG.mult) : 1), cP = cG + (1 - cG) / (1 + Math.pow(10, (cD - cR) / cS)), cNew = cR + cK * (cOk - cP);
       var out = document.getElementById('ecc-out');
       if (out) out.textContent = 'D (độ khó câu ' + cLv + ') = ' + cD + '\ng = ' + cG.toFixed(3) + '\np = ' + cG.toFixed(3) + ' + (1 − ' + cG.toFixed(3) + ') / (1 + 10^((' + cD + ' − ' + Math.round(cR) + ') / ' + cS + ')) = ' + cP.toFixed(4) +
         '\nK = ' + cK.toFixed(1) + '\nthay đổi = K × (' + cOk + ' − p) = ' + (cK * (cOk - cP) >= 0 ? '+' : '') + (cK * (cOk - cP)).toFixed(1) + '\nR mới = ' + Math.round(cNew);
@@ -871,7 +872,7 @@
     L.push('  xp: ' + j(v.xp).replace(/"(\w+)":/g, '$1: ').replace(/,/g, ', ') + ',', '  curve: ' + j(v.curve).replace(/"(\w+)":/g, '$1: ').replace(/,/g, ', ') + ',', '');
     L.push('  /* Elo for rank mode. lv = difficulty of a question of each CEFR level. K = k0 + k1 * e^(-answers / tau). */');
     var lv = Object.keys(e.lv).map(function (l) { return l + ': ' + e.lv[l]; }).join(', ');
-    L.push('  elo: { start: ' + e.start + ', min: ' + e.min + ', max: ' + e.max + ', scale: ' + e.scale + ', k0: ' + e.k0 + ', k1: ' + e.k1 + ', tau: ' + e.tau + ', margin: ' + e.margin + ', guess: ' + e.guess + ', firstOld: ' + e.firstOld + ', seed: ' + e.seed + ',', '    lv: { ' + lv + ' } },', '');
+    L.push('  elo: { start: ' + e.start + ', min: ' + e.min + ', max: ' + e.max + ', scale: ' + e.scale + ', k0: ' + e.k0 + ', k1: ' + e.k1 + ', tau: ' + e.tau + ', margin: ' + e.margin + ', mult: ' + e.mult + ', guess: ' + e.guess + ', firstOld: ' + e.firstOld + ', seed: ' + e.seed + ',', '    lv: { ' + lv + ' } },', '');
     L.push('  /* Ranks: the highest rank whose elo the player reaches; below the first still counts as rank 1 */', '  ranks: [');
     v.ranks.forEach(function (r, i) { L.push('    { id: ' + (i + 1) + ', name: ' + j(r.name) + ', elo: ' + r.elo + ' }' + (i < v.ranks.length - 1 ? ',' : '')); });
     L.push('  ],', '');
@@ -950,11 +951,12 @@
     else if (a === 'adm-reset-tests') { stats = { sets: {}, all: { sum: 0, cnt: 0 } }; LS.set('oel.stats', stats); PLHIST = []; savePl(); ELO = newElo(); saveElo(); }
     else if (a === 'adm-elo-save') {
       var f = function (id) { var e = document.getElementById(id); return e ? parseFloat(e.value) : NaN; }, c = JSON.parse(JSON.stringify(ECFG));
-      ['start', 'min', 'max', 'scale', 'k0', 'k1', 'tau', 'margin'].forEach(function (k) { var v = f('ec-' + k); if (isFinite(v)) c[k] = v; });
+      ['start', 'min', 'max', 'scale', 'k0', 'k1', 'tau', 'margin', 'mult'].forEach(function (k) { var v = f('ec-' + k); if (isFinite(v)) c[k] = v; });
       Object.keys(c.lv).forEach(function (l) { var v = f('ec-lv-' + l); if (isFinite(v)) c.lv[l] = v; });
       ['guess', 'firstOld', 'seed'].forEach(function (k) { var e = document.getElementById('ec-' + k); if (e) c[k] = e.checked ? 1 : 0; });
       if (!(c.scale > 0)) c.scale = ECFG_DEF.scale;
       if (!(c.tau > 0)) c.tau = ECFG_DEF.tau;
+      if (!(c.mult > 0)) c.mult = ECFG_DEF.mult;
       if (c.min > c.max) { var sw = c.min; c.min = c.max; c.max = sw; }
       Object.keys(c).forEach(function (k) { if (k === 'lv') Object.keys(c.lv).forEach(function (l) { ECFG.lv[l] = c.lv[l]; }); else ECFG[k] = c[k]; });
       LS.set('oel.eloCfg', ECFG); ELO.r = eloClamp(ELO.r); saveElo(); toast('Đã áp dụng công thức Elo');
@@ -1268,7 +1270,8 @@
         if (useStress) {
           q = genStress(); if (!q) continue;
           words = q.opts.map(function (e) { return e.w.w; });
-          c = { why: 'Ba từ còn lại nhấn âm tiết thứ ' + ORD_VI[q.p] + '; “' + esc(q.opts[q.a].w.w) + '” nhấn âm tiết thứ ' + ORD_VI[q.po] + '.', h: 'Chọn từ có <b>trọng âm</b> rơi vào âm tiết khác với ba từ còn lại.', o: q.opts.map(function (e) { return esc(e.w.w); }) };
+          var sRows = q.opts.map(function (e, i) { return '<li class="ipa-row-w"><b' + (i === q.a ? ' class="oddw"' : '') + '>' + esc(e.w.w) + '</b>' + stressDots(q.n, i === q.a ? q.po : q.p) + '<span class="muted ipa-t">' + esc(e.ph) + '</span><span class="au">' + audioBtns(e.w) + '</span></li>'; }).join('');
+          c = { why: 'Ba từ còn lại nhấn âm tiết thứ ' + ORD_VI[q.p] + '; “' + esc(q.opts[q.a].w.w) + '” nhấn âm tiết thứ ' + ORD_VI[q.po] + '. Chấm đặc là âm tiết được nhấn.</span><ul class="ipa-grid c4">' + sRows + '</ul><span>', h: 'Chọn từ có <b>trọng âm</b> rơi vào âm tiết khác với ba từ còn lại.', o: q.opts.map(function (e) { return esc(e.w.w); }) };
         } else {
           if (hasGen && (!ODDS.length || Math.random() < 0.75)) q = genSound();
           else if (ODDS.length) { var od = rkRand(ODDS), order = shuffle([0, 1, 2, 3]); q = { sound: true, note: od.note, opts: order.map(function (i) { return markedWord(od.o[i]); }), a: order.indexOf(od.a) }; }
@@ -1402,7 +1405,7 @@
       '<div class="row"><button type="button" class="btn" data-action="rk-start"' + (rkLoading ? ' disabled' : '') + '>' + (rkLoading ? 'Đang tải câu hỏi…' : 'Bắt đầu bài xếp hạng') + '</button><span class="muted">' + R.questions + ' câu · ' + R.minutes + ' phút</span></div></div></section>' +
       '<section class="panel stack" style="gap:0.6rem"><h2>Biểu đồ Elo</h2>' + rkGraph() + '</section>' +
       '<section class="panel stack" style="gap:0.6rem"><details><summary style="cursor:pointer;font-weight:600">Luật chơi và điểm thưởng</summary><ul class="tip-list">' + rules.map(function (r) { return '<li>' + r + '</li>'; }).join('') + '</ul></details></section>' +
-      '<section class="panel stack" style="gap:0.6rem"><h2>Các hạng</h2><ul class="rk-ranks">' + RANKS.map(function (r) { return '<li class="' + (r.id === rk.r.id ? 'on' : '') + '"><span class="rk-badge rk-r' + r.id + '">' + esc(r.name) + '</span><span class="muted">từ ' + r.elo + ' Elo' + (r.id === RANKS[0].id ? ' (và thấp hơn)' : '') + '</span></li>'; }).join('') + '</ul></section></div>';
+      '<section class="panel stack" style="gap:0.6rem"><h2>Các hạng</h2><ul class="rk-ranks">' + RANKS.slice().reverse().map(function (r) { return '<li class="' + (r.id === rk.r.id ? 'on' : '') + '"><span class="rk-badge rk-r' + r.id + '">' + esc(r.name) + '</span><span class="muted">từ ' + r.elo + ' Elo' + (r.id === RANKS[0].id ? ' (và thấp hơn)' : '') + '</span></li>'; }).join('') + '</ul></section></div>';
   }
   function viewRankQuestion() {
     var c = RK.cur, R = SETV.rank, answered = c.picked !== null, letters = ['A', 'B', 'C', 'D'];
@@ -1425,20 +1428,23 @@
       '<div><p class="muted" style="font-size:0.9rem;margin-bottom:0.4rem">Câu ' + (RK.i + 1) + ' / ' + R.questions + (RK.cs >= 2 ? ' · chuỗi đúng ' + RK.cs : '') + '</p><div class="bar"><i style="width:' + (RK.i / R.questions * 100) + '%"></i></div></div>' +
       '<p class="qtext">' + c.h + '</p>' + (ADMIN ? '<p class="adm-note">[admin] cấp ' + esc(c.lv) + ', độ khó ' + c.D + '</p>' : '') +
       '<div class="opts">' + opts + '</div>' + fb +
-      '<div><button class="btn ghost small" type="button" data-action="rk-quit">Bỏ bài (không có điểm thưởng)</button></div></div>';
+      '<div><button class="btn ghost small" type="button" data-action="rk-quit">Kết thúc bài</button></div></div>';
   }
   function viewRankResult() {
     var n = RK.ans, R = SETV.rank, d = RK.r1 - RK.r0, up = RK.rank1.i > RK.rank0.i, dn = RK.rank1.i < RK.rank0.i;
     var rows = [['Câu trả lời', RK.base, RK.ans + ' câu'], ['Tay nhanh', RK.quick, RK.quickN + ' câu'], ['Bấm vội rồi sai', RK.strike, RK.strikeN + ' câu'], ['Chuỗi đúng (dài nhất ' + RK.maxCs + ')', RK.streakB, ''],
       ['Chuỗi thắng', RK.winB, RK.win ? 'chuỗi ' + ELO.ws + ' bài' : ''], ['Về đích nhanh', RK.fastB, RK.fastB ? 'dưới ' + SETV.bonus.fastMin + ' phút' : '']];
     var miss = RK.log.filter(function (x) { return !x.right; });
-    var note = RK.mode === 'time' ? 'Hết giờ, bài kết thúc với các câu đã làm.' : RK.mode === 'quit' ? 'Bạn đã bỏ bài; điểm các câu đã làm vẫn được tính.' : RK.win ? 'Bài thắng: Elo tăng.' : 'Bài này Elo không tăng.';
+    var note = RK.mode === 'time' ? 'Hết giờ, bài kết thúc với các câu đã làm.' : RK.mode === 'quit' ? 'Bạn đã kết thúc bài sớm: điểm các câu đã làm vẫn được tính, nhưng không có thưởng chuỗi thắng và về đích nhanh.' : RK.win ? 'Bài thắng: Elo tăng.' : 'Bài này Elo không tăng.';
     return rkCorner() + '<div class="quiz"><p class="call">Xếp hạng / Kết quả</p><h1 style="font-size:2rem">' + (up ? 'Lên hạng ' + esc(RK.rank1.r.name) + '!' : dn ? 'Xuống hạng ' + esc(RK.rank1.r.name) : 'Xong bài') + '</h1>' +
       '<p class="muted" style="margin:0">' + esc(note) + '</p>' +
       '<div class="stats"><div class="stat"><b class="' + (d >= 0 ? 'rk-up-t' : 'rk-dn-t') + '">' + sgn(d) + '</b><span>Elo: ' + Math.round(RK.r0) + ' → ' + Math.round(RK.r1) + '</span></div><div class="stat"><b>' + RK.ok + '/' + n + '</b><span>câu đúng</span></div><div class="stat"><b>' + fmtClock(RK.sec * 1000) + '</b><span>thời gian (tối đa ' + fmtClock(RK.limit) + ')</span></div></div>' +
       '<div>' + rkBadge(RK.rank1) + (up || dn ? ' <span class="muted">từ ' + esc(RK.rank0.r.name) + '</span>' : '') + '</div>' +
       '<div class="table-wrap"><table style="min-width:0"><thead><tr><th>Khoản</th><th>Elo</th><th></th></tr></thead><tbody>' + rows.map(function (r) { return '<tr><td>' + esc(r[0]) + '</td><td class="' + (r[1] > 0 ? 'rk-up-t' : r[1] < 0 ? 'rk-dn-t' : '') + '">' + sgn1(r[1]) + '</td><td class="muted">' + esc(r[2]) + '</td></tr>'; }).join('') + '</tbody></table></div>' +
-      (miss.length ? '<section class="stack" style="gap:0.6rem"><h2>Các câu làm sai (' + miss.length + ')</h2>' + miss.map(function (x) { return '<div class="miss"><span class="tag">' + esc(x.tag) + '</span><strong>' + x.h + '</strong><span>Bạn chọn: <span class="no-way">' + x.o[x.picked] + '</span></span><span>Đáp án: <span class="yes-way">' + x.o[x.a] + '</span></span></div>'; }).join('') + '</section>' : '') +
+      (miss.length ? '<section class="stack" style="gap:1rem"><h2>Các câu làm sai (' + miss.length + ')</h2>' + ['Ngữ pháp', 'Từ vựng', 'Phát âm'].map(function (tag) {
+        var ms = miss.filter(function (x) { return x.tag === tag; }), tot = RK.log.filter(function (x) { return x.tag === tag; }).length;
+        return ms.length ? '<div class="stack" style="gap:0.6rem"><h3 style="margin:0">' + esc(tag) + ' <span class="tag">sai ' + ms.length + '/' + tot + '</span></h3>' + ms.map(function (x) { return '<div class="miss"><strong>' + x.h + '</strong><span>Bạn chọn: <span class="no-way">' + x.o[x.picked] + '</span></span><span>Đáp án: <span class="yes-way">' + x.o[x.a] + '</span></span></div>'; }).join('') + '</div>' : '';
+      }).join('') + '</section>' : '') +
       '<div class="row"><button class="btn" type="button" data-action="rk-home">Về trang Xếp hạng</button></div></div>';
   }
   function viewTests() {
