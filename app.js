@@ -1274,7 +1274,7 @@
           c = { why: 'Ba từ còn lại nhấn âm tiết thứ ' + ORD_VI[q.p] + '; “' + esc(q.opts[q.a].w.w) + '” nhấn âm tiết thứ ' + ORD_VI[q.po] + '. Chấm đặc là âm tiết được nhấn.</span><ul class="ipa-grid c4">' + sRows + '</ul><span>', h: 'Chọn từ có <b>trọng âm</b> rơi vào âm tiết khác với ba từ còn lại.', o: q.opts.map(function (e) { return esc(e.w.w); }) };
         } else {
           if (hasGen && (!ODDS.length || Math.random() < 0.75)) q = genSound();
-          else if (ODDS.length) { var od = rkRand(ODDS), order = shuffle([0, 1, 2, 3]); q = { sound: true, note: od.note, opts: order.map(function (i) { return markedWord(od.o[i]); }), a: order.indexOf(od.a) }; }
+          else if (ODDS.length) { var od = rkRand(ODDS), order = shuffle([0, 1, 2, 3]); q = { sound: true, row: od.row, note: od.note, opts: order.map(function (i) { return markedWord(od.o[i]); }), a: order.indexOf(od.a), picked: null }; }
           if (!q) continue;
           words = q.opts.map(function (e) { return e.plain; });
           c = { why: q.gen ? 'Ba từ còn lại đọc “' + esc(q.g) + '” là /' + esc(q.lm) + '/; “' + esc(q.opts[q.a].plain) + '” đọc là /' + esc(q.lo) + '/.' : (q.note ? 'Ghi chú: ' + esc(q.note) : ''), h: 'Chọn từ có phần <u>gạch chân</u> phát âm khác với ba từ còn lại.', o: q.opts.map(function (e) { return e.html; }) };
@@ -1284,7 +1284,7 @@
         var diff = Math.max.apply(null, words.map(hiLevel));
         if (diff < want - 1 && t < 25) continue;   /* aim for words of about the wanted level */
         RK.used[key] = 1;
-        out = { k: 'i', tag: 'Phát âm', lv: LV_IDS[diff] || lv, D: ECFG.lv[LV_IDS[diff]] || ECFG.lv[lv], h: c.h, o: c.o, a: q.a, why: c.why };
+        out = { k: 'i', tag: 'Phát âm', lv: LV_IDS[diff] || lv, D: ECFG.lv[LV_IDS[diff]] || ECFG.lv[lv], h: c.h, o: c.o, a: q.a, why: c.why, ip: q };
       }
     } finally { ipaLv = oldLv; }
     return out;
@@ -1323,12 +1323,16 @@
   function rkPick(i) {
     var c = RK && RK.cur; if (!c || c.picked !== null || RK.done) return;
     var B = SETV.bonus, dt = (Date.now() - RK.qs0) / 1000, right = i === c.a, bits = [];
-    c.picked = i; c.right = right; c.dt = dt; c.dBase = rkAnswerElo(c.D, c.o.length, right); RK.base += c.dBase; RK.ans++;
+    var helped = !!(c.ip && c.ip.help);
+    c.picked = i; if (c.ip) c.ip.picked = i;
+    c.right = right; c.dt = dt; c.dBase = rkAnswerElo(c.D, c.o.length, right);
+    if (helped && right) { var half = c.dBase / 2; ELO.r = eloClamp(ELO.r - half); c.dBase -= half; }   /* "Gợi ý": a correct answer earns half */
+    RK.base += c.dBase; RK.ans++;
     c.dQuick = 0; c.dStreak = 0;
     if (right) {
       RK.ok++; RK.cs++; RK.maxCs = Math.max(RK.maxCs, RK.cs);
       if (RK.cs >= B.streakFrom && RK.streakB < B.streakMax) { c.dStreak = rkBump(Math.min(B.streakPts, B.streakMax - RK.streakB)); RK.streakB += c.dStreak; }
-      if (dt < B.quickSec) { c.dQuick = rkBump(B.quickPts); RK.quick += c.dQuick; RK.quickN++; }
+      if (dt < B.quickSec && !helped) { c.dQuick = rkBump(B.quickPts); RK.quick += c.dQuick; RK.quickN++; }
     } else {
       RK.cs = 0;
       if (dt < B.quickSec) { c.dQuick = rkBump(-B.quickStrike); RK.strike += c.dQuick; RK.strikeN++; }
@@ -1407,28 +1411,51 @@
       '<section class="panel stack" style="gap:0.6rem"><details><summary style="cursor:pointer;font-weight:600">Luật chơi và điểm thưởng</summary><ul class="tip-list">' + rules.map(function (r) { return '<li>' + r + '</li>'; }).join('') + '</ul></details></section>' +
       '<section class="panel stack" style="gap:0.6rem"><h2>Các hạng</h2><ul class="rk-ranks">' + RANKS.slice().reverse().map(function (r) { return '<li class="' + (r.id === rk.r.id ? 'on' : '') + '"><span class="rk-badge rk-r' + r.id + '">' + esc(r.name) + '</span><span class="muted">từ ' + r.elo + ' Elo' + (r.id === RANKS[0].id ? ' (và thấp hơn)' : '') + '</span></li>'; }).join('') + '</ul></section></div>';
   }
+  function rkParts(c) {
+    var parts = [['Câu trả lời', c.dBase]];
+    if (c.dQuick) parts.push([c.right ? 'Tay nhanh' : 'Sai khi bấm vội', c.dQuick]);
+    if (c.dStreak) parts.push(['Chuỗi đúng ×' + c.cs, c.dStreak]);
+    return '<p class="rk-parts">' + parts.map(function (x) { return '<span class="' + (x[1] >= 0 ? 'rk-up-t' : 'rk-dn-t') + '">' + esc(x[0]) + ' ' + sgn1(x[1]) + '</span>'; }).join(' · ') + '</p>';
+  }
+  function rkHeader(c, R) {
+    return '<div class="row" style="justify-content:space-between"><p class="call" style="margin:0">Xếp hạng / ' + esc(c.tag) + (c.wild ? ' <span class="tag rk-wild">Câu bất ngờ</span>' : '') + '</p>' +
+      '<span class="rk-timer-wrap"><span class="muted">Còn</span> <b id="rk-timer" class="rk-timer">' + fmtClock(RK.t0 + RK.limit - Date.now()) + '</b></span></div>' +
+      '<div><p class="muted" style="font-size:0.9rem;margin-bottom:0.4rem">Câu ' + (RK.i + 1) + ' / ' + R.questions + (RK.cs >= 2 ? ' · chuỗi đúng ' + RK.cs : '') + '</p><div class="bar"><i style="width:' + (RK.i / R.questions * 100) + '%"></i></div></div>' +
+      (RK.warn ? '<div class="panel rk-warn" role="alert">Bạn đang làm bài xếp hạng. Hãy làm xong, hoặc bấm “Kết thúc bài” nếu muốn rời đi.</div>' : '');
+  }
+  function rkLeaveModal() {
+    return '<div class="modal" role="dialog" aria-modal="true" aria-label="Rời khỏi bài xếp hạng?"><div class="modal-bg"></div><div class="modal-box stack" style="gap:0.8rem"><h2>Rời khỏi bài xếp hạng?</h2>' +
+      '<p>Muốn sang mục khác thì bài phải kết thúc ngay. Điểm Elo của các câu đã làm vẫn được tính, nhưng không có thưởng chuỗi thắng và về đích nhanh.</p>' +
+      '<div class="row"><button class="btn" type="button" data-action="rk-leave-stay">Tiếp tục làm bài</button><button class="btn ghost" type="button" data-action="rk-leave-end">Kết thúc bài và rời đi</button></div></div></div>';
+  }
+  /* A pronunciation question is drawn by the practice views, so notes, dots, hints, sound pop-ups and tips all work as in Phát âm. */
+  function viewRankIpa(c, R) {
+    var answered = c.picked !== null;
+    ipaHost = 'rank';
+    var h;
+    try { h = c.ip.sound ? viewIpaSound(c.ip) : viewIpaOdd(c.ip); } finally { ipaHost = ''; }
+    h = h.replace(/^<div class="quiz">/, '').replace(/<\/div>$/, '').replace(/data-action="ip-pick"/g, 'data-action="rk-pick"').replace(/data-action="ip-next"/g, 'data-action="rk-next"').replace(/data-action="ip-help"/g, 'data-action="rk-help"').replace(/data-action="ip-note"/g, 'data-action="rk-note"');
+    if (ADMIN && !answered) { var at = h.indexOf('data-action="rk-pick" data-i="' + c.a + '"'), end = at > -1 ? h.indexOf('</button>', at) : -1; if (end > -1) h = h.slice(0, end) + '<b class="adm-ok">✓ đúng</b>' + h.slice(end); }
+    if (answered) { var fbAt = h.indexOf('<div class="feedback"'); if (fbAt > -1) { var vEnd = h.indexOf('</strong>', fbAt); if (vEnd > -1) h = h.slice(0, vEnd + 9) + rkParts(c) + h.slice(vEnd + 9); } }
+    return rkCorner() + '<div class="quiz">' + rkHeader(c, R) + h + '<div><button class="btn ghost small" type="button" data-action="rk-quit">Kết thúc bài</button></div></div>' + (RK.leave ? rkLeaveModal() : '');
+  }
   function viewRankQuestion() {
     var c = RK.cur, R = SETV.rank, answered = c.picked !== null, letters = ['A', 'B', 'C', 'D'];
+    if (c.ip) return viewRankIpa(c, R);
     var opts = c.o.map(function (html, i) {
       var cls = 'opt' + (answered ? (i === c.a ? ' right' : i === c.picked ? ' wrong' : '') : '');
       return '<button type="button" class="' + cls + '" data-action="rk-pick" data-i="' + i + '"' + (answered ? ' disabled' : '') + '><i>' + letters[i] + '</i><span>' + html + '</span>' + (ADMIN && !answered && i === c.a ? '<b class="adm-ok">✓ đúng</b>' : '') + '</button>';
     }).join('');
     var fb = '';
     if (answered) {
-      var parts = [['Câu trả lời', c.dBase]];
-      if (c.dQuick) parts.push([c.right ? 'Tay nhanh' : 'Sai khi bấm vội', c.dQuick]);
-      if (c.dStreak) parts.push(['Chuỗi đúng ×' + c.cs, c.dStreak]);
-      fb = '<div class="feedback" aria-live="polite"><strong>' + (c.right ? 'Chính xác.' : 'Chưa đúng.') + '</strong>' +
-        '<p class="rk-parts">' + parts.map(function (x) { return '<span class="' + (x[1] >= 0 ? 'rk-up-t' : 'rk-dn-t') + '">' + esc(x[0]) + ' ' + sgn1(x[1]) + '</span>'; }).join(' · ') + '</p>' +
+      fb = '<div class="feedback" aria-live="polite"><strong>' + (c.right ? 'Chính xác.' : 'Chưa đúng.') + '</strong>' + rkParts(c) +
         (c.why ? '<span>' + c.why + '</span>' : '') + (c.word ? '<div class="row">' + audioBtns(c.word) + '</div>' : '') +
         '<div style="margin-top:0.5rem"><button class="btn" type="button" data-action="rk-next" autofocus>' + (RK.i + 1 >= R.questions ? 'Xem kết quả' : 'Câu tiếp') + '</button></div></div>';
     }
-    return rkCorner() + '<div class="quiz"><div class="row" style="justify-content:space-between"><p class="call" style="margin:0">Xếp hạng / ' + esc(c.tag) + (c.wild ? ' <span class="tag rk-wild">Câu bất ngờ</span>' : '') + '</p>' +
-      '<span class="rk-timer-wrap"><span class="muted">Còn</span> <b id="rk-timer" class="rk-timer">' + fmtClock(RK.t0 + RK.limit - Date.now()) + '</b></span></div>' +
-      '<div><p class="muted" style="font-size:0.9rem;margin-bottom:0.4rem">Câu ' + (RK.i + 1) + ' / ' + R.questions + (RK.cs >= 2 ? ' · chuỗi đúng ' + RK.cs : '') + '</p><div class="bar"><i style="width:' + (RK.i / R.questions * 100) + '%"></i></div></div>' +
+    return rkCorner() + '<div class="quiz">' + rkHeader(c, R) +
       '<p class="qtext">' + c.h + '</p>' + (ADMIN ? '<p class="adm-note">[admin] cấp ' + esc(c.lv) + ', độ khó ' + c.D + '</p>' : '') +
       '<div class="opts">' + opts + '</div>' + fb +
-      '<div><button class="btn ghost small" type="button" data-action="rk-quit">Kết thúc bài</button></div></div>';
+      '<div><button class="btn ghost small" type="button" data-action="rk-quit">Kết thúc bài</button></div></div>' + (RK.leave ? rkLeaveModal() : '');
   }
   function viewRankResult() {
     var n = RK.ans, R = SETV.rank, d = RK.r1 - RK.r0, up = RK.rank1.i > RK.rank0.i, dn = RK.rank1.i < RK.rank0.i;
@@ -2539,9 +2566,9 @@ var EST_PH1 = 15, EST_QUOTA = [3,3,3,3,3], EST_QUOTA_LOW = [8, 8, 6, 5, 3], EST_
   function helpHtml(c, hint) {
     if (c.help) return hint ? '<div class="hint"' + (c.picked === null ? ' role="status"' : '') + '>' + hint + '</div>' : '';   /* stays after the answer, to compare with the result */
     if (c.picked !== null) return '';
-    return '<div class="row"><button type="button" class="btn ghost small" data-action="ip-help">Gợi ý</button><span class="muted" style="font-size:0.9rem">Dùng gợi ý thì trả lời đúng chỉ được 0.5 điểm.</span></div>';
+    return '<div class="row"><button type="button" class="btn ghost small" data-action="ip-help">Gợi ý</button><span class="muted" style="font-size:0.9rem">' + (ipaHost === 'rank' ? 'Dùng gợi ý thì trả lời đúng chỉ được một nửa Elo và không có thưởng tay nhanh.' : 'Dùng gợi ý thì trả lời đúng chỉ được 0.5 điểm.') + '</span></div>';
   }
-  function verdict(c, ok) { return ok ? (c.help ? 'Chính xác (có dùng gợi ý: 0.5 điểm).' : 'Chính xác.') : 'Chưa đúng.'; }
+  function verdict(c, ok) { return ok ? (c.help ? (ipaHost === 'rank' ? 'Chính xác (có dùng gợi ý: Elo giảm một nửa).' : 'Chính xác (có dùng gợi ý: 0.5 điểm).') : 'Chính xác.') : 'Chưa đúng.'; }
   /* Words that look alike must not share a question: same root (related), same ending from the underlined letters on (could / would / should, light / night / knight, day / bay / pay),
      or the same beginning up to the underlined letters (man / map, bread / breakfast). */
   function relatedSound(a, b) {
@@ -2722,6 +2749,8 @@ var EST_PH1 = 15, EST_QUOTA = [3,3,3,3,3], EST_QUOTA_LOW = [8, 8, 6, 5, 3], EST_
     render();
   }
   var ORD_VI = ['nhất', 'hai', 'ba', 'tư'];
+  var ipaHost = '';   /* 'rank' while the IPA views are drawn inside a rank test (no session header, own help text) */
+  function ipTop(title) { return ipaHost === 'rank' ? '' : sessionTop(title, ipaQ.i, ipaQ.qs.length, 'ip-exit'); }
   /* Personal notes: one row of tickable dots per word (one dot per syllable), so the learner does not have to remember which syllable they heard as stressed. Not graded, kept only for the current question. */
   function noteDots(c, i) {
     var cur = c.notes && c.notes[i] != null ? c.notes[i] : -1, d = '', k;
@@ -2750,7 +2779,7 @@ var EST_PH1 = 15, EST_QUOTA = [3,3,3,3,3], EST_QUOTA_LOW = [8, 8, 6, 5, 3], EST_
         '<span>Ba từ còn lại nhấn âm tiết thứ ' + ORD_VI[c.p] + '; “' + esc(odd.w.w) + '” nhấn âm tiết thứ ' + ORD_VI[c.po] + '. Chấm đặc là âm tiết được nhấn. Bấm vào từ để xem nghĩa.</span><ul class="ipa-grid c4">' + rows + '</ul>' +
         '<div style="margin-top:0.5rem"><button class="btn" type="button" data-action="ip-next">Tiếp</button></div></div>';
     }
-    return '<div class="quiz">' + sessionTop('Chọn từ khác trọng âm', ipaQ.i, ipaQ.qs.length, 'ip-exit') +
+    return '<div class="quiz">' + ipTop('Chọn từ khác trọng âm') +
       '<p style="font-size:1.15rem;margin:0">Chọn từ có <b>trọng âm</b> rơi vào âm tiết khác với ba từ còn lại.</p><p class="muted" style="margin:0">Cả bốn từ đều có ' + c.n + ' âm tiết.</p>' +
       (ADMIN ? '<p class="adm-note">[admin] Ba từ thuộc nhóm ' + c.n + ':' + c.p + ', từ khác thuộc nhóm ' + c.n + ':' + c.po + ' (content/stress.js, dạng số âm tiết:vị trí âm tiết nhấn tính từ 0)</p>' : '') +
       '<p class="note-head" aria-hidden="true">Ghi chú của bạn</p><div class="opts">' + opts + '</div>' + help + fb + soundPopup() + '</div>';
@@ -2773,7 +2802,7 @@ var EST_PH1 = 15, EST_QUOTA = [3,3,3,3,3], EST_QUOTA_LOW = [8, 8, 6, 5, 3], EST_
       fb = '<div class="feedback" aria-live="polite"><strong>' + verdict(c, ok) + '</strong><span>' + (c.gen ? 'Ba từ còn lại đọc “' + esc(c.g) + '” là ' + soundLink(c.lm) + '; từ khác biệt là “' + odd.html + '”, đọc là ' + soundLink(c.lo) + '. Bấm vào âm để xem cách phát âm, bấm vào từ để xem nghĩa.' : 'Từ khác biệt là “' + odd.html + '”: phần gạch chân của nó phát âm khác với ba từ còn lại. Bấm vào từ để xem nghĩa.') + '</span>' +
         '<ul class="ipa-grid c3">' + rows + '</ul><div style="margin-top:0.5rem"><button class="btn" type="button" data-action="ip-next">Tiếp</button></div></div>';
     }
-    return '<div class="quiz">' + sessionTop('Chọn từ khác âm', ipaQ.i, ipaQ.qs.length, 'ip-exit') +
+    return '<div class="quiz">' + ipTop('Chọn từ khác âm') +
       '<p style="font-size:1.15rem;margin:0">Chọn từ có phần <u>gạch chân</u> phát âm khác với ba từ còn lại.</p>' +
       (ADMIN ? '<p class="adm-note">[admin] ' + (c.gen ? 'Nhóm “' + esc(c.g) + '”: ba từ /' + esc(c.lm) + '/, từ khác /' + esc(c.lo) + '/ (content/sound-groups.js)' : 'Dòng ' + c.row + ' trong content/odd-sounds.csv' + (c.note ? ' · ' + esc(c.note) : '')) + '</p>' : '') + '<div class="opts">' + opts + '</div>' + help + fb + soundPopup() + '</div>';
   }
@@ -3066,9 +3095,19 @@ var EST_PH1 = 15, EST_QUOTA = [3,3,3,3,3], EST_QUOTA_LOW = [8, 8, 6, 5, 3], EST_
         function () { rkLoading = false; rkMsg = 'Không tải được câu hỏi. Hãy kiểm tra kết nối mạng rồi thử lại.'; render(); });
       return;
     }
-    if (a === 'rk-pick') { rkPick(parseInt(t.getAttribute('data-i'), 10)); render(); var nb = view.querySelector('[data-action="rk-next"]'); if (nb) nb.focus(); return; }
-    if (a === 'rk-next') { rkNext(); render(); window.scrollTo(0, 0); return; }
-    if (a === 'rk-quit') { if (RK && !RK.done) { rkFinish('quit'); } render(); window.scrollTo(0, 0); return; }
+    if (a === 'rk-pick') { if (RK) RK.warn = false; ipaPop = ''; ipaCard = null; rkPick(parseInt(t.getAttribute('data-i'), 10)); render(); var nb = view.querySelector('[data-action="rk-next"]'); if (nb) nb.focus(); return; }
+    if (a === 'rk-help') { var hc = RK && RK.cur && RK.cur.ip; if (hc && hc.picked === null && !hc.help) { hc.help = true; render(); } return; }
+    if (a === 'rk-note') {
+      var nc = RK && RK.cur && RK.cur.ip; if (!nc || !nc.opts || nc.sound) return;
+      var wi2 = parseInt(t.getAttribute('data-i'), 10), si2 = parseInt(t.getAttribute('data-s'), 10);
+      nc.notes = nc.notes || [null, null, null, null]; nc.notes[wi2] = nc.notes[wi2] === si2 ? null : si2;
+      Array.prototype.forEach.call(t.parentNode.children, function (b, k) { b.setAttribute('aria-pressed', String(nc.notes[wi2] === k)); });
+      return;
+    }
+    if (a === 'rk-leave-stay') { if (RK) { RK.leave = false; RK.leaveTries = 0; } render(); return; }
+    if (a === 'rk-leave-end') { var go = RK && RK.pending; if (RK && !RK.done) rkFinish('quit'); if (RK) { RK.leave = false; } ipaPop = ''; ipaCard = null; if (go && go !== 'rank') location.hash = '#' + go; else render(); return; }
+    if (a === 'rk-next') { ipaPop = ''; ipaCard = null; rkNext(); render(); window.scrollTo(0, 0); return; }
+    if (a === 'rk-quit') { if (RK && !RK.done) { rkFinish('quit'); } ipaPop = ''; ipaCard = null; render(); window.scrollTo(0, 0); return; }
     if (a === 'rk-home') { RK = null; rkMsg = ''; render(); window.scrollTo(0, 0); return; }
     if (a === 'g-sub') {
       gSub = t.getAttribute('data-v') === 'test' ? 'test' : 'learn'; quiz = null; render(); window.scrollTo(0, 0);
@@ -3352,7 +3391,18 @@ var EST_PH1 = 15, EST_QUOTA = [3,3,3,3,3], EST_QUOTA_LOW = [8, 8, 6, 5, 3], EST_
     else if (ev.target.id === 'tqform') { ev.preventDefault(); tqSubmit(); }
     else if (ev.target.id === 'ipform') { ev.preventDefault(); ipSubmit(); }
   });
-  window.addEventListener('hashchange', function () { render(); window.scrollTo(0, 0); });
+  /* During a rank test the other pages are locked: the first attempt to leave shows a warning, a second one asks to end the test. */
+  window.addEventListener('hashchange', function () {
+    var h = location.hash.replace('#', '');
+    if (RK && !RK.done && h !== 'rank') {
+      try { history.replaceState(null, '', '#rank'); } catch (e) { location.hash = '#rank'; }
+      RK.pending = h || 'home'; RK.leaveTries = (RK.leaveTries || 0) + 1;
+      if (RK.leaveTries >= 2) RK.leave = true; else RK.warn = true;
+      render(); return;
+    }
+    render(); window.scrollTo(0, 0);
+  });
+  window.addEventListener('beforeunload', function (e) { if (RK && !RK.done) { e.preventDefault(); e.returnValue = ''; } });
 
   applyFonts();
   syncAdminTab();

@@ -497,3 +497,5 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 0
 .rk-wild { border-color: var(--accent); color: var(--accent); }
 @media (prefers-reduced-motion: reduce) { .rk-corner .pop-up, .rk-corner .pop-dn { animation: none; } }
 @media (max-width: 760px) { .rk-corner { top: auto; bottom: 0.8rem; right: 0.6rem; } }
+
+.rk-warn { border-color: var(--bad); background: var(--bad-bg); color: var(--ink); padding: 0.7rem 1rem; }
