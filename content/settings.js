@@ -31,12 +31,13 @@ OEL.settings = {
      mix = share of grammar, vocab and IPA questions (relative weights).
      wild = chance that a question ignores the player's level; wildSpread = how far (in Elo) a wild question may be from the player.
      nearSpread = how far (in Elo) a normal question may be from the player.
-     ipaLevel = difficulty level given to each kind of IPA question (vocab uses the highest level of the word). */
+     ipaDefault = level given to an IPA word that is not in the word list. Every vocab and IPA question gets the highest level of its words;
+     grammar questions use their own level. */
   rank: {
     questions: 30, minutes: 20,
     mix: { grammar: 1, vocab: 1, ipa: 1 },
     wild: 0.2, wildSpread: 900, nearSpread: 250,
-    ipaLevel: { sound: "A2", odd: "B1", stress: "B2", type: "B1", quote: "B2" }
+    ipaDefault: "B1"
   },
 
   /* ---- Rank mode bonuses (Elo points added at the end of a test) ----

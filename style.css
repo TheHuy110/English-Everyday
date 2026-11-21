@@ -464,3 +464,35 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 0
 .adm-sec > summary::after { content: "+"; font-family: var(--font-mono); color: var(--muted); font-size: 1.2rem; }
 .adm-sec[open] > summary::after { content: "–"; }
 .adm-sec[open] > summary { margin-bottom: 0.8rem; }
+
+/* Rank mode (Xếp hạng) */
+.rk-badge { display: inline-block; font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; padding: 0.2rem 0.75rem; border-radius: 999px; color: #fff; background: #777; letter-spacing: 0.01em; }
+.rk-r1 { background: #a8693a; } .rk-r2 { background: #7d8996; } .rk-r3 { background: #c28a0a; } .rk-r4 { background: #2f8f86; } .rk-r5 { background: #3b82d6; } .rk-r6 { background: linear-gradient(90deg, #7c3aed, #db2777); }
+.rk-hero { display: grid; gap: 1.5rem; grid-template-columns: minmax(10rem, 14rem) 1fr; align-items: center; }
+@media (max-width: 640px) { .rk-hero { grid-template-columns: 1fr; } }
+.rk-hero-main { display: grid; gap: 0.35rem; justify-items: start; }
+.rk-hero-side { display: grid; gap: 0.8rem; }
+.rk-big { font-family: var(--font-display); font-weight: 700; font-size: 3.6rem; line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.rk-bar { height: 0.6rem; }
+.rk-stats { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; color: var(--muted); }
+.rk-stats b { color: var(--ink); font-family: var(--font-display); font-size: 1.15rem; }
+.rk-up-t { color: var(--good); } .rk-dn-t { color: var(--bad); }
+.rk-graph { max-width: 40rem; height: auto; color: var(--ink); }
+.rk-graph .rk-line { stroke: var(--accent); stroke-width: 2; }
+.rk-graph .rk-gl { stroke: var(--line); stroke-dasharray: 3 3; }
+.rk-graph .rk-gt { fill: var(--muted); font-size: 8px; font-family: var(--font-mono); }
+.rk-graph .rk-up { fill: var(--good); } .rk-graph .rk-dn { fill: var(--bad); }
+.rk-ranks { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+.rk-ranks li { display: flex; gap: 0.8rem; align-items: center; padding: 0.35rem 0.5rem; border-radius: 8px; }
+.rk-ranks li.on { background: var(--bg); outline: 2px solid var(--accent); }
+.rk-corner { position: fixed; top: 4.4rem; right: 0.8rem; z-index: 20; display: flex; align-items: center; gap: 0.5rem; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 0.3rem 0.8rem 0.3rem 0.4rem; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+.rk-corner .rk-elo { font-family: var(--font-display); font-size: 1.25rem; font-variant-numeric: tabular-nums; }
+.rk-corner small { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; }
+@keyframes rk-pop { 0% { transform: scale(1); } 40% { transform: scale(1.35); } 100% { transform: scale(1); } }
+.rk-corner .pop-up, .rk-corner .pop-dn { animation: rk-pop 0.5s ease-out; display: inline-block; }
+.rk-corner .pop-up { color: var(--good); } .rk-corner .pop-dn { color: var(--bad); }
+.rk-timer { font-family: var(--font-mono); font-size: 1.15rem; font-variant-numeric: tabular-nums; }
+.rk-timer.low { color: var(--bad); }
+.rk-parts { margin: 0; font-family: var(--font-mono); font-size: 0.9rem; }
+.rk-wild { border-color: var(--accent); color: var(--accent); }
+@media (prefers-reduced-motion: reduce) { .rk-corner .pop-up, .rk-corner .pop-dn { animation: none; } }

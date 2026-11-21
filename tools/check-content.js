@@ -79,7 +79,7 @@ else {
   const cv = S.curve || {}; (cv.base > 0 && cv.power > 0) || err('settings.curve needs base and power above 0');
   const rk = S.ranks || []; (rk.length >= 2 && rk.every((r, i) => str(r.name) && typeof r.elo === 'number' && (i === 0 || r.elo > rk[i-1].elo))) || err('settings.ranks needs 2+ ranks with a name and rising elo');
   const rr = S.rank || {}; (rr.questions > 0 && rr.minutes > 0) || err('settings.rank needs questions and minutes above 0');
-  Object.entries(rr.ipaLevel || {}).forEach(([k, l]) => LV.includes(l) || err('settings.rank.ipaLevel.' + k + ' must be one of ' + LV.join(', ')));
+  LV.includes(rr.ipaDefault) || err('settings.rank.ipaDefault must be one of ' + LV.join(', '));
   (Number.isInteger(P.levelsPerStage) && P.levelsPerStage > 0) || err('progress.levelsPerStage must be a whole number above 0');
   const sg = P.stages || []; sg.length || err('progress.stages is empty');
   sg.forEach((s, i) => str(s.name) || err('progress stage #' + (i+1) + ': missing name'));

@@ -7,8 +7,9 @@ A static site (no server, no build step for the site itself). The browser loads 
 | Path | What it is | Edit by hand? |
 |---|---|---|
 | `index.html`, `style.css`, `app.js` | The site | Yes |
-| `content/grammar.js`, `questions.js`, `tests.js`, `resources.js`, `tips.js`, `wordpairs.js`, `progress.js`, `ipa.js` | Content and settings | Yes |
+| `content/grammar.js`, `questions.js`, `tests.js`, `resources.js`, `tips.js`, `wordpairs.js`, `progress.js`, `settings.js`, `ipa.js` | Content and settings | Yes |
 | `content/oxford.csv`, `meanings.csv`, `odd-sounds.csv` | **Sources** for generated files | Yes (these are what you edit) |
+| `content/questionsA1.js` ... `questionsC2.js` | **Generated** from `questions.js` by `split-questions.js` (what the site actually loads) | No |
 | `content/vocab.js`, `vocab-def.js`, `odd-sounds.js`, `manifest.js`, `stress.js`, `sound-groups.js`, `quotes.js` | **Generated** | No. Re-run the tool instead |
 | `content/word-notes.csv` | Notes for you only; the site never reads it | No (generated) |
 | `tools/quotes-source.txt` | Source for `quotes.js` | Yes |
@@ -22,7 +23,7 @@ File names are case-sensitive on GitHub Pages. Keep content file names lowercase
 
 1. Edit sources (see section 4).
 2. Run the matching build tool(s) (section 3).
-3. `node tools/build-manifest.js` if you changed grammar, questions, tests, IPA or vocab (it updates the counts on the home page).
+3. `node tools/split-questions.js` if you changed `questions.js` (it rewrites the per-level files and the manifest). Otherwise `node tools/build-manifest.js` if you changed grammar, tests, IPA or vocab (it updates the counts on the home page).
 4. `node tools/check-content.js` and fix any `ERROR` lines.
 5. `node tools/bump-version.js` (raises the version by one).
 6. Commit and push to the branch GitHub Pages publishes (currently `lazy-loading`).
@@ -69,6 +70,12 @@ All commands run from the repo root. Node tools need Node.js; the two `.py` tool
 - The IPA comes from CMU and is a draft: read it once and correct `quotes.js` by hand if needed (but re-running the tool overwrites hand edits).
 - Difficulty is by word count: easy up to 5, medium 6 to 13, hard 14+.
 
+### `split-questions.js`: question bank by level
+- **Command:** `node tools/split-questions.js`
+- **Reads:** `content/questions.js` (keep adding questions here, by hand or with your add-questions system). **Writes:** `content/questionsA1.js` ... `questionsC2.js`, then runs `build-manifest.js`.
+- The site loads only the levels a page needs. Every question keeps its position number in `questions.js` (`n`), so Admin still shows which line to fix. The tool checks that the pieces together equal the original and stops if not.
+- Run it after **every** change to `questions.js`; the site no longer reads `questions.js` itself.
+
 ### `build-manifest.js`: counts for the home page
 - **Command:** `node tools/build-manifest.js`
 - **Writes:** `content/manifest.js` (numbers of grammar rules, questions, vocab, IPA sounds, test sets). Run it after any content change, otherwise the home page shows old counts until the big files load.
@@ -106,17 +113,22 @@ All commands run from the repo root. Node tools need Node.js; the two `.py` tool
 
 **Resources and tips.** `content/resources.js` and `content/tips.js`.
 
-**Level and XP rules.** `content/progress.js`.
+**XP, Elo, ranks, rank mode and fonts.** `content/settings.js` (see section 5). **Level names and achievements.** `content/progress.js`.
 
-## 5. Settings kept in code
+## 5. Fine-tuning settings (`content/settings.js`)
 
-- **Elo:** the numbers are in `ECFG_DEF` near the top of `app.js` (start 1000, scale 500, K0 200, K1 400, tau 16, margin 100, min 400, max 2800, difficulty A1 900, A2 1200, B1 1400, B2 1800, C1 2200, C2 2600). The Admin "Chỉnh công thức Elo" panel can try other numbers; those are saved only in that browser, and "Về mặc định" returns to the code values. To make a new number permanent, change `ECFG_DEF`.
-- **Fonts:** headings Newsreader, content Bitter, small labels Itim. They are set in three places: `FONT_DEF` in `app.js`, the `--font-*` variables in `style.css` and the Google Fonts link in `index.html`. The Admin font picker only changes your own browser.
+One file holds every number you tune: XP per activity and the level curve, the Elo formula and question difficulties, the six ranks and their Elo thresholds, rank-mode length, time, topic mix and wild cards, the bonus values, and the three fonts.
+
+**Quick way:** Admin > "Tinh chỉnh và xuất mã". Change values, press "Áp dụng" to try them in your own browser (the page reloads), then "Xuất mã", "Sao chép", and paste over the whole of `content/settings.js`. Press "Bỏ chỉnh sửa trong trình duyệt" afterwards so the file is the only source again. The Elo formula (Admin "Chỉnh công thức Elo", press Áp dụng first) and the fonts (Admin "Phông chữ") have their own panels but are included in the export.
+
+- **Rank mode ("Xếp hạng" tab):** 30 questions in 20 minutes, grammar, vocab and IPA (pick-the-odd-sound and pick-the-odd-stress) mixed by `rank.mix`. A question's difficulty is its CEFR level (vocab and IPA: the highest level among its words, `rank.ipaDefault` for words not in the list), converted with `elo.lv`. Questions are drawn within `nearSpread` Elo of the player; with chance `wild` within `wildSpread`. Elo changes after every answer; only rank mode changes Elo (the Grammar "Kiểm tra" side uses the old placement method). Elo data is saved under `oel.elo2`.
+- **Bonuses (`bonus`):** quick hand (correct under `quickSec` seconds gives `quickPts`; wrong under that gives `-quickStrike`), correct streak, winning streak (needs a finished test with a net Elo gain), fast finish. Win and fast bonuses are not given if you quit or time runs out.
+- **Fonts:** names must exist in the Admin font list (`FONT_LIST` in `app.js`). The Google Fonts link in `index.html` and the `--font-*` fallbacks in `style.css` still load the original three.
 - **Card spacing and sizes:** the "Vocab grid" block near the end of `style.css`.
 
 ## 6. Admin mode
 
-Hidden, local to the browser. Type the secret code into the grammar search box to switch it on; an "Admin" tab appears. It shows content statistics, grammarId checks, the vocab and IPA test row viewers, the "answer repeats a word from the question" checker (lists questions whose correct answer repeats a word right next to the blank, with the shared words highlighted and the question's number in `questions.js`; a second filter shows every shared word, mostly false alarms), Elo and font tools, and progress test buttons. It stores things only in your own browser (`localStorage`), so it does not protect or change anything for other visitors, and anyone can switch it on in their own browser by editing local storage.
+Hidden, local to the browser. Type the secret code into the grammar search box to switch it on; an "Admin" tab appears. It shows content statistics, grammarId checks, the vocab and IPA test row viewers, the "answer repeats a word from the question" checker (lists questions whose correct answer repeats a word right next to the blank, with the shared words highlighted and the question's number in `questions.js`; a second filter shows every shared word, mostly false alarms), the "Tinh chỉnh và xuất mã", Elo and font tools, and progress test buttons; every panel is collapsed until you open it. It stores things only in your own browser (`localStorage`), so it does not protect or change anything for other visitors, and anyone can switch it on in their own browser by editing local storage.
 
 ## 7. Hosting and troubleshooting
 
@@ -130,7 +142,7 @@ Hidden, local to the browser. Type the secret code into the grammar search box t
 ## 8. Keep an eye on
 
 - `check-content.js` currently reports two old question errors (questions #689 and #2815: the answer is not one of the options). Fix them in `content/questions.js`.
-- The root-level `Progress.js` is a leftover duplicate of `content/progress.js`; the site only reads the one in `content/`.
+- The root-level `Progress.js` is a leftover duplicate of `content/progress.js`; the site only reads the one in `content/`. It can be deleted.
 
 ## Vocabulary size estimator (Từ vựng > Ước lượng vốn từ)
 - Code: block "Ước lượng vốn từ" in `app.js` (engine `estEstimate`/`estNextBand`, session `VEST` in `oel.vest`).
