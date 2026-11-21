@@ -58,13 +58,17 @@
   }
   var BANK = [], LINKS = Object.create(null);   /* LINKS: grammarId -> number of questions pointing at it */
   var QSETS = [];
+  var BANK_LV = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+  /* The bank is split by level (content/questionsA1.js ... questionsC2.js, made by tools/split-questions.js). Rebuilt from whatever levels are loaded. */
   function initBank() {
-    BANK = list(OEL.questions).map(function (q, qi) {
+    var rows = [];
+    BANK_LV.forEach(function (l) { if (OEL.qparts && OEL.qparts[l]) rows = rows.concat(list(OEL.qparts[l])); });
+    BANK = rows.map(function (q, qi) {
       q = q || {};
       var o = list(q.options).map(String), a = o.indexOf(String(q.answer));
       var ok = q.question && o.length >= 2 && a > -1 && str(q.level);
       if (!ok) { warn('câu hỏi (đáp án phải trùng đúng một lựa chọn)', q); return null; }
-      return { lv: str(q.level).toUpperCase(), topic: str(q.topic), q: String(q.question), o: o, a: a, why: str(q.explanation), gid: idOf(q.grammarId), n: qi + 1 };   /* n = position in content/questions.js (same number check-content.js prints) */
+      return { lv: str(q.level).toUpperCase(), topic: str(q.topic), q: String(q.question), o: o, a: a, why: str(q.explanation), gid: idOf(q.grammarId), n: q.n || qi + 1 };   /* n = position in content/questions.js (same number check-content.js prints) */
     }).filter(Boolean);
     LINKS = Object.create(null);
     BANK.forEach(function (q) { if (q.gid) LINKS[q.gid] = (LINKS[q.gid] || 0) + 1; });
@@ -134,7 +138,7 @@
   /* Four big content files are not in index.html. Each page asks for the groups it needs; a group is downloaded once, then parsed once. */
   var GROUPS = {
     grammar: { files: ['content/grammar.js'], init: initGrammar },
-    bank: { files: ['content/questions.js'], init: initBank },
+    bank: { files: BANK_LV.map(function (l) { return 'content/questions' + l + '.js'; }), init: initBank },   /* every level */
     vocab: { files: ['content/vocab.js', 'content/vocab-def.js'], init: initVocab },
     ipa: { files: ['content/ipa.js'], init: initIpa },
     quotes: { files: ['content/quotes.js'], init: initQuotes },
@@ -142,16 +146,19 @@
     oddsounds: { files: ['content/odd-sounds.js'], init: initOddSounds },
     sounds: { files: ['content/sound-groups.js'], init: function () {} }
   };
-  var loaded = Object.create(null), pending = Object.create(null);
+  BANK_LV.forEach(function (l) { GROUPS['q' + l] = { files: ['content/questions' + l + '.js'], init: initBank }; });   /* one level only: ensure(['qB1']) */
+  var loaded = Object.create(null), pending = Object.create(null), fileP = Object.create(null);
   var APP_V = (document.querySelector('meta[name="oel-version"]') || {}).content || '';   /* site version, set in index.html (node tools/bump-version.js) */
   function loadScript(src) {
-    return new Promise(function (resolve, reject) {
+    if (fileP[src]) return fileP[src];   /* a file shared by two groups (a level and the whole bank) is fetched once */
+    fileP[src] = new Promise(function (resolve, reject) {
       var el = document.createElement('script');
       el.src = APP_V ? src + '?v=' + APP_V : src;   /* new version = new URL = no stale cached copy */
       el.onload = function () { resolve(); };
-      el.onerror = function () { if (el.parentNode) el.parentNode.removeChild(el); reject(new Error(src)); };
+      el.onerror = function () { if (el.parentNode) el.parentNode.removeChild(el); delete fileP[src]; reject(new Error(src)); };
       document.head.appendChild(el);
     });
+    return fileP[src];
   }
   function ensure(names) {
     return Promise.all(names.map(function (n) {

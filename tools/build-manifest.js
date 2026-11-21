@@ -25,6 +25,9 @@ const questions = list(OEL.questions).filter(q => {
   return o.length >= 2 && o.indexOf(String(q.answer)) > -1;
 });
 
+const questionsByLevel = {};
+questions.forEach(q => { const l = str(q.level).toUpperCase(); questionsByLevel[l] = (questionsByLevel[l] || 0) + 1; });
+
 const ipa = list(OEL.ipa && OEL.ipa.sounds).filter(s => s && str(s.id) && str(s.symbol));
 
 const seen = {}, orders = {};
@@ -47,7 +50,7 @@ const sets = list(OEL.tests).filter(s => {
   return ok;
 }).length;
 
-return { grammar: grammar.length, grammarByLevel, questions: questions.length, vocab, ipa: ipa.length, sets };
+return { grammar: grammar.length, grammarByLevel, questions: questions.length, questionsByLevel, vocab, ipa: ipa.length, sets };
 }
 module.exports = { compute };
 if (require.main === module) {
