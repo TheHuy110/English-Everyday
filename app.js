@@ -234,8 +234,37 @@
      Mỗi cấp CEFR có một độ khó cố định. Mỗi câu trả lời cập nhật điểm Elo của người học, và Elo quyết định cấp độ xếp loại.
      Có tính xác suất đoán mò (câu trắc nghiệm): kỳ vọng thắng không bao giờ thấp hơn 1 / số lựa chọn.
      Điểm Elo luôn được lưu nhưng chỉ chủ trang (admin) nhìn thấy. Admin có thể chuyển về cách xếp cấp cũ ở trang Admin. */
-  var ECFG_DEF = { start: 1000, min: 400, max: 2800, scale: 500, k0: 200, k1: 400, tau: 16, margin: 100, guess: 1, firstOld: 1, seed: 1,   /* fixed numbers under test; "Về mặc định" in Admin returns to these */
-    lv: { A1: 900, A2: 1200, B1: 1400, B2: 1800, C1: 2200, C2: 2600 } };
+  /* Fine-tuning numbers come from content/settings.js; the Admin "Tinh chỉnh" panel can override them in this browser (oel.tune) and export new code lines. */
+  var SET = OEL.settings || {};
+  var SET_BUILTIN = {
+    xp: { minute: 1, learned: 3, reviewed: 1, grammar: 2, test: 5 }, curve: { base: 10, power: 1.8 },
+    ranks: [{ id: 1, name: 'Đồng', elo: 900 }, { id: 2, name: 'Bạc', elo: 1200 }, { id: 3, name: 'Vàng', elo: 1400 }, { id: 4, name: 'Bạch Kim', elo: 1800 }, { id: 5, name: 'Kim Cương', elo: 2200 }, { id: 6, name: 'Người bản xứ', elo: 2600 }],
+    rank: { questions: 30, minutes: 20, mix: { grammar: 1, vocab: 1, ipa: 1 }, wild: 0.2, wildSpread: 900, nearSpread: 250, ipaLevel: { sound: 'A2', odd: 'B1', stress: 'B2', type: 'B1', quote: 'B2' } },
+    bonus: { quickSec: 3, quickPts: 1, quickStrike: 2, streakFrom: 3, streakPts: 1, streakMax: 15, winPts: 5, winMax: 25, fastMin: 10, fastPts: 10 },
+    fonts: { display: 'Newsreader', body: 'Bitter', mono: 'Itim' }
+  };
+  /* Copy src over base, keeping only values of the same type as the base (numbers stay numbers, text stays text). */
+  function mergeSet(base, src) {
+    if (Array.isArray(base)) return Array.isArray(src) && src.length ? JSON.parse(JSON.stringify(src)) : JSON.parse(JSON.stringify(base));
+    var out = {};
+    Object.keys(base).forEach(function (k) {
+      var b = base[k], v = src && typeof src === 'object' ? src[k] : undefined;
+      if (b && typeof b === 'object') out[k] = mergeSet(b, v);
+      else if (typeof b === 'number') out[k] = typeof v === 'number' && isFinite(v) ? v : b;
+      else out[k] = typeof v === 'string' && v ? v : b;
+    });
+    return out;
+  }
+  var TUNE = LS.get('oel.tune', {});
+  if (!TUNE || typeof TUNE !== 'object' || Array.isArray(TUNE)) TUNE = {};
+  var SETV = {};   /* effective values: built-in < settings.js < browser override */
+  ['xp', 'curve', 'ranks', 'rank', 'bonus', 'fonts'].forEach(function (k) { SETV[k] = mergeSet(mergeSet(SET_BUILTIN[k], SET[k]), TUNE[k]); });
+  var RANKS = SETV.ranks.filter(function (r) { return r && typeof r.name === 'string' && typeof r.elo === 'number'; }).sort(function (a, b) { return a.elo - b.elo; });
+  if (!RANKS.length) RANKS = SET_BUILTIN.ranks.slice();
+  /* Rank of an Elo score: the highest rank reached; below the first rank still counts as the first. */
+  function rankOf(r) { var k = 0; RANKS.forEach(function (x, i) { if (r >= x.elo) k = i; }); return { i: k, r: RANKS[k], next: RANKS[k + 1] || null }; }
+  var ECFG_DEF = mergeSet({ start: 1000, min: 400, max: 2800, scale: 500, k0: 200, k1: 400, tau: 16, margin: 100, guess: 1, firstOld: 1, seed: 1,
+    lv: { A1: 900, A2: 1200, B1: 1400, B2: 1800, C1: 2200, C2: 2600 } }, SET.elo);   /* "Về mặc định" in Admin returns to these */
   var ECFG = (function () {
     var c = JSON.parse(JSON.stringify(ECFG_DEF)), v = LS.get('oel.eloCfg', null);
     if (v && typeof v === 'object') {
@@ -318,13 +347,13 @@
   /* ---------- Theo dõi tiến độ tự động (thời gian, từ, ngữ pháp, XP, cấp độ, huy hiệu) ---------- */
   /* Rules and level names come from content/progress.js. Nothing is sent anywhere; it is saved in this browser only. */
   var PROG = OEL.progress || {};
-  var XPR = { minute: 1, learned: 3, reviewed: 1, grammar: 2, test: 5 };
-  Object.keys(XPR).forEach(function (k) { if (PROG.xp && typeof PROG.xp[k] === 'number' && PROG.xp[k] >= 0) XPR[k] = PROG.xp[k]; });
+  var XPR = SETV.xp;   /* from content/settings.js */
+  Object.keys(XPR).forEach(function (k) { if (!(XPR[k] >= 0)) XPR[k] = SET_BUILTIN.xp[k]; });
   var IDLE = typeof PROG.idleSeconds === 'number' && PROG.idleSeconds > 0 ? PROG.idleSeconds : 60;
   /* Levels are computed: XP from level k to k+1 = base * k ^ power. Stages (names and pictures) cover several levels each. */
-  var CURVE = { base: 10, power: 1.8 };
-  if (PROG.curve && +PROG.curve.base > 0) CURVE.base = +PROG.curve.base;
-  if (PROG.curve && +PROG.curve.power > 0) CURVE.power = +PROG.curve.power;
+  var CURVE = SETV.curve;
+  if (!(CURVE.base > 0)) CURVE.base = SET_BUILTIN.curve.base;
+  if (!(CURVE.power > 0)) CURVE.power = SET_BUILTIN.curve.power;
   var PER_STAGE = Math.max(1, Math.floor(+PROG.levelsPerStage) || 1);
   var STAGES = list(PROG.stages).filter(function (s) { return s && str(s.name); }).map(function (s) { return { name: str(s.name), img: str(s.img) }; });
   if (!STAGES.length) {   /* progress.js missing or in the old format: use built-in defaults (10 stages x 2 levels) */
@@ -671,7 +700,15 @@
       '<div><label for="adm-v-search">Tìm theo ID, từ hoặc nghĩa</label><input id="adm-v-search" type="search" autocomplete="off" value="' + esc(admV.q) + '"></div>' +
       '<p class="muted" id="adm-vcount" aria-live="polite"></p><div id="adm-vlist"></div></section>';
   }
-  function viewAdmin() {
+  /* Every Admin panel is a collapsible section, closed by default; what you open stays open while you work (until the page reloads). */
+  var admOpen = {};
+  function admCollapse(html) {
+    return html.replace(/<section class="panel stack" style="gap:0\.8rem"><h2>([^<]*)<\/h2>([\s\S]*?)<\/section>/g, function (m, title, body) {
+      return '<details class="panel stack adm-sec" data-k="' + title + '"' + (admOpen[title] ? ' open' : '') + '><summary><h2>' + title + '</h2></summary><div class="stack" style="gap:0.8rem">' + body + '</div></details>';
+    });
+  }
+  function viewAdmin() { return admCollapse(viewAdminBody()); }
+  function viewAdminBody() {
     var ps = pStats(), lvRows = '', i;
     var byLv = {}, byTopic = {};
     BANK.forEach(function (q) { byLv[q.lv] = (byLv[q.lv] || 0) + 1; byTopic[q.topic || '(không có)'] = (byTopic[q.topic || '(không có)'] || 0) + 1; });
@@ -702,7 +739,7 @@
       '<p>grammarId bị trùng: <strong>' + GDUP.length + '</strong>' + (GDUP.length ? ' (' + esc(GDUP.join(', ')) + ')' : '') + '</p>' +
       '<p>Quy tắc chưa có câu hỏi nào: <strong>' + noQ.length + '</strong>' + (noQ.length ? ' (' + esc(noQ.slice(0, 12).map(function (g) { return g.gid; }).join(', ')) + (noQ.length > 12 ? '…' : '') + ')' : '') + '</p>' +
       orphanHtml + '<details><summary style="cursor:pointer;font-weight:600">Bảng quy tắc ngữ pháp (' + GRAMMAR.length + ')</summary><div class="table-wrap"><table style="min-width:0"><thead><tr><th>ID</th><th>Quy tắc</th><th>Cấp</th><th>Chủ đề</th><th>Số câu hỏi</th></tr></thead><tbody>' + rows + '</tbody></table></div></details></section>' +
-      admFontPanel() + admEloPanel() + admEloCfgPanel() + admVocabPanel() + admSpoilPanel() + admIpaPanel() +
+      admTunePanel() + admFontPanel() + admEloPanel() + admEloCfgPanel() + admVocabPanel() + admSpoilPanel() + admIpaPanel() +
       '<section class="panel stack" style="gap:0.8rem"><h2>Tiến độ (thử nghiệm)</h2>' +
       '<p>XP hiện tại: <strong>' + ps.xp + '</strong> (đã cộng thêm ' + (activity.bonus || 0) + ') · Cấp <strong>' + ps.level + '</strong> / ' + PLEVELS.length + ' · chuỗi ' + ps.streak + ' ngày</p>' +
       '<div class="row">' + [10, 100, 1000].map(function (n) { return admBtn('adm-xp', '+' + n + ' XP', n); }).join('') + admBtn('adm-xp', '-100 XP', -100) + '</div>' +
@@ -743,7 +780,7 @@
   var FONT_BY = Object.create(null);
   FONT_LIST.forEach(function (f) { FONT_BY[f.n] = f; });
   var FONT_ROLES = [['display', 'Tiêu đề, tab, nút'], ['body', 'Nội dung'], ['mono', 'Nhãn nhỏ, thẻ, dạng ngữ pháp, IPA']];
-  var FONT_DEF = { display: 'Newsreader', body: 'Bitter', mono: 'Itim' };
+  var FONT_DEF = SETV.fonts;   /* from content/settings.js; a pick in Admin overrides it in this browser */
   var FONTSEL = LS.get('oel.fonts', {});
   if (!FONTSEL || typeof FONTSEL !== 'object' || Array.isArray(FONTSEL)) FONTSEL = {};
   function fontCss(name) {
@@ -764,10 +801,80 @@
   function applyFonts() {
     var root = document.documentElement.style;
     FONT_ROLES.forEach(function (r) {
-      var n = FONTSEL[r[0]];
+      var n = FONTSEL[r[0]] || FONT_DEF[r[0]];
       if (n && FONT_BY[n]) { loadFont(n); root.setProperty('--font-' + r[0], fontCss(n)); }
       else root.removeProperty('--font-' + r[0]);
     });
+  }
+
+  /* ---------- Tinh chỉnh và xuất mã: sửa số liệu, thử ngay trong trình duyệt này, rồi xuất đoạn mã để dán vào content/settings.js ---------- */
+  var tuneOut = '';
+  function admTunePanel() {
+    function fld(path, label, val, step) { return '<label class="elo-f"><span><b>' + esc(label) + '</b> <code>' + esc(path) + '</code></span><input type="number" step="' + (step || 1) + '" id="tn-' + esc(path) + '" value="' + esc(val) + '"></label>'; }
+    function grid(items) { return '<div class="elo-grid">' + items.join('') + '</div>'; }
+    var X = SETV.xp, C = SETV.curve, R = SETV.rank, B = SETV.bonus, lvOpts = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+    var xpF = [['minute', 'XP mỗi phút học'], ['learned', 'XP mỗi từ đánh dấu cần học'], ['reviewed', 'XP mỗi lần ôn nhớ'], ['grammar', 'XP mỗi quy tắc ngữ pháp mở'], ['test', 'XP mỗi bài kiểm tra']].map(function (a) { return fld('xp.' + a[0], a[1], X[a[0]]); });
+    var rankF = SETV.ranks.map(function (r, i) {
+      return '<label class="elo-f"><span><b>Hạng ' + (i + 1) + '</b></span><input type="text" id="tn-ranks.' + i + '.name" value="' + esc(r.name) + '"></label>' + fld('ranks.' + i + '.elo', 'Elo từ mức này', r.elo, 10);
+    });
+    var ipaF = [['sound', 'Nghe âm'], ['odd', 'Khác âm'], ['stress', 'Trọng âm'], ['type', 'Gõ phiên âm'], ['quote', 'Phiên âm sang câu']].map(function (a) {
+      return '<label class="elo-f"><span><b>Độ khó IPA: ' + a[1] + '</b> <code>rank.ipaLevel.' + a[0] + '</code></span><select id="tn-rank.ipaLevel.' + a[0] + '">' + lvOpts.map(function (l) { return '<option' + (R.ipaLevel[a[0]] === l ? ' selected' : '') + '>' + l + '</option>'; }).join('') + '</select></label>';
+    });
+    var rankSetF = [fld('rank.questions', 'Số câu mỗi bài', R.questions), fld('rank.minutes', 'Thời gian (phút)', R.minutes), fld('rank.mix.grammar', 'Tỉ lệ ngữ pháp', R.mix.grammar, 0.5), fld('rank.mix.vocab', 'Tỉ lệ từ vựng', R.mix.vocab, 0.5), fld('rank.mix.ipa', 'Tỉ lệ phát âm', R.mix.ipa, 0.5),
+      fld('rank.wild', 'Xác suất câu bất ngờ (0 đến 1)', R.wild, 0.05), fld('rank.wildSpread', 'Câu bất ngờ lệch tối đa (Elo)', R.wildSpread, 50), fld('rank.nearSpread', 'Câu thường lệch tối đa (Elo)', R.nearSpread, 25)];
+    var bonF = [['quickSec', 'Tay nhanh: dưới (giây)', 0.5], ['quickPts', 'Tay nhanh: điểm Elo/câu đúng', 1], ['quickStrike', 'Tay nhanh: trừ khi sai', 1], ['streakFrom', 'Chuỗi đúng: bắt đầu từ câu thứ', 1], ['streakPts', 'Chuỗi đúng: điểm/câu', 1], ['streakMax', 'Chuỗi đúng: tối đa/bài', 1],
+      ['winPts', 'Chuỗi thắng: điểm mỗi bài thắng liên tiếp', 1], ['winMax', 'Chuỗi thắng: tối đa', 1], ['fastMin', 'Về đích nhanh: dưới (phút)', 1], ['fastPts', 'Về đích nhanh: điểm', 1]].map(function (a) { return fld('bonus.' + a[0], a[1], B[a[0]], a[2]); });
+    return '<section class="panel stack" style="gap:0.8rem"><h2>Tinh chỉnh và xuất mã</h2>' +
+      '<p class="muted">Sửa số rồi bấm Áp dụng để thử ngay trong trình duyệt này (trang sẽ tải lại). Khi ưng ý, bấm Xuất mã, sao chép toàn bộ và dán đè lên content/settings.js. Công thức Elo và phông chữ chỉnh ở hai khung riêng; hãy bấm Áp dụng bên Elo trước khi xuất.</p>' +
+      '<h3>XP và cấp độ</h3>' + grid(xpF.concat([fld('curve.base', 'Đường cấp: base', C.base, 1), fld('curve.power', 'Đường cấp: power', C.power, 0.1)])) +
+      '<h3>Hạng (Elo)</h3>' + grid(rankF) +
+      '<h3>Chế độ xếp hạng</h3>' + grid(rankSetF.concat(ipaF)) +
+      '<h3>Thưởng và phạt</h3>' + grid(bonF) +
+      '<div class="row">' + admBtn('adm-tune-save', 'Áp dụng', undefined, '') + admBtn('adm-tune-export', 'Xuất mã') + admBtn('adm-tune-reset', 'Bỏ chỉnh sửa trong trình duyệt') + '</div>' +
+      (tuneOut ? '<p class="muted">Dán đè toàn bộ content/settings.js bằng đoạn này:</p><textarea id="tune-out" readonly rows="14" style="width:100%;font-family:var(--font-mono);font-size:0.8rem">' + esc(tuneOut) + '</textarea><div class="row">' + admBtn('adm-tune-copy', 'Sao chép') + '</div>' : '') +
+      '</section>';
+  }
+  /* Read every tn-* input into a partial settings object. */
+  function collectTune() {
+    var out = { xp: {}, curve: {}, ranks: [], rank: { mix: {}, ipaLevel: {} }, bonus: {} };
+    var els = document.querySelectorAll('[id^="tn-"]');
+    for (var i = 0; i < els.length; i++) {
+      var path = els[i].id.slice(3).split('.'), v = els[i].value, o = out;
+      if (els[i].type === 'number') { v = parseFloat(v); if (!isFinite(v)) continue; }
+      for (var j = 0; j < path.length - 1; j++) { var k = path[j]; if (o[k] === undefined) o[k] = /^\d+$/.test(path[j + 1]) ? [] : {}; o = o[k]; }
+      o[path[path.length - 1]] = v;
+    }
+    out.ranks = out.ranks.map(function (r, i) { r = r || {}; r.id = i + 1; return r; });
+    return out;
+  }
+  function tuneValues() {
+    var c = collectTune(), v = {};
+    ['xp', 'curve', 'ranks', 'rank', 'bonus'].forEach(function (k) { v[k] = mergeSet(SETV[k], c[k]); });
+    return v;
+  }
+  /* The text of content/settings.js for the values now on screen. */
+  function settingsText() {
+    var v = tuneValues(), j = JSON.stringify, e = ECFG, L = [];
+    var fonts = {}; FONT_ROLES.forEach(function (r) { fonts[r[0]] = FONTSEL[r[0]] || FONT_DEF[r[0]]; });
+    L.push('/* HOW TO EDIT: Fine-tuning numbers for XP, Elo, ranks, rank mode and fonts. Plain numbers and text only.');
+    L.push('   Easiest way: Admin page > "Tinh chỉnh và xuất mã": change values, press "Xuất mã", copy the text and paste it over this whole file.');
+    L.push('   Achievements, stage names and idle time stay in progress.js. */');
+    L.push('window.OEL = window.OEL || {};', 'var OEL = window.OEL;', '', 'OEL.settings = {');
+    L.push('  /* XP per activity and the level curve (XP from level k to k+1 = base * k ^ power) */');
+    L.push('  xp: ' + j(v.xp).replace(/"(\w+)":/g, '$1: ').replace(/,/g, ', ') + ',', '  curve: ' + j(v.curve).replace(/"(\w+)":/g, '$1: ').replace(/,/g, ', ') + ',', '');
+    L.push('  /* Elo for rank mode. lv = difficulty of a question of each CEFR level. K = k0 + k1 * e^(-answers / tau). */');
+    var lv = Object.keys(e.lv).map(function (l) { return l + ': ' + e.lv[l]; }).join(', ');
+    L.push('  elo: { start: ' + e.start + ', min: ' + e.min + ', max: ' + e.max + ', scale: ' + e.scale + ', k0: ' + e.k0 + ', k1: ' + e.k1 + ', tau: ' + e.tau + ', margin: ' + e.margin + ', guess: ' + e.guess + ', firstOld: ' + e.firstOld + ', seed: ' + e.seed + ',', '    lv: { ' + lv + ' } },', '');
+    L.push('  /* Ranks: the highest rank whose elo the player reaches; below the first still counts as rank 1 */', '  ranks: [');
+    v.ranks.forEach(function (r, i) { L.push('    { id: ' + (i + 1) + ', name: ' + j(r.name) + ', elo: ' + r.elo + ' }' + (i < v.ranks.length - 1 ? ',' : '')); });
+    L.push('  ],', '');
+    L.push('  /* Rank mode: length, time, topic mix, wild cards and the difficulty level of each IPA question kind */');
+    var rk = v.rank;
+    L.push('  rank: {', '    questions: ' + rk.questions + ', minutes: ' + rk.minutes + ',', '    mix: ' + j(rk.mix).replace(/"(\w+)":/g, '$1: ').replace(/,/g, ', ') + ',',
+      '    wild: ' + rk.wild + ', wildSpread: ' + rk.wildSpread + ', nearSpread: ' + rk.nearSpread + ',', '    ipaLevel: ' + j(rk.ipaLevel).replace(/"(\w+)":/g, '$1: ').replace(/,/g, ', '), '  },', '');
+    L.push('  /* Rank mode bonuses (Elo points): quick hand, correct streak, winning streak, fast finish */', '  bonus: ' + j(v.bonus).replace(/"(\w+)":/g, '$1: ').replace(/,/g, ', ') + ',', '');
+    L.push('  /* Fonts: names from the Admin font list */', '  fonts: ' + j(fonts).replace(/"(\w+)":/g, '$1: ').replace(/,/g, ', '), '};', '');
+    return L.join('\n');
   }
   function admFontPanel() {
     FONT_LIST.forEach(function (f) { loadFont(f.n); });
@@ -795,6 +902,15 @@
     if (a === 'adm-font') {
       var fr = t.getAttribute('data-role'), fn = t.getAttribute('data-f');
       if (FONT_DEF[fr] && FONT_BY[fn]) { if (fn === FONT_DEF[fr]) delete FONTSEL[fr]; else FONTSEL[fr] = fn; LS.set('oel.fonts', FONTSEL); applyFonts(); render(); window.scrollTo(0, sy); }
+      return;
+    }
+    if (a === 'adm-tune-save') { TUNE = tuneValues(); TUNE.fonts = undefined; LS.set('oel.tune', TUNE); location.reload(); return; }
+    if (a === 'adm-tune-reset') { LS.set('oel.tune', {}); location.reload(); return; }
+    if (a === 'adm-tune-export') { tuneOut = settingsText(); render(); var ta = document.getElementById('tune-out'); if (ta) ta.scrollIntoView({ block: 'center' }); return; }
+    if (a === 'adm-tune-copy') {
+      var tx = document.getElementById('tune-out'); if (!tx) return; tx.select();
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(tx.value).then(function () { toast('Đã sao chép'); }, function () { toast('Hãy bấm Ctrl+C để sao chép'); });
+      else toast('Hãy bấm Ctrl+C để sao chép');
       return;
     }
     if (a === 'adm-font-reset') { FONTSEL = {}; LS.set('oel.fonts', FONTSEL); applyFonts(); render(); window.scrollTo(0, sy); return; }
@@ -2701,7 +2817,8 @@ var EST_PH1 = 15, EST_QUOTA = [3,3,3,3,3], EST_QUOTA_LOW = [8, 8, 6, 5, 3], EST_
   view.addEventListener('toggle', function (ev) {
     var d = ev.target;
     if (!d || d.tagName !== 'DETAILS') return;
-    if (d.classList.contains('jbook')) jOpen = d.open;
+    if (d.classList.contains('adm-sec')) admOpen[d.getAttribute('data-k')] = d.open;
+    else if (d.classList.contains('jbook')) jOpen = d.open;
     else if (d.classList.contains('rule') && d.open) { var h = d.querySelector('h3'); if (h) Act.grammar(h.textContent); }
   }, true);
   view.addEventListener('click', function (ev) {

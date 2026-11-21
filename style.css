@@ -456,3 +456,11 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 0
 .est-home { border-width: 2px; border-color: var(--accent); margin-bottom: 1.5rem; }
 .est-reset { margin-top: 1rem; font-size: 0.9rem; }
 .est-reset summary { cursor: pointer; color: var(--muted); }
+
+/* Admin: collapsible sections (closed by default) */
+.adm-sec > summary { cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+.adm-sec > summary::-webkit-details-marker { display: none; }
+.adm-sec > summary h2 { font-size: 1.15rem; }
+.adm-sec > summary::after { content: "+"; font-family: var(--font-mono); color: var(--muted); font-size: 1.2rem; }
+.adm-sec[open] > summary::after { content: "–"; }
+.adm-sec[open] > summary { margin-bottom: 0.8rem; }

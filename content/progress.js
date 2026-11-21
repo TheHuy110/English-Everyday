@@ -1,6 +1,6 @@
 /* HOW TO EDIT: XP rules, levels and achievements for the Journal page. Everything here is plain numbers and text.
-   - xp: how many XP each kind of activity earns.
-   - curve, levelsPerStage, stages: how levels are computed and named (see comments below).
+   - XP per activity and the level curve moved to content/settings.js (fine-tuning file).
+   - levelsPerStage, stages: how levels are named (see comments below).
    - achievements: "stat" says what is counted, "goal" is the number to reach. Allowed stats:
        minutes (total minutes studied), streak (current day streak), days (number of study days),
        learned (words marked to learn), reviewed (words remembered in a review), grammar (grammar rules opened),
@@ -11,12 +11,6 @@ var OEL = window.OEL;
 
 OEL.progress = {
   idleSeconds: 60,   /* time only counts while the visitor is active; after this many quiet seconds it pauses */
-  xp: { minute: 1, learned: 3, reviewed: 1, grammar: 2, test: 5 },
-
-  /* Level curve: XP needed to go from level k to level k+1 = base * k ^ power (rounded).
-     With base 10 and power 1.8: level 2 needs 10 XP in total, level 5 about 240, level 10 about 1,200, level 20 about 14,600.
-     Raise "power" for a steeper climb, change "base" to scale everything. */
-  curve: { base: 10, power: 1.8 },
 
   /* Stages: a name (and optional picture) shown for several levels in a row.
      Total levels = number of stages x levelsPerStage (here 10 x 2 = 20). Level 1 needs 0 XP.
