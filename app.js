@@ -247,8 +247,8 @@
   var SET_BUILTIN = {
     xp: { minute: 1, learned: 3, reviewed: 1, grammar: 2, test: 5 }, curve: { base: 10, power: 1.8 },
     ranks: [{ id: 1, name: 'Đồng', elo: 900 }, { id: 2, name: 'Bạc', elo: 1200 }, { id: 3, name: 'Vàng', elo: 1400 }, { id: 4, name: 'Bạch Kim', elo: 1800 }, { id: 5, name: 'Kim Cương', elo: 2200 }, { id: 6, name: 'Người bản xứ', elo: 2600 }],
-    rank: { questions: 30, minutes: 20, mix: { grammar: 1, vocab: 1, ipa: 1 }, wild: 0.2, wildSpread: 900, nearSpread: 250, ipaDefault: 'B1' },
-    bonus: { quickSec: 3, quickPts: 1, quickStrike: 2, streakFrom: 3, streakPts: 1, streakMax: 15, winPts: 5, winMax: 25, fastMin: 10, fastPts: 10 },
+    rank: { questions: 30, minutes: 20, mix: { grammar: 1, vocab: 1, meaning: 1, ipa: 1 }, wild: 0.2, wildSpread: 900, nearSpread: 250, ipaDefault: 'B1' },
+    bonus: { quickSec: 3, quickPts: 1, quickStrike: 2, streakFrom: 3, streakPts: 1, streakMax: 15, winPts: 5, winMax: 25, fastMin: 10, fastPts: 10, notePts: 2 },
     fonts: { display: 'Newsreader', body: 'Bitter', mono: 'Itim' }
   };
   /* Copy src over base, keeping only values of the same type as the base (numbers stay numbers, text stays text). */
@@ -828,10 +828,10 @@
       return '<label class="elo-f"><span><b>Hạng ' + (i + 1) + '</b></span><input type="text" id="tn-ranks.' + i + '.name" value="' + esc(r.name) + '"></label>' + fld('ranks.' + i + '.elo', 'Elo từ mức này', r.elo, 10);
     });
     var ipaF = ['<label class="elo-f"><span><b>Độ khó IPA khi từ không có cấp</b> <code>rank.ipaDefault</code></span><select id="tn-rank.ipaDefault">' + lvOpts.map(function (l) { return '<option' + (R.ipaDefault === l ? ' selected' : '') + '>' + l + '</option>'; }).join('') + '</select></label>'];
-    var rankSetF = [fld('rank.questions', 'Số câu mỗi bài', R.questions), fld('rank.minutes', 'Thời gian (phút)', R.minutes), fld('rank.mix.grammar', 'Tỉ lệ ngữ pháp', R.mix.grammar, 0.5), fld('rank.mix.vocab', 'Tỉ lệ từ vựng', R.mix.vocab, 0.5), fld('rank.mix.ipa', 'Tỉ lệ phát âm', R.mix.ipa, 0.5),
+    var rankSetF = [fld('rank.questions', 'Số câu mỗi bài', R.questions), fld('rank.minutes', 'Thời gian (phút)', R.minutes), fld('rank.mix.grammar', 'Tỉ lệ ngữ pháp', R.mix.grammar, 0.5), fld('rank.mix.vocab', 'Tỉ lệ từ vựng (từ sang nghĩa)', R.mix.vocab, 0.5), fld('rank.mix.meaning', 'Tỉ lệ từ vựng (nghĩa sang từ)', R.mix.meaning, 0.5), fld('rank.mix.ipa', 'Tỉ lệ phát âm', R.mix.ipa, 0.5),
       fld('rank.wild', 'Xác suất câu bất ngờ (0 đến 1)', R.wild, 0.05), fld('rank.wildSpread', 'Câu bất ngờ lệch tối đa (Elo)', R.wildSpread, 50), fld('rank.nearSpread', 'Câu thường lệch tối đa (Elo)', R.nearSpread, 25)];
     var bonF = [['quickSec', 'Tay nhanh: dưới (giây)', 0.5], ['quickPts', 'Tay nhanh: điểm Elo/câu đúng', 1], ['quickStrike', 'Tay nhanh: trừ khi sai', 1], ['streakFrom', 'Chuỗi đúng: bắt đầu từ câu thứ', 1], ['streakPts', 'Chuỗi đúng: điểm/câu', 1], ['streakMax', 'Chuỗi đúng: tối đa/bài', 1],
-      ['winPts', 'Chuỗi thắng: điểm mỗi bài thắng liên tiếp', 1], ['winMax', 'Chuỗi thắng: tối đa', 1], ['fastMin', 'Về đích nhanh: dưới (phút)', 1], ['fastPts', 'Về đích nhanh: điểm', 1]].map(function (a) { return fld('bonus.' + a[0], a[1], B[a[0]], a[2]); });
+      ['winPts', 'Chuỗi thắng: điểm mỗi bài thắng liên tiếp', 1], ['winMax', 'Chuỗi thắng: tối đa', 1], ['fastMin', 'Về đích nhanh: dưới (phút)', 1], ['fastPts', 'Về đích nhanh: điểm', 1], ['notePts', 'Ghi chú trọng âm đúng cả bốn từ: điểm', 1]].map(function (a) { return fld('bonus.' + a[0], a[1], B[a[0]], a[2]); });
     return '<section class="panel stack" style="gap:0.8rem"><h2>Tinh chỉnh và xuất mã</h2>' +
       '<p class="muted">Sửa số rồi bấm Áp dụng để thử ngay trong trình duyệt này (trang sẽ tải lại). Khi ưng ý, bấm Xuất mã, sao chép toàn bộ và dán đè lên content/settings.js. Công thức Elo và phông chữ chỉnh ở hai khung riêng; hãy bấm Áp dụng bên Elo trước khi xuất.</p>' +
       '<h3>XP và cấp độ</h3>' + grid(xpF.concat([fld('curve.base', 'Đường cấp: base', C.base, 1), fld('curve.power', 'Đường cấp: power', C.power, 0.1)])) +
@@ -1261,6 +1261,27 @@
     }
     return null;
   }
+  /* Meaning -> English word: the Vietnamese meaning is shown, the player picks the English word (three other words of the same type and level are the wrong options). */
+  function rkMeaningQ(lv) {
+    var idx = LV_IDS.indexOf(lv), pool = VOCAB.filter(function (w) { return estUsable(w) && !RK.used['r' + w.id] && hiLevel(w.w) === idx; }), t;
+    for (t = 0; t < 6 && pool.length; t++) {
+      var w = rkRand(pool), seen = {}, tiers = [[], [], []], words = [];
+      seen[w.w.toLowerCase()] = 1;
+      shuffle(VOCAB.filter(function (x) { return /^[A-Za-z' -]+$/.test(x.w) && x.w.toLowerCase() !== w.w.toLowerCase() && x.vi !== w.vi; })).forEach(function (x) {
+        tiers[x.pos === w.pos && hiLevel(x.w) === idx ? 0 : x.pos === w.pos ? 1 : 2].push(x);
+      });
+      tiers[0].concat(tiers[1], tiers[2]).some(function (x) {
+        var k = x.w.toLowerCase();
+        if (!seen[k] && x.w.toLowerCase().indexOf(w.w.toLowerCase()) < 0 && w.w.toLowerCase().indexOf(k) < 0) { seen[k] = 1; words.push(x.w); }
+        return words.length >= 3;
+      });
+      if (words.length < 3) continue;
+      RK.used['r' + w.id] = 1;
+      var opts = shuffle([w.w].concat(words));
+      return { k: 'r', tag: 'Nghĩa sang từ', lv: lv, D: ECFG.lv[lv], h: 'Từ tiếng Anh nào có nghĩa: <b>' + esc(w.vi) + '</b> ' + (w.pos ? '<span class="tag">' + esc(POS_VI[w.pos] || w.pos) + '</span>' : '') + '?', o: opts.map(esc), a: opts.indexOf(w.w), why: '<b>' + esc(w.w) + '</b> ' + (w.ph ? '<span class="muted">' + esc(w.ph) + '</span> ' : '') + '— ' + esc(w.vi), word: w };
+    }
+    return null;
+  }
   function rkIpaQ(lv) {
     var want = LV_IDS.indexOf(lv), oldLv = ipaLv, out = null, t, hasGen = Object.keys(OEL.soundGroups || {}).length > 0, hasStress = Object.keys(OEL.stress || {}).length > 0;
     ipaLv = lv;
@@ -1291,7 +1312,7 @@
   }
   /* The next question: pick an area by weight, then a level near the player's Elo (or, sometimes, a wild card far from it). */
   function rkNextQ() {
-    var R = SETV.rank, W = R.mix, kinds = [['g', W.grammar], ['v', W.vocab], ['i', W.ipa]].filter(function (x) { return x[1] > 0 && rkLevels(x[0]).length; });
+    var R = SETV.rank, W = R.mix, kinds = [['g', W.grammar], ['v', W.vocab], ['r', W.meaning], ['i', W.ipa]].filter(function (x) { return x[1] > 0 && rkLevels(x[0]).length; });
     if (!kinds.length) return null;
     var tot = kinds.reduce(function (a, x) { return a + x[1]; }, 0), r = Math.random() * tot, first = kinds[0][0];
     kinds.some(function (x) { r -= x[1]; if (r < 0) { first = x[0]; return true; } return false; });
@@ -1300,7 +1321,7 @@
     for (i = 0; i < order.length; i++) {
       var lvs = rkLevels(order[i]).sort(function (a, b) { return Math.abs(ECFG.lv[a] - target) - Math.abs(ECFG.lv[b] - target); });
       for (j = 0; j < Math.min(3, lvs.length); j++) {
-        var q = order[i] === 'g' ? rkGrammarQ(lvs[j]) : order[i] === 'v' ? rkVocabQ(lvs[j]) : rkIpaQ(lvs[j]);
+        var q = order[i] === 'g' ? rkGrammarQ(lvs[j]) : order[i] === 'v' ? rkVocabQ(lvs[j]) : order[i] === 'r' ? rkMeaningQ(lvs[j]) : rkIpaQ(lvs[j]);
         if (q) { q.wild = wild; q.picked = null; return q; }
       }
     }
@@ -1308,7 +1329,7 @@
   }
   function rkStart() {
     var R = SETV.rank;
-    RK = { used: Object.create(null), i: 0, ans: 0, ok: 0, cs: 0, maxCs: 0, r0: ELO.r, base: 0, quick: 0, quickN: 0, strike: 0, strikeN: 0, streakB: 0, winB: 0, fastB: 0, log: [], done: false, t0: Date.now(), limit: R.minutes * 60000, mode: '' };
+    RK = { used: Object.create(null), i: 0, ans: 0, ok: 0, cs: 0, maxCs: 0, r0: ELO.r, base: 0, quick: 0, quickN: 0, noteB: 0, noteN: 0, strike: 0, strikeN: 0, streakB: 0, winB: 0, fastB: 0, log: [], done: false, t0: Date.now(), limit: R.minutes * 60000, mode: '' };
     RK.cur = rkNextQ();
     if (!RK.cur) { RK = null; rkMsg = 'Chưa đủ câu hỏi để tạo bài. Hãy thử lại sau.'; return; }
     RK.qs0 = Date.now(); rkMsg = '';
@@ -1323,21 +1344,24 @@
   function rkPick(i) {
     var c = RK && RK.cur; if (!c || c.picked !== null || RK.done) return;
     var B = SETV.bonus, dt = (Date.now() - RK.qs0) / 1000, right = i === c.a, bits = [];
-    var helped = !!(c.ip && c.ip.help);
     c.picked = i; if (c.ip) c.ip.picked = i;
     c.right = right; c.dt = dt; c.dBase = rkAnswerElo(c.D, c.o.length, right);
-    if (helped && right) { var half = c.dBase / 2; ELO.r = eloClamp(ELO.r - half); c.dBase -= half; }   /* "Gợi ý": a correct answer earns half */
     RK.base += c.dBase; RK.ans++;
     c.dQuick = 0; c.dStreak = 0;
     if (right) {
       RK.ok++; RK.cs++; RK.maxCs = Math.max(RK.maxCs, RK.cs);
       if (RK.cs >= B.streakFrom && RK.streakB < B.streakMax) { c.dStreak = rkBump(Math.min(B.streakPts, B.streakMax - RK.streakB)); RK.streakB += c.dStreak; }
-      if (dt < B.quickSec && !helped) { c.dQuick = rkBump(B.quickPts); RK.quick += c.dQuick; RK.quickN++; }
+      if (dt < B.quickSec) { c.dQuick = rkBump(B.quickPts); RK.quick += c.dQuick; RK.quickN++; }
     } else {
       RK.cs = 0;
       if (dt < B.quickSec) { c.dQuick = rkBump(-B.quickStrike); RK.strike += c.dQuick; RK.strikeN++; }
     }
-    c.total = c.dBase + c.dQuick + c.dStreak; c.after = ELO.r; c.cs = RK.cs;
+    c.dNote = 0; c.noteTried = false;
+    if (c.ip && c.ip.opts && !c.ip.sound && c.ip.notes) {   /* stress question: the dots the player ticked for each word */
+      var nt = c.ip.notes, allSet = nt.length === 4 && nt.every(function (x) { return x !== null && x !== undefined; });
+      if (allSet) { c.noteTried = true; if (nt.every(function (x, k) { return x === (k === c.ip.a ? c.ip.po : c.ip.p); })) { c.dNote = rkBump(B.notePts); RK.noteB += c.dNote; RK.noteN++; } }
+    }
+    c.total = c.dBase + c.dQuick + c.dStreak + c.dNote; c.after = ELO.r; c.cs = RK.cs;
     RK.log.push({ tag: c.tag, h: c.h, o: c.o, a: c.a, picked: i, right: right });
     saveElo();
   }
@@ -1399,6 +1423,7 @@
       '<b>Tay nhanh</b>: đúng trong dưới ' + B.quickSec + ' giây được +' + B.quickPts + ' Elo; nhưng sai trong dưới ' + B.quickSec + ' giây bị trừ thêm ' + B.quickStrike + ' Elo.',
       '<b>Chuỗi đúng</b>: từ câu đúng liên tiếp thứ ' + B.streakFrom + ', mỗi câu đúng được +' + B.streakPts + ' Elo (tối đa +' + B.streakMax + ' mỗi bài).',
       '<b>Chuỗi thắng</b>: bài kết thúc với Elo tăng được tính là thắng. Từ bài thắng liên tiếp thứ hai, được thưởng +' + B.winPts + ' Elo cho mỗi bài thắng trước đó trong chuỗi (tối đa +' + B.winMax + ').',
+      '<b>Ghi chú trọng âm</b>: ở câu chọn từ khác trọng âm, đánh dấu âm tiết nhấn của cả bốn từ ở cột ghi chú; đúng cả bốn từ được +' + B.notePts + ' Elo.',
       '<b>Về đích nhanh</b>: bài thắng và làm xong trong dưới ' + B.fastMin + ' phút được +' + B.fastPts + ' Elo.'
     ];
     return head('Xếp hạng', 'Làm bài tổng hợp ngữ pháp, từ vựng và phát âm. Mỗi câu trả lời đổi điểm Elo của bạn, và điểm Elo quyết định hạng.') + '<div class="stack" style="gap:1.25rem">' +
@@ -1415,6 +1440,7 @@
     var parts = [['Câu trả lời', c.dBase]];
     if (c.dQuick) parts.push([c.right ? 'Tay nhanh' : 'Sai khi bấm vội', c.dQuick]);
     if (c.dStreak) parts.push(['Chuỗi đúng ×' + c.cs, c.dStreak]);
+    if (c.dNote) parts.push(['Ghi chú trọng âm đúng', c.dNote]);
     return '<p class="rk-parts">' + parts.map(function (x) { return '<span class="' + (x[1] >= 0 ? 'rk-up-t' : 'rk-dn-t') + '">' + esc(x[0]) + ' ' + sgn1(x[1]) + '</span>'; }).join(' · ') + '</p>';
   }
   function rkHeader(c, R) {
@@ -1434,10 +1460,11 @@
     ipaHost = 'rank';
     var h;
     try { h = c.ip.sound ? viewIpaSound(c.ip) : viewIpaOdd(c.ip); } finally { ipaHost = ''; }
-    h = h.replace(/^<div class="quiz">/, '').replace(/<\/div>$/, '').replace(/data-action="ip-pick"/g, 'data-action="rk-pick"').replace(/data-action="ip-next"/g, 'data-action="rk-next"').replace(/data-action="ip-help"/g, 'data-action="rk-help"').replace(/data-action="ip-note"/g, 'data-action="rk-note"');
+    h = h.replace(/^<div class="quiz">/, '').replace(/<\/div>$/, '').replace(/data-action="ip-pick"/g, 'data-action="rk-pick"').replace(/data-action="ip-next"/g, 'data-action="rk-next"').replace(/data-action="ip-note"/g, 'data-action="rk-note"');
     if (ADMIN && !answered) { var at = h.indexOf('data-action="rk-pick" data-i="' + c.a + '"'), end = at > -1 ? h.indexOf('</button>', at) : -1; if (end > -1) h = h.slice(0, end) + '<b class="adm-ok">✓ đúng</b>' + h.slice(end); }
     if (answered) { var fbAt = h.indexOf('<div class="feedback"'); if (fbAt > -1) { var vEnd = h.indexOf('</strong>', fbAt); if (vEnd > -1) h = h.slice(0, vEnd + 9) + rkParts(c) + h.slice(vEnd + 9); } }
-    return rkCorner() + '<div class="quiz">' + rkHeader(c, R) + h + '<div><button class="btn ghost small" type="button" data-action="rk-quit">Kết thúc bài</button></div></div>' + (RK.leave ? rkLeaveModal() : '');
+    var noteHint = !answered && !c.ip.sound ? '<p class="muted" style="margin:0">Đánh dấu âm tiết nhấn của cả bốn từ ở cột ghi chú: đúng cả bốn từ được +' + SETV.bonus.notePts + ' Elo.</p>' : '';
+    return rkCorner() + '<div class="quiz">' + rkHeader(c, R) + noteHint + h + '<div><button class="btn ghost small" type="button" data-action="rk-quit">Kết thúc bài</button></div></div>' + (RK.leave ? rkLeaveModal() : '');
   }
   function viewRankQuestion() {
     var c = RK.cur, R = SETV.rank, answered = c.picked !== null, letters = ['A', 'B', 'C', 'D'];
@@ -1460,7 +1487,7 @@
   function viewRankResult() {
     var n = RK.ans, R = SETV.rank, d = RK.r1 - RK.r0, up = RK.rank1.i > RK.rank0.i, dn = RK.rank1.i < RK.rank0.i;
     var rows = [['Câu trả lời', RK.base, RK.ans + ' câu'], ['Tay nhanh', RK.quick, RK.quickN + ' câu'], ['Bấm vội rồi sai', RK.strike, RK.strikeN + ' câu'], ['Chuỗi đúng (dài nhất ' + RK.maxCs + ')', RK.streakB, ''],
-      ['Chuỗi thắng', RK.winB, RK.win ? 'chuỗi ' + ELO.ws + ' bài' : ''], ['Về đích nhanh', RK.fastB, RK.fastB ? 'dưới ' + SETV.bonus.fastMin + ' phút' : '']];
+      ['Chuỗi thắng', RK.winB, RK.win ? 'chuỗi ' + ELO.ws + ' bài' : ''], ['Về đích nhanh', RK.fastB, RK.fastB ? 'dưới ' + SETV.bonus.fastMin + ' phút' : ''], ['Ghi chú trọng âm đúng', RK.noteB, RK.noteN + ' câu']];
     var miss = RK.log.filter(function (x) { return !x.right; });
     var note = RK.mode === 'time' ? 'Hết giờ, bài kết thúc với các câu đã làm.' : RK.mode === 'quit' ? 'Bạn đã kết thúc bài sớm: điểm các câu đã làm vẫn được tính, nhưng không có thưởng chuỗi thắng và về đích nhanh.' : RK.win ? 'Bài thắng: Elo tăng.' : 'Bài này Elo không tăng.';
     return rkCorner() + '<div class="quiz"><p class="call">Xếp hạng / Kết quả</p><h1 style="font-size:2rem">' + (up ? 'Lên hạng ' + esc(RK.rank1.r.name) + '!' : dn ? 'Xuống hạng ' + esc(RK.rank1.r.name) : 'Xong bài') + '</h1>' +
@@ -1468,7 +1495,7 @@
       '<div class="stats"><div class="stat"><b class="' + (d >= 0 ? 'rk-up-t' : 'rk-dn-t') + '">' + sgn(d) + '</b><span>Elo: ' + Math.round(RK.r0) + ' → ' + Math.round(RK.r1) + '</span></div><div class="stat"><b>' + RK.ok + '/' + n + '</b><span>câu đúng</span></div><div class="stat"><b>' + fmtClock(RK.sec * 1000) + '</b><span>thời gian (tối đa ' + fmtClock(RK.limit) + ')</span></div></div>' +
       '<div>' + rkBadge(RK.rank1) + (up || dn ? ' <span class="muted">từ ' + esc(RK.rank0.r.name) + '</span>' : '') + '</div>' +
       '<div class="table-wrap"><table style="min-width:0"><thead><tr><th>Khoản</th><th>Elo</th><th></th></tr></thead><tbody>' + rows.map(function (r) { return '<tr><td>' + esc(r[0]) + '</td><td class="' + (r[1] > 0 ? 'rk-up-t' : r[1] < 0 ? 'rk-dn-t' : '') + '">' + sgn1(r[1]) + '</td><td class="muted">' + esc(r[2]) + '</td></tr>'; }).join('') + '</tbody></table></div>' +
-      (miss.length ? '<section class="stack" style="gap:1rem"><h2>Các câu làm sai (' + miss.length + ')</h2>' + ['Ngữ pháp', 'Từ vựng', 'Phát âm'].map(function (tag) {
+      (miss.length ? '<section class="stack" style="gap:1rem"><h2>Các câu làm sai (' + miss.length + ')</h2>' + ['Ngữ pháp', 'Từ vựng', 'Nghĩa sang từ', 'Phát âm'].map(function (tag) {
         var ms = miss.filter(function (x) { return x.tag === tag; }), tot = RK.log.filter(function (x) { return x.tag === tag; }).length;
         return ms.length ? '<div class="stack" style="gap:0.6rem"><h3 style="margin:0">' + esc(tag) + ' <span class="tag">sai ' + ms.length + '/' + tot + '</span></h3>' + ms.map(function (x) { return '<div class="miss"><strong>' + x.h + '</strong><span>Bạn chọn: <span class="no-way">' + x.o[x.picked] + '</span></span><span>Đáp án: <span class="yes-way">' + x.o[x.a] + '</span></span></div>'; }).join('') + '</div>' : '';
       }).join('') + '</section>' : '') +
@@ -2564,11 +2591,12 @@ var EST_PH1 = 15, EST_QUOTA = [3,3,3,3,3], EST_QUOTA_LOW = [8, 8, 6, 5, 3], EST_
   }
   /* Help button ("Gợi ý"): stress question -> the word type of each word; generated sound question -> every sound the underlined letters can have. Using it halves the point. */
   function helpHtml(c, hint) {
+    if (ipaHost === 'rank') return '';   /* no hint button in rank mode */
     if (c.help) return hint ? '<div class="hint"' + (c.picked === null ? ' role="status"' : '') + '>' + hint + '</div>' : '';   /* stays after the answer, to compare with the result */
     if (c.picked !== null) return '';
-    return '<div class="row"><button type="button" class="btn ghost small" data-action="ip-help">Gợi ý</button><span class="muted" style="font-size:0.9rem">' + (ipaHost === 'rank' ? 'Dùng gợi ý thì trả lời đúng chỉ được một nửa Elo và không có thưởng tay nhanh.' : 'Dùng gợi ý thì trả lời đúng chỉ được 0.5 điểm.') + '</span></div>';
+    return '<div class="row"><button type="button" class="btn ghost small" data-action="ip-help">Gợi ý</button><span class="muted" style="font-size:0.9rem">Dùng gợi ý thì trả lời đúng chỉ được 0.5 điểm.</span></div>';
   }
-  function verdict(c, ok) { return ok ? (c.help ? (ipaHost === 'rank' ? 'Chính xác (có dùng gợi ý: Elo giảm một nửa).' : 'Chính xác (có dùng gợi ý: 0.5 điểm).') : 'Chính xác.') : 'Chưa đúng.'; }
+  function verdict(c, ok) { return ok ? (c.help ? 'Chính xác (có dùng gợi ý: 0.5 điểm).' : 'Chính xác.') : 'Chưa đúng.'; }
   /* Words that look alike must not share a question: same root (related), same ending from the underlined letters on (could / would / should, light / night / knight, day / bay / pay),
      or the same beginning up to the underlined letters (man / map, bread / breakfast). */
   function relatedSound(a, b) {
@@ -3096,7 +3124,6 @@ var EST_PH1 = 15, EST_QUOTA = [3,3,3,3,3], EST_QUOTA_LOW = [8, 8, 6, 5, 3], EST_
       return;
     }
     if (a === 'rk-pick') { if (RK) RK.warn = false; ipaPop = ''; ipaCard = null; rkPick(parseInt(t.getAttribute('data-i'), 10)); render(); var nb = view.querySelector('[data-action="rk-next"]'); if (nb) nb.focus(); return; }
-    if (a === 'rk-help') { var hc = RK && RK.cur && RK.cur.ip; if (hc && hc.picked === null && !hc.help) { hc.help = true; render(); } return; }
     if (a === 'rk-note') {
       var nc = RK && RK.cur && RK.cur.ip; if (!nc || !nc.opts || nc.sound) return;
       var wi2 = parseInt(t.getAttribute('data-i'), 10), si2 = parseInt(t.getAttribute('data-s'), 10);

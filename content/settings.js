@@ -28,14 +28,14 @@ OEL.settings = {
 
   /* ---- Rank mode ----
      questions / minutes = length and time limit of one test.
-     mix = share of grammar, vocab and IPA questions (relative weights).
+     mix = share of grammar, vocab (word -> meaning), meaning (meaning -> English word) and IPA questions (relative weights).
      wild = chance that a question ignores the player's level; wildSpread = how far (in Elo) a wild question may be from the player.
      nearSpread = how far (in Elo) a normal question may be from the player.
      ipaDefault = level given to an IPA word that is not in the word list. Every vocab and IPA question gets the highest level of its words;
      grammar questions use their own level. */
   rank: {
     questions: 30, minutes: 20,
-    mix: { grammar: 1, vocab: 1, ipa: 1 },
+    mix: { grammar: 1, vocab: 1, meaning: 1, ipa: 1 },
     wild: 0.2, wildSpread: 900, nearSpread: 250,
     ipaDefault: "B1"
   },
@@ -44,12 +44,14 @@ OEL.settings = {
      quick: a correct answer in under quickSec seconds earns quickPts; a wrong answer after a quick tap (under quickSec) costs quickStrike.
      streak: consecutive correct answers; from streakFrom in a row each correct answer earns streakPts, capped at streakMax per test.
      win: the test ended with a net Elo gain; consecutive winning tests earn winPts each, capped at winMax.
-     fast: a net Elo gain AND finished in under fastMin minutes earns fastPts. */
+     fast: a net Elo gain AND finished in under fastMin minutes earns fastPts.
+     note: in a stress question, ticking the stressed syllable of all four words correctly in the notes column earns notePts. */
   bonus: {
     quickSec: 3, quickPts: 1, quickStrike: 2,
     streakFrom: 3, streakPts: 1, streakMax: 15,
     winPts: 5, winMax: 25,
-    fastMin: 10, fastPts: 10
+    fastMin: 10, fastPts: 10,
+    notePts: 2
   },
 
   /* ---- Fonts: heading, content and small-label fonts (names from the Admin font list) ---- */
